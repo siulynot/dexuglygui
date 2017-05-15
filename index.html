@@ -32,7 +32,19 @@
               </div>
               <div id="ActivateCoin" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <button class="btn btn-default activate-btc">Activate Bitcoin</button>
+                        <button class="btn btn-default activate-kmd">Activate Komodo</button>
+                        <button class="btn btn-default active-coin-status">Active Coins Status</button>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="active-coin-output"></pre>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -40,13 +52,30 @@
               <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#SetupBlockTrail" aria-expanded="false" aria-controls="SetupBlockTrail">
-                    Step #2 - Stup Blocktrail.com API
+                    Step #2 - Setup Blocktrail.com API
                   </a>
                 </h4>
               </div>
               <div id="SetupBlockTrail" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  <p>You need Blocktrail.com API. Please sign-up by going to <a href="https://www.blocktrail.com/dev/signup" target="blank">this link</a>.<br>
+                  After login in your account go to "Settings", then go to "API Keys" tab there and get new keys from there.<br>
+                  Make sure to save the newly generated 'API Key' and 'API Secret'. You'll only see this 'API Secret' first time and never again.</p>
+
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="blocktrailapi" class="control-label">Blocktrail API Key</label>
+                        <input type="text" class="form-control blocktrailapi-key" id="blocktrailapi" placeholder="Blocktrail API Key" required="required"><br>
+                          <button class="btn btn-default blocktrailapi-btn">Activate Blocktrail API</button>
+                          <br><br>If you are not Liquidity Provider make sure to push this button: <button class="btn btn-default notlp-btn">I'm not LP</button>
+                      </div>
+                      <br>
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="blocktrail-output"></pre>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -60,7 +89,22 @@
               </div>
               <div id="WalletLogin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="passphrase" class="col-sm-3 control-label">Passphrase</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control passphrase-text" id="passphrase" placeholder="Enter your text only passphrase" required="required"><br>
+                          <button class="btn btn-default login-btn">Login</button>
+                        </div>
+                      </div>
+                      <br>
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="passphrase-output"></pre>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -74,7 +118,72 @@
               </div>
               <div id="ListSmartAddresses" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  
+                  <div class="col-md-12">
+                    <h4>FAQ for Smart Addresses can be found <a href="https://github.com/SuperNETorg/komodo/wiki/FAQ-for-smartaddresses" target="blank">here</a></h4>
+                    <button class="btn btn-default list-smartaddress">List Smart Addresses</button>
+                  </div>
+
+                  <div class="col-md-6" style="margin-top: 20px;">
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><strong>Type: Deposit</strong></div>
+                      <div class="">
+                        <table class="table table-striped">
+                          <tr><td class="deposit_key0"></td><td class="deposit_val0"></td></tr>
+                          <tr><td class="deposit_key1"></td><td class="deposit_val1"></td></tr>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><strong>Type: Jumblr</strong></div>
+                      <div class="">
+                        <table class="table table-striped">
+                          <tr><td class="jumblr_key0"></td><td class="jumblr_val0"></td></tr>
+                          <tr><td class="jumblr_key1"></td><td class="jumblr_val1"></td></tr>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><strong>Type: <span class="type0"></span></strong></div>
+                      <div class="">
+                        <table class="table table-striped">
+                          <tr><td>coin</td><td class="type0_val0"></td></tr>
+                          <tr><td>address</td><td class="type0_val1"></td></tr>
+                          <tr><td>dest</td><td class="type0_val2"></td></tr>
+                          <tr><td>jumblr_deposit</td><td class="type0_val3"></td></tr>
+                          <tr><td>deposit_avail</td><td class="type0_val4"></td></tr>
+                          <tr><td>jumblr</td><td class="type0_val5"></td></tr>
+                          <tr><td>jumblr_avail</td><td class="type0_val6"></td></tr>
+                          <tr><td>extra</td><td class="type0_val7"></td></tr>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><strong>Type: <span class="type1"></span></strong></div>
+                      <div class="">
+                        <table class="table table-striped">
+                          <tr><td>coin</td><td class="type1_val0"></td></tr>
+                          <tr><td>address</td><td class="type1_val1"></td></tr>
+                          <tr><td>dest</td><td class="type1_val2"></td></tr>
+                          <tr><td>jumblr_deposit</td><td class="type1_val3"></td></tr>
+                          <tr><td>deposit_avail</td><td class="type1_val4"></td></tr>
+                          <tr><td>jumblr</td><td class="type1_val5"></td></tr>
+                          <tr><td>jumblr_avail</td><td class="type1_val6"></td></tr>
+                          <tr><td>extra</td><td class="type1_val7"></td></tr>
+                        </table>
+                      </div>
+                    </div>
+                    
+
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="smartaddress-output"></pre>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -88,7 +197,20 @@
               </div>
               <div id="AdjustDEXParams" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="dexratio" class="control-label">Blocktrail API Key</label>
+                        <input type="text" class="form-control dexratio-val" id="dexratio" placeholder="eg. 0.97" required="required"><br>
+                          <button class="btn btn-default dexratio-btn">Set DEX Ratio</button>
+                      </div>
+                      <br>
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="dexparams-output"></pre>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -100,5 +222,6 @@
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/dexactions.js"></script>
   </body>
 </html>
