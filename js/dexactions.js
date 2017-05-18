@@ -192,3 +192,89 @@ $('.dexratio-btn').click(function() {
 	});
 })
 
+
+$('.showwalletinfo').click(function() {
+	var ajax_data = {"agent":"SuperNET","method":"activehandle"};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.checkwallet-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+
+$('.show-btcbalance').click(function() {
+	var ajax_activehandle = {"agent":"SuperNET","method":"activehandle"};
+	var url = "http://127.0.0.1:7778/";
+
+	var a1 = $.ajax({
+				data: JSON.stringify(ajax_activehandle),
+				dataType: 'json',
+				type: 'POST',
+				url: 'http://127.0.0.1:7778'
+	        }),
+	    a2 = a1.then(function(data) {
+	    		console.log(data);
+	    		$('.coin_mainaddr').html(data.BTC);
+	    		$('.coin_id').html('Bitcoin (BTC)')
+	    		var ajax_dexgetbalance = {"agent":"dex","method":"getbalance","address":data.BTC,"symbol":"BTC"}
+    			//return data
+	            // .then() returns a new promise
+	            return $.ajax({
+	            	data: JSON.stringify(ajax_dexgetbalance),
+					dataType: 'json',
+					type: 'POST',
+					url: 'http://127.0.0.1:7778'
+	            });
+	         });
+
+	a2.done(function(data) {
+	    console.log(data);
+	    $('.checkwallet-output').html(JSON.stringify(data, null, 2));
+	    $('.coin_balance').html(data.balance);
+	});
+})
+
+
+$('.show-kmdbalance').click(function() {
+	var ajax_activehandle = {"agent":"SuperNET","method":"activehandle"};
+	var url = "http://127.0.0.1:7778/";
+
+	var a1 = $.ajax({
+				data: JSON.stringify(ajax_activehandle),
+				dataType: 'json',
+				type: 'POST',
+				url: 'http://127.0.0.1:7778'
+	        }),
+	    a2 = a1.then(function(data) {
+	    		console.log(data);
+	    		$('.coin_mainaddr').html(data.KMD);
+	    		$('.coin_id').html('Komodo (KMD)')
+	    		var ajax_dexgetbalance = {"agent":"dex","method":"getbalance","address":data.KMD,"symbol":"KMD"}
+    			//return data
+	            // .then() returns a new promise
+	            return $.ajax({
+	            	data: JSON.stringify(ajax_dexgetbalance),
+					dataType: 'json',
+					type: 'POST',
+					url: 'http://127.0.0.1:7778'
+	            });
+	         });
+
+	a2.done(function(data) {
+	    console.log(data);
+	    $('.checkwallet-output').html(JSON.stringify(data, null, 2));
+	    $('.coin_balance').html(data.balance);
+	});
+})
+

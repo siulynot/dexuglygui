@@ -214,6 +214,44 @@
                 </div>
               </div>
             </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#CheckWallet" aria-expanded="false" aria-controls="CheckWallet">
+                    Step #6 - Check Wallet Balance
+                  </a>
+                </h4>
+              </div>
+              <div id="CheckWallet" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <button class="btn btn-default show-btcbalance">Show Bitcoin Balance</button>
+                        <button class="btn btn-default show-kmdbalance">Show Komodo Balance</button>
+                        <button class="btn btn-default showwalletinfo">Show Wallet Info</button>
+                      </div>
+                      <br>
+
+                      <div class="panel panel-default">
+                      <div class="panel-heading"><strong>Coin: <span class="coin_id"></span></strong></div>
+                      <div class="">
+                        <table class="table table-striped">
+                          <tr><td>Main Address</td><td class="coin_mainaddr"></td></tr>
+                          <tr><td>Balance</td><td class="coin_balance"></td></tr>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="checkwallet-output"></pre>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
       </div>
     </div>
