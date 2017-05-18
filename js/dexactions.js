@@ -306,7 +306,7 @@ $('.show-kmdbalance').click(function() {
 })
 
 $( ".buy_coin" ).change(function() {
-  console.log($('.buy_coin').val())
+  //console.log($('.buy_coin').val())
   if ($('.buy_coin').val() == 'btc') {
   	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
   	$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
@@ -335,7 +335,7 @@ $( ".buy_coin" ).change(function() {
 			//console.log(index);
 			//console.log(value);
 			if (value.type == $('.buy_coin').val()) {
-				console.log(value.coins);
+				//console.log(value.coins);
 				$('.initcoinswap-output').html(JSON.stringify(value.coins[0], null, 2));
 				$('.smartaddr_type').html($('.buy_coin').val().toUpperCase())
 				$('.deposit_coin_code').html(value.coins[0].coin.toUpperCase())
@@ -370,10 +370,12 @@ function calc_swap_price(pair) {
 	    url: 'http://api.coinmarketcap.com/v1/ticker/komodo/'
 	}).done(function(data) {
 	    // If successful
-	   console.log(data[0].price_btc);
+	   //console.log(data[0].price_btc);
 
 	   if (pair == 'btckmd') {
 	   	calc_price = data[0].price_btc * 1.05
+	   	calc_price_100 = (calc_price * 100) + 0.001
+	   	console.log(calc_price_100.toFixed(8));
 	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
 	   }
 	   if (pair == 'kmdbtc') {
