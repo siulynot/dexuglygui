@@ -122,6 +122,25 @@ $('.login-btn').click(function() {
 	});
 })
 
+$('.logout-btn').click(function() {
+	var ajax_data = {"agent":"bitcoinrpc","method":"walletlock"};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
 
 $('.list-smartaddress').click(function() {
 	var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
@@ -194,6 +213,10 @@ $('.dexratio-btn').click(function() {
 
 
 $('.showwalletinfo').click(function() {
+	$('.checkwallet-output').html('<i>processing...</i>');
+	$('.coin_balance').html('');
+	$('.coin_mainaddr').html('');
+	$('.coin_id').html('')
 	var ajax_data = {"agent":"SuperNET","method":"activehandle"};
 	var url = "http://127.0.0.1:7778/";
 
@@ -214,6 +237,8 @@ $('.showwalletinfo').click(function() {
 
 
 $('.show-btcbalance').click(function() {
+	$('.checkwallet-output').html('<i>processing...</i>');
+	$('.coin_balance').html('<i>processing...</i>');
 	var ajax_activehandle = {"agent":"SuperNET","method":"activehandle"};
 	var url = "http://127.0.0.1:7778/";
 
@@ -247,6 +272,8 @@ $('.show-btcbalance').click(function() {
 
 
 $('.show-kmdbalance').click(function() {
+	$('.checkwallet-output').html('<i>processing...</i>');
+	$('.coin_balance').html('<i>processing...</i>');
 	var ajax_activehandle = {"agent":"SuperNET","method":"activehandle"};
 	var url = "http://127.0.0.1:7778/";
 
@@ -278,3 +305,83 @@ $('.show-kmdbalance').click(function() {
 	});
 })
 
+$( ".buy_coin" ).change(function() {
+  console.log($('.buy_coin').val())
+  if ($('.buy_coin').val() == 'btc') {
+  	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
+  	$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
+  	$('.swap_deposit_addr_coin_id').html('KMD');
+  	$('.swap_recieve_addr_coin_id').html('BTC');
+  	calc_swap_price('kmdbtc');
+  }
+  if ($('.buy_coin').val() == 'kmd') {
+  	$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
+  	$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
+  	$('.swap_deposit_addr_coin_id').html('BTC');
+  	$('.swap_recieve_addr_coin_id').html('KMD');
+  	calc_swap_price('btckmd');
+  }
+  var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+		$(data).each(function(index, value) {
+			//console.log(index);
+			//console.log(value);
+			if (value.type == $('.buy_coin').val()) {
+				console.log(value.coins);
+				$('.initcoinswap-output').html(JSON.stringify(value.coins[0], null, 2));
+				$('.smartaddr_type').html($('.buy_coin').val().toUpperCase())
+				$('.deposit_coin_code').html(value.coins[0].coin.toUpperCase())
+				$('.deposit_coin_addr').html(value.coins[0].address)
+				$('.swap_deposit_addr').html(value.coins[0].address);
+  				$('.swap_recieve_addr').html(value.coins[0].dest);
+  				$('.deposit_coin_sourceamount').html(value.coins[0].sourceamount + ' ' + value.coins[0].coin.toUpperCase());
+
+				$('#deposit_coin_qrcode').html('');
+				var qrcode = new QRCode("deposit_coin_qrcode", {
+									width: 96,
+									height: 96,
+									colorDark : "#000000",
+									colorLight : "#ffffff",
+									correctLevel : QRCode.CorrectLevel.H
+								});
+				qrcode.makeCode(value.coins[0].address);
+
+			}
+		});
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+});
+
+
+function calc_swap_price(pair) {
+	$.ajax({
+	    dataType: 'json',
+	    type: 'GET',
+	    url: 'http://api.coinmarketcap.com/v1/ticker/komodo/'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data[0].price_btc);
+
+	   if (pair == 'btckmd') {
+	   	calc_price = data[0].price_btc * 1.05
+	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
+	   }
+	   if (pair == 'kmdbtc') {
+	   	calc_price = data[0].price_btc - (data[0].price_btc * 0.05)
+	   	$('.coin_swap_rate_info').html('1 KMD = ' + calc_price.toFixed(8) + ' BTC approx.');
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}

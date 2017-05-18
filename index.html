@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>DEX Client - Ugly GUI</title>
+    <title>EasyDEX - Ugly GUI</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +18,7 @@
     <![endif]-->
   </head>
   <body>
+    <h3 style="text-align: center;">EasyDEX - Ugly GUI</h3>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
@@ -96,6 +97,7 @@
                         <div class="col-sm-9">
                           <input type="text" class="form-control passphrase-text" id="passphrase" placeholder="Enter your text only passphrase" required="required"><br>
                           <button class="btn btn-default login-btn">Login</button>
+                          <button class="btn btn-default logout-btn">Logout</button>
                         </div>
                       </div>
                       <br>
@@ -252,6 +254,71 @@
                 </div>
               </div>
             </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#initcoinswap" aria-expanded="false" aria-controls="initcoinswap">
+                    Step #7 - Initiate Cross-Blockchain Coin Swap
+                  </a>
+                </h4>
+              </div>
+              <div id="initcoinswap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="buy_coin" class="control-label">What you want to Buy?</label>
+                        <select class="form-control buy_coin">
+                          <option value="-">- Select -</option>
+                          <option value="btc">Bitcoin (BTC)</option>
+                          <option value="kmd">Komodo (KMD)</option>
+                        </select><br>
+                      </div>
+                      <br>
+
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Selected Coin Type: <span class="smartaddr_type"></span></strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr>
+                            <tr><td colspan="3" style="text-align: center;"><div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div></td></tr>
+                            <tr><td rowspan="2" id="deposit_coin_qrcode" width="100px" height="100px"></td><td>Deposit <span class="deposit_coin_code"></span> To:</td><td class="deposit_coin_addr"></td></tr>
+                            <tr></tr>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Esitmate Swap Price Calculation</strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr><td class="coin_swap_rate_info" style="font-size: 22px; text-align: center;"></td></tr>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Order Details</strong></div>
+                        <div class="">
+                          <div style="margin: 5px;"><strong>NOTE:</strong> In Native DEX your reciving address will be different than your logged in wallet's main address.</div>
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr><td>Your <span class="swap_deposit_addr_coin_id" style="font-weight: bold;"></span> deposits to</td><td><span class="swap_deposit_addr" style="font-weight: bold;"></span></td></tr>
+                            <tr><td class="deposit_coin_dest_addr">You Recieve <span class="swap_recieve_addr_coin_id" style="font-weight: bold;"></span> in</td><td><span class="swap_recieve_addr" style="font-weight: bold;"></span></td></tr>
+                            <tr><td>Amount available in deposit address</td><td class="deposit_coin_sourceamount"></td></tr>
+                          </table>
+                        </div>
+                      </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+                    <pre class="initcoinswap-output"></pre>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
           </div>
       </div>
     </div>
@@ -260,6 +327,7 @@
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/qrcode.min.js"></script>
     <script src="js/dexactions.js"></script>
   </body>
 </html>
