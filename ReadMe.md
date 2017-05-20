@@ -98,3 +98,47 @@ For this testing version, at the start, it's highly recommended to set it's valu
 
 ### Step #7 - Initiate Cross-Blockchain Coin Swap
 
+This EasyDEX Ugly GUI is doing only 2 coins swap for the begining. KMD and BTC. No other currency or coin is shown in options for this testing GUI.
+In Agama Wallet all other options will be activated to make different pairs of swaping coins with another.
+
+
+The first option there to select is what you want to buy.
+
+_**If you select BTC**_, the screen will update with information related to get BTC.
+
+As this is just a test version, I have set there only 2 buttons with default value of 100 KMD and 0.001 KMD for fee.
+
+>NOTE: For buying BTC, please push BOTH Send KMD buttons.
+
+
+There are two buttons to send KMD as the protocol require to UTXOs to process and complete the swap.
+
+If you won't send KMD fee after sending 100 KMD your swap might not complete.
+
+
+_**If you select KMD**_, you'll see information and options to buy KMD through DEX.
+
+The send BTC button auto updates with the expected BTC value to complete trade to buy 100 KMD, which is the minimum buy order in DEX.
+
+The estimate price is taken from CoinMarketCap for now, and is adjusted to match with the expected DEX prices at that period of time.
+
+
+
+### Step #8 - Check Swap List
+
+Once you have deposited BTC or KMD to initalise cross-blockchain coin swap process, you get to this screen and push **Refresh Swap List** button.
+
+Pushing this btton will show you JSON output of any latest swap list that are in progress.
+
+If you see blank JSON output like this:
+
+```JSON
+{
+  "result": "success",
+  "swaps": [],
+  "quotes": [],
+  "tag": "11164256562825577933"
+}
+```
+
+This means the coin swap process for your request has not begun. You should wait for sometime and refresh this button to see any updated output.
