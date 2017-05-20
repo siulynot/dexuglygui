@@ -18,3 +18,24 @@ Or click on this link to download a copy of this repo as a zip file:
 https://github.com/SuperNETorg/dexuglygui/archive/master.zip
 
 It will download "dexuglygui". Open "dexuglygui", and from there open "index.html" file in your web browser.
+
+
+
+## Quick Explanation of Steps:
+
+### Step 01
+
+Activate Bitcoin and Activate Komodo. Then check if both BTC and KMD are showing under 'basilisk' in JSON output like following:
+
+```JSON
+{
+  "native": [],
+  "basilisk": [
+    "BTC",
+    "KMD"
+  ],
+  "full": [],
+  "tag": "18225885340050776559"
+}
+```
+
