@@ -119,6 +119,7 @@ $('.login-btn').click(function() {
 	   $('.step04_smartaddr').show();
 	   $('.step05_dexparams').show();
 	   $('.step07_initswap').show();
+	   $('.step08_checkswaps').show();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -141,6 +142,7 @@ $('.logout-btn').click(function() {
 	   $('.step04_smartaddr').show();
 	   $('.step05_dexparams').show();
 	   $('.step07_initswap').show();
+	   $('.step08_checkswaps').show();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -165,6 +167,32 @@ $('.login_btc_jumblr_btn').click(function() {
 	   $('.step04_smartaddr').hide();
 	   $('.step05_dexparams').hide();
 	   $('.step07_initswap').hide();
+	   $('.step08_checkswaps').hide();
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+
+$('.login_kmd_jumblr_btn').click(function() {
+	var _passphrase = "kmd jumblr " + $('.passphrase-text').val();
+	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
+	   $('.step04_smartaddr').hide();
+	   $('.step05_dexparams').hide();
+	   $('.step07_initswap').hide();
+	   $('.step08_checkswaps').hide();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -500,6 +528,25 @@ $('.deposit_coin_btn_03').click(function() {
 	    // If successful
 	   console.log(data);
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+$('.refresh_swap_list_btn').click(function() {
+	var ajax_data = {"agent":"InstantDEX","method":"getswaplist"};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.checkswaplist-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
