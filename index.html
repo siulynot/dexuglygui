@@ -222,7 +222,7 @@
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#CheckWallet" aria-expanded="false" aria-controls="CheckWallet">
-                    Step #6 - Check Wallet Balance
+                    Step #6 - Wallet Operations
                   </a>
                 </h4>
               </div>
@@ -237,16 +237,31 @@
                       </div>
                       <br>
 
-                      <div class="panel panel-default">
-                      <div class="panel-heading"><strong>Coin: <span class="coin_id"></span></strong></div>
-                      <div class="">
-                        <table class="table table-striped">
-                          <tr><td>Main Address</td><td class="coin_mainaddr"></td></tr>
-                          <tr><td>Balance</td><td class="coin_balance"></td></tr>
-                        </table>
+                      <div class="panel panel-default" style="margin-bottom: 20px;">
+                        <div class="panel-heading"><strong>Coin: <span class="coin_id"></span></strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr><td>Main Address</td><td class="coin_mainaddr"></td></tr>
+                            <tr><td>Balance</td><td class="coin_balance"></td></tr>
+                          </table>
+                        </div>
                       </div>
 
-                    </div>
+                      <div class="form-group">
+                        <h3>Send Transaction</h3>
+                        <label for="send_tx_coin" class="control-label">Select Coin</label>
+                        <select class="form-control send_tx_coin">
+                          <option value="-">- Select -</option>
+                          <option value="BTC">Bitcoin (BTC)</option>
+                          <option value="KMD">Komodo (KMD)</option>
+                        </select><br>
+                        <label for="send_tx_addr" class="control-label">Send to Address (Destination Address)</label><br>
+                        <input type="text" class="form-control send_tx_addr" id="send_tx_addr" required="required"><br>
+                        <label for="send_tx_amount" class="control-label">Send Amount</label><br>
+                        <input type="text" class="form-control send_tx_amount" id="send_tx_amount" required="required"><br>
+                          <button class="btn btn-default send_tx_addr_btn">Send</button>
+                      </div>
+
                   </div>
 
                   <div class="col-md-6">

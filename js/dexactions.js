@@ -364,6 +364,40 @@ $('.show-kmdbalance').click(function() {
 	});
 })
 
+
+$('.send_tx_addr_btn').click(function() {
+	var selected_coin = $('.send_tx_coin').val();
+	var send_to_addr = $('.send_tx_addr').val();
+	var send_coin_amount = $('.send_tx_amount').val();
+	var confirm_send = confirm('Sending ' + send_coin_amount + ' ' + selected_coin + ' to ' + send_to_addr);
+	if (confirm_send == true) {
+		console.log('Sending Transaction');
+		$('.checkwallet-output').html('<i>Sending ' + send_coin_amount + ' ' + selected_coin + ' to ' + send_to_addr + '<br>processing...</i>');
+
+		var ajax_data = {"coin":selected_coin,"method":"sendtoaddress","params":[send_to_addr, send_coin_amount]};
+		var url = "http://127.0.0.1:7778/";
+
+		$.ajax({
+		    data: JSON.stringify(ajax_data),
+		    dataType: 'json',
+		    type: 'POST',
+		    url: 'http://127.0.0.1:7778'
+		}).done(function(data) {
+		    // If successful
+		   console.log(data);
+		   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+		}).fail(function(jqXHR, textStatus, errorThrown) {
+		    // If fail
+		    console.log(textStatus + ': ' + errorThrown);
+		});
+	} else {
+		console.log('Canceled Transaction');
+		$('.checkwallet-output').html('Canceled Transaction.');
+	}
+
+})
+
+
 $( ".buy_coin" ).change(function() {
   //console.log($('.buy_coin').val())
   if ($('.buy_coin').val() == 'btc') {

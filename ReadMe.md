@@ -89,7 +89,7 @@ You can change it's value to 0.97 to get higher chance (99.7%) of your order to 
 For this testing version, at the start, it's highly recommended to set it's value to 0.97, and get the results of testing. Once enough people have tested DEX then it's good to play with lower values.
 
 
-### Step #6 - Check Wallet Balance
+### Step #6 - Wallet Operations
 
 - **Show Bitcoin Balance** button will show your logged in wallet's main BTC address and it's balance.
 - **Show Komodo Balance** button will show your logged in wallet's main KMD address and it's balance.
