@@ -23,7 +23,7 @@ It will download "dexuglygui". Open "dexuglygui", and from there open "index.htm
 
 ## Quick Explanation of Steps:
 
-### Step 01
+### Step #1 - Activate Coin
 
 - Activate Bitcoin
 - Activate Komodo.
@@ -42,7 +42,7 @@ Then check if both BTC and KMD are showing under 'basilisk' in JSON output like 
 }
 ```
 
-### Step 02
+### Step #2 - Setup Blocktrail.com API
 
 It includes instructions to get Blocktrail API key which you'll need to intput there and then acitvate it. Here are those instructions again:
 
@@ -51,7 +51,14 @@ It includes instructions to get Blocktrail API key which you'll need to intput t
 - Make sure to save the newly generated `API Key` and `API Secret`. You'll only see this `API Secret` first time and never again.
 
 - Input this Blocktrail API Key in Step 02, and press _Activate Blocktrail API_ button.
-- Then click _I'm not LP' button.
+- Then click _I'm not LP_ button.
 
 
-### Step 03
+### Step #3 - Wallet Login
+
+On this step you'll login to your wallet using passphrase.
+
+- **Login** button logins to your wallet, and you can continue with the EasyDEX coin swap steps after this.
+- **Login BTC Jumblr** button and **Login KMD Jumblr** button lets you access your BTC/KMD deposit address. Clicking on it any other sections which are not relevant to this passphrase hides, as this steps suppose to be only used for makinmg BTC/KMD transaction to other accounts.
+
+
