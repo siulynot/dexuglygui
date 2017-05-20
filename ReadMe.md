@@ -25,7 +25,10 @@ It will download "dexuglygui". Open "dexuglygui", and from there open "index.htm
 
 ### Step 01
 
-Activate Bitcoin and Activate Komodo. Then check if both BTC and KMD are showing under 'basilisk' in JSON output like following:
+- Activate Bitcoin
+- Activate Komodo.
+
+Then check if both BTC and KMD are showing under 'basilisk' in JSON output like following:
 
 ```JSON
 {
@@ -39,3 +42,16 @@ Activate Bitcoin and Activate Komodo. Then check if both BTC and KMD are showing
 }
 ```
 
+### Step 02
+
+It includes instructions to get Blocktrail API key which you'll need to intput there and then acitvate it. Here are those instructions again:
+
+- You need Blocktrail.com API. Please sign-up by going to [this link](https://www.blocktrail.com/dev/signup).
+- After login in your account go to **Settings**, then go to **API Keys** tab there and get new keys from there.
+- Make sure to save the newly generated `API Key` and `API Secret`. You'll only see this `API Secret` first time and never again.
+
+- Input this Blocktrail API Key in Step 02, and press _Activate Blocktrail API_ button.
+- Then click _I'm not LP' button.
+
+
+### Step 03
