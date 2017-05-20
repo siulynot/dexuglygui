@@ -103,7 +103,32 @@ $('.notlp-btn').click(function() {
 
 
 $('.login-btn').click(function() {
-	var _passphrase = $('.passphrase-text').val();
+	var _login_type = $('.login_type').val();
+	if (_login_type == 'login_main_wallet') {
+		var _passphrase = $('.passphrase-text').val();
+		$('.step04_smartaddr').show();
+		$('.step05_dexparams').show();
+		$('.step07_initswap').show();
+		$('.step08_checkswaps').show();
+	} else {
+		$('.step04_smartaddr').hide();
+		$('.step05_dexparams').hide();
+		$('.step07_initswap').hide();
+		$('.step08_checkswaps').hide();
+	}
+	if (_login_type == 'login_btc_jumblr') {
+		var _passphrase = "btc jumblr " + $('.passphrase-text').val();
+	}
+	if (_login_type == 'login_kmd_jumblr') {
+		var _passphrase = "kmd jumblr " + $('.passphrase-text').val();
+	}
+	if (_login_type == 'login_jumblr') {
+		var _passphrase = "jumblr " + $('.passphrase-text').val();
+	}
+	if (_login_type == 'login_deposit') {
+		var _passphrase = "deposit " + $('.passphrase-text').val();
+	}
+
 	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
 	var url = "http://127.0.0.1:7778/";
 
@@ -116,10 +141,6 @@ $('.login-btn').click(function() {
 	    // If successful
 	   console.log(data);
 	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	   $('.step04_smartaddr').show();
-	   $('.step05_dexparams').show();
-	   $('.step07_initswap').show();
-	   $('.step08_checkswaps').show();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -151,8 +172,7 @@ $('.logout-btn').click(function() {
 
 
 $('.login_btc_jumblr_btn').click(function() {
-	var _passphrase = "btc jumblr " + $('.passphrase-text').val();
-	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
+	
 	var url = "http://127.0.0.1:7778/";
 
 	$.ajax({
@@ -164,10 +184,6 @@ $('.login_btc_jumblr_btn').click(function() {
 	    // If successful
 	   console.log(data);
 	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	   $('.step04_smartaddr').hide();
-	   $('.step05_dexparams').hide();
-	   $('.step07_initswap').hide();
-	   $('.step08_checkswaps').hide();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -176,8 +192,7 @@ $('.login_btc_jumblr_btn').click(function() {
 
 
 $('.login_kmd_jumblr_btn').click(function() {
-	var _passphrase = "kmd jumblr " + $('.passphrase-text').val();
-	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
+	
 	var url = "http://127.0.0.1:7778/";
 
 	$.ajax({

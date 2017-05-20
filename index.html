@@ -93,14 +93,18 @@
                   
                   <div class="col-md-6">
                       <div class="form-group">
-                        <label for="passphrase" class="col-sm-3 control-label">Passphrase</label>
-                        <div class="col-sm-9">
+                        <label for="passphrase" class="control-label">Passphrase</label>
                           <input type="text" class="form-control passphrase-text" id="passphrase" placeholder="Enter your text only passphrase" required="required"><br>
+                          <label for="login_type" class="control-label">Login Type</label>
+                          <select class="form-control login_type">
+                            <option value="login_main_wallet">Main Wallet Login</option>
+                            <option value="login_btc_jumblr">Login to access BTC DEX address</option>
+                            <option value="login_kmd_jumblr">Login to access KMD DEX address</option>
+                            <option value="login_jumblr">Login to accesss Jumblr destination address</option>
+                            <option value="login_deposit">Login to access Jumblr deposit address</option>
+                          </select><br>
                           <button class="btn btn-default login-btn">Login</button>
-                          <button class="btn btn-default logout-btn">Logout</button>
-                          <button class="btn btn-default login_btc_jumblr_btn">Login BTC Jumblr</button>
-                          <button class="btn btn-default login_kmd_jumblr_btn">Login KMD Jumblr</button>
-                        </div>
+                          <button class="btn btn-default logout-btn">Logout</button><br><br>
                       </div>
                       <br>
                   </div>
