@@ -116,6 +116,9 @@ $('.login-btn').click(function() {
 	    // If successful
 	   console.log(data);
 	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
+	   $('.step04_smartaddr').show();
+	   $('.step05_dexparams').show();
+	   $('.step07_initswap').show();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -135,11 +138,39 @@ $('.logout-btn').click(function() {
 	    // If successful
 	   console.log(data);
 	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
+	   $('.step04_smartaddr').show();
+	   $('.step05_dexparams').show();
+	   $('.step07_initswap').show();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })
+
+
+$('.login_btc_jumblr_btn').click(function() {
+	var _passphrase = "btc jumblr " + $('.passphrase-text').val();
+	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
+	   $('.step04_smartaddr').hide();
+	   $('.step05_dexparams').hide();
+	   $('.step07_initswap').hide();
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
 
 
 $('.list-smartaddress').click(function() {
@@ -313,6 +344,12 @@ $( ".buy_coin" ).change(function() {
   	$('.swap_deposit_addr_coin_id').html('KMD');
   	$('.swap_recieve_addr_coin_id').html('BTC');
   	calc_swap_price('kmdbtc');
+  	$('.deposit_coin_btn_01').show();
+  	$('.deposit_coin_btn_02').show();
+  	$('.deposit_coin_btn_03_info').hide();
+  	$('.deposit_coin_btn_03_info_pre').hide();
+  	$('.deposit_coin_btn_03').hide();
+  	$('.deposit_coin_input_btn').html('Send KMD');
   }
   if ($('.buy_coin').val() == 'kmd') {
   	$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
@@ -320,6 +357,17 @@ $( ".buy_coin" ).change(function() {
   	$('.swap_deposit_addr_coin_id').html('BTC');
   	$('.swap_recieve_addr_coin_id').html('KMD');
   	calc_swap_price('btckmd');
+  	$('.deposit_coin_btn_01').hide();
+  	$('.deposit_coin_btn_02').hide();
+  	$('.deposit_coin_btn_03_info').show();
+  	$('.deposit_coin_btn_03_info_pre').show();
+  	$('.deposit_coin_btn_03').show();
+  	$('.deposit_coin_input_btn').html('Send BTC');
+  }
+  if ($('.buy_coin').val() !== 'kmd' && $('.buy_coin').val() !== 'btc') {
+  	$('.deposit_btns_part_hidden').hide();
+  } else {
+  	$('.deposit_btns_part_hidden').show();
   }
   var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
@@ -375,7 +423,8 @@ function calc_swap_price(pair) {
 	   if (pair == 'btckmd') {
 	   	calc_price = data[0].price_btc * 1.05
 	   	calc_price_100 = (calc_price * 100) + 0.001
-	   	console.log(calc_price_100.toFixed(8));
+	   	//console.log(calc_price_100.toFixed(8));
+	   	$('.deposit_100kmd_worth_btc_btn').text(calc_price_100.toFixed(8));
 	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
 	   }
 	   if (pair == 'kmdbtc') {
@@ -387,3 +436,72 @@ function calc_swap_price(pair) {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+
+
+$('.deposit_coin_btn_01').click(function() {
+	var get_depsit_addr = $('.deposit_coin_addr').text();
+	$('.initcoinswap-output').html('<i>Sending 100 KMD to ' + get_depsit_addr + '<br>processing...</i>');
+
+	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 100]};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+$('.deposit_coin_btn_02').click(function() {
+	var get_depsit_addr = $('.deposit_coin_addr').text();
+	$('.initcoinswap-output').html('<i>Sending 0.001 KMD fee to ' + get_depsit_addr + '<br>processing...</i>');
+
+	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 0.001]};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+$('.deposit_coin_btn_03').click(function() {
+	var get_depsit_addr = $('.deposit_coin_addr').text();
+	var deposit_100kmd_worth_btc_btn = $('.deposit_100kmd_worth_btc_btn').text();
+	$('.initcoinswap-output').html('<i>Sending ' + deposit_100kmd_worth_btc_btn + ' BTC to ' + get_depsit_addr + '<br>processing...</i>');
+
+	var ajax_data = {"coin":"BTC","method":"sendtoaddress","params":[get_depsit_addr, deposit_100kmd_worth_btc_btn]};
+	var url = "http://127.0.0.1:7778/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: 'http://127.0.0.1:7778'
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})

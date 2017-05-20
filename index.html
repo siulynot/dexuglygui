@@ -98,6 +98,8 @@
                           <input type="text" class="form-control passphrase-text" id="passphrase" placeholder="Enter your text only passphrase" required="required"><br>
                           <button class="btn btn-default login-btn">Login</button>
                           <button class="btn btn-default logout-btn">Logout</button>
+                          <button class="btn btn-default login_btc_jumblr_btn">Login BTC Jumblr</button>
+                          <button class="btn btn-default login_kmd_jumblr_btn">Login KMD Jumblr</button>
                         </div>
                       </div>
                       <br>
@@ -110,7 +112,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default step04_smartaddr">
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#ListSmartAddresses" aria-expanded="false" aria-controls="ListSmartAddresses">
@@ -189,7 +191,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default step05_dexparams">
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#AdjustDEXParams" aria-expanded="false" aria-controls="AdjustDEXParams">
@@ -254,7 +256,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default step07_initswap">
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#initcoinswap" aria-expanded="false" aria-controls="initcoinswap">
@@ -283,7 +285,21 @@
                             <tr>
                             <tr><td colspan="3" style="text-align: center;"><div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div></td></tr>
                             <tr><td rowspan="2" id="deposit_coin_qrcode" width="100px" height="100px"></td><td>Deposit <span class="deposit_coin_code"></span> To:</td><td class="deposit_coin_addr"></td></tr>
-                            <tr><td class="deposit_info_btns" colspan="2">Minimum amount to buy/sell Komodo is 100 KMD.<br> Price for selling or buying Komodo will be adjusted and given in default buttons accordinlgy.</td></tr>
+                            <tr><td class="deposit_info_btns" colspan="2">Minimum amount to buy/sell Komodo is 100 KMD.<br> Price for selling or buying Komodo will be adjusted and given in default buttons accordinlgy.<br><br>
+                            <div class="deposit_btns_part_hidden" style="display: none;">
+                              <p>Use the following button(s) or use the custom amount button to <strong>send a transaction</strong>.</p>
+                              <button class="btn btn-default deposit_coin_btn_01">Send 100 KMD</button>
+                              <button class="btn btn-default deposit_coin_btn_02">Send 0.001 KMD fee</button>
+                              <span class="deposit_coin_btn_03_info">Following button is set with custom BTC deposit amount calculated as:</span>
+                              <pre class="deposit_coin_btn_03_info_pre">("Estimate KMD price" x 100 KMD) + 0.001 BTC Fee</pre>
+                              <button class="btn btn-default deposit_coin_btn_03">Send <span class="deposit_100kmd_worth_btc_btn"></span> BTC</button><br><br>
+                              <div class="form-group" style="display: none;">
+                                <label for="deposit_coin_input" class="control-label">Send custom amount</label>
+                                <input type="text" class="form-control deposit_coin_input" id="deposit_coin_input" placeholder="e.g. 0.02" required="required">
+                                  <button class="btn btn-default deposit_coin_input_btn" style="margin-top: 5px;"></button>
+                              </div>
+                            </div>
+                            </td></tr>
                           </table>
                         </div>
                       </div>
