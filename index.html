@@ -116,7 +116,7 @@
                 </div>
               </div>
             </div>
-            <div class="panel panel-default step04_smartaddr">
+            <!--<div class="panel panel-default step04_smartaddr">
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#ListSmartAddresses" aria-expanded="false" aria-controls="ListSmartAddresses">
@@ -129,63 +129,9 @@
                   
                   <div class="col-md-12">
                     <h4>FAQ for Smart Addresses can be found <a href="https://github.com/SuperNETorg/komodo/wiki/FAQ-for-smartaddresses" target="blank">here</a></h4>
-                    <button class="btn btn-default list-smartaddress">List Smart Addresses</button>
                   </div>
 
                   <div class="col-md-6" style="margin-top: 20px;">
-                    <div class="panel panel-default">
-                      <div class="panel-heading"><strong>Type: Deposit</strong></div>
-                      <div class="">
-                        <table class="table table-striped">
-                          <tr><td class="deposit_key0"></td><td class="deposit_val0"></td></tr>
-                          <tr><td class="deposit_key1"></td><td class="deposit_val1"></td></tr>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                      <div class="panel-heading"><strong>Type: Jumblr</strong></div>
-                      <div class="">
-                        <table class="table table-striped">
-                          <tr><td class="jumblr_key0"></td><td class="jumblr_val0"></td></tr>
-                          <tr><td class="jumblr_key1"></td><td class="jumblr_val1"></td></tr>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                      <div class="panel-heading"><strong>Type: <span class="type0"></span></strong></div>
-                      <div class="">
-                        <table class="table table-striped">
-                          <tr><td>coin</td><td class="type0_val0"></td></tr>
-                          <tr><td>address</td><td class="type0_val1"></td></tr>
-                          <tr><td>dest</td><td class="type0_val2"></td></tr>
-                          <tr><td>jumblr_deposit</td><td class="type0_val3"></td></tr>
-                          <tr><td>deposit_avail</td><td class="type0_val4"></td></tr>
-                          <tr><td>jumblr</td><td class="type0_val5"></td></tr>
-                          <tr><td>jumblr_avail</td><td class="type0_val6"></td></tr>
-                          <tr><td>extra</td><td class="type0_val7"></td></tr>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                      <div class="panel-heading"><strong>Type: <span class="type1"></span></strong></div>
-                      <div class="">
-                        <table class="table table-striped">
-                          <tr><td>coin</td><td class="type1_val0"></td></tr>
-                          <tr><td>address</td><td class="type1_val1"></td></tr>
-                          <tr><td>dest</td><td class="type1_val2"></td></tr>
-                          <tr><td>jumblr_deposit</td><td class="type1_val3"></td></tr>
-                          <tr><td>deposit_avail</td><td class="type1_val4"></td></tr>
-                          <tr><td>jumblr</td><td class="type1_val5"></td></tr>
-                          <tr><td>jumblr_avail</td><td class="type1_val6"></td></tr>
-                          <tr><td>extra</td><td class="type1_val7"></td></tr>
-                        </table>
-                      </div>
-                    </div>
-                    
-
                   </div>
 
                   <div class="col-md-6">
@@ -194,7 +140,7 @@
 
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="panel panel-default step05_dexparams">
               <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
@@ -285,24 +231,103 @@
               </div>
               <div id="initcoinswap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
-                  
-                  <div class="col-md-6">
+
+                  <div class="row">
+                    <div class="col-sm-6">
                       <div class="form-group">
-                        <label for="buy_coin" class="control-label">What you want to Buy?</label>
-                        <select class="form-control buy_coin">
-                          <option value="-">- Select -</option>
-                          <option value="btc">Bitcoin (BTC)</option>
-                          <option value="kmd">Komodo (KMD)</option>
-                        </select><br>
+                          <label for="buy_coin" class="control-label">What you want to Sell?</label>
+                          <select class="form-control buy_coin">
+                            <option value="-">- Select -</option>
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="kmd">Komodo (KMD)</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                          <label for="buy_coin" class="control-label">What you want to Buy?</label>
+                          <select class="form-control buy_coin">
+                            <option value="-">- Select -</option>
+                            <option value="btc">Bitcoin (BTC)</option>
+                            <option value="kmd">Komodo (KMD)</option>
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Select Trading options</strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                          <th>AMOUNT</th>
+                          <th>Price</th>
+                          <th>Volume</th>
+                          <th>Action</th>
+                          <tr>
+                            <td>100</td>
+                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                            <td><button class="btn btn-default btn-sm">Trade</button></td>
+                          </tr>
+                          <tr>
+                            <td>2000</td>
+                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                            <td><button class="btn btn-default btn-sm">Trade</button></td>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                            <td><button class="btn btn-default btn-sm">Trade</button></td>
+                          </tr>
+                          <tr>
+                            <td>10</td>
+                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                            <td><button class="btn btn-default btn-sm">Trade</button></td>
+                          </tr>
+                        </table>
+                        </div>
                       </div>
-                      <br>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Trading Pairs</strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr><td style="font-size: 22px; text-align: center;">
+                              <div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div>
+                            </td></tr>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Esitmate Swap Price Calculation</strong></div>
+                        <div class="">
+                          <table class="table table-striped" style="margin-bottom: 0;">
+                            <tr><td class="coin_swap_rate_info" style="font-size: 22px; text-align: center;"></td></tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                  <!--<div class="col-md-12">
 
                       <div class="panel panel-default">
                         <div class="panel-heading"><strong>Selected Coin Type: <span class="smartaddr_type"></span></strong></div>
                         <div class="">
                           <table class="table table-striped" style="margin-bottom: 0;">
                             <tr>
-                            <tr><td colspan="3" style="text-align: center;"><div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div></td></tr>
+                            <tr><td colspan="3" ></td></tr>
                             <tr><td rowspan="2" id="deposit_coin_qrcode" width="100px" height="100px"></td><td>Deposit <span class="deposit_coin_code"></span> To:</td><td class="deposit_coin_addr"></td></tr>
                             <tr><td class="deposit_info_btns" colspan="2">Minimum amount to buy/sell Komodo is 100 KMD.<br> Price for selling or buying Komodo will be adjusted and given in default buttons accordinlgy.<br><br>
                             <div class="deposit_btns_part_hidden" style="display: none;">
@@ -323,14 +348,7 @@
                         </div>
                       </div>
 
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Esitmate Swap Price Calculation</strong></div>
-                        <div class="">
-                          <table class="table table-striped" style="margin-bottom: 0;">
-                            <tr><td class="coin_swap_rate_info" style="font-size: 22px; text-align: center;"></td></tr>
-                          </table>
-                        </div>
-                      </div>
+                      
 
                       <div class="panel panel-default">
                         <div class="panel-heading"><strong>Order Details</strong></div>
@@ -344,10 +362,12 @@
                         </div>
                       </div>
 
-                  </div>
+                  </div>-->
 
-                  <div class="col-md-6">
-                    <pre class="initcoinswap-output"></pre>
+                  <div class="row" style="margin-top: 12px;">
+                    <div class="col-md-12">
+                      <pre class="initcoinswap-output"></pre>
+                    </div>
                   </div>
 
                 </div>

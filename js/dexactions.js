@@ -415,7 +415,7 @@ $('.send_tx_addr_btn').click(function() {
 
 $( ".buy_coin" ).change(function() {
   //console.log($('.buy_coin').val())
-  if ($('.buy_coin').val() == 'btc') {
+  if ($('.buy_coin').val() == 'kmd') {
   	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
   	$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
   	$('.swap_deposit_addr_coin_id').html('KMD');
@@ -428,7 +428,7 @@ $( ".buy_coin" ).change(function() {
   	$('.deposit_coin_btn_03').hide();
   	$('.deposit_coin_input_btn').html('Send KMD');
   }
-  if ($('.buy_coin').val() == 'kmd') {
+  if ($('.buy_coin').val() == 'btc') {
   	$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
   	$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
   	$('.swap_deposit_addr_coin_id').html('BTC');
@@ -492,21 +492,25 @@ function calc_swap_price(pair) {
 	$.ajax({
 	    dataType: 'json',
 	    type: 'GET',
-	    url: 'http://api.coinmarketcap.com/v1/ticker/komodo/'
+	    url: 'http://5.9.253.201:7779/api/stats/getprice?base=KMD&rel=BTC&ipaddr=127.0.0.1&port=0'
 	}).done(function(data) {
 	    // If successful
-	   //console.log(data[0].price_btc);
+	   console.log(data.price);
 
 	   if (pair == 'btckmd') {
-	   	calc_price = data[0].price_btc * 1.05
+	   	calc_price = data.price * 1.05
 	   	calc_price_100 = (calc_price * 100) + 0.001
 	   	//console.log(calc_price_100.toFixed(8));
 	   	$('.deposit_100kmd_worth_btc_btn').text(calc_price_100.toFixed(8));
 	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
+	   	$('.trade_pair_price').val('');
+	   	$('.trade_pair_price').val(data.price);
 	   }
 	   if (pair == 'kmdbtc') {
-	   	calc_price = data[0].price_btc - (data[0].price_btc * 0.05)
+	   	calc_price = data.price - (data.price * 0.05)
 	   	$('.coin_swap_rate_info').html('1 KMD = ' + calc_price.toFixed(8) + ' BTC approx.');
+	   	$('.trade_pair_price').val('');
+	   	$('.trade_pair_price').val(data.price);
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
