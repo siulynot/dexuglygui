@@ -413,41 +413,29 @@ $('.send_tx_addr_btn').click(function() {
 })
 
 
-/*$( ".buy_coin" ).change(function() {
-  //console.log($('.buy_coin').val())
-  if ($('.buy_coin').val() == 'kmd') {
-  	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
-  	$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
-  	$('.swap_deposit_addr_coin_id').html('KMD');
-  	$('.swap_recieve_addr_coin_id').html('BTC');
-  	calc_swap_price('kmdbtc');
-  	$('.deposit_coin_btn_01').show();
-  	$('.deposit_coin_btn_02').show();
-  	$('.deposit_coin_btn_03_info').hide();
-  	$('.deposit_coin_btn_03_info_pre').hide();
-  	$('.deposit_coin_btn_03').hide();
-  	$('.deposit_coin_input_btn').html('Send KMD');
-  }
-  if ($('.buy_coin').val() == 'btc') {
-  	$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
-  	$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
-  	$('.swap_deposit_addr_coin_id').html('BTC');
-  	$('.swap_recieve_addr_coin_id').html('KMD');
-  	calc_swap_price('btckmd');
-  	$('.deposit_coin_btn_01').hide();
-  	$('.deposit_coin_btn_02').hide();
-  	$('.deposit_coin_btn_03_info').show();
-  	$('.deposit_coin_btn_03_info_pre').show();
-  	$('.deposit_coin_btn_03').show();
-  	$('.deposit_coin_input_btn').html('Send BTC');
-  }
-  if ($('.buy_coin').val() !== 'kmd' && $('.buy_coin').val() !== 'btc') {
-  	$('.deposit_btns_part_hidden').hide();
-  } else {
-  	$('.deposit_btns_part_hidden').show();
-  }
+$( ".buy_coin" ).change(function() {
+	//console.log($('.buy_coin').val())
+	base_coin = $('.deposit_coin01').data('coin');
+	buy_coin = $('.buy_coin').val();
+
+  	switch (buy_coin) {
+		case 'KMD':
+			$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
+			break;
+		case 'BTC':
+			$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
+			break;
+		case 'REVS':
+			$('.deposit_coin02').html('<b>REVS</b>');
+			break;
+		case 'JUMBLR':
+			$('.deposit_coin02').html('<b>JUMBLR</b>');
+			break;
+	}
+
+	get_price(base_coin, buy_coin);
   
-  var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
+  	/*var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
 
 	$.ajax({
@@ -485,9 +473,36 @@ $('.send_tx_addr_btn').click(function() {
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
-	});
-});*/
+	});*/
+});
 
+
+function get_price(base,rel) {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"getprice","base":base,"rel":rel};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	get_price(base,rel)
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
 
 function calc_swap_price(pair) {
 	$.ajax({
@@ -567,6 +582,7 @@ $('.inv_btn').click(function() {
 	}
 	
 	$('.deposit_coin01').html('<img src="img/'+coin_img+'.png" width="40px">');
+	$('.deposit_coin01').data('coin', coin);
 	//calc_swap_price('kmdbtc');
 
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -591,8 +607,8 @@ $('.inv_btn').click(function() {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.inv_table tbody').empty();
 	   	$.each(data, function(index, val) {
-	   		console.log(index);
-	   		console.log(val);
+	   		//console.log(index);
+	   		//console.log(val);
 	   		var inv_table_tr = '';
 	   		inv_table_tr += '<tr>';
               inv_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
