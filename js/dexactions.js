@@ -494,8 +494,12 @@ function get_price(base,rel) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	get_price(base,rel)
+	   } else if (!data.error === false) {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info').empty();
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info').empty();
 	   	$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -503,37 +507,6 @@ function get_price(base,rel) {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
-
-function calc_swap_price(pair) {
-	$.ajax({
-	    dataType: 'json',
-	    type: 'GET',
-	    url: 'http://5.9.253.201:7779/api/stats/getprice?base=KMD&rel=BTC&ipaddr=127.0.0.1&port=0'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data.price);
-
-	   if (pair == 'btckmd') {
-	   	calc_price = data.price * 1.05
-	   	calc_price_100 = (calc_price * 100) + 0.001
-	   	//console.log(calc_price_100.toFixed(8));
-	   	$('.deposit_100kmd_worth_btc_btn').text(calc_price_100.toFixed(8));
-	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
-	   	$('.trade_pair_price').val('');
-	   	$('.trade_pair_price').val(data.price);
-	   }
-	   if (pair == 'kmdbtc') {
-	   	calc_price = data.price - (data.price * 0.05)
-	   	$('.coin_swap_rate_info').html('1 KMD = ' + calc_price.toFixed(8) + ' BTC approx.');
-	   	$('.trade_pair_price').val('');
-	   	$('.trade_pair_price').val(data.price);
-	   }
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-}
-
 
 function get_marketmaker_userpass() {
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -564,24 +537,22 @@ function get_marketmaker_userpass() {
 
 $('.inv_btn').click(function() {
 	var coin = $(this).data('coin');
-	var coin_img = '';
 
 	switch (coin) {
 		case 'KMD':
-			coin_img = 'komodo';
+			$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
 			break;
 		case 'BTC':
-			coin_img = 'bitcoin';
+			$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
 			break;
 		case 'REVS':
-			coin_img = 'komodo';
+			$('.deposit_coin01').html('<b>REVS</b>');
 			break;
 		case 'JUMBLR':
-			coin_img = 'komodo';
+			$('.deposit_coin01').html('<b>JUMBLR</b>');
 			break;
 	}
 	
-	$('.deposit_coin01').html('<img src="img/'+coin_img+'.png" width="40px">');
 	$('.deposit_coin01').data('coin', coin);
 	//calc_swap_price('kmdbtc');
 
@@ -634,6 +605,10 @@ $('.inv_table tbody').on('click', '.inv_autotrade', function() {
 	console.log(vout);
 	console.log($('.trade_pair_maxprice[data-txid="'+txid+'"][data-vout="'+vout+'"]').val());
 })
+
+
+//{"userpass":"$userpass","method":"orderbook","base":"REVS","rel":"KMD"}
+
 /*
 $('.deposit_coin_btn_01').click(function() {
 	var get_depsit_addr = $('.deposit_coin_addr').text();
