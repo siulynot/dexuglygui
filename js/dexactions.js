@@ -415,10 +415,10 @@ $('.send_tx_addr_btn').click(function() {
 
 $( ".buy_coin" ).change(function() {
 	//console.log($('.buy_coin').val())
-	base_coin = $('.deposit_coin01').data('coin');
-	buy_coin = $('.buy_coin').val();
+	rel_coin = $('.deposit_coin01').data('coin');
+	base_coin = $('.buy_coin').val();
 
-  	switch (buy_coin) {
+  	switch (base_coin) {
 		case 'KMD':
 			$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
 			break;
@@ -433,7 +433,7 @@ $( ".buy_coin" ).change(function() {
 			break;
 	}
 
-	get_price(base_coin, buy_coin);
+	get_price(base_coin, rel_coin);
   
   	/*var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
@@ -500,7 +500,8 @@ function get_price(base,rel) {
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.coin_swap_rate_info').empty();
-	   	$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
+	   	$('.coin_swap_rate_info').html('<b>1 '+base+' = ' + data.price + ' '+rel+' approx.</b>');
+	   	//$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
