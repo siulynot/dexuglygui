@@ -233,18 +233,64 @@
                 <div class="panel-body">
 
                   <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                          <label for="buy_coin" class="control-label">What you want to Sell?</label>
-                          <select class="form-control buy_coin">
-                            <option value="-">- Select -</option>
-                            <option value="btc">Bitcoin (BTC)</option>
-                            <option value="kmd">Komodo (KMD)</option>
-                          </select>
+                    <div class="col-sm-8">
+                      <div class="panel panel-default">
+                      <!--<div class="panel-heading">What you want to Sell? <button class="btn btn-sm btn-default">Refresh Coins List</button></div>-->
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <div class="list_active_coins">
+                                <button class="btn btn-default btn-block inv_btn" data-coin="KMD">Komodo (KMD)</button>
+                                <button class="btn btn-default btn-block inv_btn" data-coin="BTC">Bitcoin (BTC)</button>
+                                <button class="btn btn-default btn-block inv_btn" data-coin="REVS">REV SHARE (REVS)</button>
+                                <button class="btn btn-default btn-block inv_btn" data-coin="JUMBLR">JUMBLR (JUMBLR)</button>
+                              </div>
+                            </div>
+                            <div class="col-sm-10">
+                              <div class="panel panel-default">
+                                <div class="panel-heading"><strong>Select Trading options</strong></div>
+                                <div class="">
+                                  <table class="table table-striped" style="margin-bottom: 0;">
+                                  <th>AMOUNT</th>
+                                  <th>Price</th>
+                                  <th>Volume</th>
+                                  <th>Action</th>
+                                  <tr>
+                                    <td>100</td>
+                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>2000</td>
+                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>20</td>
+                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>10</td>
+                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
+                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
+                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
+                                  </tr>
+                                </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
 
-                    <div class="col-sm-6">
+
+
+                    <div class="col-sm-4">
                       <div class="form-group">
                           <label for="buy_coin" class="control-label">What you want to Buy?</label>
                           <select class="form-control buy_coin">
@@ -253,49 +299,6 @@
                             <option value="kmd">Komodo (KMD)</option>
                           </select>
                         </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Select Trading options</strong></div>
-                        <div class="">
-                          <table class="table table-striped" style="margin-bottom: 0;">
-                          <th>AMOUNT</th>
-                          <th>Price</th>
-                          <th>Volume</th>
-                          <th>Action</th>
-                          <tr>
-                            <td>100</td>
-                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                            <td><button class="btn btn-default btn-sm">Trade</button></td>
-                          </tr>
-                          <tr>
-                            <td>2000</td>
-                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                            <td><button class="btn btn-default btn-sm">Trade</button></td>
-                          </tr>
-                          <tr>
-                            <td>20</td>
-                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                            <td><button class="btn btn-default btn-sm">Trade</button></td>
-                          </tr>
-                          <tr>
-                            <td>10</td>
-                            <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                            <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                            <td><button class="btn btn-default btn-sm">Trade</button></td>
-                          </tr>
-                        </table>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-4">
                       <div class="panel panel-default">
                         <div class="panel-heading"><strong>Trading Pairs</strong></div>
                         <div class="">
@@ -318,7 +321,6 @@
                     </div>
 
                   </div>
-
 
                   <!--<div class="col-md-12">
 

@@ -413,7 +413,7 @@ $('.send_tx_addr_btn').click(function() {
 })
 
 
-$( ".buy_coin" ).change(function() {
+/*$( ".buy_coin" ).change(function() {
   //console.log($('.buy_coin').val())
   if ($('.buy_coin').val() == 'kmd') {
   	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
@@ -446,6 +446,7 @@ $( ".buy_coin" ).change(function() {
   } else {
   	$('.deposit_btns_part_hidden').show();
   }
+  
   var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
 
@@ -485,7 +486,7 @@ $( ".buy_coin" ).change(function() {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-});
+});*/
 
 
 function calc_swap_price(pair) {
@@ -519,7 +520,63 @@ function calc_swap_price(pair) {
 }
 
 
+function get_marketmaker_userpass() {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"getpeers"};
+	var url = "http://127.0.0.1:7779";
 
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	get_marketmaker_userpass()
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+$('.inv_btn').click(function() {
+	var coin = $(this).data('coin');
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+	   } else {
+	   	$( ".inv_btn" ).removeClass("active")
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+});
+
+/*
 $('.deposit_coin_btn_01').click(function() {
 	var get_depsit_addr = $('.deposit_coin_addr').text();
 	$('.initcoinswap-output').html('<i>Sending 100 KMD to ' + get_depsit_addr + '<br>processing...</i>');
@@ -585,7 +642,7 @@ $('.deposit_coin_btn_03').click(function() {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-})
+})*/
 
 $('.refresh_swap_list_btn').click(function() {
 	var ajax_data = {"agent":"InstantDEX","method":"getswaplist"};
