@@ -249,36 +249,18 @@
                             <div class="col-sm-10">
                               <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Select Trading options</strong></div>
-                                <div class="">
-                                  <table class="table table-striped" style="margin-bottom: 0;">
-                                  <th>AMOUNT</th>
-                                  <th>Price</th>
-                                  <th>Volume</th>
-                                  <th>Action</th>
-                                  <tr>
-                                    <td>100</td>
-                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>2000</td>
-                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>20</td>
-                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>10</td>
-                                    <td><input class="form-control input-sm trade_pair_price" type="text" name="price" value=""></td>
-                                    <td><input class="form-control input-sm trade_pair_volume" type="text" name="volume" value=""></td>
-                                    <td><button class="btn btn-default btn-sm">Trade</button></td>
-                                  </tr>
+                                <div class="" style="height:400px;overflow:scroll;">
+                                  <table class="table table-striped inv_table" style="margin-bottom: 0;">
+                                  <thead>
+                                    <tr>
+                                      <th>AMOUNT</th>
+                                      <th>Max Price</th>
+                                      <th>Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                  </tbody>
                                 </table>
                                 </div>
                               </div>
@@ -295,8 +277,10 @@
                           <label for="buy_coin" class="control-label">What you want to Buy?</label>
                           <select class="form-control buy_coin">
                             <option value="-">- Select -</option>
-                            <option value="btc">Bitcoin (BTC)</option>
-                            <option value="kmd">Komodo (KMD)</option>
+                            <option value="KMD">Komodo (KMD)</option>
+                            <option value="BTC">Bitcoin (BTC)</option>
+                            <option value="REVS">REV SHARE (REVS)</option>
+                            <option value="JUMBLR">JUMBLR (JUMBLR)</option>
                           </select>
                         </div>
                       <div class="panel panel-default">

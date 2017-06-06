@@ -549,6 +549,26 @@ function get_marketmaker_userpass() {
 
 $('.inv_btn').click(function() {
 	var coin = $(this).data('coin');
+	var coin_img = '';
+
+	switch (coin) {
+		case 'KMD':
+			coin_img = 'komodo';
+			break;
+		case 'BTC':
+			coin_img = 'bitcoin';
+			break;
+		case 'REVS':
+			coin_img = 'komodo';
+			break;
+		case 'JUMBLR':
+			coin_img = 'komodo';
+			break;
+	}
+	
+	$('.deposit_coin01').html('<img src="img/'+coin_img+'.png" width="40px">');
+	//calc_swap_price('kmdbtc');
+
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
 	var url = "http://127.0.0.1:7779";
@@ -569,6 +589,18 @@ $('.inv_btn').click(function() {
 	   	$( ".inv_btn" ).removeClass("active")
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.inv_table tbody').empty();
+	   	$.each(data, function(index, val) {
+	   		console.log(index);
+	   		console.log(val);
+	   		var inv_table_tr = '';
+	   		inv_table_tr += '<tr>';
+              inv_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_table_tr += '</tr>';
+            $('.inv_table tbody').append(inv_table_tr);
+	   	})
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -576,6 +608,16 @@ $('.inv_btn').click(function() {
 	});
 });
 
+
+$('.inv_table tbody').on('click', '.inv_autotrade', function() {
+	var coin = $(this).data('coin');
+	var txid = $(this).data('txid');
+	var vout = $(this).data('vout');
+	console.log(coin);
+	console.log(txid);
+	console.log(vout);
+	console.log($('.trade_pair_maxprice[data-txid="'+txid+'"][data-vout="'+vout+'"]').val());
+})
 /*
 $('.deposit_coin_btn_01').click(function() {
 	var get_depsit_addr = $('.deposit_coin_addr').text();
