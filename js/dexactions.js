@@ -418,6 +418,9 @@ $( ".buy_coin" ).change(function() {
 	rel_coin = $('.deposit_coin01').data('coin');
 	base_coin = $('.buy_coin').val();
 
+	sessionStorage.setItem('dex_base_coin', base_coin);
+	sessionStorage.setItem('dex_rel_coin', rel_coin);
+
   	switch (base_coin) {
 		case 'KMD':
 			$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
@@ -677,6 +680,69 @@ $('.deposit_coin_btn_03').click(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })*/
+
+
+
+
+var check_orderbook = setInterval(function() {
+	console.log('checking orderbook')
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var base_coin = sessionStorage.getItem('dex_base_coin');
+	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	
+	$('.orderbook_rel_coin').html(rel_coin);
+	$('.orderbook_base_coin').html(base_coin);
+
+	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
+	//console.log(ajax_data)
+	var url = "http://127.0.0.1:7779/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   //console.log(data.asks);
+
+	   $('.orderbook_numasks').html(data.numasks);
+	   $('.orderbook_numbids').html(data.numbids);
+
+	   $('.orderbook_bids tbody').empty();
+	   $.each(data.bids, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var orderbook_bids_tr = '';
+	   		orderbook_bids_tr += '<tr>';
+              orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+              orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
+            orderbook_bids_tr += '</tr>';
+            $('.orderbook_bids tbody').append(orderbook_bids_tr);
+	   	})
+
+	   $('.orderbook_asks tbody').empty();
+	   $.each(data.asks, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var orderbook_asks_tr = '';
+	   		orderbook_asks_tr += '<tr>';
+              orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+              orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
+            orderbook_asks_tr += '</tr>';
+            $('.orderbook_asks tbody').append(orderbook_asks_tr);
+	   	})
+
+	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+}, 5000);
+
 
 $('.refresh_swap_list_btn').click(function() {
 	var ajax_data = {"agent":"InstantDEX","method":"getswaplist"};

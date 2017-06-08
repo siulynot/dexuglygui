@@ -10,6 +10,24 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <style type="text/css">
+      .table-fixed thead {
+        width: 97%;
+      }
+      .table-fixed tbody {
+        height: 230px;
+        overflow-y: auto;
+        width: 100%;
+      }
+      .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+        display: block;
+      }
+      .table-fixed tbody td, .table-fixed thead > tr> th {
+        float: left;
+        border-bottom-width: 0;
+      }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,8 +54,8 @@
                   
                   <div class="col-md-6">
                       <div class="form-group">
-                        <button class="btn btn-default activate-btc">Activate Bitcoin</button>
-                        <button class="btn btn-default activate-kmd">Activate Komodo</button>
+                        <!--<button class="btn btn-default activate-btc">Activate Bitcoin</button>
+                        <button class="btn btn-default activate-kmd">Activate Komodo</button>-->
                         <button class="btn btn-default active-coin-status">Active Coins Status</button>
                       </div>
                   </div>
@@ -304,6 +322,32 @@
                       </div>
                     </div>
 
+                  </div>
+
+                  <div class="row" style="padding-top: 10px;">
+                    <div class="col-sm-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Sell Orders</strong><span style="float: right;">Total Aks: <span class="orderbook_numasks"></span></span></div>
+                        <div class="">
+                          <table class="table table-fixed orderbook_asks" style="margin-bottom: 0;">
+                            <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
+                            <tbody></tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Buy Orders</strong><span style="float: right;">Total Bids: <span class="orderbook_numbids"></span></span></div>
+                        <div class="">
+                          <table class="table table-fixed orderbook_bids" style="margin-bottom: 0;">
+                            <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
+                            <tbody></tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <!--<div class="col-md-12">
