@@ -499,12 +499,12 @@ function get_price(base,rel) {
 	   	get_price(base,rel)
 	   } else if (!data.error === false) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.coin_swap_rate_info').empty();
+	   	$('.coin_swap_rate_info1').empty();
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.coin_swap_rate_info').empty();
-	   	$('.coin_swap_rate_info').html('<b>1 '+base+' = ' + data.price + ' '+rel+' approx.</b>');
-	   	//$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
+	   	$('.coin_swap_rate_info1').empty();
+	   	$('.coin_swap_rate_info1').html('<b>1 '+base+' = ' + data.price + ' '+rel+' approx.</b>');
+	   	//$('.coin_swap_rate_info1').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -526,18 +526,25 @@ function get_price(base,rel) {
 	   	get_price(base,rel)
 	   } else if (!data.error === false) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.coin_swap_rate_info').empty();
+	   	$('.coin_swap_rate_info2').empty();
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.coin_swap_rate_info').empty();
-	   	$('.coin_swap_rate_info').html('<b>1 '+base+' = ' + data.price + ' '+rel+' approx.</b>');
-	   	//$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
+	   	$('.coin_swap_rate_info2').empty();
+	   	$('.coin_swap_rate_info2').html('<b>1 '+rel+' = ' + data.price + ' '+base+' approx.</b>');
+	   	//$('.coin_swap_rate_info2').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+$('.refresh_estimate_price').click(function() {
+	rel_coin = $('.deposit_coin01').data('coin');
+	base_coin = $('.buy_coin').val();
+
+	get_price(base_coin, rel_coin);
+})
 
 function get_marketmaker_userpass() {
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -565,9 +572,50 @@ function get_marketmaker_userpass() {
 	});
 }
 
+$('.refresh_inv_table').click(function() {
+	var coin = $(this).data('coin');
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+	   } else {
+	   	$( ".inv_btn" ).removeClass("active")
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.inv_table tbody').empty();
+	   	$.each(data, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_table_tr = '';
+	   		inv_table_tr += '<tr>';
+              inv_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_table_tr += '</tr>';
+            $('.inv_table tbody').append(inv_table_tr);
+	   	})
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
 
 $('.inv_btn').click(function() {
 	var coin = $(this).data('coin');
+	$('.refresh_inv_table').data('coin',coin);
 
 	switch (coin) {
 		case 'KMD':
