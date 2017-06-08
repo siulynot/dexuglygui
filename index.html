@@ -40,215 +40,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#ActivateCoin" aria-expanded="true" aria-controls="ActivateCoin">
-                    Step #1 - Activate Coin
-                  </a>
-                </h4>
-              </div>
-              <div id="ActivateCoin" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  
-                  <div class="col-md-6">
-                      <div class="form-group">
-                        <!--<button class="btn btn-default activate-btc">Activate Bitcoin</button>
-                        <button class="btn btn-default activate-kmd">Activate Komodo</button>-->
-                        <button class="btn btn-default active-coin-status">Active Coins Status</button>
-                      </div>
-                  </div>
 
-                  <div class="col-md-6">
-                    <pre class="active-coin-output"></pre>
-                  </div>
 
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#SetupBlockTrail" aria-expanded="false" aria-controls="SetupBlockTrail">
-                    Step #2 - Setup Blocktrail.com API
-                  </a>
-                </h4>
-              </div>
-              <div id="SetupBlockTrail" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <p>You need Blocktrail.com API. Please sign-up by going to <a href="https://www.blocktrail.com/dev/signup" target="blank">this link</a>.<br>
-                  After login in your account go to "Settings", then go to "API Keys" tab there and get new keys from there.<br>
-                  Make sure to save the newly generated 'API Key' and 'API Secret'. You'll only see this 'API Secret' first time and never again.</p>
-
-                  <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="blocktrailapi" class="control-label">Blocktrail API Key</label>
-                        <input type="text" class="form-control blocktrailapi-key" id="blocktrailapi" placeholder="Blocktrail API Key" required="required"><br>
-                          <button class="btn btn-default blocktrailapi-btn">Activate Blocktrail API</button>
-                          <br><br>If you are not Liquidity Provider make sure to push this button: <button class="btn btn-default notlp-btn">I'm not LP</button>
-                      </div>
-                      <br>
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="blocktrail-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#WalletLogin" aria-expanded="false" aria-controls="WalletLogin">
-                    Step #3 - Wallet Login
-                  </a>
-                </h4>
-              </div>
-              <div id="WalletLogin" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  
-                  <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="passphrase" class="control-label">Passphrase</label>
-                          <input type="text" class="form-control passphrase-text" id="passphrase" placeholder="Enter your text only passphrase" required="required"><br>
-                          <label for="login_type" class="control-label">Login Type</label>
-                          <select class="form-control login_type">
-                            <option value="login_main_wallet">Main Wallet Login</option>
-                            <option value="login_btc_jumblr">Login to access BTC DEX address</option>
-                            <option value="login_kmd_jumblr">Login to access KMD DEX address</option>
-                            <option value="login_jumblr">Login to accesss Jumblr destination address</option>
-                            <option value="login_deposit">Login to access Jumblr deposit address</option>
-                          </select><br>
-                          <button class="btn btn-default login-btn">Login</button>
-                          <button class="btn btn-default logout-btn">Logout</button><br><br>
-                      </div>
-                      <br>
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="passphrase-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <!--<div class="panel panel-default step04_smartaddr">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#ListSmartAddresses" aria-expanded="false" aria-controls="ListSmartAddresses">
-                    Step #4 - List Smart Addresses
-                  </a>
-                </h4>
-              </div>
-              <div id="ListSmartAddresses" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  
-                  <div class="col-md-12">
-                    <h4>FAQ for Smart Addresses can be found <a href="https://github.com/SuperNETorg/komodo/wiki/FAQ-for-smartaddresses" target="blank">here</a></h4>
-                  </div>
-
-                  <div class="col-md-6" style="margin-top: 20px;">
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="smartaddress-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>-->
-            <div class="panel panel-default step05_dexparams">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#AdjustDEXParams" aria-expanded="false" aria-controls="AdjustDEXParams">
-                    Step #5 - Adjust DEX Parameters
-                  </a>
-                </h4>
-              </div>
-              <div id="AdjustDEXParams" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  
-                  <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="dexratio" class="control-label">DEX Ratio</label>
-                        <input type="text" class="form-control dexratio-val" id="dexratio" placeholder="eg. 0.97" required="required"><br>
-                          <button class="btn btn-default dexratio-btn">Set DEX Ratio</button>
-                      </div>
-                      <br>
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="dexparams-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#CheckWallet" aria-expanded="false" aria-controls="CheckWallet">
-                    Step #6 - Wallet Operations
-                  </a>
-                </h4>
-              </div>
-              <div id="CheckWallet" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  
-                  <div class="col-md-6">
-                      <div class="form-group">
-                        <button class="btn btn-default show-btcbalance">Show Bitcoin Balance</button>
-                        <button class="btn btn-default show-kmdbalance">Show Komodo Balance</button>
-                        <button class="btn btn-default showwalletinfo">Show Wallet Info</button>
-                      </div>
-                      <br>
-
-                      <div class="panel panel-default" style="margin-bottom: 20px;">
-                        <div class="panel-heading"><strong>Coin: <span class="coin_id"></span></strong></div>
-                        <div class="">
-                          <table class="table table-striped" style="margin-bottom: 0;">
-                            <tr><td>Main Address</td><td class="coin_mainaddr"></td></tr>
-                            <tr><td>Balance</td><td class="coin_balance"></td></tr>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <h3>Send Transaction</h3>
-                        <label for="send_tx_coin" class="control-label">Select Coin</label>
-                        <select class="form-control send_tx_coin">
-                          <option value="-">- Select -</option>
-                          <option value="BTC">Bitcoin (BTC)</option>
-                          <option value="KMD">Komodo (KMD)</option>
-                        </select><br>
-                        <label for="send_tx_addr" class="control-label">Send to Address (Destination Address)</label><br>
-                        <input type="text" class="form-control send_tx_addr" id="send_tx_addr" required="required"><br>
-                        <label for="send_tx_amount" class="control-label">Send Amount</label><br>
-                        <input type="text" class="form-control send_tx_amount" id="send_tx_amount" required="required"><br>
-                          <button class="btn btn-default send_tx_addr_btn">Send</button>
-                      </div>
-
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="checkwallet-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default step07_initswap">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#initcoinswap" aria-expanded="false" aria-controls="initcoinswap">
-                    Step #7 - Initiate Cross-Blockchain Coin Swap
-                  </a>
-                </h4>
-              </div>
-              <div id="initcoinswap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
 
                   <div class="row">
                     <div class="col-sm-8">
@@ -394,42 +187,47 @@
 
                   </div>-->
 
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Show Swap Status</strong></div>
+                        <div class="panel-body">
+                          <div class="col-sm-6">
+                            <p>This section will show you information when coin swap is activated and is in process. Use the refrehs swap list button to get updated information.<br>
+                            You'll need to press this refresh button again to get latest updates.</p>
+                            <button class="btn btn-default refresh_swap_list_btn">Refresh Swap List</button>
+
+                            <form class="form-inline" style="padding-top: 12px;">
+                              <div class="form-group">
+                                <label for="swap_request_id">Request ID</label>
+                                <input type="text" class="form-control" id="swap_request_id" placeholder="requestid">
+                              </div>
+                              <div class="form-group">
+                                <label for="swap_quote_id">Quote ID</label>
+                                <input type="email" class="form-control" id="swap_quote_id" placeholder="quoteid">
+                              </div>
+                              <button class="btn btn-default check_swap_status_btn">Check Swap Status</button>
+                            </form>
+                          </div>
+
+                          <div class="col-md-6">
+                            <pre class="checkswaplist-output"></pre>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
                   <div class="row" style="margin-top: 12px;">
                     <div class="col-md-12">
                       <pre class="initcoinswap-output"></pre>
                     </div>
                   </div>
 
-                </div>
-              </div>
-            </div>
 
-            <div class="panel panel-default step08_checkswaps">
-              <div class="panel-heading" role="tab" id="headingThree">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#CheckSwapList" aria-expanded="false" aria-controls="CheckSwapList">
-                    Step #8 - Check Swap List
-                  </a>
-                </h4>
-              </div>
-              <div id="CheckSwapList" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="panel-body">
-                  
-                  <div class="col-md-6">
-                    <p>This section will show you information when coin swap is activated and is in process. Use the refrehs swap list button to get updated information.<br>
-                    You'll need to press this refresh button again to get latest updates.</p>
-                    <button class="btn btn-default refresh_swap_list_btn">Refresh Swap List</button>
-                  </div>
-
-                  <div class="col-md-6">
-                    <pre class="checkswaplist-output"></pre>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
       </div>
     </div>
 

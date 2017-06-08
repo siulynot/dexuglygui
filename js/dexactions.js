@@ -510,6 +510,33 @@ function get_price(base,rel) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
+
+	var ajax_data2 = {"userpass":userpass,"method":"getprice","base":rel,"rel":base};
+	$.ajax({
+	    data: JSON.stringify(ajax_data2),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	get_price(base,rel)
+	   } else if (!data.error === false) {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info').empty();
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info').empty();
+	   	$('.coin_swap_rate_info').html('<b>1 '+base+' = ' + data.price + ' '+rel+' approx.</b>');
+	   	//$('.coin_swap_rate_info').html('Theoretical Price<br><b>1 '+base+' = ' + data.theoretical[rel] + ' '+rel+' approx.</b><br>Quotes Price<br><b>1 '+base+' = ' + data.quotes[rel] + ' '+rel+' approx.</b>');
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
 }
 
 function get_marketmaker_userpass() {
@@ -745,14 +772,39 @@ var check_orderbook = setInterval(function() {
 
 
 $('.refresh_swap_list_btn').click(function() {
-	var ajax_data = {"agent":"InstantDEX","method":"getswaplist"};
-	var url = "http://127.0.0.1:7778/";
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var url = "http://127.0.0.1:7779/";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.checkswaplist-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+
+$('.check_swap_status_btn').click(function() {
+	event.preventDefault();
+	var requestid = $('#swap_request_id').val();
+	var quoteid = $('#swap_quote_id').val();
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
+	var url = "http://127.0.0.1:7779/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
