@@ -631,10 +631,29 @@ $('.inv_table tbody').on('click', '.inv_autotrade', function() {
 	var coin = $(this).data('coin');
 	var txid = $(this).data('txid');
 	var vout = $(this).data('vout');
+	var maxprice = $('.trade_pair_maxprice[data-txid="'+txid+'"][data-vout="'+vout+'"]').val()
 	console.log(coin);
 	console.log(txid);
 	console.log(vout);
-	console.log($('.trade_pair_maxprice[data-txid="'+txid+'"][data-vout="'+vout+'"]').val());
+	console.log(maxprice);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"autotrade","txid":txid,"vout":vout,"coin":"REVS","maxprice":maxprice};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
 })
 
 
@@ -732,7 +751,7 @@ var check_orderbook = setInterval(function() {
 	    url: url
 	}).done(function(data) {
 	    // If successful
-	   console.log(data);
+	   //console.log(data);
 	   //console.log(data.asks);
 
 	   $('.orderbook_numasks').html(data.numasks);
