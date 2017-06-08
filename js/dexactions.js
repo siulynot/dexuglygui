@@ -717,8 +717,8 @@ var check_orderbook = setInterval(function() {
 	   		//console.log(val);
 	   		var orderbook_bids_tr = '';
 	   		orderbook_bids_tr += '<tr>';
-              orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
               orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
+              orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
             orderbook_bids_tr += '</tr>';
             $('.orderbook_bids tbody').append(orderbook_bids_tr);
 	   	})
@@ -729,8 +729,8 @@ var check_orderbook = setInterval(function() {
 	   		//console.log(val);
 	   		var orderbook_asks_tr = '';
 	   		orderbook_asks_tr += '<tr>';
-              orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
               orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
+              orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
             orderbook_asks_tr += '</tr>';
             $('.orderbook_asks tbody').append(orderbook_asks_tr);
 	   	})
