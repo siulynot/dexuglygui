@@ -216,54 +216,6 @@ $('.login_kmd_jumblr_btn').click(function() {
 
 
 
-$('.list-smartaddress').click(function() {
-	var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.deposit_key0').html(data[0].coins[0].coin);
-	   $('.deposit_val0').html(data[0].coins[0].address);
-	   $('.deposit_key1').html(data[0].coins[1].coin);
-	   $('.deposit_val1').html(data[0].coins[1].address);
-
-	   $('.jumblr_key0').html(data[1].coins[0].coin);
-	   $('.jumblr_val0').html(data[1].coins[0].address);
-	   $('.jumblr_key1').html(data[1].coins[1].coin);
-	   $('.jumblr_val1').html(data[1].coins[1].address);
-
-	   $('.type0').html(data[2].type);
-	   $('.type0_val0').html(data[2].coins[0].coin);
-	   $('.type0_val1').html(data[2].coins[0].address);
-	   $('.type0_val2').html(data[2].coins[0].dest);
-	   $('.type0_val3').html(data[2].coins[0].jumblr_deposit);
-	   $('.type0_val4').html(data[2].coins[0].deposit_avail);
-	   $('.type0_val5').html(data[2].coins[0].jumblr);
-	   $('.type0_val6').html(data[2].coins[0].jumblr_avail);
-	   $('.type0_val7').html(JSON.stringify(data[2].coins[0].extra, null, 2));
-
-	   $('.type1').html(data[3].type);
-	   $('.type1_val0').html(data[3].coins[0].coin);
-	   $('.type1_val1').html(data[3].coins[0].address);
-	   $('.type1_val2').html(data[3].coins[0].dest);
-	   $('.type1_val3').html(data[3].coins[0].jumblr_deposit);
-	   $('.type1_val4').html(data[3].coins[0].deposit_avail);
-	   $('.type1_val5').html(data[3].coins[0].jumblr);
-	   $('.type1_val6').html(data[3].coins[0].jumblr_avail);
-	   $('.type1_val7').html(JSON.stringify(data[3].coins[0].extra, null, 2));
-
-	   $('.smartaddress-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
 
 $('.dexratio-btn').click(function() {
 	var _dexratio = $('.dexratio-val').val();
@@ -483,7 +435,7 @@ $( ".buy_coin" ).change(function() {
 function get_price(base,rel) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getprice","base":base,"rel":rel};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://5.9.253.197:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -594,18 +546,34 @@ $('.refresh_inv_table').click(function() {
 	   	$( ".inv_btn" ).removeClass("active")
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.inv_table tbody').empty();
-	   	$.each(data, function(index, val) {
+	   	$('.inv_alice_table tbody').empty();
+	   	var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	console.log(test_data);
+	   	$.each(test_data.alice, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
-	   		var inv_table_tr = '';
-	   		inv_table_tr += '<tr>';
-              inv_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
-              inv_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
-              inv_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
-            inv_table_tr += '</tr>';
-            $('.inv_table tbody').append(inv_table_tr);
+	   		var inv_alice_table_tr = '';
+	   		inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_alice_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_alice_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_alice_table_tr += '</tr>';
+            $('.inv_alice_table tbody').append(inv_alice_table_tr);
 	   	})
+
+	   	$('.inv_bob_table tbody').empty();
+	   	$.each(test_data.bob, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_bob_table_tr = '';
+	   		inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              //inv_bob_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Set Max Trade Price</button></td>';
+            inv_bob_table_tr += '</tr>';
+            $('.inv_bob_table tbody').append(inv_bob_table_tr);
+	   	})
+
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -655,18 +623,35 @@ $('.inv_btn').click(function() {
 	   	$( ".inv_btn" ).removeClass("active")
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   	$('.inv_table tbody').empty();
-	   	$.each(data, function(index, val) {
+	   	$('.inv_alice_table tbody').empty();
+	   	var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	console.log(test_data);
+	   	$.each(test_data.alice, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
-	   		var inv_table_tr = '';
-	   		inv_table_tr += '<tr>';
-              inv_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
-              inv_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
-              inv_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
-            inv_table_tr += '</tr>';
-            $('.inv_table tbody').append(inv_table_tr);
+	   		var inv_alice_table_tr = '';
+	   		inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_alice_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_alice_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_alice_table_tr += '</tr>';
+            $('.inv_alice_table tbody').append(inv_alice_table_tr);
 	   	})
+
+	   	$('.inv_bob_table tbody').empty();
+	   	$.each(test_data.bob, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_bob_table_tr = '';
+	   		inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              //inv_bob_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Set Max Trade Price</button></td>';
+            inv_bob_table_tr += '</tr>';
+            $('.inv_bob_table tbody').append(inv_bob_table_tr);
+	   	})
+
+
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -675,7 +660,7 @@ $('.inv_btn').click(function() {
 });
 
 
-$('.inv_table tbody').on('click', '.inv_autotrade', function() {
+$('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
 	var coin = $(this).data('coin');
 	var txid = $(this).data('txid');
 	var vout = $(this).data('vout');
@@ -790,7 +775,7 @@ var check_orderbook = setInterval(function() {
 
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
 	//console.log(ajax_data)
-	var url = "http://127.0.0.1:7779/";
+	var url = "http://5.9.253.197:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -798,36 +783,41 @@ var check_orderbook = setInterval(function() {
 	    type: 'POST',
 	    url: url
 	}).done(function(data) {
-	    // If successful
-	   //console.log(data);
-	   //console.log(data.asks);
+		// If successful
+		//console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_userpass', data.userpass);
+		} else {
+			//console.log(data.asks);
 
-	   $('.orderbook_numasks').html(data.numasks);
-	   $('.orderbook_numbids').html(data.numbids);
+			$('.orderbook_numasks').html(data.numasks);
+			$('.orderbook_numbids').html(data.numbids);
 
-	   $('.orderbook_bids tbody').empty();
-	   $.each(data.bids, function(index, val) {
-	   		//console.log(index);
-	   		//console.log(val);
-	   		var orderbook_bids_tr = '';
-	   		orderbook_bids_tr += '<tr>';
-              orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
-              orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
-            orderbook_bids_tr += '</tr>';
-            $('.orderbook_bids tbody').append(orderbook_bids_tr);
-	   	})
+			$('.orderbook_bids tbody').empty();
+			$.each(data.bids, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var orderbook_bids_tr = '';
+				orderbook_bids_tr += '<tr>';
+				orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_bids_tr += '</tr>';
+				$('.orderbook_bids tbody').append(orderbook_bids_tr);
+			})
 
-	   $('.orderbook_asks tbody').empty();
-	   $.each(data.asks, function(index, val) {
-	   		//console.log(index);
-	   		//console.log(val);
-	   		var orderbook_asks_tr = '';
-	   		orderbook_asks_tr += '<tr>';
-              orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
-              orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
-            orderbook_asks_tr += '</tr>';
-            $('.orderbook_asks tbody').append(orderbook_asks_tr);
-	   	})
+			$('.orderbook_asks tbody').empty();
+			$.each(data.asks, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var orderbook_asks_tr = '';
+				orderbook_asks_tr += '<tr>';
+				orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_asks_tr += '</tr>';
+				$('.orderbook_asks tbody').append(orderbook_asks_tr);
+			})
+		}
 
 	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -841,7 +831,7 @@ var check_orderbook = setInterval(function() {
 $('.refresh_swap_list_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
-	var url = "http://127.0.0.1:7779/";
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
