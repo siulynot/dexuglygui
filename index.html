@@ -113,14 +113,49 @@
 
 <!-- Modal -->
 <div class="modal fade" id="LP_Mode_SetPrice" tabindex="-1" role="dialog" aria-labelledby="LP_Mode_SetPriceLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="LP_Mode_SetPriceLabel">Modal title</h4>
+        <h4 class="modal-title" id="LP_Mode_SetPriceLabel">Set Price for selected UTXO</h4>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <div class="col-sm-12">
+            <h4>Selected UTXO Info</h4>
+            <table class="table table-striped tbl_lp_selected_utxo_info">
+              <thead>
+                <tr>
+                  <th>TXID</th>
+                  <th>Vout</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="tbl_lp_selected_utxo_txid"></td><td class="tbl_lp_selected_utxo_vout"></td><td class="tbl_lp_selected_utxo_amount">000.000</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        
+        <table class="table table-striped tbl_lp_setprice">
+          <thead>
+            <tr>
+              <th>Set Price for</th>
+              <th>Max Price</th>
+              <th>Volume</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>REVS</td>
+              <td><input class="form-control input-sm lp_setprice_REVS" type="text" name="lp_setprice_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
+              <td><input class="form-control input-sm lp_setvolume_REVS" type="text" name="lp_setvolume_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
+              <td><button class="btn btn-default btn-sm btn_lp_setprice" data-coin="COIN" data-txid="TXID" data-vout="VOUT">Set Price</button></td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

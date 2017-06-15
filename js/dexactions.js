@@ -646,7 +646,7 @@ $('.inv_btn').click(function() {
 	   		inv_bob_table_tr += '<tr>';
               inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
               //inv_bob_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
-              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Set Max Trade Price</button></td>';
+              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'" data-amount="'+val.value+'">Set Max Trade Price</button></td>';
             inv_bob_table_tr += '</tr>';
             $('.inv_bob_table tbody').append(inv_bob_table_tr);
 	   	})
@@ -691,7 +691,15 @@ $('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
 
 
 $('.inv_bob_table tbody').on('click', '.inv_lp_setprice', function() {
-	console.log($(this).data());
+	var coin = $(this).data('coin');
+	var txid = $(this).data('txid');
+	var vout = $(this).data('vout');
+	var amount = $(this).data('amount');
+	var amount_parsed = (parseFloat(amount)/100000000).toFixed(8)
+
+	$('.tbl_lp_selected_utxo_txid').text(txid);
+	$('.tbl_lp_selected_utxo_vout').text(vout);
+	$('.tbl_lp_selected_utxo_amount').text(amount_parsed + ' ' +coin);
 	$('#LP_Mode_SetPrice').modal('show')
 });
 
