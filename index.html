@@ -43,7 +43,7 @@
       <div class="col-sm-2">
         <div class="panel panel-danger">
           <div class="panel-heading"><strong>Selling Pair</strong></div>
-          <div class="" style="padding: 5px; height: 525px; overflow-y: scroll;">
+          <div class="" style="padding: 5px; height: 340px; overflow-y: scroll;">
             <div class="list_active_coins">
               <button class="btn btn-default btn-block inv_btn" data-coin="KMD">Komodo (KMD)</button>
               <button class="btn btn-default btn-block inv_btn" data-coin="BTC">Bitcoin (BTC)</button>
@@ -112,125 +112,43 @@
         </div>
 
         <div class="row">
-          
-          <div class="col-sm-12">
+
+          <div class="col-sm-6">
             <div class="panel panel-default">
-            <!--<div class="panel-heading">What you want to Sell? <button class="btn btn-sm btn-default">Refresh Coins List</button></div>-->
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-sm-12">
-
-                    <ul  class="nav nav-tabs nav-justified">
-                      <li class="active"><a  href="#1b" data-toggle="tab">Buying</a></li>
-                      <li><a href="#2b" data-toggle="tab">Selling</a></li>
-                    </ul>
-
-                    <div class="tab-content clearfix">
-                      <div class="tab-pane active" id="1b">
-                        
-                        <div class="panel panel-default">
-                          <div class="panel-heading"><strong>Client DEX Trading options</strong><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button></div>
-                            <div class="" style="height:290px;overflow:scroll;">
-                              <!--<table class="table table-striped inv_alice_table" style="margin-bottom: 0;">
-                                <thead>
-                                  <tr>
-                                    <th>AMOUNT</th>
-                                    <th>Max Price</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                              </table>-->
-                            </div>
-                          </div>
-                        </div>
-
-                      <div class="tab-pane" id="2b">
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Liquidity Provider Trading options</strong><!--<button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button>--></div>
-                          <div class="" style="height:290px;overflow:scroll;">
-                            
-                            <!--<table class="table table-striped inv_bob_table" style="margin-bottom: 0;">
-                              <thead>
-                                <tr>
-                                  <th>AMOUNT</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-
-                              </tbody>
-                            </table>-->
-                          </div>
-                        </div>
-                      </div>
-
+              <div class="panel-heading">BUY <span class="autotrade_buy_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button>  <span style="float: right; font-size: 13px; padding: 0 5px;">Max Amount: <b><span class="autotrade_max_amount"></span> <span class="autotrade_max_amount_coin"></span></b></span></div>
+                <div class="panel-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="autotrade_amount">Amount</label>
+                      <input type="text" class="form-control" id="autotrade_amount" placeholder="Amount">
                     </div>
-
-                  </div>
-
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="LP_Mode_SetPrice" tabindex="-1" role="dialog" aria-labelledby="LP_Mode_SetPriceLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="LP_Mode_SetPriceLabel">Set Price for selected UTXO</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <h4>Selected UTXO Info</h4>
-                              <table class="table table-striped tbl_lp_selected_utxo_info">
-                                <thead>
-                                  <tr>
-                                    <th>TXID</th>
-                                    <th>Vout</th>
-                                    <th>Amount</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr><td class="tbl_lp_selected_utxo_txid"></td><td class="tbl_lp_selected_utxo_vout"></td><td class="tbl_lp_selected_utxo_amount">000.000</td></tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-
-                          
-                          <table class="table table-striped tbl_lp_setprice">
-                            <thead>
-                              <tr>
-                                <th>Set Price for</th>
-                                <th>Max Price</th>
-                                <th>Volume</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>REVS</td>
-                                <td><input class="form-control input-sm lp_setprice_REVS" type="text" name="lp_setprice_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
-                                <td><input class="form-control input-sm lp_setvolume_REVS" type="text" name="lp_setvolume_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
-                                <td><button class="btn btn-default btn-sm btn_lp_setprice" data-coin="COIN" data-txid="TXID" data-vout="VOUT">Set Price</button></td></tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Modal END -->
-
+                    <div class="form-group">
+                      <label for="autotrade_price">Price</label>
+                      <input type="text" class="form-control" id="autotrade_price" placeholder="Price">
+                    </div>                      
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
                 </div>
-              </div>
             </div>
           </div>
+
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sell <span class="lp_sell_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--></div>
+                <div class="panel-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="lp_set_price">Set Price</label>
+                      <input type="text" class="form-control" id="lp_set_price" placeholder="Set Price">
+                    </div>                      
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+
+          
+          
 
         </div>
       </div>
@@ -238,7 +156,7 @@
       <div class="col-sm-2">
         <div class="panel panel-success">
           <div class="panel-heading"><strong>Buying Pair</strong></div>
-          <div class="" style="padding: 5px; height: 525px; overflow-y: scroll;">
+          <div class="" style="padding: 5px; height: 340px; overflow-y: scroll;">
             <div class="list_active_coins">
               <button class="btn btn-default btn-block buy_coin" data-coin="KMD">Komodo (KMD)</button>
               <button class="btn btn-default btn-block buy_coin" data-coin="BTC">Bitcoin (BTC)</button>
