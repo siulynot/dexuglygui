@@ -38,240 +38,315 @@
   <body>
     <h3 style="text-align: center;">EasyDEX - Ugly GUI</h3>
     <div class="container-fluid">
+
       <div class="row">
-        <div class="col-md-12">
-
-
-
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <div class="panel panel-default">
-                      <!--<div class="panel-heading">What you want to Sell? <button class="btn btn-sm btn-default">Refresh Coins List</button></div>-->
-                        <div class="panel-body">
-                          <div class="row">
-                            <div class="col-sm-2">
-                              <div class="list_active_coins">
-                                <button class="btn btn-default btn-block inv_btn" data-coin="KMD">Komodo (KMD)</button>
-                                <button class="btn btn-default btn-block inv_btn" data-coin="BTC">Bitcoin (BTC)</button>
-                                <button class="btn btn-default btn-block inv_btn" data-coin="REVS">REV SHARE (REVS)</button>
-                                <button class="btn btn-default btn-block inv_btn" data-coin="JUMBLR">JUMBLR (JUMBLR)</button>
-                              </div>
-                            </div>
-                            <div class="col-sm-10">
-
-                              <ul  class="nav nav-tabs nav-justified">
-                                <li class="active"><a  href="#1b" data-toggle="tab">Client DEX Trading</a></li>
-                                <li><a href="#2b" data-toggle="tab">Liquidity Provider Trading</a></li>
-                              </ul>
-
-                              <div class="tab-content clearfix">
-                                <div class="tab-pane active" id="1b">
-                                  
-                                  <div class="panel panel-default">
-                                    <div class="panel-heading"><strong>Client DEX Trading options</strong><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button></div>
-                                      <div class="" style="height:290px;overflow:scroll;">
-                                        <table class="table table-striped inv_alice_table" style="margin-bottom: 0;">
-                                          <thead>
-                                            <tr>
-                                              <th>AMOUNT</th>
-                                              <th>Max Price</th>
-                                              <th>Action</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                <div class="tab-pane" id="2b">
-                                <div class="panel panel-default">
-                                  <div class="panel-heading"><strong>Liquidity Provider Trading options</strong><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button></div>
-                                    <div class="" style="height:290px;overflow:scroll;">
-                                      <table class="table table-striped inv_bob_table" style="margin-bottom: 0;">
-                                        <thead>
-                                          <tr>
-                                            <th>AMOUNT</th>
-                                            <!--<th>Max Price</th>-->
-                                            <th>Action</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
-
-                            </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="LP_Mode_SetPrice" tabindex="-1" role="dialog" aria-labelledby="LP_Mode_SetPriceLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="LP_Mode_SetPriceLabel">Set Price for selected UTXO</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <h4>Selected UTXO Info</h4>
-            <table class="table table-striped tbl_lp_selected_utxo_info">
-              <thead>
-                <tr>
-                  <th>TXID</th>
-                  <th>Vout</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td class="tbl_lp_selected_utxo_txid"></td><td class="tbl_lp_selected_utxo_vout"></td><td class="tbl_lp_selected_utxo_amount">000.000</td></tr>
-              </tbody>
-            </table>
+      <div class="col-sm-2">
+        <div class="panel panel-danger">
+          <div class="panel-heading"><strong>Selling Pair</strong></div>
+          <div class="" style="padding: 5px; height: 525px; overflow-y: scroll;">
+            <div class="list_active_coins">
+              <button class="btn btn-default btn-block inv_btn" data-coin="KMD">Komodo (KMD)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="BTC">Bitcoin (BTC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="DOGE">Dogecoin (DOGE)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="HUSH">Hushcoin (HUSH)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="DGB">Digibyte (DGB)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="MZC">Mazacoin (MZC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="SYS">Syscoin (SYS)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="UNO">Unobtanium (UNO)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="ZET">Zetacoin (ZET)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="ZEC">Zcash (ZEC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="BTM">Bitmark (BTM)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="CARB">Carboncoin (CARB)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="ANC">Anoncoin (ANC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="FRK">Franko (FRK)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="GAME">Gamecredits (GAME)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="LTC">Litecoin (LTC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="REVS">REV SHARE (REVS)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="JUMBLR">JUMBLR (JUMBLR)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="SUPERNET">SUPERNET (SUPERNET)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="WLC">Wireless (WLC)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="PANGEA">Pangea (PANGEA)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="DEX">InstantDEX (DEX)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="BET">BET (BET)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="CRYPTO">Crypto777 (CRYPTO)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="HODL">HODL (HODL)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="SHARK">SHARK (SHARK)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="BOTS">BOTS (BOTS)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="MGW">MultiGateway (MGW)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="MVP">MVP Lineup (MVP)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="KV">KeyValue (KV)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="CEAL">Ceal.io (CEAL)</button>
+              <button class="btn btn-default btn-block inv_btn" data-coin="MESH">SuperMesh (MESH)</button>
+            </div>
           </div>
         </div>
 
-        
-        <table class="table table-striped tbl_lp_setprice">
-          <thead>
-            <tr>
-              <th>Set Price for</th>
-              <th>Max Price</th>
-              <th>Volume</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>REVS</td>
-              <td><input class="form-control input-sm lp_setprice_REVS" type="text" name="lp_setprice_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
-              <td><input class="form-control input-sm lp_setvolume_REVS" type="text" name="lp_setvolume_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
-              <td><button class="btn btn-default btn-sm btn_lp_setprice" data-coin="COIN" data-txid="TXID" data-vout="VOUT">Set Price</button></td></tr>
-          </tbody>
-        </table>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
+      
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Trading Pairs</strong></div>
+              <div class="">
+                <table class="table table-striped" style="margin-bottom: 0;">
+                  <tr><td style="font-size: 22px; text-align: center;">
+                    <div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div>
+                  </td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Esitmate Swap Price Calculation</strong><button class="btn btn-default btn-sm refresh_estimate_price" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
+              <div class="">
+                <table class="table table-striped" style="margin-bottom: 0;">
+                  <tr><td class="coin_swap_rate_info" style="font-size: 22px; text-align: center;"><div class="coin_swap_rate_info1"></div><div class="coin_swap_rate_info2"></div></td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+            <!--<div class="panel-heading">What you want to Sell? <button class="btn btn-sm btn-default">Refresh Coins List</button></div>-->
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+
+                    <ul  class="nav nav-tabs nav-justified">
+                      <li class="active"><a  href="#1b" data-toggle="tab">Buying</a></li>
+                      <li><a href="#2b" data-toggle="tab">Selling</a></li>
+                    </ul>
+
+                    <div class="tab-content clearfix">
+                      <div class="tab-pane active" id="1b">
+                        
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><strong>Client DEX Trading options</strong><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button></div>
+                            <div class="" style="height:290px;overflow:scroll;">
+                              <!--<table class="table table-striped inv_alice_table" style="margin-bottom: 0;">
+                                <thead>
+                                  <tr>
+                                    <th>AMOUNT</th>
+                                    <th>Max Price</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                              </table>-->
+                            </div>
+                          </div>
+                        </div>
+
+                      <div class="tab-pane" id="2b">
+                      <div class="panel panel-default">
+                        <div class="panel-heading"><strong>Liquidity Provider Trading options</strong><!--<button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button>--></div>
+                          <div class="" style="height:290px;overflow:scroll;">
+                            
+                            <!--<table class="table table-striped inv_bob_table" style="margin-bottom: 0;">
+                              <thead>
+                                <tr>
+                                  <th>AMOUNT</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                              </tbody>
+                            </table>-->
                           </div>
                         </div>
                       </div>
+
                     </div>
 
+                  </div>
 
 
-                    <div class="col-sm-4">
+                  <!-- Modal -->
+                  <div class="modal fade" id="LP_Mode_SetPrice" tabindex="-1" role="dialog" aria-labelledby="LP_Mode_SetPriceLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="LP_Mode_SetPriceLabel">Set Price for selected UTXO</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <h4>Selected UTXO Info</h4>
+                              <table class="table table-striped tbl_lp_selected_utxo_info">
+                                <thead>
+                                  <tr>
+                                    <th>TXID</th>
+                                    <th>Vout</th>
+                                    <th>Amount</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr><td class="tbl_lp_selected_utxo_txid"></td><td class="tbl_lp_selected_utxo_vout"></td><td class="tbl_lp_selected_utxo_amount">000.000</td></tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                          
+                          <table class="table table-striped tbl_lp_setprice">
+                            <thead>
+                              <tr>
+                                <th>Set Price for</th>
+                                <th>Max Price</th>
+                                <th>Volume</th>
+                                <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>REVS</td>
+                                <td><input class="form-control input-sm lp_setprice_REVS" type="text" name="lp_setprice_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
+                                <td><input class="form-control input-sm lp_setvolume_REVS" type="text" name="lp_setvolume_REVS" value="" data-coin="COIN" data-txid="TXID" data-vout="VOUT"></td>
+                                <td><button class="btn btn-default btn-sm btn_lp_setprice" data-coin="COIN" data-txid="TXID" data-vout="VOUT">Set Price</button></td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal END -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="col-sm-2">
+        <div class="panel panel-success">
+          <div class="panel-heading"><strong>Buying Pair</strong></div>
+          <div class="" style="padding: 5px; height: 525px; overflow-y: scroll;">
+            <div class="list_active_coins">
+              <button class="btn btn-default btn-block buy_coin" data-coin="KMD">Komodo (KMD)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="BTC">Bitcoin (BTC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="DOGE">Dogecoin (DOGE)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="HUSH">Hushcoin (HUSH)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="DGB">Digibyte (DGB)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="MZC">Mazacoin (MZC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="SYS">Syscoin (SYS)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="UNO">Unobtanium (UNO)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="ZET">Zetacoin (ZET)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="ZEC">Zcash (ZEC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="BTM">Bitmark (BTM)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="CARB">Carboncoin (CARB)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="ANC">Anoncoin (ANC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="FRK">Franko (FRK)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="GAME">Gamecredits (GAME)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="LTC">Litecoin (LTC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="REVS">REV SHARE (REVS)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="JUMBLR">JUMBLR (JUMBLR)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="SUPERNET">SUPERNET (SUPERNET)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="WLC">Wireless (WLC)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="PANGEA">Pangea (PANGEA)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="DEX">InstantDEX (DEX)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="BET">BET (BET)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="CRYPTO">Crypto777 (CRYPTO)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="HODL">HODL (HODL)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="SHARK">SHARK (SHARK)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="BOTS">BOTS (BOTS)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="MGW">MultiGateway (MGW)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="MVP">MVP Lineup (MVP)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="KV">KeyValue (KV)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="CEAL">Ceal.io (CEAL)</button>
+              <button class="btn btn-default btn-block buy_coin" data-coin="MESH">SuperMesh (MESH)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="row" style="padding-top: 10px;">
+            <div class="col-sm-6">
+              <div class="panel panel-default">
+                <div class="panel-heading"><strong>Sell Orders</strong><span style="float: right;">Total Aks: <span class="orderbook_numasks"></span></span></div>
+                <div class="">
+                  <table class="table table-fixed orderbook_asks" style="margin-bottom: 0;">
+                    <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="panel panel-default">
+                <div class="panel-heading"><strong>Buy Orders</strong><span style="float: right;">Total Bids: <span class="orderbook_numbids"></span></span></div>
+                <div class="">
+                  <table class="table table-fixed orderbook_bids" style="margin-bottom: 0;">
+                    <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading"><strong>Show Swap Status</strong></div>
+                <div class="panel-body">
+                  <div class="col-sm-6">
+                    <p>This section will show you information when coin swap is activated and is in process. Use the refrehs swap list button to get updated information.<br>
+                    You'll need to press this refresh button again to get latest updates.</p>
+                    <button class="btn btn-default refresh_swap_list_btn">Refresh Swap List</button>
+
+                    <form class="form-inline" style="padding-top: 12px;">
                       <div class="form-group">
-                          <label for="buy_coin" class="control-label">What you want to Buy?</label>
-                          <select class="form-control buy_coin">
-                            <option value="-">- Select -</option>
-                            <option value="KMD">Komodo (KMD)</option>
-                            <option value="BTC">Bitcoin (BTC)</option>
-                            <option value="REVS">REV SHARE (REVS)</option>
-                            <option value="JUMBLR">JUMBLR (JUMBLR)</option>
-                          </select>
-                        </div>
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Trading Pairs</strong></div>
-                        <div class="">
-                          <table class="table table-striped" style="margin-bottom: 0;">
-                            <tr><td style="font-size: 22px; text-align: center;">
-                              <div class="deposit_coin01 col-sm-5"></div><div class="col-sm-2"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="margin: 12px; "></span></div><div class="deposit_coin02 col-sm-5"></div>
-                            </td></tr>
-                          </table>
-                        </div>
+                        <label for="swap_request_id">Request ID</label>
+                        <input type="text" class="form-control" id="swap_request_id" placeholder="requestid">
                       </div>
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Esitmate Swap Price Calculation</strong><button class="btn btn-default btn-sm refresh_estimate_price" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
-                        <div class="">
-                          <table class="table table-striped" style="margin-bottom: 0;">
-                            <tr><td class="coin_swap_rate_info" style="font-size: 22px; text-align: center;"><div class="coin_swap_rate_info1"></div><div class="coin_swap_rate_info2"></div></td></tr>
-                          </table>
-                        </div>
+                      <div class="form-group">
+                        <label for="swap_quote_id">Quote ID</label>
+                        <input type="email" class="form-control" id="swap_quote_id" placeholder="quoteid">
                       </div>
-                    </div>
-
+                      <button class="btn btn-default check_swap_status_btn">Check Swap Status</button>
+                    </form>
                   </div>
 
-                  <div class="row" style="padding-top: 10px;">
-                    <div class="col-sm-6">
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Sell Orders</strong><span style="float: right;">Total Aks: <span class="orderbook_numasks"></span></span></div>
-                        <div class="">
-                          <table class="table table-fixed orderbook_asks" style="margin-bottom: 0;">
-                            <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
-                            <tbody></tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Buy Orders</strong><span style="float: right;">Total Bids: <span class="orderbook_numbids"></span></span></div>
-                        <div class="">
-                          <table class="table table-fixed orderbook_bids" style="margin-bottom: 0;">
-                            <thead><th class="col-xs-6">Price in <span class="orderbook_rel_coin"></span></th><th class="col-xs-6"><span class="orderbook_base_coin"></span></th></thead>
-                            <tbody></tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-md-6">
+                    <pre class="checkswaplist-output"></pre>
                   </div>
 
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Show Swap Status</strong></div>
-                        <div class="panel-body">
-                          <div class="col-sm-6">
-                            <p>This section will show you information when coin swap is activated and is in process. Use the refrehs swap list button to get updated information.<br>
-                            You'll need to press this refresh button again to get latest updates.</p>
-                            <button class="btn btn-default refresh_swap_list_btn">Refresh Swap List</button>
-
-                            <form class="form-inline" style="padding-top: 12px;">
-                              <div class="form-group">
-                                <label for="swap_request_id">Request ID</label>
-                                <input type="text" class="form-control" id="swap_request_id" placeholder="requestid">
-                              </div>
-                              <div class="form-group">
-                                <label for="swap_quote_id">Quote ID</label>
-                                <input type="email" class="form-control" id="swap_quote_id" placeholder="quoteid">
-                              </div>
-                              <button class="btn btn-default check_swap_status_btn">Check Swap Status</button>
-                            </form>
-                          </div>
-
-                          <div class="col-md-6">
-                            <pre class="checkswaplist-output"></pre>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-                  <div class="row" style="margin-top: 12px;">
-                    <div class="col-md-12">
-                      <pre class="initcoinswap-output"></pre>
-                    </div>
-                  </div>
-
+          <div class="row" style="margin-top: 12px;">
+            <div class="col-md-12">
+              <pre class="initcoinswap-output"></pre>
+            </div>
+          </div>
 
       </div>
     </div>

@@ -1,3 +1,14 @@
+var orderbook_data = {"bids":[{"price":1.07003092,"volume":1.86910486,"txid":"aa2e49f8e41bde7a0acf2f8f3dbf64e5f1a185927369f0ae9d9a77b0efc9ffc3","vout":1,"pubkey":"6a6b25e369c31505421bfd689a288f7294766cc8f1ef2e296783c33975fdb522"}, {"price":1.07003092,"volume":0.93455243,"txid":"4fb910b818eca949392785483413522d8af249050934ca6243c571f9fa569e1e","vout":1,"pubkey":"6a6b25e369c31505421bfd689a288f7294766cc8f1ef2e296783c33975fdb522"}, {"price":1.09860370,"volume":0.90640143,"txid":"224e9b616b10baea9d4d811d389cb702ccd5136949e5f3c830667bc4a2a41359","vout":0,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.09860370,"volume":0.09953898,"txid":"374feba90596cdf411e10aec7555d9ced8272af54a98755bcbdbf033b735076e","vout":0,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.09860370,"volume":0.89936219,"txid":"643c2fcca1313fd32a76ec45540281c450fb4e7c41ca4a98e1eec9ebdba7ebb3","vout":0,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.09860370,"volume":1.82049268,"txid":"5ce70e85ed561cd152d3a27d0831a27b75f84a8811578642c68c29205903f59c","vout":1,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.17393765,"volume":1.70366800,"txid":"a75c5c296e82b7c78df2e92f6d793ad79214ce65746b5201ec9193d0a2ae786f","vout":1,"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74"}, {"price":1.17393765,"volume":0.85183400,"txid":"6b102cc599a7f363b8e81693e5a510eaaf8ad26e8a04d95f24aedb9f508b35ea","vout":1,"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74"}, {"price":1.28578666,"volume":1.55546800,"txid":"b5f682636959a8043e416c87e007b5c0e5ac8ce00e6b71188774b2cd0c279ae5","vout":1,"pubkey":"7db93bf02299a62905f78a2de3d1fd42d8f5433729e096a66c99c14a52cf936d"}, {"price":1.28578666,"volume":0.77773400,"txid":"f6d9770cfa7d2a4dc5a3ba28e31d4283274f240ef70436255473f67109af4a78","vout":1,"pubkey":"7db93bf02299a62905f78a2de3d1fd42d8f5433729e096a66c99c14a52cf936d"}, {"price":1.32007217,"volume":0.75753434,"txid":"b47cada7a8a53b7fbc320b3f07c87264047511ef4bf57d80ebe888423ab6098c","vout":1,"pubkey":"d2597164e4861baa3eb187fb6e0c9c41f85673d8d21e9b477e328d5abdb94410"}, {"price":1.32007217,"volume":1.51506868,"txid":"491600081587db7affa6072120b53e4128f74e82527cda3f53314447685df7ba","vout":1,"pubkey":"d2597164e4861baa3eb187fb6e0c9c41f85673d8d21e9b477e328d5abdb94410"}, {"price":1.34097978,"volume":0.74572340,"txid":"f3abd4383ca2f7ceb1d22e004e015a153ba926cc2f0bf7a54ff0a590bb1305c4","vout":1,"pubkey":"67e9c96418a4156988431eb586b849d047f8eab1f2c18fff355a087dfc37f008"}, {"price":1.34097978,"volume":1.49144680,"txid":"0b03d52aa70e98940b523626dbb95ba67e04bd7a09891b1df022a6bd95157ece","vout":1,"pubkey":"67e9c96418a4156988431eb586b849d047f8eab1f2c18fff355a087dfc37f008"}, {"price":1.51801196,"volume":1.31751268,"txid":"d9d75a54e7e44bab3351a08929d6181b495307e3cf9aed0b69a1c5fff2e56d7b","vout":1,"pubkey":"1670d1a9ef20264435e94dde500007aed8e34e75ce6329e1ea4fc5571d2f1a08"}, {"price":1.51801196,"volume":0.65875634,"txid":"1293770c91b05e2d40a194eb263bfd6d7daf52b81887a2177ca0d7b8c43f5abf","vout":1,"pubkey":"1670d1a9ef20264435e94dde500007aed8e34e75ce6329e1ea4fc5571d2f1a08"}, {"price":2.03033788,"volume":0.49252886,"txid":"2ba7b3e9b7fb2989d33250c9c5c49bcb75d062970c1eaf3650b7f9e3dff98756","vout":1,"pubkey":"dcbb67b9ffe560ff661dedd018097c355c78de22b29d5e97c586ca21da25d203"}, {"price":2.03033788,"volume":0.98505772,"txid":"57bc09733ff6f9863ff2c75817369f7cffcede550e09e5704cf141d10fca35f1","vout":1,"pubkey":"dcbb67b9ffe560ff661dedd018097c355c78de22b29d5e97c586ca21da25d203"}, {"price":2.96436829,"volume":0.67468000,"txid":"7d08c6d3c6404527ad08f0ff53f459467b511f46a3dd5d6d920eecd9e7f0efec","vout":1,"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326"}, {"price":2.96436829,"volume":0.33734000,"txid":"060c3c9b8546bdb7e83bfa443e7c233a3f308fb2179355ba4df63482bae32ac2","vout":1,"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326"}],"numbids":20,"asks":[{"price":1.11224634,"volume":0.01309860,"txid":"5e5ad17aab3e4713367732546b5576fce5b2c94090ebd4aa66d437e007bb9b38","vout":1,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.11224634,"volume":0.99888750,"txid":"97d77f4683268b0f6224305560d5c67588d983bd49e58db6d071eadd97a7bc0c","vout":0,"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d"}, {"price":1.12346340,"volume":0.99888750,"txid":"dbf1e758ef54106b6d59dd3a65ba6bfb9d4cd2cf95667f1286f54e9e8ed18b20","vout":0,"pubkey":"756766f42122fc86280b196d51b9052a99d282f01d462e1ab3c97356b7b89659"}, {"price":1.21203434,"volume":1,"txid":"184e1597310dc2880ed33c0c8a419fd1eee34330f9db4e0a5dc511e15bac3da3","vout":1,"pubkey":"d2597164e4861baa3eb187fb6e0c9c41f85673d8d21e9b477e328d5abdb94410"}, {"price":1.23755243,"volume":1,"txid":"82eed5d34f601352b42ee6799c943444ca53d1c33c28b61a3b907378cd5ded52","vout":1,"pubkey":"6a6b25e369c31505421bfd689a288f7294766cc8f1ef2e296783c33975fdb522"}, {"price":1.23755243,"volume":0.11078748,"txid":"8f53dee138cd2da31e8a3d9584b4f3cc718b8cf4c4505a2da4a6814b01e9e282","vout":0,"pubkey":"6a6b25e369c31505421bfd689a288f7294766cc8f1ef2e296783c33975fdb522"}, {"price":1.25583400,"volume":0.99888750,"txid":"da46740ecbd2dc9b6d86e47076340a7aa82393b91318d1fa8eaabb9c79bd05cb","vout":0,"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74"}, {"price":1.25583400,"volume":1,"txid":"e656efb228852db3330142312924cfdbcacc751a9c6bab0276654c2539acee88","vout":1,"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74"}, {"price":1.25583400,"volume":1,"txid":"2077068e2d7f4b0ed7493d0ecbd86e45745fce2d3f681d1f6be3a2a5f80b9124","vout":1,"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74"}, {"price":1.27773400,"volume":1,"txid":"1fd493b00969032d2deb3918c0fafcef3d01e9bbf5a3fc29e1c778da6ac0d270","vout":1,"pubkey":"7db93bf02299a62905f78a2de3d1fd42d8f5433729e096a66c99c14a52cf936d"}, {"price":1.27773400,"volume":1,"txid":"592522b21e69def92e496bd3064d154a196a51a90949a3b174213521454fe2da","vout":1,"pubkey":"7db93bf02299a62905f78a2de3d1fd42d8f5433729e096a66c99c14a52cf936d"}, {"price":1.31132340,"volume":1,"txid":"c0764af7b460fb2464642a2a478a4193eac2937d348af60552247b5a52841fb6","vout":1,"pubkey":"67e9c96418a4156988431eb586b849d047f8eab1f2c18fff355a087dfc37f008"}, {"price":1.31132340,"volume":1,"txid":"d4393e9dc822fb2707d7efe8d2ef874f7b775ca7cda311ebf51ccd707162e258","vout":1,"pubkey":"67e9c96418a4156988431eb586b849d047f8eab1f2c18fff355a087dfc37f008"}, {"price":1.76975634,"volume":0.11190000,"txid":"2d2439f0e4968d79b0c1aaece15501f57daa1cc5cb9229b4535958cf2bd5dcf0","vout":1,"pubkey":"1670d1a9ef20264435e94dde500007aed8e34e75ce6329e1ea4fc5571d2f1a08"}, {"price":1.76975634,"volume":1,"txid":"d8e9b33f97bf016965e98dfca2743500f1f898206e2f1aa20484469e0013e8c3","vout":1,"pubkey":"1670d1a9ef20264435e94dde500007aed8e34e75ce6329e1ea4fc5571d2f1a08"}, {"price":2.00752886,"volume":1,"txid":"6e33b59330e87f8989e62e74a13bc06c4ec95f336ed23a8d807baad79ef6642c","vout":1,"pubkey":"dcbb67b9ffe560ff661dedd018097c355c78de22b29d5e97c586ca21da25d203"}, {"price":2.00752886,"volume":1,"txid":"e542478189e333f354b4246548c4cc14efe87cf8fceb21047f3172fd727eb35a","vout":1,"pubkey":"dcbb67b9ffe560ff661dedd018097c355c78de22b29d5e97c586ca21da25d203"}, {"price":2.25634000,"volume":1,"txid":"5b1c3bd15a1b385ff9281c7e437ca1dac06b580b99f383b0bc9c7d4afb165336","vout":1,"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326"}, {"price":2.25634000,"volume":1,"txid":"8e74af0ce30743011e0fdd80b2bc9bb614f65052f67951461534d588123b7b98","vout":1,"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326"}, {"price":2.25634000,"volume":1,"txid":"9e7c64bef7a4bded6c906ab49dbf1e52822b7fba8f281cd5a45f44f6be8c4afa","vout":1,"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326"}],"numasks":20,"base":"REVS","rel":"KMD","timestamp":1497518785};
+var inv_kmd_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+var getprices_data = [{"pubkey":"6578099f6474d9b8bd66a7a136b922029a989818ec0309aee962dd6ac1862b74","timestamp":1497518589,"asks":[["KMD", "REVS", 0.85183400], ["REVS", "KMD", 1.25583400]]}, {"pubkey":"756766f42122fc86280b196d51b9052a99d282f01d462e1ab3c97356b7b89659","timestamp":1497518591,"asks":[["REVS", "KMD", 1.12346340]]}, {"pubkey":"67e9c96418a4156988431eb586b849d047f8eab1f2c18fff355a087dfc37f008","timestamp":1497518592,"asks":[["KMD", "REVS", 0.74572340], ["REVS", "KMD", 1.31132340]]}, {"pubkey":"1670d1a9ef20264435e94dde500007aed8e34e75ce6329e1ea4fc5571d2f1a08","timestamp":1497518593,"asks":[["KMD", "REVS", 0.65875634], ["REVS", "KMD", 1.76975634]]}, {"pubkey":"d2597164e4861baa3eb187fb6e0c9c41f85673d8d21e9b477e328d5abdb94410","timestamp":1497518594,"asks":[["KMD", "REVS", 0.75003400], ["REVS", "KMD", 1.20003400]]}, {"pubkey":"dcbb67b9ffe560ff661dedd018097c355c78de22b29d5e97c586ca21da25d203","timestamp":1497518594,"asks":[["KMD", "REVS", 0.49252886], ["REVS", "KMD", 2.00752886]]}, {"pubkey":"6a6b25e369c31505421bfd689a288f7294766cc8f1ef2e296783c33975fdb522","timestamp":1497518595,"asks":[["KMD", "REVS", 0.93455243], ["REVS", "KMD", 1.23755243]]}, {"pubkey":"7db93bf02299a62905f78a2de3d1fd42d8f5433729e096a66c99c14a52cf936d","timestamp":1497518596,"asks":[["KMD", "REVS", 0.78551134], ["REVS", "KMD", 1.29051134]]}, {"pubkey":"1bfcfc1d48dbe3e1332b09cb48e50e7789bdde2308b74f905299db12d093fa2d","timestamp":1497518597,"asks":[["KMD", "REVS", 0.91024634], ["REVS", "KMD", 1.11224634]]}, {"pubkey":"07c2b0914883612429a9bf0263ebb1d112c420ceb4b0688278bc75d6e1894326","timestamp":1497518597,"asks":[["KMD", "REVS", 0.33734000], ["REVS", "KMD", 2.25634000]]}];
+var tmp_user_wallet_data = {"userpass":"e919a423e0266af4027b53da157822c6198fd7f6ecbf3879a9d001b282349736","mypubkey":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441","coins":[{"coin":"BTC","status":"inactive","smartaddress":"1ESydFxHCa21ZKsuQVGQN68C1i4h8GWhpJ","rpc":"127.0.0.1:8332","pubtype":0,"p2shtype":5,"wiftype":128,"estimatedrate":300,"txfee":50000}, {"coin":"KMD","status":"active","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:7771","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"REVS","status":"active","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:10196","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"JUMBLR","status":"active","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:15106","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"LTC","status":"inactive","smartaddress":"LYfvtUG7HEG4p8a4adFhe7BxDvRyGw1xsT","rpc":"127.0.0.1:9332","pubtype":48,"p2shtype":5,"wiftype":176,"estimatedrate":20,"txfee":100000}, {"coin":"SUPERNET","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:11341","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"WLC","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:12167","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"PANGEA","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:14068","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"DEX","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:11890","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"BET","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:14250","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"CRYPTO","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:8516","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"HODL","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:14431","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"SHARK","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:10114","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"BOTS","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:11964","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"MGW","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:12386","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"MVP","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:8655","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"KV","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:9747","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"CEAL","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:11116","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}, {"coin":"MESH","status":"inactive","smartaddress":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","rpc":"127.0.0.1:9455","pubtype":60,"p2shtype":85,"wiftype":188,"estimatedrate":20,"txfee":10000}]};
+
+function tmp_setusersession() {
+	sessionStorage.setItem('mm_userpass', tmp_user_wallet_data.userpass);
+	sessionStorage.setItem('mm_mypubkey', tmp_user_wallet_data.mypubkey);	
+}
+
+
 $('.activate-btc').click(function() {
 	console.log('activate btc basilisk');
 	var ajax_data = {"prefetchlag":-1,"poll":1,"active":1,"agent":"iguana","method":"addcoin","newcoin":"BTC","startpend":64,"endpend":64,"services":0,"maxpeers":512,"RELAY":0,"VALIDATE":0,"portp2p":8333,"minconfirms":1};
@@ -365,10 +376,13 @@ $('.send_tx_addr_btn').click(function() {
 })
 
 
-$( ".buy_coin" ).change(function() {
+//$( ".buy_coin" ).change(function() {
+$('.buy_coin').click(function() {
+	var coin = $(this).data('coin');
 	//console.log($('.buy_coin').val())
 	rel_coin = $('.deposit_coin01').data('coin');
-	base_coin = $('.buy_coin').val();
+	//base_coin = $('.buy_coin').val();
+	base_coin = coin;
 
 	sessionStorage.setItem('dex_base_coin', base_coin);
 	sessionStorage.setItem('dex_rel_coin', rel_coin);
@@ -386,9 +400,96 @@ $( ".buy_coin" ).change(function() {
 		case 'JUMBLR':
 			$('.deposit_coin02').html('<b>JUMBLR</b>');
 			break;
+		case 'DOGE':
+			$('.deposit_coin02').html('<b>Dogecoin</b>');
+			break;
+		case 'HUSH':
+			$('.deposit_coin02').html('<b>Hushcoin</b>');
+			break;
+		case 'DGB':
+			$('.deposit_coin02').html('<b>Digibyte</b>');
+			break;
+		case 'MZC':
+			$('.deposit_coin02').html('<b>Mazacoin</b>');
+			break;
+		case 'SYS':
+			$('.deposit_coin02').html('<b>Syscoin</b>');
+			break;
+		case 'UNO':
+			$('.deposit_coin02').html('<b>Unobtanium</b>');
+			break;
+		case 'ZET':
+			$('.deposit_coin02').html('<b>Zetacoin</b>');
+			break;
+		case 'ZEC':
+			$('.deposit_coin02').html('<b>Zcash</b>');
+			break;
+		case 'BTM':
+			$('.deposit_coin02').html('<b>Bitmark</b>');
+			break;
+		case 'CARB':
+			$('.deposit_coin02').html('<b>Carboncoin</b>');
+			break;
+		case 'ANC':
+			$('.deposit_coin02').html('<b>Anoncoin</b>');
+			break;
+		case 'FRK':
+			$('.deposit_coin02').html('<b>Franko</b>');
+			break;
+		case 'GAME':
+			$('.deposit_coin02').html('<b>Gamecredits</b>');
+			break;
+		case 'LTC':
+			$('.deposit_coin02').html('<b>Litecoin</b>');
+			break;
+		case 'SUPERNET':
+			$('.deposit_coin02').html('<b>SUPERNET</b>');
+			break;
+		case 'WLC':
+			$('.deposit_coin02').html('<b>Wireless</b>');
+			break;
+		case 'PANGEA':
+			$('.deposit_coin02').html('<b>Pangea</b>');
+			break;
+		case 'DEX':
+			$('.deposit_coin02').html('<b>InstantDEX</b>');
+			break;
+		case 'BET':
+			$('.deposit_coin02').html('<b>BET</b>');
+			break;
+		case 'CRYPTO':
+			$('.deposit_coin02').html('<b>Crypto777</b>');
+			break;
+		case 'HODL':
+			$('.deposit_coin02').html('<b>HODL</b>');
+			break;
+		case 'SHARK':
+			$('.deposit_coin02').html('<b>SHARK</b>');
+			break;
+		case 'BOTS':
+			$('.deposit_coin02').html('<b>BOTS</b>');
+			break;
+		case 'MGW':
+			$('.deposit_coin02').html('<b>MultiGateway</b>');
+			break;
+		case 'MVP':
+			$('.deposit_coin02').html('<b>MVP</b>');
+			break;
+		case 'KV':
+			$('.deposit_coin02').html('<b>KeyValue</b>');
+			break;
+		case 'CEAL':
+			$('.deposit_coin02').html('<b>Ceal</b>');
+			break;
+		case 'MESH':
+			$('.deposit_coin02').html('<b>SuperMesh</b>');
+			break;
 	}
 
 	get_price(base_coin, rel_coin);
+
+	$( ".buy_coin" ).removeClass("active")
+	$( ".buy_coin[data-coin='"+ coin +"']" ).addClass(" active");
   
   	/*var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
@@ -434,8 +535,9 @@ $( ".buy_coin" ).change(function() {
 
 function get_price(base,rel) {
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"getprice","base":base,"rel":rel};
-	var url = "http://5.9.253.197:7779";
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -448,6 +550,7 @@ function get_price(base,rel) {
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	get_price(base,rel)
 	   } else if (!data.error === false) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -463,7 +566,7 @@ function get_price(base,rel) {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 
-	var ajax_data2 = {"userpass":userpass,"method":"getprice","base":rel,"rel":base};
+	var ajax_data2 = {"userpass":userpass,"method":"getprice","base":base,"rel":base};
 	$.ajax({
 	    data: JSON.stringify(ajax_data2),
 	    dataType: 'json',
@@ -475,6 +578,7 @@ function get_price(base,rel) {
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	get_price(base,rel)
 	   } else if (!data.error === false) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -500,6 +604,7 @@ $('.refresh_estimate_price').click(function() {
 
 function get_marketmaker_userpass() {
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"getpeers"};
 	var url = "http://127.0.0.1:7779";
 
@@ -514,6 +619,7 @@ function get_marketmaker_userpass() {
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	get_marketmaker_userpass()
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -527,6 +633,7 @@ function get_marketmaker_userpass() {
 $('.refresh_inv_table').click(function() {
 	var coin = $(this).data('coin');
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
 	var url = "http://127.0.0.1:7779";
 
@@ -538,18 +645,20 @@ $('.refresh_inv_table').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   data = inv_kmd_data
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
 	   } else {
 	   	$( ".inv_btn" ).removeClass("active")
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.inv_alice_table tbody').empty();
-	   	var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
-	   	console.log(test_data);
-	   	$.each(test_data.alice, function(index, val) {
+	   	//var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	//console.log(test_data);
+	   	$.each(data.alice, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
 	   		var inv_alice_table_tr = '';
@@ -561,8 +670,8 @@ $('.refresh_inv_table').click(function() {
             $('.inv_alice_table tbody').append(inv_alice_table_tr);
 	   	})
 
-	   	$('.inv_bob_table tbody').empty();
-	   	$.each(test_data.bob, function(index, val) {
+	   	/*$('.inv_bob_table tbody').empty();
+	   	$.each(data.bob, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
 	   		var inv_bob_table_tr = '';
@@ -572,7 +681,7 @@ $('.refresh_inv_table').click(function() {
               inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'" data-toggle="modal" data-target="#LP_Mode_SetPrice">Set Max Trade Price</button></td>';
             inv_bob_table_tr += '</tr>';
             $('.inv_bob_table tbody').append(inv_bob_table_tr);
-	   	})
+	   	})*/
 
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -580,6 +689,7 @@ $('.refresh_inv_table').click(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })
+
 
 $('.inv_btn').click(function() {
 	var coin = $(this).data('coin');
@@ -598,12 +708,97 @@ $('.inv_btn').click(function() {
 		case 'JUMBLR':
 			$('.deposit_coin01').html('<b>JUMBLR</b>');
 			break;
+		case 'DOGE':
+			$('.deposit_coin01').html('<b>Dogecoin</b>');
+			break;
+		case 'HUSH':
+			$('.deposit_coin01').html('<b>Hushcoin</b>');
+			break;
+		case 'DGB':
+			$('.deposit_coin01').html('<b>Digibyte</b>');
+			break;
+		case 'MZC':
+			$('.deposit_coin01').html('<b>Mazacoin</b>');
+			break;
+		case 'SYS':
+			$('.deposit_coin01').html('<b>Syscoin</b>');
+			break;
+		case 'UNO':
+			$('.deposit_coin01').html('<b>Unobtanium</b>');
+			break;
+		case 'ZET':
+			$('.deposit_coin01').html('<b>Zetacoin</b>');
+			break;
+		case 'ZEC':
+			$('.deposit_coin01').html('<b>Zcash</b>');
+			break;
+		case 'BTM':
+			$('.deposit_coin01').html('<b>Bitmark</b>');
+			break;
+		case 'CARB':
+			$('.deposit_coin01').html('<b>Carboncoin</b>');
+			break;
+		case 'ANC':
+			$('.deposit_coin01').html('<b>Anoncoin</b>');
+			break;
+		case 'FRK':
+			$('.deposit_coin01').html('<b>Franko</b>');
+			break;
+		case 'GAME':
+			$('.deposit_coin01').html('<b>Gamecredits</b>');
+			break;
+		case 'LTC':
+			$('.deposit_coin01').html('<b>Litecoin</b>');
+			break;
+		case 'SUPERNET':
+			$('.deposit_coin01').html('<b>SUPERNET</b>');
+			break;
+		case 'WLC':
+			$('.deposit_coin01').html('<b>Wireless</b>');
+			break;
+		case 'PANGEA':
+			$('.deposit_coin01').html('<b>Pangea</b>');
+			break;
+		case 'DEX':
+			$('.deposit_coin01').html('<b>InstantDEX</b>');
+			break;
+		case 'BET':
+			$('.deposit_coin01').html('<b>BET</b>');
+			break;
+		case 'CRYPTO':
+			$('.deposit_coin01').html('<b>Crypto777</b>');
+			break;
+		case 'HODL':
+			$('.deposit_coin01').html('<b>HODL</b>');
+			break;
+		case 'SHARK':
+			$('.deposit_coin01').html('<b>SHARK</b>');
+			break;
+		case 'BOTS':
+			$('.deposit_coin01').html('<b>BOTS</b>');
+			break;
+		case 'MGW':
+			$('.deposit_coin01').html('<b>MultiGateway</b>');
+			break;
+		case 'MVP':
+			$('.deposit_coin01').html('<b>MVP</b>');
+			break;
+		case 'KV':
+			$('.deposit_coin01').html('<b>KeyValue</b>');
+			break;
+		case 'CEAL':
+			$('.deposit_coin01').html('<b>Ceal</b>');
+			break;
+		case 'MESH':
+			$('.deposit_coin01').html('<b>SuperMesh</b>');
+			break;
 	}
 	
 	$('.deposit_coin01').data('coin', coin);
 	//calc_swap_price('kmdbtc');
 
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
 	var url = "http://127.0.0.1:7779";
 
@@ -618,15 +813,16 @@ $('.inv_btn').click(function() {
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
 	   } else {
 	   	$( ".inv_btn" ).removeClass("active")
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.inv_alice_table tbody').empty();
-	   	var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
-	   	console.log(test_data);
-	   	$.each(test_data.alice, function(index, val) {
+	   	//var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	//console.log(test_data);
+	   	$.each(data.alice, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
 	   		var inv_alice_table_tr = '';
@@ -638,8 +834,8 @@ $('.inv_btn').click(function() {
             $('.inv_alice_table tbody').append(inv_alice_table_tr);
 	   	})
 
-	   	$('.inv_bob_table tbody').empty();
-	   	$.each(test_data.bob, function(index, val) {
+	   	/*$('.inv_bob_table tbody').empty();
+	   	$.each(data.bob, function(index, val) {
 	   		//console.log(index);
 	   		//console.log(val);
 	   		var inv_bob_table_tr = '';
@@ -649,7 +845,7 @@ $('.inv_btn').click(function() {
               inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'" data-amount="'+val.value+'">Set Max Trade Price</button></td>';
             inv_bob_table_tr += '</tr>';
             $('.inv_bob_table tbody').append(inv_bob_table_tr);
-	   	})
+	   	})*/
 
 
 	   }
@@ -671,6 +867,7 @@ $('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
 	console.log(maxprice);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"autotrade","txid":txid,"vout":vout,"coin":"REVS","maxprice":maxprice};
 	var url = "http://127.0.0.1:7779";
 
@@ -780,6 +977,7 @@ var check_orderbook = setInterval(function() {
 	console.log('checking orderbook')
 
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var base_coin = sessionStorage.getItem('dex_base_coin');
 	var rel_coin = sessionStorage.getItem('dex_rel_coin');
 	
@@ -788,7 +986,7 @@ var check_orderbook = setInterval(function() {
 
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
 	//console.log(ajax_data)
-	var url = "http://5.9.253.197:7779";
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -801,6 +999,7 @@ var check_orderbook = setInterval(function() {
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
 			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 		} else {
 			//console.log(data.asks);
 
@@ -811,8 +1010,12 @@ var check_orderbook = setInterval(function() {
 			$.each(data.bids, function(index, val) {
 				//console.log(index);
 				//console.log(val);
+				var mytrade_true = '';
+				if (val.pubkey === mypubkey) {
+					var mytrade_true = 'class="warning"';
+				}
 				var orderbook_bids_tr = '';
-				orderbook_bids_tr += '<tr>';
+				orderbook_bids_tr += '<tr ' + mytrade_true + '>';
 				orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
 				orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
 				orderbook_bids_tr += '</tr>';
@@ -823,8 +1026,12 @@ var check_orderbook = setInterval(function() {
 			$.each(data.asks, function(index, val) {
 				//console.log(index);
 				//console.log(val);
+				var mytrade_true = '';
+				if (val.pubkey === mypubkey) {
+					var mytrade_true = 'class="warning"';
+				}
 				var orderbook_asks_tr = '';
-				orderbook_asks_tr += '<tr>';
+				orderbook_asks_tr += '<tr ' + mytrade_true + '>';
 				orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
 				orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
 				orderbook_asks_tr += '</tr>';
@@ -838,11 +1045,12 @@ var check_orderbook = setInterval(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 
-}, 5000);
+}, 1000);
 
 
 $('.refresh_swap_list_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
 	var url = "http://127.0.0.1:7779";
 
@@ -867,6 +1075,7 @@ $('.check_swap_status_btn').click(function() {
 	var requestid = $('#swap_request_id').val();
 	var quoteid = $('#swap_quote_id').val();
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
 	var url = "http://127.0.0.1:7779/";
 
