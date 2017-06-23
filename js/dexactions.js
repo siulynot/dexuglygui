@@ -156,6 +156,9 @@ $('.buy_coin').click(function() {
 	//base_coin = $('.buy_coin').val();
 	base_coin = coin;
 
+	$('.lp_sell_coin').text(rel_coin);
+	$('.autotrade_buy_coin').text(coin);
+
 	sessionStorage.setItem('dex_base_coin', base_coin);
 	sessionStorage.setItem('dex_rel_coin', rel_coin);
 
@@ -542,6 +545,17 @@ $('.inv_btn').click(function() {
 	$('.deposit_coin01').data('coin', coin);
 	//calc_swap_price('kmdbtc');
 
+	rel_coin = $('.deposit_coin01').data('coin');
+	base_coin = coin;
+
+	$('.lp_sell_coin').text(rel_coin);
+	$('.autotrade_buy_coin').text(coin);
+
+	sessionStorage.setItem('dex_base_coin', base_coin);
+	sessionStorage.setItem('dex_rel_coin', rel_coin);
+	
+	get_price(base_coin, rel_coin);
+
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
@@ -601,7 +615,71 @@ $('.inv_btn').click(function() {
 });
 
 
-$('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
+$('.autotrade_buy_coin_btn').click(function(){
+	var amount = $('#autotrade_amount').val();
+	var price = $('#autotrade_price').val();
+
+	var base_coin = sessionStorage.getItem('dex_base_coin');
+	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+
+	console.log('amount ' + amount);
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"volume":amount,"price":price};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+});
+
+
+$('.lp_set_price_btn').click(function(){
+	var price = $('#lp_set_price').val();
+
+	var base_coin = sessionStorage.getItem('dex_base_coin');
+	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+})
+
+
+/*$('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
 	var coin = $(this).data('coin');
 	var txid = $(this).data('txid');
 	var vout = $(this).data('vout');
@@ -643,79 +721,7 @@ $('.inv_bob_table tbody').on('click', '.inv_lp_setprice', function() {
 	$('.tbl_lp_selected_utxo_vout').text(vout);
 	$('.tbl_lp_selected_utxo_amount').text(amount_parsed + ' ' +coin);
 	$('#LP_Mode_SetPrice').modal('show')
-});
-
-//{"userpass":"$userpass","method":"orderbook","base":"REVS","rel":"KMD"}
-
-/*
-$('.deposit_coin_btn_01').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	$('.initcoinswap-output').html('<i>Sending 100 KMD to ' + get_depsit_addr + '<br>processing...</i>');
-
-	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 100]};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-$('.deposit_coin_btn_02').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	$('.initcoinswap-output').html('<i>Sending 0.001 KMD fee to ' + get_depsit_addr + '<br>processing...</i>');
-
-	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 0.001]};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-$('.deposit_coin_btn_03').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	var deposit_100kmd_worth_btc_btn = $('.deposit_100kmd_worth_btc_btn').text();
-	$('.initcoinswap-output').html('<i>Sending ' + deposit_100kmd_worth_btc_btn + ' BTC to ' + get_depsit_addr + '<br>processing...</i>');
-
-	var ajax_data = {"coin":"BTC","method":"sendtoaddress","params":[get_depsit_addr, deposit_100kmd_worth_btc_btn]};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})*/
-
-
+});*/
 
 
 var check_orderbook = setInterval(function() {
