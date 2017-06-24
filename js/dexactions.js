@@ -847,7 +847,7 @@ var check_orderbook = setInterval(function() {
 	});
 
 	get_myprices();
-	
+
 }, 1000);
 
 
@@ -883,10 +883,18 @@ function enable_disable_coin(data) {
 	    type: 'POST',
 	    url: url
 	}).done(function(data) {
-	    // If successful
-	   //console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	   get_coins_list(data);
+		// If successful
+		//console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
+		} else {
+			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+			get_coins_list(data);
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
@@ -937,28 +945,35 @@ function get_myprices() {
 	    // If successful
 	   //console.log(data);
 
-	   $('.dex_myprices_tbl tbody').empty();
+	   if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
+		} else {
+			$('.dex_myprices_tbl tbody').empty();
 
-		$.each(data, function(index, val) {
-			//console.log(index);
-			//console.log(val);
+			$.each(data, function(index, val) {
+				//console.log(index);
+				//console.log(val);
 
-			var base_coin_name = return_coin_name(val.base)
-			var rel_coin_name = return_coin_name(val.rel)
+				var base_coin_name = return_coin_name(val.base)
+				var rel_coin_name = return_coin_name(val.rel)
 
-			var dex_myprices_tbl_tr = '';
+				var dex_myprices_tbl_tr = '';
 
-			dex_myprices_tbl_tr += '<tr>';
-				dex_myprices_tbl_tr += '<td>'+ val.base + ' (' + base_coin_name + ')</td>';
-				dex_myprices_tbl_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
-				dex_myprices_tbl_tr += '<td>' + val.bid + '</td>';
-				dex_myprices_tbl_tr += '<td>' + val.ask + '</td>';
-			dex_myprices_tbl_tr += '</tr>';
+				dex_myprices_tbl_tr += '<tr>';
+					dex_myprices_tbl_tr += '<td>'+ val.base + ' (' + base_coin_name + ')</td>';
+					dex_myprices_tbl_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
+					dex_myprices_tbl_tr += '<td>' + val.bid + '</td>';
+					dex_myprices_tbl_tr += '<td>' + val.ask + '</td>';
+				dex_myprices_tbl_tr += '</tr>';
 
-			$('.dex_myprices_tbl tbody').append(dex_myprices_tbl_tr);
-		})
+				$('.dex_myprices_tbl tbody').append(dex_myprices_tbl_tr);
+			})
+		}
 
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
