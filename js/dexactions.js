@@ -1,4 +1,25 @@
 
+$('.dexnav_exchange').click(function(e){
+	e.preventDefault();
+	//console.log('exchange menu clicked');
+	$('.section').hide();
+	$('.section-exchange').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+});
+
+$('.dexnav_balances').click(function(e){
+	e.preventDefault();
+	//console.log('balances menu clicked');
+	$('.section').hide();
+	$('.section-balances').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+});
+
+
 
 $('.dexratio-btn').click(function() {
 	var _dexratio = $('.dexratio-val').val();
@@ -324,6 +345,7 @@ function get_price(base,rel) {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userdata', data);
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	get_price(base,rel)
@@ -366,6 +388,7 @@ function get_marketmaker_userpass() {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userdata', data);
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	get_marketmaker_userpass()
@@ -396,6 +419,7 @@ $('.refresh_inv_table').click(function() {
 	   data = inv_kmd_data
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userdata', data);
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
@@ -571,6 +595,7 @@ $('.inv_btn').click(function() {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_userdata', data);
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
@@ -749,6 +774,7 @@ var check_orderbook = setInterval(function() {
 		//console.log(data);
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_userdata', JSON.stringify(data));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 		} else {
