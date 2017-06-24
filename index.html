@@ -57,6 +57,7 @@
           <ul class="nav navbar-nav dexnav_top_l">
             <li class="active"><a href="javascript:void(0)" class="dexnav_exchange">Exchange</a></li>
             <li><a href="javascript:void(0)" class="dexnav_balances">Balances</a></li>
+            <li><a href="javascript:void(0)" class="dexnav_myprices">My Prices</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right" style="display: none;">
             <li><a href="javascript:void(0)">Link</a></li>
@@ -307,7 +308,7 @@
         <div class="col-sm-12">
           
           <div class="panel panel-default">
-            <div class="panel-heading"><strong>DEX Coins Status</strong> <button class="btn btn-default btn-sm refresh_dex_balances" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button></div>
+            <div class="panel-heading"><strong>DEX Coins Status</strong> <button class="btn btn-default btn-sm refresh_dex_balances" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
             <div class="">
               <table class="table table-striped dex_balances_tbl" style="margin-bottom: 0;">
                 <thead>
@@ -324,6 +325,32 @@
       </div>
     </div>
     <!-- Section: Balances END -->
+
+    <!-- Section: My Prices -->
+    <div class="container-fluid section section-myprices" style="display: none;">
+      <div class="row"><h1 style="text-align: center; font-weight: 200">MY PRICES</h1></div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong>My DEX Coins Prices</strong> <button class="btn btn-default btn-sm refresh_dex_myprices" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
+            <div class="">
+              <table class="table table-striped dex_myprices_tbl" style="margin-bottom: 0;">
+                <thead>
+                  <tr><th>Base</th><th>Rel</th><th>Bid</th><th>Ask</th></tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Section: My Prices END -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>

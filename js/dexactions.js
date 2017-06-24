@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var refresh_data = {"coin":" ", "status": "enable"};
-	enable_disable_coin(refresh_data)
+	enable_disable_coin(refresh_data);
+	get_myprices();
 });
 
 
@@ -19,6 +20,16 @@ $('.dexnav_balances').click(function(e){
 	//console.log('balances menu clicked');
 	$('.section').hide();
 	$('.section-balances').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+});
+
+$('.dexnav_myprices').click(function(e){
+	e.preventDefault();
+	//console.log('myprices menu clicked');
+	$('.section').hide();
+	$('.section-myprices').show();
 	$('.dexnav_top_l li').removeClass('active');
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
@@ -291,6 +302,8 @@ $('.buy_coin').click(function() {
 
 	$( ".buy_coin" ).removeClass("active")
 	$( ".buy_coin[data-coin='"+ coin +"']" ).addClass(" active");
+
+	get_myprices();
   
   	/*var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
 	var url = "http://127.0.0.1:7778/";
@@ -710,6 +723,7 @@ $('.lp_set_price_btn').click(function(){
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 
+	get_myprices();
 })
 
 
@@ -832,6 +846,8 @@ var check_orderbook = setInterval(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 
+	get_myprices();
+	
 }, 1000);
 
 
@@ -885,104 +901,7 @@ function get_coins_list(data) {
 		//console.log(index);
 		//console.log(val);
 
-		switch (val.coin) {
-			case 'KMD':
-				coin_name = 'Komodo';
-				break;
-			case 'BTC':
-				coin_name = 'Bitcoin';
-				break;
-			case 'REVS':
-				coin_name = 'REVS';
-				break;
-			case 'JUMBLR':
-				coin_name = 'JUMBLR';
-				break;
-			case 'DOGE':
-				coin_name = 'Dogecoin';
-				break;
-			case 'HUSH':
-				coin_name = 'Hushcoin';
-				break;
-			case 'DGB':
-				coin_name = 'Digibyte';
-				break;
-			case 'MZC':
-				coin_name = 'Mazacoin';
-				break;
-			case 'SYS':
-				coin_name = 'Syscoin';
-				break;
-			case 'UNO':
-				coin_name = 'Unobtanium';
-				break;
-			case 'ZET':
-				coin_name = 'Zetacoin';
-				break;
-			case 'ZEC':
-				coin_name = 'Zcash';
-				break;
-			case 'BTM':
-				coin_name = 'Bitmark';
-				break;
-			case 'CARB':
-				coin_name = 'Carboncoin';
-				break;
-			case 'ANC':
-				coin_name = 'Anoncoin';
-				break;
-			case 'FRK':
-				coin_name = 'Franko';
-				break;
-			case 'GAME':
-				coin_name = 'Gamecredits';
-				break;
-			case 'LTC':
-				coin_name = 'Litecoin';
-				break;
-			case 'SUPERNET':
-				coin_name = 'SUPERNET';
-				break;
-			case 'WLC':
-				coin_name = 'Wireless';
-				break;
-			case 'PANGEA':
-				coin_name = 'Pangea';
-				break;
-			case 'DEX':
-				coin_name = 'InstantDEX';
-				break;
-			case 'BET':
-				coin_name = 'BET';
-				break;
-			case 'CRYPTO':
-				coin_name = 'Crypto777';
-				break;
-			case 'HODL':
-				coin_name = 'HODL';
-				break;
-			case 'SHARK':
-				coin_name = 'SHARK';
-				break;
-			case 'BOTS':
-				coin_name = 'BOTS';
-				break;
-			case 'MGW':
-				coin_name = 'MultiGateway';
-				break;
-			case 'MVP':
-				coin_name = 'MVP';
-				break;
-			case 'KV':
-				coin_name = 'KeyValue';
-				break;
-			case 'CEAL':
-				coin_name = 'Ceal';
-				break;
-			case 'MESH':
-				coin_name = 'SuperMesh';
-				break;
-		}
+		var coin_name = return_coin_name(val.coin)
 
 		var dex_balances_tbl_tr = '';
 
@@ -991,14 +910,164 @@ function get_coins_list(data) {
 			dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
 			dex_balances_tbl_tr += '<td>0.00000000</td>';
 			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
-			dex_balances_tbl_tr += '<td><span class="label label-' + (( val.status == 'active' ) ? 'success' : 'warning') + '">' + val.status + '</span></td>';
+			dex_balances_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
 			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
-			dex_balances_tbl_tr += '<td>' + (( val.status == 'active' ) ? '<button class="btn btn-sm btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-sm btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</td>';
+			dex_balances_tbl_tr += '<td>' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</td>';
 		dex_balances_tbl_tr += '</tr>';
 
 		$('.dex_balances_tbl tbody').append(dex_balances_tbl_tr);
 	})
 };
+
+$('.refresh_dex_myprices').click(function() {
+	get_myprices();
+});
+
+function get_myprices() {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"myprices"};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   //console.log(data);
+
+	   $('.dex_myprices_tbl tbody').empty();
+
+		$.each(data, function(index, val) {
+			//console.log(index);
+			//console.log(val);
+
+			var base_coin_name = return_coin_name(val.base)
+			var rel_coin_name = return_coin_name(val.rel)
+
+			var dex_myprices_tbl_tr = '';
+
+			dex_myprices_tbl_tr += '<tr>';
+				dex_myprices_tbl_tr += '<td>'+ val.base + ' (' + base_coin_name + ')</td>';
+				dex_myprices_tbl_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
+				dex_myprices_tbl_tr += '<td>' + val.bid + '</td>';
+				dex_myprices_tbl_tr += '<td>' + val.ask + '</td>';
+			dex_myprices_tbl_tr += '</tr>';
+
+			$('.dex_myprices_tbl tbody').append(dex_myprices_tbl_tr);
+		})
+
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+function return_coin_name(coin) {
+	var coin_name = '';
+
+	switch (coin) {
+		case 'KMD':
+			coin_name = 'Komodo';
+			break;
+		case 'BTC':
+			coin_name = 'Bitcoin';
+			break;
+		case 'REVS':
+			coin_name = 'REVS';
+			break;
+		case 'JUMBLR':
+			coin_name = 'JUMBLR';
+			break;
+		case 'DOGE':
+			coin_name = 'Dogecoin';
+			break;
+		case 'HUSH':
+			coin_name = 'Hushcoin';
+			break;
+		case 'DGB':
+			coin_name = 'Digibyte';
+			break;
+		case 'MZC':
+			coin_name = 'Mazacoin';
+			break;
+		case 'SYS':
+			coin_name = 'Syscoin';
+			break;
+		case 'UNO':
+			coin_name = 'Unobtanium';
+			break;
+		case 'ZET':
+			coin_name = 'Zetacoin';
+			break;
+		case 'ZEC':
+			coin_name = 'Zcash';
+			break;
+		case 'BTM':
+			coin_name = 'Bitmark';
+			break;
+		case 'CARB':
+			coin_name = 'Carboncoin';
+			break;
+		case 'ANC':
+			coin_name = 'Anoncoin';
+			break;
+		case 'FRK':
+			coin_name = 'Franko';
+			break;
+		case 'GAME':
+			coin_name = 'Gamecredits';
+			break;
+		case 'LTC':
+			coin_name = 'Litecoin';
+			break;
+		case 'SUPERNET':
+			coin_name = 'SUPERNET';
+			break;
+		case 'WLC':
+			coin_name = 'Wireless';
+			break;
+		case 'PANGEA':
+			coin_name = 'Pangea';
+			break;
+		case 'DEX':
+			coin_name = 'InstantDEX';
+			break;
+		case 'BET':
+			coin_name = 'BET';
+			break;
+		case 'CRYPTO':
+			coin_name = 'Crypto777';
+			break;
+		case 'HODL':
+			coin_name = 'HODL';
+			break;
+		case 'SHARK':
+			coin_name = 'SHARK';
+			break;
+		case 'BOTS':
+			coin_name = 'BOTS';
+			break;
+		case 'MGW':
+			coin_name = 'MultiGateway';
+			break;
+		case 'MVP':
+			coin_name = 'MVP';
+			break;
+		case 'KV':
+			coin_name = 'KeyValue';
+			break;
+		case 'CEAL':
+			coin_name = 'Ceal';
+			break;
+		case 'MESH':
+			coin_name = 'SuperMesh';
+			break;
+	}
+	return coin_name;
+}
 
 $('.refresh_swap_list_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
