@@ -1,3 +1,8 @@
+$(document).ready(function() {
+	var refresh_data = {"coin":" ", "status": "enable"};
+	enable_disable_coin(refresh_data)
+});
+
 
 $('.dexnav_exchange').click(function(e){
 	e.preventDefault();
@@ -345,9 +350,10 @@ function get_price(base,rel) {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
-	   	sessionStorage.setItem('mm_userdata', data);
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
 	   	get_price(base,rel)
 	   } else if (!data.error === false) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -388,9 +394,10 @@ function get_marketmaker_userpass() {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
-	   	sessionStorage.setItem('mm_userdata', data);
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
 	   	get_marketmaker_userpass()
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -419,9 +426,10 @@ $('.refresh_inv_table').click(function() {
 	   data = inv_kmd_data
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
-	   	sessionStorage.setItem('mm_userdata', data);
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
 	   } else {
 	   	$( ".inv_btn" ).removeClass("active")
@@ -595,9 +603,10 @@ $('.inv_btn').click(function() {
 	   console.log(data);
 	   if (!data.userpass === false) {
 	   	console.log('first marketmaker api call execution after marketmaker started.')
-	   	sessionStorage.setItem('mm_userdata', data);
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 	   	sessionStorage.setItem('mm_userpass', data.userpass);
 	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
 	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
 	   } else {
 	   	$( ".inv_btn" ).removeClass("active")
@@ -774,9 +783,10 @@ var check_orderbook = setInterval(function() {
 		//console.log(data);
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
-			sessionStorage.setItem('mm_userdata', JSON.stringify(data));
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
 		} else {
 			//console.log(data.asks);
 
@@ -824,6 +834,171 @@ var check_orderbook = setInterval(function() {
 
 }, 1000);
 
+
+$('.refresh_dex_balances').click(function() {
+	console.log('clicked refresh button at dex balance screen')
+	var refresh_data = {"coin":" ", "status": "enable"};
+	enable_disable_coin(refresh_data)
+});
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_disable_btn', function() {
+	//console.log('Disable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "disable"};
+	enable_disable_coin(refresh_data)
+});
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_enable_btn', function() {
+	//console.log('Enable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "enable"};
+	enable_disable_coin(refresh_data)
+});
+
+
+function enable_disable_coin(data) {
+	//console.log(data.coin);
+	//console.log(data.status);
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   //console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   get_coins_list(data);
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+function get_coins_list(data) {
+	//console.log(data);
+	$('.dex_balances_tbl tbody').empty();
+
+	$.each(data, function(index, val) {
+		//console.log(index);
+		//console.log(val);
+
+		switch (val.coin) {
+			case 'KMD':
+				coin_name = 'Komodo';
+				break;
+			case 'BTC':
+				coin_name = 'Bitcoin';
+				break;
+			case 'REVS':
+				coin_name = 'REVS';
+				break;
+			case 'JUMBLR':
+				coin_name = 'JUMBLR';
+				break;
+			case 'DOGE':
+				coin_name = 'Dogecoin';
+				break;
+			case 'HUSH':
+				coin_name = 'Hushcoin';
+				break;
+			case 'DGB':
+				coin_name = 'Digibyte';
+				break;
+			case 'MZC':
+				coin_name = 'Mazacoin';
+				break;
+			case 'SYS':
+				coin_name = 'Syscoin';
+				break;
+			case 'UNO':
+				coin_name = 'Unobtanium';
+				break;
+			case 'ZET':
+				coin_name = 'Zetacoin';
+				break;
+			case 'ZEC':
+				coin_name = 'Zcash';
+				break;
+			case 'BTM':
+				coin_name = 'Bitmark';
+				break;
+			case 'CARB':
+				coin_name = 'Carboncoin';
+				break;
+			case 'ANC':
+				coin_name = 'Anoncoin';
+				break;
+			case 'FRK':
+				coin_name = 'Franko';
+				break;
+			case 'GAME':
+				coin_name = 'Gamecredits';
+				break;
+			case 'LTC':
+				coin_name = 'Litecoin';
+				break;
+			case 'SUPERNET':
+				coin_name = 'SUPERNET';
+				break;
+			case 'WLC':
+				coin_name = 'Wireless';
+				break;
+			case 'PANGEA':
+				coin_name = 'Pangea';
+				break;
+			case 'DEX':
+				coin_name = 'InstantDEX';
+				break;
+			case 'BET':
+				coin_name = 'BET';
+				break;
+			case 'CRYPTO':
+				coin_name = 'Crypto777';
+				break;
+			case 'HODL':
+				coin_name = 'HODL';
+				break;
+			case 'SHARK':
+				coin_name = 'SHARK';
+				break;
+			case 'BOTS':
+				coin_name = 'BOTS';
+				break;
+			case 'MGW':
+				coin_name = 'MultiGateway';
+				break;
+			case 'MVP':
+				coin_name = 'MVP';
+				break;
+			case 'KV':
+				coin_name = 'KeyValue';
+				break;
+			case 'CEAL':
+				coin_name = 'Ceal';
+				break;
+			case 'MESH':
+				coin_name = 'SuperMesh';
+				break;
+		}
+
+		var dex_balances_tbl_tr = '';
+
+		dex_balances_tbl_tr += '<tr>';
+			dex_balances_tbl_tr += '<td>'+ val.coin + '</td>';
+			dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
+			dex_balances_tbl_tr += '<td>0.00000000</td>';
+			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
+			dex_balances_tbl_tr += '<td><span class="label label-' + (( val.status == 'active' ) ? 'success' : 'warning') + '">' + val.status + '</span></td>';
+			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
+			dex_balances_tbl_tr += '<td>' + (( val.status == 'active' ) ? '<button class="btn btn-sm btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-sm btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</td>';
+		dex_balances_tbl_tr += '</tr>';
+
+		$('.dex_balances_tbl tbody').append(dex_balances_tbl_tr);
+	})
+};
 
 $('.refresh_swap_list_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
