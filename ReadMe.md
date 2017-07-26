@@ -9,7 +9,7 @@ https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-No
 Once running, follow these steps:
 ```shell
 git clone https://github.com/SuperNETorg/dexuglygui.git
-git checkout v0.1
+git checkout v0.2
 ```
 
 It will download "dexuglygui". Open "dexuglygui", and from there open "index.html" file in your web browser.
