@@ -11,13 +11,14 @@ Just follow the above guide ONLY to the point it starts `iguana`.
 Once running, follow these steps:
 ```shell
 git clone https://github.com/SuperNETorg/dexuglygui.git
+git checkout v0.2
 ```
 
 Or click on this link to download a copy of this repo as a zip file:
 
-https://github.com/SuperNETorg/dexuglygui/archive/master.zip
+https://github.com/SuperNETorg/dexuglygui/archive/v0.2.zip
 
-It will download "dexuglygui". Open "dexuglygui", and from there open "index.html" file in your web browser.
+It will download "v0.2". Open "v0.2", and from there open "index.html" file in your web browser.
 
 
 
