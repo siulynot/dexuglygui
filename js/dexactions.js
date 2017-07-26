@@ -15,6 +15,16 @@ $('.dexnav_exchange').click(function(e){
 	$(this).parent().addClass(" active");
 });
 
+$('.dexnav_portfolio').click(function(e){
+	e.preventDefault();
+	//console.log('portfolio menu clicked');
+	$('.section').hide();
+	$('.section-portfolio').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+});
+
 $('.dexnav_balances').click(function(e){
 	e.preventDefault();
 	//console.log('balances menu clicked');
@@ -351,6 +361,7 @@ function get_price(base,rel) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base,"rel":rel};
+	var ajax_data2 = {"userpass":userpass,"method":"orderbook","base":rel,"rel":base};
 	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
@@ -375,6 +386,33 @@ function get_price(base,rel) {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.coin_swap_rate_info1').empty();
 	   	$('.coin_swap_rate_info1').html('<b>1 '+base+' = ' + data.bids[0].price + ' '+rel+' approx.</b>');
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data2),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	get_price(base,rel)
+	   } else if (!data.error === false) {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info1').empty();
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.coin_swap_rate_info2').empty();
 	   	$('.coin_swap_rate_info2').html('<b>1 '+rel+' = ' + data.asks[0].price + ' '+base+' approx.</b>');
 	   }
@@ -675,7 +713,7 @@ $('.autotrade_buy_coin_btn').click(function(){
 	console.log('rel ' + rel_coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"volume":amount,"price":price};
+	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"relvolume":amount,"price":price};
 	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
@@ -686,6 +724,9 @@ $('.autotrade_buy_coin_btn').click(function(){
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   if (data.error == 'cant find utxo that is big enough') {
+			toastr.error('cant find utxo that is big enough', 'Autotrade Info')
+	   }
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
