@@ -977,7 +977,7 @@ function get_coins_list(data) {
 		dex_balances_tbl_tr += '<tr>';
 			dex_balances_tbl_tr += '<td>'+ val.coin + '</td>';
 			dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
-			dex_balances_tbl_tr += '<td>0.00000000</td>';
+			//dex_balances_tbl_tr += '<td>0.00000000</td>';
 			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
 			dex_balances_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
 			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
