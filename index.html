@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/fuelux.min.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-panelnavtabs.css" type="text/css" rel="stylesheet">
     <link href="css/toastr.min.css" type="text/css" rel="stylesheet">
     <link href="js/amcharts/plugins/export/export.css" type="text/css" rel="stylesheet"  media="all" />
     <link href="css/custom.css" type="text/css" rel="stylesheet">
@@ -324,7 +325,7 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-4">
           
           <div class="panel panel-default">
             <div class="panel-heading"><strong>Portfolio Status</strong> <button class="btn btn-default btn-sm refresh_dex_potfolio" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
@@ -349,6 +350,24 @@
             </div>
           </div>
 
+        </div>
+
+
+        <div class="col-sm-8">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">Set Coin Pricing</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">Set Portfolio Goals</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
+                        <div class="tab-pane fade" id="tab2default">Default 2</div>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
 

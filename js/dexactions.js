@@ -1284,22 +1284,21 @@ function PortfolioChartUpdate(chart_data) {
 	  "valueField": "perc",
 	  "titleField": "coin",
 	  "startDuration": 0,
-	  "innerRadius": 60,
-	  //"pullOutRadius": 20,
+	  "innerRadius": 50,
+	  "pullOutRadius": 20,
 	  //"marginTop": 30,
-	  "marginTop": 0,
-	  "marginBottom": 0,
-	  "marginLeft": 0,
-	  "marginRight": 0,
-	  "pullOutRadius": 0,
-	  "titles": [
+	  //"marginBottom": 15,
+	  //"marginLeft": 0,
+	  //"marginRight": 0,
+	  //"pullOutRadius": 0,
+	  /*"titles": [
 	    {
 	      "text": "Current Portfolio Goal"
 	    }
-	  ],
+	  ],*/
 	  "allLabels": [
 	    {
-	      "y": "54%",
+	      "y": "46%",
 	      "align": "center",
 	      "size": 25,
 	      "bold": true,
@@ -1307,7 +1306,7 @@ function PortfolioChartUpdate(chart_data) {
 	      "color": "#555"
 	    },
 	    {
-	      "y": "49%",
+	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
 	      "text": "Goal",
@@ -1326,22 +1325,21 @@ function PortfolioChartUpdate(chart_data) {
 	  "valueField": "goalperc",
 	  "titleField": "coin",
 	  "startDuration": 0,
-	  "innerRadius": 60,
-	  //"pullOutRadius": 20,
+	  "innerRadius": 50,
+	  "pullOutRadius": 20,
 	  //"marginTop": 30,
-	  "marginTop": 0,
-	  "marginBottom": 0,
-	  "marginLeft": 0,
-	  "marginRight": 0,
-	  "pullOutRadius": 0,
-	  "titles": [
+	  //"marginBottom": 15,
+	  //"marginLeft": 0,
+	  //"marginRight": 0,
+	  //"pullOutRadius": 0,
+	  /*"titles": [
 	    {
 	      "text": "Target Portfolio Goal"
 	    }
-	  ],
+	  ],*/
 	  "allLabels": [
 	    {
-	      "y": "54%",
+	      "y": "46%",
 	      "align": "center",
 	      "size": 25,
 	      "bold": true,
@@ -1349,7 +1347,7 @@ function PortfolioChartUpdate(chart_data) {
 	      "color": "#555"
 	    },
 	    {
-	      "y": "49%",
+	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
 	      "text": "Goal",
@@ -1361,5 +1359,20 @@ function PortfolioChartUpdate(chart_data) {
 	  }
 	});
 }
+
+$('.refresh_dex_potfolio_charts').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
+
+$('.refresh_dex_potfolio').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
+
+$('.refresh_dex_potfolio_coins').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
 
 /* Portfolio section functions END */
