@@ -1,7 +1,11 @@
+var CheckOrderbook_Interval = null;
+var CheckPortfolio_Interval = null;
+
 $(document).ready(function() {
 	var refresh_data = {"coin":" ", "status": "enable"};
 	enable_disable_coin(refresh_data);
 	get_myprices();
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,1000);
 });
 
 
@@ -13,6 +17,8 @@ $('.dexnav_exchange').click(function(e){
 	$('.dexnav_top_l li').removeClass('active');
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
+	CheckPortfolioFn(false);
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,1000);
 });
 
 $('.dexnav_portfolio').click(function(e){
@@ -23,6 +29,9 @@ $('.dexnav_portfolio').click(function(e){
 	$('.dexnav_top_l li').removeClass('active');
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn();
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
 });
 
 $('.dexnav_balances').click(function(e){
@@ -33,6 +42,8 @@ $('.dexnav_balances').click(function(e){
 	$('.dexnav_top_l li').removeClass('active');
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn(false);
 });
 
 $('.dexnav_myprices').click(function(e){
@@ -43,6 +54,8 @@ $('.dexnav_myprices').click(function(e){
 	$('.dexnav_top_l li').removeClass('active');
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn(false);
 });
 
 
@@ -813,8 +826,14 @@ $('.inv_bob_table tbody').on('click', '.inv_lp_setprice', function() {
 });*/
 
 
-var check_orderbook = setInterval(function() {
-	console.log('checking orderbook')
+
+
+function CheckOrderBookFn(sig) {
+	if (sig == false) {
+		clearInterval(CheckOrderbook_Interval);
+	} else {
+		console.log('checking orderbook');
+	}
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
@@ -889,7 +908,8 @@ var check_orderbook = setInterval(function() {
 
 	get_myprices();
 
-}, 1000);
+	return 'Check orderbook calls stopped.';
+}
 
 
 $('.refresh_dex_balances').click(function() {
@@ -1170,3 +1190,176 @@ $('.check_swap_status_btn').click(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })
+
+
+/* Portfolio section functions START */
+
+
+function CheckPortfolioFn(sig) {
+	if (sig == false) {
+		clearInterval(CheckPortfolio_Interval);
+		return 'Check portfolio calls stopped.';
+	} else {
+		console.log('checking portfolio');
+	}
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	var ajax_data = {"userpass":userpass,"method":"portfolio"};
+	//console.log(ajax_data)
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		//console.log(data);
+		PortfolioTblDataFn(data);
+		PortfolioChartUpdate(data.portfolio);
+	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+function PortfolioTblDataFn(data) {
+	//console.log(data);
+
+	$('.portfolio_kmd_equiv').html(data.kmd_equiv);
+	$('.portfolio_buycoin').html(data.buycoin);
+	$('.portfolio_buyforce').html(data.buyforce);
+	$('.portfolio_sellcoin').html(data.sellcoin);
+	$('.portfolio_sellforce').html(data.sellforce);
+	$('.portfolio_base').html(data.base);
+	$('.portfolio_rel').html(data.rel);
+	$('.portfolio_relvolume').html(data.relvolume);
+
+	$('.dex_portfolio_coins_tbl tbody').empty();
+
+	$.each(data.portfolio, function(index, val) {
+		//console.log(index);
+		//console.log(val);
+
+		var coin_name = return_coin_name(val.coin)
+
+		var dex_portfolio_coins_tbl_tr = '';
+
+		dex_portfolio_coins_tbl_tr += '<tr>';
+			dex_portfolio_coins_tbl_tr += '<td>'+ val.coin + '</td>';
+			//dex_portfolio_coins_tbl_tr += '<td>' + val.address + '</td>';
+			dex_portfolio_coins_tbl_tr += '<td></td>';
+			dex_portfolio_coins_tbl_tr += '<td>' + val.amount + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.force + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balanceA + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.valuesumA + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.aliceutil + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balanceB + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.valuesumB + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balance + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.bobutil + '</td>';
+		dex_portfolio_coins_tbl_tr += '</tr>';
+
+		$('.dex_portfolio_coins_tbl tbody').append(dex_portfolio_coins_tbl_tr);
+	})
+};
+
+function PortfolioChartUpdate(chart_data) {
+	console.log(chart_data)
+	var chart = AmCharts.makeChart( "portfolio_chart_current", {
+	  "type": "pie",
+	  "theme": "light",
+	  "dataProvider": chart_data,
+	  "valueField": "perc",
+	  "titleField": "coin",
+	  "startDuration": 0,
+	  "innerRadius": 60,
+	  //"pullOutRadius": 20,
+	  //"marginTop": 30,
+	  "marginTop": 0,
+	  "marginBottom": 0,
+	  "marginLeft": 0,
+	  "marginRight": 0,
+	  "pullOutRadius": 0,
+	  "titles": [
+	    {
+	      "text": "Current Portfolio Goal"
+	    }
+	  ],
+	  "allLabels": [
+	    {
+	      "y": "54%",
+	      "align": "center",
+	      "size": 25,
+	      "bold": true,
+	      "text": "Now",
+	      "color": "#555"
+	    },
+	    {
+	      "y": "49%",
+	      "align": "center",
+	      "size": 15,
+	      "text": "Goal",
+	      "color": "#555"
+	    }
+	  ],
+	  "export": {
+	    "enabled": false
+	  }
+	});
+
+	var chart2 = AmCharts.makeChart( "portfolio_chart_target", {
+	  "type": "pie",
+	  "theme": "light",
+	  "dataProvider": chart_data,
+	  "valueField": "goalperc",
+	  "titleField": "coin",
+	  "startDuration": 0,
+	  "innerRadius": 60,
+	  //"pullOutRadius": 20,
+	  //"marginTop": 30,
+	  "marginTop": 0,
+	  "marginBottom": 0,
+	  "marginLeft": 0,
+	  "marginRight": 0,
+	  "pullOutRadius": 0,
+	  "titles": [
+	    {
+	      "text": "Target Portfolio Goal"
+	    }
+	  ],
+	  "allLabels": [
+	    {
+	      "y": "54%",
+	      "align": "center",
+	      "size": 25,
+	      "bold": true,
+	      "text": "Target",
+	      "color": "#555"
+	    },
+	    {
+	      "y": "49%",
+	      "align": "center",
+	      "size": 15,
+	      "text": "Goal",
+	      "color": "#555"
+	    }
+	  ],
+	  "export": {
+	    "enabled": false
+	  }
+	});
+}
+
+/* Portfolio section functions END */
