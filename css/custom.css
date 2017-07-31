@@ -12,3 +12,7 @@
 .label-uppercase {
 	text-transform: uppercase;
 }
+
+.dropdown-menu {
+	z-index: 2000;
+}
