@@ -1184,6 +1184,7 @@ $('.portfolio_set_price_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   toastr.success('Price for Base: ' + base_coin + ' Rel: ' + rel_coin + ' set to: ' + price + ' ' + rel_coin, 'Portfolio Info')
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -1214,6 +1215,7 @@ $('.portfolio_set_autoprice_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   toastr.success('Margin Price for Base: ' + base_coin + ' Rel: ' + rel_coin + ' set to: ' + margin + '% ' + rel_coin, 'Portfolio Info')
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -1243,6 +1245,7 @@ $('.portfolio_set_goal_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   toastr.success('Goal for ' + coin + ' set to: ' + percent, 'Portfolio Info')
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -1278,6 +1281,7 @@ $('.portfolio_set_autogoals_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
+	   toastr.success('Auto goal setup executed!', 'Portfolio Info')
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
