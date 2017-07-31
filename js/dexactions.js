@@ -208,11 +208,14 @@ $('.send_tx_addr_btn').click(function() {
 })
 
 
-//$( ".buy_coin" ).change(function() {
-$('.buy_coin').click(function() {
-	var coin = $(this).data('coin');
+$( ".buy_coin" ).change(function() {
+//$('.buy_coin').click(function() {
+	//var coin = $(this).data('coin');
+	coin = $('.buy_coin').selectpicker('val');
 	//console.log($('.buy_coin').val())
-	rel_coin = $('.deposit_coin01').data('coin');
+	console.log($('.buy_coin').selectpicker('val'))
+	//rel_coin = $('.deposit_coin01').data('coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 	//base_coin = $('.buy_coin').val();
 	base_coin = coin;
 
@@ -222,7 +225,7 @@ $('.buy_coin').click(function() {
 	sessionStorage.setItem('dex_base_coin', base_coin);
 	sessionStorage.setItem('dex_rel_coin', rel_coin);
 
-  	switch (base_coin) {
+  	/*switch (base_coin) {
 		case 'KMD':
 			$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
 			break;
@@ -319,12 +322,12 @@ $('.buy_coin').click(function() {
 		case 'MESH':
 			$('.deposit_coin02').html('<b>SuperMesh</b>');
 			break;
-	}
+	}*/
 
 	get_price(base_coin, rel_coin);
 
-	$( ".buy_coin" ).removeClass("active")
-	$( ".buy_coin[data-coin='"+ coin +"']" ).addClass(" active");
+	//$( ".buy_coin" ).removeClass("active")
+	//$( ".buy_coin[data-coin='"+ coin +"']" ).addClass(" active");
 
 	get_myprices();
   
@@ -398,7 +401,11 @@ function get_price(base,rel) {
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.coin_swap_rate_info1').empty();
-	   	$('.coin_swap_rate_info1').html('<b>1 '+base+' = ' + data.bids[0].price + ' '+rel+' approx.</b>');
+	   	if (!data.bids[0].price === false) {
+	   		$('.coin_swap_rate_info1').html('<b>1 '+base+' = ' + data.bids[0].price + ' '+rel+' approx.</b>');
+	   	} else {
+	   		$('.coin_swap_rate_info1').html('<b>Base price not found!</b>');
+	   	}
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -427,7 +434,11 @@ function get_price(base,rel) {
 	   } else {
 	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	   	$('.coin_swap_rate_info2').empty();
-	   	$('.coin_swap_rate_info2').html('<b>1 '+rel+' = ' + data.asks[0].price + ' '+base+' approx.</b>');
+	   	if (!data.asks[0].price === false) {
+	   		$('.coin_swap_rate_info2').html('<b>1 '+rel+' = ' + data.asks[0].price + ' '+base+' approx.</b>');
+	   	} else {
+	   		$('.coin_swap_rate_info2').html('<b>Rel price not found!</b>');
+	   	}
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -436,8 +447,10 @@ function get_price(base,rel) {
 }
 
 $('.refresh_estimate_price').click(function() {
-	rel_coin = $('.deposit_coin01').data('coin');
-	base_coin = $('.buy_coin').val();
+	//rel_coin = $('.deposit_coin01').data('coin');
+	//base_coin = $('.buy_coin').val();
+	var base_coin = $('.buy_coin').selectpicker('val');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 
 	get_price(base_coin, rel_coin);
 })
@@ -535,11 +548,13 @@ $('.refresh_inv_table').click(function() {
 })
 
 
-$('.inv_btn').click(function() {
-	var coin = $(this).data('coin');
+$( ".sell_coin" ).change(function() {
+//$('.inv_btn').click(function() {
+	//var coin = $(this).data('coin');
+	coin = $('.buy_coin').selectpicker('val');
 	$('.refresh_inv_table').data('coin',coin);
 
-	switch (coin) {
+	/*switch (coin) {
 		case 'KMD':
 			$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
 			break;
@@ -636,12 +651,13 @@ $('.inv_btn').click(function() {
 		case 'MESH':
 			$('.deposit_coin01').html('<b>SuperMesh</b>');
 			break;
-	}
+	}*/
 	
 	$('.deposit_coin01').data('coin', coin);
 	//calc_swap_price('kmdbtc');
 
-	rel_coin = $('.deposit_coin01').data('coin');
+	//rel_coin = $('.deposit_coin01').data('coin');
+	rel_coin = $('.buy_coin').selectpicker('val');
 	base_coin = coin;
 
 	$('.lp_sell_coin').text(rel_coin);
@@ -717,8 +733,10 @@ $('.autotrade_buy_coin_btn').click(function(){
 	var amount = $('#autotrade_amount').val();
 	var price = $('#autotrade_price').val();
 
-	var base_coin = sessionStorage.getItem('dex_base_coin');
-	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 
 	console.log('amount ' + amount);
 	console.log('price ' + price);
@@ -752,8 +770,10 @@ $('.autotrade_buy_coin_btn').click(function(){
 $('.lp_set_price_btn').click(function(){
 	var price = $('#lp_set_price').val();
 
-	var base_coin = sessionStorage.getItem('dex_base_coin');
-	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 
 	console.log('price ' + price);
 	console.log('base '+ base_coin);
@@ -837,8 +857,10 @@ function CheckOrderBookFn(sig) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var base_coin = sessionStorage.getItem('dex_base_coin');
-	var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 	
 	$('.orderbook_rel_coin').html(rel_coin);
 	$('.orderbook_base_coin').html(base_coin);
