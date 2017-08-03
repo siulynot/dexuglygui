@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var refresh_data = {"coin":" ", "status": "enable"};
 	enable_disable_coin(refresh_data);
 	get_myprices();
-	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,1000);
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
 	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
 });
 
