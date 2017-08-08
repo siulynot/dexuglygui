@@ -1,269 +1,65 @@
-$('.activate-btc').click(function() {
-	console.log('activate btc basilisk');
-	var ajax_data = {"prefetchlag":-1,"poll":1,"active":1,"agent":"iguana","method":"addcoin","newcoin":"BTC","startpend":64,"endpend":64,"services":0,"maxpeers":512,"RELAY":0,"VALIDATE":0,"portp2p":8333,"minconfirms":1};
-	var url = "http://127.0.0.1:7778/";
+var CheckOrderbook_Interval = null;
+var CheckPortfolio_Interval = null;
 
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.active-coin-output').html(JSON.stringify(data, null, 2));
-	   $('.active-coin-output').append('\n------- BTC Acviated in Basilisk Mode -------');
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-});
-
-$('.activate-kmd').click(function() {
-	console.log('activate kmd basilisk');
-	var ajax_data = {"unitval":"20","zcash":1,"RELAY":0,"VALIDATE":0,"prefetchlag":-1,"poll":10,"active":1,"agent":"iguana","method":"addcoin","startpend":8,"endpend":8,"services":0,"maxpeers":32,"newcoin":"KMD","name":"Komodo","hasheaders":1,"useaddmultisig":0,"netmagic":"f9eee48d","p2p":7770,"rpc":7771,"pubval":60,"p2shval":85,"wifval":188,"txfee_satoshis":"10000","isPoS":0,"minoutput":10000,"minconfirms":2,"genesishash":"027e3758c3a65b12aa1046462b486d0a63bfa1beae327897f56c5cfb7daaae71","protover":170002,"genesisblock":"0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a000000000000000000000000000000000000000000000000000000000000000029ab5f490f0f0f200b00000000000000000000000000000000000000000000000000000000000000fd4005000d5ba7cda5d473947263bf194285317179d2b0d307119c2e7cc4bd8ac456f0774bd52b0cd9249be9d40718b6397a4c7bbd8f2b3272fed2823cd2af4bd1632200ba4bf796727d6347b225f670f292343274cc35099466f5fb5f0cd1c105121b28213d15db2ed7bdba490b4cedc69742a57b7c25af24485e523aadbb77a0144fc76f79ef73bd8530d42b9f3b9bed1c135ad1fe152923fafe98f95f76f1615e64c4abb1137f4c31b218ba2782bc15534788dda2cc08a0ee2987c8b27ff41bd4e31cd5fb5643dfe862c9a02ca9f90c8c51a6671d681d04ad47e4b53b1518d4befafefe8cadfb912f3d03051b1efbf1dfe37b56e93a741d8dfd80d576ca250bee55fab1311fc7b3255977558cdda6f7d6f875306e43a14413facdaed2f46093e0ef1e8f8a963e1632dcbeebd8e49fd16b57d49b08f9762de89157c65233f60c8e38a1f503a48c555f8ec45dedecd574a37601323c27be597b956343107f8bd80f3a925afaf30811df83c402116bb9c1e5231c70fff899a7c82f73c902ba54da53cc459b7bf1113db65cc8f6914d3618560ea69abd13658fa7b6af92d374d6eca9529f8bd565166e4fcbf2a8dfb3c9b69539d4d2ee2e9321b85b331925df195915f2757637c2805e1d4131e1ad9ef9bc1bb1c732d8dba4738716d351ab30c996c8657bab39567ee3b29c6d054b711495c0d52e1cd5d8e55b4f0f0325b97369280755b46a02afd54be4ddd9f77c22272b8bbb17ff5118fedbae2564524e797bd28b5f74f7079d532ccc059807989f94d267f47e724b3f1ecfe00ec9e6541c961080d8891251b84b4480bc292f6a180bea089fef5bbda56e1e41390d7c0e85ba0ef530f7177413481a226465a36ef6afe1e2bca69d2078712b3912bba1a99b1fbff0d355d6ffe726d2bb6fbc103c4ac5756e5bee6e47e17424ebcbf1b63d8cb90ce2e40198b4f4198689daea254307e52a25562f4c1455340f0ffeb10f9d8e914775e37d0edca019fb1b9c6ef81255ed86bc51c5391e0591480f66e2d88c5f4fd7277697968656a9b113ab97f874fdd5f2465e5559533e01ba13ef4a8f7a21d02c30c8ded68e8c54603ab9c8084ef6d9eb4e92c75b078539e2ae786ebab6dab73a09e0aa9ac575bcefb29e930ae656e58bcb513f7e3c17e079dce4f05b5dbc18c2a872b22509740ebe6a3903e00ad1abc55076441862643f93606e3dc35e8d9f2caef3ee6be14d513b2e062b21d0061de3bd56881713a1a5c17f5ace05e1ec09da53f99442df175a49bd154aa96e4949decd52fed79ccf7ccbce32941419c314e374e4a396ac553e17b5340336a1a25c22f9e42a243ba5404450b650acfc826a6e432971ace776e15719515e1634ceb9a4a35061b668c74998d3dfb5827f6238ec015377e6f9c94f38108768cf6e5c8b132e0303fb5a200368f845ad9d46343035a6ff94031df8d8309415bb3f6cd5ede9c135fdabcc030599858d803c0f85be7661c88984d88faa3d26fb0e9aac0056a53f1b5d0baed713c853c4a2726869a0a124a8a5bbc0fc0ef80c8ae4cb53636aa02503b86a1eb9836fcc259823e2692d921d88e1ffc1e6cb2bde43939ceb3f32a611686f539f8f7c9f0bf00381f743607d40960f06d347d1cd8ac8a51969c25e37150efdf7aa4c2037a2fd0516fb444525ab157a0ed0a7412b2fa69b217fe397263153782c0f64351fbdf2678fa0dc8569912dcd8e3ccad38f34f23bbbce14c6a26ac24911b308b82c7e43062d180baeac4ba7153858365c72c63dcf5f6a5b08070b730adb017aeae925b7d0439979e2679f45ed2f25a7edcfd2fb77a8794630285ccb0a071f5cce410b46dbf9750b0354aae8b65574501cc69efb5b6a43444074fee116641bb29da56c2b4a7f456991fc92b2","debug":0};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.active-coin-output').html(JSON.stringify(data, null, 2));
-	   $('.active-coin-output').append('\n------- KMD Acviated in Basilisk Mode -------');
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
+$(document).ready(function() {
+	var refresh_data = {"coin":" ", "status": "enable"};
+	enable_disable_coin(refresh_data);
+	get_myprices();
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
 });
 
 
-$('.active-coin-status').click(function() {
-	var ajax_data = {'agent': 'InstantDEX','method': 'allcoins'};
-	var url = "http://127.0.0.1:7778/";
+$('.dexnav_exchange').click(function(e){
+	e.preventDefault();
+	//console.log('exchange menu clicked');
+	$('.section').hide();
+	$('.section-exchange').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+	CheckPortfolioFn(false);
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,1000);
+});
 
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.active-coin-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
+$('.dexnav_portfolio').click(function(e){
+	e.preventDefault();
+	//console.log('portfolio menu clicked');
+	$('.section').hide();
+	$('.section-portfolio').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn();
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+});
 
+$('.dexnav_balances').click(function(e){
+	e.preventDefault();
+	//console.log('balances menu clicked');
+	$('.section').hide();
+	$('.section-balances').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn(false);
+});
 
-$('.blocktrailapi-btn').click(function() {
-	var blocktrail_api_key = $('.blocktrailapi-key').val();
-	var ajax_data = {"agent":"tradebot","method":"amlp","blocktrail":blocktrail_api_key};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.blocktrail-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-
-$('.notlp-btn').click(function() {
-	var ajax_data = {"agent":"tradebot","method":"notlp"};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.blocktrail-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
+$('.dexnav_myprices').click(function(e){
+	e.preventDefault();
+	//console.log('myprices menu clicked');
+	$('.section').hide();
+	$('.section-myprices').show();
+	$('.dexnav_top_l li').removeClass('active');
+	//$(this).parent().get( 0 ).addClass('active');
+	$(this).parent().addClass(" active");
+	CheckOrderBookFn(false);
+	CheckPortfolioFn(false);
+});
 
 
-$('.login-btn').click(function() {
-	var _login_type = $('.login_type').val();
-	if (_login_type == 'login_main_wallet') {
-		var _passphrase = $('.passphrase-text').val();
-		$('.step04_smartaddr').show();
-		$('.step05_dexparams').show();
-		$('.step07_initswap').show();
-		$('.step08_checkswaps').show();
-	} else {
-		$('.step04_smartaddr').hide();
-		$('.step05_dexparams').hide();
-		$('.step07_initswap').hide();
-		$('.step08_checkswaps').hide();
-	}
-	if (_login_type == 'login_btc_jumblr') {
-		var _passphrase = "btc jumblr " + $('.passphrase-text').val();
-	}
-	if (_login_type == 'login_kmd_jumblr') {
-		var _passphrase = "kmd jumblr " + $('.passphrase-text').val();
-	}
-	if (_login_type == 'login_jumblr') {
-		var _passphrase = "jumblr " + $('.passphrase-text').val();
-	}
-	if (_login_type == 'login_deposit') {
-		var _passphrase = "deposit " + $('.passphrase-text').val();
-	}
-
-	var ajax_data = {"agent":"bitcoinrpc","method":"walletpassphrase","password":_passphrase,"timeout":8644444};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-$('.logout-btn').click(function() {
-	var ajax_data = {"agent":"bitcoinrpc","method":"walletlock"};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: url
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	   $('.step04_smartaddr').show();
-	   $('.step05_dexparams').show();
-	   $('.step07_initswap').show();
-	   $('.step08_checkswaps').show();
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-
-$('.login_btc_jumblr_btn').click(function() {
-	
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-
-$('.login_kmd_jumblr_btn').click(function() {
-	
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.passphrase-output').html(JSON.stringify(data, null, 2));
-	   $('.step04_smartaddr').hide();
-	   $('.step05_dexparams').hide();
-	   $('.step07_initswap').hide();
-	   $('.step08_checkswaps').hide();
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
-
-
-
-$('.list-smartaddress').click(function() {
-	var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
-	var url = "http://127.0.0.1:7778/";
-
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.deposit_key0').html(data[0].coins[0].coin);
-	   $('.deposit_val0').html(data[0].coins[0].address);
-	   $('.deposit_key1').html(data[0].coins[1].coin);
-	   $('.deposit_val1').html(data[0].coins[1].address);
-
-	   $('.jumblr_key0').html(data[1].coins[0].coin);
-	   $('.jumblr_val0').html(data[1].coins[0].address);
-	   $('.jumblr_key1').html(data[1].coins[1].coin);
-	   $('.jumblr_val1').html(data[1].coins[1].address);
-
-	   $('.type0').html(data[2].type);
-	   $('.type0_val0').html(data[2].coins[0].coin);
-	   $('.type0_val1').html(data[2].coins[0].address);
-	   $('.type0_val2').html(data[2].coins[0].dest);
-	   $('.type0_val3').html(data[2].coins[0].jumblr_deposit);
-	   $('.type0_val4').html(data[2].coins[0].deposit_avail);
-	   $('.type0_val5').html(data[2].coins[0].jumblr);
-	   $('.type0_val6').html(data[2].coins[0].jumblr_avail);
-	   $('.type0_val7').html(JSON.stringify(data[2].coins[0].extra, null, 2));
-
-	   $('.type1').html(data[3].type);
-	   $('.type1_val0').html(data[3].coins[0].coin);
-	   $('.type1_val1').html(data[3].coins[0].address);
-	   $('.type1_val2').html(data[3].coins[0].dest);
-	   $('.type1_val3').html(data[3].coins[0].jumblr_deposit);
-	   $('.type1_val4').html(data[3].coins[0].deposit_avail);
-	   $('.type1_val5').html(data[3].coins[0].jumblr);
-	   $('.type1_val6').html(data[3].coins[0].jumblr_avail);
-	   $('.type1_val7').html(JSON.stringify(data[3].coins[0].extra, null, 2));
-
-	   $('.smartaddress-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-})
 
 $('.dexratio-btn').click(function() {
 	var _dexratio = $('.dexratio-val').val();
@@ -414,99 +210,98 @@ $('.send_tx_addr_btn').click(function() {
 
 
 $( ".buy_coin" ).change(function() {
-  //console.log($('.buy_coin').val())
-  if ($('.buy_coin').val() == 'btc') {
-  	$('.deposit_coin01').html('<img src="img/komodo.png" width="40px">');
-  	$('.deposit_coin02').html('<img src="img/bitcoin.png" width="40px">');
-  	$('.swap_deposit_addr_coin_id').html('KMD');
-  	$('.swap_recieve_addr_coin_id').html('BTC');
-  	calc_swap_price('kmdbtc');
-  	$('.deposit_coin_btn_01').show();
-  	$('.deposit_coin_btn_02').show();
-  	$('.deposit_coin_btn_03_info').hide();
-  	$('.deposit_coin_btn_03_info_pre').hide();
-  	$('.deposit_coin_btn_03').hide();
-  	$('.deposit_coin_input_btn').html('Send KMD');
-  }
-  if ($('.buy_coin').val() == 'kmd') {
-  	$('.deposit_coin01').html('<img src="img/bitcoin.png" width="40px">');
-  	$('.deposit_coin02').html('<img src="img/komodo.png" width="40px">');
-  	$('.swap_deposit_addr_coin_id').html('BTC');
-  	$('.swap_recieve_addr_coin_id').html('KMD');
-  	calc_swap_price('btckmd');
-  	$('.deposit_coin_btn_01').hide();
-  	$('.deposit_coin_btn_02').hide();
-  	$('.deposit_coin_btn_03_info').show();
-  	$('.deposit_coin_btn_03_info_pre').show();
-  	$('.deposit_coin_btn_03').show();
-  	$('.deposit_coin_input_btn').html('Send BTC');
-  }
-  if ($('.buy_coin').val() !== 'kmd' && $('.buy_coin').val() !== 'btc') {
-  	$('.deposit_btns_part_hidden').hide();
-  } else {
-  	$('.deposit_btns_part_hidden').show();
-  }
-  var ajax_data = {"agent":"InstantDEX","method":"smartaddresses"};
-	var url = "http://127.0.0.1:7778/";
+//$('.buy_coin').click(function() {
+	//var coin = $(this).data('coin');
+	coin = $('.buy_coin').selectpicker('val');
+	//console.log($('.buy_coin').val())
+	console.log($('.buy_coin').selectpicker('val'))
+	//rel_coin = $('.deposit_coin01').data('coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
+	//base_coin = $('.buy_coin').val();
+	base_coin = coin;
+
+	$('.lp_sell_coin').text(rel_coin);
+	$('.autotrade_buy_coin').text(coin);
+
+	sessionStorage.setItem('dex_base_coin', base_coin);
+	sessionStorage.setItem('dex_rel_coin', rel_coin);
+
+  	
+
+	get_price(base_coin, rel_coin);
+
+	get_myprices();
+  
+  	
+});
+
+
+function get_price(base,rel) {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base,"rel":rel};
+	var ajax_data2 = {"userpass":userpass,"method":"orderbook","base":rel,"rel":base};
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
 	}).done(function(data) {
 	    // If successful
-		$(data).each(function(index, value) {
-			//console.log(index);
-			//console.log(value);
-			if (value.type == $('.buy_coin').val()) {
-				//console.log(value.coins);
-				$('.initcoinswap-output').html(JSON.stringify(value.coins[0], null, 2));
-				$('.smartaddr_type').html($('.buy_coin').val().toUpperCase())
-				$('.deposit_coin_code').html(value.coins[0].coin.toUpperCase())
-				$('.deposit_coin_addr').html(value.coins[0].address)
-				$('.swap_deposit_addr').html(value.coins[0].address);
-  				$('.swap_recieve_addr').html(value.coins[0].dest);
-  				$('.deposit_coin_sourceamount').html(value.coins[0].sourceamount + ' ' + value.coins[0].coin.toUpperCase());
-
-				$('#deposit_coin_qrcode').html('');
-				var qrcode = new QRCode("deposit_coin_qrcode", {
-									width: 96,
-									height: 96,
-									colorDark : "#000000",
-									colorLight : "#ffffff",
-									correctLevel : QRCode.CorrectLevel.H
-								});
-				qrcode.makeCode(value.coins[0].address);
-
-			}
-		});
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	get_price(base,rel)
+	   } else if (!data.error === false) {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info1').empty();
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info1').empty();
+	   	if (!data.bids[0].price === false) {
+	   		$('.coin_swap_rate_info1').html('<b>1 '+base+' = ' + data.bids[0].price + ' '+rel+' approx.</b>');
+	   	} else {
+	   		$('.coin_swap_rate_info1').html('<b>Base price not found!</b>');
+	   	}
+	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-});
 
 
-function calc_swap_price(pair) {
 	$.ajax({
+	    data: JSON.stringify(ajax_data2),
 	    dataType: 'json',
-	    type: 'GET',
-	    url: 'http://api.coinmarketcap.com/v1/ticker/komodo/'
+	    type: 'POST',
+	    url: url
 	}).done(function(data) {
 	    // If successful
-	   //console.log(data[0].price_btc);
-
-	   if (pair == 'btckmd') {
-	   	calc_price = data[0].price_btc * 1.05
-	   	calc_price_100 = (calc_price * 100) + 0.001
-	   	//console.log(calc_price_100.toFixed(8));
-	   	$('.deposit_100kmd_worth_btc_btn').text(calc_price_100.toFixed(8));
-	   	$('.coin_swap_rate_info').html('1 BTC = ' + (parseFloat(1.00000000) / parseFloat(calc_price)).toFixed(8) + ' KMD approx.');
-	   }
-	   if (pair == 'kmdbtc') {
-	   	calc_price = data[0].price_btc - (data[0].price_btc * 0.05)
-	   	$('.coin_swap_rate_info').html('1 KMD = ' + calc_price.toFixed(8) + ' BTC approx.');
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	get_price(base,rel)
+	   } else if (!data.error === false) {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info1').empty();
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.coin_swap_rate_info2').empty();
+	   	if (!data.asks[0].price === false) {
+	   		$('.coin_swap_rate_info2').html('<b>1 '+rel+' = ' + data.asks[0].price + ' '+base+' approx.</b>');
+	   	} else {
+	   		$('.coin_swap_rate_info2').html('<b>Rel price not found!</b>');
+	   	}
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -514,20 +309,283 @@ function calc_swap_price(pair) {
 	});
 }
 
+$('.refresh_estimate_price').click(function() {
+	//rel_coin = $('.deposit_coin01').data('coin');
+	//base_coin = $('.buy_coin').val();
+	var base_coin = $('.buy_coin').selectpicker('val');
+	var rel_coin = $('.sell_coin').selectpicker('val');
 
+	get_price(base_coin, rel_coin);
+})
 
-$('.deposit_coin_btn_01').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	$('.initcoinswap-output').html('<i>Sending 100 KMD to ' + get_depsit_addr + '<br>processing...</i>');
-
-	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 100]};
-	var url = "http://127.0.0.1:7778/";
+function get_marketmaker_userpass() {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"getpeers"};
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	get_marketmaker_userpass()
+	   } else {
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+$('.refresh_inv_table').click(function() {
+	var coin = $(this).data('coin');
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   data = inv_kmd_data
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+	   } else {
+	   	$( ".inv_btn" ).removeClass("active")
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.inv_alice_table tbody').empty();
+	   	//var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	//console.log(test_data);
+	   	$.each(data.alice, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_alice_table_tr = '';
+	   		inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_alice_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_alice_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_alice_table_tr += '</tr>';
+            $('.inv_alice_table tbody').append(inv_alice_table_tr);
+	   	})
+
+	   	/*$('.inv_bob_table tbody').empty();
+	   	$.each(data.bob, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_bob_table_tr = '';
+	   		inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              //inv_bob_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'" data-toggle="modal" data-target="#LP_Mode_SetPrice">Set Max Trade Price</button></td>';
+            inv_bob_table_tr += '</tr>';
+            $('.inv_bob_table tbody').append(inv_bob_table_tr);
+	   	})*/
+
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+
+$( ".sell_coin" ).change(function() {
+//$('.inv_btn').click(function() {
+	//var coin = $(this).data('coin');
+	coin = $('.buy_coin').selectpicker('val');
+	$('.refresh_inv_table').data('coin',coin);
+
+	
+	$('.deposit_coin01').data('coin', coin);
+	//calc_swap_price('kmdbtc');
+
+	//rel_coin = $('.deposit_coin01').data('coin');
+	rel_coin = $('.buy_coin').selectpicker('val');
+	base_coin = coin;
+
+	$('.lp_sell_coin').text(rel_coin);
+	$('.autotrade_buy_coin').text(coin);
+
+	sessionStorage.setItem('dex_base_coin', base_coin);
+	sessionStorage.setItem('dex_rel_coin', rel_coin);
+	
+	get_price(base_coin, rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	get_coins_list(data.coins);
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+	   } else {
+	   	$( ".inv_btn" ).removeClass("active")
+	   	$( ".inv_btn[data-coin='"+ coin +"']" ).addClass(" active");
+	   	$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   	$('.inv_alice_table tbody').empty();
+	   	//var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	//console.log(test_data);
+	   	$.each(data.alice, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_alice_table_tr = '';
+	   		inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              inv_alice_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_alice_table_tr += '<td><button class="btn btn-default btn-sm inv_autotrade" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'">Trade</button></td>';
+            inv_alice_table_tr += '</tr>';
+            $('.inv_alice_table tbody').append(inv_alice_table_tr);
+	   	})
+
+	   	/*$('.inv_bob_table tbody').empty();
+	   	$.each(data.bob, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_bob_table_tr = '';
+	   		inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+              //inv_bob_table_tr += '<td><input class="form-control input-sm trade_pair_maxprice" type="text" name="price" value="" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'"></td>';
+              inv_bob_table_tr += '<td><button class="btn btn-default btn-sm inv_lp_setprice" data-coin="'+val.coin+'" data-txid="'+val.txid+'" data-vout="'+val.vout+'" data-amount="'+val.value+'">Set Max Trade Price</button></td>';
+            inv_bob_table_tr += '</tr>';
+            $('.inv_bob_table tbody').append(inv_bob_table_tr);
+	   	})*/
+
+
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+});
+
+
+$('.autotrade_buy_coin_btn').click(function(){
+	var amount = $('#autotrade_amount').val();
+	var price = $('#autotrade_price').val();
+
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
+
+	console.log('amount ' + amount);
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"relvolume":amount,"price":price};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (data.error == 'cant find utxo that is big enough') {
+			toastr.error('cant find utxo that is big enough', 'Autotrade Info')
+	   }
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+});
+
+
+$('.lp_set_price_btn').click(function(){
+	var price = $('#lp_set_price').val();
+
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
+
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	get_myprices();
+})
+
+
+/*$('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
+	var coin = $(this).data('coin');
+	var txid = $(this).data('txid');
+	var vout = $(this).data('vout');
+	var maxprice = $('.trade_pair_maxprice[data-txid="'+txid+'"][data-vout="'+vout+'"]').val()
+	console.log(coin);
+	console.log(txid);
+	console.log(vout);
+	console.log(maxprice);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"autotrade","txid":txid,"vout":vout,"coin":"REVS","maxprice":maxprice};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
@@ -538,60 +596,353 @@ $('.deposit_coin_btn_01').click(function() {
 	});
 })
 
-$('.deposit_coin_btn_02').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	$('.initcoinswap-output').html('<i>Sending 0.001 KMD fee to ' + get_depsit_addr + '<br>processing...</i>');
 
-	var ajax_data = {"coin":"KMD","method":"sendtoaddress","params":[get_depsit_addr, 0.001]};
-	var url = "http://127.0.0.1:7778/";
+$('.inv_bob_table tbody').on('click', '.inv_lp_setprice', function() {
+	var coin = $(this).data('coin');
+	var txid = $(this).data('txid');
+	var vout = $(this).data('vout');
+	var amount = $(this).data('amount');
+	var amount_parsed = (parseFloat(amount)/100000000).toFixed(8)
+
+	$('.tbl_lp_selected_utxo_txid').text(txid);
+	$('.tbl_lp_selected_utxo_vout').text(vout);
+	$('.tbl_lp_selected_utxo_amount').text(amount_parsed + ' ' +coin);
+	$('#LP_Mode_SetPrice').modal('show')
+});*/
+
+
+
+
+function CheckOrderBookFn(sig) {
+	if (sig == false) {
+		clearInterval(CheckOrderbook_Interval);
+	} else {
+		console.log('checking orderbook');
+	}
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
+	
+	$('.orderbook_rel_coin').html(rel_coin);
+	$('.orderbook_base_coin').html(base_coin);
+
+	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
+	//console.log(ajax_data)
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
 	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+		// If successful
+		//console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
+		} else {
+			//console.log(data.asks);
+
+			$('.orderbook_numasks').html(data.numasks);
+			$('.orderbook_numbids').html(data.numbids);
+
+			$('.orderbook_bids tbody').empty();
+			$.each(data.bids, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var mytrade_true = '';
+				if (val.pubkey === mypubkey) {
+					var mytrade_true = 'class="warning"';
+				}
+				var orderbook_bids_tr = '';
+				orderbook_bids_tr += '<tr ' + mytrade_true + '>';
+				orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_bids_tr += '</tr>';
+				$('.orderbook_bids tbody').append(orderbook_bids_tr);
+			})
+
+			$('.orderbook_asks tbody').empty();
+			$.each(data.asks, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var mytrade_true = '';
+				if (val.pubkey === mypubkey) {
+					var mytrade_true = 'class="warning"';
+				}
+				var orderbook_asks_tr = '';
+				orderbook_asks_tr += '<tr ' + mytrade_true + '>';
+				orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_asks_tr += '</tr>';
+				$('.orderbook_asks tbody').append(orderbook_asks_tr);
+			})
+		}
+
+	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-})
 
-$('.deposit_coin_btn_03').click(function() {
-	var get_depsit_addr = $('.deposit_coin_addr').text();
-	var deposit_100kmd_worth_btc_btn = $('.deposit_100kmd_worth_btc_btn').text();
-	$('.initcoinswap-output').html('<i>Sending ' + deposit_100kmd_worth_btc_btn + ' BTC to ' + get_depsit_addr + '<br>processing...</i>');
+	get_myprices();
 
-	var ajax_data = {"coin":"BTC","method":"sendtoaddress","params":[get_depsit_addr, deposit_100kmd_worth_btc_btn]};
-	var url = "http://127.0.0.1:7778/";
+	return 'Check orderbook calls stopped.';
+}
+
+
+$('.refresh_dex_balances').click(function() {
+	console.log('clicked refresh button at dex balance screen')
+	var refresh_data = {"coin":" ", "status": "enable"};
+	enable_disable_coin(refresh_data)
+});
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_disable_btn', function() {
+	//console.log('Disable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "disable"};
+	enable_disable_coin(refresh_data)
+});
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_enable_btn', function() {
+	//console.log('Enable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "enable"};
+	enable_disable_coin(refresh_data)
+});
+
+
+function enable_disable_coin(data) {
+	//console.log(data.coin);
+	//console.log(data.status);
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
 	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+		// If successful
+		//console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
+		} else {
+			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+			get_coins_list(data);
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-})
+}
+
+function get_coins_list(data) {
+	//console.log(data);
+	$('.dex_balances_tbl tbody').empty();
+
+	$.each(data, function(index, val) {
+		//console.log(index);
+		//console.log(val);
+
+		var coin_name = return_coin_name(val.coin)
+
+		var dex_balances_tbl_tr = '';
+
+		dex_balances_tbl_tr += '<tr>';
+			dex_balances_tbl_tr += '<td>'+ val.coin + '</td>';
+			dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
+			//dex_balances_tbl_tr += '<td>0.00000000</td>';
+			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
+			dex_balances_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
+			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
+			dex_balances_tbl_tr += '<td>' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</td>';
+		dex_balances_tbl_tr += '</tr>';
+
+		$('.dex_balances_tbl tbody').append(dex_balances_tbl_tr);
+	})
+};
+
+$('.refresh_dex_myprices').click(function() {
+	get_myprices();
+});
+
+function get_myprices() {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"myprices"};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   //console.log(data);
+
+	   if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list(data.coins);
+		} else {
+			$('.dex_myprices_tbl tbody').empty();
+
+			$.each(data, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+
+				var base_coin_name = return_coin_name(val.base)
+				var rel_coin_name = return_coin_name(val.rel)
+
+				var dex_myprices_tbl_tr = '';
+
+				dex_myprices_tbl_tr += '<tr>';
+					dex_myprices_tbl_tr += '<td>'+ val.base + ' (' + base_coin_name + ')</td>';
+					dex_myprices_tbl_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
+					dex_myprices_tbl_tr += '<td>' + val.bid + '</td>';
+					dex_myprices_tbl_tr += '<td>' + val.ask + '</td>';
+				dex_myprices_tbl_tr += '</tr>';
+
+				$('.dex_myprices_tbl tbody').append(dex_myprices_tbl_tr);
+			})
+		}
+
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+function return_coin_name(coin) {
+	var coin_name = '';
+
+	switch (coin) {
+		case 'KMD':
+			coin_name = 'Komodo';
+			break;
+		case 'BTC':
+			coin_name = 'Bitcoin';
+			break;
+		case 'REVS':
+			coin_name = 'REVS';
+			break;
+		case 'JUMBLR':
+			coin_name = 'JUMBLR';
+			break;
+		case 'DOGE':
+			coin_name = 'Dogecoin';
+			break;
+		case 'HUSH':
+			coin_name = 'Hushcoin';
+			break;
+		case 'DGB':
+			coin_name = 'Digibyte';
+			break;
+		case 'MZC':
+			coin_name = 'Mazacoin';
+			break;
+		case 'SYS':
+			coin_name = 'Syscoin';
+			break;
+		case 'UNO':
+			coin_name = 'Unobtanium';
+			break;
+		case 'ZET':
+			coin_name = 'Zetacoin';
+			break;
+		case 'ZEC':
+			coin_name = 'Zcash';
+			break;
+		case 'BTM':
+			coin_name = 'Bitmark';
+			break;
+		case 'CARB':
+			coin_name = 'Carboncoin';
+			break;
+		case 'ANC':
+			coin_name = 'Anoncoin';
+			break;
+		case 'FRK':
+			coin_name = 'Franko';
+			break;
+		case 'GAME':
+			coin_name = 'Gamecredits';
+			break;
+		case 'LTC':
+			coin_name = 'Litecoin';
+			break;
+		case 'SUPERNET':
+			coin_name = 'SUPERNET';
+			break;
+		case 'WLC':
+			coin_name = 'Wireless';
+			break;
+		case 'PANGEA':
+			coin_name = 'Pangea';
+			break;
+		case 'DEX':
+			coin_name = 'InstantDEX';
+			break;
+		case 'BET':
+			coin_name = 'BET';
+			break;
+		case 'CRYPTO':
+			coin_name = 'Crypto777';
+			break;
+		case 'HODL':
+			coin_name = 'HODL';
+			break;
+		case 'SHARK':
+			coin_name = 'SHARK';
+			break;
+		case 'BOTS':
+			coin_name = 'BOTS';
+			break;
+		case 'MGW':
+			coin_name = 'MultiGateway';
+			break;
+		case 'MVP':
+			coin_name = 'MVP';
+			break;
+		case 'KV':
+			coin_name = 'KeyValue';
+			break;
+		case 'CEAL':
+			coin_name = 'Ceal';
+			break;
+		case 'MESH':
+			coin_name = 'SuperMesh';
+			break;
+	}
+	return coin_name;
+}
 
 $('.refresh_swap_list_btn').click(function() {
-	var ajax_data = {"agent":"InstantDEX","method":"getswaplist"};
-	var url = "http://127.0.0.1:7778/";
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var url = "http://127.0.0.1:7779";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
-	    url: 'http://127.0.0.1:7778'
+	    url: url
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
@@ -601,3 +952,343 @@ $('.refresh_swap_list_btn').click(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })
+
+
+$('.check_swap_status_btn').click(function() {
+	event.preventDefault();
+	var requestid = $('#swap_request_id').val();
+	var quoteid = $('#swap_quote_id').val();
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
+	var url = "http://127.0.0.1:7779/";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   $('.checkswaplist-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
+
+
+/* Portfolio section functions START */
+
+
+function CheckPortfolioFn(sig) {
+	if (sig == false) {
+		clearInterval(CheckPortfolio_Interval);
+		return 'Check portfolio calls stopped.';
+	} else {
+		console.log('checking portfolio');
+	}
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	var ajax_data = {"userpass":userpass,"method":"portfolio"};
+	//console.log(ajax_data)
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		//console.log(data);
+		PortfolioTblDataFn(data);
+		PortfolioChartUpdate(data.portfolio);
+	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+function PortfolioTblDataFn(data) {
+	//console.log(data);
+
+	$('.portfolio_kmd_equiv').html(data.kmd_equiv);
+	$('.portfolio_buycoin').html(data.buycoin);
+	$('.portfolio_buyforce').html(data.buyforce);
+	$('.portfolio_sellcoin').html(data.sellcoin);
+	$('.portfolio_sellforce').html(data.sellforce);
+	$('.portfolio_base').html(data.base);
+	$('.portfolio_rel').html(data.rel);
+	$('.portfolio_relvolume').html(data.relvolume);
+
+	$('.dex_portfolio_coins_tbl tbody').empty();
+
+	$.each(data.portfolio, function(index, val) {
+		//console.log(index);
+		//console.log(val);
+
+		var coin_name = return_coin_name(val.coin)
+
+		var dex_portfolio_coins_tbl_tr = '';
+
+		dex_portfolio_coins_tbl_tr += '<tr>';
+			dex_portfolio_coins_tbl_tr += '<td>'+ val.coin + '</td>';
+			//dex_portfolio_coins_tbl_tr += '<td>' + val.address + '</td>';
+			dex_portfolio_coins_tbl_tr += '<td></td>';
+			dex_portfolio_coins_tbl_tr += '<td>' + val.amount + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.force + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balanceA + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.valuesumA + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.aliceutil + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balanceB + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.valuesumB + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.balance + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.bobutil + '</td>';
+		dex_portfolio_coins_tbl_tr += '</tr>';
+
+		$('.dex_portfolio_coins_tbl tbody').append(dex_portfolio_coins_tbl_tr);
+	})
+};
+
+function PortfolioChartUpdate(chart_data) {
+	console.log(chart_data)
+	var chart = AmCharts.makeChart( "portfolio_chart_current", {
+	  "type": "pie",
+	  "theme": "light",
+	  "dataProvider": chart_data,
+	  "valueField": "perc",
+	  "titleField": "coin",
+	  "startDuration": 0,
+	  "innerRadius": 50,
+	  "pullOutRadius": 20,
+	  //"marginTop": 30,
+	  //"marginBottom": 15,
+	  //"marginLeft": 0,
+	  //"marginRight": 0,
+	  //"pullOutRadius": 0,
+	  /*"titles": [
+	    {
+	      "text": "Current Portfolio Goal"
+	    }
+	  ],*/
+	  "allLabels": [
+	    {
+	      "y": "46%",
+	      "align": "center",
+	      "size": 25,
+	      "bold": true,
+	      "text": "Now",
+	      "color": "#555"
+	    },
+	    {
+	      "y": "40%",
+	      "align": "center",
+	      "size": 15,
+	      "text": "Goal",
+	      "color": "#555"
+	    }
+	  ],
+	  "export": {
+	    "enabled": false
+	  }
+	});
+
+	var chart2 = AmCharts.makeChart( "portfolio_chart_target", {
+	  "type": "pie",
+	  "theme": "light",
+	  "dataProvider": chart_data,
+	  "valueField": "goalperc",
+	  "titleField": "coin",
+	  "startDuration": 0,
+	  "innerRadius": 50,
+	  "pullOutRadius": 20,
+	  //"marginTop": 30,
+	  //"marginBottom": 15,
+	  //"marginLeft": 0,
+	  //"marginRight": 0,
+	  //"pullOutRadius": 0,
+	  /*"titles": [
+	    {
+	      "text": "Target Portfolio Goal"
+	    }
+	  ],*/
+	  "allLabels": [
+	    {
+	      "y": "46%",
+	      "align": "center",
+	      "size": 25,
+	      "bold": true,
+	      "text": "Target",
+	      "color": "#555"
+	    },
+	    {
+	      "y": "40%",
+	      "align": "center",
+	      "size": 15,
+	      "text": "Goal",
+	      "color": "#555"
+	    }
+	  ],
+	  "export": {
+	    "enabled": false
+	  }
+	});
+}
+
+$('.refresh_dex_potfolio_charts').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
+
+$('.refresh_dex_potfolio').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
+
+$('.refresh_dex_potfolio_coins').click(function() {
+	console.log('clicked refresh button at dex portfolio charts');
+	CheckPortfolioFn();
+});
+
+
+$('.portfolio_set_price_btn').click(function() {
+	var price = $('#portfolio_set_price').val();
+	var base_coin = $('.buy_coin_p').selectpicker('val');
+	var rel_coin = $('.sell_coin_p').selectpicker('val');
+
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   toastr.success('Price for Base: ' + base_coin + ' Rel: ' + rel_coin + ' set to: ' + price + ' ' + rel_coin, 'Portfolio Info')
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+})
+
+
+$('.portfolio_set_autoprice_btn').click(function() {
+	var margin = $('#portfolio_set_autoprice').val();
+	var base_coin = $('.buy_coin_p').selectpicker('val');
+	var rel_coin = $('.sell_coin_p').selectpicker('val');
+
+	console.log('margin ' + margin);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":margin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   toastr.success('Margin Price for Base: ' + base_coin + ' Rel: ' + rel_coin + ' set to: ' + margin + '% ' + rel_coin, 'Portfolio Info')
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+})
+
+
+$('.portfolio_set_goal_btn').click(function() {
+	var percent = $('#portfolio_set_goal').val();
+	var coin = $('.sell_coin_p').selectpicker('val');
+
+	console.log('percent ' + percent);
+	console.log('coin '+ coin);
+	//console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"goal","coin":coin,"val":percent};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   toastr.success('Goal for ' + coin + ' set to: ' + percent, 'Portfolio Info')
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	CheckPortfolioFn();
+})
+
+
+$( ".sell_coin_p" ).change(function() {
+	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
+})
+
+
+$('.portfolio_set_autogoals_btn').click(function() {
+	//var percent = $('#portfolio_set_goal').val();
+	//var coin = $('.sell_coin_p').selectpicker('val');
+
+	//console.log('percent ' + percent);
+	//console.log('coin '+ coin);
+	//console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"goal"};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   toastr.success('Auto goal setup executed!', 'Portfolio Info')
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	CheckPortfolioFn();
+})
+
+/* Portfolio section functions END */
