@@ -99,7 +99,9 @@
                       </select>
                     </div>
                     <div class="col-sm-2" style="margin-top: 50px; text-align: center;">
-                      <span class="glyphicon glyphicon-transfer" style="font-size: 40px;"></span>
+                      <!--<a role="button" class="switch_buy_sell_pairs">-->
+                        <span class="glyphicon glyphicon-transfer" style="font-size: 40px;"></span>
+                      <!--</a>-->
                     </div>
                     <div class="col-sm-5">
                       <h3 style="margin-top: 0; text-align: center;">Receive</h3>
@@ -128,7 +130,7 @@
 
           <div class="col-sm-6">
             <div class="panel panel-default">
-              <div class="panel-heading">BUY <span class="autotrade_buy_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN">Refresh</button>  <span style="float: right; font-size: 13px; padding: 0 5px;">Max Amount: <b><span class="autotrade_max_amount"></span> <span class="autotrade_max_amount_coin"></span></b></span></div>
+              <div class="panel-heading">BUY <span class="autotrade_buy_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN" disabled>Refresh Inventory</button>  <span style="float: right; font-size: 13px; padding: 0 5px;">Max Amount: <b><span class="autotrade_max_amount"></span> <span class="autotrade_max_amount_coin"></span></b></span></div>
                 <div class="panel-body">
                     <div class="form-group">
                       <label for="autotrade_amount">Amount</label>
@@ -423,7 +425,7 @@
       <div class="row"><h1 style="text-align: center; font-weight: 200">BALANCES, DEPOSITS &amp; WITHDRAWALS</h1></div>
 
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 coins_balance_panel">
           
           <div class="panel panel-default">
             <div class="panel-heading"><strong>DEX Coins Status</strong> <button class="btn btn-default btn-sm refresh_dex_balances" style="float: right; font-size: 13px; padding: 0 5px;">Refresh</button></div>
@@ -438,11 +440,49 @@
               </table>
             </div>
           </div>
-
         </div>
+
+
+        <div class="col-sm-12 inventory_panel">
+          <div class="panel with-nav-tabs panel-default">
+              <div class="panel-heading">
+                <button class="btn btn-default btn-sm backto_dex_balances" style="float: right; font-size: 13px; padding: 8px 8px;">Back</button>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#AliceInventory" data-toggle="tab">Alice Inventory</a></li>
+                    <li><a href="#BobInventory" data-toggle="tab">Bob Inventory</a></li>
+                    <li><a href="#RawJSONInventory" data-toggle="tab">Raw JSON</a></li>
+                </ul>
+              </div>
+              <div class="panel-body">
+                  <div class="tab-content">
+                      <div class="tab-pane fade in active" id="AliceInventory">
+                        <table class="table table-striped dex_showinv_tbl" style="margin-bottom: 0;">
+                          <thead>
+                            <tr><th>Coin</th><!--<th>Name</th><th>Total Balance</th>--><th>Deposit Address</th><th>Status</th><th>txfee</th><th>Actions</th></tr>
+                          </thead>
+                          <tbody>
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="tab-pane fade" id="BobInventory">
+                        
+                      </div>
+                      <div class="tab-pane fade" id="RawJSONInventory">
+                        <pre class="RawJSONInventory-output"></pre>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
       </div>
     </div>
     <!-- Section: Balances END -->
+
+
+
+
 
     <!-- Section: My Prices -->
     <div class="container-fluid section section-myprices" style="display: none;">

@@ -236,6 +236,18 @@ $( ".buy_coin" ).change(function() {
 });
 
 
+$('.switch_buy_sell_pairs').click(function() {
+	console.log('switch button clicked...')
+	var current_buy_coin = $('.buy_coin').selectpicker('val');
+	var current_sell_coin = $('.sell_coin').selectpicker('val');
+
+	console.log(current_sell_coin);
+	console.log(current_buy_coin);
+
+	$('.buy_coin').selectpicker('val',current_buy_coin);
+	$('.sell_coin').selectpicker('val',current_sell_coin);
+});
+
 function get_price(base,rel) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
@@ -742,6 +754,12 @@ function enable_disable_coin(data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			if (ajax_data.status === 'enable') {
+				toastr.success(ajax_data.coin+' Enabled','Coin Status');
+			}
+			if (ajax_data.status === 'disable') {
+				toastr.success(ajax_data.coin+' Disabled','Coin Status');
+			}
 			get_coins_list(data.coins);
 		} else {
 			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -839,6 +857,20 @@ function get_myprices() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_showinv_btn', function() {
+	var coin = $(this).data('coin');
+	
+	console.log('inventory button clicked for: ' + coin);
+	
+	$('.coins_balance_panel').fadeOut();
+	$('.inventory_panel').fadeIn();
+});
+
+$('.backto_dex_balances').click(function() {
+	$('.coins_balance_panel').fadeIn();
+	$('.inventory_panel').fadeOut();
+});
 
 function return_coin_name(coin) {
 	var coin_name = '';
