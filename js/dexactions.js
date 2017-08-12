@@ -19,7 +19,7 @@ $('.dexnav_exchange').click(function(e){
 	//$(this).parent().get( 0 ).addClass('active');
 	$(this).parent().addClass(" active");
 	CheckPortfolioFn(false);
-	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,1000);
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
 });
 
 $('.dexnav_portfolio').click(function(e){
@@ -235,6 +235,18 @@ $( ".buy_coin" ).change(function() {
   	
 });
 
+
+$('.switch_buy_sell_pairs').click(function() {
+	console.log('switch button clicked...')
+	var current_buy_coin = $('.buy_coin').selectpicker('val');
+	var current_sell_coin = $('.sell_coin').selectpicker('val');
+
+	console.log(current_sell_coin);
+	console.log(current_buy_coin);
+
+	$('.buy_coin').selectpicker('val',current_buy_coin);
+	$('.sell_coin').selectpicker('val',current_sell_coin);
+});
 
 function get_price(base,rel) {
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -709,12 +721,18 @@ $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_disable_btn', functi
 	//console.log('Disable this coin:' + $(this).data('coin'));
 	var refresh_data = {"coin":$(this).data('coin'), "status": "disable"};
 	enable_disable_coin(refresh_data)
+	$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).attr("disabled","disabled");
+	$('.selectpicker').selectpicker('refresh');
+
+
 });
 
 $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_enable_btn', function() {
 	//console.log('Enable this coin:' + $(this).data('coin'));
 	var refresh_data = {"coin":$(this).data('coin'), "status": "enable"};
 	enable_disable_coin(refresh_data)
+	$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).removeAttr('disabled');
+	$('.selectpicker').selectpicker('refresh');
 });
 
 
@@ -738,6 +756,12 @@ function enable_disable_coin(data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			if (ajax_data.status === 'enable') {
+				toastr.success(ajax_data.coin+' Enabled','Coin Status');
+			}
+			if (ajax_data.status === 'disable') {
+				toastr.success(ajax_data.coin+' Disabled','Coin Status');
+			}
 			get_coins_list(data.coins);
 		} else {
 			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -762,16 +786,24 @@ function get_coins_list(data) {
 		var dex_balances_tbl_tr = '';
 
 		dex_balances_tbl_tr += '<tr>';
-			dex_balances_tbl_tr += '<td>'+ val.coin + '</td>';
-			dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
+			dex_balances_tbl_tr += '<td><img src="img/cryptologo/' + val.coin + '.png" width="30px;"/> '+ coin_name + ' (' + val.coin + ')</td>';
+			//dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
 			//dex_balances_tbl_tr += '<td>0.00000000</td>';
 			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
 			dex_balances_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
 			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
-			dex_balances_tbl_tr += '<td>' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</td>';
+			dex_balances_tbl_tr += '<td style="width: 165px;"> <div class="btn-group" role="group">' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + ' <button class="btn btn-xs btn-primary dex_balances_tbl_showinv_btn" data-coin="' + val.coin + '" ' + (( val.status == 'active' ) ? '' : 'disabled') +'>Show Inventory</button></div></td>';
 		dex_balances_tbl_tr += '</tr>';
 
 		$('.dex_balances_tbl tbody').append(dex_balances_tbl_tr);
+
+		if (val.status == 'active') {
+			$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).removeAttr('disabled');
+		}else {
+			$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).attr("disabled","disabled");
+		}
+
+		$('.selectpicker').selectpicker('refresh');
 	})
 };
 
@@ -827,6 +859,176 @@ function get_myprices() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+$('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_showinv_btn', function() {
+	var coin = $(this).data('coin');
+	$('[data-inventorycoin]').text(coin);
+	
+	console.log('inventory button clicked for: ' + coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7779";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (!data.userpass === false) {
+	   	console.log('first marketmaker api call execution after marketmaker started.')
+	   	sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+	   	sessionStorage.setItem('mm_userpass', data.userpass);
+	   	sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+	   	//get_coins_list(data.coins);
+	   	//$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+	   } else {
+	   	$('.RawJSONInventory-output').html(JSON.stringify(data, null, 2));
+	   	$('.dex_showinv_alice_tbl tbody').empty();
+	   	//var test_data = {"result":"success","alice":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout":0,"value":"200000000","satoshis":"200000000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"200000000","txid2":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"5824cc681ad3615c44c962a3fecb2fb6c328d9cdc52281597e9cb51ee5e41094","vout":0,"value":"200000000","satoshis":"200000000","txid2":"25c6cc193e61f102a69a0e71992a08c00fb2368166460aa20823d561517133c3","vout2":0,"value2":"10000000","desthash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}],"bob":[{"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"bbf1d0304bfa2f8f96d2c06480782c5078f7c32a968772b850b022c9ceb5074b","vout":0,"value":"200000000","satoshis":"177688888","txid2":"dcd082d5ecde2c37021561d375bd62b6752e61184d3a4da02069c7724ae44912","vout2":0,"value2":"200000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}, {"method":"notified","method2":"notified","coin":"KMD","now":1497477754,"address":"RNjAhmqZoPpadLF6sfFXTcTPmyXHnBdFvA","txid":"53b4f0be9310625b3284b0cd193a64ec5960e951b89f3cd2d51a40cb2f7d0fa3","vout":0,"value":"10000000","satoshis":"8800000","txid2":"7711afa7cdb3880a3813fd3b5252eae27ce2e25801ee689b1da0e1aca9d0d509","vout2":0,"value2":"10000000","srchash":"9200ad4422472041ade4bb26511acaa7eb53b7132f0cbb45bc30448a10cbc441"}]};
+	   	//console.log(test_data);
+	   	$.each(data.alice, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_alice_table_tr = '';
+	   		inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<th rowspan="13" style="width: 30px;">' + index + '</th>';
+              inv_alice_table_tr += '<th>method</th>';
+              inv_alice_table_tr += '<th>' + val.method + '</th>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>gui</td>';
+              inv_alice_table_tr += '<td>' + val.gui + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>coin</td>';
+              inv_alice_table_tr += '<td>' + val.coin + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>iambob</td>';
+              inv_alice_table_tr += '<td>' + val.iambob + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>address</td>';
+              inv_alice_table_tr += '<td>' + val.address + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>txid</td>';
+              inv_alice_table_tr += '<td>' + val.txid + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>vout</td>';
+              inv_alice_table_tr += '<td>' + val.vout + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>value</td>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>satoshis</td>';
+              inv_alice_table_tr += '<td>' + val.satoshis + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>txid2</td>';
+              inv_alice_table_tr += '<td>' + val.txid2 + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>vout2</td>';
+              inv_alice_table_tr += '<td>' + val.vout2 + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>value2</td>';
+              inv_alice_table_tr += '<td>' + (parseFloat(val.value2)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+            inv_alice_table_tr += '</tr>';
+            inv_alice_table_tr += '<tr>';
+              inv_alice_table_tr += '<td>desthash</td>';
+              inv_alice_table_tr += '<td>' + val.desthash + '</td>';
+            inv_alice_table_tr += '</tr>';
+
+            $('.dex_showinv_alice_tbl tbody').append(inv_alice_table_tr);
+	   	})
+
+	   	$('.dex_showinv_bob_tbl tbody').empty();
+	   	$.each(data.bob, function(index, val) {
+	   		//console.log(index);
+	   		//console.log(val);
+	   		var inv_bob_table_tr = '';
+	   		inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<th rowspan="13" style="width: 30px;">' + index + '</th>';
+              inv_bob_table_tr += '<th>method</th>';
+              inv_bob_table_tr += '<th>' + val.method + '</th>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>gui</td>';
+              inv_bob_table_tr += '<td>' + val.gui + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>coin</td>';
+              inv_bob_table_tr += '<td>' + val.coin + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>iambob</td>';
+              inv_bob_table_tr += '<td>' + val.iambob + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>address</td>';
+              inv_bob_table_tr += '<td>' + val.address + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>txid</td>';
+              inv_bob_table_tr += '<td>' + val.txid + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>vout</td>';
+              inv_bob_table_tr += '<td>' + val.vout + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>value</td>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>satoshis</td>';
+              inv_bob_table_tr += '<td>' + val.satoshis + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>txid2</td>';
+              inv_bob_table_tr += '<td>' + val.txid2 + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>vout2</td>';
+              inv_bob_table_tr += '<td>' + val.vout2 + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>value2</td>';
+              inv_bob_table_tr += '<td>' + (parseFloat(val.value2)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+            inv_bob_table_tr += '</tr>';
+            inv_bob_table_tr += '<tr>';
+              inv_bob_table_tr += '<td>srchash</td>';
+              inv_bob_table_tr += '<td>' + val.srchash + '</td>';
+            inv_bob_table_tr += '</tr>';
+            $('.dex_showinv_bob_tbl tbody').append(inv_bob_table_tr);
+	   	})
+
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+	
+	$('.coins_balance_panel').fadeOut();
+	$('.inventory_panel').fadeIn();
+});
+
+$('.backto_dex_balances').click(function() {
+	$('.coins_balance_panel').fadeIn();
+	$('.inventory_panel').fadeOut();
+	$('.dex_showinv_tbl').empty();
+	$('[data-inventorycoin]').text('');
+});
 
 function return_coin_name(coin) {
 	var coin_name = '';
@@ -904,6 +1106,9 @@ function return_coin_name(coin) {
 		case 'CRYPTO':
 			coin_name = 'Crypto777';
 			break;
+		case 'COQUI':
+			coin_name = 'COQUI';
+			break;
 		case 'HODL':
 			coin_name = 'HODL';
 			break;
@@ -925,9 +1130,202 @@ function return_coin_name(coin) {
 		case 'CEAL':
 			coin_name = 'Ceal';
 			break;
+		case 'DASH':
+			coin_name = 'Dash';
+			break;
 		case 'MESH':
 			coin_name = 'SuperMesh';
 			break;
+		case 'CRW':
+			coin_name = 'Crown';
+			break;
+		case 'HUC':
+			coin_name = 'Huntercoin';
+			break;
+		case 'PIVX':
+			coin_name = 'PIVX';
+			break;
+		case 'BDL':
+			coin_name = 'Bitdeal';
+			break;
+		case 'ARC':
+			coin_name = 'Arcticcoin';
+			break;
+		case 'ZCL':
+			coin_name = 'ZClassic';
+			break;
+		case 'VIA':
+			coin_name = 'Viacoin';
+			break;
+		case 'ERC':
+			coin_name = 'Europecoin';
+			break;
+		case 'FAIR':
+			coin_name = 'Faircoin';
+			break;
+		case 'FLO':
+			coin_name = 'Florincoin';
+			break;
+		case 'SXC':
+			coin_name = 'Sexcoin';
+			break;
+		case 'CREA':
+			coin_name = 'Creativecoin';
+			break;
+		case 'TRC':
+			coin_name = 'Terracoin';
+			break;
+		case 'BTA':
+			coin_name = 'Bata';
+			break;
+		case 'SMC':
+			coin_name = 'Smartcoin';
+			break;
+		case 'NMC':
+			coin_name = 'Namecoin';
+			break;
+		case 'NAV':
+			coin_name = 'Navcoin';
+			break;
+		case 'MOON':
+			coin_name = 'Mooncoin';
+			break;
+		case 'EMC2':
+			coin_name = 'Einsteinium';
+			break;
+		case 'I0C':
+			coin_name = 'I0Coin';
+			break;
+		case 'STRAT':
+			coin_name = 'Stratis';
+			break;
+		case 'MUE':
+			coin_name = 'MonetaryUnit';
+			break;
+		case 'MONA':
+			coin_name = 'MonaCoin';
+			break;
+		case 'XMY':
+			coin_name = 'Myriad';
+			break;
+		case 'MAC':
+			coin_name = 'Machinecoin';
+			break;
+		case 'BTX':
+			coin_name = 'Bitcore';
+			break;
+		case 'XRE':
+			coin_name = 'RevolverCoin';
+			break;
+		case 'LBC':
+			coin_name = 'LBRY Credits';
+			break;
+		case 'SIB':
+			coin_name = 'SIBCoin';
+			break;
+		case 'VTC':
+			coin_name = 'Vertcoin';
+			break;
+		case 'HUSH':
+			coin_name = 'Hush';
+			break;
+		case 'AUD':
+			coin_name = 'Australian Dollar';
+			break;
+		case 'BGN':
+			coin_name = 'Bulgarian Lev';
+			break;
+		case 'CAD':
+			coin_name = 'Canadian Dollar';
+			break;
+		case 'CHF':
+			coin_name = 'Swiss Franc';
+			break;
+		case 'CNY':
+			coin_name = 'Chinese Yuan';
+			break;
+		case 'CZK':
+			coin_name = 'Czech Koruna';
+			break;
+		case 'DKK':
+			coin_name = 'Danish Krone';
+			break;
+		case 'EUR':
+			coin_name = 'Euro';
+			break;
+		case 'GBP':
+			coin_name = 'Pound Sterling';
+			break;
+		case 'HKD':
+			coin_name = 'Hong Kong Dollar';
+			break;
+		case 'HRK':
+			coin_name = 'Croatian Kuna';
+			break;
+		case 'HUF':
+			coin_name = 'Hungarian Forint';
+			break;
+		case 'IDR':
+			coin_name = 'Indonesian Rupiah';
+			break;
+		case 'ILS':
+			coin_name = 'Israeli Shekel';
+			break;
+		case 'INR':
+			coin_name = 'Indian Rupee';
+			break;
+		case 'JPY':
+			coin_name = 'Japanese Yen';
+			break;
+		case 'KRW':
+			coin_name = 'South Korean Won';
+			break;
+		case 'MXN':
+			coin_name = 'Mexican Peso';
+			break;
+		case 'MYR':
+			coin_name = 'Malaysian Ringgit';
+			break;
+		case 'NOK':
+			coin_name = 'Norwegian Krone';
+			break;
+		case 'NZD':
+			coin_name = 'New Zealand Dollar';
+			break;
+		case 'PHP':
+			coin_name = 'Philippine Peso';
+			break;
+		case 'PLN':
+			coin_name = 'Polish Zloty';
+			break;
+		case 'BRL':
+			coin_name = 'Brazilian Real';
+			break;
+		case 'RON':
+			coin_name = 'Romanian Leu';
+			break;
+		case 'RUB':
+			coin_name = 'Russian Ruble';
+			break;
+		case 'SEK':
+			coin_name = 'Swedish Krona';
+			break;
+		case 'SGD':
+			coin_name = 'Singapore Dollar';
+			break;
+		case 'THB':
+			coin_name = 'Thai Baht';
+			break;
+		case 'TRY':
+			coin_name = 'Turkish Lira';
+			break;
+		case 'USD':
+			coin_name = 'US Dollar';
+			break;
+		case 'ZAR':
+			coin_name = 'South African Rand';
+			break;
+
 	}
 	return coin_name;
 }
