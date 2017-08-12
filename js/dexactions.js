@@ -721,8 +721,8 @@ $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_disable_btn', functi
 	//console.log('Disable this coin:' + $(this).data('coin'));
 	var refresh_data = {"coin":$(this).data('coin'), "status": "disable"};
 	enable_disable_coin(refresh_data)
-	$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).attr("disabled","disabled");
-	$('.selectpicker').selectpicker('refresh');
+	//$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).attr("disabled","disabled");
+	//$('.selectpicker').selectpicker('refresh');
 
 
 });
@@ -731,8 +731,8 @@ $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_enable_btn', functio
 	//console.log('Enable this coin:' + $(this).data('coin'));
 	var refresh_data = {"coin":$(this).data('coin'), "status": "enable"};
 	enable_disable_coin(refresh_data)
-	$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).removeAttr('disabled');
-	$('.selectpicker').selectpicker('refresh');
+	//$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).removeAttr('disabled');
+	//$('.selectpicker').selectpicker('refresh');
 });
 
 
@@ -797,13 +797,13 @@ function get_coins_list(data) {
 
 		$('.dex_balances_tbl tbody').append(dex_balances_tbl_tr);
 
-		if (val.status == 'active') {
+		/*if (val.status == 'active') {
 			$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).removeAttr('disabled');
 		}else {
 			$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).attr("disabled","disabled");
 		}
 
-		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');*/
 	})
 };
 
