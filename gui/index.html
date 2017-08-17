@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>EasyDEX - Ugly GUI</title>
+    <title>BarterDEX - Ugly GUI</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -40,6 +40,19 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+      if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+
+    <script>
+      if (window.module)
+        module = window.module;
+      const templates = {};
+    </script>
+
   </head>
   <body>
 
@@ -511,6 +524,12 @@
     </div>
     <!-- Section: My Prices END -->
 
+<script>
+  var ipc = require('electron').ipcRenderer;
+  if (typeof module === 'object') {
+    window.module = module; module = undefined;
+  }
+</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/coin_select_options.js" type="text/javascript"></script>
