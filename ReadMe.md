@@ -1,8 +1,8 @@
 # DEX Ugly GUI
 
-Before starting make sure you have `iguana` daemon compiled and running on your machine.
+Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
 
-You can find instructions to install `iguana` here:
+You can find instructions to install `marketmaker` here:
 
 https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-Node#installing-liquidity-provider-lp-node-on-ubuntudebian-system
 
