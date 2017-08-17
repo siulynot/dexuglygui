@@ -11,7 +11,9 @@ Once running, follow these steps:
 ```shell
 git clone https://github.com/SuperNETorg/dexuglygui.git
 cd dexuglygui
-git checkout v0.2
+git checkout v0.3
+npm install
+npm start
 ```
 
 It will download "dexuglygui". Open "dexuglygui", and from there open "index.html" file in your web browser.
@@ -20,6 +22,6 @@ It will download "dexuglygui". Open "dexuglygui", and from there open "index.htm
 To update, follow these steps:
 ```shell
 cd dexuglygui
-git checkout v0.2
+git checkout v0.3
 git pull
 ```

@@ -1,11 +1,70 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const electron = require('electron'),
+      app = electron.app,
+      BrowserWindow = electron.BrowserWindow,
+      path = require('path'),
+      url = require('url'),
+      os = require('os'),
+      spawn = require('child_process').spawn,
+      exec = require('child_process').exec,
+      { Menu } = require('electron'),
+      portscanner = require('portscanner'),
+      osPlatform = os.platform(),
+      fixPath = require('fix-path'),
+      ipc = require('electron').ipcMain,
+      fs = require('fs-extra'),
+      mkdirp = require('mkdirp');
 
-const path = require('path')
-const url = require('url')
+
+const appBasicInfo = {
+  name: 'BarterDEX',
+  version: '0.3.0-beta'
+};
+
+app.setName(appBasicInfo.name);
+app.setVersion(appBasicInfo.version);
+
+if (osPlatform === 'linux') {
+  process.env.ELECTRON_RUN_AS_NODE = true;
+  // console.log(process.env);
+}
+
+
+// kill rogue marketmaker copies on start
+//if (appConfig.killIguanaOnStart) {
+  let marketmakerGrep;
+
+  switch (osPlatform) {
+    case 'darwin':
+      marketmakerGrep = "ps -p $(ps -A | grep -m1 marketmaker | awk '{print $1}') | grep -i marketmaker";
+      break;
+    case 'linux':
+      marketmakerGrep = 'ps -p $(pidof marketmaker) | grep -i marketmaker';
+      break;
+    case 'win32':
+      marketmakerGrep = 'tasklist';
+      break;
+  }
+  
+  exec(marketmakerGrep, function(error, stdout, stderr) {
+    if (stdout.indexOf('marketmaker') > -1) {
+      const pkillCmd = osPlatform === 'win32' ? 'taskkill /f /im marketmaker.exe' : 'pkill -15 marketmaker';
+
+      console.log('found another marketmaker process(es)');
+
+      exec(pkillCmd, function(error, stdout, stderr) {
+        console.log(`${pkillCmd} is issued`);
+
+        if (error !== null) {
+          console.log(`${pkillCmd} exec error: ${error}`);
+        };
+      });
+    }
+
+    if (error !== null) {
+      console.log(`${marketmakerGrep} exec error: ${error}`);
+    };
+  });
+//}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
