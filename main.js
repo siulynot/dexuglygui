@@ -15,6 +15,8 @@ const electron = require('electron'),
       mkdirp = require('mkdirp');
 
 
+var shepherd = require('./ipc/shepherd-ipc');
+
 const appBasicInfo = {
   name: 'BarterDEX',
   version: '0.3.0-beta'
@@ -28,51 +30,38 @@ if (osPlatform === 'linux') {
   // console.log(process.env);
 }
 
-
-// kill rogue marketmaker copies on start
-//if (appConfig.killIguanaOnStart) {
-  let marketmakerGrep;
-
-  switch (osPlatform) {
-    case 'darwin':
-      marketmakerGrep = "ps -p $(ps -A | grep -m1 marketmaker | awk '{print $1}') | grep -i marketmaker";
-      break;
-    case 'linux':
-      marketmakerGrep = 'ps -p $(pidof marketmaker) | grep -i marketmaker';
-      break;
-    case 'win32':
-      marketmakerGrep = 'tasklist';
-      break;
-  }
-  
-  exec(marketmakerGrep, function(error, stdout, stderr) {
-    if (stdout.indexOf('marketmaker') > -1) {
-      const pkillCmd = osPlatform === 'win32' ? 'taskkill /f /im marketmaker.exe' : 'pkill -15 marketmaker';
-
-      console.log('found another marketmaker process(es)');
-
-      exec(pkillCmd, function(error, stdout, stderr) {
-        console.log(`${pkillCmd} is issued`);
-
-        if (error !== null) {
-          console.log(`${pkillCmd} exec error: ${error}`);
-        };
-      });
-    }
-
-    if (error !== null) {
-      console.log(`${marketmakerGrep} exec error: ${error}`);
-    };
-  });
-//}
+let closeAppAfterLoading = false;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1280, height: 800})
+function createWindow (status) {
+  require(path.join(__dirname, 'private/mainmenu'));
+
+  // initialise window
+  mainWindow = new BrowserWindow({ // dirty hack to prevent main window flash on quit
+    width: closeAppAfterLoading ? 1 : 1280,
+    height: closeAppAfterLoading ? 1 : 800
+    //icon: iguanaIcon
+  });
+
+  const staticMenu = Menu.buildFromTemplate([ // if static
+    { role: 'copy' },
+    { type: 'separator' },
+    { role: 'selectall' },
+  ]);
+
+  const editMenu = Menu.buildFromTemplate([ // if editable
+    { role: 'undo' },
+    { role: 'redo' },
+    { type: 'separator' },
+    { role: 'cut' },
+    { role: 'copy' },
+    { role: 'paste' },
+    { type: 'separator' },
+    { role: 'selectall' },
+  ]);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -80,6 +69,16 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+
+  mainWindow.webContents.on('context-menu', (e, params) => { // context-menu returns params
+    const { selectionText, isEditable } = params; // params obj
+
+    if (isEditable) {
+      editMenu.popup(mainWindow);
+    } else if (selectionText && selectionText.trim() !== '') {
+      staticMenu.popup(mainWindow);
+    }
+  });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -91,6 +90,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  
 }
 
 // This method will be called when Electron has finished
@@ -102,9 +102,10 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  //if (process.platform !== 'darwin') {
+    killMarketmaker(true);
+    app.quit();
+  //}
 })
 
 app.on('activate', function () {
