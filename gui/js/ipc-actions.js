@@ -1,8 +1,9 @@
+var CheckMM_Interval = null;
 
 // In renderer process (web page).
 const {ipcRenderer} = require('electron')
 
-ShepherdIPCTest = function(data) {
+ShepherdIPC = function(data) {
 	/*ipcRenderer.on('shepherd-reply', (event, arg) => {
 		console.log(arg) // prints "pong"
 	})
@@ -13,4 +14,49 @@ ShepherdIPCTest = function(data) {
 	let shepherdreply = ipcRenderer.sendSync('shepherd-command', data);
 	//console.log(shepherdreply);
 	return shepherdreply;
+}
+
+
+$('.dexlogout-btn').click(function(e) {
+	e.preventDefault();
+	var shepherdresult = ShepherdIPC({"command":"logout"});
+	$('.mainbody').fadeOut();
+	$('.loginbody').fadeIn();
+	CheckOrderBookFn(false);
+	CheckPortfolioFn(false);
+});
+
+$('.login-btn').click(function(e) {
+	e.preventDefault();
+	var passphrase = $('.loginPassphrase').val();
+	var shepherdresult = ShepherdIPC({"command":"login","passphrase":passphrase});
+	$('.loginPassphrase').val('');
+	$('.mainbody').hide();
+	$('.loginbody').hide();
+	CheckMM_Interval = setInterval(CheckMMStatus,1000);
+	$('.loadingbody').fadeIn();
+});
+
+CheckMMStatus = function(sig) {
+	if (sig == false) {
+		clearInterval(CheckMM_Interval);
+	} else {
+		console.log('Checking MarketMaker Status');
+	}
+
+	var mmstatus = ShepherdIPC({"command":"mmstatus"});
+	if (mmstatus !== 'closed') {
+		$('.mainbody').fadeIn();
+		$('.loginbody').fadeOut();
+		$('.loadingbody').hide();
+		var refresh_data = {"coin":" ", "status": "enable"};
+		enable_disable_coin(refresh_data);
+		get_myprices();
+		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+		clearInterval(CheckMM_Interval);
+	} else {
+		$('.mainbody').fadeOut();
+		$('.loginbody').fadeout();
+		$('.loadingbody').fadeIn();
+	}
 }

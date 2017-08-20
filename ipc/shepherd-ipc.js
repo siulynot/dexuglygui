@@ -154,7 +154,7 @@ StartMarketMaker = function(data) {
                   }
             })
         } else {
-          console.log(`port ${_port} marketmaker is already in use`);
+          console.log(`port 7779 marketmaker is already in use`);
         }
       });
     } catch(e) {

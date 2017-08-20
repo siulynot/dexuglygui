@@ -15,6 +15,7 @@
     <link href="css/toastr.min.css" type="text/css" rel="stylesheet">
     <link href="js/amcharts/plugins/export/export.css" type="text/css" rel="stylesheet"  media="all" />
     <link href="css/custom.css" type="text/css" rel="stylesheet">
+    <link href="css/spinner.css" type="text/css" rel="stylesheet">
 
     <style type="text/css">
       .table-fixed thead {
@@ -56,6 +57,31 @@
   </head>
   <body>
 
+  <!-- LOGIN BODY -->
+  <div class="loginbody">
+    <div class="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading" style="text-align: center;">Welcome to BarterDEX</h2>
+        <h4 style="text-align: center;">Please Login</h4>
+        <label for="loginPassphrase" class="sr-only">Passphrase</label>
+        <input type="password" id="loginPassphrase" class="form-control loginPassphrase" placeholder="Passphrase" required>
+        <button class="btn btn-lg btn-primary btn-block login-btn" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+  <!-- LOGIN BODY END -->
+
+  <!-- LOADING BODY -->
+  <div class="loadingbody" style="display: none;">
+    <div class="spinner">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
+  <!-- LOADING BODY END -->
+
+  <!-- MAIN BODY -->
+  <div class="mainbody" style="display: none;">
     <!-- Section: Navigation Menu -->
     <nav class="navbar navbar-default navbar-fixed-top navmenu_top">
       <div class="container-fluid">
@@ -79,8 +105,8 @@
             <li><a href="javascript:void(0)" class="dexnav_myprices">My Prices</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="javascript:void(0)">Link</a></li>
-            <li><span style="padding: 15px; position: relative; display: block;">BarterDEX - Ugly GUI</span></li>-->
+            <a href="javascript:void(0)" class="btn btn-danger dexlogout-btn" style="margin: 8px 8px 0 0;">Logout</a>
+            <!--<li><span style="padding: 15px; position: relative; display: block;">BarterDEX - Ugly GUI</span></li>-->
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -523,6 +549,8 @@
       </div>
     </div>
     <!-- Section: My Prices END -->
+  </div>
+  <!-- MAIN BODY END -->
 
 <script>
   var ipc = require('electron').ipcRenderer;

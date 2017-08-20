@@ -2,12 +2,17 @@ var CheckOrderbook_Interval = null;
 var CheckPortfolio_Interval = null;
 
 $(document).ready(function() {
-	var mmstatus = ShepherdIPCTest({"command":"mmstatus"});
+	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
+		$('.mainbody').show();
+		$('.loginbody').hide();
 		var refresh_data = {"coin":" ", "status": "enable"};
 		enable_disable_coin(refresh_data);
 		get_myprices();
 		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+	} else {
+		$('.mainbody').hide();
+		$('.loginbody').show();
 	}
 	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
 });
