@@ -27,14 +27,12 @@ var ps = require('ps-node'),
 if (os.platform() === 'darwin') {
   fixPath();
   var marketmakerBin = path.join(__dirname, '../assets/bin/osx/marketmaker'),
-      marketmakerDir = `${process.env.HOME}/Library/Application Support/marketmaker`,
-      marketmakerConfsDir = `${marketmakerDir}/confs`;
+      marketmakerDir = `${process.env.HOME}/Library/Application Support/marketmaker`;
 }
 
 if (os.platform() === 'linux') {
   var marketmakerBin = path.join(__dirname, '../assets/bin/linux64/marketmaker'),
-      marketmakerDir = `${process.env.HOME}/.marketmaker`,
-      marketmakerConfsDir = `${marketmakerDir}/confs`;
+      marketmakerDir = `${process.env.HOME}/.marketmaker`;
 }
 
 if (os.platform() === 'win32') {
@@ -42,34 +40,47 @@ if (os.platform() === 'win32') {
       marketmakerBin = path.normalize(marketmakerBin);
       marketmakerDir = `${process.env.APPDATA}/marketmaker`;
       marketmakerDir = path.normalize(marketmakerDir);
-      marketmakerConfsDir = `${process.env.APPDATA}/marketmaker/confs`;
-      marketmakerConfsDir = path.normalize(marketmakerConfsDir);
-      marketmakerIcon = path.join(__dirname, '/assets/icons/agama_icons/agama_app_icon.ico'),
-      marketmakerConfsDirSrc = path.normalize(marketmakerConfsDirSrc);
+      marketmakerIcon = path.join(__dirname, '/assets/icons/agama_icons/agama_app_icon.ico');
 }
 
+// DEFAULT COINS LIST FOR MARKETMAKER
+defaultCoinsListFile = path.join(__dirname, '../assets/coinslist.json');
 
 
 const {ipcMain} = require('electron');
+/*ipcMain.on('shepherd-commandSync', (event, arg) => {
+  console.log(arg.command)  // prints "ping"
+  event.returnValue = 'pong'
+})*/
+
 ipcMain.on('shepherd-command', (event, arg) => {
       console.log(arg)  // prints "ping"
-      switch (arg) {
+      switch (arg.command) {
             case 'ping':
-                  event.sender.send('shepherd-reply', 'pong');
+                  //event.sender.send('shepherd-reply', 'pong');
+                  event.returnValue = 'pong'
                   break;
             case 'login':
                   console.log(marketmakerBin);
                   console.log(marketmakerDir);
-                  console.log(marketmakerConfsDir);
-                  event.sender.send('shepherd-reply', 'Logged In');
-                  StartMarketMaker('');
+                  //event.sender.send('shepherd-reply', 'Logged In');
+                  event.returnValue = 'Logged In';
+                  //const _passphrase = 'scatter quote stumble confirm extra jacket lens abuse gesture soda rebel seed nature achieve hurt shoot farm middle venture fault mesh crew upset cotton';
+                  StartMarketMaker({"passphrase":arg.passphrase});
                   break;
             case 'logout':
                   killMarketmaker(true);
+                  event.returnValue = 'Logged Out';
+                  break;
+            case 'mmstatus':
+                  portscanner.checkPortStatus(7779, '127.0.0.1', function(error, status) {
+                        console.log(status)
+                        //event.sender.send('shepherd-reply', status);
+                        event.returnValue = status;
+                  })
                   break;
       }
 })
-
 
 
 // kill rogue marketmaker copies on start
@@ -113,29 +124,64 @@ killMarketmaker = function(data) {
 
 
 StartMarketMaker = function(data) {
+      //console.log(data.passphrase);
     try {
       // check if marketmaker instance is already running
       portscanner.checkPortStatus(7779, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
         if (status === 'closed') {
-          // start marketmaker via exec
-          const _coinsList = [{"coin":"UIS","name":"unitus","rpcport":50604,"pubtype":68,"p2shtype":10,"wiftype":132,"txfee":1000000}];
-          const _passphrase = 'scatter quote stumble confirm extra jacket lens abuse gesture soda rebel seed nature achieve hurt shoot farm middle venture fault mesh crew upset cotton';
-          const _customParam = {
+            const _coinsListFile = marketmakerDir+'/coinslist.json'
+            
+            fs.pathExists(_coinsListFile, (err, exists) => {
+                  if (exists === true) {
+                        console.log('file exist');
+                        data.coinslist = fs.readJsonSync(_coinsListFile, { throws: false });
+                        ExecMarketMaker(data);
+                  } else if (exists === false) {
+                        console.log('file doesn\'t exist');
+                        fs.copy(defaultCoinsListFile, _coinsListFile)
+                        .then(() => {
+                              console.log('file copied!')
+                              data.coinslist = fs.readJsonSync(_coinsListFile, { throws: false });
+                              ExecMarketMaker(data);
+                        })
+                        .catch(err => {
+                              console.error(err)
+                        })
+                  }
+                  if (err) {
+                        console.log(err) // => null
+                  }
+            })
+        } else {
+          console.log(`port ${_port} marketmaker is already in use`);
+        }
+      });
+    } catch(e) {
+      console.log(`failed to start marketmaker err: ${e}`);
+    }
+}
+
+
+ExecMarketMaker = function(data) {
+      //console.log(data);
+      // start marketmaker via exec
+      const _customParam = {
             'gui':'uglygui',
             'client':1,
             'userhome':`${process.env.HOME}`,
-            'passphrase': _passphrase,
-            'coins': _coinsList
-          };
+            'passphrase': data.passphrase,
+            'coins': data.coinslist
+      };
 
-          //console.log(JSON.stringify(_customParam))
+      //console.log(JSON.stringify(_customParam))
 
-          console.log(`exec ${marketmakerBin} ${JSON.stringify(_customParam)}`);
+      //console.log(`exec ${marketmakerBin} ${JSON.stringify(_customParam)}`);
 
-          exec(`${marketmakerBin} ${JSON.stringify(_customParam)}`, {
+      exec(`${marketmakerBin} '${JSON.stringify(_customParam)}'`, {
+            cwd: marketmakerDir,
             maxBuffer: 1024 * 10000 // 10 mb
-          }, function(error, stdout, stderr) {
+            }, function(error, stdout, stderr) {
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
 
@@ -145,19 +191,16 @@ StartMarketMaker = function(data) {
               /*if (error.toString().indexOf('using -reindex') > -1) {
                 cache.io.emit('service', {
                   'komodod': {
-                    'error': 'run -reindex'
+                    'error': 'run'
                   }
                 });
               }*/
             }
-          });
-        } else {
-          console.log(`port ${_port} marketmaker is already in use`);
-        }
       });
-    } catch(e) {
-      console.log(`failed to start marketmaker err: ${e}`);
-    }
 }
+
+
+
+
 
 

@@ -57,7 +57,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/COQUI.png' width='50px;'/> COQUI (COQUI)" data-tokens="COQUI COQUI">COQUI</option>
       <option data-content="<img src='img/cryptologo/CRYPTO.png' width='50px'/> Crypto777 (CRYPTO)" data-tokens="Crypto777 CRYPTO">CRYPTO</option>
       <option data-content="<img src='img/cryptologo/DEX.png' width='50px;'/> InstantDEX (DEX)" data-tokens="InstantDEX DEX">DEX</option>
-      <option data-content="<img src='img/cryptologo/HODL.png' width='50px'/> HODL (HODL)" data-tokens="HODL HODL">HODL</option>
+      <option data-content="<img src='img/cryptologo/HODLC.png' width='50px'/> HODLC (HODLC)" data-tokens="HODLC HODLC">HODLC</option>
       <option data-content="<img src='img/cryptologo/JUMBLR.png' width='50px;'/> Jumblr (JUMBLR)" data-tokens="Jumblr JUMBLR">JUMBLR</option>
       <option data-content="<img src='img/cryptologo/KV.png' width='50px'/> KeyValue (KV)" data-tokens="KeyValue KV">KV</option>
       <option data-content="<img src='img/cryptologo/MESH.png' width='50px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>

@@ -2,10 +2,13 @@ var CheckOrderbook_Interval = null;
 var CheckPortfolio_Interval = null;
 
 $(document).ready(function() {
-	var refresh_data = {"coin":" ", "status": "enable"};
-	enable_disable_coin(refresh_data);
-	get_myprices();
-	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+	var mmstatus = ShepherdIPCTest({"command":"mmstatus"});
+	if (mmstatus !== 'closed') {
+		var refresh_data = {"coin":" ", "status": "enable"};
+		enable_disable_coin(refresh_data);
+		get_myprices();
+		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+	}
 	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
 });
 
@@ -1109,8 +1112,8 @@ function return_coin_name(coin) {
 		case 'COQUI':
 			coin_name = 'COQUI';
 			break;
-		case 'HODL':
-			coin_name = 'HODL';
+		case 'HODLC':
+			coin_name = 'HODLC';
 			break;
 		case 'SHARK':
 			coin_name = 'SHARK';
