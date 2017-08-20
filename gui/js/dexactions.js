@@ -794,7 +794,7 @@ function get_coins_list(data) {
 		var dex_balances_tbl_tr = '';
 
 		dex_balances_tbl_tr += '<tr>';
-			dex_balances_tbl_tr += '<td><img src="img/cryptologo/' + val.coin + '.png" width="30px;"/> '+ coin_name + ' (' + val.coin + ')</td>';
+			dex_balances_tbl_tr += '<td><img src="img/cryptologo/' + val.coin.toLowerCase() + '.png" width="30px;"/> '+ coin_name + ' (' + val.coin + ')</td>';
 			//dex_balances_tbl_tr += '<td>' + coin_name + '</td>';
 			//dex_balances_tbl_tr += '<td>0.00000000</td>';
 			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
