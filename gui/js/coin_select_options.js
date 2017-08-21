@@ -44,6 +44,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/sys.png' width='50px'/> Syscoin (SYS)" data-tokens="Syscoin SYS">SYS</option>
       <option data-content="<img src='img/cryptologo/trc.png' width='50px'/> Terracoin (TRC)" data-tokens="Terracoin TRC">TRC</option>
       
+      <option data-content="<img src='img/cryptologo/uis.png' width='50px'/> Unitus (UIS)" data-tokens="Unitus UIS">UIS</option>
       <option data-content="<img src='img/cryptologo/vtc.png' width='50px'/> Vertcoin (VTC)" data-tokens="Vertcoin VTC">VTC</option>
       <option data-content="<img src='img/cryptologo/via.png' width='50px'/> Viacoin (VIA)" data-tokens="Viacoin VIA">VIA</option>
       <option data-content="<img src='img/cryptologo/zcl.png' width='50px'/> ZClassic (ZCL)" data-tokens="ZClassic ZCL">ZCL</option>

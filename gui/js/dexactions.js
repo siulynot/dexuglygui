@@ -1069,6 +1069,9 @@ function return_coin_name(coin) {
 		case 'SYS':
 			coin_name = 'Syscoin';
 			break;
+		case 'UIS':
+			coin_name = 'Unitus';
+			break;
 		case 'UNO':
 			coin_name = 'Unobtanium';
 			break;
