@@ -1048,6 +1048,12 @@ function return_coin_name(coin) {
 		case 'BTC':
 			coin_name = 'Bitcoin';
 			break;
+		case '888':
+			coin_name = 'OctoCoin';
+			break;
+		case 'ARG':
+			coin_name = 'ArcticCoin';
+			break;
 		case 'REVS':
 			coin_name = 'REVS';
 			break;
@@ -1063,6 +1069,9 @@ function return_coin_name(coin) {
 		case 'DGB':
 			coin_name = 'Digibyte';
 			break;
+		case 'GLT':
+			coin_name = 'GlobalToken';
+			break;
 		case 'MZC':
 			coin_name = 'Mazacoin';
 			break;
@@ -1074,6 +1083,9 @@ function return_coin_name(coin) {
 			break;
 		case 'UNO':
 			coin_name = 'Unobtanium';
+			break;
+		case 'ZER':
+			coin_name = 'Zero';
 			break;
 		case 'ZET':
 			coin_name = 'Zetacoin';
