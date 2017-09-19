@@ -73,7 +73,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
                   event.returnValue = 'Logged Out';
                   break;
             case 'mmstatus':
-                  portscanner.checkPortStatus(7779, '127.0.0.1', function(error, status) {
+                  portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
                         console.log(status)
                         //event.sender.send('shepherd-reply', status);
                         event.returnValue = status;
@@ -127,7 +127,7 @@ StartMarketMaker = function(data) {
       //console.log(data.passphrase);
     try {
       // check if marketmaker instance is already running
-      portscanner.checkPortStatus(7779, '127.0.0.1', function(error, status) {
+      portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
         if (status === 'closed') {
             const _coinsListFile = marketmakerDir+'/coinslist.json'
@@ -154,7 +154,7 @@ StartMarketMaker = function(data) {
                   }
             })
         } else {
-          console.log(`port 7779 marketmaker is already in use`);
+          console.log(`port 7783 marketmaker is already in use`);
         }
       });
     } catch(e) {

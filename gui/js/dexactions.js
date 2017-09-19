@@ -261,7 +261,7 @@ function get_price(base,rel) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base,"rel":rel};
 	var ajax_data2 = {"userpass":userpass,"method":"orderbook","base":rel,"rel":base};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -342,7 +342,7 @@ function get_marketmaker_userpass() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"getpeers"};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -373,7 +373,7 @@ $('.refresh_inv_table').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -456,7 +456,7 @@ $( ".sell_coin" ).change(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -530,7 +530,7 @@ $('.autotrade_buy_coin_btn').click(function(){
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"relvolume":amount,"price":price};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -566,7 +566,7 @@ $('.lp_set_price_btn').click(function(){
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -599,7 +599,7 @@ $('.lp_set_price_btn').click(function(){
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"autotrade","txid":txid,"vout":vout,"coin":"REVS","maxprice":maxprice};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -652,7 +652,7 @@ function CheckOrderBookFn(sig) {
 
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
 	//console.log(ajax_data)
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -677,15 +677,17 @@ function CheckOrderBookFn(sig) {
 			$('.orderbook_bids tbody').empty();
 			$.each(data.bids, function(index, val) {
 				//console.log(index);
-				//console.log(val);
+				console.log(val);
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
 					var mytrade_true = 'class="warning"';
 				}
 				var orderbook_bids_tr = '';
 				orderbook_bids_tr += '<tr ' + mytrade_true + '>';
-				orderbook_bids_tr += '<td class="col-xs-6">' + val.price + '</td>';
-				orderbook_bids_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-3">' + val.price + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-3">' + val.minvolume + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-3">' + val.maxvolume + '</td>';
+				orderbook_bids_tr += '<td class="col-xs-3">' + val.age + '</td>';
 				orderbook_bids_tr += '</tr>';
 				$('.orderbook_bids tbody').append(orderbook_bids_tr);
 			})
@@ -693,15 +695,17 @@ function CheckOrderBookFn(sig) {
 			$('.orderbook_asks tbody').empty();
 			$.each(data.asks, function(index, val) {
 				//console.log(index);
-				//console.log(val);
+				console.log(val);
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
 					var mytrade_true = 'class="warning"';
 				}
 				var orderbook_asks_tr = '';
 				orderbook_asks_tr += '<tr ' + mytrade_true + '>';
-				orderbook_asks_tr += '<td class="col-xs-6">' + val.price + '</td>';
-				orderbook_asks_tr += '<td class="col-xs-6">' + val.volume + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-3">' + val.price + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-3">' + val.minvolume + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-3">' + val.maxvolume + '</td>';
+				orderbook_asks_tr += '<td class="col-xs-3">' + val.age + '</td>';
 				orderbook_asks_tr += '</tr>';
 				$('.orderbook_asks tbody').append(orderbook_asks_tr);
 			})
@@ -749,7 +753,7 @@ function enable_disable_coin(data) {
 	//console.log(data.status);
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -822,7 +826,7 @@ $('.refresh_dex_myprices').click(function() {
 function get_myprices() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"myprices"};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -877,7 +881,7 @@ $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_showinv_btn', functi
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1357,7 +1361,7 @@ $('.refresh_swap_list_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1382,7 +1386,7 @@ $('.check_swap_status_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
-	var url = "http://127.0.0.1:7779/";
+	var url = "http://127.0.0.1:7783/";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1416,7 +1420,7 @@ function CheckPortfolioFn(sig) {
 	
 	var ajax_data = {"userpass":userpass,"method":"portfolio"};
 	//console.log(ajax_data)
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1595,7 +1599,7 @@ $('.portfolio_set_price_btn').click(function() {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1626,7 +1630,7 @@ $('.portfolio_set_autoprice_btn').click(function() {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":margin};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1656,7 +1660,7 @@ $('.portfolio_set_goal_btn').click(function() {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"goal","coin":coin,"val":percent};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1692,7 +1696,7 @@ $('.portfolio_set_autogoals_btn').click(function() {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"goal"};
-	var url = "http://127.0.0.1:7779";
+	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),

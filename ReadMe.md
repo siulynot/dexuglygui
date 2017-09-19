@@ -11,7 +11,7 @@ Once running, follow these steps:
 ```shell
 git clone https://github.com/SuperNETorg/dexuglygui.git
 cd dexuglygui
-git checkout v0.3
+git checkout v0.4
 npm install
 npm start
 ```
@@ -22,7 +22,7 @@ It will download "dexuglygui". Open "dexuglygui", and from there open "index.htm
 To update, follow these steps:
 ```shell
 cd dexuglygui
-git checkout v0.3
+git checkout v0.4
 git pull
 ```
 

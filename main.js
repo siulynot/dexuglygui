@@ -19,7 +19,7 @@ var shepherd = require('./ipc/shepherd-ipc');
 
 const appBasicInfo = {
   name: 'BarterDEX',
-  version: '0.3.0-beta'
+  version: '0.4.0-beta'
 };
 
 app.setName(appBasicInfo.name);
