@@ -813,10 +813,6 @@ function get_coins_list(data) {
 		//console.log(index);
 		//console.log(val);
 
-		if (!val.electrum === false) {
-			console.log(val);			
-		}
-
 		var coin_name = return_coin_name(val.coin)
 
 		var dex_balances_tbl_tr = '';
@@ -843,6 +839,11 @@ function get_coins_list(data) {
 		$('.selectpicker').selectpicker('refresh');*/
 		$('.toggle_checkbox[data-coin="BTC"]').removeAttr('disabled');
 		$('.toggle_checkbox').bootstrapToggle();
+
+		if (!val.electrum === false) {
+			console.log(val);
+			$('.toggle_checkbox[data-coin="' + val.coin + '"]').prop('checked', false).change()
+		}
 	})
 };
 
