@@ -751,8 +751,22 @@ $('.dex_balances_tbl tbody').on('click', '.dex_balances_tbl_enable_btn', functio
 function enable_disable_coin(data) {
 	//console.log(data.coin);
 	//console.log(data.status);
+	var electrum_option = $('.toggle_checkbox[data-coin="' + data.coin + '"]').prop('checked'); //If 'false', electrum option selected
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	
+	if (data.status == 'enable') {
+		if (electrum_option == false) {
+		console.log(electrum_option);
+		console.log("electrum selected for " + data.coin);
+		var ajax_data = {"userpass":userpass,"method":"electrum","coin":data.coin,"ipaddr":"46.4.125.2","port":50001};
+		} else {
+			console.log(electrum_option);
+			console.log("native selected for " + data.coin);
+			var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+		}
+	} else {
+		var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	}
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -777,7 +791,13 @@ function enable_disable_coin(data) {
 			get_coins_list(data.coins);
 		} else {
 			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-			get_coins_list(data);
+			//get_coins_list(data);
+			if (electrum_option == false) {
+				//get_coins_list('');
+				$('.refresh_dex_balances').trigger('click');
+			} else {
+				get_coins_list(data);
+			}
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -786,12 +806,16 @@ function enable_disable_coin(data) {
 }
 
 function get_coins_list(data) {
-	//console.log(data);
+	console.log(data);
 	$('.dex_balances_tbl tbody').empty();
 
 	$.each(data, function(index, val) {
 		//console.log(index);
 		//console.log(val);
+
+		if (!val.electrum === false) {
+			console.log(val);			
+		}
 
 		var coin_name = return_coin_name(val.coin)
 
@@ -804,6 +828,7 @@ function get_coins_list(data) {
 			dex_balances_tbl_tr += '<td>' + val.smartaddress + '</td>';
 			dex_balances_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
 			dex_balances_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
+			dex_balances_tbl_tr += '<td><input class="toggle_checkbox" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="' + val.coin + '" disabled></td>';
 			dex_balances_tbl_tr += '<td style="width: 165px;"> <div class="btn-group" role="group">' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning dex_balances_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success dex_balances_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + ' <button class="btn btn-xs btn-primary dex_balances_tbl_showinv_btn" data-coin="' + val.coin + '" ' + (( val.status == 'active' ) ? '' : 'disabled') +'>Show Inventory</button></div></td>';
 		dex_balances_tbl_tr += '</tr>';
 
@@ -816,6 +841,8 @@ function get_coins_list(data) {
 		}
 
 		$('.selectpicker').selectpicker('refresh');*/
+		$('.toggle_checkbox[data-coin="BTC"]').removeAttr('disabled');
+		$('.toggle_checkbox').bootstrapToggle();
 	})
 };
 
