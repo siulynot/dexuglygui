@@ -514,9 +514,9 @@ $( ".sell_coin" ).change(function() {
 });
 
 
-$('.autotrade_buy_coin_btn').click(function(){
-	var amount = $('#autotrade_amount').val();
-	var price = $('#autotrade_price').val();
+$('.buy_coin_btn').click(function(){
+	var amount = $('#buy_amount').val();
+	var price = $('#buy_price').val();
 
 	//var base_coin = sessionStorage.getItem('dex_base_coin');
 	var base_coin = $('.buy_coin').selectpicker('val');
@@ -529,7 +529,7 @@ $('.autotrade_buy_coin_btn').click(function(){
 	console.log('rel ' + rel_coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"autotrade","base":base_coin,"rel":rel_coin,"relvolume":amount,"price":price};
+	var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"relvolume":amount,"price":price};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -541,7 +541,56 @@ $('.autotrade_buy_coin_btn').click(function(){
 	    // If successful
 	   console.log(data);
 	   if (data.error == 'cant find utxo that is big enough') {
-			toastr.error('cant find utxo that is big enough', 'Autotrade Info')
+			toastr.error('cant find utxo that is big enough', 'Buy Info')
+	   }
+	   if (data.error == 'invalid parameter') {
+			toastr.error('invalid parameter', 'Buy Info')
+	   }
+	   if (data.error == 'cant find ordermatch utxo') {
+			toastr.error('cant find ordermatch utxo', 'Buy Info')
+	   }
+	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+});
+
+$('.sell_coin_btn').click(function(){
+	var amount = $('#sell_amount').val();
+	var price = $('#sell_price').val();
+
+	//var base_coin = sessionStorage.getItem('dex_base_coin');
+	var base_coin = $('.buy_coin').selectpicker('val');
+	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
+	var rel_coin = $('.sell_coin').selectpicker('val');
+
+	console.log('amount ' + amount);
+	console.log('price ' + price);
+	console.log('base '+ base_coin);
+	console.log('rel ' + rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"basevolume":amount,"price":price};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	    // If successful
+	   console.log(data);
+	   if (data.error == 'cant find utxo that is big enough') {
+			toastr.error('cant find utxo that is big enough', 'Sell Info')
+	   }
+	   if (data.error == 'invalid parameter') {
+			toastr.error('invalid parameter', 'Sell Info')
+	   }
+	   if (data.error == 'cant find ordermatch utxo') {
+			toastr.error('cant find ordermatch utxo', 'Sell Info')
 	   }
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -552,7 +601,7 @@ $('.autotrade_buy_coin_btn').click(function(){
 });
 
 
-$('.lp_set_price_btn').click(function(){
+/*$('.lp_set_price_btn').click(function(){
 	var price = $('#lp_set_price').val();
 
 	//var base_coin = sessionStorage.getItem('dex_base_coin');
@@ -583,7 +632,7 @@ $('.lp_set_price_btn').click(function(){
 	});
 
 	get_myprices();
-})
+})*/
 
 
 /*$('.inv_alice_table tbody').on('click', '.inv_autotrade', function() {
@@ -677,7 +726,7 @@ function CheckOrderBookFn(sig) {
 			$('.orderbook_bids tbody').empty();
 			$.each(data.bids, function(index, val) {
 				//console.log(index);
-				console.log(val);
+				//console.log(val);
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
 					var mytrade_true = 'class="warning"';
@@ -695,7 +744,7 @@ function CheckOrderBookFn(sig) {
 			$('.orderbook_asks tbody').empty();
 			$.each(data.asks, function(index, val) {
 				//console.log(index);
-				console.log(val);
+				//console.log(val);
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
 					var mytrade_true = 'class="warning"';

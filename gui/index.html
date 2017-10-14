@@ -174,28 +174,40 @@
               <div class="panel-heading">BUY <span class="autotrade_buy_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--><button class="btn btn-default btn-sm refresh_inv_table" style="float: right; font-size: 13px; padding: 0 5px;" data-coin="COIN" disabled>Refresh Inventory</button>  <span style="float: right; font-size: 13px; padding: 0 5px;">Max Amount: <b><span class="autotrade_max_amount"></span> <span class="autotrade_max_amount_coin"></span></b></span></div>
                 <div class="panel-body">
                     <div class="form-group">
-                      <label for="autotrade_amount">Amount</label>
-                      <input type="text" class="form-control" id="autotrade_amount" placeholder="Amount">
+                      <label for="buy_amount">Amount</label>
+                      <input type="text" class="form-control" id="buy_amount" placeholder="Amount">
                     </div>
                     <div class="form-group">
-                      <label for="autotrade_price">Price</label>
-                      <input type="text" class="form-control" id="autotrade_price" placeholder="Price">
+                      <label for="buy_price">Price</label>
+                      <input type="text" class="form-control" id="buy_price" placeholder="Price">
                     </div>                      
-                    <button class="btn btn-default autotrade_buy_coin_btn">Submit</button>
+                    <button class="btn btn-default buy_coin_btn">Submit</button>
                 </div>
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="panel panel-default">
-              <div class="panel-heading">Sell <span class="lp_sell_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--></div>
+              <div class="panel-heading">SELL <span class="lp_sell_coin"></span><!--<button class="btn btn-sm btn-default">Refresh Coins List</button>--></div>
                 <div class="panel-body">
+                    <div class="form-group">
+                      <label for="sell_amount">Amount</label>
+                      <input type="text" class="form-control" id="sell_amount" placeholder="Amount">
+                    </div>
+                    <div class="form-group">
+                      <label for="sell_price">Price</label>
+                      <input type="text" class="form-control" id="sell_price" placeholder="Price">
+                    </div>                      
+                    <button class="btn btn-default sell_coin_btn">Submit</button>
+                </div>
+
+                <!--<div class="panel-body">
                     <div class="form-group">
                       <label for="lp_set_price">Set Price</label>
                       <input type="text" class="form-control" id="lp_set_price" placeholder="Set Price">
                     </div>                      
                     <button class="btn btn-default lp_set_price_btn">Submit</button>
-                </div>
+                </div>-->
             </div>
           </div>
 

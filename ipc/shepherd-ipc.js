@@ -166,13 +166,23 @@ StartMarketMaker = function(data) {
 ExecMarketMaker = function(data) {
       //console.log(data);
       // start marketmaker via exec
-      const _customParam = {
-            'gui':'uglygui',
-            'client':1,
-            'userhome':`${process.env.HOME}`,
-            'passphrase': data.passphrase,
-            'coins': data.coinslist
-      };
+      if (os.platform() === 'win32') {
+        const _customParam = {
+              'gui':'uglygui',
+              'client':1,
+              'userhome':`${process.env.APPDATA}`,
+              'passphrase': data.passphrase
+        };
+      }
+      else {
+        const _customParam = {
+              'gui':'uglygui',
+              'client':1,
+              'userhome':`${process.env.HOME}`,
+              'passphrase': data.passphrase,
+              'coins': data.coinslist
+        };
+      }
 
       //console.log(JSON.stringify(_customParam))
 
