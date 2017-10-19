@@ -22,8 +22,10 @@ $('.dexlogout-btn').click(function(e) {
 	var shepherdresult = ShepherdIPC({"command":"logout"});
 	$('.mainbody').fadeOut();
 	$('.loginbody').fadeIn();
-	CheckOrderBookFn(false);
-	CheckPortfolioFn(false);
+	//CheckOrderBookFn(false);
+	//CheckPortfolioFn(false);
+	check_coin_balance(false);
+	sessionStorage.clear();
 });
 
 $('.login-btn').click(function(e) {
@@ -49,10 +51,11 @@ CheckMMStatus = function(sig) {
 		$('.mainbody').fadeIn();
 		$('.loginbody').fadeOut();
 		$('.loadingbody').hide();
-		var refresh_data = {"coin":" ", "status": "enable"};
+		/*var refresh_data = {"coin":" ", "status": "enable"};
 		enable_disable_coin(refresh_data);
 		get_myprices();
-		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);*/
+		check_coin_balance_Interval = setInterval(check_coin_balance,3000);
 		clearInterval(CheckMM_Interval);
 	} else {
 		$('.mainbody').fadeOut();

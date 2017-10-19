@@ -4,6 +4,8 @@ var coin_select_options = '';
 coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/btc.png' width='50px;'/> Bitcoin (BTC)" data-tokens="btc bitcoin ">BTC</option>
       <option data-content="<img src='img/cryptologo/kmd.png' width='50px;'/> Komodo (KMD)" data-tokens="kmd komodo ">KMD</option>
+      <option data-content="<img src='img/cryptologo/mnz.png' width='50px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
+      <option data-content="<img src='img/cryptologo/chips.png' width='50px;'/> CHIPS (CHIPS)" data-tokens="CHIPS CHIPS ">CHIPS</option>
       
       <option data-content="<img src='img/cryptologo/888.png' width='50px'/> OctoCoin (888)" data-tokens="OctoCoin 888">888</option>
       <option data-content="<img src='img/cryptologo/arc.png' width='50px'/> ArcticCoin (ARC)" data-tokens="ArcticCoin ARC">ARC</option>
@@ -12,6 +14,10 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/bdl.png' width='50px;'/> Bitdeal (BDL)" data-tokens="Bitdeal BDL">BDL</option>
       
       <option data-content="<img src='img/cryptologo/btx.png' width='50px'/> Bitcore (BTX)" data-tokens="Bitcore BTX">BTX</option>
+      <option data-content="<img src='img/cryptologo/btcz.png' width='50px'/> BitcoinZ (BTCZ)" data-tokens="BitcoinZ BTCZ">BTCZ</option>
+      <option data-content="<img src='img/cryptologo/bsd.png' width='50px'/> BitSend (BSD)" data-tokens="BitSend BSD">BSD</option>
+      <option data-content="<img src='img/cryptologo/blk.png' width='50px'/> BlackCoin (BLK)" data-tokens="BlackCoin BLK">BLK</option>
+      <option data-content="<img src='img/cryptologo/block.png' width='50px'/> Blocknet (BLOCK)" data-tokens="Blocknet BLOCK">BLK</option>
       
       <option data-content="<img src='img/cryptologo/crw.png' width='50px'/> Crown (CRW)" data-tokens="crw crown ">CRW</option>
       <option data-content="<img src='img/cryptologo/crea.png' width='50px'/> Creativecoin (CREA)" data-tokens="Creativecoin CREA">CREA</option>
@@ -29,9 +35,11 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/huc.png' width='50px'/> Huntercoin (HUC)" data-tokens="Huntercoin HUC">HUC</option>
       <option data-content="<img src='img/cryptologo/hush.png' width='50px'/> Hushcoin (HUSH)" data-tokens="Hushcoin HUSH">HUSH</option>
       <option data-content="<img src='img/cryptologo/i0c.png' width='50px'/> I0Coin (I0C)" data-tokens="I0Coin I0C">I0C</option>
+      <option data-content="<img src='img/cryptologo/iop.png' width='50px'/> Internet of People (IOP)" data-tokens="Internet of People IOP">IOP</option>
       <option data-content="<img src='img/cryptologo/lbc.png' width='50px'/> LBRY Credits (LBC)" data-tokens="LBRY Credits LBC">LBC</option>
       <option data-content="<img src='img/cryptologo/ltc.png' width='50px'/> Litecoin (LTC)" data-tokens="Litecoin LTC">LTC</option>
       <option data-content="<img src='img/cryptologo/mac.png' width='50px'/> Machinecoin (MAC)" data-tokens="Machinecoin MAC">MAC</option>
+      <option data-content="<img src='img/cryptologo/maga.png' width='50px'/> Magacoin (MAGA)" data-tokens="Magacoin MAGA">MAGA</option>
       
       <option data-content="<img src='img/cryptologo/mona.png' width='50px'/> Monacoin (MONA)" data-tokens="Monacoin MONA">MONA</option>
       <option data-content="<img src='img/cryptologo/mue.png' width='50px'/> Monetary Unit (MUE)" data-tokens="MonetaryUnit MUE">MUE</option>
@@ -54,6 +62,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/zcl.png' width='50px'/> ZClassic (ZCL)" data-tokens="ZClassic ZCL">ZCL</option>
       <option data-content="<img src='img/cryptologo/zer.png' width='50px'/> Zero (ZER)" data-tokens="Zero ZER">ZER</option>
       <option data-content="<img src='img/cryptologo/zet.png' width='50px'/> Zetacoin (ZET)" data-tokens="Zetacoin ZET">ZET</option>
+      <option data-content="<img src='img/cryptologo/zen.png' width='50px'/> ZenCash (ZEN)" data-tokens="ZenCash ZEN">ZEN</option>
       <option data-content="<img src='img/cryptologo/zec.png' width='50px'/> Zcash (ZEC)" data-tokens="Zcash ZEC">ZEC</option>
     </optgroup>
     <optgroup label="AssetChains">

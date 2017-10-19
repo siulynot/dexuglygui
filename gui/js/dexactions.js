@@ -519,9 +519,9 @@ $('.buy_coin_btn').click(function(){
 	var price = $('#buy_price').val();
 
 	//var base_coin = sessionStorage.getItem('dex_base_coin');
-	var base_coin = $('.buy_coin').selectpicker('val');
+	var base_coin = $('.buy_coin').selectpicker('val'); //the currency you want to buy 
 	//var rel_coin = sessionStorage.getItem('dex_rel_coin');
-	var rel_coin = $('.sell_coin').selectpicker('val');
+	var rel_coin = $('.sell_coin').selectpicker('val'); //the currency you are paying with 
 
 	console.log('amount ' + amount);
 	console.log('price ' + price);
@@ -549,6 +549,12 @@ $('.buy_coin_btn').click(function(){
 	   if (data.error == 'cant find ordermatch utxo') {
 			toastr.error('cant find ordermatch utxo', 'Buy Info')
 	   }
+	   if (data.error == 'cant find alice utxo that is big enough') {
+			toastr.error('cant find alice utxo that is big enough', 'Buy Info')
+	   }
+	   if (data.error == 'cant find ordermatch utxo, need to change relvolume to be closer to available') {
+			toastr.error('cant find ordermatch utxo, need to change relvolume to be closer to available', 'Sell Info')
+	   }
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -575,6 +581,9 @@ $('.sell_coin_btn').click(function(){
 	var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"basevolume":amount,"price":price};
 	var url = "http://127.0.0.1:7783";
 
+	console.log('command executed:');
+	console.log(ajax_data);
+
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -591,6 +600,12 @@ $('.sell_coin_btn').click(function(){
 	   }
 	   if (data.error == 'cant find ordermatch utxo') {
 			toastr.error('cant find ordermatch utxo', 'Sell Info')
+	   }
+	   if (data.error == 'cant find alice utxo that is big enough') {
+			toastr.error('cant find alice utxo that is big enough', 'Sell Info')
+	   }
+	   if (data.error == 'cant find ordermatch utxo, need to change relvolume to be closer to available') {
+			toastr.error('cant find ordermatch utxo, need to change relvolume to be closer to available', 'Sell Info')
 	   }
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -803,7 +818,13 @@ function enable_disable_coin(data) {
 	var electrum_option = $('.toggle_checkbox[data-coin="' + data.coin + '"]').prop('checked'); //If 'false', electrum option selected
 	var userpass = sessionStorage.getItem('mm_userpass');
 	
-	if (data.status == 'enable') {
+	
+	if (data.coin !== ' ' ) {
+		console.log('coin value is not empty');
+	} else {
+		console.log('coin value is empty');
+	}
+	if (data.coin !== ' ' && data.status == 'enable') {
 		if (electrum_option == false) {
 		console.log(electrum_option);
 		console.log("electrum selected for " + data.coin);
@@ -813,10 +834,14 @@ function enable_disable_coin(data) {
 			console.log("native selected for " + data.coin);
 			var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
 		}
-	} else {
+	} else if (data.coin !== ' ' && data.status == 'disable') {
 		var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	} else if (data.coin == ' ') {
+		var ajax_data = {"userpass":userpass,"method":"getcoins"};
 	}
 	var url = "http://127.0.0.1:7783";
+
+	console.log(ajax_data);
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1128,6 +1153,9 @@ function return_coin_name(coin) {
 			break;
 		case 'BTC':
 			coin_name = 'Bitcoin';
+			break;
+		case 'MNZ':
+			coin_name = 'Monaize';
 			break;
 		case '888':
 			coin_name = 'OctoCoin';
@@ -1794,3 +1822,6 @@ $('.portfolio_set_autogoals_btn').click(function() {
 })
 
 /* Portfolio section functions END */
+
+
+

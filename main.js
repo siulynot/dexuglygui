@@ -43,6 +43,8 @@ function createWindow (status) {
   mainWindow = new BrowserWindow({ // dirty hack to prevent main window flash on quit
     width: closeAppAfterLoading ? 1 : 1280,
     height: closeAppAfterLoading ? 1 : 800
+    //titleBarStyle: 'customButtonsOnHover',
+    //frame: false
     //icon: iguanaIcon
   });
 

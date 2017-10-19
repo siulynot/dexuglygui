@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - Ugly GUI</title>
+    <title>BarterDEX - Simple GUI (BTC <-> KMD)</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -82,8 +82,115 @@
   </div>
   <!-- LOADING BODY END -->
 
+  
   <!-- MAIN BODY -->
   <div class="mainbody" style="display: none;">
+
+    <!-- Section: Navigation Menu -->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand navbar-brand-centered">BarterDEX</div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-brand-centered">
+          <ul class="nav navbar-nav">
+            <!--<li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>-->
+            <a href="javascript:void(0)" class="btn btn-danger dexlogout-btn" style="margin: 8px 8px 0 0;">Logout</a>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <!-- Section: Navigation Menu END -->
+
+    <div class="col-sm-12">
+      <div style="display: block; height: 100px;"></div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="display: none;">
+          <h3 class="panel-title">Bitcoin</h3>
+        </div>
+        <div class="panel-body">
+          <div style="text-align: center;">
+            <img src="img/cryptologo/btc.png"/>
+            <div><span class="balance pair-one" style="font-size: 55px; font-weight: 100"></span><span class="coin pair-one" style="font-size: 35px; font-weight: 100"></span></div>
+            <button type="button" class="btn btn-default pair-one btn-send" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Send</button>
+            <button type="button" class="btn btn-default pair-one btn-receive" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Receive</button>
+            <button type="button" class="btn btn-default pair-one btn-exchange" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Exchange</button>
+            <button type="button" class="btn btn-default pair-one btn-inventory" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Inventory</button>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <input class="toggle_checkbox mode-option pair-one" id="toggle_pair_one" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
+          <button type="button" class="btn btn-default pair-one btn-enable" data-coin="COIN" data-pair="one" data-method="enable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Enable</button>
+          <button type="button" class="btn btn-default pair-one btn-disable" data-coin="COIN" data-pair="one" data-method="disable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Disable</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="display: none;">
+          <h3 class="panel-title">Komodo</h3>
+        </div>
+        <div class="panel-body">
+          <div style="text-align: center;">
+            <img src="img/cryptologo/kmd.png"/>
+            <div><span class="balance pair-two" style="font-size: 55px; font-weight: 100"></span> <span class="coin pair-two" style="font-size: 35px; font-weight: 100"></span></div>
+            <button type="button" class="btn btn-default pair-two btn-send" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
+            <button type="button" class="btn btn-default pair-two btn-receive" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
+            <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Exchange</button>
+            <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <input class="toggle_checkbox pair-two" id="toggle_pair_two" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
+          <button type="button" class="btn btn-default pair-two btn-enable" data-coin="COIN" data-pair="two" data-method="enable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Enable</button>
+          <button type="button" class="btn btn-default pair-two btn-disable" data-coin="COIN" data-pair="two" data-method="disable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Disable</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- MAIN BODY END-->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- MAIN BODY OLD-->
+  <div class="mainbody-old" style="display: none;">
     <!-- Section: Navigation Menu -->
     <nav class="navbar navbar-default navbar-fixed-top navmenu_top">
       <div class="container-fluid">
@@ -572,6 +679,8 @@
   </div>
   <!-- MAIN BODY END -->
 
+
+
 <script>
   var ipc = require('electron').ipcRenderer;
   if (typeof module === 'object') {
@@ -589,6 +698,8 @@
     <script src="js/qrcode.min.js" type="text/javascript"></script>
     <script src="js/toastr.min.js" type="text/javascript"></script>
     <script src="js/bootstrap-toggle.min.js" type="text/javascript"></script>
+    <script src="js/bootbox.min.js" type="text/javascript"></script>
+    <script src="js/clipboard.min.js" type="text/javascript"></script>
     <!-- amcharts libs -->
     <script src="js/amcharts/amcharts.js" type="text/javascript"></script>
     <script src="js/amcharts/pie.js" type="text/javascript"></script>
@@ -597,6 +708,7 @@
     <script src="js/amcharts/plugins/responsive/responsive.min.js" type="text/javascript"></script>
     <script src="js/amcharts/themes/light.js" type="text/javascript"></script>
     <!-- custom dex actions javascript -->
-    <script src="js/dexactions.js" type="text/javascript"></script>
+    <!--<script src="js/dexactions.js" type="text/javascript"></script>-->
+    <script src="js/simpledexactions.js" type="text/javascript"></script>
   </body>
 </html>
