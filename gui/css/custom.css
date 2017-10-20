@@ -88,3 +88,8 @@ textarea {
         margin-left: -80px;
     }
 }
+
+
+.modal-dialog {
+  margin-top: 50px;
+}

@@ -112,7 +112,6 @@ function check_coin_balance(sig) {
 	} else {
 		console.log('checking coin balance');
 	}
-	//Set pair coin settings
 
 	$.each(coin_pair, function(index, val) {
 		//console.log(index);
@@ -154,6 +153,7 @@ function check_coin_balance(sig) {
 			}
 
 			if (!data.error === false && data.error == 'coin is disabled') {
+				console.log(data.coin);
 				console.log('coin '+ val + ' is disabled');
 				$('.btn-send[data-coin="' + val + '"]').hide();
 				$('.btn-receive[data-coin="' + val + '"]').hide();
@@ -182,7 +182,7 @@ function check_coin_balance(sig) {
 
 			} else {
 				//console.log(data);
-				//console.log(data.coin);
+				console.log(data.coin);
 				//console.log(data.coin.smartaddress);
 				//console.log(val);
 
@@ -192,6 +192,7 @@ function check_coin_balance(sig) {
 				$('.btn-inventory[data-coin="' + val + '"]').show();
 				$('.btn-enable[data-coin="' + val + '"]').hide();
 				$('.btn-disable[data-coin="' + val + '"]').show();
+				$('.pair-address[data-coin="' + val + '"]').html(data.coin.smartaddress);
 
 				if (index == 0) {
 					//$('#toggle_pair_one').bootstrapToggle('destroy');
@@ -283,7 +284,7 @@ function get_coin(data) {
 	    url: url
 	}).done(function(data) {
 	    // If successful
-	   console.log(data);
+	   //console.log(data);
 	   if (!data.userpass === false) {
 				console.log('first marketmaker api call execution after marketmaker started.')
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
@@ -360,8 +361,32 @@ function enable_disable_coin(data) {
 				//get_coins_list(data);
 			}
 		}
+
+		if (!data.error === false) {
+			//console.log(data.error);
+			if (data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+				bootbox.alert({
+					title: "Couldn't find "+data.coin+" locally installed",
+					message: `<p>It seems you don't have `+data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+					<ol>
+						<li>Make sure your wallet is installed properly.</li>
+						<li>Make sure your wallet is running and synced to network.</li>
+						<li>Make sure your wallet has proper RPC settings configured in it's configuration file.</li>
+						<li>If you have all the above covered properly, please logout and then login back and try activating the coin again.</li>
+					</ol>
+					<p>If you still having issues activating the your wallet, please get in touch with our support desk.</p>
+					<ul>
+						<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
+					</ul>`,
+					size: 'large'
+				});
+			}
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+
+
