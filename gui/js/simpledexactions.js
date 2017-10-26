@@ -198,6 +198,27 @@ $('.btn-sendcoinclose').click(function(e) {
 });
 
 
+$('.btn-inventory').click(function(e) {
+	e.preventDefault();
+	console.log('btn-inventory clicked');
+	console.log($(this).data());
+	$('.coindashboard').hide()
+	$('.screen-inventory').show();
+	check_coin_balance(false);
+	$('.inventory-title').html('Inventory ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
+	$('.inventory-title').data('coin', $(this).data('coin'));
+});
+
+$('.btn-inventoryclose').click(function(e) {
+	e.preventDefault();
+	console.log('btn-inventoryclose clicked');
+	console.log($(this).data());
+	$('.coindashboard').show()
+	$('.screen-inventory').hide();
+	check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+});
+
+
 
 function check_coin_balance(sig) {
 	if (sig == false) {
