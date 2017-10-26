@@ -117,54 +117,92 @@
     </nav>
     <!-- Section: Navigation Menu END -->
 
-    <div class="col-sm-12">
-      <div style="display: block; height: 100px;"></div>
-    </div>
+    <div class="coindashboard">
+      <div class="col-sm-12">
+        <!--<div style="display: block; height: 100px;"></div>-->
+      </div>
 
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading" style="display: none;">
-          <h3 class="panel-title">Bitcoin</h3>
-        </div>
-        <div class="panel-body">
-          <div style="text-align: center;">
-            <img src="img/cryptologo/btc.png"/>
-            <div><span class="balance pair-one" style="font-size: 55px; font-weight: 100"></span><span class="coin pair-one" style="font-size: 35px; font-weight: 100"></span></div>
-            <div class="pair-one pair-address" data-coin="COIN" data-pair="one" style="font-size: 15px;"></div>
-            <button type="button" class="btn btn-default pair-one btn-send" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Send</button>
-            <button type="button" class="btn btn-default pair-one btn-receive" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Receive</button>
-            <button type="button" class="btn btn-default pair-one btn-exchange" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Exchange</button>
-            <button type="button" class="btn btn-default pair-one btn-inventory" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Inventory</button>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="display: none;">
+            <h3 class="panel-title">Bitcoin</h3>
+          </div>
+          <div class="panel-body">
+            <div style="text-align: center;">
+              <img src="img/cryptologo/btc.png"/>
+              <div><span class="balance pair-one" style="font-size: 55px; font-weight: 100"></span><span class="coin pair-one" style="font-size: 35px; font-weight: 100"></span></div>
+              <div class="pair-one pair-address" data-coin="COIN" data-pair="one" style="font-size: 15px;"></div>
+              <button type="button" class="btn btn-default pair-one btn-send" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Send</button>
+              <button type="button" class="btn btn-default pair-one btn-receive" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Receive</button>
+              <button type="button" class="btn btn-default pair-one btn-exchange" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Exchange</button>
+              <button type="button" class="btn btn-default pair-one btn-inventory" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Inventory</button>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <input class="toggle_checkbox mode-option pair-one" id="toggle_pair_one" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
+            <button type="button" class="btn btn-default pair-one btn-enable" data-coin="COIN" data-pair="one" data-method="enable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Enable</button>
+            <button type="button" class="btn btn-default pair-one btn-disable" data-coin="COIN" data-pair="one" data-method="disable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Disable</button>
           </div>
         </div>
-        <div class="panel-footer">
-          <input class="toggle_checkbox mode-option pair-one" id="toggle_pair_one" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
-          <button type="button" class="btn btn-default pair-one btn-enable" data-coin="COIN" data-pair="one" data-method="enable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Enable</button>
-          <button type="button" class="btn btn-default pair-one btn-disable" data-coin="COIN" data-pair="one" data-method="disable" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Disable</button>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="display: none;">
+            <h3 class="panel-title">Komodo</h3>
+          </div>
+          <div class="panel-body">
+            <div style="text-align: center;">
+              <img src="img/cryptologo/kmd.png"/>
+              <div><span class="balance pair-two" style="font-size: 55px; font-weight: 100"></span> <span class="coin pair-two" style="font-size: 35px; font-weight: 100"></span></div>
+              <div class="pair-two pair-address" data-coin="COIN" data-pair="two"></div>
+              <button type="button" class="btn btn-default pair-two btn-send" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
+              <button type="button" class="btn btn-default pair-two btn-receive" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
+              <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Exchange</button>
+              <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <input class="toggle_checkbox pair-two" id="toggle_pair_two" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
+            <button type="button" class="btn btn-default pair-two btn-enable" data-coin="COIN" data-pair="two" data-method="enable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Enable</button>
+            <button type="button" class="btn btn-default pair-two btn-disable" data-coin="COIN" data-pair="two" data-method="disable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Disable</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading" style="display: none;">
-          <h3 class="panel-title">Komodo</h3>
-        </div>
-        <div class="panel-body">
-          <div style="text-align: center;">
-            <img src="img/cryptologo/kmd.png"/>
-            <div><span class="balance pair-two" style="font-size: 55px; font-weight: 100"></span> <span class="coin pair-two" style="font-size: 35px; font-weight: 100"></span></div>
-            <div class="pair-one pair-address" data-coin="COIN" data-pair="one"></div>
-            <button type="button" class="btn btn-default pair-two btn-send" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
-            <button type="button" class="btn btn-default pair-two btn-receive" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
-            <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Exchange</button>
-            <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
+    <div class="screen-sendcoin" style="display: none;">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title sendcoin-title" data-coin="COIN">Send</h3><button class="btn btn-xs btn-sendcoinclose" style="float: right; margin-top: -20px;"><span class="glyphicon glyphicon-remove"></span></button>
           </div>
-        </div>
-        <div class="panel-footer">
-          <input class="toggle_checkbox pair-two" id="toggle_pair_two" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
-          <button type="button" class="btn btn-default pair-two btn-enable" data-coin="COIN" data-pair="two" data-method="enable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Enable</button>
-          <button type="button" class="btn btn-default pair-two btn-disable" data-coin="COIN" data-pair="two" data-method="disable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Disable</button>
+          <div class="panel-body">
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="send-toaddr" class="col-sm-2 control-label">To</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="send-toaddr" placeholder="Address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="send-amount" class="col-sm-2 control-label">Amount</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="send-amount" placeholder="e.g. 0.01">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default btn-sendcoin">Send</button>
+    </div>
+  </div>
+</form>
+
+          </div>
+          <div class="panel-footer" style="display: none;">
+            
+          </div>
         </div>
       </div>
     </div>

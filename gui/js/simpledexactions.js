@@ -66,11 +66,6 @@ $('.btn-receive').click(function() {
 })
 
 
-$('.btn-send').click(function() {
-	console.log('btn-send clicked');
-	console.log($(this).data());
-});
-
 
 $('.btn-enable').click(function() {
 	console.log('btn-enable clicked');
@@ -102,13 +97,112 @@ $('.btn-disable').click(function() {
 	enable_disable_coin(enable_data);
 });
 
+
+$('.btn-send').click(function(e) {
+	e.preventDefault();
+	console.log('btn-send clicked');
+	console.log($(this).data());
+	$('.coindashboard').hide()
+	$('.screen-sendcoin').show();
+	check_coin_balance(false);
+	$('.sendcoin-title').html('Send ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
+	$('.sendcoin-title').data('coin', $(this).data('coin'));
+});
+
+
+$('.btn-sendcoin').click(function(e){
+	e.preventDefault();
+	console.log('btn-sendcoin clicked');
+	//console.log($(this).data());
+	var coin = $('.sendcoin-title').data('coin');
+	console.log(coin);
+
+	var to_addr = $('#send-toaddr').val();
+	var send_amount = $('#send-amount').val();
+	//console.log(to_addr);
+	//console.log(send_amount);
+
+	var output_data = {};
+	output_data[to_addr] = send_amount;
+	//console.log(output_data);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": [output_data]};
+	var url = "http://127.0.0.1:7783";
+
+	console.log(ajax_data);
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+	   // If successful
+	   console.log(data);
+	   if (data.complete == false) {
+	   	toastr.error('Uncessful Transaction. Please try again.','Tansaction info');
+	   }
+	   if (data.complete == true) {
+	   	//toastr.info('Transaction made','Tansaction info');
+	   	bootbox.confirm({
+			message: `<b>Send</b>: `+send_amount+` `+ajax_data.coin+`<br>
+							<b>To</b>: `+to_addr+`<br>`,
+			buttons: {
+				confirm: {
+					label: 'Confirm',
+					className: 'btn-primary'
+				},
+				cancel: {
+					label: 'Cancel',
+					className: 'btn-default'
+				}
+			},
+			callback: function (result) {
+				console.log('This was logged in the callback: ' + result);
+				
+				var ajax_data2 = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": data.hex};
+				console.log(ajax_data2);
+
+				$.ajax({
+				    data: JSON.stringify(ajax_data2),
+				    dataType: 'json',
+				    type: 'POST',
+				    url: url
+				}).done(function(data2) {
+				   // If successful
+				   console.log(data2);
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+				    // If fail
+				    console.log(textStatus + ': ' + errorThrown);
+				});
+			}
+		});
+	   }
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+})
 //$('.toggle_checkbox[data-coin="' + val.coin + '"]')
+
+$('.btn-sendcoinclose').click(function(e) {
+	e.preventDefault();
+	console.log('btn-sendcoinclose clicked');
+	console.log($(this).data());
+	$('.coindashboard').show()
+	$('.screen-sendcoin').hide();
+	$('#send-toaddr').val('');
+	$('#send-amount').val('');
+	check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+});
 
 
 
 function check_coin_balance(sig) {
 	if (sig == false) {
 		clearInterval(check_coin_balance_Interval);
+		console.log('checking coin balance stopped.')
 	} else {
 		console.log('checking coin balance');
 	}
@@ -137,7 +231,7 @@ function check_coin_balance(sig) {
 
 
 		$.ajax({
-			async: true,
+			//async: false,
 			data: JSON.stringify(ajax_data),
 			dataType: 'json',
 			type: 'POST',
@@ -198,13 +292,17 @@ function check_coin_balance(sig) {
 					//$('#toggle_pair_one').bootstrapToggle('destroy');
 					//$('#toggle_pair_one').hide();
 					sessionStorage.setItem('coin_pair_one', JSON.stringify(data.coin));
+					$('.balance.pair-one').css( "font-size", "55px" );
+					$('.balance.pair-one').html(data.coin.balance);
 				} else {
 					//$('#toggle_pair_two').bootstrapToggle('destroy');
 					//$('#toggle_pair_two').hide();
 					sessionStorage.setItem('coin_pair_two', JSON.stringify(data.coin));
+					$('.balance.pair-two').css( "font-size", "55px" );
+					$('.balance.pair-two').html(data.coin.balance);
 				}
 
-				get_balance();
+				//get_balance();
 			}
 
 			//if (data.error == 'coin is disabled') {
@@ -238,7 +336,7 @@ function get_balance() {
 		var url = "http://127.0.0.1:7783";
 
 		$.ajax({
-			async: true,
+//			async: false,
 		    data: JSON.stringify(ajax_data),
 		    dataType: 'json',
 		    type: 'POST',
@@ -387,6 +485,10 @@ function enable_disable_coin(data) {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
+
+
+
+
 
 
 
