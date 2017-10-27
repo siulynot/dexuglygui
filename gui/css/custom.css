@@ -93,3 +93,7 @@ textarea {
 .modal-dialog {
   margin-top: 50px;
 }
+
+.slider.slider-horizontal {
+  width: 100%;
+}

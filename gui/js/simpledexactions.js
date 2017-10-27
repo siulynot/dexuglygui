@@ -132,59 +132,65 @@ $('.btn-sendcoin').click(function(e){
 
 	console.log(ajax_data);
 
-	$.ajax({
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: url
-	}).done(function(data) {
-	   // If successful
-	   console.log(data);
-	   if (data.complete == false) {
-	   	toastr.error('Uncessful Transaction. Please try again.','Tansaction info');
-	   }
-	   if (data.complete == true) {
-	   	//toastr.info('Transaction made','Tansaction info');
-	   	bootbox.confirm({
-			message: `<b>Send</b>: `+send_amount+` `+ajax_data.coin+`<br>
-							<b>To</b>: `+to_addr+`<br>`,
-			buttons: {
-				confirm: {
-					label: 'Confirm',
-					className: 'btn-primary'
-				},
-				cancel: {
-					label: 'Cancel',
-					className: 'btn-default'
-				}
-			},
-			callback: function (result) {
-				console.log('This was logged in the callback: ' + result);
-				
-				var ajax_data2 = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": data.hex};
-				console.log(ajax_data2);
 
-				$.ajax({
-				    data: JSON.stringify(ajax_data2),
-				    dataType: 'json',
-				    type: 'POST',
-				    url: url
-				}).done(function(data2) {
-				   // If successful
-				   console.log(data2);
-				}).fail(function(jqXHR, textStatus, errorThrown) {
-				    // If fail
-				    console.log(textStatus + ': ' + errorThrown);
+
+	var a1 = $.ajax({
+			async: true,
+			data: JSON.stringify(ajax_data),
+			dataType: 'json',
+			type: 'POST',
+			url: url
+		}),
+		a2 = a1.then(function(data) {
+			// .then() returns a new promise
+			console.log(data);
+			if (data.complete == false) {
+				toastr.error('Uncessful Transaction. Please try again.','Tansaction info');
+			}
+			if (data.complete == true) {
+				bootbox.confirm({
+					message: `<b>Send</b>: `+send_amount+` `+ajax_data.coin+`<br>
+									<b>To</b>: `+to_addr+`<br>`,
+					buttons: {
+						confirm: {
+							label: 'Confirm',
+							className: 'btn-primary'
+						},
+						cancel: {
+							label: 'Cancel',
+							className: 'btn-default'
+						}
+					},
+					callback: function (result) {
+						console.log('This was logged in the callback: ' + result);
+
+						if (result == true) {
+							var ajax_data2 = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": data.hex};
+							console.log(ajax_data2);
+
+							toastr.info('Transaction Executed', 'Transaction Status');
+
+							return $.ajax({
+									async: true,
+									data: JSON.stringify(ajax_data2),
+									dataType: 'json',
+									type: 'POST',
+									url: url
+								})
+						} else {
+							console.log('Sending Transaction operation canceled.');
+							return {'output': 'canceled'};
+						}
+					}
 				});
 			}
-		});
-	   }
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
 	});
-})
-//$('.toggle_checkbox[data-coin="' + val.coin + '"]')
+
+	a2.done(function(data) {
+		console.log(data);
+	});
+});
+
 
 $('.btn-sendcoinclose').click(function(e) {
 	e.preventDefault();
@@ -205,8 +211,14 @@ $('.btn-inventory').click(function(e) {
 	$('.coindashboard').hide()
 	$('.screen-inventory').show();
 	check_coin_balance(false);
-	$('.inventory-title').html('Inventory ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
+	$('.inventory-title').html('Manage Inventory ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
 	$('.inventory-title').data('coin', $(this).data('coin'));
+	$('.coininventory[data-coin]').attr('data-coin', $(this).data('coin'));
+
+	check_coin_inventory($(this).data('coin'));
+
+	calc_data = {"coin": $(this).data('coin'), "balance": $('.balance.pair-'+$(this).data('pair')+'').html()};
+	clac_coin_inventory(calc_data);
 });
 
 $('.btn-inventoryclose').click(function(e) {
@@ -215,9 +227,91 @@ $('.btn-inventoryclose').click(function(e) {
 	console.log($(this).data());
 	$('.coindashboard').show()
 	$('.screen-inventory').hide();
+	$('.dex_showinv_alice_tbl tbody').empty();
+	$('.dex_showinv_bob_tbl tbody').empty();
+	$('.RawJSONInventory-output').empty();
 	check_coin_balance_Interval = setInterval(check_coin_balance,3000);
 });
 
+$('.btn-inventoryrefresh').click(function(e) {
+	e.preventDefault();
+	console.log('btn-inventoryrefresh clicked');
+	console.log($(this).data());
+	check_coin_inventory($(this).data('coin'));
+});
+
+
+
+$('.dex_showinv_alice_tbl tbody').on('click', '.btn_coiniventory_detail', function() {
+	console.log($(this).data());
+	var index = $(this).data('index');
+	var coininventory = sessionStorage.getItem('mm_coininventory');
+	coininventory = JSON.parse(coininventory);
+	console.log(coininventory.alice[index]);
+
+	bootbox.dialog({
+		message: `
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+					<th rowspan="13" style="width: 30px;">` + index + `</th>
+					<th>method</th>
+					<th>` + coininventory.alice[index].method + `</th>
+					</tr>
+					<tr>
+					<td>gui</td>
+					<td>` + coininventory.alice[index].gui + `</td>
+					</tr>
+					<tr>
+					<td>coin</td>
+					<td>` + coininventory.alice[index].coin + `</td>
+					</tr>
+					<tr>
+					<td>iambob</td>
+					<td>` + coininventory.alice[index].iambob + `</td>
+					</tr>
+					<tr>
+					<td>address</td>
+					<td>` + coininventory.alice[index].address + `</td>
+					</tr>
+					<tr>
+					<td>txid</td>
+					<td>` + coininventory.alice[index].txid + `</td>
+					</tr>
+					<tr>
+					<td>vout</td>
+					<td>` + coininventory.alice[index].vout + `</td>
+					</tr>
+					<tr>
+					<td>value</td>
+					<td>` + (parseFloat(coininventory.alice[index].value)/100000000).toFixed(8) + ` ` + coininventory.alice[index].coin + `</td>
+					</tr>
+					<tr>
+					<td>satoshis</td>
+					<td>` + coininventory.alice[index].satoshis + `</td>
+					</tr>
+					<tr>
+					<td>txid2</td>
+					<td>` + coininventory.alice[index].txid2 + `</td>
+					</tr>
+					<tr>
+					<td>vout2</td>
+					<td>` + coininventory.alice[index].vout2 + `</td>
+					</tr>
+					<tr>
+					<td>value2</td>
+					<td>` + (parseFloat(coininventory.alice[index].value2)/100000000).toFixed(8) + ` ` + coininventory.alice[index].coin + `</td>
+					</tr>
+					<tr>
+					<td>desthash</td>
+					<td>` + coininventory.alice[index].desthash + `</td>
+					</tr>
+				</tbody>
+			</table>`,
+		closeButton: true,
+		size: 'large'
+	});
+});
 
 
 function check_coin_balance(sig) {
@@ -252,7 +346,7 @@ function check_coin_balance(sig) {
 
 
 		$.ajax({
-			//async: false,
+			async: true,
 			data: JSON.stringify(ajax_data),
 			dataType: 'json',
 			type: 'POST',
@@ -315,12 +409,16 @@ function check_coin_balance(sig) {
 					sessionStorage.setItem('coin_pair_one', JSON.stringify(data.coin));
 					$('.balance.pair-one').css( "font-size", "55px" );
 					$('.balance.pair-one').html(data.coin.balance);
+					$('.pair-height.pair-one').html(data.coin.height);
+					$('.pair-kmdvalue.pair-one').html(data.coin.KMDvalue);
 				} else {
 					//$('#toggle_pair_two').bootstrapToggle('destroy');
 					//$('#toggle_pair_two').hide();
 					sessionStorage.setItem('coin_pair_two', JSON.stringify(data.coin));
 					$('.balance.pair-two').css( "font-size", "55px" );
 					$('.balance.pair-two').html(data.coin.balance);
+					$('.pair-height.pair-two').html(data.coin.height);
+					$('.pair-kmdvalue.pair-two').html(data.coin.KMDvalue);
 				}
 
 				//get_balance();
@@ -357,7 +455,7 @@ function get_balance() {
 		var url = "http://127.0.0.1:7783";
 
 		$.ajax({
-//			async: false,
+			async: true,
 		    data: JSON.stringify(ajax_data),
 		    dataType: 'json',
 		    type: 'POST',
@@ -452,6 +550,7 @@ function enable_disable_coin(data) {
 	console.log(ajax_data);
 
 	$.ajax({
+		async: true,
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
@@ -510,6 +609,143 @@ function enable_disable_coin(data) {
 
 
 
+function check_coin_inventory(coin) {
+	console.log(coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+		data: JSON.stringify(ajax_data),
+		dataType: 'json',
+		type: 'POST',
+		url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			//get_coins_list(data.coins);
+			//$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
+		} else {
+			sessionStorage.setItem('mm_coininventory', JSON.stringify(data));
+			$('.RawJSONInventory-output').html(JSON.stringify(data, null, 2));
+			$('.dex_showinv_alice_tbl tbody').empty();
+			$.each(data.alice, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var inv_alice_table_tr = '';
+				inv_alice_table_tr += '<tr>';
+					inv_alice_table_tr += '<th rowspan="2" style="width: 30px;">' + index + '</th>';
+					inv_alice_table_tr += '<th>coin</th>';
+					inv_alice_table_tr += '<th>vout1</th>';
+					inv_alice_table_tr += '<th>value1</th>';
+					inv_alice_table_tr += '<th>vout2</th>';
+					inv_alice_table_tr += '<th>value2</th>';
+					inv_alice_table_tr += '<th></th>';
+				inv_alice_table_tr += '</tr>';
+				inv_alice_table_tr += '<tr>';
+					inv_alice_table_tr += '<td>' + val.coin + '</td>';
+					inv_alice_table_tr += '<td>' + val.vout + '</td>';
+					inv_alice_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+					inv_alice_table_tr += '<td>' + val.vout2 + '</td>';
+					inv_alice_table_tr += '<td>' + (parseFloat(val.value2)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+					inv_alice_table_tr += '<td><button class="btn btn-default btn_coiniventory_detail" data-invof="alice" data-index="' + index + '">Detail</button></td>';
+				inv_alice_table_tr += '</tr>';
+
+				$('.dex_showinv_alice_tbl tbody').append(inv_alice_table_tr);
+			})
+
+			$('.dex_showinv_bob_tbl tbody').empty();
+			$.each(data.bob, function(index, val) {
+				//console.log(index);
+				//console.log(val);
+				var inv_bob_table_tr = '';
+				inv_bob_table_tr += '<tr>';
+					inv_bob_table_tr += '<th rowspan="2" style="width: 30px;">' + index + '</th>';
+					inv_bob_table_tr += '<th>coin</th>';
+					inv_bob_table_tr += '<th>vout1</th>';
+					inv_bob_table_tr += '<th>value1</th>';
+					inv_bob_table_tr += '<th>vout2</th>';
+					inv_bob_table_tr += '<th>value2</th>';
+					inv_bob_table_tr += '<th></th>';
+				inv_bob_table_tr += '</tr>';
+				inv_bob_table_tr += '<tr>';
+					inv_bob_table_tr += '<td>' + val.coin + '</td>';
+					inv_bob_table_tr += '<td>' + val.vout + '</td>';
+					inv_bob_table_tr += '<td>' + (parseFloat(val.value)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+					inv_bob_table_tr += '<td>' + val.vout2 + '</td>';
+					inv_bob_table_tr += '<td>' + (parseFloat(val.value2)/100000000).toFixed(8) + ' ' + val.coin + '</td>';
+					inv_bob_table_tr += '<td><button class="btn btn-default btn_coiniventory_detail" data-invof="alice" data-index="' + index + '">Detail</button></td>';
+				inv_bob_table_tr += '</tr>';
+
+				$('.dex_showinv_bob_tbl tbody').append(inv_bob_table_tr);
+			})
+
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
 
 
 
+$("#inventory-slider1").slider();
+$("#inventory-slider1").on("slide", function(slideEvt) {
+	$("#inventory-slider1Val").text(slideEvt.value);
+
+	utxo_input = $("#inventory_slider_input1").val();
+	$("#inventory-slider1Total").text(slideEvt.value*utxo_input);
+});
+
+$("#inventory-slider2").slider();
+$("#inventory-slider2").on("slide", function(slideEvt) {
+	$("#inventory-slider2Val").text(slideEvt.value);
+
+	utxo_input = $("#inventory_slider_input2").val();
+	$("#inventory-slider2Total").text(slideEvt.value*utxo_input);
+});
+
+$("#inventory-slider3").slider();
+$("#inventory-slider3").on("slide", function(slideEvt) {
+	$("#inventory-slider3Val").text(slideEvt.value);
+
+	utxo_input = $("#inventory_slider_input3").val();
+	$("#inventory-slider3Total").text(slideEvt.value*utxo_input);
+});
+
+
+
+function clac_coin_inventory(data) {
+	console.log(data);
+
+	utxo_input1 = (parseFloat(data.balance)*0.12).toFixed(8);
+	utxo_input2 = (parseFloat(data.balance)*0.01).toFixed(8);
+	utxo_input3 = (parseFloat(data.balance)*0.1).toFixed(8);
+	///console.log(utxo_input1);
+	//console.log(utxo_input2);
+	//console.log(utxo_input3);
+	$("#inventory_slider_input1").val(utxo_input1);
+	$("#inventory_slider_input2").val(utxo_input2);
+	$("#inventory_slider_input3").val(utxo_input3);
+
+
+	var slider_input1 = $('#inventory-slider1').val();
+	var slider_input2 = $('#inventory-slider2').val();
+	var slider_input3 = $('#inventory-slider3').val();
+	$("#inventory-slider1Total").text(parseFloat(slider_input1*utxo_input1).toFixed(8));
+	$("#inventory-slider2Total").text(parseFloat(slider_input2*utxo_input2).toFixed(8));
+	$("#inventory-slider3Total").text(parseFloat(slider_input3*utxo_input3).toFixed(8));
+
+	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slider_input3*utxo_input3);
+	console.log(slider_total);
+
+	$('.inventory-sliderTotal').text(slider_total);
+}
