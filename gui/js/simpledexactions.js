@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 $('.btn-receive').click(function() {
 	console.log('btn-receive clicked');
-	console.log($(this).data());
+	//console.log($(this).data());
 
 	if ($(this).data('pair') == 'one') {
 		var coin_pair_one = sessionStorage.getItem('coin_pair_one');
@@ -207,13 +207,14 @@ $('.btn-sendcoinclose').click(function(e) {
 $('.btn-inventory').click(function(e) {
 	e.preventDefault();
 	console.log('btn-inventory clicked');
-	console.log($(this).data());
+	//console.log($(this).data());
 	$('.coindashboard').hide()
 	$('.screen-inventory').show();
 	check_coin_balance(false);
 	$('.inventory-title').html('Manage Inventory ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
 	$('.inventory-title').data('coin', $(this).data('coin'));
 	$('.coininventory[data-coin]').attr('data-coin', $(this).data('coin'));
+	$('.coininventory[data-coin]').attr('data-pair', $(this).data('pair'));
 	$('.inventory-sliderTotalCoin').html(' '+$(this).data('coin'));
 
 	check_coin_inventory($(this).data('coin'));
@@ -225,7 +226,7 @@ $('.btn-inventory').click(function(e) {
 $('.btn-inventoryclose').click(function(e) {
 	e.preventDefault();
 	console.log('btn-inventoryclose clicked');
-	console.log($(this).data());
+	//console.log($(this).data());
 	$('.coindashboard').show()
 	$('.screen-inventory').hide();
 	$('.dex_showinv_alice_tbl tbody').empty();
@@ -237,14 +238,14 @@ $('.btn-inventoryclose').click(function(e) {
 $('.btn-inventoryrefresh').click(function(e) {
 	e.preventDefault();
 	console.log('btn-inventoryrefresh clicked');
-	console.log($(this).data());
+	//console.log($(this).data());
 	check_coin_inventory($(this).data('coin'));
 });
 
 
 
 $('.dex_showinv_alice_tbl tbody').on('click', '.btn_coiniventory_detail', function() {
-	console.log($(this).data());
+	//console.log($(this).data());
 	var index = $(this).data('index');
 	var coininventory = sessionStorage.getItem('mm_coininventory');
 	coininventory = JSON.parse(coininventory);
@@ -319,7 +320,52 @@ $('.dex_showinv_alice_tbl tbody').on('click', '.btn_coiniventory_detail', functi
 $('.btn-makeinventory').click(function(e) {
 	e.preventDefault();
 	console.log('btn-makeinventory clicked');
-	console.log($(this).data());
+	//console.log($(this).data());
+
+	utxo_input1 = $("#inventory_slider_input1").val();
+	utxo_input2 = $("#inventory_slider_input2").val();
+	utxo_input3 = $("#inventory_slider_input3").val();
+	//console.log(utxo_input1);
+	//console.log(utxo_input2);
+	//console.log(utxo_input3);
+
+	var slider_input1 = $('#inventory-slider1').val();
+	var slider_input2 = $('#inventory-slider2').val();
+	var slider_input3 = $('#inventory-slider3').val();
+	//console.log(slider_input1);
+	//console.log(slider_input2);
+	//console.log(slider_input3);
+
+	var coin_pair_data = sessionStorage.getItem('coin_pair_'+$(this).data('pair'));
+	coin_pair_data = JSON.parse(coin_pair_data);
+	pair_address = coin_pair_data.smartaddress;
+	//console.log(pair_address);
+
+	var withdraw_outputs = []
+
+	for(var i=0; i < slider_input1; i++){
+		var tmp_json = {}
+		tmp_json[pair_address] = utxo_input1
+		//console.log(tmp_json)
+		withdraw_outputs.push(tmp_json)
+	}
+	for(var i=0; i < slider_input2; i++){
+		var tmp_json = {}
+		tmp_json[pair_address] = utxo_input2
+		withdraw_outputs.push(tmp_json)
+	}
+	for(var i=0; i < slider_input3; i++){
+		var tmp_json = {}
+		tmp_json[pair_address] = utxo_input3
+		withdraw_outputs.push(tmp_json)
+	}
+	//console.log(withdraw_outputs);
+
+	inventory_data = {};
+	inventory_data['coin'] = $(this).data('coin');
+	inventory_data['outputs'] = withdraw_outputs;
+	make_inventory_withdraw(inventory_data);
+
 });
 
 function check_coin_balance(sig) {
@@ -775,3 +821,71 @@ function clac_coin_inventory(data) {
 
 	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
 }
+
+
+function make_inventory_withdraw(data) {
+	//console.log(data);
+	coin = data.coin;
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"withdraw","coin": data.coin, "outputs": data.outputs};
+	var url = "http://127.0.0.1:7783";
+
+	console.log(ajax_data);
+
+	var a1 = $.ajax({
+			async: true,
+			data: JSON.stringify(ajax_data),
+			dataType: 'json',
+			type: 'POST',
+			url: url
+		}),
+		a2 = a1.then(function(data) {
+			// .then() returns a new promise
+			console.log(data);
+			if (data.complete == false) {
+				toastr.error('Uncessful Transaction. Please try again.','Tansaction info');
+			}
+			if (data.complete == true) {
+				bootbox.confirm({
+					message: 'Please confirm if you are ready to make inventory.',
+					buttons: {
+						confirm: {
+							label: 'Confirm',
+							className: 'btn-primary'
+						},
+						cancel: {
+							label: 'Cancel',
+							className: 'btn-default'
+						}
+					},
+					callback: function (result) {
+						console.log('This was logged in the callback: ' + result);
+
+						if (result == true) {
+							var ajax_data2 = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": data.hex};
+							console.log(ajax_data2);
+
+							toastr.info('Transaction Executed', 'Transaction Status');
+
+							return $.ajax({
+									async: true,
+									data: JSON.stringify(ajax_data2),
+									dataType: 'json',
+									type: 'POST',
+									url: url
+								})
+						} else {
+							console.log('Sending Transaction operation canceled.');
+							return {'output': 'canceled'};
+						}
+					}
+				});
+			}
+	});
+
+	a2.done(function(data) {
+		console.log(data);
+	});
+}
+
