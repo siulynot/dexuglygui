@@ -214,6 +214,7 @@ $('.btn-inventory').click(function(e) {
 	$('.inventory-title').html('Manage Inventory ('+$('.balance.pair-'+$(this).data('pair')+'').html()+' '+$(this).data('coin')+')');
 	$('.inventory-title').data('coin', $(this).data('coin'));
 	$('.coininventory[data-coin]').attr('data-coin', $(this).data('coin'));
+	$('.inventory-sliderTotalCoin').html(' '+$(this).data('coin'));
 
 	check_coin_inventory($(this).data('coin'));
 
@@ -313,6 +314,13 @@ $('.dex_showinv_alice_tbl tbody').on('click', '.btn_coiniventory_detail', functi
 	});
 });
 
+
+
+$('.btn-makeinventory').click(function(e) {
+	e.preventDefault();
+	console.log('btn-makeinventory clicked');
+	console.log($(this).data());
+});
 
 function check_coin_balance(sig) {
 	if (sig == false) {
@@ -703,6 +711,12 @@ $("#inventory-slider1").on("slide", function(slideEvt) {
 
 	utxo_input = $("#inventory_slider_input1").val();
 	$("#inventory-slider1Total").text(slideEvt.value*utxo_input);
+
+	var slider_input2 = $('#inventory-slider2').val();
+	var slider_input3 = $('#inventory-slider3').val();
+	var slider_total = parseFloat(slideEvt.value*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slider_input3*utxo_input3);
+
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
 });
 
 $("#inventory-slider2").slider();
@@ -711,6 +725,12 @@ $("#inventory-slider2").on("slide", function(slideEvt) {
 
 	utxo_input = $("#inventory_slider_input2").val();
 	$("#inventory-slider2Total").text(slideEvt.value*utxo_input);
+
+	var slider_input1 = $('#inventory-slider1').val();
+	var slider_input3 = $('#inventory-slider3').val();
+	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slideEvt.value*utxo_input2) + parseFloat(slider_input3*utxo_input3);
+
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
 });
 
 $("#inventory-slider3").slider();
@@ -719,6 +739,12 @@ $("#inventory-slider3").on("slide", function(slideEvt) {
 
 	utxo_input = $("#inventory_slider_input3").val();
 	$("#inventory-slider3Total").text(slideEvt.value*utxo_input);
+
+	var slider_input1 = $('#inventory-slider1').val();
+	var slider_input2 = $('#inventory-slider2').val();
+	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slideEvt.value*utxo_input3);
+
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
 });
 
 
@@ -747,5 +773,5 @@ function clac_coin_inventory(data) {
 	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slider_input3*utxo_input3);
 	console.log(slider_total);
 
-	$('.inventory-sliderTotal').text(slider_total);
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
 }

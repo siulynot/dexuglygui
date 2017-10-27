@@ -186,7 +186,7 @@ ExecMarketMaker = function(data) {
       }*/
 
       const _customParam = {
-              'gui':'uglygui',
+              'gui':'simplegui',
               'client':1,
               'userhome':`${process.env.HOME}`,
               'passphrase': data.passphrase,
