@@ -135,8 +135,8 @@
               <div class="pair-one pair-address" data-coin="COIN" data-pair="one" style="font-size: 15px;"></div>
               <button type="button" class="btn btn-default pair-one btn-send" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Send</button>
               <button type="button" class="btn btn-default pair-one btn-receive" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Receive</button>
-              <button type="button" class="btn btn-default pair-one btn-exchange" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Exchange</button>
-              <button type="button" class="btn btn-default pair-one btn-inventory" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Inventory</button>
+              <button type="button" class="btn btn-default pair-one btn-exchange" data-coin="COIN" data-pair="one" style="text-transform: uppercase; border: 2px solid #eb973d; width: 120px; margin: 5px;">Auto Trade</button>
+              <button type="button" class="btn btn-default pair-one btn-inventory" data-coin="COIN" data-pair="one" data-addr="ADDR" style="text-transform: uppercase; border: 2px solid #eb973d; width: 100px; margin: 5px;">Inventory</button>
             </div>
           </div>
           <div class="panel-footer">
@@ -160,8 +160,8 @@
               <div class="pair-two pair-address" data-coin="COIN" data-pair="two"></div>
               <button type="button" class="btn btn-default pair-two btn-send" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
               <button type="button" class="btn btn-default pair-two btn-receive" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
-              <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Exchange</button>
-              <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
+              <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 120px; margin: 5px;">Auto Trade</button>
+              <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" data-addr="ADDR" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
             </div>
           </div>
           <div class="panel-footer">
@@ -307,8 +307,8 @@
                 <button class="btn btn-xs btn-inventoryclose coininventory" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
                 <button class="btn btn-xs btn-inventoryrefresh coininventory" style="float: right; margin: 6px 6px 0px 3px;" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#AliceInventory" data-toggle="tab">Alice Inventory</a></li>
-                    <li><a href="#BobInventory" data-toggle="tab">Bob Inventory</a></li>
+                    <li class="active"><a href="#AliceInventory" data-toggle="tab">Inventory</a></li>
+                    <li><a href="#ListUnspents" data-toggle="tab">List Unspents</a></li>
                     <li><a href="#RawJSONInventory" data-toggle="tab">Raw JSON</a></li>
                 </ul>
               </div>
@@ -317,14 +317,14 @@
                       <div class="tab-pane fade in active" id="AliceInventory">
                         <table class="table table-striped dex_showinv_alice_tbl" style="margin-bottom: 0;">
                           <tbody>
-                            
+                            <th><div style="text-align: center;">Loading...</div></th>
                           </tbody>
                         </table>
                       </div>
-                      <div class="tab-pane fade" id="BobInventory">
-                        <table class="table table-striped dex_showinv_bob_tbl" style="margin-bottom: 0;">
+                      <div class="tab-pane fade" id="ListUnspents">
+                        <table class="table table-striped dex_showlist_unspents_tbl" style="margin-bottom: 0;">
                           <tbody>
-                            
+                            <th><div style="text-align: center;">Loading...</div></th>
                           </tbody>
                         </table>
                       </div>
@@ -334,6 +334,13 @@
                   </div>
               </div>
           </div>
+      </div>
+    </div>
+
+    <div class="screen-exchange" style="display: none;">
+      <div class="col-sm-12">
+        <h3>AUTO TRADER!!!</h3>
+
       </div>
     </div>
 
