@@ -429,7 +429,13 @@
                 <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
               </div>
               <div class="exchange_trade_status_body"> <!-- panel-body -->
-                <table class="table table-striped exchange_swap_status" style="margin-bottom: 0;">
+                <table class="table table-striped exchange_swap_status_tbl" width="100%" style="margin-bottom: 0;">
+                  <thead>
+                    <th>Status</th>
+                    <th>Quote ID</th>
+                    <th>Request ID</th>
+                    <th>Action</th>
+                  </thead>
                   <tbody>
                     <th><div style="text-align: center;">Loading...</div></th>
                   </tbody>
@@ -461,7 +467,8 @@
                 </div>
                 <div class="input-group col-sm-12">
                   <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
-                  <input type="text" class="form-control " placeholder="0.01" style="height: 64px; font-size: 20px;">
+                  <input type="text" class="form-control trading_pair_coin_price" placeholder="0.01" style="height: 64px; font-size: 20px;">
+                  <span class="input-group-addon" id="trading_pair_coin_price_for1" style="font-size: 20px;">1 <span class="coin_ticker"></span></span>
                 </div>
               </div>
             </div>
@@ -475,10 +482,16 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>My Orders</strong></h3>
-            <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
+            <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
           </div>
           <div class=""> <!-- panel-body -->
             <table class="table table-striped exchange_my_orders" style="margin-bottom: 0;">
+              <thead>
+                <th>Base</th>
+                <th>Rel</th>
+                <th>Bid</th>
+                <th>Ask</th>
+              </thead>
               <tbody>
                 <th><div style="text-align: center;">Loading...</div></th>
               </tbody>

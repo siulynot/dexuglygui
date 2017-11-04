@@ -3,6 +3,8 @@
 var CheckOrderbook_Interval = null;
 var CheckPortfolio_Interval = null;
 var check_coin_balance_Interval = null;
+var check_swap_status_Internal = null;
+var check_my_prices_Internal = null;
 
 var coin_pair = ["BTC","KMD"]
 
@@ -456,8 +458,10 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	$('.coin_ticker').html(coin);
 	$('.btn-exchangeclose').attr('data-coin', coin);
 	$('.btn-exchangerefresh').attr('data-coin', coin);
+	$('.btn-myordersrefresh').attr('data-coin', coin);
 	check_coin_balance(false);
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
+	check_swap_status_Internal = setInterval(check_swap_status,5000);
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -468,6 +472,7 @@ $('.btn-exchangeclose').click(function(e){
 	$('.screen-coindashboard').show()
 	$('.screen-exchange').hide();
 	CheckOrderBookFn(false);
+	check_swap_status(false);
 	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 	check_coin_balance($(this).data());
 });
@@ -480,6 +485,16 @@ $('.btn-exchangerefresh').click(function(e){
 
 	CheckOrderBookFn();
 });
+
+
+$('.btn-myordersrefresh').click(function(e){
+	e.preventDefault();
+	console.log('btn-myordersrefresh clicked');
+	console.log($(this).data());
+
+	check_my_prices();
+});
+
 
 function check_coin_balance(coin_data) {
 	console.log(coin_data);
@@ -1448,16 +1463,33 @@ function CheckOrderBookFn(sig) {
 	return 'Check orderbook calls stopped.';
 }
 
-/* Auto Trading Bot END */
 
+function check_my_prices(sig){
+	if (sig == false) {
+		clearInterval(check_my_prices_Internal);
+		return
+	} else {
+		console.log('checking my prices');
+	}
 
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	console.log(coin);
 
-/* Swap Status */
+	buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 
-$('.btn-swapstatusrefresh').click(function() {
+	if(buying_or_selling == 'buying') {
+		var base_coin = coin;
+		var rel_coin = $('.trading_pair_coin').selectpicker('val');
+	}
+	if(buying_or_selling == 'selling') {
+		var base_coin = $('.trading_pair_coin').selectpicker('val');
+		var rel_coin = coin;
+	}
+
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var ajax_data = {"userpass":userpass,"method":"myprice","base":base_coin,"rel":rel_coin};
+	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -1466,13 +1498,126 @@ $('.btn-swapstatusrefresh').click(function() {
 	    type: 'POST',
 	    url: url
 	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   //$('.checkswaplist-output').html(JSON.stringify(data, null, 2));
+		// If successful
+		console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+		} else {
+			//console.log(data);
+			$('.exchange_my_orders tbody').empty();
+			if (!data.error === false) {
+				var exchange_my_orders_tr = '';
+				exchange_my_orders_tr += '<tr>';
+				exchange_my_orders_tr += '<td><div style="text-align: center;">' + data.error + ' for pair ' + base_coin + '/' + rel_coin + '</div></td>';
+				exchange_my_orders_tr += '</tr>';
+				$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+			} else {
+				/*$.each(data, function(index, val) {
+					console.log(index);
+					console.log(val);
+
+					var base_coin_name = return_coin_name(val.base)
+					var rel_coin_name = return_coin_name(val.rel)
+
+					var exchange_my_orders_tr = '';
+					exchange_my_orders_tr += '<tr>';
+						exchange_my_orders_tr += '<td>'+ val.base + ' (' + base_coin_name + ')</td>';
+						exchange_my_orders_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
+						exchange_my_orders_tr += '<td>' + val.bid + '</td>';
+						exchange_my_orders_tr += '<td>' + val.ask + '</td>';
+					exchange_my_orders_tr += '</tr>';
+					$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+				});*/
+
+				var base_coin_name = return_coin_name(data.base)
+				var rel_coin_name = return_coin_name(data.rel)
+
+				var exchange_my_orders_tr = '';
+				exchange_my_orders_tr += '<tr>';
+					exchange_my_orders_tr += '<td>'+ data.base + ' (' + base_coin_name + ')</td>';
+					exchange_my_orders_tr += '<td>'+ data.rel + ' (' + rel_coin_name + ')</td>';
+					exchange_my_orders_tr += '<td>' + data.bid + '</td>';
+					exchange_my_orders_tr += '<td>' + data.ask + '</td>';
+				exchange_my_orders_tr += '</tr>';
+				$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+			}
+		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
+
+}
+
+
+$('.trading_pair_coin').on('change', function (e) {
+	var optionSelected = $("option:selected", this);
+	var valueSelected = this.value;
+	console.log(valueSelected);
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	console.log(coin);
+
+	buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+
+	if(buying_or_selling == 'buying') {
+		var base_coin = coin;
+		var rel_coin = $('.trading_pair_coin').selectpicker('val');
+	}
+	if(buying_or_selling == 'selling') {
+		var base_coin = $('.trading_pair_coin').selectpicker('val');
+		var rel_coin = coin;
+	}
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	$('.orderbook_rel_coin').html(rel_coin);
+	$('.orderbook_base_coin').html(base_coin);
+
+	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
+	//console.log(ajax_data)
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			//get_coins_list(data.coins);
+		} else {
+			//console.log(data.asks);
+			$('.trading_pair_coin_price').val(data.asks[0].price);
+		}
+
+	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+});
+
+/* Auto Trading Bot END */
+
+
+
+/* Swap Status */
+
+$('.btn-swapstatusrefresh').click(function() {
+	check_swap_status();	
 })
 
 
@@ -1499,5 +1644,69 @@ $('.check_swap_status_btn').click(function() {
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 })
+
+
+
+$('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function() {
+	console.log('swapstatus details button clicked')
+	console.log($(this).data());
+});
+
+
+function check_swap_status(sig) {
+	if (sig == false) {
+		clearInterval(check_swap_status_Internal);
+		return
+	} else {
+		console.log('checking swat status');
+	}
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	//console.log(coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		//console.log(data);
+
+		$('.exchange_swap_status_tbl tbody').empty();
+		$.each(data.swaps, function(index, val) {
+			//console.log(index);
+			//console.log(val);
+			if(!val.error === false) {
+				var exchange_swap_status_tr = '';
+				exchange_swap_status_tr += '<tr>';
+				exchange_swap_status_tr += '<td><div>error</div></td>';
+				exchange_swap_status_tr += '<td>-</td>';
+				exchange_swap_status_tr += '<td>-</td>';
+				exchange_swap_status_tr += '<td>-</td>';
+				exchange_swap_status_tr += '</tr>';
+				$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
+			} else {
+				var exchange_swap_status_tr = '';
+				exchange_swap_status_tr += '<tr>';
+				exchange_swap_status_tr += '<td>' + val.status + '</td>';
+				exchange_swap_status_tr += '<td>' + val.quoteid + '</td>';
+				exchange_swap_status_tr += '<td>' + val.requestid + '</td>';
+				exchange_swap_status_tr += '<td><button class="btn btn-default swapstatus_details" data-quoteid="' + val.quoteid + '" data-requestid="' + val.requestid + '">Details</button></td>';
+				exchange_swap_status_tr += '</tr>';
+				$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
+			}
+		})
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
 
 /* Swap Status END */
