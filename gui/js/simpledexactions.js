@@ -5,6 +5,7 @@ var CheckPortfolio_Interval = null;
 var check_coin_balance_Interval = null;
 var check_swap_status_Internal = null;
 var check_my_prices_Internal = null;
+var check_bot_list_Internal = null;
 
 var coin_pair = ["BTC","KMD"]
 
@@ -50,6 +51,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	coin = $(this).data('coin');
 	$.each($('.coindashboard[data-coin]'), function(index, value) {
 		$('.coindashboard[data-coin]').attr('data-coin', coin);
+	});
+
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').attr('data-coin', coin);
 	});
 
 	selected_coin = {}
@@ -456,12 +461,20 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	$('.screen-coindashboard').hide()
 	$('.screen-exchange').show();
 	$('.coin_ticker').html(coin);
-	$('.btn-exchangeclose').attr('data-coin', coin);
+	
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').attr('data-coin', coin);
+	});
+
+	/*$('.btn-exchangeclose').attr('data-coin', coin);
 	$('.btn-exchangerefresh').attr('data-coin', coin);
 	$('.btn-myordersrefresh').attr('data-coin', coin);
+	$('.btn-botlistrefresh').attr('data-coin', coin);
+	$('.btn-refreshtrading_pair').attr('data-coin', coin);*/
 	check_coin_balance(false);
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
-	check_swap_status_Internal = setInterval(check_swap_status,5000);
+	check_swap_status_Internal = setInterval(check_swap_status,10000);
+	check_bot_list_Internal = setInterval(check_bot_list, 60000);
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -473,6 +486,7 @@ $('.btn-exchangeclose').click(function(e){
 	$('.screen-exchange').hide();
 	CheckOrderBookFn(false);
 	check_swap_status(false);
+	check_bot_list(false);
 	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 	check_coin_balance($(this).data());
 });
@@ -495,6 +509,65 @@ $('.btn-myordersrefresh').click(function(e){
 	check_my_prices();
 });
 
+$('.btn-botlistrefresh').click(function(e){
+	e.preventDefault();
+	console.log('btn-botlistrefresh clicked');
+	console.log($(this).data());
+
+	check_bot_list();
+});
+
+
+$('.btn-bot_action').click(function(e){
+	e.preventDefault();
+	console.log('btn-botlistrefresh clicked');
+	console.log($(this).data());
+	console.log($(this).data('action'));
+
+	pair_price = $('.trading_pair_coin_price').val();
+	pair_volume = $('.trading_pair_coin_volume').val();
+
+	bot_data = {}
+	bot_data.price = pair_price;
+	bot_data.volume = pair_volume;
+	bot_data.action = $(this).data('action');
+
+	console.log(bot_data);
+
+	bot_buy_sell(bot_data);
+});
+
+
+$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_status', function() {
+	console.log('bot status button clicked')
+	console.log($(this).data());
+});
+
+$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_resume', function() {
+	console.log('bot resume button clicked')
+	console.log($(this).data());
+
+	bot_stop_pause_resume($(this).data());
+});
+
+$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_pause', function() {
+	console.log('bot pause button clicked')
+	console.log($(this).data());
+
+	bot_stop_pause_resume($(this).data());
+});
+
+$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_stop', function() {
+	console.log('bot stop button clicked')
+	console.log($(this).data());
+
+	bot_stop_pause_resume($(this).data());
+});
+
+$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_settings', function() {
+	console.log('bot settings button clicked')
+	console.log($(this).data());
+});
 
 function check_coin_balance(coin_data) {
 	console.log(coin_data);
@@ -1426,10 +1499,11 @@ function CheckOrderBookFn(sig) {
 				}
 				var orderbook_bids_tr = '';
 				orderbook_bids_tr += '<tr ' + mytrade_true + '>';
-				orderbook_bids_tr += '<td class="col-xs-3">' + val.price + '</td>';
-				orderbook_bids_tr += '<td class="col-xs-3">' + val.minvolume + '</td>';
-				orderbook_bids_tr += '<td class="col-xs-3">' + val.maxvolume + '</td>';
-				orderbook_bids_tr += '<td class="col-xs-3">' + val.age + '</td>';
+				orderbook_bids_tr += '<td>' + val.price + '</td>';
+				orderbook_bids_tr += '<td>' + val.minvolume + '</td>';
+				orderbook_bids_tr += '<td>' + val.maxvolume + '</td>';
+				orderbook_bids_tr += '<td>' + val.age + '</td>';
+				orderbook_bids_tr += '<td>' + val.numutxos + '</td>';
 				orderbook_bids_tr += '</tr>';
 				$('.orderbook_bids tbody').append(orderbook_bids_tr);
 			})
@@ -1507,13 +1581,13 @@ function check_my_prices(sig){
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 		} else {
 			//console.log(data);
-			$('.exchange_my_orders tbody').empty();
+			$('.exchange_my_orders_tbl tbody').empty();
 			if (!data.error === false) {
 				var exchange_my_orders_tr = '';
 				exchange_my_orders_tr += '<tr>';
 				exchange_my_orders_tr += '<td><div style="text-align: center;">' + data.error + ' for pair ' + base_coin + '/' + rel_coin + '</div></td>';
 				exchange_my_orders_tr += '</tr>';
-				$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 			} else {
 				/*$.each(data, function(index, val) {
 					console.log(index);
@@ -1529,7 +1603,7 @@ function check_my_prices(sig){
 						exchange_my_orders_tr += '<td>' + val.bid + '</td>';
 						exchange_my_orders_tr += '<td>' + val.ask + '</td>';
 					exchange_my_orders_tr += '</tr>';
-					$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 				});*/
 
 				var base_coin_name = return_coin_name(data.base)
@@ -1542,7 +1616,7 @@ function check_my_prices(sig){
 					exchange_my_orders_tr += '<td>' + data.bid + '</td>';
 					exchange_my_orders_tr += '<td>' + data.ask + '</td>';
 				exchange_my_orders_tr += '</tr>';
-				$('.exchange_my_orders tbody').append(exchange_my_orders_tr);
+				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 			}
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -1558,6 +1632,41 @@ $('.trading_pair_coin').on('change', function (e) {
 	var valueSelected = this.value;
 	console.log(valueSelected);
 
+	//update_min_max_price_input();
+
+});
+
+$('.btn-refreshtrading_pair').click(function(e){
+	e.preventDefault();
+	console.log('btn-refreshtrading_pair clicked');
+	console.log($(this).data());
+
+	//update_min_max_price_input();
+})
+
+$('input[name=trading_pair_options]').change(function() {
+	console.log('trading_pair_options changed');
+
+	buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+	//console.log(buying_or_selling);
+
+	if(buying_or_selling == 'buying') {
+		$('#trading_pair_coin_price_max_min').html('Max');
+		$('.trading_pair_lable_text_one').html('Max');
+		$('.trading_pair_lable_text_two').html('Buy');
+		$('.btn-bot_action').html('BUY');
+		$('.btn-bot_action').attr('data-action', 'buy');
+	}
+	if(buying_or_selling == 'selling') {
+		$('#trading_pair_coin_price_max_min').html('Min');
+		$('.trading_pair_lable_text_one').html('Min');
+		$('.trading_pair_lable_text_two').html('Sell');
+		$('.btn-bot_action').html('SELL');
+		$('.btn-bot_action').attr('data-action', 'sell');
+	}
+});
+
+function update_min_max_price_input(){
 	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
 	var coin = selected_coin.coin;
 	console.log(coin);
@@ -1599,7 +1708,12 @@ $('.trading_pair_coin').on('change', function (e) {
 			//get_coins_list(data.coins);
 		} else {
 			//console.log(data.asks);
-			$('.trading_pair_coin_price').val(data.asks[0].price);
+			if(buying_or_selling == 'buying') {
+				$('.trading_pair_coin_price').val(data.asks[0].price);
+			}
+			if(buying_or_selling == 'selling') {
+				$('.trading_pair_coin_price').val(data.bids[0].price);
+			}
 		}
 
 	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -1607,8 +1721,181 @@ $('.trading_pair_coin').on('change', function (e) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
+}
 
-});
+function check_bot_list(sig) {
+	if (sig == false) {
+		clearInterval(check_bot_list_Internal);
+		return
+	} else {
+		console.log('checking bot list');
+	}
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	//console.log(coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"bot_list"};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		$('.exchange_bot_list_tbl tbody').empty();
+		$.each(data, function(index, val) {
+			console.log(index);
+			console.log(val);
+			if(!val.error === false) {
+				var exchange_bot_list_tr = '';
+				exchange_bot_list_tr += '<tr>';
+				exchange_bot_list_tr += '<td><div>error</div></td>';
+				exchange_bot_list_tr += '<td>-</td>';
+				exchange_bot_list_tr += '</tr>';
+				$('.exchange_bot_list_tbl tbody').append(exchange_bot_list_tr);
+			} else {
+				var exchange_bot_list_tr = '';
+				exchange_bot_list_tr += '<tr>';
+				exchange_bot_list_tr += '<td>' + val + '</td>';
+				exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-info btn_bot_status" data-botid="' + val + '" data-action="status">Status</button><button class="btn btn-success btn_bot_resume" data-botid="' + val + '" data-action="resume">Resume</button><button class="btn btn-warning btn_bot_pause" data-botid="' + val + '" data-action="pause">pause</button><button class="btn btn-danger btn_bot_stop" data-botid="' + val + '" data-action="stop">Stop</button><button class="btn btn-primary btn_bot_settingds" data-botid="' + val + '" data-action="settings">Settings</button></div></td>';
+				exchange_bot_list_tr += '</tr>';
+				$('.exchange_bot_list_tbl tbody').append(exchange_bot_list_tr);
+			}
+		})
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+function bot_buy_sell(bot_data) {
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	//console.log(coin);
+
+	buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+
+	if(buying_or_selling == 'buying') {
+		var base_coin = coin;
+		var rel_coin = $('.trading_pair_coin').selectpicker('val');
+	}
+	if(buying_or_selling == 'selling') {
+		var base_coin = $('.trading_pair_coin').selectpicker('val');
+		var rel_coin = coin;
+	}
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	if (bot_data.action == 'buy') {
+		var ajax_data = {"userpass":userpass,"method":"bot_buy","base":base_coin,"rel":rel_coin,"maxprice":bot_data.price,"relvolume":bot_data.volume};
+	}
+	if (bot_data.action == 'sell') {
+		var ajax_data = {"userpass":userpass,"method":"bot_sell","base":base_coin,"rel":rel_coin,"minprice":bot_data.price,"basevolume":bot_data.volume};
+	}
+
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.error === false) {
+			toastr.error(data.error + '<br>Balance: ' + data.balance + ' ' + data.coin, 'Bot Info');
+		} else if (data.result == 'success') {
+			toastr.success(data.name + ' started <br> Bot ID: ' + data.botid, 'Bot Info');
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	check_bot_list();
+}
+
+
+function bot_stop_pause_resume(bot_data) {
+	console.log(bot_data);
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	if (bot_data.action == 'pause') {
+		var ajax_data = {"userpass":userpass,"method":"bot_pause","botid":bot_data.botid};
+	}
+	if (bot_data.action == 'resume') {
+		var ajax_data = {"userpass":userpass,"method":"bot_resume","botid":bot_data.botid};
+	}
+	if (bot_data.action == 'stop') {
+		var ajax_data = {"userpass":userpass,"method":"bot_stop","botid":bot_data.botid};
+	}
+
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.error === false) {
+			toastr.error(data.error, 'Bot Info');
+		} else if (data.result == 'success') {
+			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + 'ed', 'Bot Info');
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	check_bot_list();
+}
+
+
+function bot_status(bot_data) {
+	console.log(bot_data);
+	
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"bot_pause","botid":bot_data.botid};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.error === false) {
+			toastr.error(data.error, 'Bot Info');
+		} else if (data.result == 'success') {
+			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + 'ed', 'Bot Info');
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	check_bot_list();
+}
 
 /* Auto Trading Bot END */
 
@@ -1658,7 +1945,7 @@ function check_swap_status(sig) {
 		clearInterval(check_swap_status_Internal);
 		return
 	} else {
-		console.log('checking swat status');
+		console.log('checking swap status');
 	}
 
 	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));

@@ -408,11 +408,11 @@
                           <div class="tab-pane fade" id="exchange_coin_bids">
 
                             <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
-                              <thead><th class="col-xs-3">Price in <span class="orderbook_rel_coin"></span></th>
-                                <th class="col-xs-3">Min <span class="orderbook_base_coin"></span></th>
-                                <th class="col-xs-3">Max <span class="orderbook_base_coin"></span></th>
-                                <th class="col-xs-3">Age</th>
-                                <th class="col-xs-3">UTXOs</th></thead>
+                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                                <th>Min <span class="orderbook_base_coin"></span></th>
+                                <th>Max <span class="orderbook_base_coin"></span></th>
+                                <th>Age</th>
+                                <th>UTXOs</th></thead>
                               <tbody></tbody>
                             </table>
                           </div>
@@ -451,7 +451,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Trading Pair</strong></h3>
-            <button class="btn btn-xs btn-refreshportfolio portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
           </div>
           <div class="panel-body"> <!-- panel-body -->
             
@@ -465,10 +465,23 @@
                       <input type="radio" name="trading_pair_options" id="trading_pair_options" value="selling" autocomplete="off"> SELLING <span class="coin_ticker"></span></label>
                   </div>
                 </div>
+                <div class="form-group">
+                  <span style="float: right; font-size: 18px;"><span class="trading_pair_lable_text_one">Max</span> Price to <span class="trading_pair_lable_text_two">Buy</span></span>
+                </div>
                 <div class="input-group col-sm-12">
                   <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
-                  <input type="text" class="form-control trading_pair_coin_price" placeholder="0.01" style="height: 64px; font-size: 20px;">
-                  <span class="input-group-addon" id="trading_pair_coin_price_for1" style="font-size: 20px;">1 <span class="coin_ticker"></span></span>
+                  <input type="text" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+                  <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
+                </div>
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
+                  <span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
+                </div>
+                <div class="input-group col-sm-12">
+                  <span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
+                  <input type="text" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 64px; font-size: 20px;">BUY</button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -477,26 +490,58 @@
         </div>
       </div>
 
-
       <div class="col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>My Orders</strong></h3>
-            <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
+            <h3 class="panel-title"><strong>Trading Bot</strong></h3>
+            
           </div>
           <div class=""> <!-- panel-body -->
-            <table class="table table-striped exchange_my_orders" style="margin-bottom: 0;">
-              <thead>
-                <th>Base</th>
-                <th>Rel</th>
-                <th>Bid</th>
-                <th>Ask</th>
-              </thead>
-              <tbody>
-                <th><div style="text-align: center;">Loading...</div></th>
-              </tbody>
-            </table>
+            
           </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="panel with-nav-tabs panel-default">
+              <div class="panel-heading">
+                <!--<button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
+                <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>-->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#exchange_myorders" data-toggle="tab">My Orders <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                    <li><a href="#exchange_botlist" data-toggle="tab">Trade Bot List <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                </ul>
+              </div>
+              <div class=""> <!-- panel-body -->
+                  <div class="tab-content">
+                      <div class="tab-pane fade in active" id="exchange_myorders">
+                        
+                        <table class="table table-striped exchange_my_orders_tbl" style="margin-bottom: 0;">
+                          <thead>
+                            <th>Base</th>
+                            <th>Rel</th>
+                            <th>Bid</th>
+                            <th>Ask</th>
+                          </thead>
+                          <tbody>
+                            <th><div style="text-align: center;">Loading...</div></th>
+                          </tbody>
+                        </table>
+
+                      </div>
+                      <div class="tab-pane fade" id="exchange_botlist">
+
+                        <table class="table table-striped exchange_bot_list_tbl" width="100%" style="margin-bottom: 0;">
+                          <thead>
+                            <th>Bot ID</th>
+                            <th>Actions</th>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                  </div>
+              </div>
         </div>
       </div>
 
