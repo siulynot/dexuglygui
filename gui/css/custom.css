@@ -97,3 +97,9 @@ textarea {
 .slider.slider-horizontal {
   width: 100%;
 }
+
+
+#exchange_coin_asks, #exchange_coin_bids, .exchange_trade_status_body {
+  overflow: scroll;
+  height: 285px;
+}

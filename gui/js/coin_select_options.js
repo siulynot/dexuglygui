@@ -129,6 +129,10 @@ coin_select_options = `<optgroup label="Crytpo Coins">
 <option data-content="<img src='img/cryptologo/UNO.png' width='50px' disabled/> Unobtanium (UNO)" data-tokens="Unobtanium UNO">UNO</option>
 <option data-content="<img src='img/cryptologo/MVP.png' width='50px' disabled/> MVP (MVP)" data-tokens="MVP MVP">MVP</option>
 */
+
+$('.trading_pair_coin').html(coin_select_options);
+
+
 $('.sell_coin').html(coin_select_options);
 $('.buy_coin').html(coin_select_options);
 

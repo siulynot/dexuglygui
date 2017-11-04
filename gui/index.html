@@ -118,12 +118,47 @@
     </nav>
     <!-- Section: Navigation Menu END -->
 
-    <div class="coindashboard">
-      <div class="col-sm-12">
-        <!--<div style="display: block; height: 100px;"></div>-->
+    <div class="screen-portfolio">
+      
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Portfolio Chart</h3>
+            <button class="btn btn-xs btn-refreshportfolio portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+          </div>
+          <div class="portfolio portfolio-coinslist"> <!-- panel-body -->
+            <div class="col-sm-12" id="portfolio_chart_current" style="height: 300px;"></div>
+            <div class="col-sm-12" id="portfolio_chart_target" style="height: 300px;"></div>
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Portfolio Coins</h3>
+            <button class="btn btn-xs btn-activatecoins portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+          </div>
+          <div class="portfolio portfolio-coinslist" style="max-height: 675px;"> <!-- panel-body -->
+            <table class="table table-striped porfolio_coins_list" style="margin-bottom: 0;">
+              <thead>
+                <tr>
+                  <th>Coin</th>
+                  <th>Balance</th>
+                  <th>Price</th>
+                  <th>KMD Value</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <th><div style="text-align: center;">Loading...</div></th>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="col-sm-6" style="display: none;">
         <div class="panel panel-default">
           <div class="panel-heading" style="display: none;">
             <h3 class="panel-title">Bitcoin</h3>
@@ -146,29 +181,33 @@
             <div style="float: right; text-align: right;"><b>Height:</b> <span class="pair-one pair-height" data-coin="COIN" data-pair="one">-</span><br><b>KMD Value:</b> <span class="pair-one pair-kmdvalue" data-coin="COIN" data-pair="one">-</span> KMD</div>
           </div>
         </div>
-      </div>
+      </div>-->
 
-      <div class="col-sm-6">
+    </div>
+
+    <div class="screen-coindashboard" style="display: none;">
+      <div class="col-sm-12">
         <div class="panel panel-default">
-          <div class="panel-heading" style="display: none;">
-            <h3 class="panel-title">Komodo</h3>
+          <div class="panel-heading">
+            <h3 class="panel-title coindashboard coindashboard-title"></h3>
+            <button class="btn btn-xs coindashboard btn_coindashboard_back" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px">BACK</button>
           </div>
           <div class="panel-body">
             <div style="text-align: center;">
-              <img src="img/cryptologo/kmd.png"/>
-              <div><span class="balance pair-two" style="font-size: 55px; font-weight: 100"></span> <span class="coin pair-two" style="font-size: 35px; font-weight: 100"></span></div>
-              <div class="pair-two pair-address" data-coin="COIN" data-pair="two"></div>
-              <button type="button" class="btn btn-default pair-two btn-send" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
-              <button type="button" class="btn btn-default pair-two btn-receive" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
-              <button type="button" class="btn btn-default pair-two btn-exchange" data-coin="COIN" data-pair="two" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 120px; margin: 5px;">Auto Trade</button>
-              <button type="button" class="btn btn-default pair-two btn-inventory" data-coin="COIN" data-pair="two" data-addr="ADDR" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
+              <img class="coindashboard coindashboard-coinicon" src="img/cryptologo/kmd.png"/>
+              <div><span class="coindashboard coindashboard-balance" style="font-size: 55px; font-weight: 100"></span> <span class="coindashboard coindashboard-coin" style="font-size: 35px; font-weight: 100"></span></div>
+              <div class="coindashboard coindashboard-address" data-coin="COIN"></div>
+              <button type="button" class="btn btn-default btn_coindashboard_send coindashboard" data-coin="COIN" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Send</button>
+              <button type="button" class="btn btn-default btn_coindashboard_receive coindashboard" data-coin="COIN" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Receive</button>
+              <button type="button" class="btn btn-default btn_coindashboard_exchange coindashboard" data-coin="COIN" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 120px; margin: 5px;">Auto Trade</button>
+              <button type="button" class="btn btn-default btn_coindashboard_inventory coindashboard" data-coin="COIN" data-addr="ADDR" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Inventory</button>
             </div>
           </div>
           <div class="panel-footer">
-            <input class="toggle_checkbox pair-two" id="toggle_pair_two" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
-            <button type="button" class="btn btn-default pair-two btn-enable" data-coin="COIN" data-pair="two" data-method="enable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Enable</button>
-            <button type="button" class="btn btn-default pair-two btn-disable" data-coin="COIN" data-pair="two" data-method="disable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Disable</button>
-            <div style="float: right; text-align: right;"><b>Height:</b> <span class="pair-two pair-height" data-coin="COIN" data-pair="two">-</span><br><b>KMD Value:</b> <span class="pair-two pair-kmdvalue" data-coin="COIN" data-pair="two">-</span> KMD</div>
+            <input class="toggle_checkbox" id="coindashboard-toggle coindashboard" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="COIN" disabled>
+            <button type="button" class="btn btn-default btn_coindashboard_enable coindashboard" data-coin="COIN" data-method="enable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Enable</button>
+            <button type="button" class="btn btn-default btn_coindashboard_disable coindashboard" data-coin="COIN" data-method="disable" style="text-transform: uppercase; border: 2px solid #1b8a6b; width: 100px; margin: 5px;">Disable</button>
+            <div style="float: right; text-align: right;"><b>Height:</b> <span class="coindashboard-height coindashboard" data-coin="COIN">-</span><br><b>KMD Value:</b> <span class="coindashboard-kmdvalue coindashboard" data-coin="COIN">-</span> KMD</div>
           </div>
         </div>
       </div>
@@ -338,10 +377,116 @@
     </div>
 
     <div class="screen-exchange" style="display: none;">
-      <div class="col-sm-12">
-        <h3>AUTO TRADER!!!</h3>
 
+      <div class="col-sm-6">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="panel with-nav-tabs panel-default">
+                  <div class="panel-heading">
+                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
+                    <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#exchange_coin_asks" data-toggle="tab">ASKS: <span class="orderbook_numasks"></span></a></li>
+                        <li><a href="#exchange_coin_bids" data-toggle="tab">BIDS: <span class="orderbook_numbids"></span></a></li>
+                    </ul>
+                  </div>
+                  <div class=""> <!-- panel-body -->
+                      <div class="tab-content">
+                          <div class="tab-pane fade in active" id="exchange_coin_asks">
+                            
+                            <table class="table table-striped orderbook_asks" width="100%" style="margin-bottom: 0;">
+                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                                <th>Min <span class="orderbook_base_coin"></span></th>
+                                <th>Max <span class="orderbook_base_coin"></span></th>
+                                <th>Age</th>
+                                <th>UTXOs</th></thead>
+                              <tbody></tbody>
+                            </table>
+
+                          </div>
+                          <div class="tab-pane fade" id="exchange_coin_bids">
+
+                            <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
+                              <thead><th class="col-xs-3">Price in <span class="orderbook_rel_coin"></span></th>
+                                <th class="col-xs-3">Min <span class="orderbook_base_coin"></span></th>
+                                <th class="col-xs-3">Max <span class="orderbook_base_coin"></span></th>
+                                <th class="col-xs-3">Age</th>
+                                <th class="col-xs-3">UTXOs</th></thead>
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+          </div>
+
+          
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><strong>Trade Status</strong></h3>
+                <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
+              </div>
+              <div class="exchange_trade_status_body"> <!-- panel-body -->
+                <table class="table table-striped exchange_swap_status" style="margin-bottom: 0;">
+                  <tbody>
+                    <th><div style="text-align: center;">Loading...</div></th>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Trading Pair</strong></h3>
+            <button class="btn btn-xs btn-refreshportfolio portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+          </div>
+          <div class="panel-body"> <!-- panel-body -->
+            
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="btn-group btn-group-justified colors" data-toggle="buttons">
+                    <label class="btn btn-lg btn-info active">
+                      <input type="radio" name="trading_pair_options" id="trading_pair_options" value="buying" autocomplete="off" checked> BUYING <span class="coin_ticker"></span></label>
+                    <label class="btn btn-lg btn-info">
+                      <input type="radio" name="trading_pair_options" id="trading_pair_options" value="selling" autocomplete="off"> SELLING <span class="coin_ticker"></span></label>
+                  </div>
+                </div>
+                <div class="input-group col-sm-12">
+                  <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
+                  <input type="text" class="form-control " placeholder="0.01" style="height: 64px; font-size: 20px;">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>My Orders</strong></h3>
+            <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
+          </div>
+          <div class=""> <!-- panel-body -->
+            <table class="table table-striped exchange_my_orders" style="margin-bottom: 0;">
+              <tbody>
+                <th><div style="text-align: center;">Loading...</div></th>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -435,6 +580,7 @@
                       </select>
                     </div>
                   </div>
+
                 </div>
             </div>
           </div>
@@ -867,6 +1013,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/coin_select_options.js" type="text/javascript"></script>
+    <script src="js/coin_names.js" type="text/javascript"></script>
     <script src="js/ipc-actions.js" type="text/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js" type="text/javascript"></script>

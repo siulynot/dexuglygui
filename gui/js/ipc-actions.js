@@ -23,8 +23,8 @@ $('.dexlogout-btn').click(function(e) {
 	$('.mainbody').fadeOut();
 	$('.loginbody').fadeIn();
 	//CheckOrderBookFn(false);
-	//CheckPortfolioFn(false);
-	check_coin_balance(false);
+	CheckPortfolioFn(false);
+	//check_coin_balance(false);
 	sessionStorage.clear();
 });
 
@@ -55,7 +55,8 @@ CheckMMStatus = function(sig) {
 		enable_disable_coin(refresh_data);
 		get_myprices();
 		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);*/
-		check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+		//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+		CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
 		clearInterval(CheckMM_Interval);
 	} else {
 		$('.mainbody').fadeOut();
