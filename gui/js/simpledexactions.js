@@ -474,7 +474,11 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	check_coin_balance(false);
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
 	check_swap_status_Internal = setInterval(check_swap_status,10000);
+	check_swap_status();
 	check_bot_list_Internal = setInterval(check_bot_list, 60000);
+	check_bot_list();
+	check_my_prices_Internal = setInterval(check_my_prices, 60000);
+	check_my_prices();
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -487,6 +491,7 @@ $('.btn-exchangeclose').click(function(e){
 	CheckOrderBookFn(false);
 	check_swap_status(false);
 	check_bot_list(false);
+	check_my_prices(false);
 	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 	check_coin_balance($(this).data());
 });
@@ -541,6 +546,8 @@ $('.btn-bot_action').click(function(e){
 $('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_status', function() {
 	console.log('bot status button clicked')
 	console.log($(this).data());
+
+	bot_status($(this).data());
 });
 
 $('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_resume', function() {
@@ -564,10 +571,6 @@ $('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_stop', function() {
 	bot_stop_pause_resume($(this).data());
 });
 
-$('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_settings', function() {
-	console.log('bot settings button clicked')
-	console.log($(this).data());
-});
 
 function check_coin_balance(coin_data) {
 	console.log(coin_data);
@@ -1562,7 +1565,8 @@ function check_my_prices(sig){
 	}
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"myprice","base":base_coin,"rel":rel_coin};
+	//var ajax_data = {"userpass":userpass,"method":"myprice","base":base_coin,"rel":rel_coin};
+	var ajax_data = {"userpass":userpass,"method":"myprices"};
 	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
@@ -1589,7 +1593,7 @@ function check_my_prices(sig){
 				exchange_my_orders_tr += '</tr>';
 				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 			} else {
-				/*$.each(data, function(index, val) {
+				$.each(data, function(index, val) {
 					console.log(index);
 					console.log(val);
 
@@ -1604,9 +1608,9 @@ function check_my_prices(sig){
 						exchange_my_orders_tr += '<td>' + val.ask + '</td>';
 					exchange_my_orders_tr += '</tr>';
 					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
-				});*/
+				});
 
-				var base_coin_name = return_coin_name(data.base)
+				/*var base_coin_name = return_coin_name(data.base)
 				var rel_coin_name = return_coin_name(data.rel)
 
 				var exchange_my_orders_tr = '';
@@ -1616,7 +1620,7 @@ function check_my_prices(sig){
 					exchange_my_orders_tr += '<td>' + data.bid + '</td>';
 					exchange_my_orders_tr += '<td>' + data.ask + '</td>';
 				exchange_my_orders_tr += '</tr>';
-				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
+				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);*/
 			}
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -1764,7 +1768,7 @@ function check_bot_list(sig) {
 				var exchange_bot_list_tr = '';
 				exchange_bot_list_tr += '<tr>';
 				exchange_bot_list_tr += '<td>' + val + '</td>';
-				exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-info btn_bot_status" data-botid="' + val + '" data-action="status">Status</button><button class="btn btn-success btn_bot_resume" data-botid="' + val + '" data-action="resume">Resume</button><button class="btn btn-warning btn_bot_pause" data-botid="' + val + '" data-action="pause">pause</button><button class="btn btn-danger btn_bot_stop" data-botid="' + val + '" data-action="stop">Stop</button><button class="btn btn-primary btn_bot_settingds" data-botid="' + val + '" data-action="settings">Settings</button></div></td>';
+				exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-info btn_bot_status" data-botid="' + val + '" data-action="status"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Status & Settings</button><button class="btn btn-success btn_bot_resume" data-botid="' + val + '" data-action="resume"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button><button class="btn btn-warning btn_bot_pause" data-botid="' + val + '" data-action="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button><button class="btn btn-danger btn_bot_stop" data-botid="' + val + '" data-action="stop"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button></div></td>';
 				exchange_bot_list_tr += '</tr>';
 				$('.exchange_bot_list_tbl tbody').append(exchange_bot_list_tr);
 			}
@@ -1872,7 +1876,7 @@ function bot_status(bot_data) {
 	
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"bot_pause","botid":bot_data.botid};
+	var ajax_data = {"userpass":userpass,"method":"bot_status","botid":bot_data.botid};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -1887,7 +1891,96 @@ function bot_status(bot_data) {
 		if (!data.error === false) {
 			toastr.error(data.error, 'Bot Info');
 		} else if (data.result == 'success') {
-			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + 'ed', 'Bot Info');
+
+			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
+			rel_answer = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.rel) + ' ('+data.rel+')';
+			base_answer = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
+
+			rel_form = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 50px;"> '+ data.rel;
+			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
+
+			bootbox.dialog({
+				message: `
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+								<h3 class="panel-title"><strong>Change This Auto Trade's Settings</strong></h3>
+								</div>
+								<div class="panel-body"> <!-- panel-body -->
+
+									<div class="form-group">
+										<span style="float: right; font-size: 18px;"><span class="trading_pair_lable_text_one">Max</span> Price to <span class="trading_pair_lable_text_two">Buy</span></span>
+									</div>
+									<div class="input-group col-sm-12">
+										<span class="input-group-addon">` + rel_form + `</span>
+										<input type="text" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+										<span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
+									</div>
+									<div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
+										<span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
+									</div>
+									<div class="input-group col-sm-12">
+										<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
+										<input type="text" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
+										<span class="input-group-btn">
+											<button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 64px; font-size: 20px;">UPDATE</button>
+										</span>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<table width="100%" class="table table-striped">
+						<tr>
+							<td>Auto Trader ID</td>
+							<td>` + data.botid + `</td>
+						</tr>
+						<tr>
+							<td>Auto Trade Name</td>
+							<td>` + data.name + `</td>
+						</tr>
+						<tr>
+							<td>Trade Action</td>
+							<td>` + data.action + `</td>
+						</tr>
+						<tr>
+							<td>Selling Currency</td>
+							<td>` + rel_answer + `</td>
+						</tr>
+						<tr>
+							<td>Buying Currency</td>
+							<td>` + base_answer + `</td>
+						</tr>
+						<tr>
+							<td>Max Price</td>
+							<td>` + data.maxprice + ` ` + data.rel + `</td>
+						</tr>
+						<tr>
+							<td>Total Selling Volume</td>
+							<td>` + data.totalrelvolume + ` ` + data.rel + `</td>
+						</tr>
+						<tr>
+							<td>Total Buying Volume</td>
+							<td>` + data.totalbasevolume + ` ` + data.base + `</td>
+						</tr>
+						<tr>
+							<td>Result</td>
+							<td>` + result_answer + `</td>
+						</tr>
+						<tr>
+							<td>Trades</td>
+							<td>` + JSON.stringify(data.trades, null, 2) + `</td>
+						</tr>
+					</table>`,
+				closeButton: true,
+				size: 'large'
+			});
+
+			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', 'Bot Info');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -1908,36 +2001,128 @@ $('.btn-swapstatusrefresh').click(function() {
 })
 
 
-$('.check_swap_status_btn').click(function() {
-	event.preventDefault();
-	var requestid = $('#swap_request_id').val();
-	var quoteid = $('#swap_quote_id').val();
+$('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function() {
+	console.log('swapstatus details button clicked')
+	console.log($(this).data());
+
+	check_swap_status_details($(this).data());
+});
+
+
+function check_swap_status_details(swap_data) {
+	console.log(swap_data);
+
+	var requestid = swap_data.requestid;
+	var quoteid = swap_data.quoteid;
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
 	var url = "http://127.0.0.1:7783/";
 
 	$.ajax({
+		async: true,
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
 	    url: url
 	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   $('.checkswaplist-output').html(JSON.stringify(data, null, 2));
+		// If successful
+		console.log(data);
+
+		result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
+		alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.alice) + ' ('+data.alice+')';
+		bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.bob) + ' ('+data.bob+')';
+		iambob_answer = (data.iambob == 0) ? 'Buyer' : 'Seller';
+
+		bootbox.dialog({
+			message: `
+				<table width="100%" class="table table-striped">
+					<tr>
+						<td rowspan=5>Trade info</td>
+						<td>Quote ID</td>
+						<td>` + data.quoteid + `</td>
+					</tr>
+					<tr>
+						<td>Request ID</td>
+						<td>` + data.requestid + `</td>
+					</tr>
+					<tr>
+						<td>Trade id</td>
+						<td>` + data.tradeid + `</td>
+					</tr>
+					<tr>
+						<td>Source Amount</td>
+						<td>` + data.srcamount + `</td>
+					</tr>
+					<tr>
+						<td>Result</td>
+						<td>` + result_answer + `</td>
+					</tr>
+					<tr>
+						<td rowspan=4>Buyer Info</td>
+						<td>Buyer Coin</td>
+						<td>` + alice_answer + `</td>
+					</tr>
+					<tr>
+						<td>Buyer ID</td>
+						<td>` + data.aliceid + `</td>
+					</tr>
+					<tr>
+						<td>Buyer Payment</td>
+						<td>` + data.alicepayment + `</td>
+					</tr>
+					<tr>
+						<td>Buyer Tx Fee</td>
+						<td>` + data.alicetxfee + `</td>
+					</tr>
+					<tr>
+						<td rowspan=4>Seller Info</td>
+						<td>Seller Coin</td>
+						<td>` + bob_answer + `</td>
+					</tr>
+					<tr>
+						<td>Seller Deposit</td>
+						<td>` + data.bobdeposit + `</td>
+					</tr>
+					<tr>
+						<td>Seller Payment</td>
+						<td>` + data.bobpayment + `</td>
+					</tr>
+					<tr>
+						<td>Seller Tx Fee</td>
+						<td>` + data.bobtxfee + `</td>
+					</tr>
+					<tr>
+						<td rowspan=5>Other Info</td>
+						<td>You are</td>
+						<td>` + iambob_answer + `</td>
+					</tr>
+					<tr>
+						<td>Sent Flags</td>
+						<td>` + JSON.stringify(data.sentflags, null, 2) + `</td>
+					</tr>
+					<tr>
+						<td>Values</td>
+						<td>` + JSON.stringify(data.values, null, 2) + `</td>
+					</tr>
+					<tr>
+						<td>depositspent</td>
+						<td>` + data.depositspent + `</td>
+					</tr>
+					<tr>
+						<td>Apayment Spent</td>
+						<td>` + data.Apaymentspent + `</td>
+					</tr>
+				</table>`,
+			closeButton: true,
+			size: 'large'
+		});
+
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-})
-
-
-
-$('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function() {
-	console.log('swapstatus details button clicked')
-	console.log($(this).data());
-});
+}
 
 
 function check_swap_status(sig) {
@@ -1958,6 +2143,7 @@ function check_swap_status(sig) {
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
+		async: true,
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
