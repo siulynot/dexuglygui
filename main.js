@@ -18,8 +18,8 @@ const electron = require('electron'),
 var shepherd = require('./ipc/shepherd-ipc');
 
 const appBasicInfo = {
-  name: 'BarterDEX',
-  version: '0.4.0-beta'
+  name: 'BarterDEX Simple',
+  version: '0.5.0-beta'
 };
 
 app.setName(appBasicInfo.name);
