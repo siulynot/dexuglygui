@@ -33,7 +33,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/glt.png' width='50px'/> GlobalToken (GLT)" data-tokens="GlobalToken GLT">GLT</option>
 
       <option data-content="<img src='img/cryptologo/huc.png' width='50px'/> Huntercoin (HUC)" data-tokens="Huntercoin HUC">HUC</option>
-      <option data-content="<img src='img/cryptologo/hush.png' width='50px'/> Hushcoin (HUSH)" data-tokens="Hushcoin HUSH">HUSH</option>
+      <option data-content="<img src='img/cryptologo/hush.png' width='50px'/> Hush (HUSH)" data-tokens="Hush HUSH">HUSH</option>
       <option data-content="<img src='img/cryptologo/i0c.png' width='50px'/> I0Coin (I0C)" data-tokens="I0Coin I0C">I0C</option>
       <option data-content="<img src='img/cryptologo/iop.png' width='50px'/> Internet of People (IOP)" data-tokens="Internet of People IOP">IOP</option>
       <option data-content="<img src='img/cryptologo/lbc.png' width='50px'/> LBRY Credits (LBC)" data-tokens="LBRY Credits LBC">LBC</option>
