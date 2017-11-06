@@ -1449,7 +1449,7 @@ function addcoins_dialog(){
 							<select class="selectpicker addcoin_enable_disable_selection" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
 							</div>
 							<div class="col-sm-6">
-							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px">
+							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px" disabled>
 							</div>
 
 
