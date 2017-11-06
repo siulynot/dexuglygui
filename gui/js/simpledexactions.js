@@ -983,7 +983,7 @@ function check_coin_listunspent(coin_data) {
 $("#inventory_slider_input1").keyup(function(){
 	var utxo_input = $("#inventory_slider_input1").val();
 	var slider1_value = $("#inventory-slider1").val();
-	$("#inventory-slider1Total").text(slider1_value*utxo_input);
+	$("#inventory-slider1Total").text((slider1_value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
@@ -1010,7 +1010,7 @@ $("#inventory_slider_input1").keyup(function(){
 $("#inventory_slider_input2").keyup(function(){
 	utxo_input = $("#inventory_slider_input2").val();
 	var slider2_value = $("#inventory-slider2").val();
-	$("#inventory-slider2Total").text(slider2_value*utxo_input);
+	$("#inventory-slider2Total").text((slider2_value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
@@ -1036,7 +1036,7 @@ $("#inventory_slider_input2").keyup(function(){
 $("#inventory_slider_input3").keyup(function(){
 	utxo_input = $("#inventory_slider_input3").val();
 	var slider3_value = $("#inventory-slider3").val();
-	$("#inventory-slider3Total").text(slider3_value*utxo_input);
+	$("#inventory-slider3Total").text((slider3_value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
@@ -1066,7 +1066,7 @@ $("#inventory-slider1").on("slide", function(slideEvt) {
 	$("#inventory-slider1Val").text(slideEvt.value);
 
 	utxo_input = $("#inventory_slider_input1").val();
-	$("#inventory-slider1Total").text(slideEvt.value*utxo_input);
+	$("#inventory-slider1Total").text((slideEvt.value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
@@ -1094,7 +1094,7 @@ $("#inventory-slider2").on("slide", function(slideEvt) {
 	$("#inventory-slider2Val").text(slideEvt.value);
 
 	utxo_input = $("#inventory_slider_input2").val();
-	$("#inventory-slider2Total").text(slideEvt.value*utxo_input);
+	$("#inventory-slider2Total").text((slideEvt.value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
@@ -1122,7 +1122,7 @@ $("#inventory-slider3").on("slide", function(slideEvt) {
 	$("#inventory-slider3Val").text(slideEvt.value);
 
 	utxo_input = $("#inventory_slider_input3").val();
-	$("#inventory-slider3Total").text(slideEvt.value*utxo_input);
+	$("#inventory-slider3Total").text((slideEvt.value*utxo_input).toFixed(8));
 
 	var slider1_total = parseFloat($('#inventory-slider1Total').text());
 	var slider2_total = parseFloat($('#inventory-slider2Total').text());
