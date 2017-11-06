@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - Simple GUI (BTC <-> KMD)</title>
+    <title>BarterDEX - Simple GUI</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -271,7 +271,7 @@
                   <span id="inventory-slider1inputlabel">Balance</span>
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="inventory_slider_input1">
+                  <input type="number" class="form-control" id="inventory_slider_input1">
                 </div>
                 <div class="col-sm-5">
                   <input id="inventory-slider1" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="4"/>
@@ -289,7 +289,7 @@
                   <span id="inventory-slider2inputlabel">Balance</span>
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="inventory_slider_input2">
+                  <input type="number" class="form-control" id="inventory_slider_input2">
                 </div>
                 <div class="col-sm-5">
                   <input id="inventory-slider2" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="8"/>
@@ -307,7 +307,7 @@
                   <span id="inventory-slider3inputlabel">Balance</span>
                 </div>
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" id="inventory_slider_input3">
+                  <input type="number" class="form-control" id="inventory_slider_input3">
                 </div>
                 <div class="col-sm-5">
                   <input id="inventory-slider3" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="4"/>
@@ -326,7 +326,7 @@
               </div>
               <div class="form-group">
                 <div class="" style="text-align: center;">
-                  <button class="btn btn-default coininventory btn-makeinventory" data-coin="COIN" coin-pair="NONE">Make Inventory</button>
+                  <button class="btn btn-primary coininventory btn-makeinventory" data-coin="COIN" coin-pair="NONE">Make Inventory</button>
                 </div>
               </div>
             </form>
@@ -451,7 +451,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Trading Pair</strong></h3>
-            <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px;"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
           </div>
           <div class="panel-body"> <!-- panel-body -->
             
@@ -494,11 +494,12 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Your Balance</strong></h3>
+            <button class="btn btn-xs btn-trading_coin_balance_refresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px"><span class="glyphicon glyphicon-refresh"></span></button>
           </div>
           <div class=""> <!-- panel-body -->
             <div class="input-group col-sm-12">
-              <span class="input-group-addon coin_ticker trading_coin_ticker_name" style="font-size: 20px;"></span>
-              <span class="input-group-addon trading_coin_balance"></span>
+              <span class="input-group-addon trading_coin_ticker_name" style="font-size: 30px;"></span>
+              <span class="input-group-addon trading_coin_balance" style="font-size: 55px; font-weight: 100;"></span>
             </div>
           </div>
         </div>

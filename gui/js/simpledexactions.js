@@ -6,6 +6,7 @@ var check_coin_balance_Interval = null;
 var check_swap_status_Internal = null;
 var check_my_prices_Internal = null;
 var check_bot_list_Internal = null;
+var bot_screen_coin_balance_Internal = null;
 
 
 /*$.each($('.pair-one[data-coin]'), function(index, value) {
@@ -58,6 +59,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	selected_coin.coin = $(this).data('coin');
 	selected_coin.coin_name = $(this).data('coinname');
 	selected_coin.addr = $(this).data('addr');
+	selected_coin.balance = $(this).data('balance');
 	console.log(selected_coin);
 	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
@@ -477,6 +479,8 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	check_bot_list();
 	check_my_prices_Internal = setInterval(check_my_prices, 60000);
 	check_my_prices();
+	bot_screen_coin_balance_Internal = setInterval(bot_screen_coin_balance, 30000);
+	bot_screen_coin_balance();
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -490,6 +494,7 @@ $('.btn-exchangeclose').click(function(e){
 	check_swap_status(false);
 	check_bot_list(false);
 	check_my_prices(false);
+	bot_screen_coin_balance(false);
 	check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
 	check_coin_balance();
 });
@@ -568,6 +573,14 @@ $('.exchange_bot_list_tbl tbody').on('click', '.btn_bot_stop', function() {
 
 	bot_stop_pause_resume($(this).data());
 });
+
+$('.btn-trading_coin_balance_refresh').click(function(e){
+	e.preventDefault();
+	console.log('btn-trading_coin_balance_refresh clicked');
+	console.log($(this).data());
+
+	bot_screen_coin_balance();
+})
 
 
 function check_coin_balance(coin_data) {
@@ -966,6 +979,88 @@ function check_coin_listunspent(coin_data) {
 
 
 
+
+$("#inventory_slider_input1").keyup(function(){
+	var utxo_input = $("#inventory_slider_input1").val();
+	var slider1_value = $("#inventory-slider1").val();
+	$("#inventory-slider1Total").text(slider1_value*utxo_input);
+
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
+});
+
+$("#inventory_slider_input2").keyup(function(){
+	utxo_input = $("#inventory_slider_input2").val();
+	var slider2_value = $("#inventory-slider2").val();
+	$("#inventory-slider2Total").text(slider2_value*utxo_input);
+
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
+});
+
+$("#inventory_slider_input3").keyup(function(){
+	utxo_input = $("#inventory_slider_input3").val();
+	var slider3_value = $("#inventory-slider3").val();
+	$("#inventory-slider3Total").text(slider3_value*utxo_input);
+
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
+	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
+});
+
+
+
 $("#inventory-slider1").slider();
 $("#inventory-slider1").on("slide", function(slideEvt) {
 	$("#inventory-slider1Val").text(slideEvt.value);
@@ -973,11 +1068,25 @@ $("#inventory-slider1").on("slide", function(slideEvt) {
 	utxo_input = $("#inventory_slider_input1").val();
 	$("#inventory-slider1Total").text(slideEvt.value*utxo_input);
 
-	var slider_input2 = $('#inventory-slider2').val();
-	var slider_input3 = $('#inventory-slider3').val();
-	var slider_total = parseFloat(slideEvt.value*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slider_input3*utxo_input3);
-
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
 	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
 });
 
 $("#inventory-slider2").slider();
@@ -987,11 +1096,25 @@ $("#inventory-slider2").on("slide", function(slideEvt) {
 	utxo_input = $("#inventory_slider_input2").val();
 	$("#inventory-slider2Total").text(slideEvt.value*utxo_input);
 
-	var slider_input1 = $('#inventory-slider1').val();
-	var slider_input3 = $('#inventory-slider3').val();
-	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slideEvt.value*utxo_input2) + parseFloat(slider_input3*utxo_input3);
-
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
 	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
 });
 
 $("#inventory-slider3").slider();
@@ -1001,11 +1124,25 @@ $("#inventory-slider3").on("slide", function(slideEvt) {
 	utxo_input = $("#inventory_slider_input3").val();
 	$("#inventory-slider3Total").text(slideEvt.value*utxo_input);
 
-	var slider_input1 = $('#inventory-slider1').val();
-	var slider_input2 = $('#inventory-slider2').val();
-	var slider_total = parseFloat(slider_input1*utxo_input1) + parseFloat(slider_input2*utxo_input2) + parseFloat(slideEvt.value*utxo_input3);
-
+	var slider1_total = parseFloat($('#inventory-slider1Total').text());
+	var slider2_total = parseFloat($('#inventory-slider2Total').text());
+	var slider3_total = parseFloat($('#inventory-slider3Total').text());
+	var slider_total = slider1_total + slider2_total + slider3_total;
 	$('.inventory-sliderTotal').text(slider_total.toFixed(8));
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin_balance = selected_coin.balance;
+	console.log(coin_balance);
+
+	if(slider_total >= coin_balance) {
+		$('.inventory-sliderTotal').css('color', 'red');
+		$('.inventory-sliderTotalCoin').css('color', 'red');
+		$('.btn-makeinventory').attr("disabled", "disabled");
+	} else if (slider_total < coin_balance) {
+		$('.inventory-sliderTotal').css('color', '');
+		$('.inventory-sliderTotalCoin').css('color', '');
+		$('.btn-makeinventory').removeAttr("disabled");
+	}
 });
 
 
@@ -1183,7 +1320,7 @@ function PortfolioTblDataFn(data) {
 			dex_portfolio_coins_tbl_tr += '<td>' + val.amount + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
+            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
             /*dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
@@ -2155,6 +2292,52 @@ function bot_status(bot_data) {
 	});
 
 	check_bot_list();
+}
+
+
+function bot_screen_coin_balance(sig) {
+	if (sig == false) {
+		clearInterval(bot_screen_coin_balance_Internal);
+		return
+	} else {
+		console.log('checking bot screen coin balance');
+	}
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	console.log(coin);
+
+	var coin_name = return_coin_name(coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
+	var url = "http://127.0.0.1:7783";
+
+
+	$.ajax({
+		async: true,
+		data: JSON.stringify(ajax_data),
+		dataType: 'json',
+		type: 'POST',
+		url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			bot_screen_coin_balance();
+		} else {
+			$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 50px;"> '+ return_coin_name(coin) + ' ('+coin+')');
+			$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 35px; font-weight: 100;">' + coin + '</span>');
+		}
+
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		// If fail
+		console.log(textStatus + ': ' + errorThrown);
+	});
 }
 
 /* Auto Trading Bot END */

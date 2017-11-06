@@ -83,8 +83,19 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/shark.png' width='50px'/> SHARK (SHARK)" data-tokens="SHARK SHARK">SHARK</option>
       <option data-content="<img src='img/cryptologo/supernet.png' width='50px'/> SUPERNET (SUPERNET)" data-tokens="SUPERNET SUPERNET">SUPERNET</option>
       <option data-content="<img src='img/cryptologo/wlc.png' width='50px'/> Wireless (WLC)" data-tokens="Wireless WLC">WLC</option>>
-    </optgroup>
-    <optgroup label="Komodo Currencies">
+    </optgroup>`;
+
+
+/*
+<option data-content="<img src='img/cryptologo/ANC.png' width='50px' disabled/> Anoncoin (ANC)" data-tokens="anc anoncoin">ANC</option>
+<option data-content="<img src='img/cryptologo/BTM.png' width='50px' disabled/> Bitmark (BTM)" data-tokens="btm bitmark">BTM</option>
+<option data-content="<img src='img/cryptologo/CARB.png' width='50px' disabled/> Carboncoin (CARB)" data-tokens="carb carboncoin">CARB</option>
+<option data-content="<img src='img/cryptologo/FRK.png' width='50px' disabled/> Franko (FRK)" data-tokens="Franko FRK">FRK</option>
+<option data-content="<img src='img/cryptologo/MZC.png' width='50px' disabled/> Mazacoin (MZC)" data-tokens="Mazacoin MZC">MZC</option>
+<option data-content="<img src='img/cryptologo/UNO.png' width='50px' disabled/> Unobtanium (UNO)" data-tokens="Unobtanium UNO">UNO</option>
+<option data-content="<img src='img/cryptologo/MVP.png' width='50px' disabled/> MVP (MVP)" data-tokens="MVP MVP">MVP</option>
+
+<optgroup label="Komodo Currencies">
       <option data-content="<img src='img/cryptologo/aud.png' width='50px;'/> Australian Dollar (AUD)" data-tokens="Australian Dollar AUD">AUD</option>
       <option data-content="<img src='img/cryptologo/bgn.png' width='50px;'/> Bulgarian Lev (BGN)" data-tokens="Bulgarian Lev BGN">BGN</option>
       <option data-content="<img src='img/cryptologo/cad.png' width='50px;'/> Canadian Dollar (CAD)" data-tokens="Canadian Dollar CAD">CAD</option>
@@ -117,17 +128,8 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/try.png' width='50px;'/> Turkish Lira (TRY)" data-tokens="Turkish Lira TRY">TRY</option>
       <option data-content="<img src='img/cryptologo/usd.png' width='50px;'/> US Dollar (USD)" data-tokens="US Dollar USD">USD</option>
       <option data-content="<img src='img/cryptologo/zar.png' width='50px;'/> South African Rand (ZAR)" data-tokens="South African Rand ZAR">ZAR</option>
-    </optgroup>`;
+    </optgroup>
 
-
-/*
-<option data-content="<img src='img/cryptologo/ANC.png' width='50px' disabled/> Anoncoin (ANC)" data-tokens="anc anoncoin">ANC</option>
-<option data-content="<img src='img/cryptologo/BTM.png' width='50px' disabled/> Bitmark (BTM)" data-tokens="btm bitmark">BTM</option>
-<option data-content="<img src='img/cryptologo/CARB.png' width='50px' disabled/> Carboncoin (CARB)" data-tokens="carb carboncoin">CARB</option>
-<option data-content="<img src='img/cryptologo/FRK.png' width='50px' disabled/> Franko (FRK)" data-tokens="Franko FRK">FRK</option>
-<option data-content="<img src='img/cryptologo/MZC.png' width='50px' disabled/> Mazacoin (MZC)" data-tokens="Mazacoin MZC">MZC</option>
-<option data-content="<img src='img/cryptologo/UNO.png' width='50px' disabled/> Unobtanium (UNO)" data-tokens="Unobtanium UNO">UNO</option>
-<option data-content="<img src='img/cryptologo/MVP.png' width='50px' disabled/> MVP (MVP)" data-tokens="MVP MVP">MVP</option>
 */
 
 $('.trading_pair_coin').html(coin_select_options);
