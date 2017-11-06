@@ -21,6 +21,7 @@ var ps = require('ps-node'),
       shepherd = '',
       assetChainPorts = require('./ports.js');
 
+const killmm = require('./killmm');
 
 // SETTING OS DIR TO RUN MARKETMAKER FROM
 // SETTING APP ICON FOR LINUX AND WINDOWS
@@ -69,7 +70,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
                   StartMarketMaker({"passphrase":arg.passphrase});
                   break;
             case 'logout':
-                  killMarketmaker(true);
+                  killmm(true);
                   event.returnValue = 'Logged Out';
                   break;
             case 'mmstatus':
@@ -82,47 +83,6 @@ ipcMain.on('shepherd-command', (event, arg) => {
       }
 })
 
-
-// kill rogue marketmaker copies on start
-killMarketmaker = function(data) {
-      if (data == true) {
-            let marketmakerGrep;
-
-        switch (osPlatform) {
-          case 'darwin':
-            marketmakerGrep = "ps -p $(ps -A | grep -m1 marketmaker | awk '{print $1}') | grep -i marketmaker";
-            break;
-          case 'linux':
-            marketmakerGrep = 'ps -p $(pidof marketmaker) | grep -i marketmaker';
-            break;
-          case 'win32':
-            marketmakerGrep = 'tasklist';
-            break;
-        }
-        
-        exec(marketmakerGrep, function(error, stdout, stderr) {
-          if (stdout.indexOf('marketmaker') > -1) {
-            const pkillCmd = osPlatform === 'win32' ? 'taskkill /f /im marketmaker.exe' : 'pkill -15 marketmaker';
-
-            console.log('found another marketmaker process(es)');
-
-            exec(pkillCmd, function(error, stdout, stderr) {
-              console.log(`${pkillCmd} is issued`);
-
-              if (error !== null) {
-                console.log(`${pkillCmd} exec error: ${error}`);
-              };
-            });
-          }
-
-          if (error !== null) {
-            console.log(`${marketmakerGrep} exec error: ${error}`);
-          };
-        });
-      }
-}
-
-
 StartMarketMaker = function(data) {
       //console.log(data.passphrase);
     try {
@@ -131,7 +91,7 @@ StartMarketMaker = function(data) {
         // Status is 'open' if currently in use or 'closed' if available
         if (status === 'closed') {
             const _coinsListFile = marketmakerDir+'/coinslist.json'
-            
+
             fs.pathExists(_coinsListFile, (err, exists) => {
                   if (exists === true) {
                         console.log('file exist');

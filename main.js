@@ -17,6 +17,8 @@ const electron = require('electron'),
 
 var shepherd = require('./ipc/shepherd-ipc');
 
+const killmm = require('./ipc/killmm');
+
 const appBasicInfo = {
   name: 'BarterDEX-Simple',
   version: '0.5.0-beta'
@@ -91,8 +93,9 @@ function createWindow (status) {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+    killmm(true, true);
   })
-  
+
 }
 
 // This method will be called when Electron has finished
@@ -105,8 +108,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   //if (process.platform !== 'darwin') {
-    killMarketmaker(true);
-    app.quit();
+    killmm(true, true);
   //}
 })
 
