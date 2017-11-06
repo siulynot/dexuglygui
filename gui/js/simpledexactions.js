@@ -7,10 +7,6 @@ var check_swap_status_Internal = null;
 var check_my_prices_Internal = null;
 var check_bot_list_Internal = null;
 
-var coin_pair = ["BTC","KMD"]
-
-$('.coin.pair-one').html(coin_pair[0]);
-$('.coin.pair-two').html(coin_pair[1]);
 
 /*$.each($('.pair-one[data-coin]'), function(index, value) {
 	$('.pair-one[data-coin]').attr('data-coin', coin_pair[0]);
@@ -1744,7 +1740,7 @@ function check_bot_list(sig) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"bot_list"};
+	var ajax_data = {"userpass":userpass,"method":"bot_statuslist"};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -1768,10 +1764,36 @@ function check_bot_list(sig) {
 				exchange_bot_list_tr += '</tr>';
 				$('.exchange_bot_list_tbl tbody').append(exchange_bot_list_tr);
 			} else {
+
+				if (!val.paused === false) {
+					var disable_resume_btn = ' ';
+					var disable_pause_btn = 'disabled="disabled"';
+				} else {
+					var disable_resume_btn = 'disabled="disabled"';
+					var disable_pause_btn = ' ';
+				}
+				if (!val.stopped === false) {
+					var disable_stop_btn = 'disabled="disabled"';
+				} else {
+					var disable_stop_btn = ' ';
+				}
+
+				if (!val.minprice === false){
+					var max_min_val = val.minprice;
+				}
+				if (!val.maxprice === false){
+					var max_min_val = val.maxprice;
+				}
+
 				var exchange_bot_list_tr = '';
 				exchange_bot_list_tr += '<tr>';
-				exchange_bot_list_tr += '<td>' + val + '</td>';
-				exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-info btn_bot_status" data-botid="' + val + '" data-action="status"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Status & Settings</button><button class="btn btn-success btn_bot_resume" data-botid="' + val + '" data-action="resume"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button><button class="btn btn-warning btn_bot_pause" data-botid="' + val + '" data-action="pause"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button><button class="btn btn-danger btn_bot_stop" data-botid="' + val + '" data-action="stop"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button></div></td>';
+				//exchange_bot_list_tr += '<td>'+val.botid+'</td>';
+				exchange_bot_list_tr += '<td>'+val.name+'</td>';
+				exchange_bot_list_tr += '<td>'+val.action+'</td>';
+				exchange_bot_list_tr += '<td>'+max_min_val+'</td>';
+				exchange_bot_list_tr += '<td>'+val.totalrelvolume+'</td>';
+				exchange_bot_list_tr += '<td>'+val.trades.length+'</td>';
+				exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-info btn_bot_status" data-botid="' + val.botid + '" data-action="status"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button><button class="btn btn-success btn_bot_resume" data-botid="' + val.botid + '" data-action="resume" ' + disable_resume_btn + '><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button><button class="btn btn-warning btn_bot_pause" data-botid="' + val.botid + '" data-action="pause" ' + disable_pause_btn + '><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button><button class="btn btn-danger btn_bot_stop" data-botid="' + val.botid + '" data-action="stop" ' + disable_stop_btn + '><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button></div></td>';
 				exchange_bot_list_tr += '</tr>';
 				$('.exchange_bot_list_tbl tbody').append(exchange_bot_list_tr);
 			}
@@ -1790,14 +1812,21 @@ function bot_buy_sell(bot_data) {
 
 	buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 
-	if(buying_or_selling == 'buying') {
+	/*if(buying_or_selling == 'buying') {
 		var base_coin = coin;
 		var rel_coin = $('.trading_pair_coin').selectpicker('val');
 	}
 	if(buying_or_selling == 'selling') {
 		var base_coin = $('.trading_pair_coin').selectpicker('val');
 		var rel_coin = coin;
-	}
+	}*/
+
+	var base_coin = coin;
+	var rel_coin = $('.trading_pair_coin').selectpicker('val');
+
+	console.log('BUYING or SELLING??: ' + buying_or_selling);
+	console.log('BASE: ' + base_coin);
+	console.log('REL: '+ rel_coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
@@ -1808,6 +1837,8 @@ function bot_buy_sell(bot_data) {
 	if (bot_data.action == 'sell') {
 		var ajax_data = {"userpass":userpass,"method":"bot_sell","base":base_coin,"rel":rel_coin,"minprice":bot_data.price,"basevolume":bot_data.volume};
 	}
+
+	console.log(ajax_data);
 
 	var url = "http://127.0.0.1:7783";
 
@@ -1873,6 +1904,40 @@ function bot_stop_pause_resume(bot_data) {
 	check_bot_list();
 }
 
+function bot_settings(bot_data) {
+	console.log(bot_data);
+	
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"bot_settings","botid":bot_data.botid,"newprice":bot_data.newprice,"newvolume":bot_data.newvolume};
+
+	console.log(ajax_data);
+	
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.error === false) {
+			toastr.error(data.error, 'Bot Info');
+		} else if (data.result == 'success') {
+			toastr.success('Bot ID: ' + bot_data.botid + ' Updateded', 'Bot Info');
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+	check_bot_list();
+}
+
 
 function bot_status(bot_data) {
 	console.log(bot_data);
@@ -1895,6 +1960,17 @@ function bot_status(bot_data) {
 			toastr.error(data.error, 'Bot Info');
 		} else if (data.result == 'success') {
 
+			var max_min = null;
+			var max_min_val = null;
+			if (!data.minprice === false){
+				max_min = 'Minimum';
+				max_min_val = data.minprice;
+			}
+			if (!data.maxprice === false){
+				max_min = 'Maximum';
+				max_min_val = data.maxprice;
+			}
+
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
 			rel_answer = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.rel) + ' ('+data.rel+')';
 			base_answer = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
@@ -1905,11 +1981,11 @@ function bot_status(bot_data) {
 			buy_sell_text = (data.action == 'buy') ? 'Buy' : 'Sell';
 			max_min_text = (data.action == 'buy') ? 'Max' : 'Min';
 
-			bootbox.dialog({
+			var bot_update_bootbox = bootbox.dialog({
 				message: `
 					<table width="100%" class="table table-striped">
 						<tr>
-							<td>Auto Trader ID</td>
+							<td style="width: 150px;">Auto Trader ID</td>
 							<td>` + data.botid + `</td>
 						</tr>
 						<tr>
@@ -1929,8 +2005,8 @@ function bot_status(bot_data) {
 							<td>` + base_answer + `</td>
 						</tr>
 						<tr>
-							<td>Max Price</td>
-							<td>` + data.maxprice + ` ` + data.rel + `</td>
+							<td>` + max_min + ` Price</td>
+							<td>` + max_min_val + ` ` + data.rel + `</td>
 						</tr>
 						<tr>
 							<td>Total Selling Volume</td>
@@ -1959,22 +2035,19 @@ function bot_status(bot_data) {
 								<div class="panel-body"> <!-- panel-body -->
 
 									<div class="form-group">
-										<span style="float: right; font-size: 18px;"><span>Max</span> Price to <span>Buy</span></span>
+										<span style="float: right; font-size: 18px;"><span>New ` + max_min_text + `</span> Price to <span>` + buy_sell_text + `</span></span>
 									</div>
 									<div class="input-group col-sm-12">
 										<span class="input-group-addon">` + rel_form + `</span>
-										<input type="text" class="form-control trading_pair_coin_newprice" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+										<input type="number" class="form-control trading_pair_coin_newprice" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
 										<span class="input-group-addon" id="trading_pair_coin_price_max_min_update" style="font-size: 20px;">` + max_min_text + `</span>
 									</div>
 									<div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
-										<span style="font-size: 18px;"><span>Max</span> Amount to <span>` + buy_sell_text + `</span></span>
+										<span style="font-size: 18px;"><span>New Max</span> Amount to <span>` + buy_sell_text + `</span></span>
 									</div>
 									<div class="input-group col-sm-12">
 										<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;">` + base_form + `</span>
-										<input type="text" class="form-control trading_pair_coin_newvolume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
-										<span class="input-group-btn">
-											<button class="btn btn-primary btn-bot_update" data-action="` + buy_sell_text + `" style="height: 64px; font-size: 20px;">UPDATE</button>
-										</span>
+										<input type="number" class="form-control trading_pair_coin_newvolume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
 									</div>
 
 
@@ -1995,21 +2068,86 @@ function bot_status(bot_data) {
 					},
 					ok: {
 						label: "Update",
-						className: 'btn-primary',
+						className: 'btn-primary btn-bot_settings_update',
 						callback: function(){
-							console.log($('.trading_pair_coin_newprice').val())
-							console.log($('.trading_pair_coin_newvolume').val())
-							console.log(data.rel);
-							console.log(data.base);
-							//bot_update_data = {}
-							//bot_update_data.rel = data.rel;
+							//console.log($('.trading_pair_coin_newprice').val())
+							//console.log($('.trading_pair_coin_newvolume').val())
+							//console.log(data.rel);
+							//console.log(data.base);
+							bot_update_data = {}
+							bot_update_data.rel = data.rel;
+							bot_update_data.base = data.base;
+							bot_update_data.botid = data.botid;
+							bot_update_data.newprice = $('.trading_pair_coin_newprice').val();
+							bot_update_data.newvolume = $('.trading_pair_coin_newvolume').val();
+
+							//console.log(bot_update_data);
+
+							bot_settings(bot_update_data);
 
 						}
 					}
 				}
 			});
+			bot_update_bootbox.init(function(){
+				console.log('bot_update_settings dialog opened.')
+				$('.btn-bot_settings_update').attr("disabled", "disabled");
+				$('.trading_pair_coin_newprice').inputNumber();
+				$('.trading_pair_coin_newvolume').inputNumber();
 
-			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', 'Bot Info');
+
+				$('.trading_pair_coin_newprice').keyup(function() {
+
+					var max_min_newprice = $('.trading_pair_coin_newprice')
+					var max_newvolume = $('.trading_pair_coin_newvolume')
+
+					var empty = false;
+					if (max_min_newprice.val().length == 0 ) {
+						console.log('new price is empty');
+						empty = true;
+					} else if (max_min_newprice.val().length !== 0 ) {
+						console.log('NEW PRICE IS :' + max_min_newprice.val());
+						empty = false;
+					}
+					console.log(empty);
+
+
+					if (empty){
+						$('.btn-bot_settings_update').attr("disabled", "disabled");
+					} else {
+						$('.btn-bot_settings_update').removeAttr("disabled");
+					}
+
+				});
+
+				$('.trading_pair_coin_newvolume').keyup(function() {
+
+					var max_min_newprice = $('.trading_pair_coin_newprice')
+					var max_newvolume = $('.trading_pair_coin_newvolume')
+
+					var empty = false;
+					if (max_newvolume.val().length == 0 ) {
+						console.log('new price is empty');
+						empty = true;
+					} else if (max_newvolume.val().length !== 0 ) {
+						console.log('NEW PRICE IS :' + max_newvolume.val());
+						empty = false;
+					}
+					console.log(empty);
+
+
+					if (empty){
+						$('.btn-bot_settings_update').attr("disabled", "disabled");
+					} else {
+						$('.btn-bot_settings_update').removeAttr("disabled");
+					}
+
+				});
+
+				
+			});
+
+			//toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', 'Bot Info');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -2181,8 +2319,10 @@ function check_swap_status(sig) {
 		// If successful
 		//console.log(data);
 
+		var reversed_swap_list = data.swaps.reverse();
+
 		$('.exchange_swap_status_tbl tbody').empty();
-		$.each(data.swaps, function(index, val) {
+		$.each(reversed_swap_list, function(index, val) {
 			//console.log(index);
 			//console.log(val);
 			if(!val.error === false) {

@@ -470,7 +470,7 @@
                 </div>
                 <div class="input-group col-sm-12">
                   <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
-                  <input type="text" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+                  <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
                   <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
                 </div>
                 <div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
@@ -478,7 +478,7 @@
                 </div>
                 <div class="input-group col-sm-12">
                   <span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
-                  <input type="text" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
+                  <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
                   <span class="input-group-btn">
                     <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 64px; font-size: 20px;">BUY</button>
                   </span>
@@ -490,14 +490,16 @@
         </div>
       </div>
 
-      <div class="col-sm-6" style="display: none;">
+      <div class="col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Trading Bot</strong></h3>
-            
+            <h3 class="panel-title"><strong>Your Balance</strong></h3>
           </div>
           <div class=""> <!-- panel-body -->
-            
+            <div class="input-group col-sm-12">
+              <span class="input-group-addon coin_ticker trading_coin_ticker_name" style="font-size: 20px;"></span>
+              <span class="input-group-addon trading_coin_balance"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -534,7 +536,12 @@
 
                         <table class="table table-striped exchange_bot_list_tbl" width="100%" style="margin-bottom: 0;">
                           <thead>
-                            <th>Auto Trader ID</th>
+                            <!--<th>Bot ID</th>-->
+                            <th>Name</th>
+                            <th>Bot Action</th>
+                            <th>Price</th>
+                            <th>Max Volume</th>
+                            <th>Trades Done</th>
                             <th>Actions</th>
                           </thead>
                           <tbody></tbody>
@@ -1083,6 +1090,7 @@
     <script src="js/bootbox.min.js" type="text/javascript"></script>
     <script src="js/clipboard.min.js" type="text/javascript"></script>
     <script src="js/bootstrap-slider.min.js" type="text/javascript"></script>
+    <script src="js/number-polyfill.min.js" type="text/javascript"></script>
     <!-- amcharts libs -->
     <script src="js/amcharts/amcharts.js" type="text/javascript"></script>
     <script src="js/amcharts/pie.js" type="text/javascript"></script>
