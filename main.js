@@ -18,7 +18,7 @@ const electron = require('electron'),
 var shepherd = require('./ipc/shepherd-ipc');
 
 const appBasicInfo = {
-  name: 'BarterDEX Simple',
+  name: 'BarterDEX-Simple',
   version: '0.5.0-beta'
 };
 
