@@ -23,9 +23,6 @@ $(document).ready(function() {
 	if (mmstatus !== 'closed') {
 		$('.mainbody').show();
 		$('.loginbody').hide();
-		//var refresh_data = {"coin":" ", "status": "enable"};
-		//enable_disable_coin(refresh_data);
-		//get_myprices();
 
 		//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
 		//check_coin_balance();
@@ -67,6 +64,61 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 });
 
+
+$('.btn-activatecoins').click(function(e){
+	e.preventDefault();
+	console.log('btn-activatecoins clicked');
+	console.log($(this).data());
+
+	addcoins_dialog();
+
+	//$('.screen-portfolio').hide();
+	//$('.screen-addcoins').show();
+
+	//CheckPortfolioFn(false);
+	//get_coins_list();
+
+
+
+})
+
+/*$('.btn-addcoinsclose').click(function(e){
+	e.preventDefault();
+	console.log('btn-addcoinsclose clicked');
+	console.log($(this).data());
+
+	$('.screen-portfolio').show();
+	$('.screen-addcoins').hide();
+
+	CheckPortfolioFn();
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+});
+
+$('.btn-addcoinsrefresh').click(function(e){
+	e.preventDefault();
+	console.log('btn-addcoinsrefresh clicked');
+	console.log($(this).data());
+
+	get_coins_list()
+});*/
+
+$('.addcoins_tbl tbody').on('click', '.addcoins_tbl_disable_btn', function() {
+	console.log('Disable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "disable"};
+	//enable_disable_coin(refresh_data)
+	//$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).attr("disabled","disabled");
+	//$('.selectpicker').selectpicker('refresh');
+
+
+});
+
+$('.addcoins_tbl tbody').on('click', '.addcoins_tbl_enable_btn', function() {
+	console.log('Enable this coin:' + $(this).data('coin'));
+	var refresh_data = {"coin":$(this).data('coin'), "status": "enable"};
+	//enable_disable_coin(refresh_data)
+	//$('.selectpicker option').filter(function () { return $(this).html() == $(this).data('coin'); }).removeAttr('disabled');
+	//$('.selectpicker').selectpicker('refresh');
+});
 
 $('.btn_coindashboard_back').click(function(){
 	console.log('btn_coindashboard_back clicked');
@@ -1242,6 +1294,210 @@ function make_inventory_withdraw(data) {
 }
 
 
+function addcoin_enable_disable_coin(data) {
+	//console.log(data.coin);
+	//console.log(data.status);
+	var electrum_option = $('.toggle_checkbox[data-coin="' + data.coin + '"]').prop('checked'); //If 'false', electrum option selected
+	var userpass = sessionStorage.getItem('mm_userpass');
+	
+	
+	if (data.coin !== ' ' ) {
+		console.log('coin value is not empty');
+	} else {
+		console.log('coin value is empty');
+	}
+	if (data.coin !== ' ' && data.status == 'enable') {
+		if (electrum_option == false) {
+		console.log(electrum_option);
+		console.log("electrum selected for " + data.coin);
+		var ajax_data = {"userpass":userpass,"method":"electrum","coin":data.coin,"ipaddr":"46.4.125.2","port":50001};
+		} else {
+			console.log(electrum_option);
+			console.log("native selected for " + data.coin);
+			var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+		}
+	} else if (data.coin !== ' ' && data.status == 'disable') {
+		var ajax_data = {"userpass":userpass,"method":data.status,"coin":data.coin};
+	} else if (data.coin == ' ') {
+		var ajax_data = {"userpass":userpass,"method":"getcoins"};
+	}
+	var url = "http://127.0.0.1:7783";
+
+	console.log(ajax_data);
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		//console.log(data);
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			if (ajax_data.status === 'enable') {
+				toastr.success(ajax_data.coin+' Enabled','Coin Status');
+			}
+			if (ajax_data.status === 'disable') {
+				toastr.success(ajax_data.coin+' Disabled','Coin Status');
+			}
+			get_coins_list(data.coins);
+		} else {
+			$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+			//get_coins_list(data);
+			if (electrum_option == false) {
+				//get_coins_list('');
+				$('.refresh_dex_balances').trigger('click');
+			} else {
+				get_coins_list(data);
+			}
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+function get_coins_list() {
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	
+	var ajax_data = {"userpass":userpass,"method":"getcoins"};
+	console.log(ajax_data)
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+		data: JSON.stringify(ajax_data),
+		dataType: 'json',
+		type: 'POST',
+		url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			get_coins_list();
+			return
+		} else {
+			$('.addcoins_tbl tbody').empty();
+
+			$.each(data, function(index, val) {
+				console.log(index);
+				console.log(val);
+
+				var coin_name = return_coin_name(val.coin)
+
+				var addcoins_tbl_tr = '';
+
+				addcoins_tbl_tr += '<tr>';
+					addcoins_tbl_tr += '<td><img src="img/cryptologo/' + val.coin.toLowerCase() + '.png" width="30px;"/> '+ coin_name + ' (' + val.coin + ')</td>';
+					addcoins_tbl_tr += '<td>' + val.balance + '</td>';
+					addcoins_tbl_tr += '<td>' + val.smartaddress + '</td>';
+					addcoins_tbl_tr += '<td><span class="label label-uppercase label-' + (( val.status == 'active' ) ? 'grey' : 'default') + '">' + val.status + '</span></td>';
+					addcoins_tbl_tr += '<td>' + (parseFloat(val.txfee)/100000000).toFixed(8) + '</td>';
+					addcoins_tbl_tr += '<td><input class="toggle_checkbox" type="checkbox" checked data-toggle="toggle" data-on="Native" data-off="Electrum" data-onstyle="grey" data-offstyle="info" data-width="100px" data-coin="' + val.coin + '" disabled></td>';
+					addcoins_tbl_tr += '<td style="width: 165px;"> <div class="btn-group" role="group">' + (( val.status == 'active' ) ? '<button class="btn btn-xs btn-warning addcoins_tbl_disable_btn" data-coin="' + val.coin + '">Disable</button>' : '<button class="btn btn-xs btn-success addcoins_tbl_enable_btn" data-coin="' + val.coin + '">Enable</button>') + '</div></td>';
+				addcoins_tbl_tr += '</tr>';
+
+				$('.addcoins_tbl tbody').append(addcoins_tbl_tr);
+
+				/*if (val.status == 'active') {
+					$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).removeAttr('disabled');
+				}else {
+					$('.selectpicker option').filter(function () { return $(this).html() == val.coin; }).attr("disabled","disabled");
+				}
+
+				$('.selectpicker').selectpicker('refresh');*/
+				$('.toggle_checkbox[data-coin="BTC"]').removeAttr('disabled');
+				$('.toggle_checkbox').bootstrapToggle();
+
+				if (!val.electrum === false) {
+					console.log(val);
+					$('.toggle_checkbox[data-coin="' + val.coin + '"]').prop('checked', false).change()
+				}
+			})
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		// If fail
+		console.log(textStatus + ': ' + errorThrown);
+	});
+};
+
+
+function addcoins_dialog(){
+
+	var bot_update_bootbox = bootbox.dialog({
+		message: `
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						<h3 class="panel-title"><strong>Add Coin</strong></h3>
+						</div>
+						<div class="panel-body"> <!-- panel-body -->
+
+							<div class="col-sm-6">
+							<select class="selectpicker addcoin_enable_disable_selection" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
+							</div>
+							<div class="col-sm-6">
+							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px">
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>`,
+		closeButton: false,
+		size: 'medium',
+
+		buttons: {
+			cancel: {
+				label: "Cancel",
+				className: 'btn-default',
+				callback: function(){
+
+				}
+			},
+			ok: {
+				label: "Enable",
+				className: 'btn-success btn-addcoins_enable',
+				callback: function(){
+					var addcoin_data = {}
+					addcoin_data.coin = $('.addcoin_enable_disable_selection').selectpicker('val');
+					addcoin_data.electrum = $('#addcoin_toggle_native_electrum').prop('checked');
+					addcoin_data.method = 'enable';
+					console.log(addcoin_data);
+
+					enable_disable_coin(addcoin_data);
+					CheckPortfolioFn();
+
+				}
+			}
+		}
+	});
+	bot_update_bootbox.init(function(){
+		$('.addcoin_enable_disable_selection').html(coin_select_options);
+		$('.addcoin_enable_disable_selection').selectpicker('render');
+
+		$('.toggle_checkbox').bootstrapToggle();
+
+		//console.log('bot_update_settings dialog opened.')
+		//$('.btn-bot_settings_update').attr("disabled", "disabled");
+		//$('.trading_pair_coin_newprice').inputNumber();
+		//$('.trading_pair_coin_newvolume').inputNumber();
+		
+	});
+}
 
 
 /* Portfolio section functions START */

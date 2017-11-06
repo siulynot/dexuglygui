@@ -124,7 +124,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Portfolio Chart</h3>
-            <button class="btn btn-xs btn-refreshportfolio portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-refreshportfolio portfolio" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
           </div>
           <div class="portfolio portfolio-coinslist"> <!-- panel-body -->
             <div class="col-sm-12" id="portfolio_chart_current" style="height: 300px;"></div>
@@ -137,7 +137,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Portfolio Coins</h3>
-            <button class="btn btn-xs btn-activatecoins portfolio" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin-right: 3px; margin-top: -20px">ADD COINS <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
           <div class="portfolio portfolio-coinslist" style="max-height: 675px;"> <!-- panel-body -->
             <table class="table table-striped porfolio_coins_list" style="margin-bottom: 0;">
@@ -183,6 +183,28 @@
         </div>
       </div>-->
 
+    </div>
+
+    <div class="screen-addcoins" style="display: none;">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Coins</h3>
+            <button class="btn btn-xs btn-addcoinsclose addcoins" style="float: right; margin: -20px -5px;">BACK</button>
+            <button class="btn btn-xs btn-addcoinsrefresh addcoins" style="float: right; margin: -20px 45px;"><span class="glyphicon glyphicon-refresh"></span></button>
+          </div>
+          <div class=""> <!-- panel-body -->
+            <table class="table table-striped addcoins_tbl" style="margin-bottom: 0;">
+              <thead>
+                <tr><th>Coin</th><th>Total Balance</th><th>Deposit Address</th><th>Status</th><th>txfee</th><th>Electrum</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="7"><div style="text-align: center;">Loading...</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="screen-coindashboard" style="display: none;">
