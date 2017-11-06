@@ -54,7 +54,8 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	});
 
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
-		$('.coinexchange[data-coin]').attr('data-coin', coin);
+		//$('.coinexchange[data-coin]').attr('data-coin', coin);
+		$('.coinexchange[data-coin]').data('coin', coin);
 	});
 
 	selected_coin = {}
@@ -451,7 +452,7 @@ $('.btn-makeinventory').click(function(e) {
 
 $('.btn_coindashboard_exchange').click(function(e) {
 	e.preventDefault();
-	console.log('btn-makeinventory clicked');
+	console.log('btn_coindashboard_exchange clicked');
 	console.log($(this).data());
 
 	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
@@ -463,7 +464,8 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	$('.coin_ticker').html(coin);
 	
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
-		$('.coinexchange[data-coin]').attr('data-coin', coin);
+		//$('.coinexchange[data-coin]').attr('data-coin', coin);
+		$('.coinexchange[data-coin]').data('coin', coin);
 	});
 
 	/*$('.btn-exchangeclose').attr('data-coin', coin);
@@ -492,8 +494,8 @@ $('.btn-exchangeclose').click(function(e){
 	check_swap_status(false);
 	check_bot_list(false);
 	check_my_prices(false);
-	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
-	check_coin_balance($(this).data());
+	check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
+	check_coin_balance();
 });
 
 
@@ -589,7 +591,8 @@ function check_coin_balance(coin_data) {
 
 
 
-	if (((coin_data == null) ? coin : coin_data.coin) == 'BTC') {
+	//if (((coin_data == null) ? coin : coin_data.coin) == 'BTC') {
+	if (coin == 'BTC') {
 		$('#coindashboard-toggle').bootstrapToggle('enable');
 	} else {
 		$('#coindashboard-toggle').bootstrapToggle('disable');
@@ -598,13 +601,13 @@ function check_coin_balance(coin_data) {
 	$('.coindashboard-title').empty();
 	$('.coindashboard-coin').empty();
 	$('.coindashboard-balance').empty();
-	$('.coindashboard-address[data-coin="' + ((coin_data == null) ? coin : coin_data.coin) + '"]').empty();
-	$(".coindashboard-coinicon").attr("src","img/cryptologo/" + ((coin_data == null) ? coin : coin_data.coin).toLowerCase() + ".png");
+	$('.coindashboard-address[data-coin="' + coin + '"]').empty();
+	$(".coindashboard-coinicon").attr("src","img/cryptologo/" + coin.toLowerCase() + ".png");
 
-	var coin_name = return_coin_name(((coin_data == null) ? coin : coin_data.coin));
+	var coin_name = return_coin_name(coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": ((coin_data == null) ? coin : coin_data.coin)};
+	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
 	var url = "http://127.0.0.1:7783";
 
 
@@ -1897,43 +1900,13 @@ function bot_status(bot_data) {
 			base_answer = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
 
 			rel_form = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 50px;"> '+ data.rel;
-			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
+			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 50px;"> '+ data.base;
+
+			buy_sell_text = (data.action == 'buy') ? 'Buy' : 'Sell';
+			max_min_text = (data.action == 'buy') ? 'Max' : 'Min';
 
 			bootbox.dialog({
 				message: `
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-								<h3 class="panel-title"><strong>Change This Auto Trade's Settings</strong></h3>
-								</div>
-								<div class="panel-body"> <!-- panel-body -->
-
-									<div class="form-group">
-										<span style="float: right; font-size: 18px;"><span class="trading_pair_lable_text_one">Max</span> Price to <span class="trading_pair_lable_text_two">Buy</span></span>
-									</div>
-									<div class="input-group col-sm-12">
-										<span class="input-group-addon">` + rel_form + `</span>
-										<input type="text" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
-										<span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
-									</div>
-									<div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
-										<span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
-									</div>
-									<div class="input-group col-sm-12">
-										<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
-										<input type="text" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
-										<span class="input-group-btn">
-											<button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 64px; font-size: 20px;">UPDATE</button>
-										</span>
-									</div>
-
-
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<table width="100%" class="table table-striped">
 						<tr>
 							<td>Auto Trader ID</td>
@@ -1975,9 +1948,65 @@ function bot_status(bot_data) {
 							<td>Trades</td>
 							<td>` + JSON.stringify(data.trades, null, 2) + `</td>
 						</tr>
-					</table>`,
+					</table>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+								<h3 class="panel-title"><strong>Change This Auto Trade's Settings</strong></h3>
+								</div>
+								<div class="panel-body"> <!-- panel-body -->
+
+									<div class="form-group">
+										<span style="float: right; font-size: 18px;"><span>Max</span> Price to <span>Buy</span></span>
+									</div>
+									<div class="input-group col-sm-12">
+										<span class="input-group-addon">` + rel_form + `</span>
+										<input type="text" class="form-control trading_pair_coin_newprice" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+										<span class="input-group-addon" id="trading_pair_coin_price_max_min_update" style="font-size: 20px;">` + max_min_text + `</span>
+									</div>
+									<div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
+										<span style="font-size: 18px;"><span>Max</span> Amount to <span>` + buy_sell_text + `</span></span>
+									</div>
+									<div class="input-group col-sm-12">
+										<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;">` + base_form + `</span>
+										<input type="text" class="form-control trading_pair_coin_newvolume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
+										<span class="input-group-btn">
+											<button class="btn btn-primary btn-bot_update" data-action="` + buy_sell_text + `" style="height: 64px; font-size: 20px;">UPDATE</button>
+										</span>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>`,
 				closeButton: true,
-				size: 'large'
+				size: 'large',
+
+				buttons: {
+					cancel: {
+						label: "Cancel",
+						className: 'btn-danger',
+						callback: function(){
+
+						}
+					},
+					ok: {
+						label: "Update",
+						className: 'btn-primary',
+						callback: function(){
+							console.log($('.trading_pair_coin_newprice').val())
+							console.log($('.trading_pair_coin_newvolume').val())
+							console.log(data.rel);
+							console.log(data.base);
+							//bot_update_data = {}
+							//bot_update_data.rel = data.rel;
+
+						}
+					}
+				}
 			});
 
 			toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', 'Bot Info');
