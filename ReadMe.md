@@ -1,4 +1,4 @@
-# DEX Ugly GUI
+# barterDEX SimpleGUI
 
 Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
 
