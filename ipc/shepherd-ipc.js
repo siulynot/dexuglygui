@@ -27,25 +27,25 @@ const killmm = require('./killmm');
 // SETTING APP ICON FOR LINUX AND WINDOWS
 if (os.platform() === 'darwin') {
   fixPath();
-  var marketmakerBin = path.join(__dirname, '../assets/bin/osx/marketmaker'),
-      marketmakerDir = `${process.env.HOME}/Library/Application Support/marketmaker`;
+  var dICOBin = path.join(__dirname, '../assets/bin/osx/marketmaker'),
+      dICODir = `${process.env.HOME}/Library/Application Support/dICOApp`;
 }
 
 if (os.platform() === 'linux') {
-  var marketmakerBin = path.join(__dirname, '../assets/bin/linux64/marketmaker'),
-      marketmakerDir = `${process.env.HOME}/.marketmaker`;
+  var dICOBin = path.join(__dirname, '../assets/bin/linux64/marketmaker'),
+      dICODir = `${process.env.HOME}/.dICOApp`;
 }
 
 if (os.platform() === 'win32') {
-  var marketmakerBin = path.join(__dirname, '../assets/bin/win64/marketmaker.exe');
-      marketmakerBin = path.normalize(marketmakerBin);
-      marketmakerDir = `${process.env.APPDATA}/marketmaker`;
-      marketmakerDir = path.normalize(marketmakerDir);
-      marketmakerIcon = path.join(__dirname, '/assets/icons/agama_icons/agama_app_icon.ico');
+  var dICOBin = path.join(__dirname, '../assets/bin/win64/marketmaker.exe');
+      dICOBin = path.normalize(dICOBin);
+      dICODir = `${process.env.APPDATA}/dICOApp`;
+      dICODir = path.normalize(dICODir);
+      dICOIcon = path.join(__dirname, '/assets/icons/agama_icons/agama_app_icon.ico');
 }
 
 // DEFAULT COINS LIST FOR MARKETMAKER
-defaultCoinsListFile = path.join(__dirname, '../assets/coinslist.json');
+defaultCoinsListFile = path.join(__dirname, '../assets/coins.json');
 
 
 const {ipcMain} = require('electron');
@@ -62,8 +62,8 @@ ipcMain.on('shepherd-command', (event, arg) => {
                   event.returnValue = 'pong'
                   break;
             case 'login':
-                  console.log(marketmakerBin);
-                  console.log(marketmakerDir);
+                  console.log(dICOBin);
+                  console.log(dICODir);
                   //event.sender.send('shepherd-reply', 'Logged In');
                   event.returnValue = 'Logged In';
                   //const _passphrase = 'scatter quote stumble confirm extra jacket lens abuse gesture soda rebel seed nature achieve hurt shoot farm middle venture fault mesh crew upset cotton';
@@ -83,6 +83,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
       }
 })
 
+
 StartMarketMaker = function(data) {
       //console.log(data.passphrase);
     try {
@@ -90,7 +91,7 @@ StartMarketMaker = function(data) {
       portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
         if (status === 'closed') {
-            const _coinsListFile = marketmakerDir+'/coinslist.json'
+            const _coinsListFile = dICODir+'/coins.json'
 
             fs.pathExists(_coinsListFile, (err, exists) => {
                   if (exists === true) {
@@ -122,7 +123,7 @@ StartMarketMaker = function(data) {
     }
 }
 
-
+let mmid;
 ExecMarketMaker = function(data) {
       //console.log(data);
       // start marketmaker via exec
@@ -148,18 +149,45 @@ ExecMarketMaker = function(data) {
       const _customParam = {
               'gui':'simplegui',
               'client':1,
+              'profitmargin': 0.01,
               'userhome':`${process.env.HOME}`,
               'passphrase': data.passphrase,
               'coins': data.coinslist
         };
 
       //console.log(JSON.stringify(_customParam))
+      //console.log(`exec ${dICOBin} ${JSON.stringify(_customParam)}`);
 
-      //console.log(`exec ${marketmakerBin} ${JSON.stringify(_customParam)}`);
+      let params = _customParam;
+      if (osPlatform !== 'win32') {
+	    params = JSON.stringify(_customParam);
+            params = `'${params}'`;
+      } else {
+            dICOBin = '"'+dICOBin+'"';
+            params.userhome = process.env.APPDATA;
+            // console.log('[Decker] dICOBin = '+dICOBin+', dICODir = '+dICODir);
+	    params = JSON.stringify(_customParam);
+            params = params.replace(/"/g, '\\"');
+            params = '"' + params +'"';
+      }
 
-      exec(`${marketmakerBin} '${JSON.stringify(_customParam)}'`, {
-            cwd: marketmakerDir,
-            maxBuffer: 1024 * 10000 // 10 mb
+      // console.log(`[Decker] exec ${dICOBin} ${params}`);
+      /*var out = fs.openSync(`${dICODir}/out.log`, 'a');
+      var err = fs.openSync(`${dICODir}/out.log`, 'a');
+
+      var cp = require('child_process');
+      console.log(params);
+      console.log(dICOBin);
+      var child = cp.spawn(dICOBin, [params], { detached: true, stdio: [ 'ignore', out, err ] });
+      child.unref();*/
+
+      var logStream = fs.createWriteStream(`${dICODir}/logFile.log`, {flags: 'a'});
+
+      console.log('mm start');
+      console.log(`${dICOBin} ${params}`)
+      mmid = exec(`${dICOBin} ${params}`, {
+            cwd: dICODir,
+            maxBuffer: 1024 * 50000 // 50 mb
             }, function(error, stdout, stderr) {
             console.log(`stdout: ${stdout}`);
             console.log(`stderr: ${stderr}`);
@@ -176,10 +204,12 @@ ExecMarketMaker = function(data) {
               }*/
             }
       });
+
+      mmid.stdout.on('data', (data) => {
+        console.log(`child stdout:\n${data}`);
+      }).pipe(logStream);
+
+      mmid.stderr.on('data', (data) => {
+        console.error(`child stderr:\n${data}`);
+      }).pipe(logStream);
 }
-
-
-
-
-
-

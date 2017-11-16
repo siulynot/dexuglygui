@@ -16,12 +16,11 @@ const electron = require('electron'),
 
 
 var shepherd = require('./ipc/shepherd-ipc');
-
 const killmm = require('./ipc/killmm');
 
 const appBasicInfo = {
   name: 'BarterDEX-Simple',
-  version: '0.5.0-beta'
+  version: '0.6.4-beta2'
 };
 
 app.setName(appBasicInfo.name);
@@ -31,6 +30,16 @@ if (osPlatform === 'linux') {
   process.env.ELECTRON_RUN_AS_NODE = true;
   // console.log(process.env);
 }
+
+var MNZdICOIcon;
+
+if (os.platform() === 'linux') {
+  MNZdICOIcon = path.join(__dirname, '/assets/icons/monaize/128x128.png');
+}
+if (os.platform() === 'win32') {
+  MNZdICOIcon = path.join(__dirname, '/assets/icons/monaize/agama_app_icon.ico');
+}
+
 
 let closeAppAfterLoading = false;
 
@@ -44,10 +53,10 @@ function createWindow (status) {
   // initialise window
   mainWindow = new BrowserWindow({ // dirty hack to prevent main window flash on quit
     width: closeAppAfterLoading ? 1 : 1280,
-    height: closeAppAfterLoading ? 1 : 800
+    height: closeAppAfterLoading ? 1 : 800,
     //titleBarStyle: 'customButtonsOnHover',
     //frame: false
-    //icon: iguanaIcon
+    icon: MNZdICOIcon
   });
 
   const staticMenu = Menu.buildFromTemplate([ // if static
@@ -95,7 +104,6 @@ function createWindow (status) {
     mainWindow = null
     killmm(true, true);
   })
-
 }
 
 // This method will be called when Electron has finished
@@ -108,7 +116,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   //if (process.platform !== 'darwin') {
-    killmm(true, true);
+  killmm(true, true);
   //}
 })
 
