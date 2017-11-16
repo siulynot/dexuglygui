@@ -27,21 +27,21 @@ const killmm = require('./killmm');
 // SETTING APP ICON FOR LINUX AND WINDOWS
 if (os.platform() === 'darwin') {
   fixPath();
-  var dICOBin = path.join(__dirname, '../assets/bin/osx/marketmaker'),
-      dICODir = `${process.env.HOME}/Library/Application Support/dICOApp`;
+  var BarterDEXBin = path.join(__dirname, '../assets/bin/osx/marketmaker'),
+      BarterDEXDir = `${process.env.HOME}/Library/Application Support/BarterDEX`;
 }
 
 if (os.platform() === 'linux') {
-  var dICOBin = path.join(__dirname, '../assets/bin/linux64/marketmaker'),
-      dICODir = `${process.env.HOME}/.dICOApp`;
+  var BarterDEXBin = path.join(__dirname, '../assets/bin/linux64/marketmaker'),
+      BarterDEXDir = `${process.env.HOME}/.BarterDEX`;
 }
 
 if (os.platform() === 'win32') {
-  var dICOBin = path.join(__dirname, '../assets/bin/win64/marketmaker.exe');
-      dICOBin = path.normalize(dICOBin);
-      dICODir = `${process.env.APPDATA}/dICOApp`;
-      dICODir = path.normalize(dICODir);
-      dICOIcon = path.join(__dirname, '/assets/icons/agama_icons/agama_app_icon.ico');
+  var BarterDEXBin = path.join(__dirname, '../assets/bin/win64/marketmaker.exe');
+      BarterDEXBin = path.normalize(BarterDEXBin);
+      BarterDEXDir = `${process.env.APPDATA}/BarterDEX`;
+      BarterDEXDir = path.normalize(BarterDEXDir);
+      BarterDEXIcon = path.join(__dirname, '/assets/icons/barterdex/barterdex.ico');
 }
 
 // DEFAULT COINS LIST FOR MARKETMAKER
@@ -62,8 +62,8 @@ ipcMain.on('shepherd-command', (event, arg) => {
                   event.returnValue = 'pong'
                   break;
             case 'login':
-                  console.log(dICOBin);
-                  console.log(dICODir);
+                  console.log(BarterDEXBin);
+                  console.log(BarterDEXDir);
                   //event.sender.send('shepherd-reply', 'Logged In');
                   event.returnValue = 'Logged In';
                   //const _passphrase = 'scatter quote stumble confirm extra jacket lens abuse gesture soda rebel seed nature achieve hurt shoot farm middle venture fault mesh crew upset cotton';
@@ -91,7 +91,7 @@ StartMarketMaker = function(data) {
       portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
         if (status === 'closed') {
-            const _coinsListFile = dICODir+'/coins.json'
+            const _coinsListFile = BarterDEXDir+'/coins.json'
 
             fs.pathExists(_coinsListFile, (err, exists) => {
                   if (exists === true) {
@@ -156,37 +156,37 @@ ExecMarketMaker = function(data) {
         };
 
       //console.log(JSON.stringify(_customParam))
-      //console.log(`exec ${dICOBin} ${JSON.stringify(_customParam)}`);
+      //console.log(`exec ${BarterDEXBin} ${JSON.stringify(_customParam)}`);
 
       let params = _customParam;
       if (osPlatform !== 'win32') {
 	    params = JSON.stringify(_customParam);
             params = `'${params}'`;
       } else {
-            dICOBin = '"'+dICOBin+'"';
+            BarterDEXBin = '"'+BarterDEXBin+'"';
             params.userhome = process.env.APPDATA;
-            // console.log('[Decker] dICOBin = '+dICOBin+', dICODir = '+dICODir);
+            // console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
 	    params = JSON.stringify(_customParam);
             params = params.replace(/"/g, '\\"');
             params = '"' + params +'"';
       }
 
-      // console.log(`[Decker] exec ${dICOBin} ${params}`);
-      /*var out = fs.openSync(`${dICODir}/out.log`, 'a');
-      var err = fs.openSync(`${dICODir}/out.log`, 'a');
+      // console.log(`[Decker] exec ${BarterDEXBin} ${params}`);
+      /*var out = fs.openSync(`${BarterDEXDir}/out.log`, 'a');
+      var err = fs.openSync(`${BarterDEXDir}/out.log`, 'a');
 
       var cp = require('child_process');
       console.log(params);
-      console.log(dICOBin);
-      var child = cp.spawn(dICOBin, [params], { detached: true, stdio: [ 'ignore', out, err ] });
+      console.log(BarterDEXBin);
+      var child = cp.spawn(BarterDEXBin, [params], { detached: true, stdio: [ 'ignore', out, err ] });
       child.unref();*/
 
-      var logStream = fs.createWriteStream(`${dICODir}/logFile.log`, {flags: 'a'});
+      var logStream = fs.createWriteStream(`${BarterDEXDir}/logFile.log`, {flags: 'a'});
 
       console.log('mm start');
-      console.log(`${dICOBin} ${params}`)
-      mmid = exec(`${dICOBin} ${params}`, {
-            cwd: dICODir,
+      console.log(`${BarterDEXBin} ${params}`)
+      mmid = exec(`${BarterDEXBin} ${params}`, {
+            cwd: BarterDEXDir,
             maxBuffer: 1024 * 50000 // 50 mb
             }, function(error, stdout, stderr) {
             console.log(`stdout: ${stdout}`);

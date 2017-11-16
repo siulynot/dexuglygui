@@ -3,7 +3,7 @@ var CheckMM_Interval = null;
 // In renderer process (web page).
 const {ipcRenderer} = require('electron')
 
-const _coin = 'MNZ';
+//const _coin = 'MNZ';
 
 ShepherdIPC = function(data) {
 	/*ipcRenderer.on('shepherd-reply', (event, arg) => {
@@ -24,9 +24,8 @@ $('.dexlogout-btn').click(function(e) {
 	var shepherdresult = ShepherdIPC({"command":"logout"});
 	$('.mainbody').fadeOut();
 	$('.loginbody').fadeIn();
-	//CheckOrderBookFn(false);
 
-	//CheckPortfolioFn(false);
+	CheckPortfolioFn(false);
 	CheckOrderBookFn(false);
 	check_swap_status(false);
 	check_bot_list(false);
@@ -34,7 +33,7 @@ $('.dexlogout-btn').click(function(e) {
 	bot_screen_coin_balance(false);
 	bot_screen_sellcoin_balance(false);
 
-	//check_coin_balance(false);
+	check_coin_balance(false);
 	sessionStorage.clear();
 });
 
@@ -174,16 +173,18 @@ CheckMMStatus = function(sig) {
 		$('.mainbody').fadeIn();
 		$('.loginbody').fadeOut();
 		$('.loadingbody').hide();
-		/*var refresh_data = {"coin":" ", "status": "enable"};
-		enable_disable_coin(refresh_data);
-		get_myprices();
-		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);*/
+		var refresh_data = {"coin":" ", "status": "enable"};
+		//enable_disable_coin(refresh_data);
+		//get_myprices();
+		//CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
 		//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+		CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+		CheckPortfolioFn();
 
 //---- dICO App Settings START ----//
 		//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
 
-		selected_coin = {}
+		/*selected_coin = {}
 		selected_coin.coin = _coin;
 		selected_coin.coin_name = return_coin_name(_coin);
 		console.log(selected_coin);
@@ -213,7 +214,7 @@ CheckMMStatus = function(sig) {
 
 		$('#trading_mode_options_trademanual').trigger('click');
 		$('#trading_mode_options_tradebot').removeAttr("checked");
-		$('#trading_mode_options_trademanual').attr('checked','checked');
+		$('#trading_mode_options_trademanual').attr('checked','checked');*/
 
 //---- dICO App Settings END ----//
 

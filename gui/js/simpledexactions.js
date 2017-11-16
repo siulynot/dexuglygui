@@ -15,6 +15,8 @@ $(document).ready(function() {
 	if (mmstatus !== 'closed') {
 		$('.mainbody').show();
 		$('.loginbody').hide();
+		CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+		CheckPortfolioFn();
 
 		//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
 		//check_coin_balance();
@@ -23,7 +25,7 @@ $(document).ready(function() {
 		//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
 		//CheckPortfolioFn();
 
-		selected_coin = {}
+/*		selected_coin = {}
 		selected_coin.coin = _coin;
 		selected_coin.coin_name = return_coin_name(_coin);
 		console.log(selected_coin);
@@ -50,17 +52,21 @@ $(document).ready(function() {
 		bot_screen_coin_balance();
 		bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 		bot_screen_sellcoin_balance();
-		get_coin_info(_coin);
+		//get_coin_info(_coin);
 
 		//Enableing Manual Trade by auto clicking Manual trade option via JS code.
 		$('#trading_mode_options_trademanual').trigger('click');
 		$('#trading_mode_options_tradebot').removeAttr("checked");
-		$('#trading_mode_options_trademanual').attr('checked','checked');
+		$('#trading_mode_options_trademanual').attr('checked','checked');*/
 
 //---- dICO App Settings END ----//
 
 		//$('.trading_selected_trader_label').hide();
 		//$('.trading_selected_trader').hide();
+		$('#trading_mode_options_trademanual').trigger('click');
+		$('#trading_mode_options_tradebot').removeAttr("checked");
+		$('#trading_mode_options_trademanual').attr('checked','checked');
+
 		$('.relvol_basevol_coin').html($('.trading_pair_coin').selectpicker('val'));
 
 	} else {
@@ -193,7 +199,7 @@ $('.btn_coindashboard_receive').click(function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		}
 
 		bootbox.dialog({
@@ -445,7 +451,7 @@ $('.btn-inventoryclose').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
-	get_coin_info(_coin);
+	//get_coin_info(_coin);
 });
 
 $('.btn-inventoryrefresh').click(function(e) {
@@ -851,7 +857,7 @@ function check_coin_balance(coin_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		}
 
 		if (!data.error === false && data.error == 'coin is disabled') {
@@ -922,7 +928,7 @@ function get_coin_info(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		}
 
 		if (!data.error == true) {
@@ -970,7 +976,7 @@ function get_coins() {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-				get_coin_info(_coin);
+				//get_coin_info(_coin);
 			}
 	   //toastr.success('Auto goal setup executed!', 'Portfolio Info')
 	   //$('.initcoinswap-output').html(JSON.stringify(data, null, 2));
@@ -1049,7 +1055,7 @@ function enable_disable_coin(data) {
 					sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 					sessionStorage.setItem('mm_userpass', data.userpass);
 					sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-					get_coin_info(_coin);
+					//get_coin_info(_coin);
 
 					if (ajax_data.status === 'enable') {
 						toastr.success(ajax_data.coin+' Enabled','Coin Status');
@@ -1119,7 +1125,7 @@ function enable_disable_coin(data) {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-				get_coin_info(_coin);
+				//get_coin_info(_coin);
 
 				if (ajax_data.status === 'enable') {
 					toastr.success(ajax_data.coin+' Enabled','Coin Status');
@@ -1197,7 +1203,7 @@ function check_coin_inventory(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			//get_coins_list(data.coins);
 			//$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
 		} else {
@@ -1604,7 +1610,7 @@ function addcoin_enable_disable_coin(data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			if (ajax_data.status === 'enable') {
 				toastr.success(ajax_data.coin+' Enabled','Coin Status');
 			}
@@ -1652,7 +1658,7 @@ function get_coins_list() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			get_coins_list();
 			return
 		} else {
@@ -1804,7 +1810,7 @@ function CheckPortfolioFn(sig) {
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 			CheckPortfolioFn();
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			return
 		}
 
@@ -2317,7 +2323,7 @@ function CheckOrderBookFn(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			//CheckOrderBookFn();
 		} else {
 			//console.log(data.asks);
@@ -2435,7 +2441,7 @@ function check_my_prices(sig){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		} else {
 			//console.log(data);
 			$('.exchange_my_orders_tbl tbody').empty();
@@ -2585,7 +2591,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		}
 
 		bootbox.dialog({
@@ -2936,7 +2942,7 @@ function update_min_max_price_input(){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			//get_coins_list(data.coins);
 		} else {
 			//console.log(data.asks);
@@ -2986,7 +2992,7 @@ function check_bot_list(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		} else {
 			$('.exchange_bot_list_tbl tbody').empty();
 			$.each(data, function(index, val) {
@@ -3728,8 +3734,8 @@ function bot_screen_sellcoin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
+			//get_coin_info(_coin);
 			bot_screen_sellcoin_balance();
 		} else {
 			if (!data.error === false && data.error === 'coin is disabled') {
@@ -3803,7 +3809,7 @@ function bot_screen_coin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 			bot_screen_coin_balance();
 		} else {
 			if (!data.error === false && data.error === 'coin is disabled') {
@@ -3887,7 +3893,7 @@ function check_swap_status_details(swap_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		} else {
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
 			alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.alice) + ' ('+data.alice+')';
@@ -4169,7 +4175,7 @@ function check_swap_status_details(swap_data) {
 					//bot_screen_coin_balance();
 					//bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 					//bot_screen_sellcoin_balance();
-					get_coin_info(_coin);
+					//get_coin_info(_coin);
 				})
 
 			});
@@ -4243,7 +4249,7 @@ function check_swap_status(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			get_coin_info(_coin);
+			//get_coin_info(_coin);
 		} else {
 			var reversed_swap_list = data.swaps.reverse();
 
