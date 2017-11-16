@@ -34,10 +34,10 @@ if (osPlatform === 'linux') {
 var MNZdICOIcon;
 
 if (os.platform() === 'linux') {
-  MNZdICOIcon = path.join(__dirname, '/assets/icons/monaize/128x128.png');
+  MNZdICOIcon = path.join(__dirname, '/assets/icons/barterdex/128x128.png');
 }
 if (os.platform() === 'win32') {
-  MNZdICOIcon = path.join(__dirname, '/assets/icons/monaize/agama_app_icon.ico');
+  MNZdICOIcon = path.join(__dirname, '/assets/icons/barterdex/barterdex.ico');
 }
 
 
