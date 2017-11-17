@@ -84,14 +84,14 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.screen-coindashboard').show()
 
 	coin = $(this).data('coin');
-	$.each($('.coindashboard[data-coin]'), function(index, value) {
+	/*$.each($('.coindashboard[data-coin]'), function(index, value) {
 		$('.coindashboard[data-coin]').attr('data-coin', coin);
 	});
 
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
 		//$('.coinexchange[data-coin]').attr('data-coin', coin);
 		$('.coinexchange[data-coin]').data('coin', coin);
-	});
+	});*/
 
 	selected_coin = {}
 	selected_coin.coin = $(this).data('coin');
@@ -101,8 +101,29 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log(selected_coin);
 	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
+	//check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide()
+	$('.screen-exchange').show();
+	$('.coin_ticker').html(coin);
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').data('coin', coin);
+	});
+
 	CheckPortfolioFn(false);
-	check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
+	CheckOrderBookFn();
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
+	check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status();
+	check_bot_list_Interval = setInterval(check_bot_list, 10000);
+	check_bot_list();
+	check_my_prices_Interval = setInterval(check_my_prices, 60000);
+	check_my_prices();
+	bot_screen_coin_balance_Interval = setInterval(bot_screen_coin_balance, 30000);
+	bot_screen_coin_balance();
+	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
+	bot_screen_sellcoin_balance();
 });
 
 
@@ -638,16 +659,20 @@ $('.btn-exchangeclose').click(function(e){
 	console.log('btn-exchangeclose clicked');
 	console.log($(this).data());
 
-	$('.screen-coindashboard').show()
+	//$('.screen-coindashboard').show()
 	$('.screen-exchange').hide();
+	$('.screen-portfolio').show();
 	CheckOrderBookFn(false);
 	check_swap_status(false);
 	check_bot_list(false);
 	check_my_prices(false);
 	bot_screen_coin_balance(false);
 	bot_screen_sellcoin_balance(false);
-	check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
-	check_coin_balance();
+	//check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
+	//check_coin_balance();
+
+	CheckPortfolioFn();
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
 });
 
 
@@ -1853,7 +1878,7 @@ function PortfolioTblDataFn(data) {
 			dex_portfolio_coins_tbl_tr += '<td>' + val.amount + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
+            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
             /*dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
