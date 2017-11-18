@@ -4492,8 +4492,8 @@ function intToRGB(i){
 
 function coloredPubkey(pubkey){
 	var final_string = {};
-	final_string.firstpart = pubkey.slice(0, 4);
-	final_string.lastpart = pubkey.slice(60, 64);
+	final_string.firstpart = pubkey.slice(0, 3);
+	final_string.lastpart = pubkey.slice(61, 64);
 	final_string.colorpart1 = intToRGB(hashCode(pubkey.slice(5, 10)));
 	final_string.colorpart2 = intToRGB(hashCode(pubkey.slice(10, 20)));
 	final_string.colorpart3 = intToRGB(hashCode(pubkey.slice(20, 30)));
