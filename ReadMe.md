@@ -1,145 +1,87 @@
-# DEX Ugly GUI
+# BarterDEX-Simple App
 
-Before starting make sure you have `iguana` daemon compiled and running on your machine.
+Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
 
-You can find instructions to install `iguana` here:
+You can find instructions to install `marketmaker` here:
 
 https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-Node#installing-liquidity-provider-lp-node-on-ubuntudebian-system
 
-Just follow the above guide ONLY to the point it starts `iguana`.
-
+### Setup
 Once running, follow these steps:
 ```shell
-git clone https://github.com/SuperNETorg/dexuglygui.git
-git checkout v0.2
+git clone https://github.com/SuperNETorg/BarterDEX-Simple.git
+cd BarterDEX-Simple
+git checkout v0.6
+npm install
+npm start
 ```
 
-Or click on this link to download a copy of this repo as a zip file:
+It will download "BarterDEX-Simple". Open "BarterDEX-Simple", and from there open "index.html" file in your web browser.
 
-https://github.com/SuperNETorg/dexuglygui/archive/v0.2.zip
-
-It will download "v0.2". Open "v0.2", and from there open "index.html" file in your web browser.
-
-
-
-## Quick Explanation of Steps:
-
-### Step #1 - Activate Coin
-
-- Activate Bitcoin
-- Activate Komodo
-
-Then check if both BTC and KMD are showing under 'basilisk' in JSON output like following:
-
-```JSON
-{
-  "native": [],
-  "basilisk": [
-    "BTC",
-    "KMD"
-  ],
-  "full": [],
-  "tag": "18225885340050776559"
-}
+### Update
+To update, follow these steps:
+```shell
+cd BarterDEX-Simple
+git checkout v0.6
+git pull
 ```
 
-### Step #2 - Setup Blocktrail.com API
+#### For end users
 
-It includes instructions to get Blocktrail API key which you'll need to intput there and then acitvate it. Here are those instructions again:
-
-- You need Blocktrail.com API. Please sign-up by going to [this link](https://www.blocktrail.com/dev/signup).
-- After login in your account go to **Settings**, then go to **API Keys** tab there and get new keys from there.
-- Make sure to save the newly generated `API Key` and `API Secret`. You'll only see this `API Secret` first time and never again.
-
-- Input this Blocktrail API Key in Step 02, and press _**Activate Blocktrail API**_ button.
-- Then click _**I'm not LP**_ button.
-
-
-### Step #3 - Wallet Login
-
-On this step you'll login to your wallet using passphrase.
-
-- **Login** button logins to your wallet, and you can continue with the EasyDEX coin swap steps after this.
-- **Login BTC Jumblr** button and **Login KMD Jumblr** button lets you access your BTC/KMD deposit address. Clicking on it any other sections which are not relevant to this passphrase hides, as this steps suppose to be only used for makinmg BTC/KMD transaction to other accounts.
-
-
-### Step #4 - List Smart Addresses
-
-- On this step click button **List Smart Addresses**
-
-This step shows you your logged in wallet's Smart Addresses.
-To know more about Smart Addresses, what these are and what they do, I highly recommend to please read this [FAQ for Smart Addresses](https://github.com/SuperNETorg/komodo/wiki/FAQ-for-smartaddresses)
-
-This step won't require you to do anything, but gives you information which type of smart addresses and their related deposite and reciving addresses.
-
-These smart addresses's deposit and reciving addresses will always be different than your logged in wallet's main addresses.
-
-
-### Step #5 - Adjust DEX Parameters
-
-On this step you get the option to change what percentage of order matching you wish your coin swaps to be completing.
-
-The value input for this is expected from 0.01 - 1.00. But, you'd never want to set it that low and that high, for definte trading reasons. :)
-
-To give better idea, for example you submit your KMD or BTC to deposit address to recieve swap of that coin.
-
-The default value for **DEX ratio** is 0.95 (99.5%), which usually requites the market to move in the direction favorable to you for the LP nodes to adjust their quotes to meet your price during a specific time window when both are active, ie. low probability.
-
-You can change it's value to 0.97 to get higher chance (99.7%) of your order to complete.
-
-For this testing version, at the start, it's highly recommended to set it's value to 0.97, and get the results of testing. Once enough people have tested DEX then it's good to play with lower values.
-
-
-### Step #6 - Wallet Operations
-
-- **Show Bitcoin Balance** button will show your logged in wallet's main BTC address and it's balance.
-- **Show Komodo Balance** button will show your logged in wallet's main KMD address and it's balance.
-- **Show Wallet Info** will show all addresses for your logged in wallet in JSON output.
-
-
-### Step #7 - Initiate Cross-Blockchain Coin Swap
-
-This EasyDEX Ugly GUI is doing only 2 coins swap for the begining. KMD and BTC. No other currency or coin is shown in options for this testing GUI.
-In Agama Wallet all other options will be activated to make different pairs of swaping coins with another.
-
-
-The first option there to select is what you want to buy.
-
-_**If you select BTC**_, the screen will update with information related to get BTC.
-
-As this is just a test version, I have set there only 2 buttons with default value of 100 KMD and 0.001 KMD for fee.
-
->NOTE: For buying BTC, please push BOTH Send KMD buttons.
-
-
-There are two buttons to send KMD as the protocol require to UTXOs to process and complete the swap.
-
-If you won't send KMD fee after sending 100 KMD your swap might not complete.
-
-
-_**If you select KMD**_, you'll see information and options to buy KMD through DEX.
-
-The send BTC button auto updates with the expected BTC value to complete trade to buy 100 KMD, which is the minimum buy order in DEX.
-
-The estimate price is taken from CoinMarketCap for now, and is adjusted to match with the expected DEX prices at that period of time.
-
-
-
-### Step #8 - Check Swap List
-
-Once you have deposited BTC or KMD to initalise cross-blockchain coin swap process, you get to this screen and push **Refresh Swap List** button.
-
-Pushing this btton will show you JSON output of any latest swap list that are in progress.
-
-If you see blank JSON output like this:
-
-```JSON
-{
-  "result": "success",
-  "swaps": [],
-  "quotes": [],
-  "tag": "11164256562825577933"
-}
+To build the production ready app, install `electron-packager` and `electron-prebuilt` packages from npm
+```shell
+sudo npm install electron-packager -g
+sudo npm install electron-prebuilt -g
 ```
 
-This means the coin swap process for your request has not begun. You should wait for sometime and refresh this button to see any updated output.
+
+### Instructions to test
+1. Start Komodo Native Wallet
+2. Start Monaize Native Wallet
+3. Wait for both Komodo and Monaize to sync 100%
+4. Start BarterDEX-Simple
+5. Select 'Monzie (MNZ) dICO' option at the login screen.
+6. Login with `passphrase` (either pre-generated or make a new one).
+7. Look for the KMD address and send KMDs to it. Once sent, it will start reflecting there in a minute.
+8. Give the maximum price that you would like to pay for MNZ. Example: 0.15
+9. Give the maximum amount of MNZ you would like to buy. Example: 19
+10. Wait and watch the MNZ balance increasing as trades happen.
+
+#### Report Issues
+Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX-Simple/issues
+
+#### Testing Notes
+If your wallet is encrypted, the app will not work with it. This feature will be made available in coming releases.
+
+
+### **Build the App**
+Refer to the original [electron-packager](https://github.com/electron-userland/electron-packager) repository for more detailed information.
+
+##### Linux
+Change directory to BarterDEX-Simple and execute the following command to build the Linux app
+```shell
+cd BarterDEX-Simple
+electron-packager . --platform=linux --arch=x64 --icon=assets/icons/barterdex/128x128.png --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/osx --overwrite
+```
+change architecture build parameter to ```--arch=x32``` for 32 bit build
+
+##### OSX
+Change directory to BarterDEX-Simple and execute the following command to build the OSX app
+```shell
+cd BarterDEX-Simple
+electron-packager . --platform=darwin --arch=x64 --icon=assets/icons/barterdex/barterdex.icns --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/linux64 --overwrite
+```
+
+##### Windows
+Change directory to iguana and execute the following command to build the Windows app
+```shell
+dir iguana
+electron-packager . --platform=win32 --arch=x64 --icon=assets/icons/barterdex/barterdex.ico --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite
+
+# If generating 32bit desktop package
+electron-packager . --platform=win32 --arch=ia32 --icon=assets/icons/barterdex/barterdex.ico --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite
+
+# To build both x64 and x86 desktop package
+electron-packager . --platform=win32 --arch=all --icon=assets/icons/barterdex/barterdex.ico --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite
+```
+change architecture build parameter to ```--arch=x64``` for 64 bit build
