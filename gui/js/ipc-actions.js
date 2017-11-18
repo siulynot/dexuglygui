@@ -3,7 +3,7 @@ var CheckMM_Interval = null;
 // In renderer process (web page).
 const {ipcRenderer} = require('electron')
 
-//const _coin = 'MNZ';
+const dICO_coin = 'MNZ';
 
 ShepherdIPC = function(data) {
 	/*ipcRenderer.on('shepherd-reply', (event, arg) => {
@@ -159,7 +159,61 @@ $('.login-btn').click(function(e) {
 	$('.loginbody').hide();
 	CheckMM_Interval = setInterval(CheckMMStatus,1000);
 	$('.loadingbody').fadeIn();
+
+	var dexmode = $('.login_mode_options').selectpicker('val');
+	if (dexmode == 'BarterDEX') {
+		$('.navbar-brandname').html('BarterDEX');
+	}
+	if (dexmode == 'dICO') {
+		$('.navbar-brandname').html('Monaize dICO');
+		logindICO('MNZ');
+	}
 });
+
+
+function logindICO(coin){
+	console.log('LOGIN TO dICO OPTION SEELCTED.')
+	console.log('COIN SELECTED: ' + coin)
+	$('.mainbody').hide();
+	$('.loginbody').hide();
+	$('.btn-exchangeclose').hide();
+	$('.trading_method_options').hide();
+	$('.trading_buysell_options').hide();
+
+	sessionStorage.setItem('mm_dexmode', 'dICO');
+
+	selected_coin = {}
+	selected_coin.coin = coin;
+	selected_coin.coin_name = return_coin_name(coin);;
+	console.log(selected_coin);
+	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide()
+	$('.screen-exchange').show();
+	$('.coin_ticker').html(coin);
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').data('coin', coin);
+	});
+
+	CheckPortfolioFn(false);
+	CheckOrderBookFn();
+	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
+	check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status();
+	check_bot_list_Interval = setInterval(check_bot_list, 10000);
+	check_bot_list();
+	check_my_prices_Interval = setInterval(check_my_prices, 60000);
+	check_my_prices();
+	bot_screen_coin_balance_Interval = setInterval(bot_screen_coin_balance, 30000);
+	bot_screen_coin_balance();
+	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
+	bot_screen_sellcoin_balance();
+
+	$('#trading_mode_options_trademanual').trigger('click');
+	$('#trading_mode_options_tradebot').removeAttr("checked");
+	$('#trading_mode_options_trademanual').attr('checked','checked');
+}
 
 CheckMMStatus = function(sig) {
 	if (sig == false) {
