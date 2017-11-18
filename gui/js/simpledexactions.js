@@ -97,6 +97,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('#trading_pair_options_buying').trigger('click');
 	$('#trading_pair_options_selling').removeAttr("checked");
 	$('#trading_pair_options_buying').attr('checked','checked');
+	$('.trading_pair_coin').selectpicker('val', 'KMD');
 
 	coin = $(this).data('coin');
 
