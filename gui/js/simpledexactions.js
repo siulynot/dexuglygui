@@ -2628,6 +2628,7 @@ $('input[name=trading_pair_options]').change(function() {
 		$('.trading_pair_lable_text_two').html('Buy');
 		$('.btn-bot_action').html('BUY');
 		$('.btn-bot_action').attr('data-action', 'buy');
+		$('.relvol_basevol_label').html("It'll cost you")
 	}
 	if(buying_or_selling == 'selling') {
 		$('#trading_pair_coin_price_max_min').html('Min');
@@ -2635,6 +2636,7 @@ $('input[name=trading_pair_options]').change(function() {
 		$('.trading_pair_lable_text_two').html('Sell');
 		$('.btn-bot_action').html('SELL');
 		$('.btn-bot_action').attr('data-action', 'sell');
+		$('.relvol_basevol_label').html("You'll get")
 	}
 });
 
