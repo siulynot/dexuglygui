@@ -165,7 +165,7 @@ ExecMarketMaker = function(data) {
       } else {
             BarterDEXBin = '"'+BarterDEXBin+'"';
             params.userhome = process.env.APPDATA;
-            // console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
+            console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
 	    params = JSON.stringify(_customParam);
             params = params.replace(/"/g, '\\"');
             params = '"' + params +'"';
