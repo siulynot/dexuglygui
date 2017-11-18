@@ -283,7 +283,8 @@ table tbody tr:first-child td {
 }
 
 #orderbook-asks-spinner,
-#exchange-swap-status-spinner {
+#exchange-swap-status-spinner,
+#trades-history-spinner {
   position: absolute;
   z-index: 100;
   top: 70px;

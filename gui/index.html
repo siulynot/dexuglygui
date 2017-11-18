@@ -139,9 +139,16 @@
       <span class="refresh-trades-history-icon" onclick="constructTradesHistory()">
         <i class="fa fa-refresh"></i> Refresh
       </span>
-      <div id="trades-history-content"></div>
+      <div id="trades-history-content">
+        <svg id="trades-history-spinner">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+          <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+          <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+          <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+        </svg>
+      </div>
     </div>
-    
+
     <div class="dexdebug" style="display: none">
       <h4>Payload</h4>
       <textarea cols="50" rows="5" id="debug-payload" placeholder="Provide payload"></textarea>

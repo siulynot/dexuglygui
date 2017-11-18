@@ -232,7 +232,7 @@ $('.btn_coindashboard_receive').click(function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -489,7 +489,7 @@ $('.btn-inventoryclose').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
-	
+
 	var dexmode = sessionStorage.getItem('mm_dexmode');
 	var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -904,7 +904,7 @@ function check_coin_balance(coin_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -980,7 +980,7 @@ function get_coin_info(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1033,7 +1033,7 @@ function get_coins() {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-				
+
 				var dexmode = sessionStorage.getItem('mm_dexmode');
 				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1117,7 +1117,7 @@ function enable_disable_coin(data) {
 					sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 					sessionStorage.setItem('mm_userpass', data.userpass);
 					sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-					
+
 					var dexmode = sessionStorage.getItem('mm_dexmode');
 					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1192,7 +1192,7 @@ function enable_disable_coin(data) {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-				
+
 				var dexmode = sessionStorage.getItem('mm_dexmode');
 				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1275,7 +1275,7 @@ function check_coin_inventory(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1687,7 +1687,7 @@ function addcoin_enable_disable_coin(data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1740,7 +1740,7 @@ function get_coins_list() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -1897,7 +1897,7 @@ function CheckPortfolioFn(sig) {
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 			CheckPortfolioFn();
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -2415,7 +2415,7 @@ function CheckOrderBookFn(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -2543,7 +2543,7 @@ function check_my_prices(sig){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -2702,7 +2702,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -2830,7 +2830,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
 				var send_toaddr = $('#bot_send_toaddr').val();
 				console.log(send_amount);
 				console.log(subtract_txfee);
-				
+
 				if(subtract_txfee == false) {
 					var send_amount_total = parseFloat(send_amount) + parseFloat(send_txfee);
 					$('.bot_send_total_amount').html(send_amount_total.toFixed(8));
@@ -2866,7 +2866,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
 				var send_toaddr = $('#bot_send_toaddr').val();
 				console.log(send_amount);
 				console.log(subtract_txfee);
-				
+
 				if(subtract_txfee == false) {
 					var send_amount_total = parseFloat(send_amount) + parseFloat(send_txfee);
 					$('.bot_send_total_amount').html(send_amount_total.toFixed(8));
@@ -2903,7 +2903,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
 				var send_toaddr = $('#bot_send_toaddr').val();
 				console.log(send_amount);
 				console.log(subtract_txfee);
-				
+
 				if(subtract_txfee == false) {
 					var send_amount_total = parseFloat(send_amount) + parseFloat(send_txfee);
 					$('.bot_send_total_amount').html(send_amount_total.toFixed(8));
@@ -3058,7 +3058,7 @@ function update_min_max_price_input(){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -3113,7 +3113,7 @@ function check_bot_list(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -3860,13 +3860,13 @@ function bot_screen_sellcoin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
 				get_coin_info(selected_dICO_coin);
 			}
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -3945,7 +3945,7 @@ function bot_screen_coin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -4034,7 +4034,7 @@ function check_swap_status_details(swap_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -4207,7 +4207,7 @@ function check_swap_status_details(swap_data) {
 								</div>
 							</div>
 						</div>
-						
+
 					</div>`,
 				closeButton: false,
 				size: 'large',
@@ -4321,7 +4321,7 @@ function check_swap_status_details(swap_data) {
 					//bot_screen_coin_balance();
 					//bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 					//bot_screen_sellcoin_balance();
-					
+
 					var dexmode = sessionStorage.getItem('mm_dexmode');
 					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -4400,7 +4400,7 @@ function check_swap_status(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
-			
+
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
@@ -4485,7 +4485,7 @@ function hashCode(str) { // java String#hashCode
        hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     return hash;
-} 
+}
 
 function intToRGB(i){
     var c = (i & 0x00FFFFFF)
@@ -4769,6 +4769,8 @@ function constructTradesHistory() {
 			} else {
 				$('#trades-history-content').html('No trade history or swap(s) still in progress');
 			}
+		} else {
+			$('#trades-history-content').html('No trade history or swap(s) still in progress');
 		}
 	});
 }
