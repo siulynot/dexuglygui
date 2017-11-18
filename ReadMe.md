@@ -34,7 +34,27 @@ sudo npm install electron-packager -g
 sudo npm install electron-prebuilt -g
 ```
 
-#### **Build the App**
+
+### Instructions to test
+1. Start Komodo Native Wallet
+2. Start Monaize Native Wallet
+3. Wait for both Komodo and Monaize to sync 100%
+4. Start BarterDEX-Simple
+5. Select 'Monzie (MNZ) dICO' option at the login screen.
+6. Login with `passphrase` (either pre-generated or make a new one).
+7. Look for the KMD address and send KMDs to it. Once sent, it will start reflecting there in a minute.
+8. Give the maximum price that you would like to pay for MNZ. Example: 0.15
+9. Give the maximum amount of MNZ you would like to buy. Example: 19
+10. Wait and watch the MNZ balance increasing as trades happen.
+
+#### Report Issues
+Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX-Simple/issues
+
+#### Testing Notes
+If your wallet is encrypted, the app will not work with it. This feature will be made available in coming releases.
+
+
+### **Build the App**
 Refer to the original [electron-packager](https://github.com/electron-userland/electron-packager) repository for more detailed information.
 
 ##### Linux
