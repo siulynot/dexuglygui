@@ -28,7 +28,7 @@ function return_coin_name(coin) {
 			coin_name = 'Dogecoin';
 			break;
 		case 'HUSH':
-			coin_name = 'Hushcoin';
+			coin_name = 'Hush';
 			break;
 		case 'DGB':
 			coin_name = 'Digibyte';

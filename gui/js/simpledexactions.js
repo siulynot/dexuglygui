@@ -91,17 +91,14 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log($(this).data());
 	console.log($(this).data('coin'));
 	$('.screen-portfolio').hide();
-	//$('.screen-coindashboard').show()
+	$('#trading_mode_options_trademanual').trigger('click');
+	$('#trading_mode_options_tradebot').removeAttr("checked");
+	$('#trading_mode_options_trademanual').attr('checked','checked');
+	$('#trading_pair_options_buying').trigger('click');
+	$('#trading_pair_options_selling').removeAttr("checked");
+	$('#trading_pair_options_buying').attr('checked','checked');
 
 	coin = $(this).data('coin');
-	/*$.each($('.coindashboard[data-coin]'), function(index, value) {
-		$('.coindashboard[data-coin]').attr('data-coin', coin);
-	});
-
-	$.each($('.coinexchange[data-coin]'), function(index, value) {
-		//$('.coinexchange[data-coin]').attr('data-coin', coin);
-		$('.coinexchange[data-coin]').data('coin', coin);
-	});*/
 
 	selected_coin = {}
 	selected_coin.coin = $(this).data('coin');
