@@ -186,7 +186,6 @@ function loginBarterdEX(){
 	$('.screen-portfolio').show();
 	$('.screen-coindashboard').hide();
 	$('.screen-exchange').hide();
-	$('.coin_ticker').html(coin);
 	$('.btn-exchangeclose').show();
 	$('.trading_method_options').show();
 	$('.trading_buysell_options').show();
