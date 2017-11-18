@@ -26,6 +26,7 @@ $(document).ready(function() {
 		//CheckPortfolioFn();
 
 		var dexmode = sessionStorage.getItem('mm_dexmode');
+		var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 
 		if (dexmode == 'BarterDEX') {
 			$('.navbar-brandname').html('BarterDEX');
@@ -34,19 +35,19 @@ $(document).ready(function() {
 			$('#trading_mode_options_trademanual').attr('checked','checked');
 		}
 		if (dexmode == 'dICO') {
-			$('.navbar-brandname').html('Monaize dICO');
+			$('.navbar-brandname').html(return_coin_name(selected_dICO_coin) + ' dICO');
 			selected_coin = {}
-			selected_coin.coin = dICO_coin;
-			selected_coin.coin_name = return_coin_name(dICO_coin);
+			selected_coin.coin = selected_dICO_coin;
+			selected_coin.coin_name = return_coin_name(selected_dICO_coin);
 			console.log(selected_coin);
 			sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
 			$('.screen-portfolio').hide();
 			$('.screen-coindashboard').hide()
 			$('.screen-exchange').show();
-			$('.coin_ticker').html(dICO_coin);
+			$('.coin_ticker').html(selected_dICO_coin);
 			$.each($('.coinexchange[data-coin]'), function(index, value) {
-				$('.coinexchange[data-coin]').data('coin', dICO_coin);
+				$('.coinexchange[data-coin]').data('coin', selected_dICO_coin);
 			});
 
 			check_coin_balance(false);
@@ -62,7 +63,7 @@ $(document).ready(function() {
 			bot_screen_coin_balance();
 			bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 			bot_screen_sellcoin_balance();
-			get_coin_info(dICO_coin);
+			get_coin_info(selected_dICO_coin);
 
 			//Enableing Manual Trade by auto clicking Manual trade option via JS code.
 			$('#trading_mode_options_trademanual').trigger('click');
@@ -229,9 +230,11 @@ $('.btn_coindashboard_receive').click(function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		}
 
@@ -484,9 +487,11 @@ $('.btn-inventoryclose').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
+	
 	var dexmode = sessionStorage.getItem('mm_dexmode');
+	var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 });
 
@@ -897,9 +902,11 @@ function check_coin_balance(coin_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		}
 
@@ -971,9 +978,11 @@ function get_coin_info(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		}
 
@@ -1022,9 +1031,11 @@ function get_coins() {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+				
 				var dexmode = sessionStorage.getItem('mm_dexmode');
+				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			}
 	   //toastr.success('Auto goal setup executed!', 'Portfolio Info')
@@ -1104,9 +1115,11 @@ function enable_disable_coin(data) {
 					sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 					sessionStorage.setItem('mm_userpass', data.userpass);
 					sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+					
 					var dexmode = sessionStorage.getItem('mm_dexmode');
+					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 
 					if (ajax_data.status === 'enable') {
@@ -1177,9 +1190,11 @@ function enable_disable_coin(data) {
 				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 				sessionStorage.setItem('mm_userpass', data.userpass);
 				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+				
 				var dexmode = sessionStorage.getItem('mm_dexmode');
+				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 
 				if (ajax_data.status === 'enable') {
@@ -1258,9 +1273,11 @@ function check_coin_inventory(coin) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			//get_coins_list(data.coins);
 			//$( ".inv_btn[data-coin='"+ coin +"']" ).trigger( "click" );
@@ -1668,9 +1685,11 @@ function addcoin_enable_disable_coin(data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			if (ajax_data.status === 'enable') {
 				toastr.success(ajax_data.coin+' Enabled','Coin Status');
@@ -1719,9 +1738,11 @@ function get_coins_list() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			get_coins_list();
 			return
@@ -1874,9 +1895,11 @@ function CheckPortfolioFn(sig) {
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 			CheckPortfolioFn();
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			return
 		}
@@ -2390,9 +2413,11 @@ function CheckOrderBookFn(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			//CheckOrderBookFn();
 		} else {
@@ -2516,9 +2541,11 @@ function check_my_prices(sig){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		} else {
 			//console.log(data);
@@ -2669,9 +2696,11 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		}
 
@@ -3023,9 +3052,11 @@ function update_min_max_price_input(){
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			//get_coins_list(data.coins);
 		} else {
@@ -3076,9 +3107,11 @@ function check_bot_list(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		} else {
 			$('.exchange_bot_list_tbl tbody').empty();
@@ -3821,13 +3854,17 @@ function bot_screen_sellcoin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			bot_screen_sellcoin_balance();
 		} else {
@@ -3902,9 +3939,11 @@ function bot_screen_coin_balance(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 			bot_screen_coin_balance();
 		} else {
@@ -3989,9 +4028,11 @@ function check_swap_status_details(swap_data) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		} else {
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
@@ -4274,9 +4315,11 @@ function check_swap_status_details(swap_data) {
 					//bot_screen_coin_balance();
 					//bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 					//bot_screen_sellcoin_balance();
+					
 					var dexmode = sessionStorage.getItem('mm_dexmode');
+					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 				})
 
@@ -4351,9 +4394,11 @@ function check_swap_status(sig) {
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			
 			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 			if (dexmode == 'dICO') {
-				get_coin_info(dICO_coin);
+				get_coin_info(selected_dICO_coin);
 			}
 		} else {
 			var reversed_swap_list = data.swaps.reverse();
@@ -4467,3 +4512,259 @@ function coloredPubkey(pubkey){
 }
 
 /* Random Color Generator */
+
+
+
+/* TRADE HISTORY - CREDIT: pbca26 */
+
+function openTradeDetails(index, total) {
+	for (let i = 0; i < total; i++) {
+		if (i !== index) {
+			$(`.trade-details-${i}`).hide();
+			$(`.trade-history-toggle-${i}`).html('Show details');
+		}
+	}
+
+	if ($(`.trade-details-${index}`).is(":visible")) {
+		$(`.trade-details-${index}`).hide();
+		$(`.trade-history-toggle-${index}`).html('Show details');
+	} else {
+		$(`.trade-details-${index}`).show();
+		$(`.trade-history-toggle-${index}`).html('Hide details');
+	}
+}
+
+// display rounding
+function formatValue(formatValue) {
+  const _valueToStr = formatValue.toString();
+
+  if (_valueToStr.indexOf('.') === -1) {
+    return formatValue;
+  } else {
+    if (_valueToStr) {
+      const _decimal = _valueToStr.substr(_valueToStr.indexOf('.') + 1, _valueToStr.length);
+      let newVal = _valueToStr.substr(0, _valueToStr.indexOf('.') + 1);
+
+      for (let i = 0; i < _decimal.length; i++) {
+        if (_decimal[i] === '0') {
+          newVal = newVal + _decimal[i];
+        } else {
+          newVal = newVal + _decimal[i];
+          break;
+        }
+      }
+
+      return newVal;
+    }
+  }
+}
+
+function constructTradesHistory() {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+    data: JSON.stringify(ajax_data),
+    dataType: 'json',
+    type: 'POST',
+    url: url,
+	}).done(function(data) {
+		let out = '';
+		let tradesCounter = 0;
+
+		if (data &&
+				data.swaps &&
+				data.swaps.length) {
+			out += `<h4 style="margin-bottom: 35px">Total trades: ${data.swaps.length}</h4>`;
+
+			let tradesOut = `
+				<table class="trades-history-table">
+					<tr>
+						<th>#</th>
+						<th>Direction</th>
+						<th>Pair</th>
+						<th>Sent</th>
+						<th>Received</th>
+						<th>Rate</th>
+						<th>Details</th>
+					</tr>
+				`;
+			const trades = data.swaps;
+
+			for (let i = 0; i < trades.length; i++) {
+				const data = trades[i];
+
+				if (data.alice &&
+						data.bob) {
+					tradesCounter++;
+					result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
+					alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.alice) + ' ('+data.alice+')';
+					bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.bob) + ' ('+data.bob+')';
+					iambob_answer = (data.iambob == 0) ? 'Buyer' : 'Seller';
+
+					var time = new Date( data.expiration * 1000);
+
+					var simplified_dexdetail_tr = '';
+					if (data.iambob == 0) {
+						var total_sell_unit = parseFloat(data.values[3])+parseFloat(data.values[6]);
+						var single_unit_price = parseFloat(data.srcamount) / parseFloat(total_sell_unit);
+						var price_per_bought_unit = parseFloat(total_sell_unit) / parseFloat(data.srcamount);
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid in ' + data.alice + ':</b> ' + data.values[3].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.alice + ':</b> ' + data.values[6].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.alice + ' paid:</b> ' + total_sell_unit.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' received:</b> ' + data.srcamount.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + data.alice + ' can buy:</b> ' + data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid per ' + data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
+					}
+
+					if (data.iambob == 1) {
+						var total_sell_unit = parseFloat(data.values[0])+parseFloat(data.bobtxfee);
+						var units_sold_at_price = parseFloat(data.values[3]) / parseFloat(total_sell_unit);
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold: </b> = ' + data.values[0].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.bob + ': </b> = ' + data.bobtxfee + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.bob + ' deducted: </b> = ' + total_sell_unit + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.alice + ' received: </b> = ' + data.values[3].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold at price: </b> = ' + data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
+					}
+
+					tradesOut += `
+						<tr>
+							<td>${i + 1}</td>
+							<td>
+								<i class="fa fa-arrow-${data.iambob == 0 ? 'right col-green' : 'left col-red'}"></i>&nbsp;
+								<span>${ data.iambob == 0 ? 'Buy' : 'Sell' }</span>
+							</td>
+							<td>
+								<span class="${data.iambob == 0 ? '' : 'hide'}">${data.alice} &nbsp;<i class="fa fa-exchange"></i>&nbsp; ${data.bob}</span>
+								<span class="${data.iambob == 0 ? 'hide' : ''}">${data.bob} &nbsp;<i class="fa fa-exchange"></i>&nbsp; ${data.alice}</span>
+							</td>
+							<td>
+								<span class="${data.iambob == 0 ? '' : 'hide'}">
+									${formatValue(total_sell_unit)} ${data.alice}
+								</span>
+								<span class="${data.iambob == 0 ? 'hide' : ''}">
+									${formatValue(total_sell_unit)} ${data.bob}
+								</span>
+							</td>
+							<td>
+								<span class="${data.iambob == 0 ? '' : 'hide'}">
+									${formatValue(data.srcamount)} ${data.bob}
+								</span>
+								<span class="${data.iambob == 0 ? 'hide' : ''}">
+									${formatValue(data.values[3])} ${data.alice}
+								</span>
+							</td>
+							<td>
+								<span class="${data.iambob == 0 ? '' : 'hide'}">${price_per_bought_unit ? formatValue(price_per_bought_unit) : ''} (${formatValue(total_sell_unit)} / ${formatValue(data.srcamount)})</span>
+								<span class="${data.iambob == 0 ? 'hide' : ''}">${units_sold_at_price ? formatValue(units_sold_at_price) : ''} (${formatValue(data.values[3])} / ${formatValue(total_sell_unit)})</span>
+							</td>
+							<td>
+								<button class="btn btn-gray trade-history-toggle-${i}" onClick="openTradeDetails(${i}, ${trades.length})">Show details</buton>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7">
+								<div class="trade-details-${i}" style="display: none; margin-top: 15px">
+							<div class="input-group col-sm-12">
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobdeposit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span><br>Seller Deposit</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_alicepayment"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><br>Buyer Payment</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobpayment"><span class="glyphicon glyphicon-random" aria-hidden="true"></span><br>Seller Payment</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>All Done!</div></span>
+							</div>
+							<div class="input-group col-sm-12">
+								<span class="input-group-addon swapdetail_info" style="font-size: 20px; border: 0px; background-color: #fff;"></span>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3 class="panel-title"><strong>Full Status</strong></h3>
+										</div>
+										<div class="">
+											<table width="100%" class="table table-striped" style="margin-bottom: 0;">
+												<tr>
+													<td rowspan=5>Trade info</td>
+													<td>Quote ID</td>
+													<td>` + data.quoteid + `</td>
+												</tr>
+												<tr>
+													<td>Request ID</td>
+													<td>` + data.requestid + `</td>
+												</tr>
+												<tr>
+													<td>Trade id</td>
+													<td>` + data.tradeid + `</td>
+												</tr>
+												<tr>
+													<td>Expires In</td>
+													<td>` + time + `</td>
+												</tr>
+												<tr>
+													<td>Source Amount</td>
+													<td>` + data.srcamount + `</td>
+												</tr>
+												<tr>
+													<td rowspan=4>Buyer Info</td>
+													<td>Buyer Coin</td>
+													<td>` + alice_answer + `</td>
+												</tr>
+												<tr>
+													<td>Buyer ID</td>
+													<td>` + data.aliceid + `</td>
+												</tr>
+												<tr>
+													<td>Buyer Payment</td>
+													<td class="tbl_alicepayment">` + data.alicepayment + `</td>
+												</tr>
+												<tr>
+													<td>Buyer Tx Fee</td>
+													<td class="tbl_alicetxfee">` + data.alicetxfee + `</td>
+												</tr>
+												<tr>
+													<td rowspan=4>Seller Info</td>
+													<td>Seller Coin</td>
+													<td>` + bob_answer + `</td>
+												</tr>
+												<tr>
+													<td>Seller Deposit</td>
+													<td class="tbl_bobdeposit">` + data.bobdeposit + `</td>
+												</tr>
+												<tr>
+													<td>Seller Payment</td>
+													<td class="tbl_bobpayment">` + data.bobpayment + `</td>
+												</tr>
+												<tr>
+													<td>Seller Tx Fee</td>
+													<td class="tbl_bobtxfee">` + data.bobtxfee + `</td>
+												</tr>
+												<tr>
+													<td rowspan=7>Other Info</td>
+													<td colspan=2><b>You are:</b> ` + iambob_answer + `</td>
+												</tr>
+												`+ simplified_dexdetail_tr +`
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+								</div>
+							</td>
+						</tr>`;
+				}
+			}
+
+			tradesOut += '</table>';
+
+			if (tradesCounter > 0) {
+				$('#trades-history-content').html(out + tradesOut);
+			} else {
+				$('#trades-history-content').html('No trade history or swap(s) still in progress');
+			}
+		}
+	});
+}
+
+/* TRADE HISTORY - CREDIT: pbca26 END*/

@@ -18,6 +18,18 @@ ShepherdIPC = function(data) {
 	return shepherdreply;
 }
 
+$('.dextradeshistory-btn').click(function(e) {
+	if ($('.dextradeshistory').is(":visible")) {
+		$('body').css('overflow', 'inherit');
+		$('.dextradeshistory').hide();
+		$('.dextradeshistory-btn').html('Trades history');
+	} else {
+		$('body').css('overflow', 'hidden');
+		$('.dextradeshistory-btn').html('Dashboard');
+		$('.dextradeshistory').show();
+		constructTradesHistory();
+	}
+});
 
 $('.dexlogout-btn').click(function(e) {
 	e.preventDefault();
@@ -162,14 +174,27 @@ $('.login-btn').click(function(e) {
 
 	var dexmode = $('.login_mode_options').selectpicker('val');
 	if (dexmode == 'BarterDEX') {
-		$('.navbar-brandname').html('BarterDEX');
+		loginBarterdEX();
 	}
 	if (dexmode == 'dICO') {
-		$('.navbar-brandname').html('Monaize dICO');
-		logindICO('MNZ');
+		logindICO(dICO_coin);
 	}
 });
 
+function loginBarterdEX(){
+	$('.navbar-brandname').html('BarterDEX');
+	$('.screen-portfolio').show();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
+	$('.coin_ticker').html(coin);
+	$('.btn-exchangeclose').show();
+	$('.trading_method_options').show();
+	$('.trading_buysell_options').show();
+
+	$('#trading_mode_options_trademanual').trigger('click');
+	$('#trading_mode_options_tradebot').removeAttr("checked");
+	$('#trading_mode_options_trademanual').attr('checked','checked');
+}
 
 function logindICO(coin){
 	console.log('LOGIN TO dICO OPTION SEELCTED.')
@@ -180,7 +205,9 @@ function logindICO(coin){
 	$('.trading_method_options').hide();
 	$('.trading_buysell_options').hide();
 
+	$('.navbar-brandname').html(return_coin_name(coin) + ' dICO');
 	sessionStorage.setItem('mm_dexmode', 'dICO');
+	sessionStorage.setItem('mm_selected_dICO_coin', coin);
 
 	selected_coin = {}
 	selected_coin.coin = coin;

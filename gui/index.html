@@ -129,12 +129,19 @@
             <a href="javascript:void(0)" class="btn btn-danger dexlogout-btn" style="margin: 8px 8px 0 0;">Logout</a>
             <a href="javascript:void(0)" class="btn btn-danger dexdebug-close-btn" style="margin: 8px 8px 0 0; display: none">Close</a>
             <a href="javascript:void(0)" class="btn btn-info dexdebug-btn" style="margin: 8px 8px 0 0;">Debug</a>
+            <a href="javascript:void(0)" class="btn btn-warning dextradeshistory-btn" style="margin: 8px 8px 0 0;">Trades history</a>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <!-- Section: Navigation Menu END -->
-
+    <div class="dextradeshistory" style="display: none">
+      <span class="refresh-trades-history-icon" onclick="constructTradesHistory()">
+        <i class="fa fa-refresh"></i> Refresh
+      </span>
+      <div id="trades-history-content"></div>
+    </div>
+    
     <div class="dexdebug" style="display: none">
       <h4>Payload</h4>
       <textarea cols="50" rows="5" id="debug-payload" placeholder="Provide payload"></textarea>

@@ -319,3 +319,64 @@ table tbody tr:first-child td {
   border: solid 1px #ccc;
   min-height: 200px;
 }
+
+/* trades history */
+.dextradeshistory {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 1100;
+  padding: 20px;
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+}
+.trades-history-table,
+.trades-history-table td,
+.trades-history-table th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.trades-history-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.trades-history-table th,
+.trades-history-table td {
+  padding: 15px;
+}
+
+.col-red {
+  color: #f96868;
+}
+.col-green {
+  color: #46be8a;
+}
+.fsize-xm {
+  font-size: 10px;
+  position: relative;
+  left: -5px;
+  top: 1px;
+}
+.btn-gray,
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active {
+  background-color: #8b8c8c;
+  border-color: #8b8c8c;
+  color: #fff;
+}
+
+.refresh-trades-history-icon {
+  background: #e4e4e4;
+  color: #000;
+  padding: 5px 10px;
+  position: absolute;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  border-radius: 2px;
+  cursor: pointer;
+}
