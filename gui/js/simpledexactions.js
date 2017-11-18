@@ -98,6 +98,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('#trading_pair_options_selling').removeAttr("checked");
 	$('#trading_pair_options_buying').attr('checked','checked');
 	$('.trading_pair_coin').selectpicker('val', 'KMD');
+	$('.trading_pair_coin_price').val('');
+	$('.trading_pair_destpubkey').val('');
+	$('.trading_pair_coin_volume').val('');
+	$('.relvol_basevol').html('');
 
 	coin = $(this).data('coin');
 
@@ -1940,12 +1944,12 @@ function PortfolioTblDataFn(data) {
 			//dex_portfolio_coins_tbl_tr += '<td>' + val.address + '</td>';
 			dex_portfolio_coins_tbl_tr += '<td>' + val.amount + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
-            /*dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
+            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
+            //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
+            /*dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.force + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.balanceA + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.valuesumA + '</td>';
