@@ -102,6 +102,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.trading_pair_destpubkey').val('');
 	$('.trading_pair_coin_volume').val('');
 	$('.relvol_basevol').html('');
+	$('.navbar-right').children().removeClass('active');
 
 	coin = $(this).data('coin');
 

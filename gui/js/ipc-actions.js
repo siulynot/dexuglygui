@@ -18,15 +18,54 @@ ShepherdIPC = function(data) {
 	return shepherdreply;
 }
 
+
+
+$('.dexdashboard-btn').click(function(e){
+	e.preventDefault();
+	console.log('btn-exchangeclose clicked');
+	console.log($(this).data());
+
+	$('.navbar-right').children().removeClass('active');
+	$('.dexdashboard-btn').parent().addClass( "active" );
+
+	$('body').css('overflow', 'inherit');
+	$('.dextradeshistory').hide();
+
+	$('.dexdebug').hide();
+	$('.dexdebug-btn').show();
+	$('.dexlogout-btn').show();
+	$('.dexdebug-close-btn').hide();
+	$('.dextradeshistory-btn').show();
+
+	//$('.screen-coindashboard').show()
+	$('.screen-exchange').hide();
+	$('.screen-portfolio').show();
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	bot_screen_coin_balance(false);
+	bot_screen_sellcoin_balance(false);
+	//check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
+	//check_coin_balance();
+
+	CheckPortfolioFn();
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+});
+
+
 $('.dextradeshistory-btn').click(function(e) {
 	if ($('.dextradeshistory').is(":visible")) {
 		$('body').css('overflow', 'inherit');
 		$('.dextradeshistory').hide();
 		$('.dextradeshistory-btn').html('Trades history');
+		$('.navbar-right').children().removeClass('active');
 	} else {
 		$('body').css('overflow', 'hidden');
-		$('.dextradeshistory-btn').html('Dashboard');
+		//$('.dextradeshistory-btn').html('Dashboard');
 		$('.dextradeshistory').show();
+		$('.navbar-right').children().removeClass('active');
+		$('.dextradeshistory-btn').parent().addClass( "active" );
 		constructTradesHistory();
 	}
 });
@@ -50,10 +89,15 @@ $('.dexlogout-btn').click(function(e) {
 });
 
 $('.dexdebug-btn').click(function(e) {
+	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug').show();
-	$('.dexlogout-btn').hide();
-	$('.dexdebug-close-btn').show();
-	$('.dexdebug-btn').hide();
+	//$('.dexlogout-btn').hide();
+	//$('.dexdebug-close-btn').show();
+	//$('.dexdebug-btn').hide();
+	//$('.dextradeshistory-btn').hide();
+
+	$('.navbar-right').children().removeClass('active');
+	$('.dexdebug-btn').parent().addClass( "active" );
 });
 
 $('.dexdebug-close-btn').click(function(e) {
@@ -61,6 +105,7 @@ $('.dexdebug-close-btn').click(function(e) {
 	$('.dexdebug-btn').show();
 	$('.dexlogout-btn').show();
 	$('.dexdebug-close-btn').hide();
+	$('.dextradeshistory-btn').show();
 });
 
 $('.login-genpass-btn').click(function(e){

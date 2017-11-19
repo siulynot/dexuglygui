@@ -103,8 +103,8 @@
   <div class="mainbody" style="display: none;">
 
     <!-- Section: Navigation Menu -->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
@@ -113,7 +113,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="navbar-brand navbar-brand-centered navbar-brandname">BarterDEX</div>
+          <div class="navbar-brand">BarterDEX</div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -124,12 +124,12 @@
             <li><a href="#">Link</a></li>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <!--<li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>-->
-            <a href="javascript:void(0)" class="btn btn-danger dexlogout-btn" style="margin: 8px 8px 0 0;">Logout</a>
-            <a href="javascript:void(0)" class="btn btn-danger dexdebug-close-btn" style="margin: 8px 8px 0 0; display: none">Close</a>
-            <a href="javascript:void(0)" class="btn btn-info dexdebug-btn" style="margin: 8px 8px 0 0;">Debug</a>
-            <a href="javascript:void(0)" class="btn btn-warning dextradeshistory-btn" style="margin: 8px 8px 0 0;">Trades history</a>
+            <!--<li><a href="#">Link</a></li>-->
+            <li class="active"><a href="javascript:void(0)" class="dexdashboard-btn">Dashboard</a></li>
+            <li><a href="javascript:void(0)" class="dextradeshistory-btn">Trades history</a></li>
+            <li><a href="javascript:void(0)" class="dexdebug-close-btn" style="display: none">Close</a></li>
+            <li><a href="javascript:void(0)" class="dexdebug-btn">Debug</a></li>
+            <li><a href="javascript:void(0)" class="dexlogout-btn">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
