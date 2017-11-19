@@ -91,10 +91,10 @@ $('.dexlogout-btn').click(function(e) {
 $('.dexdebug-btn').click(function(e) {
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug').show();
-	//$('.dexlogout-btn').hide();
-	//$('.dexdebug-close-btn').show();
-	//$('.dexdebug-btn').hide();
-	//$('.dextradeshistory-btn').hide();
+	$('.dexlogout-btn').hide();
+	$('.dexdebug-close-btn').show();
+	$('.dexdebug-btn').hide();
+	$('.dextradeshistory-btn').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
@@ -106,6 +106,7 @@ $('.dexdebug-close-btn').click(function(e) {
 	$('.dexlogout-btn').show();
 	$('.dexdebug-close-btn').hide();
 	$('.dextradeshistory-btn').show();
+	$('.navbar-right').children().removeClass('active');
 });
 
 $('.login-genpass-btn').click(function(e){
@@ -151,7 +152,7 @@ $('.login-genpass-btn').click(function(e){
 				callback: function(){
 					var pass_input1 = $('.btn_gen_pass_input1').val();
 					var pass_input2 = $('.btn_gen_pass_input2').val();
-					//console.log(pass_input1);
+					console.log(pass_input1);
 					//console.log(pass_input2);
 
 					$('.loginPassphrase').val(pass_input2);
@@ -234,6 +235,7 @@ function loginBarterdEX(){
 	$('.btn-exchangeclose').show();
 	$('.trading_method_options').show();
 	$('.trading_buysell_options').show();
+	$('.dexdashboard-btn').show();
 
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
@@ -248,6 +250,7 @@ function logindICO(coin){
 	$('.btn-exchangeclose').hide();
 	$('.trading_method_options').hide();
 	$('.trading_buysell_options').hide();
+	$('.dexdashboard-btn').hide();
 
 	$('.navbar-brandname').html(return_coin_name(coin) + ' dICO');
 	sessionStorage.setItem('mm_dexmode', 'dICO');

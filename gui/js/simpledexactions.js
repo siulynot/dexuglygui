@@ -42,6 +42,7 @@ $(document).ready(function() {
 			console.log(selected_coin);
 			sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
+			$('.dexdashboard-btn').hide();
 			$('.screen-portfolio').hide();
 			$('.screen-coindashboard').hide()
 			$('.screen-exchange').show();
