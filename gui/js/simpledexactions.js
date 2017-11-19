@@ -2388,8 +2388,11 @@ function CheckOrderBookFn(sig) {
 		var rel_coin = $('.trading_pair_coin').selectpicker('val');
 	}
 	if(buying_or_selling == 'selling') {
-		var base_coin = $('.trading_pair_coin').selectpicker('val');
-		var rel_coin = coin;
+		// Disabled selling option to show opposite pair orderbook result.
+		//var base_coin = $('.trading_pair_coin').selectpicker('val');
+		//var rel_coin = coin;
+		var base_coin = coin;
+		var rel_coin = $('.trading_pair_coin').selectpicker('val');
 	}
 
 	var userpass = sessionStorage.getItem('mm_userpass');
