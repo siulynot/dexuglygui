@@ -67,12 +67,14 @@
         <h3 class="form-signin-heading" style="text-align: center;">Welcome to BarterDEX</h3>
         <h4 style="text-align: center;">Please Login</h4>
 
-        <label for="loginPassphrase" class="sr-only">Passphrase</label>
+        <label for="loginPassphrase" class="sr-only">Passphrase</label>        
         <div class="input-group col-sm-12">
-          <input type="password" id="loginPassphrase" class="form-control loginPassphrase" placeholder="Passphrase" required>
+          <!-- https://github.com/wenzhixin/bootstrap-show-password -->
+          <input type="password" id="loginPassphrase" class="form-control loginPassphrase" placeholder="Passphrase" data-toggle="password" required>
+          <!--
           <span class="input-group-btn">
-            <button class="btn btn-grey btn_login_show_passphrase" style="height: 44px; margin-bottom: 10px;"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
-          </span>
+            <button class="btn btn-grey btn_login_show_passphrase" style="height: 44px; margin-bottom: 10px;"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button> 
+          </span> -->
         </div>
         <div class="input-group col-sm-12" style="margin-bottom: 10px;">
           <select class="selectpicker login_mode_options" data-hide-disabled="true" data-width="30%"></select>
@@ -86,6 +88,7 @@
       </form>
     </div>
   </div>
+
   <!-- LOGIN BODY END -->
 
   <!-- LOADING BODY -->
@@ -703,6 +706,7 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/fuelux.min.js" type="text/javascript"></script>
     <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-show-password.min.js" type="text/javascript"></script>
     <script src="js/qrcode.min.js" type="text/javascript"></script>
     <script src="js/toastr.min.js" type="text/javascript"></script>
     <script src="js/bootstrap-toggle.min.js" type="text/javascript"></script>
