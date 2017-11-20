@@ -2335,7 +2335,7 @@ function autoprice_buy_sell(autoprice_data) {
 			bootbox.alert(autoprice_mode + ` auto price order executed:<br>
 						<b>Buying Currency (base):</b>` + base_coin + ` <br>
 						<b>Selling Currency (rel):</b>` + rel_coin + ` <br>
-						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_data.modeval + `` + percent_on_off);
+						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_data.modeval * 100 + `` + percent_on_off);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
