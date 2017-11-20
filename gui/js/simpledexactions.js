@@ -2363,9 +2363,9 @@ function setOrderPrice(trade_data) {
 	}
 	if(bot_or_manual == 'trademanual') {
 
-		//pair_volume = trade_data.maxbuy;
-		//$('.trading_pair_coin_volume').val(pair_volume.toFixed(8));
-		//$('.relvol_basevol').html(trade_data.maxvolume);
+		pair_volume = trade_data.maxbuy;
+		$('.trading_pair_coin_volume').val(pair_volume.toFixed(8));
+		$('.relvol_basevol').html(trade_data.maxvolume);
 		$('.trading_pair_destpubkey').val(trade_data.pubkey);
 	}
 
@@ -2478,7 +2478,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.avevolume = val.avevolume;
 				row_trade_data.numutxos = val.numutxos;
 				row_trade_data.depth = val.depth;
-				//row_trade_data.maxbuy = val.maxvolume / val.price;
+				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
 				//row_trade_data.totalbuy = (val.maxvolume / val.price) * val.numutxos;
 				var orderbook_asks_tr = '';

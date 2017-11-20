@@ -168,14 +168,14 @@ ExecMarketMaker = function(data) {
             if (!!params.coins) { // if not undefined and true
  		delete params.coins; // for Windows we should use coins.json file, and don't pass coins in command line
             }
-            console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
+            //console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
 	    params = JSON.stringify(_customParam);
             params = params.replace(/"/g, '\\"');
             params = '"' + params +'"';
 
       }
 
-      console.log(`[Decker] exec ${BarterDEXBin} ${params}`);
+      //console.log(`[Decker] exec ${BarterDEXBin} ${params}`);
       /*var out = fs.openSync(`${BarterDEXDir}/out.log`, 'a');
       var err = fs.openSync(`${BarterDEXDir}/out.log`, 'a');
 
