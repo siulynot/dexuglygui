@@ -93,6 +93,14 @@ $(document).ready(function() {
 	//$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
 });
 
+
+$('.porfolio_coins_list tbody').on('click', '.btn_portfolio_coingoal', function() {
+	console.log('portfolio set goal button clicked')
+	console.log($(this).data());
+	console.log($(this).data('coin'));
+});
+
+
 $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log('portfolio coin button clicked')
 	console.log($(this).data());
@@ -1976,7 +1984,10 @@ function PortfolioTblDataFn(data) {
             dex_portfolio_coins_tbl_tr += '<td>' + val.goal + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
-            dex_portfolio_coins_tbl_tr += '<td><button class="btn btn-sm btn-default btn-portfoliogo" data-coin="' + val.coin + '" data-coinname="' + coin_name + '" data-addr="' + val.address + '" data-balance="' + val.amount + '">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></td>'
+            dex_portfolio_coins_tbl_tr += `<td>
+											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="display: none;">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-default btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>            
+											</td>`
             //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             /*dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.force + '</td>';
@@ -2159,9 +2170,9 @@ $('.portfolio_set_autoprice_btn').click(function() {
 function set_coin_goal(goal_data){
 	console.log(goal_data);
 
-	console.log('AUTO GOAL: ' + goal_data.auto);
-	console.log('GOAL PERCENTAGE: ' + goal_data.percent);
-	console.log('GOAL COIN: '+ goal_data.coin);
+	//console.log('AUTO GOAL: ' + goal_data.auto);
+	//console.log('GOAL PERCENTAGE: ' + goal_data.percent);
+	//console.log('GOAL COIN: '+ goal_data.coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	if (goal_data.auto == false) {
@@ -2180,11 +2191,17 @@ function set_coin_goal(goal_data){
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
-	   toastr.success('Goal for ' + goal_data.coin + ' set to: ' + goal_data.percent +'%', 'Portfolio Info')
+	   if (goal_data.auto == false){
+			toastr.success('Goal for ' + goal_data.coin + ' set to: ' + goal_data.percent +'%', 'Portfolio Info')
+	   } else {
+			bootbox.alert('Auto Goal executed for all active coins. Make sure you have set Auto Price for these coins.');
+	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
+
+	CheckPortfolioFn();
 }
 
 
@@ -2268,9 +2285,21 @@ $('.btn_set_coin_goal').click(function(e){
 	goal_data.auto = $(this).data('auto');
 	goal_data.percent = $('.coingoal_percentage').val();
 
-	console.log(goal_data);
+	//console.log(goal_data);
 	set_coin_goal(goal_data);
-})
+});
+
+$('.btn-autogoalall').click(function(e){
+	e.preventDefault();
+	console.log('btn-autogoalall clicked');
+	console.log($(this).data());
+
+	var goal_data = {}
+	goal_data.auto = $(this).data('auto');
+
+	//console.log(goal_data);
+	set_coin_goal(goal_data);
+});
 
 
 function autoprice_buy_sell(autoprice_data) {
@@ -2336,21 +2365,24 @@ function autoprice_buy_sell(autoprice_data) {
 			var autoprice_mode = '';
 			var percent_on_off = '';
 			var autoprice_modeinfo = '';
+			var autoprice_modeval = '';
 			if (autoprice_data.mode == 'margin'){
 				autoprice_mode = 'Margin';
 				percent_on_off = '%';
 				autoprice_modeinfo = 'Margin Percentage';
+				autoprice_modeval = autoprice_data.modeval * 100;
 			}
 			if (autoprice_data.mode == 'fixed'){
 				autoprice_mode = 'Fixed';
 				percent_on_off = '';
 				autoprice_modeinfo = 'Fixed Price';
+				autoprice_modeval = autoprice_data.modeval;
 
 			}
 			bootbox.alert(autoprice_mode + ` auto price order executed:<br>
 						<b>Buying Currency (base):</b>` + base_coin + ` <br>
 						<b>Selling Currency (rel):</b>` + rel_coin + ` <br>
-						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_data.modeval * 100 + `` + percent_on_off);
+						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_modeval + `` + percent_on_off);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
