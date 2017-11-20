@@ -98,6 +98,48 @@ $('.porfolio_coins_list tbody').on('click', '.btn_portfolio_coingoal', function(
 	console.log('portfolio set goal button clicked')
 	console.log($(this).data());
 	console.log($(this).data('coin'));
+	var coin = $(this).data('coin');
+
+	var set_coingoal_bootbox = bootbox.dialog({
+		backdrop: true,
+		onEscape: true,
+		message: `<div class="form-group coingoal_label_div" style="margin-top: 15px; margin-bottom: 0px;">
+                      <span style="font-size: 18px;">Set `+$(this).data('coin')+` Goal percentage for your portfolio</span>
+                    </div>
+                    <div class="input-group col-sm-12 coingoal_div">
+                      <span class="input-group-addon coin_ticker" style="font-size: 20px;">`+$(this).data('coin')+`</span>
+                      <input type="number" class="form-control coingoal_percentage_bootbox" placeholder="e.g. 12.5" style="height: 64px; font-size: 20px;">
+                    </div>`,
+		closeButton: true,
+		size: 'medium',
+
+		buttons: {
+			cancel: {
+				label: "Close",
+				className: 'btn-default',
+				callback: function(){
+				}
+			},
+			ok: {
+				label: "Set Goal",
+				className: 'btn-primary btn_set_coin_goal_bootbox',
+				callback: function(){
+					var goal_data = {}
+					goal_data.coin = coin;
+					goal_data.auto = false;
+					goal_data.percent = $('.coingoal_percentage_bootbox').val();
+
+					console.log(goal_data);
+					set_coin_goal(goal_data);
+				}
+			}
+		}
+	});
+	set_coingoal_bootbox.init(function(){
+		console.log('set_coingoal_bootbox dialog opened.')
+	});
+
+
 });
 
 
@@ -1985,7 +2027,7 @@ function PortfolioTblDataFn(data) {
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
             dex_portfolio_coins_tbl_tr += `<td>
-											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="display: none;">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false>Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
 											<button class="btn btn-sm btn-default btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>            
 											</td>`
             //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
@@ -2205,37 +2247,6 @@ function set_coin_goal(goal_data){
 }
 
 
-$('.portfolio_set_autogoals_btn').click(function() {
-	//var percent = $('#portfolio_set_goal').val();
-	//var coin = $('.sell_coin_p').selectpicker('val');
-
-	//console.log('percent ' + percent);
-	//console.log('coin '+ coin);
-	//console.log('rel ' + rel_coin);
-
-	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"goal"};
-	var url = "http://127.0.0.1:7783";
-
-	$.ajax({
-		async: true,
-	    data: JSON.stringify(ajax_data),
-	    dataType: 'json',
-	    type: 'POST',
-	    url: url
-	}).done(function(data) {
-	    // If successful
-	   console.log(data);
-	   toastr.success('Auto goal setup executed!', 'Portfolio Info')
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
-	}).fail(function(jqXHR, textStatus, errorThrown) {
-	    // If fail
-	    console.log(textStatus + ': ' + errorThrown);
-	});
-
-	CheckPortfolioFn();
-})
-
 
 $('#trading_pair_coin_autoprice_mode').change(function() {
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -2297,8 +2308,25 @@ $('.btn-autogoalall').click(function(e){
 	var goal_data = {}
 	goal_data.auto = $(this).data('auto');
 
-	//console.log(goal_data);
-	set_coin_goal(goal_data);
+	bootbox.confirm({
+		message: "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel.",
+		buttons: {
+			confirm: {
+				label: 'Yes',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: 'No',
+				className: 'btn-danger'
+			}
+		},
+		callback: function (result) {
+			if (result == true) {
+				//console.log(goal_data);
+				set_coin_goal(goal_data);
+			}
+		}
+	});
 });
 
 
