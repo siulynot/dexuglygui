@@ -2607,7 +2607,7 @@ function manual_buy_sell(mt_data) {
 			if (data.error == 'invalid parameter') {
 				toastr.warning('Invalid Parameters.', 'Trade Info');
 			}
-			if (data.error == 'cant find alice utxo that is small enough') {
+			if (data.error == 'cant find buyer utxo that is small enough') {
 				toastr.error(data.error, 'Bot Info');
 			}
 			if (data.error == 'not enough funds') {
