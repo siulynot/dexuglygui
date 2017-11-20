@@ -133,6 +133,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
+	$('.coingoal_label_coin_name').html(return_coin_name(coin) + ' ('+coin+')');
 
 	CheckPortfolioFn(false);
 	CheckOrderBookFn();
@@ -2155,19 +2156,23 @@ $('.portfolio_set_autoprice_btn').click(function() {
 })
 
 
-$('.portfolio_set_goal_btn').click(function() {
-	var percent = $('#portfolio_set_goal').val();
-	var coin = $('.sell_coin_p').selectpicker('val');
+function set_coin_goal(goal_data){
+	console.log(goal_data);
 
-	console.log('percent ' + percent);
-	console.log('coin '+ coin);
-	//console.log('rel ' + rel_coin);
+	console.log('AUTO GOAL: ' + goal_data.auto);
+	console.log('GOAL PERCENTAGE: ' + goal_data.percent);
+	console.log('GOAL COIN: '+ goal_data.coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"goal","coin":coin,"val":percent};
+	if (goal_data.auto == false) {
+		var ajax_data = {"userpass":userpass,"method":"goal","coin":goal_data.coin,"val":goal_data.percent};
+	} else {
+		var ajax_data = {"userpass":userpass,"method":"goal"};
+	}
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
+		async: true,
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
@@ -2175,20 +2180,12 @@ $('.portfolio_set_goal_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
-	   toastr.success('Goal for ' + coin + ' set to: ' + percent, 'Portfolio Info')
-	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
+	   toastr.success('Goal for ' + goal_data.coin + ' set to: ' + goal_data.percent +'%', 'Portfolio Info')
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
-
-	CheckPortfolioFn();
-})
-
-
-$( ".sell_coin_p" ).change(function() {
-	$('.set_goal_label_portfolio').html($('.sell_coin_p').selectpicker('val'));
-})
+}
 
 
 $('.portfolio_set_autogoals_btn').click(function() {
@@ -2256,6 +2253,24 @@ $('#trading_pair_coin_autoprice_mode').change(function() {
 		}
 	}
 });
+
+$('.btn_set_coin_goal').click(function(e){
+	e.preventDefault();
+	console.log('btn_set_coin_goal clicked');
+	console.log($(this).data());
+
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	console.log(coin);
+
+	var goal_data = {}
+	goal_data.coin = coin;
+	goal_data.auto = $(this).data('auto');
+	goal_data.percent = $('.coingoal_percentage').val();
+
+	console.log(goal_data);
+	set_coin_goal(goal_data);
+})
 
 
 function autoprice_buy_sell(autoprice_data) {
@@ -2388,6 +2403,8 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.relvol_basevol_amount').show();
 		$('.relvol_basevol_label').show();
 		$('.portfolio_info_text').hide();
+		$('.coingoal_label_div').hide();
+		$('.coingoal_div').hide();
 	}
 	if(bot_or_manual == 'trademanual') {
 		//$('#trading_pair_coin_price_max_min').html('Min');
@@ -2417,6 +2434,8 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.relvol_basevol_amount').show();
 		$('.relvol_basevol_label').show();
 		$('.portfolio_info_text').hide();
+		$('.coingoal_label_div').hide();
+		$('.coingoal_div').hide();
 	}
 	if(bot_or_manual == 'tradeportfolio') {
 		$('.trading_pair_lable_text_one').html('Auto')
@@ -2454,6 +2473,8 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.relvol_basevol_amount').hide();
 		$('.relvol_basevol_label').hide();
 		$('.portfolio_info_text').show();
+		$('.coingoal_label_div').show();
+		$('.coingoal_div').show();
 	}
 });
 
