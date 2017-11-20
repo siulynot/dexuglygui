@@ -166,6 +166,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	coin = $(this).data('coin');
 
+	if (coin == 'KMD') {
+		$('.trading_pair_coin').selectpicker('val', 'BTC');
+	}
+
 	selected_coin = {}
 	selected_coin.coin = $(this).data('coin');
 	selected_coin.coin_name = $(this).data('coinname');
