@@ -33,6 +33,9 @@ $(document).ready(function() {
 			$('#trading_mode_options_trademanual').trigger('click');
 			$('#trading_mode_options_tradebot').removeAttr("checked");
 			$('#trading_mode_options_trademanual').attr('checked','checked');
+			$('.trading_pair_coin_autoprice_mode_span').hide();
+			$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+			$('#trading_pair_coin_price_max_min').html('Max');
 		}
 		if (dexmode == 'dICO') {
 			$('.navbar-brandname').html(return_coin_name(selected_dICO_coin) + ' dICO');
@@ -72,6 +75,9 @@ $(document).ready(function() {
 			$('#trading_mode_options_trademanual').attr('checked','checked');
 			$('.trading_method_options').hide();
 			$('.trading_buysell_options').hide();
+			$('.trading_pair_coin_autoprice_mode_span').hide();
+			$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+			$('#trading_pair_coin_price_max_min').html('Max');
 		}
 
 //---- dICO App Settings END ----//
@@ -104,6 +110,9 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.trading_pair_coin_volume').val('');
 	$('.relvol_basevol').html('');
 	$('.navbar-right').children().removeClass('active');
+	$('.trading_pair_coin_autoprice_mode_span').hide();
+	$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+	$('#trading_pair_coin_price_max_min').html('Max');
 
 	coin = $(this).data('coin');
 
@@ -793,6 +802,23 @@ $('.btn-bot_action').click(function(e){
 		//manual_buy_sell(trade_data)
 		buy_sell_precheck(trade_data);
 
+	} else if (bot_or_manual == 'tradeportfolio') {
+
+		var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
+
+		var trade_data = {}
+		if (margin_or_fixed == true) {
+			trade_data.mode = 'margin';
+			trade_data.modeval = $('.trading_pair_coin_price').val() / 100;
+			trade_data.action = $(this).data('action');
+		} else {
+			trade_data.mode = 'fixed';
+			trade_data.modeval = $('.trading_pair_coin_price').val();
+			trade_data.action = $(this).data('action');
+		}
+
+		//console.log(trade_data);
+		autoprice_buy_sell(trade_data);
 	}
 });
 
@@ -2196,6 +2222,127 @@ $('.portfolio_set_autogoals_btn').click(function() {
 	CheckPortfolioFn();
 })
 
+
+$('#trading_pair_coin_autoprice_mode').change(function() {
+	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
+	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
+	
+	if(bot_or_manual == 'tradeportfolio') {
+		if(margin_or_fixed == true) {
+			$('#trading_pair_coin_price_max_min').show();
+			$('.trading_pair_coin_price').css('border-radius', '0')
+			//$('.trading_pair_coin_price').attr("placeholder", "Margin e.g. 0.01");
+			if(buying_or_selling == 'buying') {
+				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
+				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+			}
+			if(buying_or_selling == 'selling') {
+				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
+				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+			}
+		} else {
+			$('#trading_pair_coin_price_max_min').hide();
+			$('.trading_pair_coin_price').css('border-radius', '4px')
+			//$('.trading_pair_coin_price').attr("placeholder", "Price e.g. 0.01");
+			if(buying_or_selling == 'buying') {
+				$('.btn-bot_action').html('SET AUTO BUY PRICE');
+				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+			}
+			if(buying_or_selling == 'selling') {
+				$('.btn-bot_action').html('SET AUTO SELL PRICE');
+				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+			}
+		}
+	}
+});
+
+
+function autoprice_buy_sell(autoprice_data) {
+	console.log(autoprice_data);
+	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	//console.log(coin);
+
+	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
+
+	if(buying_or_selling == 'buying') {
+		var base_coin = coin;
+		var rel_coin = $('.trading_pair_coin').selectpicker('val');
+	}
+	if(buying_or_selling == 'selling') {
+		var base_coin = $('.trading_pair_coin').selectpicker('val');
+		var rel_coin = coin;
+	}
+
+	//var base_coin = coin;
+	//var rel_coin = $('.trading_pair_coin').selectpicker('val');
+
+	console.log('BUYING or SELLING??: ' + buying_or_selling);
+	console.log('BASE: ' + base_coin);
+	console.log('REL: '+ rel_coin);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+
+	if (autoprice_data.mode == 'margin') {
+		var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":autoprice_data.modeval};
+	}
+	if (autoprice_data.mode == 'fixed') {
+		var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":autoprice_data.modeval};
+	}
+
+	console.log(ajax_data);
+
+	console.log(JSON.stringify(ajax_data));
+
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		$('.trading_pair_coin_price').val('');
+		$('.trading_pair_coin_volume').val('');
+		$('.trading_pair_destpubkey').val('');
+		$('.relvol_basevol').html('');
+
+		if (!data.error === false) {
+			toastr.error(data.error, 'Trade Info');
+		} else if (data.result == 'success') {
+			toastr.success('Order Executed', 'Trade Info');
+			
+			var autoprice_mode = '';
+			var percent_on_off = '';
+			var autoprice_modeinfo = '';
+			if (autoprice_data.mode == 'margin'){
+				autoprice_mode = 'Margin';
+				percent_on_off = '%';
+				autoprice_modeinfo = 'Margin Percentage';
+			}
+			if (autoprice_data.mode == 'fixed'){
+				autoprice_mode = 'Fixed';
+				percent_on_off = '';
+				autoprice_modeinfo = 'Fixed Price';
+
+			}
+			bootbox.alert(autoprice_mode + ` auto price order executed:<br>
+						<b>Buying Currency (base):</b>` + base_coin + ` <br>
+						<b>Selling Currency (rel):</b>` + rel_coin + ` <br>
+						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_data.modeval + `` + percent_on_off);
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
 /* Portfolio section functions END */
 
 
@@ -2204,26 +2351,109 @@ $('.portfolio_set_autogoals_btn').click(function() {
 $('input[name=trading_mode_options]').change(function() {
 	console.log('trading_mode_options changed');
 
+	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+	//console.log(buying_or_selling);
+
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 	//console.log(bot_or_manual);
+
+	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
 
 	if(bot_or_manual == 'tradebot') {
 		$('#trading_pair_coin_price_max_min').html('Max');
 		$('.trading_pair_lable_text_one').html('Max');
 		$('.trading_pair_lable_text_two').html('Buy');
-		$('.btn-bot_action').html('BUY');
+		if(buying_or_selling == 'buying') {
+			$('.btn-bot_action').html('BUY');
+			$('.relvol_basevol_label').html("It'll cost you")
+		}
+		if(buying_or_selling == 'selling') {
+			$('.btn-bot_action').html('SELL');
+			$('.relvol_basevol_label').html("You'll get");
+		}
 		$('.btn-bot_action').attr('data-action', 'buy');
 		$('.trading_selected_trader_label').hide();
 		$('.trading_selected_trader').hide();
+		$('.trading_pair_coin_autoprice_mode_span').hide();
+		$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').show();
+		$('.buy_sell_amount_to').show();
+		$('#trading_pair_coin_ticker').show();
+		$('.trading_pair_coin_volume').show();
+		$('.btn-bot_action').removeClass('btn-block');
+		$('.btn-bot_action').css('border-top-left-radius','0');
+		$('.btn-bot_action').css('border-bottom-left-radius','0');
+		$('.buy_sell_button_div').css('margin-top', '0');
+		$('.relvol_basevol_amount').show();
+		$('.relvol_basevol_label').show();
+		$('.portfolio_info_text').hide();
 	}
 	if(bot_or_manual == 'trademanual') {
 		//$('#trading_pair_coin_price_max_min').html('Min');
 		$('.trading_pair_lable_text_one').html('');
 		//$('.trading_pair_lable_text_two').html('Sell');
-		//$('.btn-bot_action').html('SELL');
+		if(buying_or_selling == 'buying') {
+			$('.btn-bot_action').html('BUY');
+			$('.relvol_basevol_label').html("It'll cost you")
+		}
+		if(buying_or_selling == 'selling') {
+			$('.btn-bot_action').html('SELL');
+			$('.relvol_basevol_label').html("You'll get");
+		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
 		$('.trading_selected_trader_label').show();
 		$('.trading_selected_trader').show();
+		$('.trading_pair_coin_autoprice_mode_span').hide();
+		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').show();
+		$('.buy_sell_amount_to').show();
+		$('#trading_pair_coin_ticker').show();
+		$('.trading_pair_coin_volume').show();
+		$('.btn-bot_action').removeAttr('btn-block');
+		$('.btn-bot_action').css('border-top-left-radius','0');
+		$('.btn-bot_action').css('border-bottom-left-radius','0');
+		$('.buy_sell_button_div').css('margin-top', '0');
+		$('.relvol_basevol_amount').show();
+		$('.relvol_basevol_label').show();
+		$('.portfolio_info_text').hide();
+	}
+	if(bot_or_manual == 'tradeportfolio') {
+		$('.trading_pair_lable_text_one').html('Auto')
+		$('.trading_selected_trader_label').hide();
+		$('.trading_selected_trader').hide();
+		$('.trading_pair_coin_autoprice_mode_span').show();
+		$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+		$('#trading_pair_coin_price_max_min').html('%');
+		if(buying_or_selling == 'buying') {
+			if(margin_or_fixed == true){
+				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
+				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO BUY PRICE');
+				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+			}
+		}
+		if(buying_or_selling == 'selling') {
+			if(margin_or_fixed == true){
+				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
+				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO SELL PRICE');
+				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+			}
+		}
+		$('.btn-bot_action').attr('data-action', 'autoprice');
+		$('.buy_sell_amount_to').hide();
+		$('#trading_pair_coin_ticker').hide();
+		$('.trading_pair_coin_volume').hide();
+		$('.btn-bot_action').addClass(' btn-block');
+		$('.btn-bot_action').css('border-top-left-radius','4px');
+		$('.btn-bot_action').css('border-bottom-left-radius','4px');
+		$('.buy_sell_button_div').css('margin-top', '20px');
+		$('.relvol_basevol_amount').hide();
+		$('.relvol_basevol_label').hide();
+		$('.portfolio_info_text').show();
 	}
 });
 
@@ -2627,22 +2857,51 @@ $('input[name=trading_pair_options]').change(function() {
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 	//console.log(buying_or_selling);
 
+	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
+	//console.log(bot_or_manual);
+
+	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
+
 	if(buying_or_selling == 'buying') {
-		$('#trading_pair_coin_price_max_min').html('Max');
-		$('.trading_pair_lable_text_one').html('Max');
+		if(bot_or_manual == 'tradeportfolio') {
+			$('.trading_pair_lable_text_one').html('Auto')
+			$('#trading_pair_coin_price_max_min').html('%');
+			if(margin_or_fixed == true) {
+				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
+				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO BUY PRICE');
+				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+			}
+		} else {
+			$('#trading_pair_coin_price_max_min').html('Max');
+			$('.trading_pair_lable_text_one').html('Max');
+			$('.btn-bot_action').html('BUY');
+			$('.relvol_basevol_label').html("It'll cost you")
+		}
 		$('.trading_pair_lable_text_two').html('Buy');
-		$('.btn-bot_action').html('BUY');
 		$('.btn-bot_action').attr('data-action', 'buy');
-		$('.relvol_basevol_label').html("It'll cost you")
 		CheckOrderBookFn();
 	}
 	if(buying_or_selling == 'selling') {
-		$('#trading_pair_coin_price_max_min').html('Min');
-		$('.trading_pair_lable_text_one').html('Min');
+		if(bot_or_manual == 'tradeportfolio') {
+			$('.trading_pair_lable_text_one').html('Auto')
+			$('#trading_pair_coin_price_max_min').html('%');
+			if(margin_or_fixed == true) {
+				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
+				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO SELL PRICE');
+				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+			}
+		} else {
+			$('#trading_pair_coin_price_max_min').html('Min');
+			$('.trading_pair_lable_text_one').html('Min');
+			$('.btn-bot_action').html('SELL');
+			$('.relvol_basevol_label').html("You'll get");
+		}
 		$('.trading_pair_lable_text_two').html('Sell');
-		$('.btn-bot_action').html('SELL');
 		$('.btn-bot_action').attr('data-action', 'sell');
-		$('.relvol_basevol_label').html("You'll get");
 		CheckOrderBookFn();
 	}
 });

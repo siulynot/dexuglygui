@@ -381,3 +381,8 @@ table tbody tr:first-child td {
   border-radius: 2px;
   cursor: pointer;
 }
+
+
+.toggle-on, .toggle-off { 
+  line-height: 41px;
+}

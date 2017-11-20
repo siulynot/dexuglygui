@@ -556,7 +556,9 @@
                         <label class="btn btn-lg btn-warning active">
                           <input type="radio" name="trading_mode_options" id="trading_mode_options_tradebot" value="tradebot" autocomplete="off"> TRADE BOT</label>
                         <label class="btn btn-lg btn-warning">
-                          <input type="radio" name="trading_mode_options" id="trading_mode_options_trademanual" value="trademanual" autocomplete="off"> MANUAL TRADING</label>
+                          <input type="radio" name="trading_mode_options" id="trading_mode_options_trademanual" value="trademanual" autocomplete="off"> MANUAL TRADE</label>
+                        <label class="btn btn-lg btn-warning">
+                          <input type="radio" name="trading_mode_options" id="trading_mode_options_tradeportfolio" value="tradeportfolio" autocomplete="off"> PORTFOLIO</label>
                       </div>
                     </div>
                     <div class="form-group">
@@ -564,6 +566,9 @@
                     </div>
                     <div class="input-group col-sm-12">
                       <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
+                      <span class="input-group-addon trading_pair_coin_autoprice_mode_span" style="font-size: 0px; margin: 0; padding: 0; width: 120px; background-color: #fff; border: 0;">
+                        <input class="toggle_checkbox toggle_font_lg" id="trading_pair_coin_autoprice_mode" type="checkbox" checked data-toggle="toggle" data-on="Margin" data-off="Fixed" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px" data-class="toggle-font-lg">
+                      </span>
                       <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
                       <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
                     </div>
@@ -578,10 +583,11 @@
                       <input type="text" class="form-control trading_pair_destpubkey" placeholder="eg. bab6ad2eebe1e666369cab504d4622b22c1f1ef718ef388e88020f30a1573e01" style="height: 64px; font-size: 20px;">
                     </div>
 
-                    <div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
+                    <div class="form-group buy_sell_amount_to" style="margin-top: 15px; margin-bottom: 0px;">
                       <span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
                     </div>
-                    <div class="input-group col-sm-12">
+                    <div class="input-group col-sm-12 buy_sell_button_div">
+                      <p class="portfolio_info_text" style="font-size: 20px; font-weight: 200;"></p>
                       <span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
                       <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
                       <span class="input-group-btn">
@@ -591,7 +597,7 @@
 
                     <div class="input-group col-sm-12">
                       <span class="input-group-addon relvol_basevol_label" style="font-size: 30px; font-weight: 200; border: 0; background-color: #fff;">It'll cost you</span>
-                      <span class="input-group-addon" style="font-size: 40px; font-weight: 100; border: 0; background-color: #fff;"><span class="relvol_basevol">0</span> <span class="relvol_basevol_coin" style="font-size: 25px; background-color: #fff; font-weight: 100;"></span></span>
+                      <span class="input-group-addon relvol_basevol_amount" style="font-size: 40px; font-weight: 100; border: 0; background-color: #fff;"><span class="relvol_basevol">0</span> <span class="relvol_basevol_coin" style="font-size: 25px; background-color: #fff; font-weight: 100;"></span></span>
                     </div>
                   </div>
                 </div>
