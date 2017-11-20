@@ -2676,7 +2676,7 @@ function setOrderPrice(trade_data) {
 
 		pair_volume = trade_data.maxbuy;
 		$('.trading_pair_coin_volume').val(pair_volume.toFixed(8));
-		$('.relvol_basevol').html(trade_data.maxvolume);
+		$('.relvol_basevol').html(trade_data.avevolume);
 		$('.trading_pair_destpubkey').val(trade_data.pubkey);
 	}
 
@@ -2791,7 +2791,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.depth = val.depth;
 				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
-				//row_trade_data.totalbuy = (val.maxvolume / val.price) * val.numutxos;
+				//row_trade_data.totalbuy = (val.avevolume / val.price) * val.numutxos;
 				var orderbook_asks_tr = '';
 				orderbook_asks_tr += '<tr ' + mytrade_true + ' onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>';
 				orderbook_asks_tr += '<td>' + val.price + '</td>';
