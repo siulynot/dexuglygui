@@ -4244,11 +4244,11 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 });
 
 
-function check_swap_status_details(swap_data) {
-	console.log(swap_data);
+function check_swap_status_details(swap_status_data) {
+	console.log(swap_status_data);
 
-	var requestid = swap_data.requestid;
-	var quoteid = swap_data.quoteid;
+	var requestid = swap_status_data.requestid;
+	var quoteid = swap_status_data.quoteid;
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
@@ -4260,15 +4260,15 @@ function check_swap_status_details(swap_data) {
 	    dataType: 'json',
 	    type: 'POST',
 	    url: url
-	}).done(function(data) {
+	}).done(function(swap_status_output_data) {
 		// If successful
-		console.log(data);
+		console.log(swap_status_output_data);
 
-		if (!data.userpass === false) {
+		if (!swap_status_output_data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
-			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
-			sessionStorage.setItem('mm_userpass', data.userpass);
-			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(swap_status_output_data.coins));
+			sessionStorage.setItem('mm_userpass', swap_status_output_data.userpass);
+			sessionStorage.setItem('mm_mypubkey', swap_status_output_data.mypubkey);
 
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -4276,42 +4276,43 @@ function check_swap_status_details(swap_data) {
 				get_coin_info(selected_dICO_coin);
 			}
 		} else {
-			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-			alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.alice) + ' ('+data.alice+')';
-			bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.bob) + ' ('+data.bob+')';
-			iambob_answer = (data.iambob == 0) ? 'Buyer' : 'Seller';
+			result_answer = (swap_status_output_data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + swap_status_output_data.result + '</span></h4>';
+			alice_answer = '<img src="img/cryptologo/'+swap_status_output_data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(swap_status_output_data.alice) + ' ('+swap_status_output_data.alice+')';
+			bob_answer = '<img src="img/cryptologo/'+swap_status_output_data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(swap_status_output_data.bob) + ' ('+swap_status_output_data.bob+')';
+			iambob_answer = (swap_status_output_data.iambob == 0) ? 'Buyer' : 'Seller';
+
 
 			var bob_explorer = '';
-			if(data.bob == 'MNZ') {
+			if(swap_status_output_data.bob == 'MNZ') {
 				bob_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(data.bob == 'KMD') {
+			} else if(swap_status_output_data.bob == 'KMD') {
 				bob_explorer = 'https://www.kmd.host/tx/'
-			} else if(data.bob == 'BTC') {
+			} else if(swap_status_output_data.bob == 'BTC') {
 				bob_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(data.bob == 'ZEC') {
+			} else if(swap_status_output_data.bob == 'ZEC') {
 				bob_explorer = 'https://zchain.online/tx/'
-			} else if(data.bob == 'LTC') {
+			} else if(swap_status_output_data.bob == 'LTC') {
 				bob_explorer = 'https://bchain.info/LTC/tx/'
-			} else if(data.bob = 'HUSH') {
+			} else if(swap_status_output_data.bob == 'HUSH') {
 				bob_explorer = 'https://explorer.myhush.org/tx/'
 			}
 
 			var alice_explorer = '';
-			if(data.alice == 'MNZ') {
+			if(swap_status_output_data.alice == 'MNZ') {
 				alice_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(data.alice == 'KMD') {
+			} else if(swap_status_output_data.alice == 'KMD') {
 				alice_explorer = 'https://www.kmd.host/tx/'
-			} else if(data.alice == 'BTC') {
+			} else if(swap_status_output_data.alice == 'BTC') {
 				alice_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(data.alice == 'ZEC') {
+			} else if(swap_status_output_data.alice == 'ZEC') {
 				alice_explorer = 'https://zchain.online/tx/'
-			} else if(data.alice == 'LTC') {
+			} else if(swap_status_output_data.alice == 'LTC') {
 				alice_explorer = 'https://bchain.info/LTC/tx/'
-			} else if(data.alice = 'HUSH') {
+			} else if(swap_status_output_data.alice == 'HUSH') {
 				alice_explorer = 'https://explorer.myhush.org/tx/'
 			}
 
-			var time = new Date( data.expiration *1000);
+			var time = new Date( swap_status_output_data.expiration *1000);
 			//var expiration = moment.unix(data.expiration);
 			//var now = moment();
 
@@ -4329,28 +4330,28 @@ function check_swap_status_details(swap_data) {
 			}
 
 			var simplified_dexdetail_tr = '';
-			if (data.iambob == 0) {
+			if (swap_status_output_data.iambob == 0) {
 				console.log("I'm Buyer.");
-				var total_sell_unit = parseFloat(data.values[3])+parseFloat(data.values[6]);
-				var single_unit_price = parseFloat(data.srcamount) / parseFloat(total_sell_unit);
-				var price_per_bought_unit = parseFloat(total_sell_unit) / parseFloat(data.srcamount);
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid in ' + data.alice + ':</b> ' + data.values[3].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.alice + ':</b> ' + data.values[6].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.alice + ' paid:</b> ' + total_sell_unit.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' received:</b> ' + data.srcamount.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + data.alice + ' can buy:</b> ' + data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid per ' + data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
+				var total_sell_unit = parseFloat(swap_status_output_data.values[3])+parseFloat(swap_status_output_data.values[6]);
+				var single_unit_price = parseFloat(swap_status_output_data.srcamount) / parseFloat(total_sell_unit);
+				var price_per_bought_unit = parseFloat(total_sell_unit) / parseFloat(swap_status_output_data.srcamount);
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid in ' + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[6].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + swap_status_output_data.alice + ' paid:</b> ' + total_sell_unit.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' received:</b> ' + swap_status_output_data.srcamount.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + swap_status_output_data.alice + ' can buy:</b> ' + swap_status_output_data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid per ' + swap_status_output_data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + swap_status_output_data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
 			}
 
-			if (data.iambob == 1) {
+			if (swap_status_output_data.iambob == 1) {
 				console.log("I'm Seller.");
-				var total_sell_unit = parseFloat(data.values[0])+parseFloat(data.bobtxfee);
-				var units_sold_at_price = parseFloat(data.values[3]) / parseFloat(total_sell_unit);
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold: </b> = ' + data.values[0].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.bob + ': </b> = ' + data.bobtxfee + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.bob + ' deducted: </b> = ' + total_sell_unit + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.alice + ' received: </b> = ' + data.values[3].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold at price: </b> = ' + data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
+				var total_sell_unit = parseFloat(swap_status_output_data.values[0])+parseFloat(swap_status_output_data.bobtxfee);
+				var units_sold_at_price = parseFloat(swap_status_output_data.values[3]) / parseFloat(total_sell_unit);
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' sold: </b> = ' + swap_status_output_data.values[0].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + swap_status_output_data.bob + ': </b> = ' + swap_status_output_data.bobtxfee + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + swap_status_output_data.bob + ' deducted: </b> = ' + total_sell_unit + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.alice + ' received: </b> = ' + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' sold at price: </b> = ' + swap_status_output_data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
 			}
 
 			var swap_status_details_bootbox = bootbox.dialog({
@@ -4377,15 +4378,15 @@ function check_swap_status_details(swap_data) {
 										<tr>
 											<td rowspan=5>Trade info</td>
 											<td>Quote ID</td>
-											<td>` + data.quoteid + `</td>
+											<td>` + swap_status_output_data.quoteid + `</td>
 										</tr>
 										<tr>
 											<td>Request ID</td>
-											<td>` + data.requestid + `</td>
+											<td>` + swap_status_output_data.requestid + `</td>
 										</tr>
 										<tr>
 											<td>Trade id</td>
-											<td>` + data.tradeid + `</td>
+											<td>` + swap_status_output_data.tradeid + `</td>
 										</tr>
 										<tr>
 											<td>Expires In</td>
@@ -4393,7 +4394,7 @@ function check_swap_status_details(swap_data) {
 										</tr>
 										<tr>
 											<td>Source Amount</td>
-											<td>` + data.srcamount + `</td>
+											<td>` + swap_status_output_data.srcamount + `</td>
 										</tr>
 										<tr>
 											<td rowspan=4>Buyer Info</td>
@@ -4402,15 +4403,15 @@ function check_swap_status_details(swap_data) {
 										</tr>
 										<tr>
 											<td>Buyer ID</td>
-											<td>` + data.aliceid + `</td>
+											<td>` + swap_status_output_data.aliceid + `</td>
 										</tr>
 										<tr>
 											<td>Buyer Payment</td>
-											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+alice_explorer+data.alicepayment+`'); return false;">` + data.alicepayment + `</a></td>
+											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+alice_explorer+swap_status_output_data.alicepayment+`'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
 										</tr>
 										<tr>
 											<td>Buyer Tx Fee</td>
-											<td class="tbl_alicetxfee">` + data.alicetxfee + `</td>
+											<td class="tbl_alicetxfee">` + swap_status_output_data.alicetxfee + `</td>
 										</tr>
 										<tr>
 											<td rowspan=4>Seller Info</td>
@@ -4419,15 +4420,15 @@ function check_swap_status_details(swap_data) {
 										</tr>
 										<tr>
 											<td>Seller Deposit</td>
-											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+bob_explorer+data.bobdeposit+`'); return false;">` + data.bobdeposit + `</a></td>
+											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+bob_explorer+swap_status_output_data.bobdeposit+`'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
 										</tr>
 										<tr>
 											<td>Seller Payment</td>
-											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+bob_explorer+data.bobpayment+`'); return false;">` + data.bobpayment + `</a></td>
+											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+bob_explorer+swap_status_output_data.bobpayment+`'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
 										</tr>
 										<tr>
 											<td>Seller Tx Fee</td>
-											<td class="tbl_bobtxfee">` + data.bobtxfee + `</td>
+											<td class="tbl_bobtxfee">` + swap_status_output_data.bobtxfee + `</td>
 										</tr>
 										<tr>
 											<td rowspan=7>Other Info</td>
@@ -4436,19 +4437,19 @@ function check_swap_status_details(swap_data) {
 										`+ simplified_dexdetail_tr +`
 										<!--<tr>
 											<td>Sent Flags</td>
-											<td class="tbl_sentflags">` + JSON.stringify(data.sentflags, null, 2) + `</td>
+											<td class="tbl_sentflags">` + JSON.stringify(swap_status_output_data.sentflags, null, 2) + `</td>
 										</tr>
 										<tr>
 											<td>Values</td>
-											<td class="tbl_values">` + renderValues(data.values) + `</td>
+											<td class="tbl_values">` + renderValues(swap_status_output_data.values) + `</td>
 										</tr>
 										<tr>
 											<td>depositspent</td>
-											<td class="tbl_depositspent">` + data.depositspent + `</td>
+											<td class="tbl_depositspent">` + swap_status_output_data.depositspent + `</td>
 										</tr>
 										<tr>
 											<td>Apayment Spent</td>
-											<td class="tbl_Apaymentspent">`+data.Apaymentspent+`</td>
+											<td class="tbl_Apaymentspent">`+swap_status_output_data.Apaymentspent+`</td>
 										</tr>-->
 									</table>
 								</div>
@@ -4486,32 +4487,32 @@ function check_swap_status_details(swap_data) {
 						url: url
 					}).done(function(dataforblinker) {
 						var bob_explorer = '';
-						if(data.bob == 'MNZ') {
+						if(swap_status_output_data.bob == 'MNZ') {
 							bob_explorer = 'https://www.mnzexplorer.com/tx/'
-						} else if(data.bob == 'KMD') {
+						} else if(swap_status_output_data.bob == 'KMD') {
 							bob_explorer = 'https://www.kmd.host/tx/'
-						} else if(data.bob == 'BTC') {
+						} else if(swap_status_output_data.bob == 'BTC') {
 							bob_explorer = 'https://www.blocktrail.com/BTC/tx/'
-						} else if(data.bob == 'ZEC') {
+						} else if(swap_status_output_data.bob == 'ZEC') {
 							bob_explorer = 'https://zchain.online/tx/'
-						} else if(data.bob == 'LTC') {
+						} else if(swap_status_output_data.bob == 'LTC') {
 							bob_explorer = 'https://bchain.info/LTC/tx/'
-						} else if(data.bob = 'HUSH') {
+						} else if(swap_status_output_data.bob == 'HUSH') {
 							bob_explorer = 'https://explorer.myhush.org/tx/'
 						}
 
 						var alice_explorer = '';
-						if(data.alice == 'MNZ') {
+						if(swap_status_output_data.alice == 'MNZ') {
 							alice_explorer = 'https://www.mnzexplorer.com/tx/'
-						} else if(data.alice == 'KMD') {
+						} else if(swap_status_output_data.alice == 'KMD') {
 							alice_explorer = 'https://www.kmd.host/tx/'
-						} else if(data.alice == 'BTC') {
+						} else if(swap_status_output_data.alice == 'BTC') {
 							alice_explorer = 'https://www.blocktrail.com/BTC/tx/'
-						} else if(data.alice == 'ZEC') {
+						} else if(swap_status_output_data.alice == 'ZEC') {
 							alice_explorer = 'https://zchain.online/tx/'
-						} else if(data.alice == 'LTC') {
+						} else if(swap_status_output_data.alice == 'LTC') {
 							alice_explorer = 'https://bchain.info/LTC/tx/'
-						} else if(data.alice = 'HUSH') {
+						} else if(swap_status_output_data.alice == 'HUSH') {
 							alice_explorer = 'https://explorer.myhush.org/tx/'
 						}
 
