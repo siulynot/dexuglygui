@@ -155,6 +155,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('#trading_pair_options_selling').removeAttr("checked");
 	$('#trading_pair_options_buying').attr('checked','checked');
 	$('.trading_pair_coin').selectpicker('val', 'KMD');
+	$('.relvol_basevol_coin').html('KMD');
 	$('.trading_pair_coin_price').val('');
 	$('.trading_pair_destpubkey').val('');
 	$('.trading_pair_coin_volume').val('');
@@ -175,6 +176,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	if (coin == 'KMD') {
 		$('.trading_pair_coin').selectpicker('val', 'BTC');
+		$('.relvol_basevol_coin').html('BTC');
 	}
 
 	selected_coin = {}
@@ -289,15 +291,15 @@ $('#debug-exec').click(function(e) {
 $('.btn-inventoryclose').click(function(e) {
 	e.preventDefault();
 	console.log('btn-inventoryclose clicked');
-	//console.log($(this).data());
+	console.log($(this).data());
 	$('.screen-exchange').show()
 	$('.screen-inventory').hide();
 	$('.dex_showinv_alice_tbl tbody').empty();
 	$('.dex_showlist_unspents_tbl tbody').empty();
 	$('.RawJSONInventory-output').empty();
-	$('.coin_ticker').html(_coin);
+	$('.coin_ticker').html($(this).attr('data-coin'));
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
-		$('.coinexchange[data-coin]').data('coin', _coin);
+		$('.coinexchange[data-coin]').data('coin', $(this).attr('data-coin'));
 	});
 
 	check_coin_balance(false);
@@ -922,7 +924,7 @@ function enable_disable_coin(data) {
 					coin: data.coin,
 					electrum: false,
 				});
-			}, 300 * 1000);
+			}, 3600 * 1000);
 
 			electrumCoinsKeepAlive[data.coin] = _int;
 		}
