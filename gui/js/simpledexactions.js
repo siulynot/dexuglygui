@@ -815,6 +815,7 @@ $('.btn-bot_action').click(function(e){
 	console.log('btn-botlistrefresh clicked');
 	console.log($(this).data());
 	console.log($(this).data('action'));
+	console.log($('.btn-bot_action').attr('data-action'))
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 
@@ -831,7 +832,8 @@ $('.btn-bot_action').click(function(e){
 		bot_data = {}
 		bot_data.price = pair_price;
 		bot_data.volume = pair_volume;
-		bot_data.action = $(this).data('action');
+		//bot_data.action = $(this).data('action');
+		bot_data.action = $('.btn-bot_action').attr('data-action');
 
 		console.log(bot_data);
 
@@ -863,7 +865,8 @@ $('.btn-bot_action').click(function(e){
 		trade_data.volume = pair_volume;
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
-		trade_data.action = $(this).data('action');
+		//trade_data.action = $(this).data('action');
+		trade_data.action = $('.btn-bot_action').attr('data-action');
 
 		//console.log(trade_data);
 
@@ -885,11 +888,13 @@ $('.btn-bot_action').click(function(e){
 		if (margin_or_fixed == true) {
 			trade_data.mode = 'margin';
 			trade_data.modeval = $('.trading_pair_coin_price').val() / 100;
-			trade_data.action = $(this).data('action');
+			//trade_data.action = $(this).data('action');
+			trade_data.action = $('.btn-bot_action').attr('data-action');
 		} else {
 			trade_data.mode = 'fixed';
 			trade_data.modeval = $('.trading_pair_coin_price').val();
-			trade_data.action = $(this).data('action');
+			//trade_data.action = $(this).data('action');
+			trade_data.action = $('.btn-bot_action').attr('data-action');
 		}
 
 		//console.log(trade_data);
@@ -2413,6 +2418,19 @@ function set_coin_goal(goal_data){
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 
+	$('.porfolio_coins_list tbody').empty();
+	var actiavte_portfolio_coins_list_spinner = ''
+	actiavte_portfolio_coins_list_spinner += '<th colspan="7">';
+		actiavte_portfolio_coins_list_spinner += '<div style="text-align: center; height: 100px;">';
+			actiavte_portfolio_coins_list_spinner += '<svg id="portfolio-coins-spinner">';
+				actiavte_portfolio_coins_list_spinner += '<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+				actiavte_portfolio_coins_list_spinner += '<circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+				actiavte_portfolio_coins_list_spinner += '<circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+				actiavte_portfolio_coins_list_spinner += '<circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+			actiavte_portfolio_coins_list_spinner += '</svg>';
+		actiavte_portfolio_coins_list_spinner += '</div>';
+	actiavte_portfolio_coins_list_spinner += '</th>';
+	$('.porfolio_coins_list tbody').append(actiavte_portfolio_coins_list_spinner);
 	CheckPortfolioFn();
 }
 
