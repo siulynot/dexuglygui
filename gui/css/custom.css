@@ -104,6 +104,11 @@ textarea {
   height: 285px;
 }
 
+.zeroconf_settings_table_div {
+  overflow: scroll;
+  height: 385px;
+}
+
 .orderbook_asks {
   cursor: pointer;
 }

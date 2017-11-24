@@ -5097,9 +5097,10 @@ $('.zeroconf_deposit_amount').keyup(function(){
 function getZeroConfDepositHistory(){
 	var zeroconf_deposit_history_data = ShepherdIPC({"command":"read_zeroconf_log", "type":"deposit"});
 	//console.log(zeroconf_deposit_history_data);
+	var reversed_zeroconf_deposit_history_data = zeroconf_deposit_history_data.reverse();
 
 	$('.zeroconf_deposits_history_tbl tbody').empty();
-	$.each(zeroconf_deposit_history_data, function(index, val) {
+	$.each(reversed_zeroconf_deposit_history_data, function(index, val) {
 		//console.log(index);
 		//console.log(val);
 
@@ -5124,7 +5125,7 @@ function getZeroConfDepositHistory(){
 											<b>Expiration:</b> ${expiration_time}<br>
 											<b>Transaction ID:</b> <a class="zconf_deposit_txid_link" href="#" data-txid="${val.txid}">Open in Explorer</a>
 											</td>`;
-			zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `">Details</button>
+			zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="display: none;">Details</button>
 												<button class="btn btn-xs btn-success zconf_deposit_claim" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="margin: 3px;">Claim Deposit</button>
 											</td>`;
 			zeroconf_deposits_history_tr += '</tr>';

@@ -1,6 +1,7 @@
 var zeroconf_weeks_select_options = '';
 
 zeroconf_weeks_select_options = `
+      <option data-content="0 Week" data-tokens="0 week">0</option>
       <option data-content="1 Week" data-tokens="1 week">1</option>
       <option data-content="2 Weeks" data-tokens="2 week">2</option>
       <option data-content="3 Weeks" data-tokens="3 week">3</option>
