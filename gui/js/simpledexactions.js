@@ -2628,7 +2628,7 @@ function CheckOrderBookFn(sig) {
 				//orderbook_bids_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_bids_tr += '<td>' + val.age + '</td>';
 				orderbook_bids_tr += '<td>' + val.numutxos + '</td>';
-				orderbook_bids_tr += '<td>' + val.zcredits + '</td>';
+				orderbook_bids_tr += '<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits + '</td>';
 				$('.orderbook_bids tbody').append(orderbook_bids_tr);
 			})
 
@@ -2667,7 +2667,7 @@ function CheckOrderBookFn(sig) {
 				//orderbook_asks_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_asks_tr += '<td>' + val.age + '</td>';
 				orderbook_asks_tr += '<td>' + val.numutxos + '</td>';
-				orderbook_asks_tr += '<td>' + val.zcredits + '</td>';
+				orderbook_asks_tr += '<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits + '</td>';
 				orderbook_asks_tr += '</tr>';
 				$('.orderbook_asks tbody').append(orderbook_asks_tr);
 			})
