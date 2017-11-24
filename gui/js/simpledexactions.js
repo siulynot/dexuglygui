@@ -5155,10 +5155,29 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 			toastr.error(zconf_deposit_data.error, 'ZeroConf Notification');
 		}
 		if (zconf_deposit_data.result == 'success') {
-			bootbox.alert(`<b>Address: </b> ${zconf_deposit_data.address}<br>
-							<b>deposit: </b> ${zconf_deposit_data.deposit}<br>
-							<b>expiration: </b> ${zconf_deposit_data.expiration}<br>
-							<a href="#" onclick="shell.openExternal(https://kmd.explorer.supernet.org/tx/'`+zconf_deposit_data.txid+`'); return false;">` + zconf_deposit_data.txid + `</a>`);
+			var zconf_depoit_bootbox = bootbox.dialog({
+				title: 'ZeroConf security deposit sent!',
+				message: `<b>Address: </b> ${zconf_deposit_data.address}<br>
+						<b>deposit: </b> ${zconf_deposit_data.deposit}<br>
+						<b>expiration: </b> ${zconf_deposit_data.expiration}<br>
+						<a href="#" class="zconf_deposit_txid_bootbox" data-txid="${zconf_deposit_data.txid}">` + zconf_deposit_data.txid + `</a>`,
+				closeButton: false,
+				size: 'medium',
+				buttons: {
+					cancel: {
+						label: "Close",
+						className: 'btn-default',
+						callback: function(){
+						}
+					}
+				}
+			})
+			zconf_depoit_bootbox.init(function(){
+				$('.zconf_deposit_txid_bootbox').click(function(){
+					console.log($(this).data());
+					shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
+				});
+			});
 			getZeroConfDepositHistory();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
