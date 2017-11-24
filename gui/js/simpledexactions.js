@@ -4354,6 +4354,7 @@ function check_swap_status_details(swap_status_data) {
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Full Status</strong></h3>
+									<button class="btn btn-xs btn-warning btn_kickstart_stuck_trade" style="float: right; margin-right: -6px; margin-top: -20px">KICKSTART STUCK TRADE</button>
 								</div>
 								<div class=""> <!-- panel-body -->
 									<table width="100%" class="table table-striped" style="margin-bottom: 0;">
@@ -4456,6 +4457,19 @@ function check_swap_status_details(swap_status_data) {
 				check_my_prices(false);
 				//bot_screen_coin_balance(false);
 				//bot_screen_sellcoin_balance(false);
+
+				$('.btn_kickstart_stuck_trade').click(function(e) {
+					e.preventDefault();
+					console.log('btn_kickstart_stuck_trade clicked');
+					var remove_finished_swap_file_status = ShepherdIPC({"command":"remove_finished_swap_file", "requestid":swap_status_output_data.requestid, "quoteid":swap_status_output_data.quoteid});
+					if (remove_finished_swap_file_status == 'removed') {
+						console.log(`${swap_status_output_data.requestid}-${swap_status_output_data.quoteid}.finished file removed.`);
+						toastr.success(`${swap_status_output_data.requestid}-${swap_status_output_data.quoteid}.finished file removed.`,'Swap Status Update');
+					} else if (remove_finished_swap_file_status == 'error') {
+						console.log(`Failed to remove ${swap_status_output_data.requestid}-${swap_status_output_data.quoteid} file`);
+						toastr.error(`Failed to remove ${swap_status_output_data.requestid}-${swap_status_output_data.quoteid} file`,'Swap Status Update');
+					}
+				});
 
 				var swapdetail_blinker = null;
 

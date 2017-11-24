@@ -145,6 +145,18 @@ ipcMain.on('shepherd-command', (event, arg) => {
                     })
                   }
                   break;
+            case 'remove_finished_swap_file':
+                  //console.log(arg.data);
+                  fs.remove(`${BarterDEXDir}/DB/SWAPS/${arg.requestid}-${arg.quoteid}.finished`)
+                  .then(() => {
+                    console.log('Removed: '+ `${BarterDEXDir}/DB/SWAPS/${arg.requestid}-${arg.quoteid}.finished`)
+                    event.returnValue = 'removed';
+                  })
+                  .catch(err => {
+                    console.error(err)
+                    event.returnValue = 'error';
+                  })
+                  break;
       }
 })
 
