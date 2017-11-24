@@ -48,6 +48,45 @@ if (os.platform() === 'win32') {
 defaultCoinsListFile = path.join(__dirname, '../assets/coins.json');
 
 
+//Make empty zeroconf log files if not there
+fs.ensureFile(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`)
+    .then(() => {
+      console.log('success!')
+      fs.readJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, (err, zconf_deposit_log) => {
+        if (err) console.error(err)
+          var isitjson = typeof zconf_deposit_log == 'object';
+          if (isitjson == false){
+            fs.appendFile(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, `[]`, function (err) {
+              if (err) throw err;
+              console.log('ZeroConf deposit log updated!');
+            });
+          }
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+fs.ensureFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
+.then(() => {
+  console.log('success!')
+  fs.readJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, (err, zconf_claim_log) => {
+    if (err) console.error(err)
+      var isitjson = typeof zconf_claim_log == 'object';
+      if (isitjson == false){
+        fs.appendFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, `[]`, function (err) {
+          if (err) throw err;
+          console.log('ZeroConf claim log updated!');
+        });
+      }
+  })
+})
+.catch(err => {
+  console.error(err);
+})
+
+
+
 const {ipcMain} = require('electron');
 /*ipcMain.on('shepherd-commandSync', (event, arg) => {
   console.log(arg.command)  // prints "ping"
@@ -79,6 +118,32 @@ ipcMain.on('shepherd-command', (event, arg) => {
                         //event.sender.send('shepherd-reply', status);
                         event.returnValue = status;
                   })
+                  break;
+            case 'update_zeroconf_log':
+                  //console.log(arg.data);
+                  UpdateZeroConfLogs(arg.data);
+                  event.returnValue = 'Zeroconf log updated';
+                  break;
+            case 'read_zeroconf_log':
+                  //console.log(arg.data);
+                  if (arg.type == 'deposit') {
+                    fs.readJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`)
+                    .then(zconf_deposit_log_file => {
+                      event.returnValue = zconf_deposit_log_file;
+                    })
+                    .catch(err => {
+                      console.error(err)
+                    })
+                  }
+                  if (arg.type == 'claim') {
+                    fs.readJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
+                    .then(zconf_claim_log_file => {
+                      event.returnValue = zconf_claim_log_file;
+                    })
+                    .catch(err => {
+                      console.error(err)
+                    })
+                  }
                   break;
       }
 })
@@ -216,4 +281,67 @@ ExecMarketMaker = function(data) {
       mmid.stderr.on('data', (data) => {
         console.error(`child stderr:\n${data}`);
       }).pipe(logStream);
+}
+
+UpdateZeroConfLogs = function(zeroconf_log_data) {
+  //console.log(zeroconf_log_data);
+  if (zeroconf_log_data.type == 'deposit') {
+    fs.ensureFile(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`)
+    .then(() => {
+      console.log('success!')
+      fs.readJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, (err, zconf_deposit_log) => {
+        if (err) console.error(err)
+          var isitjson = typeof zconf_deposit_log == 'object';
+          if (isitjson == false){
+            fs.appendFile(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, `[`+zeroconf_log_data.logdata+`]`, function (err) {
+              if (err) throw err;
+              console.log('ZeroConf deposit log updated!');
+            });
+          } else {
+            console.log(zconf_deposit_log);
+
+            zconf_deposit_log.push(JSON.parse(zeroconf_log_data.logdata));
+            console.log('===============')
+            console.log(zconf_deposit_log);
+            fs.writeJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, zconf_deposit_log, function (err) {
+              if (err) throw err;
+              console.log('ZeroConf deposit log updated!');
+            });
+          }
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
+
+  if (zeroconf_log_data.type == 'claim') {
+    fs.ensureFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
+    .then(() => {
+      console.log('success!')
+      fs.readJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, (err, zconf_claim_log) => {
+        if (err) console.error(err)
+          var isitjson = typeof zconf_claim_log == 'object';
+          if (isitjson == false){
+            fs.appendFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, `[`+zeroconf_log_data.logdata+`]`, function (err) {
+              if (err) throw err;
+              console.log('ZeroConf claim log updated!');
+            });
+          } else {
+            console.log(zconf_claim_log);
+
+            zconf_claim_log.push(JSON.parse(zeroconf_log_data.logdata));
+            console.log('===============')
+            console.log(zconf_claim_log);
+            fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
+              if (err) throw err;
+              console.log('ZeroConf claim log updated!');
+            });
+          }
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
 }

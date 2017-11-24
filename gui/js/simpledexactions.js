@@ -1077,9 +1077,7 @@ function enable_disable_coin(enable_disable_coin_data) {
 
 			if (!enable_native_coin_output_data.error === false) {
 				//console.log(enable_native_coin_output_data.error);
-				if (enable_native_coin_output_data.error == 'coin cant be activated till synced') { //{error: "couldnt find coin locally installed", coin: "BTC"}
-					toastr.info("Coin can't be acviated till synced.<br>Try in a moment.",'Coin Status');
-				}
+				toastr.info(enable_native_coin_output_data.error,'Coin Status');
 				if (enable_native_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
 					bootbox.alert({
 						onEscape: true,
