@@ -347,7 +347,7 @@ table tbody tr:first-child td {
 }
 .trades-history-table th,
 .trades-history-table td {
-  padding: 15px;
+  padding: 3px 15px;
 }
 
 .col-red {

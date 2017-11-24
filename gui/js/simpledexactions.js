@@ -2362,8 +2362,8 @@ $('input[name=trading_mode_options]').change(function() {
 			$('.relvol_basevol_label').html("You'll get");
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
-		$('.trading_selected_trader_label').show();
-		$('.trading_selected_trader').show();
+		//$('.trading_selected_trader_label').show();
+		//$('.trading_selected_trader').show();
 		$('.trading_pair_coin_autoprice_mode_span').hide();
 		$('#trading_pair_coin_price_max_min').html('Max');
 		$('#trading_pair_coin_price_max_min').show();
@@ -2644,9 +2644,10 @@ function CheckOrderBookFn(sig) {
 				//orderbook_bids_tr += '<td>' + val.maxvolume + '</td>';
 				orderbook_bids_tr += '<td>' + val.avevolume + '</td>';
 				orderbook_bids_tr += '<td>' + val.depth + '</td>';
-				orderbook_bids_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
+				//orderbook_bids_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_bids_tr += '<td>' + val.age + '</td>';
 				orderbook_bids_tr += '<td>' + val.numutxos + '</td>';
+				orderbook_bids_tr += '<td>' + val.zcredits + '</td>';
 				$('.orderbook_bids tbody').append(orderbook_bids_tr);
 			})
 
@@ -2682,9 +2683,10 @@ function CheckOrderBookFn(sig) {
 				//orderbook_asks_tr += '<td>' + row_trade_data.totalbuy.toFixed(8) + '</td>';
 				orderbook_asks_tr += '<td>' + val.avevolume + '</td>';
 				orderbook_asks_tr += '<td>' + val.depth + '</td>';
-				orderbook_asks_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
+				//orderbook_asks_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_asks_tr += '<td>' + val.age + '</td>';
 				orderbook_asks_tr += '<td>' + val.numutxos + '</td>';
+				orderbook_asks_tr += '<td>' + val.zcredits + '</td>';
 				orderbook_asks_tr += '</tr>';
 				$('.orderbook_asks tbody').append(orderbook_asks_tr);
 			})
@@ -4433,15 +4435,14 @@ function check_swap_status_details(swap_status_data) {
 											<td class="tbl_bobtxfee">` + swap_status_output_data.bobtxfee + `</td>
 										</tr>
 										<tr>
-											<td rowspan=7>Other Info</td>
+											<td rowspan=8>Other Info</td>
 											<td colspan=2><b>You are:</b> ` + iambob_answer + `</td>
 										</tr>
 										`+ simplified_dexdetail_tr +`
-										<!--<tr>
-											<td>Sent Flags</td>
-											<td class="tbl_sentflags">` + JSON.stringify(swap_status_output_data.sentflags, null, 2) + `</td>
-										</tr>
 										<tr>
+											<td colspan=2><b>Sent Flags:</b> <span class="tbl_sentflags">` + JSON.stringify(swap_status_output_data.sentflags, null, 2) + `</span></td>
+										</tr>
+										<!--<tr>
 											<td>Values</td>
 											<td class="tbl_values">` + renderValues(swap_status_output_data.values) + `</td>
 										</tr>

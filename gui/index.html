@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX-Simple - v0.6.8-beta</title>
+    <title>BarterDEX-Simple - v0.6.9j-beta</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -367,9 +367,10 @@
                                 <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
                                 <th>Avg. Volume</th>
                                 <th>Depth</th>
-                                <th>Trader Pubkey</th>
+                                <!--<th>Trader Pubkey</th>-->
                                 <th>Age</th>
                                 <th>UTXOs</th>
+                                <th>ZCredits</th>
                                 </thead>
                               <tbody></tbody>
                             </table>
@@ -388,9 +389,11 @@
                                 <th>Max <span class="orderbook_rel_coin"></span></th>-->
                                 <th>Avg. Volume</th>
                                 <th>Depth</th>
-                                <th>Trader Pubkey</th>
+                                <!--<th>Trader Pubkey</th>-->
                                 <th>Age</th>
-                                <th>UTXOs</th></thead>
+                                <th>UTXOs</th>
+                                <th>ZCredits</th>
+                              </thead>
                               <tbody></tbody>
                             </table>
                           </div>
@@ -472,10 +475,10 @@
                       <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
                     </div>
 
-                    <div class="form-group trading_selected_trader_label" style="margin-top: 15px; margin-bottom: 0px;">
+                    <div class="form-group trading_selected_trader_label" style="margin-top: 15px; margin-bottom: 0px; display: none;">
                       <span style="font-size: 18px;">Trade with selected trader only (optional)</span>
                     </div>
-                    <div class="input-group col-sm-12 trading_selected_trader">
+                    <div class="input-group col-sm-12 trading_selected_trader" style="display: none;">
                       <span class="input-group-addon">
                         <input class="big-checkbox trading_pair_destpubkey_yesno" type="checkbox"> Yes
                       </span>
