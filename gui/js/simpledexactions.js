@@ -714,9 +714,9 @@ $('.btn-trading_coin_balance_refresh').click(function(e){
 })
 
 
-function check_coin_balance(coin_data) {
-	console.log(coin_data);
-	if (coin_data == false) {
+function check_coin_balance(chk_coin_data) {
+	console.log(chk_coin_data);
+	if (chk_coin_data == false) {
 		clearInterval(check_coin_balance_Interval);
 		console.log('checking coin balance stopped.')
 		return
@@ -731,7 +731,7 @@ function check_coin_balance(coin_data) {
 
 
 
-	//if (((coin_data == null) ? coin : coin_data.coin) == 'BTC') {
+	//if (((chk_coin_data == null) ? coin : chk_coin_data.coin) == 'BTC') {
 	if (coin == 'BTC') {
 		$('#coindashboard-toggle').bootstrapToggle('enable');
 	} else {
@@ -757,14 +757,14 @@ function check_coin_balance(coin_data) {
 		dataType: 'json',
 		type: 'POST',
 		url: url
-	}).done(function(data) {
+	}).done(function(chk_coin_output_data) {
 		// If successful
 		//console.log(data);
-		if (!data.userpass === false) {
+		if (!chk_coin_output_data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
-			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
-			sessionStorage.setItem('mm_userpass', data.userpass);
-			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(chk_coin_output_data.coins));
+			sessionStorage.setItem('mm_userpass', chk_coin_output_data.userpass);
+			sessionStorage.setItem('mm_mypubkey', chk_coin_output_data.mypubkey);
 
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -773,44 +773,44 @@ function check_coin_balance(coin_data) {
 			}
 		}
 
-		if (!data.error === false && data.error == 'coin is disabled') {
-			console.log(data.coin);
-			console.log('coin '+ data.coin.coin + ' is disabled');
-			$('.btn_coindashboard_send[data-coin="' + data.coin.coin + '"]').hide();
-			$('.btn_coindashboard_receive[data-coin="' + data.coin.coin + '"]').hide();
-			$('.btn_coindashboard_exchange[data-coin="' + data.coin.coin + '"]').hide();
-			$('.btn_coindashboard_inventory[data-coin="' + data.coin.coin + '"]').hide();
-			$('.btn_coindashboard_enable[data-coin="' + data.coin.coin + '"]').show();
-			$('.btn_coindashboard_disable[data-coin="' + data.coin.coin + '"]').hide();
+		if (!chk_coin_output_data.error === false && chk_coin_output_data.error == 'coin is disabled') {
+			console.log(chk_coin_output_data.coin);
+			console.log('coin '+ chk_coin_output_data.coin.coin + ' is disabled');
+			$('.btn_coindashboard_send[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
+			$('.btn_coindashboard_receive[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
+			$('.btn_coindashboard_exchange[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
+			$('.btn_coindashboard_inventory[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
+			$('.btn_coindashboard_enable[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.btn_coindashboard_disable[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
 
 			$('.coindashboard-balance').html('Coin is disabled.<br>Please enable before trading ')
 			$('.coindashboard-balance').css( "font-size", "35px" );
 
 		} else {
 			//console.log(data);
-			console.log(data.coin);
-			//console.log(data.coin.smartaddress);
+			console.log(chk_coin_output_data.coin);
+			//console.log(chk_coin_output_data.coin.smartaddress);
 			//console.log(val);
 
-			$('.btn_coindashboard_send[data-coin="' + data.coin.coin + '"]').show();
-			$('.btn_coindashboard_receive[data-coin="' + data.coin.coin + '"]').show();
-			$('.btn_coindashboard_exchange[data-coin="' + data.coin.coin + '"]').show();
-			$('.btn_coindashboard_inventory[data-coin="' + data.coin.coin + '"]').show();
-			$('.btn_coindashboard_enable[data-coin="' + data.coin.coin + '"]').hide();
-			$('.btn_coindashboard_disable[data-coin="' + data.coin.coin + '"]').show();
-			$('.coindashboard-address[data-coin="' + data.coin.coin + '"]').html(data.coin.smartaddress);
-			$('.coindashboard-title').html(coin_name + ' (' + data.coin.coin + ')');
-			$('.coindashboard-coin').html(data.coin.coin);
+			$('.btn_coindashboard_send[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.btn_coindashboard_receive[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.btn_coindashboard_exchange[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.btn_coindashboard_inventory[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.btn_coindashboard_enable[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
+			$('.btn_coindashboard_disable[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
+			$('.coindashboard-address[data-coin="' + chk_coin_output_data.coin.coin + '"]').html(chk_coin_output_data.coin.smartaddress);
+			$('.coindashboard-title').html(coin_name + ' (' + chk_coin_output_data.coin.coin + ')');
+			$('.coindashboard-coin').html(chk_coin_output_data.coin.coin);
 
 
 			$('.coindashboard-balance').css( "font-size", "55px" );
-			$('.coindashboard-balance').html(data.coin.balance);
-			$('.coindashboard-height').html(data.coin.height);
-			$('.coindashboard-kmdvalue').html(data.coin.KMDvalue);
-			$('.btn_coindashboard_inventory[data-addr]').attr('data-addr', data.coin.smartaddress);
+			$('.coindashboard-balance').html(chk_coin_output_data.coin.balance);
+			$('.coindashboard-height').html(chk_coin_output_data.coin.height);
+			$('.coindashboard-kmdvalue').html(chk_coin_output_data.coin.KMDvalue);
+			$('.btn_coindashboard_inventory[data-addr]').attr('data-addr', chk_coin_output_data.coin.smartaddress);
 		}
 
-		//if (data.error == 'coin is disabled') {
+		//if (chk_coin_output_data.error == 'coin is disabled') {
 			//console.log('coin '+ val + ' is disabled');
 		//}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -833,14 +833,14 @@ function get_coin_info(coin) {
 	    dataType: 'json',
 	    type: 'POST',
 	    url: url
-	}).done(function(data) {
+	}).done(function(get_coin_info_output_data) {
 	    // If successful
-	   console.log(data);
-	   if (!data.userpass === false) {
+	   console.log(get_coin_info_output_data);
+	   if (!get_coin_info_output_data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
-			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
-			sessionStorage.setItem('mm_userpass', data.userpass);
-			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(get_coin_info_output_data.coins));
+			sessionStorage.setItem('mm_userpass', get_coin_info_output_data.userpass);
+			sessionStorage.setItem('mm_mypubkey', get_coin_info_output_data.mypubkey);
 
 			var dexmode = sessionStorage.getItem('mm_dexmode');
 			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -849,12 +849,12 @@ function get_coin_info(coin) {
 			}
 		}
 
-		if (!data.error == true) {
+		if (!get_coin_info_output_data.error == true) {
 			selected_coin = {}
 			selected_coin.coin = coin;
 			selected_coin.coin_name = return_coin_name(coin);
-			selected_coin.addr = data.coin.smartaddress;
-			selected_coin.balance = data.coin.balance;
+			selected_coin.addr = get_coin_info_output_data.coin.smartaddress;
+			selected_coin.balance = get_coin_info_output_data.coin.balance;
 			console.log(selected_coin);
 			sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 		}
@@ -911,34 +911,34 @@ function get_coins() {
 
 let electrumCoinsKeepAlive = {};
 
-function enable_disable_coin(data) {
-	if (!data.electrum) {
-		if (electrumCoinsKeepAlive[data.coin] &&
-				data.method === 'disable') {
-			clearInterval(electrumCoinsKeepAlive[data.coin]);
-			delete electrumCoinsKeepAlive[data.coin];
+function enable_disable_coin(enable_disable_coin_data) {
+	if (!enable_disable_coin_data.electrum) {
+		if (electrumCoinsKeepAlive[enable_disable_coin_data.coin] &&
+				enable_disable_coin_data.method === 'disable') {
+			clearInterval(electrumCoinsKeepAlive[enable_disable_coin_data.coin]);
+			delete electrumCoinsKeepAlive[enable_disable_coin_data.coin];
 		} else {
 			const _int = setInterval(() => {
 				enable_disable_coin({
 					method: 'enable',
-					coin: data.coin,
+					coin: enable_disable_coin_data.coin,
 					electrum: false,
 				});
 			}, 3600 * 1000);
 
-			electrumCoinsKeepAlive[data.coin] = _int;
+			electrumCoinsKeepAlive[enable_disable_coin_data.coin] = _int;
 		}
 	}
 
-	console.warn('enable disable', data);
+	console.warn('enable disable', enable_disable_coin_data);
 
-	var electrum_option = data.electrum //If 'false', electrum option selected
+	var electrum_option = enable_disable_coin_data.electrum //If 'false', electrum option selected
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var url = "http://127.0.0.1:7783";
 
-	if (data.method === 'disable') {
+	if (enable_disable_coin_data.method === 'disable') {
 		console.warn('disable coin called');
-		var ajax_data = {"userpass":userpass,"method":"electrum","coin":data.coin};
+		var ajax_data = {"userpass":userpass,"method":"electrum","coin":enable_disable_coin_data.coin};
 
 		$.ajax({
 			async: true,
@@ -946,23 +946,23 @@ function enable_disable_coin(data) {
 			dataType: 'json',
 			type: 'POST',
 			url: url
-		}).done(function(data) {
+		}).done(function(disable_coin_output_data) {
 			console.log('enable_disable_coin', 'electrum removed');
 		});
 	}
 
 	if (electrum_option == false) {
 		console.log(electrum_option);
-		console.log("electrum selected for " + data.coin);
+		console.log("electrum selected for " + enable_disable_coin_data.coin);
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
-		$.each(electrum_servers_list[data.coin], function(index,val){
+		$.each(electrum_servers_list[enable_disable_coin_data.coin], function(index,val){
 			var ipaddr = _.keys(val);
 			var return_data_ipaddr = ipaddr[0];
 			var return_data_port = val[ipaddr[0]];
 			console.log(return_data_ipaddr);
 			console.log(return_data_port);
 
-			var ajax_data = {"userpass":userpass,"method":"electrum","coin":data.coin,"ipaddr":return_data_ipaddr,"port":return_data_port};
+			var ajax_data = {"userpass":userpass,"method":"electrum","coin":enable_disable_coin_data.coin,"ipaddr":return_data_ipaddr,"port":return_data_port};
 
 			$.ajax({
 				async: true,
@@ -970,14 +970,14 @@ function enable_disable_coin(data) {
 				dataType: 'json',
 				type: 'POST',
 				url: url
-			}).done(function(data) {
+			}).done(function(enable_electrum_coin_output_data) {
 				// If successful
-				console.log(data);
-				if (!data.userpass === false) {
+				console.log(enable_electrum_coin_output_data);
+				if (!enable_electrum_coin_output_data.userpass === false) {
 					console.log('first marketmaker api call execution after marketmaker started.')
-					sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
-					sessionStorage.setItem('mm_userpass', data.userpass);
-					sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+					sessionStorage.setItem('mm_usercoins', JSON.stringify(enable_electrum_coin_output_data.coins));
+					sessionStorage.setItem('mm_userpass', enable_electrum_coin_output_data.userpass);
+					sessionStorage.setItem('mm_mypubkey', enable_electrum_coin_output_data.mypubkey);
 
 					var dexmode = sessionStorage.getItem('mm_dexmode');
 					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -1002,17 +1002,15 @@ function enable_disable_coin(data) {
 					}
 				}
 
-				if (!data.error === false) {
+				if (!enable_electrum_coin_output_data.error === false) {
 					//console.log(data.error);
-					if (data.error == 'coin cant be activated till synced') { //{error: "couldnt find coin locally installed", coin: "BTC"}
-						toastr.info("Coin can't be acviated till synced.<br>Try in a moment.",'Coin Status');
-					}
-					if (data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+					toastr.info(enable_electrum_coin_output_data.error,'Coin Status');
+					if (enable_electrum_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
 						bootbox.alert({
 							onEscape: true,
 							backdrop: true,
-							title: "Couldn't find "+data.coin+" locally installed",
-							message: `<p>It seems you don't have `+data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+							title: "Couldn't find "+enable_disable_coin_data.coin+" locally installed",
+							message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
 							<ol>
 								<li>Make sure your wallet is installed properly.</li>
 								<li>Make sure your wallet is running and synced to network.</li>
@@ -1034,8 +1032,8 @@ function enable_disable_coin(data) {
 		});
 	} else {
 		console.log(electrum_option);
-		console.log("native selected for " + data.coin);
-		var ajax_data = {"userpass":userpass,"method":data.method,"coin":data.coin};
+		console.log("native selected for " + enable_disable_coin_data.coin);
+		var ajax_data = {"userpass":userpass,"method":enable_disable_coin_data.method,"coin":enable_disable_coin_data.coin};
 
 		console.log(ajax_data);
 
@@ -1045,14 +1043,14 @@ function enable_disable_coin(data) {
 		    dataType: 'json',
 		    type: 'POST',
 		    url: url
-		}).done(function(data) {
+		}).done(function(enable_native_coin_output_data) {
 			// If successful
-			console.log(data);
-			if (!data.userpass === false) {
+			console.log(enable_native_coin_output_data);
+			if (!enable_native_coin_output_data.userpass === false) {
 				console.log('first marketmaker api call execution after marketmaker started.')
-				sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
-				sessionStorage.setItem('mm_userpass', data.userpass);
-				sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+				sessionStorage.setItem('mm_usercoins', JSON.stringify(enable_native_coin_output_data.coins));
+				sessionStorage.setItem('mm_userpass', enable_native_coin_output_data.userpass);
+				sessionStorage.setItem('mm_mypubkey', enable_native_coin_output_data.mypubkey);
 
 				var dexmode = sessionStorage.getItem('mm_dexmode');
 				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -1066,28 +1064,28 @@ function enable_disable_coin(data) {
 				if (ajax_data.status === 'disable') {
 					toastr.success(ajax_data.coin+' Disabled','Coin Status');
 				}
-				//get_coins_list(data.coins);
+				//get_coins_list(enable_native_coin_output_data.coins);
 			} else {
-				//get_coins_list(data);
+				//get_coins_list(enable_native_coin_output_data);
 				if (electrum_option == false) {
 					//get_coins_list('');
 					//$('.refresh_dex_balances').trigger('click');
 				} else {
-					//get_coins_list(data);
+					//get_coins_list(enable_native_coin_output_data);
 				}
 			}
 
-			if (!data.error === false) {
-				//console.log(data.error);
-				if (data.error == 'coin cant be activated till synced') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+			if (!enable_native_coin_output_data.error === false) {
+				//console.log(enable_native_coin_output_data.error);
+				if (enable_native_coin_output_data.error == 'coin cant be activated till synced') { //{error: "couldnt find coin locally installed", coin: "BTC"}
 					toastr.info("Coin can't be acviated till synced.<br>Try in a moment.",'Coin Status');
 				}
-				if (data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+				if (enable_native_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
 					bootbox.alert({
 						onEscape: true,
 						backdrop: true,
-						title: "Couldn't find "+data.coin+" locally installed",
-						message: `<p>It seems you don't have `+data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+						title: "Couldn't find "+enable_disable_coin_data.coin+" locally installed",
+						message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
 						<ol>
 							<li>Make sure your wallet is installed properly.</li>
 							<li>Make sure your wallet is running and synced to network.</li>
@@ -2473,24 +2471,19 @@ function manual_buy_sell(mt_data) {
 	    dataType: 'json',
 	    type: 'POST',
 	    url: url
-	}).done(function(data) {
+	}).done(function(mt_output_data) {
 		// If successful
-		console.log(data);
+		console.log(mt_output_data);
 
 		$('.trading_pair_coin_price').val('');
 		$('.trading_pair_coin_volume').val('');
 		$('.trading_pair_destpubkey').val('');
 		$('.relvol_basevol').html('');
 
-		if (!data.error === false) {
-			if (data.error == 'invalid parameter') {
-				toastr.warning('Invalid Parameters.', 'Trade Info');
-			}
-			if (data.error == 'cant find buyer utxo that is small enough') {
-				toastr.error(data.error, 'Bot Info');
-			}
-			if (data.error == 'not enough funds') {
-				//toastr.info(data.error + '<br>Balance: ' + data.balance + ' ' + data.coin, 'Bot Info');
+		if (!mt_output_data.error === false) {
+			toastr.error(mt_output_data.error, 'Bot Info');
+			if (mt_output_data.error == 'not enough funds') {
+				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
@@ -2506,26 +2499,16 @@ function manual_buy_sell(mt_data) {
 					<li>Try lower amount of buy which makes final cost in total lower.</li>
 					<li>Logout and login back and try lower amount of buy counts total cost lower than previous attempt.</li>
 					</ul>`});
-				console.log(JSON.stringify(data))
+				console.log(JSON.stringify(mt_output_data))
 
-				/*if (data.withdraw.complete === true) {
-					//bot_sendrawtx(data);
+				/*if (mt_output_data.withdraw.complete === true) {
+					//bot_sendrawtx(mt_output_data);
 					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', 'Bot Info');
 				} else {
 					toastr.error('No withdraw info found. Please try again with lower buy amount.', 'Bot Info');
 				}*/
 			}
-			if (data.error == 'cant find utxo that is close enough in size') {
-				toastr.error(data.error, 'Trade Info');
-			}
-			if (data.error == 'cant find ordermatch utxo, need to change relvolume to be closer to available') {
-				toastr.error(data.error, 'Trade Info');
-			}
-			if (data.error == 'only one pending request at a time') {
-				toastr.error(data.error + "<br>Make sure you don't have trading bot or another trade running.", 'Trade Info');
-
-			}
-		} else if (data.result == 'success') {
+		} else if (mt_output_data.result == 'success') {
 			toastr.success('Order Executed', 'Trade Info');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -2754,13 +2737,14 @@ function check_my_prices(sig){
 			//console.log(data);
 			$('.exchange_my_orders_tbl tbody').empty();
 			if (!data.error === false) {
-				if (!data.error == 'authentication error you need to make sure userpass is set') {
+				toastr.error(data.error,'My price info')
+				/*if (!data.error == 'authentication error you need to make sure userpass is set') {
 					var exchange_my_orders_tr = '';
 					exchange_my_orders_tr += '<tr>';
 					exchange_my_orders_tr += '<td><div style="text-align: center;">' + data.error + ' for pair ' + base_coin + '/' + rel_coin + '</div></td>';
 					exchange_my_orders_tr += '</tr>';
 					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
-				}
+				}*/
 			} else {
 				$.each(data, function(index, val) {
 					console.log(index);
@@ -3468,6 +3452,7 @@ function buy_sell_precheck(bot_data){
 			//console.log(data.coin.txfee);
 
 			if (!data.error === true && data.error !== 'coin is disabled') {
+				toastr.error(data.error, 'Order precheck info');
 				if (data.coin.txfee >= 100000) {
 					bootbox.alert("Bitcoin Transaction Fee is too high <b>"+ data.coin.txfee / 100000000 + "</b><br> Due to such high BTC transaction fee this order is being stopped to process, since it may affect the completion of this order. Please try agin when Bitcoin transaction fee is lower.");
 					return;
@@ -3559,23 +3544,18 @@ function bot_buy_sell(bot_data) {
 	    dataType: 'json',
 	    type: 'POST',
 	    url: url
-	}).done(function(data) {
+	}).done(function(bot_output_data) {
 		// If successful
-		console.log(data);
+		console.log(bot_output_data);
 
 		$('.trading_pair_coin_price').val('');
 		$('.trading_pair_coin_volume').val('');
 		$('.relvol_basevol').html('');
 
-		if (!data.error === false) {
-			if (data.error == 'invalid parameter') {
-				toastr.warning('Invalid Parameters.', 'Bot Info');
-			}
-			if (data.error == 'cant find alice utxo that is small enough') {
-				toastr.error(data.error, 'Bot Info');
-			}
-			if (data.error == 'not enough funds') {
-				//toastr.info(data.error + '<br>Balance: ' + data.balance + ' ' + data.coin, 'Bot Info');
+		if (!bot_output_data.error === false) {
+			toastr.error(bot_output_data.error, 'Bot Info');
+			if (bot_output_data.error == 'not enough funds') {
+				//toastr.info(bot_output_data.error + '<br>Balance: ' + bot_output_data.balance + ' ' + bot_output_data.coin, 'Bot Info');
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
@@ -3591,17 +3571,17 @@ function bot_buy_sell(bot_data) {
 					<li>Try lower amount of buy which makes final cost in total lower.</li>
 					<li>Logout and login back and try lower amount of buy counts total cost lower than previous attempt.</li>
 					</ul>`});
-				console.log(JSON.stringify(data))
+				console.log(JSON.stringify(bot_output_data))
 
-				if (data.withdraw.complete === true) {
-					bot_sendrawtx(data);
+				if (bot_output_data.withdraw.complete === true) {
+					bot_sendrawtx(bot_output_data);
 					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', 'Bot Info');
 				} else {
 					toastr.error('No withdraw info found. Please try again with lower buy amount.', 'Bot Info');
 				}
 			}
-		} else if (data.result == 'success') {
-			toastr.success(data.name + ' started <br> Bot ID: ' + data.botid, 'Bot Info');
+		} else if (bot_output_data.result == 'success') {
+			toastr.success(bot_output_data.name + ' started <br> Bot ID: ' + bot_output_data.botid, 'Bot Info');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -3611,17 +3591,17 @@ function bot_buy_sell(bot_data) {
 	check_bot_list();
 }
 
-function bot_sendrawtx(bot_data) {
-	console.log(bot_data);
-	if (bot_data.hasOwnProperty('withdraw')) { console.log(bot_data.withdraw.hex); }
-	var coin = bot_data.coin;
+function bot_sendrawtx(bot_sendrawtx_data) {
+	console.log(bot_sendrawtx_data);
+	if (bot_sendrawtx_data.hasOwnProperty('withdraw')) { console.log(bot_sendrawtx_data.withdraw.hex); }
+	var coin = bot_sendrawtx_data.coin;
 	console.log(coin);
 
 
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": (bot_data.hasOwnProperty('withdraw') ? bot_data.withdraw.hex : bot_data.hex) };
+	var ajax_data = {"userpass":userpass,"method":"sendrawtransaction","coin": coin, "signedtx": (bot_sendrawtx_data.hasOwnProperty('withdraw') ? bot_sendrawtx_data.withdraw.hex : bot_sendrawtx_data.hex) };
 	var url = "http://127.0.0.1:7783";
 
 	console.log(ajax_data);
@@ -3632,19 +3612,19 @@ function bot_sendrawtx(bot_data) {
 	    //dataType: 'json',
 	    type: 'POST',
 	    url: url
-	}).done(function(bot_output_data) {
+	}).done(function(bot_sendrawtx_output_data) {
 		// If successful
-		console.log(bot_output_data);
-		var parsed_bot_output_data = '';
+		console.log(bot_sendrawtx_output_data);
+		var parsed_bot_sendrawtx_output_data = '';
 		try {
-			parsed_bot_output_data = JSON.parse(bot_output_data);
-			console.log(parsed_bot_output_data);
+			parsed_bot_sendrawtx_output_data = JSON.parse(bot_sendrawtx_output_data);
+			console.log(parsed_bot_sendrawtx_output_data);
 
-			if ( !parsed_bot_output_data.hasOwnProperty('error') === false && parsed_bot_output_data.error === false) {
-				toastr.error(parsed_bot_output_data.error.message, 'Transaction Info');
-			} else if (parsed_bot_output_data.result == null) {
-				bootbox.alert('<p>Error making withdraw transaction: </p><br>' + JSON.stringify(parsed_bot_output_data.error, null, 2));
-			} else if (parsed_bot_output_data.result == 'success') {
+			if ( !parsed_bot_sendrawtx_output_data.hasOwnProperty('error') === false && parsed_bot_sendrawtx_output_data.error === false) {
+				toastr.error(parsed_bot_sendrawtx_output_data.error.message, 'Transaction Info');
+			} else if (parsed_bot_sendrawtx_output_data.result == null) {
+				bootbox.alert('<p>Error making withdraw transaction: </p><br>' + JSON.stringify(parsed_bot_sendrawtx_output_data.error, null, 2));
+			} else if (parsed_bot_sendrawtx_output_data.result == 'success') {
 				toastr.info('Low no. of UTXOs<br>Please try again in 1 Minute.', 'Transaction Status');
 			}
 		} catch(e) {
@@ -3661,7 +3641,7 @@ function bot_sendrawtx(bot_data) {
 			}
 
 			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
-				<a href="#" onclick="shell.openExternal('`+txid_explorer+bot_output_data+`'); return false;">` + bot_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+txid_explorer+bot_sendrawtx_output_data+`'); return false;">` + bot_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
