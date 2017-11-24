@@ -39,6 +39,7 @@ $('.dexdashboard-btn').click(function(e){
 
 	//$('.screen-coindashboard').show()
 	$('.screen-exchange').hide();
+	$('.screen-inventory').hide();
 	$('.screen-portfolio').show();
 	CheckOrderBookFn(false);
 	check_swap_status(false);
