@@ -211,6 +211,8 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
+
+	getZeroConfDepositHistory();
 });
 
 
@@ -5031,3 +5033,168 @@ function constructTradesHistory() {
 }
 
 /* TRADE HISTORY - CREDIT: pbca26 END*/
+
+
+
+
+
+/* ZEROCONF SETTINGS */
+
+$('.btn-refreshzeroconf_settings').click(function(){
+	getZeroConfDepositHistory();
+});
+
+$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
+	e.preventDefault();
+	console.log('zconf_deposit_txid_link clicked');
+	console.log($(this).data());
+	shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
+});
+
+$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_details', function(e) {
+	e.preventDefault();
+	console.log('zconf_deposit_details clicked');
+	console.log($(this).data());
+});
+
+$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_claim', function(e) {
+	e.preventDefault();
+	console.log('zconf_deposit_claim clicked');
+	console.log($(this).data());
+	var addr = $(this).data('address');
+	var expr = $(this).data('expiration');
+	ZeroConfClaim(addr, expr);
+});
+
+$('.btn_zeroconf_deposit').click(function(e){
+	e.preventDefault();
+	console.log('btn_zeroconf_deposit clicked');
+	var deposit_weeks = $('.zeroconf_weeks_select').selectpicker('val');
+	var deposit_amount = $('.zeroconf_deposit_amount').val();
+	console.log(deposit_weeks);
+	console.log(deposit_amount);
+	ZeroConfDeposit(deposit_weeks,deposit_amount);
+});
+
+$('.zeroconf_deposit_amount').keyup(function(){
+	var deposit_amount = $('.zeroconf_deposit_amount').val();
+	//console.log(deposit_amount);
+
+	var empty = false;
+	if (deposit_amount < 10) {
+		console.log('Send Address is empty or less than 10');
+		empty = true;
+	}
+	//console.log(empty);
+
+	if (empty){
+		$('.btn_zeroconf_deposit').attr("disabled", "disabled");
+	} else {
+		$('.btn_zeroconf_deposit').removeAttr("disabled");
+	}
+});
+
+function getZeroConfDepositHistory(){
+	var zeroconf_deposit_history_data = ShepherdIPC({"command":"read_zeroconf_log", "type":"deposit"});
+	//console.log(zeroconf_deposit_history_data);
+
+	$('.zeroconf_deposits_history_tbl tbody').empty();
+	$.each(zeroconf_deposit_history_data, function(index, val) {
+		//console.log(index);
+		//console.log(val);
+
+		if(!val.error === false) {
+			var zeroconf_deposits_history_tr = '';
+			zeroconf_deposits_history_tr += '<tr>';
+			//zeroconf_deposits_history_tr += '<td>' + index + '</td>';
+			zeroconf_deposits_history_tr += '<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> error</div></td>';
+			zeroconf_deposits_history_tr += '<td>-</td>';
+			zeroconf_deposits_history_tr += '</tr>';
+			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
+		} else {
+
+			var expiration_time = new Date( val.expiration *1000);
+
+			var zeroconf_deposits_history_tr = '';
+			zeroconf_deposits_history_tr += '<tr>';
+			//zeroconf_deposits_history_tr += '<td>' + index + '</td>';
+			zeroconf_deposits_history_tr += `<td>
+											<b>Address:</b> ${val.address}<br>
+											<b>Deposit:</b> ${val.deposit} KMD<br>
+											<b>Expiration:</b> ${expiration_time}<br>
+											<b>Transaction ID:</b> <a class="zconf_deposit_txid_link" href="#" data-txid="${val.txid}">Open in Explorer</a>
+											</td>`;
+			zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `">Details</button>
+												<button class="btn btn-xs btn-success zconf_deposit_claim" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="margin: 3px;">Claim Deposit</button>
+											</td>`;
+			zeroconf_deposits_history_tr += '</tr>';
+			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
+			
+		}
+	});
+}
+
+
+function ZeroConfDeposit(deposit_weeks, deposit_amount) {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"zeroconf_deposit","weeks":deposit_weeks,"amount":deposit_amount,"broadcast": 1};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(zconf_deposit_data) {
+		console.log(zconf_deposit_data);
+		var update_deposit_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_deposit_data),"type":"deposit"}});
+		console.log(update_deposit_log_file);
+		if (!zconf_deposit_data.error === false) {
+			toastr.error(zconf_deposit_data.error, 'ZeroConf Notification');
+		}
+		if (zconf_deposit_data.result == 'success') {
+			bootbox.alert(`<b>Address: </b> ${zconf_deposit_data.address}<br>
+							<b>deposit: </b> ${zconf_deposit_data.deposit}<br>
+							<b>expiration: </b> ${zconf_deposit_data.expiration}<br>
+							<a href="#" onclick="shell.openExternal(https://kmd.explorer.supernet.org/tx/'`+zconf_deposit_data.txid+`'); return false;">` + zconf_deposit_data.txid + `</a>`);
+			getZeroConfDepositHistory();
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+function ZeroConfClaim(claim_address, claim_expiration) {
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"zeroconf_claim","address":claim_address,"expiration":claim_expiration};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(zconf_claim_data) {
+		console.log(zconf_claim_data);
+		var update_claim_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_claim_data),"type":"claim"}});
+		console.log(update_claim_log_file);
+		if (!zconf_claim_data.error === false) {
+			toastr.error(zconf_claim_data.error, 'ZeroConf Notification');
+		}
+		if (zconf_claim_data.result == 'success') {
+			bootbox.alert(`<b>Claimed: </b> ${zconf_claim_data.claimed}<br>
+							<a href="#" onclick="shell.openExternal(https://kmd.explorer.supernet.org/tx/'`+zconf_claim_data.txids+`'); return false;">` + zconf_claim_data.txids + `</a>`);
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+/* ZEROCONF SETTINGS END */

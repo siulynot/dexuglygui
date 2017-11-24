@@ -340,11 +340,11 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
               console.log('ZeroConf claim log updated!');
             });
           } else {
-            console.log(zconf_claim_log);
-
+            //console.log(zconf_claim_log);
+            JSON.parse(zeroconf_log_data.logdata)
             zconf_claim_log.push(JSON.parse(zeroconf_log_data.logdata));
-            console.log('===============')
-            console.log(zconf_claim_log);
+            //console.log('===============')
+            //console.log(zconf_claim_log);
             fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
               if (err) throw err;
               console.log('ZeroConf claim log updated!');
