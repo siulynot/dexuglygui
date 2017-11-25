@@ -587,8 +587,8 @@ $('.btn-bot_action').click(function(e){
 		bot_data = {}
 		bot_data.price = pair_price;
 		bot_data.volume = pair_volume;
-		//bot_data.action = $(this).data('action');
-		bot_data.action = $('.btn-bot_action').attr('data-action');
+		bot_data.action = $(this).data('action');
+		//bot_data.action = $('.btn-bot_action').attr('data-action');
 
 		console.log(bot_data);
 
@@ -620,8 +620,8 @@ $('.btn-bot_action').click(function(e){
 		trade_data.volume = pair_volume;
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
-		//trade_data.action = $(this).data('action');
-		trade_data.action = $('.btn-bot_action').attr('data-action');
+		trade_data.action = $(this).data('action');
+		//trade_data.action = $('.btn-bot_action').attr('data-action');
 
 		//console.log(trade_data);
 
@@ -643,13 +643,13 @@ $('.btn-bot_action').click(function(e){
 		if (margin_or_fixed == true) {
 			trade_data.mode = 'margin';
 			trade_data.modeval = $('.trading_pair_coin_price').val() / 100;
-			//trade_data.action = $(this).data('action');
-			trade_data.action = $('.btn-bot_action').attr('data-action');
+			trade_data.action = $(this).data('action');
+			//trade_data.action = $('.btn-bot_action').attr('data-action');
 		} else {
 			trade_data.mode = 'fixed';
 			trade_data.modeval = $('.trading_pair_coin_price').val();
-			//trade_data.action = $(this).data('action');
-			trade_data.action = $('.btn-bot_action').attr('data-action');
+			trade_data.action = $(this).data('action');
+			//trade_data.action = $('.btn-bot_action').attr('data-action');
 		}
 
 		//console.log(trade_data);
@@ -5209,8 +5209,29 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 			toastr.error(zconf_claim_data.error, 'ZeroConf Notification');
 		}
 		if (zconf_claim_data.result == 'success') {
-			bootbox.alert(`<b>Claimed: </b> ${zconf_claim_data.claimed}<br>
-							<a href="#" onclick="shell.openExternal(https://kmd.explorer.supernet.org/tx/'`+zconf_claim_data.txids+`'); return false;">` + zconf_claim_data.txids + `</a>`);
+			var zconf_claim_bootbox = bootbox.dialog({
+				title: 'ZeroConf security claimed!',
+				message: `<b>Claimed: </b> ${zconf_claim_data.claimed}<br>
+							<a href="#" class="zconf_claim_txid_bootbox" data-txid="${zconf_claim_data.txids}">` + zconf_claim_data.txids + `</a>`,
+				closeButton: false,
+				size: 'medium',
+				buttons: {
+					cancel: {
+						label: "Close",
+						className: 'btn-default',
+						callback: function(){
+						}
+					}
+				}
+			})
+			zconf_claim_bootbox.init(function(){
+				$('.zconf_claim_txid_bootbox').click(function(){
+					console.log($(this).data());
+					shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
+				});
+			});
+
+			bootbox.alert();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
