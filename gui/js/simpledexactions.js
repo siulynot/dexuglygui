@@ -571,6 +571,7 @@ $('.btn-bot_action').click(function(e){
 	console.log($(this).data());
 	console.log($(this).data('action'));
 	console.log($('.btn-bot_action').attr('data-action'))
+	console.log($(this).attr('data-action'))
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 
@@ -587,8 +588,9 @@ $('.btn-bot_action').click(function(e){
 		bot_data = {}
 		bot_data.price = pair_price;
 		bot_data.volume = pair_volume;
-		bot_data.action = $(this).data('action');
+		//bot_data.action = $(this).data('action');
 		//bot_data.action = $('.btn-bot_action').attr('data-action');
+		bot_data.action = $(this).attr('data-action');
 
 		console.log(bot_data);
 
@@ -620,10 +622,11 @@ $('.btn-bot_action').click(function(e){
 		trade_data.volume = pair_volume;
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
-		trade_data.action = $(this).data('action');
+		//trade_data.action = $(this).data('action');
 		//trade_data.action = $('.btn-bot_action').attr('data-action');
+		trade_data.action = $(this).attr('data-action');
 
-		//console.log(trade_data);
+		console.log(trade_data);
 
 		if (pair_volume <= 0.01 || pair_price <= 0.01) {
 			console.log('Order is too small. Please try again.');
@@ -643,16 +646,18 @@ $('.btn-bot_action').click(function(e){
 		if (margin_or_fixed == true) {
 			trade_data.mode = 'margin';
 			trade_data.modeval = $('.trading_pair_coin_price').val() / 100;
-			trade_data.action = $(this).data('action');
+			//trade_data.action = $(this).data('action');
 			//trade_data.action = $('.btn-bot_action').attr('data-action');
+			trade_data.action = $(this).attr('data-action');
 		} else {
 			trade_data.mode = 'fixed';
 			trade_data.modeval = $('.trading_pair_coin_price').val();
-			trade_data.action = $(this).data('action');
+			//trade_data.action = $(this).data('action');
 			//trade_data.action = $('.btn-bot_action').attr('data-action');
+			trade_data.action = $(this).attr('data-action');
 		}
 
-		//console.log(trade_data);
+		console.log(trade_data);
 		autoprice_buy_sell(trade_data);
 	}
 });
@@ -2321,13 +2326,14 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.trading_pair_lable_text_two').html('Buy');
 		if(buying_or_selling == 'buying') {
 			$('.btn-bot_action').html('BUY');
-			$('.relvol_basevol_label').html("It'll cost you")
+			$('.relvol_basevol_label').html("It'll cost you");
+			$('.btn-bot_action').attr('data-action', 'buy');
 		}
 		if(buying_or_selling == 'selling') {
 			$('.btn-bot_action').html('SELL');
 			$('.relvol_basevol_label').html("You'll get");
+			$('.btn-bot_action').attr('data-action', 'sell');
 		}
-		$('.btn-bot_action').attr('data-action', 'buy');
 		$('.trading_selected_trader_label').hide();
 		$('.trading_selected_trader').hide();
 		$('.trading_pair_coin_autoprice_mode_span').hide();
@@ -2354,10 +2360,12 @@ $('input[name=trading_mode_options]').change(function() {
 		if(buying_or_selling == 'buying') {
 			$('.btn-bot_action').html('BUY');
 			$('.relvol_basevol_label').html("It'll cost you")
+			$('.btn-bot_action').attr('data-action', 'buy');
 		}
 		if(buying_or_selling == 'selling') {
 			$('.btn-bot_action').html('SELL');
 			$('.relvol_basevol_label').html("You'll get");
+			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
 		//$('.trading_selected_trader_label').show();
@@ -2806,10 +2814,10 @@ $('input[name=trading_pair_options]').change(function() {
 	console.log('trading_pair_options changed');
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
-	//console.log(buying_or_selling);
+	console.log(buying_or_selling);
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
-	//console.log(bot_or_manual);
+	console.log(bot_or_manual);
 
 	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
 
@@ -2828,6 +2836,7 @@ $('input[name=trading_pair_options]').change(function() {
 			$('#trading_pair_coin_price_max_min').html('Max');
 			$('.trading_pair_lable_text_one').html('Max');
 			$('.btn-bot_action').html('BUY');
+			$('.btn-bot_action').attr('data-action', 'buy');
 			$('.relvol_basevol_label').html("It'll cost you")
 		}
 		$('.trading_pair_lable_text_two').html('Buy');
@@ -2849,6 +2858,7 @@ $('input[name=trading_pair_options]').change(function() {
 			$('#trading_pair_coin_price_max_min').html('Min');
 			$('.trading_pair_lable_text_one').html('Min');
 			$('.btn-bot_action').html('SELL');
+			$('.btn-bot_action').attr('data-action', 'sell');
 			$('.relvol_basevol_label').html("You'll get");
 		}
 		$('.trading_pair_lable_text_two').html('Sell');
