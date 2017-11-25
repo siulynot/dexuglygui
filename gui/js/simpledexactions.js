@@ -299,10 +299,10 @@ $('.btn-inventoryclose').click(function(e) {
 	$('.dex_showinv_alice_tbl tbody').empty();
 	$('.dex_showlist_unspents_tbl tbody').empty();
 	$('.RawJSONInventory-output').empty();
-	$('.coin_ticker').html($(this).attr('data-coin'));
-	$.each($('.coinexchange[data-coin]'), function(index, value) {
-		$('.coinexchange[data-coin]').data('coin', $(this).attr('data-coin'));
-	});
+	//$('.coin_ticker').html($(this).attr('data-coin'));
+	//$.each($('.coinexchange[data-coin]'), function(index, value) {
+		//$('.coinexchange[data-coin]').data('coin', $(this).attr('data-coin'));
+	//});
 
 	check_coin_balance(false);
 	CheckOrderBookFn();
