@@ -1224,7 +1224,7 @@ function check_coin_listunspent(coin_listunspent_data) {
 												<b>Address:</b> `+ val.address +`<br>
 												</td>`;
 				show_list_unspents_tbl_tr += `<td>
-												<b>Amount:</b> `+ (parseFloat(val.amount)/100000000).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
+												<b>Amount:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
 												<b>Confirmations:</b> `+ val.confirmations +`<br>
 												<b>Interest:</b> `+ val.interest +`<br>
 												</td>`;
