@@ -2537,7 +2537,7 @@ function setOrderPrice(trade_data) {
 	console.log(trade_data);
 	//trade_data = JSON.parse(trade_data);
 	//console.log(trade_data);
-	trade_price_plus = trade_data.price * 1.01;
+	trade_price_plus = trade_data.price * 1.001;
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));
 	toastr.info(`Auto selected price as ${trade_data.price} + 1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
