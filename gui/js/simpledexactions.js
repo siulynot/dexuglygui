@@ -2748,8 +2748,8 @@ function check_my_prices(sig){
 				}*/
 			} else {
 				$.each(data, function(index, val) {
-					console.log(index);
-					console.log(val);
+					//console.log(index);
+					//console.log(val);
 
 					var base_coin_name = return_coin_name(val.base)
 					var rel_coin_name = return_coin_name(val.rel)
@@ -4120,7 +4120,16 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
 				</span>`;
 				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
-				$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				if (data.coin.hasOwnProperty('electrum')) {
+					var electrum_coin_balance_data = {};
+					electrum_coin_balance_data.baserel = 'rel';
+					electrum_coin_balance_data.coin = coin;
+					electrum_coin_balance_data.smartaddress = data.coin.smartaddress;
+					electrum_coin_balance(electrum_coin_balance_data);
+					//$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				} else {
+					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				}
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
 			}
@@ -4197,7 +4206,16 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
 				</span>`;
 				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
-				$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				if (data.coin.hasOwnProperty('electrum')) {
+					var electrum_coin_balance_data = {};
+					electrum_coin_balance_data.baserel = 'base';
+					electrum_coin_balance_data.coin = coin;
+					electrum_coin_balance_data.smartaddress = data.coin.smartaddress;
+					electrum_coin_balance(electrum_coin_balance_data);
+					//$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				} else {
+					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+				}
 			}
 
 			//$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+')');
@@ -4208,6 +4226,37 @@ function bot_screen_coin_balance(sig) {
 		// If fail
 		console.log(textStatus + ': ' + errorThrown);
 	});
+}
+
+
+function electrum_coin_balance(coin_balance_data) {
+	console.log(coin_balance_data);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	var ajax_data = {"userpass":userpass,"method":"balance","coin":coin_balance_data.coin,"address":coin_balance_data.smartaddress};
+	var url = "http://127.0.0.1:7783/";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(coin_balance_output_data) {
+		// If successful
+		console.log(coin_balance_output_data);
+		if(coin_balance_data.baserel == 'base'){
+			$('.trading_coin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+		}
+		if(coin_balance_data.baserel == 'rel'){
+			$('.trading_sellcoin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
 }
 
 /* Auto Trading Bot END */
@@ -5239,4 +5288,15 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 	});
 }
 
+
+
+$('.info_box_for_zeroconf').click(function(e){
+	e.preventDefault();
+	console.log('info_box_for_zeroconf clicked');
+	bootbox.alert({
+		title: `What is Zero Confirmations Feature?`,
+		message: `<p>To use this feature you have to deposit your KMD as security, which goes to a special multisig address. Minimum amount to deposit is 10 KMD, and minumum time to deposit is 1 week. You will get these deposits back automatically once it reaches it's expiration time. If not, then you can hit the claim button to claim your deposited KMDs back.</p>`,
+		size: 'large'
+	});
+})
 /* ZEROCONF SETTINGS END */
