@@ -2532,6 +2532,7 @@ function setOrderPrice(trade_data) {
 	trade_price_plus = trade_data.price * 1.01;
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));
+	toastr.info(`Auto selected price as ${trade_data.price} + 1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 
