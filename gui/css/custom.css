@@ -390,7 +390,7 @@ table tbody tr:first-child td {
 
 
 .toggle-on, .toggle-off { 
-  line-height: 41px;
+  line-height: 30px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

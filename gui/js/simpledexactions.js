@@ -1747,7 +1747,7 @@ function addcoins_dialog(){
 							<select class="selectpicker addcoin_enable_disable_selection" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
 							</div>
 							<div class="col-sm-6">
-							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px">
+							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px">
 							</div>
 
 
@@ -5326,7 +5326,7 @@ $('.info_box_for_zeroconf').click(function(e){
 				<li>You can only claim your KMD back when the expiration time reaches. So make sure to set the expiration time of weeks accordingly, becuase the funds sent with that set time will be locked in the transaction.</li>
 				<li>The amount of funds you'll have in security deposit will keep accruing 5% APR, and you'll receive back the amount with the accrued amount after deducting security fees of 0.1%.</li>
 			</ul>
-			<blockquote>IMPORTANT: If you are reported to cheat by doing double spending the transaction with any of your trade, and such attack is proven, then your security despoit will be used to compensate the other party. The remaing funds will be available as security and will be claimable upon expiration time.</blockquote>`,
+			<blockquote>IMPORTANT: If you attempt to cheat while using High Speed Mode, the amount of the offense and a penalty fee are deducted from your deposit and forfeited to the affected party. The remaining amount in your deposit balance will be claimable at the normal time of expiration.</blockquote>`,
 		size: 'large'
 	});
 })

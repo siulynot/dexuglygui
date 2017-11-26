@@ -20,7 +20,7 @@ const killmm = require('./ipc/killmm');
 
 const appBasicInfo = {
   name: 'BarterDEX-Simple',
-  version: '0.7-beta'
+  version: '0.7.0-beta'
 };
 
 app.setName(appBasicInfo.name);
