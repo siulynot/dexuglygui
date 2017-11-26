@@ -78,6 +78,12 @@ $(document).ready(function() {
 			$('.trading_pair_coin_autoprice_mode_span').hide();
 			$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
 			$('#trading_pair_coin_price_max_min').html('Max');
+
+			var charts_instruments_data = {}
+			charts_instruments_data.symbol = selected_dICO_coin+'/KMD'
+			charts_instruments_data.company = 'Komodo Platform';
+			ChartsInstruments(charts_instruments_data)
+			UpdateDexChart(selected_dICO_coin, 'KMD');
 		}
 
 //---- dICO App Settings END ----//
@@ -2810,6 +2816,16 @@ $('.trading_pair_coin').on('change', function (e) {
 	var optionSelected = $("option:selected", this);
 	var valueSelected = this.value;
 	console.log(valueSelected);
+
+	/*var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
+	var coin = selected_coin.coin;
+	console.log(coin);
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = coin+'/KMD'
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart(coin, this.value);*/
 
 	//update_min_max_price_input();
 

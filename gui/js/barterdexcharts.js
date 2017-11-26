@@ -88,6 +88,8 @@ function ChartsInstruments(instrument_data){
 		exchange: "BarterDEX"
 	};
 	gChart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_DAY;
+	gChart.removeDrawings();
+	gChart.setNeedsUpdate(!0);
 	gChart.setNeedsAutoScaleAll();
 	gChart.update();
 }

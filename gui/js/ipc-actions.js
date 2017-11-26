@@ -288,6 +288,17 @@ function logindICO(coin){
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
 	$('#trading_mode_options_trademanual').attr('checked','checked');
+	$('.trading_method_options').hide();
+	$('.trading_buysell_options').hide();
+	$('.trading_pair_coin_autoprice_mode_span').hide();
+	$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+	$('#trading_pair_coin_price_max_min').html('Max');
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = coin+'/KMD'
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart(coin, 'KMD');
 }
 
 CheckMMStatus = function(sig) {
