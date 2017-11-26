@@ -47,26 +47,9 @@ $(function() {
     gChart.on(StockChartX.ChartEvent.MORE_HISTORY_REQUESTED, function() {
         console.log("TODO: Load more history!");
     });
-});
 
-$(window).resize(function() {
-	//console.log($(window).width());
-	gChart.size = {width: $(window).width()-30};
-	gChart.update();
-});
 
-function ChartsInstruments(instrument_data){
-	console.log(instrument_data);
-	gChart.instrument = {
-		symbol: instrument_data.symbol,
-		company: instrument_data.company,
-		exchange: "BarterDEX"
-	};
-	gChart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_DAY;
-	gChart.setNeedsAutoScaleAll();
-	gChart.update();
-	
-	if (!StockChartX.Environment.isPhone) {
+    if (!StockChartX.Environment.isPhone) {
         // test
         var scale1 = gChart.addValueScale();
         scale1.leftPanelVisible = true;
@@ -87,6 +70,26 @@ function ChartsInstruments(instrument_data){
     gChart.update();
     gChart.hideWaitingBar();
 
+
+    
+});
+
+$(window).resize(function() {
+	//console.log($(window).width());
+	gChart.size = {width: $(window).width()-30};
+	gChart.update();
+});
+
+function ChartsInstruments(instrument_data){
+	console.log(instrument_data);
+	gChart.instrument = {
+		symbol: instrument_data.symbol,
+		company: instrument_data.company,
+		exchange: "BarterDEX"
+	};
+	gChart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_DAY;
+	gChart.setNeedsAutoScaleAll();
+	gChart.update();
 }
 
 
