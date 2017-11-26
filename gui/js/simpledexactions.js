@@ -5317,7 +5317,7 @@ $('.info_box_for_zeroconf').click(function(e){
 	e.preventDefault();
 	console.log('info_box_for_zeroconf clicked');
 	bootbox.alert({
-		title: `What is Zero Confirmations Feature?`,
+		title: `What is High Speed Mode Confirmations Feature?`,
 		message: `<p>To use this feature you have to deposit your KMD as security, which goes to a special multisig address. Minimum amount to deposit is 10 KMD, and minumum time to deposit is 1 week. You will get these deposits back automatically once it reaches it's expiration time. If not, then you can hit the claim button to claim your deposited KMDs back.</p>`,
 		size: 'large'
 	});

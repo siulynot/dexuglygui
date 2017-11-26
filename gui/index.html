@@ -449,7 +449,7 @@
               <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#exchange_trading_pair" data-toggle="tab">Trading Pair <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a></li>
-                    <li><a href="#exchange_zeroconf_settings" data-toggle="tab">ZeroConf Settings <button class="btn btn-xs btn-refreshzeroconf_settings"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a></li>
+                    <li><a href="#exchange_zeroconf_settings" data-toggle="tab">Speed Mode Settings <button class="btn btn-xs btn-refreshzeroconf_settings"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a></li>
                 </ul>
               </div>
               <div class=""> <!-- panel-body -->
@@ -460,19 +460,19 @@
                       <div class="col-sm-12">
                         <div class="form-group trading_buysell_options">
                           <div class="btn-group btn-group-justified colors" data-toggle="buttons">
-                            <label class="btn btn-lg btn-info active">
+                            <label class="btn btn-info active">
                               <input type="radio" name="trading_pair_options" id="trading_pair_options_buying" value="buying" autocomplete="off" checked> BUYING <span class="coin_ticker"></span></label>
-                            <label class="btn btn-lg btn-info">
+                            <label class="btn btn-info">
                               <input type="radio" name="trading_pair_options" id="trading_pair_options_selling" value="selling" autocomplete="off"> SELLING <span class="coin_ticker"></span></label>
                           </div>
                         </div>
                         <div class="form-group trading_method_options">
                           <div class="btn-group btn-group-justified colors" data-toggle="buttons">
-                            <label class="btn btn-lg btn-warning active">
+                            <label class="btn btn-warning active">
                               <input type="radio" name="trading_mode_options" id="trading_mode_options_tradebot" value="tradebot" autocomplete="off"> TRADE BOT</label>
-                            <label class="btn btn-lg btn-warning">
+                            <label class="btn btn-warning">
                               <input type="radio" name="trading_mode_options" id="trading_mode_options_trademanual" value="trademanual" autocomplete="off"> MANUAL TRADE</label>
-                            <label class="btn btn-lg btn-warning">
+                            <label class="btn btn-warning">
                               <input type="radio" name="trading_mode_options" id="trading_mode_options_tradeportfolio" value="tradeportfolio" autocomplete="off"> PORTFOLIO</label>
                           </div>
                         </div>
@@ -482,9 +482,9 @@
                         <div class="input-group col-sm-12">
                           <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
                           <span class="input-group-addon trading_pair_coin_autoprice_mode_span" style="font-size: 0px; margin: 0; padding: 0; width: 120px; background-color: #fff; border: 0;">
-                            <input class="toggle_checkbox toggle_font_lg" id="trading_pair_coin_autoprice_mode" type="checkbox" checked data-toggle="toggle" data-on="Margin" data-off="Fixed" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="64px" data-class="toggle-font-lg">
+                            <input class="toggle_checkbox toggle_font_lg" id="trading_pair_coin_autoprice_mode" type="checkbox" checked data-toggle="toggle" data-on="Margin" data-off="Fixed" data-size="large" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px" data-class="toggle-font-lg">
                           </span>
-                          <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 64px; font-size: 20px;">
+                          <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 44px; font-size: 20px;">
                           <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
                         </div>
 
@@ -495,7 +495,7 @@
                           <span class="input-group-addon">
                             <input class="big-checkbox trading_pair_destpubkey_yesno" type="checkbox"> Yes
                           </span>
-                          <input type="text" class="form-control trading_pair_destpubkey" placeholder="eg. bab6ad2eebe1e666369cab504d4622b22c1f1ef718ef388e88020f30a1573e01" style="height: 64px; font-size: 20px;">
+                          <input type="text" class="form-control trading_pair_destpubkey" placeholder="eg. bab6ad2eebe1e666369cab504d4622b22c1f1ef718ef388e88020f30a1573e01" style="height: 44px; font-size: 20px;">
                         </div>
 
                         <div class="form-group buy_sell_amount_to" style="margin-top: 15px; margin-bottom: 0px;">
@@ -504,9 +504,9 @@
                         <div class="input-group col-sm-12 buy_sell_button_div">
                           <p class="portfolio_info_text" style="font-size: 20px; font-weight: 200;"></p>
                           <span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
-                          <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
+                          <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 44px; font-size: 20px;">
                           <span class="input-group-btn">
-                            <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 64px; font-size: 20px;">BUY</button>
+                            <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 44px; font-size: 20px;">BUY</button>
                           </span>
                         </div>
 
@@ -520,9 +520,9 @@
                         </div>
                         <div class="input-group col-sm-12 coingoal_div" style="display: none;">
                           <span class="input-group-addon coin_ticker" id="coingoal_coin_ticker" style="font-size: 20px;"></span>
-                          <input type="number" class="form-control coingoal_percentage" placeholder="e.g. 12.5" style="height: 64px; font-size: 20px;">
+                          <input type="number" class="form-control coingoal_percentage" placeholder="e.g. 12.5" style="height: 44px; font-size: 20px;">
                           <span class="input-group-btn">
-                            <button class="btn btn-primary btn_set_coin_goal" data-action="goal" data-auto=false style="height: 64px; font-size: 20px;">SET GOAL</button>
+                            <button class="btn btn-primary btn_set_coin_goal" data-action="goal" data-auto=false style="height: 44px; font-size: 20px;">SET GOAL</button>
                           </span>
                         </div>
 
@@ -533,10 +533,10 @@
                   <div class="tab-pane fade" id="exchange_zeroconf_settings">
                     <div class="row" style="padding: 15px;">
                       <div class="col-sm-12">
-                        <p>Using ZeroConf feature you can make trades on decentralised exchange in seconds instead of waiting for blockchain confirmations. Please <a href="#" class="info_box_for_zeroconf">click here</a> to read more.</p>
+                        <p>Using High Speed Mode feature you can make trades on decentralised exchange in seconds instead of waiting for blockchain confirmations. Please <a href="#" class="info_box_for_zeroconf">click here</a> to read more.</p>
 
                         <div class="form-group">
-                          <span style="float: left; font-size: 18px;">Deposit ZeroConf Security</span>
+                          <span style="float: left; font-size: 18px;">Deposit High Speed Mode Security</span>
                         </div>
                         <div class="input-group col-sm-12">
                           <select class="selectpicker zeroconf_weeks_select" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
@@ -548,7 +548,7 @@
                           <span style="float: left; font-size: 18px;"></span>
                         </div>
                         <div class="input-group col-sm-12">
-                          <button class="btn btn-primary btn-block btn_zeroconf_deposit">DEPOSIT ZEROCONF SECURITY</button>
+                          <button class="btn btn-primary btn-block btn_zeroconf_deposit">DEPOSIT HIGH SPEED MODE SECURITY</button>
                         </div>
 
                       </div>
@@ -558,7 +558,7 @@
                       <table class="table table-striped zeroconf_deposits_history_tbl" width="100%" style="margin-bottom: 0;">
                         <thead>
                           <!--<th>Index</th>-->
-                          <th>Zeroconf Deposits History</th>
+                          <th>High Speed Mode Deposits History</th>
                           <th>Actions</th>
                         </thead>
                         <tbody></tbody>
