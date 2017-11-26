@@ -2502,10 +2502,10 @@ function manual_buy_sell(mt_data) {
 		// If successful
 		console.log(mt_output_data);
 
-		$('.trading_pair_coin_price').val('');
-		$('.trading_pair_coin_volume').val('');
+		//$('.trading_pair_coin_price').val('');
+		//$('.trading_pair_coin_volume').val('');
 		$('.trading_pair_destpubkey').val('');
-		$('.relvol_basevol').html('');
+		//$('.relvol_basevol').html('');
 
 		if (!mt_output_data.error === false) {
 			toastr.error(mt_output_data.error, 'Bot Info');
