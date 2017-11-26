@@ -11,7 +11,7 @@ Once running, follow these steps:
 ```shell
 git clone https://github.com/SuperNETorg/BarterDEX-Simple.git
 cd BarterDEX-Simple
-git checkout v0.6
+git checkout v0.7
 npm install
 npm start
 ```
@@ -22,7 +22,7 @@ It will download "BarterDEX-Simple". Open "BarterDEX-Simple", and from there ope
 To update, follow these steps:
 ```shell
 cd BarterDEX-Simple
-git checkout v0.6
+git checkout v0.7
 git pull
 ```
 
