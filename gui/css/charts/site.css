@@ -1,0 +1,48 @@
+/*(body {
+    background-color: #000;
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}*/
+
+/*body.scxThemeLight {
+    background-color: #FFF;
+}*/
+
+#chartContainer {
+    display: inline-block;
+    text-align: center;
+}
+
+.scxContainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer {
+    text-align: center;
+    padding-top: 30px;
+    min-width: 768px;
+    width: 100%;
+    display: inline-block;
+}
+
+#chartContainer.scxFullWindow + #footer {
+    display: none;
+}
+
+#footer .logo {
+    height: 138px;
+    width: 478px;
+    display: inline-block;
+    background: transparent url("../img/logo.png") center no-repeat;
+}
+
+body.scxThemeLight #footer .logo {
+    background-image: url("../img/logo-light.png");
+}
+
+.copyright {
+    color: darkgrey;
+    font-size: 10px;
+}

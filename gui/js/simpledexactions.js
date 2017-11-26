@@ -213,6 +213,12 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	bot_screen_sellcoin_balance();
 
 	getZeroConfDepositHistory();
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart($(this).data('coin'), 'KMD');
 });
 
 
