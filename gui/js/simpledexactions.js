@@ -4723,7 +4723,7 @@ function check_swap_status(sig) {
 	    url: url
 	}).done(function(data) {
 		// If successful
-		//console.log(data);
+		console.log(data);
 
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
@@ -5318,7 +5318,15 @@ $('.info_box_for_zeroconf').click(function(e){
 	console.log('info_box_for_zeroconf clicked');
 	bootbox.alert({
 		title: `What is High Speed Mode Confirmations Feature?`,
-		message: `<p>To use this feature you have to deposit your KMD as security, which goes to a special multisig address. Minimum amount to deposit is 10 KMD, and minumum time to deposit is 1 week. You will get these deposits back automatically once it reaches it's expiration time. If not, then you can hit the claim button to claim your deposited KMDs back.</p>`,
+		message: `<p>To use this feature you have to deposit your KMD as a security. It is then placed in a special multisig address. The following conditions apply:</p>
+			<ul>
+				<li>The minimum deposit amount is 10 KMD.</li>
+				<li>Minimum deposit period is 1 week, and maximum deposit period is 52 weeks.</li>
+				<li>Once security depoit sent, it sets an expiration time in the transaction which is recorded in blockchain.</li>
+				<li>You can only claim your KMD back when the expiration time reaches. So make sure to set the expiration time of weeks accordingly, becuase the funds sent with that set time will be locked in the transaction.</li>
+				<li>The amount of funds you'll have in security deposit will keep accruing 5% APR, and you'll receive back the amount with the accrued amount after deducting security fees of 0.1%.</li>
+			</ul>
+			<blockquote>IMPORTANT: If you are reported to cheat by doing double spending the transaction with any of your trade, and such attack is proven, then your security despoit will be used to compensate the other party. The remaing funds will be available as security and will be claimable upon expiration time.</blockquote>`,
 		size: 'large'
 	});
 })

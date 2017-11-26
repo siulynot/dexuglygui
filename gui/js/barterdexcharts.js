@@ -108,8 +108,22 @@ function ConvertJSONToCSV(objArray) {
 	return str;
 }
 
+function clearChartData() {
+    var dataSeries = gChart.barDataSeries();
+
+    dataSeries.date.clear();
+    dataSeries.open.clear();
+    dataSeries.high.clear();
+    dataSeries.low.clear();
+    dataSeries.close.clear();
+    dataSeries.volume.clear();
+}
 
 function UpdateDexChart(chartbase, chartrel)  {
+	gChart.showWaitingBar();
+	clearChartData();
+	gChart.update();
+
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"tradesarray","base":chartbase,"rel":chartrel,"timescale":3600};
@@ -152,5 +166,6 @@ function parseBars(data, isIntraday) {
 	});
 	gChart.updateComputedDataSeries();
 	gChart.update();
+	gChart.hideWaitingBar();
 }
 
