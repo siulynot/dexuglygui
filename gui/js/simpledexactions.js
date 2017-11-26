@@ -1220,6 +1220,13 @@ function check_coin_listunspent(coin_listunspent_data) {
 		$.each(coin_listunspent_output_data, function(index, val) {
 			//console.log(index);
 			//console.log(val);
+
+			if (val.hasOwnProperty('interest') == true) {
+				var utxo_interest = val.interest;
+			} else {
+				var utxo_interest = 'N/A';
+			}
+
 			show_list_unspents_tbl_tr = '';
 			show_list_unspents_tbl_tr += '<tr>';
 				show_list_unspents_tbl_tr += '<td>' + index + '</td>';
@@ -1231,7 +1238,7 @@ function check_coin_listunspent(coin_listunspent_data) {
 				show_list_unspents_tbl_tr += `<td>
 												<b>Amount:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
 												<b>Confirmations:</b> `+ val.confirmations +`<br>
-												<b>Interest:</b> `+ val.interest +`<br>
+												<b>Interest:</b> `+ utxo_interest +`<br>
 												</td>`;
 				show_list_unspents_tbl_tr += `<td>
 												<b>scriptPubKey:</b> `+ val.scriptPubKey +`<br>
@@ -2540,7 +2547,7 @@ function setOrderPrice(trade_data) {
 	trade_price_plus = trade_data.price * 1.001;
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));
-	toastr.info(`Auto selected price as ${trade_data.price} + 1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+	toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 

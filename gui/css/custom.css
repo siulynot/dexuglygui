@@ -392,3 +392,9 @@ table tbody tr:first-child td {
 .toggle-on, .toggle-off { 
   line-height: 41px;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
