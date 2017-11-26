@@ -5318,15 +5318,16 @@ $('.info_box_for_zeroconf').click(function(e){
 	console.log('info_box_for_zeroconf clicked');
 	bootbox.alert({
 		title: `What is High Speed Mode Confirmations Feature?`,
-		message: `<p>To use this feature you have to deposit your KMD as a security. It is then placed in a special multisig address. The following conditions apply:</p>
+		message: `<p>Use of this feature requires a security deposit, equal to or greater than the amount you wish to actively trade. This deposit is placed in a special multisig address for safe keeping. The following conditions apply:</p>
 			<ul>
 				<li>The minimum deposit amount is 10 KMD.</li>
-				<li>Minimum deposit period is 1 week, and maximum deposit period is 52 weeks.</li>
-				<li>Once security depoit sent, it sets an expiration time in the transaction which is recorded in blockchain.</li>
-				<li>You can only claim your KMD back when the expiration time reaches. So make sure to set the expiration time of weeks accordingly, becuase the funds sent with that set time will be locked in the transaction.</li>
-				<li>The amount of funds you'll have in security deposit will keep accruing 5% APR, and you'll receive back the amount with the accrued amount after deducting security fees of 0.1%.</li>
-			</ul>
-			<blockquote>IMPORTANT: If you attempt to cheat while using High Speed Mode, the amount of the offense and a penalty fee are deducted from your deposit and forfeited to the affected party. The remaining amount in your deposit balance will be claimable at the normal time of expiration.</blockquote>`,
+				<li>The minimum deposit period is 1 week, and the maximum period is 52 weeks.</li>
+                <li>The expiration date is permanently set and recorded within your blockchain transaction at the time of sending the deposit.</li>
+                <li>Choose your time period appropriately, as you can only reclaim your deposit after the expiration date.</li>
+                <li>Your KMD security deposit will continue to accrue the 5% APR throughout the time period, as usual.</li>
+                <li>Upon conclusion, you will receive your deposit and interest, less a security fee of 0.1%.</li>
+            </ul>
+			<p>IMPORTANT: If you attempt to cheat while using High Speed Mode, both the amount of your offense and an additional penalty fee can be deducted from your deposit and forfeited to the affected parties. The remaining amount in your deposit balance will be claimable at the normal time of expiration.</p>`,
 		size: 'large'
 	});
 })
