@@ -8,7 +8,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       
       <option data-content="<img src='img/cryptologo/888.png' width='30px'/> OctoCoin (888)" data-tokens="OctoCoin 888">888</option>
       <option data-content="<img src='img/cryptologo/arc.png' width='30px'/> ArcticCoin (ARC)" data-tokens="ArcticCoin ARC">ARC</option>
-      <option data-content="<img src='img/cryptologo/ARG.png' width='30px'/> Argentum (ARG)" data-tokens="Argentum ARG">ARG</option>
+      <option data-content="<img src='img/cryptologo/arg.png' width='30px'/> Argentum (ARG)" data-tokens="Argentum ARG">ARG</option>
       <option data-content="<img src='img/cryptologo/bta.png' width='30px;'/> Bata (BTA)" data-tokens="Bata BTA">BTA</option>
       <option data-content="<img src='img/cryptologo/bdl.png' width='30px;'/> Bitdeal (BDL)" data-tokens="Bitdeal BDL">BDL</option>
       
