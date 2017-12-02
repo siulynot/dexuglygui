@@ -108,6 +108,14 @@ input[type="button" i], input[type="submit" i], input[type="reset" i], input[typ
 	border-top: 1px solid #4a4a4a;
 }
 
+.dropdown-menu {
+	background-color: #2a2a2a;
+}
+
+.dropdown-menu>li>a {
+	color: #e8e8e8;
+}
+
 
 .relvol_basevol_label, .relvol_basevol_amount, .relvol_basevol_coin, .bot_settings_label1, .bot_settings_label2, .bot_settings_label3 {
 	color: #e8e8e8;
