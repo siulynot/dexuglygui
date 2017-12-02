@@ -1,5 +1,5 @@
 var Toolbar_html = `
-<div class="scxToolbar" style="background: #fff;">
+<div class="scxToolbar">
     <input type="text" class="symbolSearch form-control" title="Selected instrument" style="display: none;">
 
     <div class="scxToolbarButton scxToolbarButtonWithDropdown scxTimeFramePicker" style="display: none;">

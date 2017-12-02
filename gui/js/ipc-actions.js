@@ -248,6 +248,16 @@ $('.dexsettings-btn').click(function(e){
 				<input type="radio" name="experimental_features" id="experimental_features_enable" value="enable" autocomplete="off">YES</label>
 				<label class="btn btn-info label_trading_pair_options_disable active">
 				<input type="radio" name="experimental_features" id="trading_pair_options_disable" value="disable" autocomplete="off" checked>NO</label>
+			</div>
+
+			<div class="form-group col-sm-3" style="margin-top: 10px; padding: 0;">
+				<span style="float: left; font-size: 18px;">Default Theme:</span>
+			</div>
+			<div class="input-group col-sm-2" style="margin: 10px 0;">
+				<select class="selectpicker settings_theme_select" data-hide-disabled="true" data-width="30%">
+					<option data-content="Dark Theme" data-tokens="Dark Theme">dark</option>
+					<option data-content="Light Theme" data-tokens="Light Theme">light</option>
+				</select>
 			</div>`,
 		closeButton: false,
 		size: 'large',
@@ -272,6 +282,9 @@ $('.dexsettings-btn').click(function(e){
 				className: 'btn-primary btn_dex_save_settings',
 				callback: function(){
 					var experimental_features = $('input[name=experimental_features]:checked').val();
+					var selected_theme = $('.settings_theme_select').selectpicker('val');
+					barterDEX_settings.theme = selected_theme;
+					
 					console.log(experimental_features);
 					if (experimental_features == 'enable') {
 						barterDEX_settings.experimentalFeatures = true;
@@ -279,6 +292,7 @@ $('.dexsettings-btn').click(function(e){
 					if (experimental_features == 'disable') {
 						barterDEX_settings.experimentalFeatures = false;
 					}
+
 					console.log(barterDEX_settings);
 					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
 					BarterDEXSettingsFn();
@@ -288,6 +302,7 @@ $('.dexsettings-btn').click(function(e){
 		}
 	});
 	dex_settings_bootbox.init(function(){
+		$('.settings_theme_select').selectpicker('render');
 		console.log('settings dialog opened.');
 		//var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
 		console.log(barterDEX_settings);
@@ -301,6 +316,12 @@ $('.dexsettings-btn').click(function(e){
 			$('.label_trading_pair_options_disable').removeClass('active');
 			$('#experimental_features_enable').attr('checked','checked');
 			$('#trading_pair_options_disable').removeAttr('checked');
+		}
+		if (barterDEX_settings.theme == 'dark') {
+			$('.settings_theme_select').selectpicker('val', 'dark');
+		}
+		if (barterDEX_settings.theme == 'light') {
+			$('.settings_theme_select').selectpicker('val', 'light');
 		}
 	});
 });
@@ -457,6 +478,13 @@ function BarterDEXSettingsFn() {
 		$('.trading_method_options').show();
 		$('#portfolio_chart_current').removeClass('col-sm-offset-3');
 		$('#portfolio_chart_target').show();
+	}
+
+	if (barterDEX_settings.theme == 'dark') {
+		$('#dark_css_style').prop('disabled', false);
+	}
+	if (barterDEX_settings.theme == 'light') {
+		$('#dark_css_style').prop('disabled', true);
 	}
 };
 

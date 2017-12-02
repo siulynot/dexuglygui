@@ -1943,7 +1943,8 @@ function PortfolioChartUpdate(chart_data) {
 	console.log(chart_data)
 	var chart = AmCharts.makeChart( "portfolio_chart_current", {
 	  "type": "pie",
-	  "theme": "light",
+	  "theme": "black",
+	  "addClassNames": true,
 	  "dataProvider": chart_data,
 	  "valueField": "perc",
 	  "titleField": "coin",
@@ -1955,11 +1956,6 @@ function PortfolioChartUpdate(chart_data) {
 	  "marginLeft": 0,
 	  "marginRight": 0,
 	  "pullOutRadius": 0,
-	  /*"titles": [
-	    {
-	      "text": "Current Portfolio Goal"
-	    }
-	  ],*/
 	  "allLabels": [
 	    {
 	      "y": "46%",
@@ -1967,14 +1963,14 @@ function PortfolioChartUpdate(chart_data) {
 	      "size": 25,
 	      "bold": true,
 	      "text": "Now",
-	      "color": "#555"
+	      "color": "#e2e2e2"
 	    },
 	    {
 	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
 	      "text": "Goal",
-	      "color": "#555"
+	      "color": "#e2e2e2"
 	    }
 	  ],
 	  "export": {
@@ -1984,7 +1980,8 @@ function PortfolioChartUpdate(chart_data) {
 
 	var chart2 = AmCharts.makeChart( "portfolio_chart_target", {
 	  "type": "pie",
-	  "theme": "light",
+	  "theme": "black",
+	  "addClassNames": true,
 	  "dataProvider": chart_data,
 	  "valueField": "goalperc",
 	  "titleField": "coin",
@@ -1996,11 +1993,6 @@ function PortfolioChartUpdate(chart_data) {
 	  "marginLeft": 0,
 	  "marginRight": 0,
 	  "pullOutRadius": 0,
-	  /*"titles": [
-	    {
-	      "text": "Target Portfolio Goal"
-	    }
-	  ],*/
 	  "allLabels": [
 	    {
 	      "y": "46%",
@@ -2008,14 +2000,14 @@ function PortfolioChartUpdate(chart_data) {
 	      "size": 25,
 	      "bold": true,
 	      "text": "Target",
-	      "color": "#555"
+	      "color": "#e2e2e2"
 	    },
 	    {
 	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
 	      "text": "Goal",
-	      "color": "#555"
+	      "color": "#e2e2e2"
 	    }
 	  ],
 	  "export": {
@@ -2982,7 +2974,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 		    //title: 'A custom dialog with init',
 		  onEscape: true,
 		  backdrop: true,
-			message: '<div style="text-align: center; margin-top: -40px;"><img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="border: 10px solid #fff;border-radius: 50px; background: #fff;"/></div><div style="text-align: center;"><div id="receive_addr_qrcode"></div><blockquote style="font-size: 15px; font-weight: 400; color: #c10a0a; background-color: #ffd5d5; #7d0b0b; border-left: 5px solid #f00;">If you are sending a transaction to your barterDEX smartaddress, then <b>please send 3 small transactions instead of 1 big transaction</b> for best experience.</blockquote><pre style="font-size: 18px;">'+data.coin.smartaddress+'</pre class="receive_addr_qrcode_addr"></div>'
+			message: '<div style="text-align: center; margin-top: -40px;"><img src="img/cryptologo/'+coin.toLowerCase()+'.png" class="coin_balance_receive_coin_logo"/></div><div style="text-align: center;"><div id="receive_addr_qrcode"></div><blockquote style="font-size: 15px; font-weight: 400; color: #c10a0a; background-color: #ffd5d5; #7d0b0b; border-left: 5px solid #f00;">If you are sending a transaction to your barterDEX smartaddress, then <b>please send 3 small transactions instead of 1 big transaction</b> for best experience.</blockquote><pre style="font-size: 18px;">'+data.coin.smartaddress+'</pre class="receive_addr_qrcode_addr"></div>'
 		});
 
 		var qrcode = new QRCode("receive_addr_qrcode");
@@ -3973,8 +3965,8 @@ function bot_status(bot_data) {
 										<input type="number" class="form-control trading_pair_coin_newvolume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
 									</div>
 									<div class="input-group col-sm-12">
-										<span class="input-group-addon" style="font-size: 30px; font-weight: 200; border: 0; background-color: #fff;">It'll cost you</span>
-										<span class="input-group-addon" style="font-size: 40px; font-weight: 100; border: 0; background-color: #fff;"><span class="new_relvol_basevol">0</span> <span style="font-size: 25px; background-color: #fff; font-weight: 100;">` + data.rel.toUpperCase() + `</span></span>
+										<span class="input-group-addon bot_settings_label1">It'll cost you</span>
+										<span class="input-group-addon bot_settings_label2"><span class="new_relvol_basevol">0</span> <span class="bot_settings_label3">` + data.rel.toUpperCase() + `</span></span>
 									</div>
 
 
@@ -4452,7 +4444,7 @@ function check_swap_status_details(swap_status_data) {
 						<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>All Done!</div></span>
 					</div>
 					<div class="input-group col-sm-12">
-						<span class="input-group-addon swapdetail_info" style="font-size: 20px; border: 0px; background-color: #fff;"></span>
+						<span class="input-group-addon swapdetail_info"></span>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
@@ -5041,7 +5033,7 @@ function constructTradesHistory() {
 								<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>All Done!</div></span>
 							</div>
 							<div class="input-group col-sm-12">
-								<span class="input-group-addon swapdetail_info" style="font-size: 20px; border: 0px; background-color: #fff;"></span>
+								<span class="input-group-addon swapdetail_info"></span>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
