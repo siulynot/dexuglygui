@@ -5209,7 +5209,7 @@ function getZeroConfDepositHistory(){
 			zeroconf_deposits_history_tr += '<tr>';
 			//zeroconf_deposits_history_tr += '<td>' + index + '</td>';
 			zeroconf_deposits_history_tr += '<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> error</div></td>';
-			zeroconf_deposits_history_tr += '<td>-</td>';
+			//zeroconf_deposits_history_tr += '<td>-</td>';
 			zeroconf_deposits_history_tr += '</tr>';
 			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
 		} else {
@@ -5225,9 +5225,9 @@ function getZeroConfDepositHistory(){
 											<b>Expiration:</b> ${expiration_time}<br>
 											<b>Transaction ID:</b> <a class="zconf_deposit_txid_link" href="#" data-txid="${val.txid}">Open in Explorer</a>
 											</td>`;
-			zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="display: none;">Details</button>
+			/*zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="display: none;">Details</button>
 												<button class="btn btn-xs btn-success zconf_deposit_claim" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="margin: 3px;">Claim Deposit</button>
-											</td>`;
+											</td>`;*/
 			zeroconf_deposits_history_tr += '</tr>';
 			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
 			
@@ -5291,7 +5291,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 function ZeroConfClaim(claim_address, claim_expiration) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"instantdex_claim","address":claim_address,"expiration":claim_expiration};
+	var ajax_data = {"userpass":userpass,"method":"instantdex_claim"};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -5330,7 +5330,7 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 				});
 			});
 
-			bootbox.alert();
+			//bootbox.alert();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
