@@ -191,7 +191,18 @@ ipcMain.on('shepherd-command', (event, arg) => {
             case 'update_settings':
                   //console.log(arg.data);
                   UpdateBarterDEXSettings(arg.data);
-                  event.returnValue = 'Zeroconf log updated';
+                  event.returnValue = 'BarterDEX settings updated';
+                  break;
+            case 'reset_settings':
+                  //console.log(arg.data);
+                  fs.copy(defaultBarterDEXSettingsFile, _BarterDEXSettingsFile, { overwrite: true })
+                  .then(() => {
+                        console.log('barterdex settings file copied!')
+                  })
+                  .catch(err => {
+                        console.error(err)
+                  })
+                  event.returnValue = 'reset_done';
                   break;
       }
 })
@@ -399,31 +410,14 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
 UpdateBarterDEXSettings = function(settings_data) {
   console.log(settings_data);
   
-  /*fs.ensureFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
+  fs.ensureFile(_BarterDEXSettingsFile)
   .then(() => {
-    console.log('success!')
-    fs.readJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, (err, zconf_claim_log) => {
-      if (err) console.error(err)
-        var isitjson = typeof zconf_claim_log == 'object';
-        if (isitjson == false){
-          fs.appendFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, `[`+settings_data.logdata+`]`, function (err) {
-            if (err) throw err;
-            console.log('ZeroConf claim log updated!');
-          });
-        } else {
-          //console.log(zconf_claim_log);
-          JSON.parse(settings_data.logdata)
-          zconf_claim_log.push(JSON.parse(settings_data.logdata));
-          //console.log('===============')
-          //console.log(zconf_claim_log);
-          fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
-            if (err) throw err;
-            console.log('ZeroConf claim log updated!');
-          });
-        }
-    })
+    fs.writeJson(_BarterDEXSettingsFile, settings_data, function (err) {
+      if (err) throw err;
+      console.log('ZeroConf claim log updated!');
+    });
   })
   .catch(err => {
     console.error(err);
-  })*/
+  })
 }

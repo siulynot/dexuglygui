@@ -234,10 +234,21 @@ $('.login-btn').click(function(e) {
 $('.dexsettings-btn').click(function(e){
 	e.preventDefault();
 
+	var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
+
 	var dex_settings_bootbox = bootbox.dialog({
 		backdrop: true,
 		onEscape: true,
-		message: ``,
+		message: `
+			<div class="form-group">
+				<span style="float: left; font-size: 18px;">Enable Experimental Features?</span>
+			</div>
+			<div class="btn-group btn-group-justified colors" data-toggle="buttons">
+				<label class="btn btn-info label_experimental_features_enable">
+				<input type="radio" name="experimental_features" id="experimental_features_enable" value="enable" autocomplete="off">YES</label>
+				<label class="btn btn-info label_trading_pair_options_disable active">
+				<input type="radio" name="experimental_features" id="trading_pair_options_disable" value="disable" autocomplete="off" checked>NO</label>
+			</div>`,
 		closeButton: false,
 		size: 'large',
 
@@ -246,19 +257,51 @@ $('.dexsettings-btn').click(function(e){
 				label: "Close",
 				className: 'btn-default',
 				callback: function(){
-
+				}
+			},
+			reset: {
+				label: "Reset Settings",
+				className: 'btn-warning btn_dex_reset_settings',
+				callback: function(){
+					ShepherdIPC({"command":"reset_settings"});
+					setInterval(function(){ BarterDEXSettingsFn(); }, 1000);
 				}
 			},
 			ok: {
 				label: "Save Settings",
-				className: 'btn-primary btn_dex_settings',
+				className: 'btn-primary btn_dex_save_settings',
 				callback: function(){
+					var experimental_features = $('input[name=experimental_features]:checked').val();
+					console.log(experimental_features);
+					if (experimental_features == 'enable') {
+						barterDEX_settings.experimentalFeatures = true;
+					}
+					if (experimental_features == 'disable') {
+						barterDEX_settings.experimentalFeatures = false;
+					}
+					console.log(barterDEX_settings);
+					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
+					BarterDEXSettingsFn();
+					toastr.info('Settings update processed.', 'BarterDEX Settings');
 				}
 			}
 		}
 	});
 	dex_settings_bootbox.init(function(){
-		console.log('dialog opened.')
+		console.log('settings dialog opened.');
+		//var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
+		console.log(barterDEX_settings);
+		if (barterDEX_settings.experimentalFeatures == false) {
+			$('.label_experimental_features_enable').removeClass('active');
+			$('.label_trading_pair_options_disable').addClass(' active');
+			$('#experimental_features_enable').removeAttr('checked');
+			$('#trading_pair_options_disable').attr('checked','checked');
+		} else {
+			$('.label_experimental_features_enable').addClass(' active');
+			$('.label_trading_pair_options_disable').removeClass('active');
+			$('#experimental_features_enable').attr('checked','checked');
+			$('#trading_pair_options_disable').removeAttr('checked');
+		}
 	});
 });
 
