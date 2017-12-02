@@ -1161,7 +1161,7 @@ function return_coin_name(coin) {
 			coin_name = 'OctoCoin';
 			break;
 		case 'ARG':
-			coin_name = 'ArcticCoin';
+			coin_name = 'Argentum';
 			break;
 		case 'REVS':
 			coin_name = 'REVS';
