@@ -5239,7 +5239,7 @@ function getZeroConfDepositHistory(){
 function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"zeroconf_deposit","weeks":deposit_weeks,"amount":deposit_amount,"broadcast": 1};
+	var ajax_data = {"userpass":userpass,"method":"instantdex_deposit","weeks":deposit_weeks,"amount":deposit_amount,"broadcast": 1};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -5253,11 +5253,11 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 		var update_deposit_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_deposit_data),"type":"deposit"}});
 		console.log(update_deposit_log_file);
 		if (!zconf_deposit_data.error === false) {
-			toastr.error(zconf_deposit_data.error, 'ZeroConf Notification');
+			toastr.error(zconf_deposit_data.error, 'InstantDEX Notification');
 		}
 		if (zconf_deposit_data.result == 'success') {
 			var zconf_depoit_bootbox = bootbox.dialog({
-				title: 'ZeroConf security deposit sent!',
+				title: 'InstantDEX security deposit sent!',
 				message: `<b>Address: </b> ${zconf_deposit_data.address}<br>
 						<b>deposit: </b> ${zconf_deposit_data.deposit}<br>
 						<b>expiration: </b> ${zconf_deposit_data.expiration}<br>
@@ -5291,7 +5291,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 function ZeroConfClaim(claim_address, claim_expiration) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"zeroconf_claim","address":claim_address,"expiration":claim_expiration};
+	var ajax_data = {"userpass":userpass,"method":"instantdex_claim","address":claim_address,"expiration":claim_expiration};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -5305,11 +5305,11 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 		var update_claim_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_claim_data),"type":"claim"}});
 		console.log(update_claim_log_file);
 		if (!zconf_claim_data.error === false) {
-			toastr.error(zconf_claim_data.error, 'ZeroConf Notification');
+			toastr.error(zconf_claim_data.error, 'InstantDEX Notification');
 		}
 		if (zconf_claim_data.result == 'success') {
 			var zconf_claim_bootbox = bootbox.dialog({
-				title: 'ZeroConf security claimed!',
+				title: 'InstantDEX security claimed!',
 				message: `<b>Claimed: </b> ${zconf_claim_data.claimed}<br>
 							<a href="#" class="zconf_claim_txid_bootbox" data-txid="${zconf_claim_data.txids}">` + zconf_claim_data.txids + `</a>`,
 				closeButton: false,
