@@ -47,6 +47,8 @@ if (os.platform() === 'win32') {
 // DEFAULT COINS LIST FOR MARKETMAKER
 defaultCoinsListFile = path.join(__dirname, '../assets/coins.json');
 
+// DEFAULT BARTERDEX SETTINGS FILE
+defaultBarterDEXSettingsFile = path.join(__dirname, '../assets/settings.json');
 
 //Make empty zeroconf log files if not there
 fs.ensureFile(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`)
@@ -85,6 +87,25 @@ fs.ensureFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
   console.error(err);
 })
 
+
+const _BarterDEXSettingsFile = `${BarterDEXDir}/settings.json`;
+fs.pathExists(_BarterDEXSettingsFile, (err, exists) => {
+      if (exists === true) {
+            console.log('barterdex settings file exist');
+      } else if (exists === false) {
+            console.log('barterdex settings file doesn\'t exist');
+            fs.copy(defaultBarterDEXSettingsFile, _BarterDEXSettingsFile)
+            .then(() => {
+                  console.log('barterdex settings file copied!')
+            })
+            .catch(err => {
+                  console.error(err)
+            })
+      }
+      if (err) {
+            console.log(err) // => null
+      }
+});
 
 
 const {ipcMain} = require('electron');
@@ -156,6 +177,21 @@ ipcMain.on('shepherd-command', (event, arg) => {
                     console.error(err)
                     event.returnValue = 'error';
                   })
+                  break;
+            case 'read_settings':
+                  //console.log(arg.data);
+                  fs.readJson(`${BarterDEXDir}/settings.json`)
+                  .then(barterdex_settings_file_output => {
+                    event.returnValue = barterdex_settings_file_output;
+                  })
+                  .catch(err => {
+                    console.error(err)
+                  })
+                  break;
+            case 'update_settings':
+                  //console.log(arg.data);
+                  UpdateBarterDEXSettings(arg.data);
+                  event.returnValue = 'Zeroconf log updated';
                   break;
       }
 })
@@ -356,4 +392,38 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
       console.error(err);
     })
   }
+}
+
+
+
+UpdateBarterDEXSettings = function(settings_data) {
+  console.log(settings_data);
+  
+  /*fs.ensureFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`)
+  .then(() => {
+    console.log('success!')
+    fs.readJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, (err, zconf_claim_log) => {
+      if (err) console.error(err)
+        var isitjson = typeof zconf_claim_log == 'object';
+        if (isitjson == false){
+          fs.appendFile(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, `[`+settings_data.logdata+`]`, function (err) {
+            if (err) throw err;
+            console.log('ZeroConf claim log updated!');
+          });
+        } else {
+          //console.log(zconf_claim_log);
+          JSON.parse(settings_data.logdata)
+          zconf_claim_log.push(JSON.parse(settings_data.logdata));
+          //console.log('===============')
+          //console.log(zconf_claim_log);
+          fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
+            if (err) throw err;
+            console.log('ZeroConf claim log updated!');
+          });
+        }
+    })
+  })
+  .catch(err => {
+    console.error(err);
+  })*/
 }

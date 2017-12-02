@@ -226,6 +226,40 @@ $('.login-btn').click(function(e) {
 	if (dexmode == 'dICO') {
 		logindICO(dICO_coin);
 	}
+
+	BarterDEXSettingsFn();
+});
+
+
+$('.dexsettings-btn').click(function(e){
+	e.preventDefault();
+
+	var dex_settings_bootbox = bootbox.dialog({
+		backdrop: true,
+		onEscape: true,
+		message: ``,
+		closeButton: false,
+		size: 'large',
+
+		buttons: {
+			cancel: {
+				label: "Close",
+				className: 'btn-default',
+				callback: function(){
+
+				}
+			},
+			ok: {
+				label: "Save Settings",
+				className: 'btn-primary btn_dex_settings',
+				callback: function(){
+				}
+			}
+		}
+	});
+	dex_settings_bootbox.init(function(){
+		console.log('dialog opened.')
+	});
 });
 
 function loginBarterdEX(){
@@ -365,3 +399,22 @@ CheckMMStatus = function(sig) {
 		$('.loadingbody').fadeIn();
 	}
 }
+
+
+function BarterDEXSettingsFn() {
+	var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
+	console.log(barterDEX_settings);
+	if (barterDEX_settings.experimentalFeatures == false) {
+		$('.btn-autogoalall').hide();
+		$('.trading_method_options').hide();
+		$('#portfolio_chart_current').addClass(' col-sm-offset-3');
+		$('#portfolio_chart_target').hide();
+	} else {
+		$('.btn-autogoalall').show();
+		$('.trading_method_options').show();
+		$('#portfolio_chart_current').removeClass('col-sm-offset-3');
+		$('#portfolio_chart_target').show();
+	}
+};
+
+

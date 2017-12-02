@@ -92,6 +92,9 @@ $(document).ready(function() {
 		//$('.trading_selected_trader').hide();
 		$('.relvol_basevol_coin').html($('.trading_pair_coin').selectpicker('val'));
 
+
+		BarterDEXSettingsFn();
+
 	} else {
 		$('.mainbody').hide();
 		$('.loginbody').show();

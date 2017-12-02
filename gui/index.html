@@ -136,6 +136,7 @@
             <li><a href="javascript:void(0)" class="dextradeshistory-btn">Trade history</a></li>
             <li><a href="javascript:void(0)" class="dexdebug-close-btn" style="display: none">Close</a></li>
             <li><a href="javascript:void(0)" class="dexdebug-btn">Debug</a></li>
+            <li><a href="javascript:void(0)" class="dexsettings-btn">Settings</a></li>
             <li><a href="javascript:void(0)" class="dexlogout-btn">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -354,96 +355,6 @@
 
       <div class="col-sm-6">
         <div class="row">
-
-          <div class="col-sm-12">
-            <div class="panel with-nav-tabs panel-default">
-                  <div class="panel-heading">
-                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
-                    <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#exchange_coin_asks" data-toggle="tab">ASKS: <span class="orderbook_numasks"></span></a></li>
-                        <li><a href="#exchange_coin_bids" data-toggle="tab">BIDS: <span class="orderbook_numbids"></span></a></li>
-                    </ul>
-                  </div>
-                  <div class=""> <!-- panel-body -->
-                      <div class="tab-content">
-                          <div class="tab-pane fade in active" id="exchange_coin_asks">
-
-                            <table class="table table-striped orderbook_asks fixed_headers" width="100%" style="margin-bottom: 0;">
-                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
-                                <!--<th>Size(Min-Max <span class="orderbook_base_coin"></span>)</th>
-                                <th>Size(Min-Max <span class="orderbook_rel_coin"></span>)</th>
-                                <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
-                                <th>Avg. Volume</th>
-                                <th>Depth</th>
-                                <!--<th>Trader Pubkey</th>-->
-                                <th>Age</th>
-                                <th>UTXOs</th>
-                                <th>ZCredits</th>
-                                </thead>
-                              <tbody></tbody>
-                            </table>
-                            <svg id="orderbook-asks-spinner">
-                              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                              <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                              <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                              <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                            </svg>
-                          </div>
-                          <div class="tab-pane fade" id="exchange_coin_bids">
-
-                            <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
-                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
-                                <!--<th>Min <span class="orderbook_rel_coin"></span></th>
-                                <th>Max <span class="orderbook_rel_coin"></span></th>-->
-                                <th>Avg. Volume</th>
-                                <th>Depth</th>
-                                <!--<th>Trader Pubkey</th>-->
-                                <th>Age</th>
-                                <th>UTXOs</th>
-                                <th>ZCredits</th>
-                              </thead>
-                              <tbody></tbody>
-                            </table>
-                          </div>
-                      </div>
-                  </div>
-            </div>
-          </div>
-
-
-          <div class="col-sm-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><strong>Trade Status</strong></h3>
-                <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
-              </div>
-              <div class="exchange_trade_status_body"> <!-- panel-body -->
-                <table class="table table-striped exchange_swap_status_tbl fixed_headers" width="100%" style="margin-bottom: 0;">
-                  <thead>
-                    <th>Status</th>
-                    <th>Quote ID</th>
-                    <th>Request ID</th>
-                    <th>Action</th>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-                <svg id="exchange-swap-status-spinner">
-                  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="row">
           <div class="col-sm-12">
             <div class="panel with-nav-tabs panel-default">
               <div class="panel-heading">
@@ -461,9 +372,9 @@
                         <div class="form-group trading_buysell_options">
                           <div class="btn-group btn-group-justified colors" data-toggle="buttons">
                             <label class="btn btn-info active">
-                              <input type="radio" name="trading_pair_options" id="trading_pair_options_buying" value="buying" autocomplete="off" checked> BUYING <span class="coin_ticker"></span></label>
+                              <input type="radio" name="trading_pair_options" id="trading_pair_options_buying" value="buying" autocomplete="off" checked> BUY <span class="coin_ticker"></span></label>
                             <label class="btn btn-info">
-                              <input type="radio" name="trading_pair_options" id="trading_pair_options_selling" value="selling" autocomplete="off"> SELLING <span class="coin_ticker"></span></label>
+                              <input type="radio" name="trading_pair_options" id="trading_pair_options_selling" value="selling" autocomplete="off"> SELL <span class="coin_ticker"></span></label>
                           </div>
                         </div>
                         <div class="form-group trading_method_options">
@@ -650,6 +561,97 @@
             </div>
           </div>
 
+
+        </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="panel with-nav-tabs panel-default">
+                  <div class="panel-heading">
+                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
+                    <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#exchange_coin_asks" data-toggle="tab">ASKS: <span class="orderbook_numasks"></span></a></li>
+                        <li><a href="#exchange_coin_bids" data-toggle="tab">BIDS: <span class="orderbook_numbids"></span></a></li>
+                    </ul>
+                  </div>
+                  <div class=""> <!-- panel-body -->
+                      <div class="tab-content">
+                          <div class="tab-pane fade in active" id="exchange_coin_asks">
+
+                            <table class="table table-striped orderbook_asks fixed_headers" width="100%" style="margin-bottom: 0;">
+                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                                <!--<th>Size(Min-Max <span class="orderbook_base_coin"></span>)</th>
+                                <th>Size(Min-Max <span class="orderbook_rel_coin"></span>)</th>
+                                <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
+                                <th>Avg. Volume</th>
+                                <th>Depth</th>
+                                <!--<th>Trader Pubkey</th>-->
+                                <th>Age</th>
+                                <th>UTXOs</th>
+                                <th>ZCredits</th>
+                                </thead>
+                              <tbody></tbody>
+                            </table>
+                            <svg id="orderbook-asks-spinner">
+                              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                              <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                              <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                              <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                            </svg>
+                          </div>
+                          <div class="tab-pane fade" id="exchange_coin_bids">
+
+                            <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
+                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                                <!--<th>Min <span class="orderbook_rel_coin"></span></th>
+                                <th>Max <span class="orderbook_rel_coin"></span></th>-->
+                                <th>Avg. Volume</th>
+                                <th>Depth</th>
+                                <!--<th>Trader Pubkey</th>-->
+                                <th>Age</th>
+                                <th>UTXOs</th>
+                                <th>ZCredits</th>
+                              </thead>
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><strong>Trade Status</strong></h3>
+                <button class="btn btn-xs btn-swapstatusrefresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px 0px 0px"><span class="glyphicon glyphicon-refresh"></span></button>
+              </div>
+              <div class="exchange_trade_status_body"> <!-- panel-body -->
+                <table class="table table-striped exchange_swap_status_tbl fixed_headers" width="100%" style="margin-bottom: 0;">
+                  <thead>
+                    <th>Status</th>
+                    <th>Quote ID</th>
+                    <th>Request ID</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <svg id="exchange-swap-status-spinner">
+                  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                </svg>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
