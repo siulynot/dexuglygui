@@ -586,6 +586,7 @@ $('.btn-bot_action').click(function(e){
 	console.log($(this).attr('data-action'))
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
+	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 
 	if (bot_or_manual == 'tradebot') {
 
@@ -599,7 +600,12 @@ $('.btn-bot_action').click(function(e){
 
 		bot_data = {}
 		bot_data.price = pair_price;
-		bot_data.volume = pair_volume;
+		if (buying_or_selling == 'buying') {
+			bot_data.volume = pair_volume;
+		}
+		if (buying_or_selling == 'selling') {
+			bot_data.volume = $('.trading_pair_coin_volume').val();
+		}
 		//bot_data.action = $(this).data('action');
 		//bot_data.action = $('.btn-bot_action').attr('data-action');
 		bot_data.action = $(this).attr('data-action');
@@ -631,7 +637,12 @@ $('.btn-bot_action').click(function(e){
 
 		trade_data = {}
 		trade_data.price = pair_price;
-		trade_data.volume = pair_volume;
+		if (buying_or_selling == 'buying') {
+			trade_data.volume = pair_volume;
+		}
+		if (buying_or_selling == 'selling') {
+			trade_data.volume = $('.trading_pair_coin_volume').val();
+		}
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
 		//trade_data.action = $(this).data('action');
