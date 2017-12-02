@@ -274,7 +274,7 @@ $('.dexsettings-btn').click(function(e){
 				className: 'btn-warning btn_dex_reset_settings',
 				callback: function(){
 					ShepherdIPC({"command":"reset_settings"});
-					setInterval(function(){ BarterDEXSettingsFn(); }, 1000);
+					setTimeout(function(){ BarterDEXSettingsFn(); }, 1000);
 				}
 			},
 			ok: {
