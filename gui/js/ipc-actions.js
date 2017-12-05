@@ -11,6 +11,10 @@ $(document).ready(function() {
 			$('.loginbody').hide();
 			CheckMM_Interval = setInterval(CheckMMStatus,1000);
 			$('.loadingbody').fadeIn();
+		} else if (loginstate == 'loggedout') {
+			$('.mainbody').hide();
+			$('.loginbody').fadeIn();
+			$('.loadingbody').fadeOut();
 		}
 	} else {
 		$('.mainbody').hide();

@@ -14,94 +14,90 @@ $(document).ready(function() {
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
 		var mypubkey = sessionStorage.getItem('mm_mypubkey');
-		if (mypubkey !== '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
-			var loginstate = sessionStorage.getItem('mm_loginstate');
-			if (loginstate == null || loginstate == 'default') {
-				$('.mainbody').show();
-				$('.loginbody').hide();
-				CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
-				CheckPortfolioFn();
+		var loginstate = sessionStorage.getItem('mm_loginstate');
+		if (loginstate !== null && loginstate === 'loggedin') {
+			$('.mainbody').show();
+			$('.loginbody').hide();
+			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			CheckPortfolioFn();
 
-				//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
-				//check_coin_balance();
+			//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
+			//check_coin_balance();
 
-		//---- dICO App Settings START ----//
-				//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
-				//CheckPortfolioFn();
+	//---- dICO App Settings START ----//
+			//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			//CheckPortfolioFn();
 
-				var dexmode = sessionStorage.getItem('mm_dexmode');
-				var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
+			var dexmode = sessionStorage.getItem('mm_dexmode');
+			var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
 
-				if (dexmode == 'BarterDEX') {
-					$('.navbar-brandname').html('BarterDEX');
-					$('#trading_mode_options_trademanual').trigger('click');
-					$('#trading_mode_options_tradebot').removeAttr("checked");
-					$('#trading_mode_options_trademanual').attr('checked','checked');
-					$('.trading_pair_coin_autoprice_mode_span').hide();
-					$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-					$('#trading_pair_coin_price_max_min').html('Max');
-				}
-				if (dexmode == 'dICO') {
-					$('.navbar-brandname').html(return_coin_name(selected_dICO_coin) + ' dICO');
-					selected_coin = {}
-					selected_coin.coin = selected_dICO_coin;
-					selected_coin.coin_name = return_coin_name(selected_dICO_coin);
-					console.log(selected_coin);
-					sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
-
-					$('.dexdashboard-btn').hide();
-					$('.screen-portfolio').hide();
-					$('.screen-coindashboard').hide();
-					$('.btn-exchangeclose').hide();
-					$('.screen-exchange').show();
-					$('.coin_ticker').html(selected_dICO_coin);
-					$.each($('.coinexchange[data-coin]'), function(index, value) {
-						$('.coinexchange[data-coin]').data('coin', selected_dICO_coin);
-					});
-
-					check_coin_balance(false);
-					CheckOrderBookFn();
-					CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-					check_swap_status_Interval = setInterval(check_swap_status,20000);
-					check_swap_status();
-					check_bot_list_Interval = setInterval(check_bot_list, 10000);
-					check_bot_list();
-					check_my_prices_Interval = setInterval(check_my_prices, 60000);
-					check_my_prices();
-					bot_screen_coin_balance_Interval = setInterval(bot_screen_coin_balance, 30000);
-					bot_screen_coin_balance();
-					bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
-					bot_screen_sellcoin_balance();
-					get_coin_info(selected_dICO_coin);
-
-					//Enableing Manual Trade by auto clicking Manual trade option via JS code.
-					$('#trading_mode_options_trademanual').trigger('click');
-					$('#trading_mode_options_tradebot').removeAttr("checked");
-					$('#trading_mode_options_trademanual').attr('checked','checked');
-					$('.trading_method_options').hide();
-					$('.trading_buysell_options').hide();
-					$('.trading_pair_coin_autoprice_mode_span').hide();
-					$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-					$('#trading_pair_coin_price_max_min').html('Max');
-
-					var charts_instruments_data = {}
-					charts_instruments_data.symbol = selected_dICO_coin+'/KMD'
-					charts_instruments_data.company = 'Komodo Platform';
-					ChartsInstruments(charts_instruments_data)
-					UpdateDexChart(selected_dICO_coin, 'KMD');
-				}
-
-		//---- dICO App Settings END ----//
-
-				//$('.trading_selected_trader_label').hide();
-				//$('.trading_selected_trader').hide();
-				$('.relvol_basevol_coin').html($('.trading_pair_coin').selectpicker('val'));
-
-
-				BarterDEXSettingsFn();
+			if (dexmode == 'BarterDEX') {
+				$('.navbar-brandname').html('BarterDEX');
+				$('#trading_mode_options_trademanual').trigger('click');
+				$('#trading_mode_options_tradebot').removeAttr("checked");
+				$('#trading_mode_options_trademanual').attr('checked','checked');
+				$('.trading_pair_coin_autoprice_mode_span').hide();
+				$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+				$('#trading_pair_coin_price_max_min').html('Max');
 			}
-		} else {
+			if (dexmode == 'dICO') {
+				$('.navbar-brandname').html(return_coin_name(selected_dICO_coin) + ' dICO');
+				selected_coin = {}
+				selected_coin.coin = selected_dICO_coin;
+				selected_coin.coin_name = return_coin_name(selected_dICO_coin);
+				console.log(selected_coin);
+				sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
+				$('.dexdashboard-btn').hide();
+				$('.screen-portfolio').hide();
+				$('.screen-coindashboard').hide();
+				$('.btn-exchangeclose').hide();
+				$('.screen-exchange').show();
+				$('.coin_ticker').html(selected_dICO_coin);
+				$.each($('.coinexchange[data-coin]'), function(index, value) {
+					$('.coinexchange[data-coin]').data('coin', selected_dICO_coin);
+				});
+
+				check_coin_balance(false);
+				CheckOrderBookFn();
+				CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
+				check_swap_status_Interval = setInterval(check_swap_status,20000);
+				check_swap_status();
+				check_bot_list_Interval = setInterval(check_bot_list, 10000);
+				check_bot_list();
+				check_my_prices_Interval = setInterval(check_my_prices, 60000);
+				check_my_prices();
+				bot_screen_coin_balance_Interval = setInterval(bot_screen_coin_balance, 30000);
+				bot_screen_coin_balance();
+				bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
+				bot_screen_sellcoin_balance();
+				get_coin_info(selected_dICO_coin);
+
+				//Enableing Manual Trade by auto clicking Manual trade option via JS code.
+				$('#trading_mode_options_trademanual').trigger('click');
+				$('#trading_mode_options_tradebot').removeAttr("checked");
+				$('#trading_mode_options_trademanual').attr('checked','checked');
+				$('.trading_method_options').hide();
+				$('.trading_buysell_options').hide();
+				$('.trading_pair_coin_autoprice_mode_span').hide();
+				$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+				$('#trading_pair_coin_price_max_min').html('Max');
+
+				var charts_instruments_data = {}
+				charts_instruments_data.symbol = selected_dICO_coin+'/KMD'
+				charts_instruments_data.company = 'Komodo Platform';
+				ChartsInstruments(charts_instruments_data)
+				UpdateDexChart(selected_dICO_coin, 'KMD');
+			}
+
+	//---- dICO App Settings END ----//
+
+			//$('.trading_selected_trader_label').hide();
+			//$('.trading_selected_trader').hide();
+			$('.relvol_basevol_coin').html($('.trading_pair_coin').selectpicker('val'));
+
+
+			BarterDEXSettingsFn();
 		}
 	} else {
 		$('.mainbody').hide();
