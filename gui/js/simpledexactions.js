@@ -236,6 +236,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 		ChartsInstruments(charts_instruments_data)
 		UpdateDexChart($(this).data('coin'), 'KMD');
 	}
+
+	// Fix width of chart
+	gChart.size = {width: $('#chartContainer').parent().width()};
+	gChart.update();
 });
 
 
