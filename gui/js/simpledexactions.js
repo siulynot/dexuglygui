@@ -11,7 +11,6 @@ var bot_screen_sellcoin_balance_Interval = null;
 var shell = require('electron').shell;
 
 $(document).ready(function() {
-	$('.scrollbar-macosx').scrollbar();
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
 		$('.mainbody').show();
