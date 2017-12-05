@@ -1245,14 +1245,22 @@ function check_coin_listunspent(coin_listunspent_data) {
 	}).done(function(coin_listunspent_output_data) {
 		// If successful
 		console.log(coin_listunspent_output_data);
+		console.log(coin_listunspent_output_data[0].hasOwnProperty('account'));
 
 		$('.dex_showlist_unspents_tbl tbody').empty();
 		var show_list_unspents_tbl_tr = '';
 		show_list_unspents_tbl_tr += '<tr>';
 			show_list_unspents_tbl_tr += '<th style="width: 30px;">Index</th>';
-			show_list_unspents_tbl_tr += '<th>Coin Info</th>';
-			show_list_unspents_tbl_tr += '<th>Value info</th>';
-			show_list_unspents_tbl_tr += '<th>Transaction Info</th>';
+			if (coin_listunspent_output_data[0].hasOwnProperty('account') == true) {
+				show_list_unspents_tbl_tr += '<th>Coin Info</th>';
+				show_list_unspents_tbl_tr += '<th>Value info</th>';
+				show_list_unspents_tbl_tr += '<th>Transaction Info</th>';
+			} else {
+				show_list_unspents_tbl_tr += '<th>Height</th>';
+				show_list_unspents_tbl_tr += '<th>Tx Hash</th>';
+				show_list_unspents_tbl_tr += '<th>Tx Pos</th>';
+				show_list_unspents_tbl_tr += '<th>Value</th>';
+			}
 			show_list_unspents_tbl_tr += '</tr>';
 		$('.dex_showlist_unspents_tbl tbody').append(show_list_unspents_tbl_tr);
 		$.each(coin_listunspent_output_data, function(index, val) {
@@ -1268,20 +1276,28 @@ function check_coin_listunspent(coin_listunspent_data) {
 			show_list_unspents_tbl_tr = '';
 			show_list_unspents_tbl_tr += '<tr>';
 				show_list_unspents_tbl_tr += '<td>' + index + '</td>';
-				show_list_unspents_tbl_tr += `<td>
-												<b>Coin:</b> `+ coin_listunspent_data.coin +`<br>
-												<b>Account:</b> `+ val.account +`<br>
-												<b>Address:</b> `+ val.address +`<br>
-												</td>`;
-				show_list_unspents_tbl_tr += `<td>
-												<b>Amount:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
-												<b>Confirmations:</b> `+ val.confirmations +`<br>
-												<b>Interest:</b> `+ utxo_interest +`<br>
-												</td>`;
-				show_list_unspents_tbl_tr += `<td>
-												<b>scriptPubKey:</b> `+ val.scriptPubKey +`<br>
-												<b>TxID:</b> `+ val.txid +`<br>
-												</td>`;
+				if (coin_listunspent_output_data[0].hasOwnProperty('account') == true) {
+					show_list_unspents_tbl_tr += `<td>
+													<b>Coin:</b> `+ coin_listunspent_data.coin +`<br>
+													<b>Account:</b> `+ val.account +`<br>
+													<b>Address:</b> `+ val.address +`<br>
+													</td>`;
+					show_list_unspents_tbl_tr += `<td>
+													<b>Amount:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
+													<b>Confirmations:</b> `+ val.confirmations +`<br>
+													<b>Interest:</b> `+ utxo_interest +`<br>
+													</td>`;
+					show_list_unspents_tbl_tr += `<td>
+													<b>scriptPubKey:</b> `+ val.scriptPubKey +`<br>
+													<b>TxID:</b> `+ val.txid +`<br>
+													</td>`;
+				} else {
+					show_list_unspents_tbl_tr += `<td>` + val.height + `</td>`;
+					show_list_unspents_tbl_tr += `<td>` + val.tx_hash + `</td>`;
+					show_list_unspents_tbl_tr += `<td>` + val.tx_pos + `</td>`;
+					show_list_unspents_tbl_tr += `<td>` + (parseFloat(val.value)).toFixed(8) + ' ' + coin_listunspent_data.coin + `</td>`;
+				}
+				
 			show_list_unspents_tbl_tr += '</tr>';
 
 			$('.dex_showlist_unspents_tbl tbody').append(show_list_unspents_tbl_tr);
