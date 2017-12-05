@@ -225,10 +225,17 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	getZeroConfDepositHistory();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
-	charts_instruments_data.company = 'Komodo Platform';
-	ChartsInstruments(charts_instruments_data)
-	UpdateDexChart($(this).data('coin'), 'KMD');
+	if ($(this).data('coin') == 'KMD') {
+		charts_instruments_data.symbol = $(this).data('coin')+'/BTC'
+		charts_instruments_data.company = 'Komodo Platform';
+		ChartsInstruments(charts_instruments_data)
+		UpdateDexChart($(this).data('coin'), 'BTC');
+	} else {
+		charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
+		charts_instruments_data.company = 'Komodo Platform';
+		ChartsInstruments(charts_instruments_data)
+		UpdateDexChart($(this).data('coin'), 'KMD');
+	}
 });
 
 

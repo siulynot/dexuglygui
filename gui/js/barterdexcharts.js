@@ -14,7 +14,7 @@ $(function() {
     });*/
 
     gChart = $('#chartContainer').StockChartX({
-        width: $(window).width()-30,
+        width: $('#chartContainer').parent().width(),
         height: 360,
         //fullWindowMode: isFullWindowMode
     });
@@ -76,7 +76,7 @@ $(function() {
 
 $(window).resize(function() {
 	//console.log($(window).width());
-	gChart.size = {width: $(window).width()-30};
+	gChart.size = {width: $('#chartContainer').parent().width()};
 	gChart.update();
 });
 
@@ -131,7 +131,8 @@ function UpdateDexChart(chartbase, chartrel)  {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"tradesarray","base":chartbase,"rel":chartrel,"timescale":3600};
+	var ajax_data = {"userpass":userpass,"method":"tradesarray","base":chartbase,"rel":chartrel,"timescale":60,"starttime":0,"endtime":0};
+	//var url = "http://5.9.253.196:7782/api/stats/";
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
