@@ -1,4 +1,4 @@
-# BarterDEX-Simple App
+# BarterDEX App
 
 Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
 
@@ -9,20 +9,20 @@ https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-No
 ### Setup
 Once running, follow these steps:
 ```shell
-git clone https://github.com/SuperNETorg/BarterDEX-Simple.git
-cd BarterDEX-Simple
-git checkout v0.6
+git clone https://github.com/SuperNETorg/BarterDEX.git
+cd BarterDEX
+git checkout v0.7
 npm install
 npm start
 ```
 
-It will download "BarterDEX-Simple". Open "BarterDEX-Simple", and from there open "index.html" file in your web browser.
+It will download "BarterDEX". Open "BarterDEX", and from there open "index.html" file in your web browser.
 
 ### Update
 To update, follow these steps:
 ```shell
-cd BarterDEX-Simple
-git checkout v0.6
+cd BarterDEX
+git checkout v0.7
 git pull
 ```
 
@@ -48,7 +48,7 @@ sudo npm install electron-prebuilt -g
 10. Wait and watch the MNZ balance increasing as trades happen.
 
 #### Report Issues
-Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX-Simple/issues
+Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX/issues
 
 #### Testing Notes
 If your wallet is encrypted, the app will not work with it. This feature will be made available in coming releases.
