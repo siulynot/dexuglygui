@@ -47,7 +47,8 @@ $(document).ready(function() {
 
 			$('.dexdashboard-btn').hide();
 			$('.screen-portfolio').hide();
-			$('.screen-coindashboard').hide()
+			$('.screen-coindashboard').hide();
+			$('.btn-exchangeclose').hide();
 			$('.screen-exchange').show();
 			$('.coin_ticker').html(selected_dICO_coin);
 			$.each($('.coinexchange[data-coin]'), function(index, value) {
