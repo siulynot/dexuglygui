@@ -225,7 +225,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
 
-	getZeroConfDepositHistory();
+	//getZeroConfDepositHistory();
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
@@ -5166,10 +5166,6 @@ function constructTradesHistory() {
 
 /* ZEROCONF SETTINGS */
 
-$('.btn-refreshzeroconf_settings').click(function(){
-	getZeroConfDepositHistory();
-});
-
 $('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
 	e.preventDefault();
 	console.log('zconf_deposit_txid_link clicked');
@@ -5183,13 +5179,10 @@ $('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_details', 
 	console.log($(this).data());
 });
 
-$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_claim', function(e) {
+$('.btn_zeroconf_claim_deposit').click(function(e) {
 	e.preventDefault();
-	console.log('zconf_deposit_claim clicked');
-	console.log($(this).data());
-	var addr = $(this).data('address');
-	var expr = $(this).data('expiration');
-	ZeroConfClaim(addr, expr);
+	console.log('btn_zeroconf_claim_deposit clicked');
+	ZeroConfClaim();
 });
 
 $('.btn_zeroconf_deposit').click(function(e){
@@ -5305,7 +5298,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 					shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
 				});
 			});
-			getZeroConfDepositHistory();
+			//getZeroConfDepositHistory();
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -5314,7 +5307,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 }
 
 
-function ZeroConfClaim(claim_address, claim_expiration) {
+function ZeroConfClaim() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"instantdex_claim"};
@@ -5335,9 +5328,15 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 		}
 		if (zconf_claim_data.result == 'success') {
 			var zconf_claim_bootbox = bootbox.dialog({
-				title: 'InstantDEX security claimed!',
-				message: `<b>Claimed: </b> ${zconf_claim_data.claimed}<br>
-							<a href="#" class="zconf_claim_txid_bootbox" data-txid="${zconf_claim_data.txids}">` + zconf_claim_data.txids + `</a>`,
+				title: 'InstantDEX Deposit Claim',
+				message: `<div class="zeroconf_claims_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">
+								<table class="table table-striped zeroconf_claims_tbl" width="100%" style="margin-bottom: 0;">
+									<thead>
+										<th>List of Claimable Deposit</th>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>`,
 				closeButton: false,
 				size: 'medium',
 				buttons: {
@@ -5350,7 +5349,31 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 				}
 			})
 			zconf_claim_bootbox.init(function(){
-				$('.zconf_claim_txid_bootbox').click(function(){
+
+				$('.zeroconf_claims_tbl tbody').empty();
+				$.each(zconf_claim_data.txids,function(index, val) {
+					console.log(index);
+					console.log(val);
+
+					var seconds = val.waittime;
+					var duration = moment.duration(seconds, 'seconds');
+					var formatted_waittime = duration.format("hh:mm:ss");
+					console.log(formatted_waittime);
+
+					var zeroconf_claims_tbl_tr = '';
+
+					zeroconf_claims_tbl_tr += '<tr>';
+					zeroconf_claims_tbl_tr += `<td>
+													<b>Deposit:</b> ${val.deposit} KMD<br>
+													<b>Interest:</b> ${val.interest}<br>
+													<b>Wait Time:</b> ${formatted_waittime} (HH:mm:ss)<br>
+													<b>Transaction ID:</b> <a class="zconf_claim_txid_bootbox" href="#" data-txid="${val.txid}">Open in Explorer</a>
+													</td>`;
+					zeroconf_claims_tbl_tr += '</tr>';
+					$('.zeroconf_claims_tbl tbody').append(zeroconf_claims_tbl_tr);
+				});
+
+				$('.zeroconf_claims_tbl tbody').on('click', '.zconf_claim_txid_bootbox', function(e) {
 					console.log($(this).data());
 					shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
 				});
@@ -5364,6 +5387,38 @@ function ZeroConfClaim(claim_address, claim_expiration) {
 	});
 }
 
+$('.btn_zeroconf_deposit_history').click(function(e){
+	e.preventDefault();
+	console.log('info_box_for_zeroconf clicked');
+
+	var zconf_deposit_history_bootbox = bootbox.dialog({
+		title: 'High Speed Mode Deposits History',
+		message: `<div class="zeroconf_settings_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">
+					<table class="table table-striped zeroconf_deposits_history_tbl" width="100%" style="margin-bottom: 0;">
+						<thead>
+							<!--<th>Index</th>-->
+							<th>High Speed Mode Deposits History</th>
+							<!--<th>Actions</th>-->
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>`,
+		closeButton: false,
+		size: 'medium',
+		buttons: {
+			cancel: {
+				label: "Close",
+				className: 'btn-default',
+				callback: function(){
+				}
+			}
+		}
+	})
+	zconf_deposit_history_bootbox.init(function(){
+		getZeroConfDepositHistory();
+		$(".mCustomScrollbar").mCustomScrollbar();
+	});
+});
 
 
 $('.info_box_for_zeroconf').click(function(e){
