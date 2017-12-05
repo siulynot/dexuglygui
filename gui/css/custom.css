@@ -1,3 +1,13 @@
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
 .navmenu_top {
 	-webkit-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
 	-moz-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
