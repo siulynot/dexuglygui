@@ -112,10 +112,19 @@ textarea {
   width: 100%;
 }
 
-
-#exchange_coin_asks, #exchange_coin_bids, .exchange_trade_status_body {
+.exchange_trade_status_body {
   overflow: hidden;
   height: 285px;
+}
+
+#exchange_coin_asks, #exchange_coin_bids {
+  overflow: hidden;
+  height: 431px;
+}
+
+#exchange_coin_asks_togl, #exchange_coin_bids_togl {
+  overflow: hidden;
+  max-height: 431px;
 }
 
 .zeroconf_settings_table_div {
