@@ -1,4 +1,24 @@
 var CheckMM_Interval = null;
+var CheckDefaultLogin_Interval = null;
+
+$(document).ready(function() {
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	if (mypubkey !== '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
+		var loginstate = sessionStorage.getItem('mm_loginstate');
+		if (loginstate == null || loginstate == 'default') {
+			var shepherdresult = ShepherdIPC({"command":"login","passphrase":"default"});
+			$('.mainbody').hide();
+			$('.loginbody').hide();
+			CheckMM_Interval = setInterval(CheckMMStatus,1000);
+			$('.loadingbody').fadeIn();
+		}
+	} else {
+		$('.mainbody').hide();
+		$('.loginbody').fadeIn();
+		$('.loadingbody').fadeOut();
+	}
+});
+
 
 // In renderer process (web page).
 const {ipcRenderer} = require('electron')
@@ -73,9 +93,11 @@ $('.dextradeshistory-btn').click(function(e) {
 
 $('.dexlogout-btn').click(function(e) {
 	e.preventDefault();
-	var shepherdresult = ShepherdIPC({"command":"logout"});
+	//var shepherdresult = ShepherdIPC({"command":"logout"});
 	$('.mainbody').fadeOut();
 	$('.loginbody').fadeIn();
+
+	LoginWithPassphrase('default','logout');
 
 	CheckPortfolioFn(false);
 	CheckOrderBookFn(false);
@@ -86,7 +108,7 @@ $('.dexlogout-btn').click(function(e) {
 	bot_screen_sellcoin_balance(false);
 
 	check_coin_balance(false);
-	sessionStorage.clear();
+	//sessionStorage.clear();
 });
 
 $('.dexdebug-btn').click(function(e) {
@@ -212,11 +234,12 @@ $('.login-genpass-btn').click(function(e){
 $('.login-btn').click(function(e) {
 	e.preventDefault();
 	var passphrase = $('.loginPassphrase').val();
-	var shepherdresult = ShepherdIPC({"command":"login","passphrase":passphrase});
+	LoginWithPassphrase(passphrase,'login');
+	//var shepherdresult = ShepherdIPC({"command":"login","passphrase":passphrase});
 	$('.loginPassphrase').val('');
 	$('.mainbody').hide();
 	$('.loginbody').hide();
-	CheckMM_Interval = setInterval(CheckMMStatus,1000);
+	//CheckMM_Interval = setInterval(CheckMMStatus,1000);
 	$('.loadingbody').fadeIn();
 
 	var dexmode = $('.login_mode_options').selectpicker('val');
@@ -407,62 +430,135 @@ CheckMMStatus = function(sig) {
 	}
 
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
+
 	if (mmstatus !== 'closed') {
-		$('.mainbody').fadeIn();
-		$('.loginbody').fadeOut();
-		$('.loadingbody').hide();
-		var refresh_data = {"coin":" ", "status": "enable"};
-		//enable_disable_coin(refresh_data);
-		//get_myprices();
-		//CheckOrderbook_Interval = setInterval(CheckOrderBookFn,3000);
-		//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
-		CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
-		CheckPortfolioFn();
-
-//---- dICO App Settings START ----//
-		//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
-
-		/*selected_coin = {}
-		selected_coin.coin = _coin;
-		selected_coin.coin_name = return_coin_name(_coin);
-		console.log(selected_coin);
-		sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
-
-		$('.screen-portfolio').hide();
-		$('.screen-coindashboard').hide()
-		$('.screen-exchange').show();
-		$('.coin_ticker').html(_coin);
-		$.each($('.coinexchange[data-coin]'), function(index, value) {
-			$('.coinexchange[data-coin]').data('coin', _coin);
-		});
-
-		check_coin_balance(false);
-		CheckOrderBookFn();
-		CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-		check_swap_status_Interval = setInterval(check_swap_status,20000);
-		check_swap_status();
-		check_bot_list_Interval = setInterval(check_bot_list, 30000);
-		check_bot_list();
-		check_my_prices_Interval = setInterval(check_my_prices, 30000);
-		check_my_prices();
-		bot_screen_coin_balance_Interval = setInterval(bot_screen_coin_balance, 30000);
-		bot_screen_coin_balance();
-		bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
-		bot_screen_sellcoin_balance();
-
-		$('#trading_mode_options_trademanual').trigger('click');
-		$('#trading_mode_options_tradebot').removeAttr("checked");
-		$('#trading_mode_options_trademanual').attr('checked','checked');*/
-
-//---- dICO App Settings END ----//
-
+		console.log(mmstatus);
 		clearInterval(CheckMM_Interval);
+		CheckDefaultLogin_Interval = setInterval(CheckDefaultLogin,1000);
 	} else {
-		$('.mainbody').fadeOut();
-		$('.loginbody').fadeOut();
+		$('.mainbody').hide();
+		$('.loginbody').hide();
 		$('.loadingbody').fadeIn();
 	}
+	
+	/*if (mmstatus !== 'closed') {
+		var userpass = sessionStorage.getItem('mm_userpass');
+		var mypubkey = sessionStorage.getItem('mm_mypubkey');
+		console.log('mypubkey: '+mypubkey);
+		console.log('userpass: '+userpass);
+		if (mypubkey == '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
+			$('.mainbody').hide();
+			$('.loadingbody').fadeOut();
+			$('.loginbody').fadeIn();
+			clearInterval(CheckPortfolio_Interval);
+		} else {
+			$('.mainbody').fadeIn();
+			$('.loginbody').fadeOut();
+			$('.loadingbody').hide();
+			console.log(mypubkey);
+			
+		}
+		CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+		CheckPortfolioFn();
+		clearInterval(CheckMM_Interval);
+	} else {
+		$('.mainbody').hide();
+		$('.loginbody').hide();
+		$('.loadingbody').fadeIn();
+	}*/
 }
+
+
+CheckDefaultLogin = function(sig) {
+	if (sig == false) {
+		clearInterval(CheckDefaultLogin_Interval);
+	} else {
+		console.log("Checking if it's default login");
+	}
+
+	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
+	var ajax_data = {"userpass":userpass,"method":"portfolio"};
+	console.log(ajax_data)
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (!data.userpass === false) {
+			console.log('first marketmaker api call execution after marketmaker started.')
+			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+			sessionStorage.setItem('mm_userpass', data.userpass);
+			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+			sessionStorage.setItem('mm_loginstate', 'default');
+
+			if (data.mypubkey == '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
+				$('.mainbody').hide();
+				$('.loadingbody').fadeOut();
+				$('.loginbody').fadeIn();
+				clearInterval(CheckDefaultLogin_Interval);
+			}
+			//return
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
+
+LoginWithPassphrase = function(login_passphrase,action_mode) {
+	console.log('Login using passphrase from Login form input');
+
+	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
+	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":login_passphrase,"gui":"simplegui"};
+	console.log(ajax_data)
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
+		sessionStorage.setItem('mm_userpass', data.userpass);
+		sessionStorage.setItem('mm_mypubkey', data.mypubkey);
+
+		if (action_mode == 'login') {
+			sessionStorage.setItem('mm_loginstate', 'loggedin');
+			$('.mainbody').fadeIn();
+			$('.loginbody').fadeOut();
+			$('.loadingbody').hide();
+
+			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			CheckPortfolioFn();
+		}
+
+		if (action_mode == 'logout') {
+			sessionStorage.setItem('mm_loginstate', 'loggedout');
+			$('.mainbody').fadeOut();
+			$('.loginbody').fadeIn();
+			$('.loadingbody').hide();
+		}
+
+
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
 
 
 function BarterDEXSettingsFn() {
