@@ -104,12 +104,12 @@ textarea {
 
 
 #exchange_coin_asks, #exchange_coin_bids, .exchange_trade_status_body {
-  overflow: scroll;
+  overflow: hidden;
   height: 285px;
 }
 
 .zeroconf_settings_table_div {
-  overflow: scroll;
+  overflow: hidden;
   height: 385px;
 }
 
