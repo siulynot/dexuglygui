@@ -1,4 +1,4 @@
-# BarterDEX-Simple App
+# BarterDEX App
 
 Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
 
@@ -9,19 +9,19 @@ https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-No
 ### Setup
 Once running, follow these steps:
 ```shell
-git clone https://github.com/SuperNETorg/BarterDEX-Simple.git
-cd BarterDEX-Simple
+git clone https://github.com/SuperNETorg/BarterDEX.git
+cd BarterDEX
 git checkout v0.7
 npm install
 npm start
 ```
 
-It will download "BarterDEX-Simple". Open "BarterDEX-Simple", and from there open "index.html" file in your web browser.
+It will download "BarterDEX". Open "BarterDEX", and from there open "index.html" file in your web browser.
 
 ### Update
 To update, follow these steps:
 ```shell
-cd BarterDEX-Simple
+cd BarterDEX
 git checkout v0.7
 git pull
 ```
@@ -39,7 +39,7 @@ sudo npm install electron-prebuilt -g
 1. Start Komodo Native Wallet
 2. Start Monaize Native Wallet
 3. Wait for both Komodo and Monaize to sync 100%
-4. Start BarterDEX-Simple
+4. Start BarterDEX
 5. Select 'Monzie (MNZ) dICO' option at the login screen.
 6. Login with `passphrase` (either pre-generated or make a new one).
 7. Look for the KMD address and send KMDs to it. Once sent, it will start reflecting there in a minute.
@@ -48,7 +48,7 @@ sudo npm install electron-prebuilt -g
 10. Wait and watch the MNZ balance increasing as trades happen.
 
 #### Report Issues
-Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX-Simple/issues
+Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX/issues
 
 #### Testing Notes
 If your wallet is encrypted, the app will not work with it. This feature will be made available in coming releases.
@@ -58,17 +58,17 @@ If your wallet is encrypted, the app will not work with it. This feature will be
 Refer to the original [electron-packager](https://github.com/electron-userland/electron-packager) repository for more detailed information.
 
 ##### Linux
-Change directory to BarterDEX-Simple and execute the following command to build the Linux app
+Change directory to BarterDEX and execute the following command to build the Linux app
 ```shell
-cd BarterDEX-Simple
+cd BarterDEX
 electron-packager . --platform=linux --arch=x64 --icon=assets/icons/barterdex/128x128.png --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/osx --overwrite
 ```
 change architecture build parameter to ```--arch=x32``` for 32 bit build
 
 ##### OSX
-Change directory to BarterDEX-Simple and execute the following command to build the OSX app
+Change directory to BarterDEX and execute the following command to build the OSX app
 ```shell
-cd BarterDEX-Simple
+cd BarterDEX
 electron-packager . --platform=darwin --arch=x64 --icon=assets/icons/barterdex/barterdex.icns --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/linux64 --overwrite
 ```
 
