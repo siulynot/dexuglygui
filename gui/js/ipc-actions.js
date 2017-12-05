@@ -501,6 +501,8 @@ CheckDefaultLogin = function(sig) {
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 			sessionStorage.setItem('mm_loginstate', 'default');
+			sessionStorage.removeItem('mm_usercoins');
+			sessionStorage.removeItem('mm_selectedcoin');
 
 			if (data.mypubkey == '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
 				$('.mainbody').hide();
@@ -551,6 +553,8 @@ LoginWithPassphrase = function(login_passphrase,action_mode) {
 
 		if (action_mode == 'logout') {
 			sessionStorage.setItem('mm_loginstate', 'loggedout');
+			sessionStorage.removeItem('mm_usercoins');
+			sessionStorage.removeItem('mm_selectedcoin');
 			$('.mainbody').fadeOut();
 			$('.loginbody').fadeIn();
 			$('.loadingbody').hide();

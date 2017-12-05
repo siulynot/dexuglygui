@@ -15,7 +15,7 @@ $(document).ready(function() {
 	if (mmstatus !== 'closed') {
 		var mypubkey = sessionStorage.getItem('mm_mypubkey');
 		var loginstate = sessionStorage.getItem('mm_loginstate');
-		if (loginstate !== null && loginstate === 'loggedin') {
+		if (loginstate !== null && loginstate == 'loggedin') {
 			$('.mainbody').show();
 			$('.loginbody').hide();
 			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
