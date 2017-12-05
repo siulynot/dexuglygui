@@ -448,32 +448,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .trading_sellcoin_balance, .trading_coin_balance {
-    font-size: 220%;
-    font-weight: 100;
-    text-align: right;
-    background-color: #fff;
-    border-radius: 0px;
-  }
-
-@media screen and (min-width: 1360px){
-  .trading_sellcoin_balance, .trading_coin_balance {
-    font-size: 220%;
-    font-weight: 100;
-    text-align: right;
-    background-color: #fff;
-    border-radius: 0px;
-  }
-}
-
-@media screen and (min-width: 1280px){
-  .trading_sellcoin_balance, .trading_coin_balance {
     font-size: 175%;
     font-weight: 100;
     text-align: right;
     background-color: #fff;
     border-radius: 0px;
   }
-}
 
 
 

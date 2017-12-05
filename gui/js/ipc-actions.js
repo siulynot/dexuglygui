@@ -256,7 +256,7 @@ $('.dexsettings-btn').click(function(e){
 			<div class="input-group col-sm-2" style="margin: 10px 0;">
 				<select class="selectpicker settings_theme_select" data-hide-disabled="true" data-width="30%">
 					<option data-content="Dark Theme" data-tokens="Dark Theme">dark</option>
-					<option data-content="Light Theme" data-tokens="Light Theme">light</option>
+					<!--<option data-content="Light Theme" data-tokens="Light Theme">light</option>-->
 				</select>
 			</div>`,
 		closeButton: false,
