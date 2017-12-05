@@ -355,6 +355,36 @@
 
       <div class="col-sm-5">
         <div class="row">
+
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title"><strong>Your Balance</strong></h3>
+                <!--<button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin: -20px -8px;">ADD COINS <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>-->
+                <button class="btn btn-xs btn-trading_coin_balance_refresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px"><span class="glyphicon glyphicon-refresh"></span></button>
+              </div>
+              <div> <!-- panel-body -->
+                <svg id="balance-spinner">
+                  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                  <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                </svg>
+                <div class="balance-block">
+                  <div class="input-group col-sm-12 your_coins_balance_info">
+                    <span class="input-group-addon trading_sellcoin_ticker_name"></span>
+                    <span class="input-group-addon trading_sellcoin_balance"></span>
+                  </div>
+                  <div class="input-group col-sm-12 your_coins_balance_info">
+                    <span class="input-group-addon trading_coin_ticker_name"></span>
+                    <span class="input-group-addon trading_coin_balance"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
           <div class="col-sm-12">
             <div class="panel with-nav-tabs panel-default">
               <div class="panel-heading">
@@ -485,33 +515,7 @@
             </div>
           </div>
 
-          <div class="col-sm-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><strong>Your Balance</strong></h3>
-                <!--<button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin: -20px -8px;">ADD COINS <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>-->
-                <button class="btn btn-xs btn-trading_coin_balance_refresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px"><span class="glyphicon glyphicon-refresh"></span></button>
-              </div>
-              <div> <!-- panel-body -->
-                <svg id="balance-spinner">
-                  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                  <circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-                </svg>
-                <div class="balance-block">
-                  <div class="input-group col-sm-12 your_coins_balance_info">
-                    <span class="input-group-addon trading_sellcoin_ticker_name"></span>
-                    <span class="input-group-addon trading_sellcoin_balance"></span>
-                  </div>
-                  <div class="input-group col-sm-12 your_coins_balance_info">
-                    <span class="input-group-addon trading_coin_ticker_name"></span>
-                    <span class="input-group-addon trading_coin_balance"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
 
           <div class="col-sm-12">
