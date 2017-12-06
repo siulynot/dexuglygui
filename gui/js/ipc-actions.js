@@ -301,6 +301,7 @@ $('.dexsettings-btn').click(function(e){
 				className: 'btn-warning btn_dex_reset_settings',
 				callback: function(){
 					ShepherdIPC({"command":"reset_settings"});
+					$('#trading_mode_options_trademanual').trigger('click');
 					setTimeout(function(){ BarterDEXSettingsFn(); }, 1000);
 				}
 			},
@@ -318,6 +319,7 @@ $('.dexsettings-btn').click(function(e){
 					}
 					if (experimental_features == 'disable') {
 						barterDEX_settings.experimentalFeatures = false;
+						$('#trading_mode_options_trademanual').trigger('click');
 					}
 
 					console.log(barterDEX_settings);
@@ -524,7 +526,7 @@ LoginWithPassphrase = function(login_passphrase,action_mode) {
 
 	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
 	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":login_passphrase,"gui":"simplegui"};
-	console.log(ajax_data)
+	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({

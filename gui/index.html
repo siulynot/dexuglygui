@@ -442,9 +442,12 @@
                         <div class="form-group buy_sell_amount_to" style="margin-top: 15px; margin-bottom: 0px;">
                           <span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
                         </div>
-                        <div class="input-group col-sm-12 buy_sell_button_div">
+                        <div class="input-group col-sm-12">
                           <p class="portfolio_info_text" style="font-size: 20px; font-weight: 200;"></p>
-                          <span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>
+                        </div>
+                        <div class="input-group col-sm-12 buy_sell_button_div">
+                          <!--<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;"></span>-->
+                          <select class="selectpicker trading_pair_coin2" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
                           <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 44px; font-size: 20px;">
                           <span class="input-group-btn">
                             <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 44px; font-size: 20px;">BUY</button>
@@ -519,7 +522,7 @@
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>-->
                     <ul class="nav nav-tabs">
                         <li><a href="#exchange_myorders" data-toggle="tab">My Orders <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
-                        <li class="autobot_tab"><a href="#exchange_botlist" data-toggle="tab">Auto Traders List <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                        <li class="autobot_tab"><a href="#exchange_botlist" data-toggle="tab">Auto Bots List <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
                         <li class="active"><a href="#exchange_tradestatus" data-toggle="tab">Trade Status <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
                     </ul>
                   </div>

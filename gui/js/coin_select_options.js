@@ -129,6 +129,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
 */
 
 $('.trading_pair_coin').html(coin_select_options);
+$('.trading_pair_coin2').html(coin_select_options);
 
 
 $('.sell_coin').html(coin_select_options);

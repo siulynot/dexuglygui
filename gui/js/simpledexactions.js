@@ -209,6 +209,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
+	$('.trading_pair_coin2').selectpicker('val',coin);
 	$('.coingoal_label_coin_name').html(return_coin_name(coin) + ' ('+coin+')');
 
 	CheckPortfolioFn(false);
@@ -2398,6 +2399,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('#trading_pair_coin_price_max_min').show();
 		$('.buy_sell_amount_to').show();
 		$('#trading_pair_coin_ticker').show();
+		$('.trading_pair_coin2').show();
 		$('.trading_pair_coin_volume').show();
 		$('.btn-bot_action').removeClass('btn-block');
 		$('.btn-bot_action').css('border-top-left-radius','0');
@@ -2431,6 +2433,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('#trading_pair_coin_price_max_min').show();
 		$('.buy_sell_amount_to').show();
 		$('#trading_pair_coin_ticker').show();
+		$('.trading_pair_coin2').show();
 		$('.trading_pair_coin_volume').show();
 		$('.btn-bot_action').removeAttr('btn-block');
 		$('.btn-bot_action').css('border-top-left-radius','0');
@@ -2470,6 +2473,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.btn-bot_action').attr('data-action', 'autoprice');
 		$('.buy_sell_amount_to').hide();
 		$('#trading_pair_coin_ticker').hide();
+		$('.trading_pair_coin2').hide();
 		$('.trading_pair_coin_volume').hide();
 		$('.btn-bot_action').addClass(' btn-block');
 		$('.btn-bot_action').css('border-top-left-radius','4px');
@@ -2854,17 +2858,52 @@ $('.trading_pair_coin').on('change', function (e) {
 	var valueSelected = this.value;
 	console.log(valueSelected);
 
-	/*var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
-	console.log(coin);
+	$('.relvol_basevol_coin').html(valueSelected);
+
+	bot_screen_sellcoin_balance();
+	bot_screen_coin_balance();
+
+	CheckOrderBookFn();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = coin+'/KMD'
+	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
-	UpdateDexChart(coin, this.value);*/
+	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
+});
 
-	//update_min_max_price_input();
+
+$('.trading_pair_coin2').on('change', function (e) {
+	var optionSelected_pair_coin2 = $("option:selected", this);
+	var valueSelected_pair_coin2 = this.value;
+	console.log(valueSelected_pair_coin2);
+
+	coin = $('.trading_pair_coin2').selectpicker('val');
+
+	selected_coin = {}
+	selected_coin.coin = coin;
+	selected_coin.coin_name = return_coin_name(coin);
+	//selected_coin.addr = $(this).data('addr');
+	//selected_coin.balance = $(this).data('balance');
+	console.log(selected_coin);
+	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
+
+	$('.coin_ticker').html(coin);
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').data('coin', coin);
+	});
+	$('.coingoal_label_coin_name').html(return_coin_name(coin) + ' ('+coin+')');
+
+	bot_screen_sellcoin_balance();
+	bot_screen_coin_balance();
+
+	CheckOrderBookFn();
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
 
 });
 
@@ -4373,6 +4412,10 @@ function check_swap_status_details(swap_status_data) {
 	}).done(function(swap_status_output_data) {
 		// If successful
 		console.log(swap_status_output_data);
+
+		if (!swap_status_output_data.error === false) {
+			toastr.error(swap_status_output_data.error, 'Status Notification');
+		}
 
 		if (!swap_status_output_data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
