@@ -88,6 +88,7 @@ $(document).ready(function() {
 				charts_instruments_data.company = 'Komodo Platform';
 				ChartsInstruments(charts_instruments_data)
 				UpdateDexChart(selected_dICO_coin, 'KMD');
+				Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
 			}
 
 	//---- dICO App Settings END ----//
@@ -240,6 +241,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 		ChartsInstruments(charts_instruments_data)
 		UpdateDexChart($(this).data('coin'), 'KMD');
 	}
+	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
 
 	// Fix width of chart
 	gChart.size = {width: $('#chartContainer').parent().width()};
@@ -348,6 +350,8 @@ $('.btn-inventoryclose').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
+	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+	Refresh_active_StockChart();
 
 	var dexmode = sessionStorage.getItem('mm_dexmode');
 	var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -533,6 +537,8 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
+	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+	Refresh_active_StockChart();
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -549,6 +555,7 @@ $('.btn-exchangeclose').click(function(e){
 	check_my_prices(false);
 	bot_screen_coin_balance(false);
 	bot_screen_sellcoin_balance(false);
+	Refresh_active_StockChart(false);
 	//check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
 	//check_coin_balance();
 
@@ -3284,6 +3291,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	check_my_prices(false);
 	bot_screen_coin_balance(false);
 	bot_screen_sellcoin_balance(false);
+	Refresh_active_StockChart(false);
 
 	$('.inventory-title').html('Manage Inventory ('+balance+' '+coin+')');
 	$('.inventory-title').data('coin', coin);
@@ -4626,6 +4634,7 @@ function check_swap_status_details(swap_status_data) {
 				check_swap_status(false);
 				check_bot_list(false);
 				check_my_prices(false);
+				Refresh_active_StockChart(false);
 				//bot_screen_coin_balance(false);
 				//bot_screen_sellcoin_balance(false);
 

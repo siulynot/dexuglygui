@@ -1,4 +1,6 @@
 
+var Refresh_active_StockChart_Interval = null;
+
 var gChart;
 
 $(function() {
@@ -175,3 +177,15 @@ function parseBars(data, isIntraday) {
 	gChart.hideWaitingBar();
 }
 
+
+
+
+function Refresh_active_StockChart(sig) {
+	if (sig == false) {
+		clearInterval(Refresh_active_StockChart_Interval);
+		return
+	} else {
+		console.log('Refreshing active StockCharts every minute.');
+	}
+	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
+}

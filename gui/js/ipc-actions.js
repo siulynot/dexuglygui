@@ -71,6 +71,7 @@ $('.dexdashboard-btn').click(function(e){
 	check_my_prices(false);
 	bot_screen_coin_balance(false);
 	bot_screen_sellcoin_balance(false);
+	Refresh_active_StockChart(false);
 	//check_coin_balance_Interval = setInterval(check_coin_balance(),3000);
 	//check_coin_balance();
 
@@ -112,6 +113,7 @@ $('.dexlogout-btn').click(function(e) {
 	bot_screen_sellcoin_balance(false);
 
 	check_coin_balance(false);
+	Refresh_active_StockChart(false);
 	//sessionStorage.clear();
 });
 
@@ -411,6 +413,8 @@ function logindICO(coin){
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
+	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+	Refresh_active_StockChart();
 
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
@@ -484,7 +488,7 @@ CheckDefaultLogin = function(sig) {
 
 	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
 	var ajax_data = {"userpass":userpass,"method":"portfolio"};
-	console.log(ajax_data)
+	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -495,7 +499,7 @@ CheckDefaultLogin = function(sig) {
 	    url: url
 	}).done(function(data) {
 		// If successful
-		console.log(data);
+		//console.log(data);
 
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
