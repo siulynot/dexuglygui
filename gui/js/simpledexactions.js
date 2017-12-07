@@ -662,6 +662,8 @@ $('.btn-bot_action').click(function(e){
 		trader_only = $('.trading_pair_destpubkey_yesno').is(":checked");
 		trader_pubkey = $('.trading_pair_destpubkey').val();
 
+		autorepeat_trade = $('.trading_auto_repeat_trade_yesno').is(":checked");
+
 		trade_data = {}
 		trade_data.price = pair_price;
 		if (buying_or_selling == 'buying') {
@@ -672,6 +674,7 @@ $('.btn-bot_action').click(function(e){
 		}
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
+		trade_data.autorepeat = autorepeat_trade;
 		//trade_data.action = $(this).data('action');
 		//trade_data.action = $('.btn-bot_action').attr('data-action');
 		trade_data.action = $(this).attr('data-action');
@@ -2514,13 +2517,23 @@ function manual_buy_sell(mt_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 
 	if (mt_data.action == 'buy') {
-		var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"price":mt_data.price,"relvolume":mt_data.volume};
+		if (mt_data.autorepeat == true) {
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
+			toastr.success(`Auto-repeat buy order exected at fixed price of ${mt_data.price}`,'Trade Notification');
+		} else {
+			var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"price":mt_data.price,"relvolume":mt_data.volume};
+		}
 		if (mt_data.trader_only == true) {
 			ajax_data.destpubkey = mt_data.destpubkey;
 		}
 	}
 	if (mt_data.action == 'sell') {
-		var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"price":mt_data.price,"basevolume":mt_data.volume};
+		if (mt_data.autorepeat == true) {
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
+			toastr.success(`Auto-repeat sell order exected at fixed price of ${mt_data.price}`,'Trade Notification');
+		} else {
+			var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"price":mt_data.price,"basevolume":mt_data.volume};
+		}
 		if (mt_data.trader_only == true) {
 			ajax_data.destpubkey = mt_data.destpubkey;
 		}
@@ -2752,6 +2765,13 @@ function CheckOrderBookFn(sig) {
 }
 
 
+$('.exchange_my_orders_tbl tbody').on('click', '.btn_my_prices_cancel', function() {
+	console.log('btn_my_prices_cancel clicked')
+	console.log($(this).data());
+
+	cancel_my_prices($(this).data());
+});
+
 function check_my_prices(sig){
 	if (sig == false) {
 		clearInterval(check_my_prices_Interval);
@@ -2826,6 +2846,7 @@ function check_my_prices(sig){
 						exchange_my_orders_tr += '<td>'+ val.rel + ' (' + rel_coin_name + ')</td>';
 						exchange_my_orders_tr += '<td>' + val.bid + '</td>';
 						exchange_my_orders_tr += '<td>' + val.ask + '</td>';
+						exchange_my_orders_tr += `<td><button class="btn btn-xs btn-danger btn_my_prices_cancel" data-base="${val.base}" data-rel="${val.rel}"><span class="glyphicon glyphicon-stop"></span></button></td>`;
 					exchange_my_orders_tr += '</tr>';
 					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 				});
@@ -2843,6 +2864,31 @@ function check_my_prices(sig){
 				$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);*/
 			}
 		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+
+}
+
+function cancel_my_prices(cancel_data){
+	console.log(cancel_data);
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"setprice","base":cancel_data.base,"rel":cancel_data.rel,"price":0,"broadcast":1};
+	console.log(ajax_data)
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+		check_my_prices();
+		CheckOrderBookFn();
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
