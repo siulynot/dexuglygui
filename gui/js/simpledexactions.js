@@ -161,17 +161,6 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log('portfolio coin button clicked')
 	console.log($(this).data());
 	console.log($(this).data('coin'));
-
-	coin = $(this).data('coin');
-
-	selected_coin = {}
-	selected_coin.coin = $(this).data('coin');
-	selected_coin.coin_name = $(this).data('coinname');
-	selected_coin.addr = $(this).data('addr');
-	selected_coin.balance = $(this).data('balance');
-	console.log(selected_coin);
-	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
-
 	$('.screen-portfolio').hide();
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
@@ -197,11 +186,21 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.trading_coin_balance').empty();
 	$('#balance-spinner').show();
 
+	coin = $(this).data('coin');
+
 	if (coin == 'KMD') {
 		$('.trading_pair_coin').selectpicker('val', 'BTC');
 		$('.relvol_basevol_coin').html('BTC');
 		setTimeout(function(){ $('.trading_pair_coin2').selectpicker('val', 'KMD'); }, 10);
 	}
+
+	selected_coin = {}
+	selected_coin.coin = $(this).data('coin');
+	selected_coin.coin_name = $(this).data('coinname');
+	selected_coin.addr = $(this).data('addr');
+	selected_coin.balance = $(this).data('balance');
+	console.log(selected_coin);
+	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
 	//check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 
@@ -691,7 +690,7 @@ $('.btn-bot_action').click(function(e){
 
 		//manual_buy_sell(trade_data)
 		buy_sell_precheck(trade_data);
-		$('.trading_auto_repeat_trade_yesno').prop('checked', false);
+		$('.trading_auto_repeat_trade_yesno').attr('checked', false);
 
 	} else if (bot_or_manual == 'tradeportfolio') {
 
@@ -2233,8 +2232,7 @@ $('.btn_set_coin_goal').click(function(e){
 	console.log('btn_set_coin_goal clicked');
 	console.log($(this).data());
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	console.log(coin);
 
 	var goal_data = {}
@@ -2278,8 +2276,7 @@ $('.btn-autogoalall').click(function(e){
 
 function autoprice_buy_sell(autoprice_data) {
 	console.log(autoprice_data);
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -2493,8 +2490,7 @@ $('input[name=trading_mode_options]').change(function() {
 
 function manual_buy_sell(mt_data) {
 	console.log(mt_data);
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -2638,8 +2634,7 @@ function CheckOrderBookFn(sig) {
 		console.log('checking orderbook');
 	}
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -2782,8 +2777,7 @@ function check_my_prices(sig){
 		console.log('checking my prices');
 	}
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -3397,8 +3391,7 @@ function create_sendtx(coin,tx_data){
 
 
 function update_min_max_price_input(){
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -3467,8 +3460,7 @@ function check_bot_list(sig) {
 		console.log('checking bot list');
 	}
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -3583,8 +3575,7 @@ function check_bot_list(sig) {
 }
 
 function buy_sell_precheck(bot_data){
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -3672,8 +3663,7 @@ function buy_sell_precheck(bot_data){
 }
 
 function bot_buy_sell(bot_data) {
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -4301,8 +4291,7 @@ function bot_screen_coin_balance(sig) {
 		console.log('checking bot screen coin balance');
 	}
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val');
 	console.log(coin);
 
 	var coin_name = return_coin_details(coin).name;
@@ -4780,8 +4769,7 @@ function check_swap_status(sig) {
 		console.log('checking swap status');
 	}
 
-	var selected_coin = JSON.parse(sessionStorage.getItem('mm_selectedcoin'));
-	var coin = selected_coin.coin;
+	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
 
 	var userpass = sessionStorage.getItem('mm_userpass');

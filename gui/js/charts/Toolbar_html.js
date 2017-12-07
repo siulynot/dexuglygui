@@ -2,7 +2,7 @@ var Toolbar_html = `
 <div class="scxToolbar">
     <input type="text" class="symbolSearch form-control" title="Selected instrument" style="display: none;">
 
-    <div class="scxToolbarButton scxToolbarButtonWithDropdown scxTimeFramePicker" style="display: none;">
+    <div class="scxToolbarButton scxToolbarButtonWithDropdown scxTimeFramePicker">
         <div class="scxToolbarButton-buttonWrapper" title="Time frame">
             <div class="scxToolbarButton-activateBtn">
                 <span class="scxTimeFramePicker-button-value"></span>
@@ -13,7 +13,7 @@ var Toolbar_html = `
         <div class="scxToolbarButton-dropdownWrapper scxTimeFramePickerDropDown">
             <div class="scxTimeFramePicker-dropdownContainer">
                 <div class="scxTimeFramePicker-ValuesWrapper">
-                    <div class="scxToolbarButton-dropdownElement" data-scxvalue="30" data-scxunits="s" title="30 seconds">
+                    <div class="scxToolbarButton-dropdownElement" data-scxvalue="30" data-scxunits="s" title="30 seconds" style="display: none;">
                         <span class="scxToolbarButton-dropdownElement-value">30</span>
                         <span class="scxToolbarButton-dropdownElement-units">seconds</span>
                     </div>
@@ -58,7 +58,7 @@ var Toolbar_html = `
                         <span class="scxToolbarButton-dropdownElement-units">year</span>
                     </div>
                 </div>
-                <div class="scxTimeFramePicker-CustomValueWrapper">
+                <div class="scxTimeFramePicker-CustomValueWrapper" style="display: none;">
                     <button class="scxTimeFramePicker-CustomValueMinus btn btn-default" title="Decrease">-</button>
                     <input class="scxTimeFramePicker-CustomValueText form-control" value="" type="text" title="Interval">
                     <button class="scxTimeFramePicker-CustomValuePlus btn btn-default" title="Increase">+</button>
