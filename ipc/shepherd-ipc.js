@@ -204,6 +204,9 @@ ipcMain.on('shepherd-command', (event, arg) => {
                   })
                   event.returnValue = 'reset_done';
                   break;
+            case 'app_info':
+                  event.returnValue = app.getVersion();
+                  break;
       }
 })
 

@@ -1,12 +1,12 @@
 {
-  "name": "BarterDEX-Simple",
+  "name": "BarterDEX",
   "version": "0.7.3-beta",
-  "description": "A simple BarterDEX Implimentation with powertools for Traders",
+  "description": "Full BarterDEX implimentation with powertools for Traders",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/SuperNETorg/BarterDEX-Simple.git",
+  "repository": "https://github.com/SuperNETorg/BarterDEX.git",
   "keywords": [
     "barterdex",
     "jumblr",
