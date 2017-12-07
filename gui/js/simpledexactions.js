@@ -161,6 +161,17 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log('portfolio coin button clicked')
 	console.log($(this).data());
 	console.log($(this).data('coin'));
+
+	coin = $(this).data('coin');
+
+	selected_coin = {}
+	selected_coin.coin = $(this).data('coin');
+	selected_coin.coin_name = $(this).data('coinname');
+	selected_coin.addr = $(this).data('addr');
+	selected_coin.balance = $(this).data('balance');
+	console.log(selected_coin);
+	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
+
 	$('.screen-portfolio').hide();
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
@@ -186,21 +197,11 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.trading_coin_balance').empty();
 	$('#balance-spinner').show();
 
-	coin = $(this).data('coin');
-
 	if (coin == 'KMD') {
 		$('.trading_pair_coin').selectpicker('val', 'BTC');
 		$('.relvol_basevol_coin').html('BTC');
 		setTimeout(function(){ $('.trading_pair_coin2').selectpicker('val', 'KMD'); }, 10);
 	}
-
-	selected_coin = {}
-	selected_coin.coin = $(this).data('coin');
-	selected_coin.coin_name = $(this).data('coinname');
-	selected_coin.addr = $(this).data('addr');
-	selected_coin.balance = $(this).data('balance');
-	console.log(selected_coin);
-	sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
 	//check_coin_balance_Interval = setInterval(check_coin_balance($(this).data()),3000);
 
