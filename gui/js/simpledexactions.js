@@ -191,6 +191,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	if (coin == 'KMD') {
 		$('.trading_pair_coin').selectpicker('val', 'BTC');
 		$('.relvol_basevol_coin').html('BTC');
+		setTimeout(function(){ $('.trading_pair_coin2').selectpicker('val', 'KMD'); }, 10);
 	}
 
 	selected_coin = {}
