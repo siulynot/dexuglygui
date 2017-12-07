@@ -101,7 +101,7 @@ var Toolbar_html = `
                     <span class="scxToolbarButton-dropdownElement-image"></span>
                     <span class="scxToolbarButton-dropdownElement-text">Hollow Candles</span>
                 </div>
-                <div class="scxToolbarButton-dropdownElement" data-scxValue="heikinAshi" title="Heikin Ashi">
+                <div class="scxToolbarButton-dropdownElement" data-scxValue="heikinAshi" title="Heikin Ashi" style="display: none;">
                     <span class="scxToolbarButton-dropdownElement-image"></span>
                     <span class="scxToolbarButton-dropdownElement-text">Heikin Ashi</span>
                 </div>

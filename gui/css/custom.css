@@ -117,7 +117,7 @@ textarea {
     padding: 10px 0;
   }
 
-  .coin_balance_disable, .coin_balance_receive, .coin_balance_send, .coin_balance_inventory, .coin_balance_enable_native, .coin_balance_enable_electrum {
+  .coin_balance_disable, .coin_balance_receive, .coin_balance_send, .coin_balance_inventory, .coin_balance_enable_native, .coin_balance_enable_electrum, .coin_balance_zcredits {
     font-size: 10px;
   }
 }
@@ -151,12 +151,12 @@ textarea {
   height: 385px;
 }
 
-.orderbook_asks {
+.orderbook_asks, .orderbook_bids {
   cursor: pointer;
 }
 
-.orderbook_asks tr:hover td {
-  background: #eae7e7;
+.orderbook_asks tr:hover td, .orderbook_bids tr:hover td {
+  background: #000;
 }
 
 .progress-nomargin {

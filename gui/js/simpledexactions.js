@@ -230,6 +230,8 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	//getZeroConfDepositHistory();
 
+	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"","interval":1}));
+
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
 		charts_instruments_data.symbol = $(this).data('coin')+'/BTC'
@@ -2606,10 +2608,17 @@ function setOrderPrice(trade_data) {
 	console.log(trade_data);
 	//trade_data = JSON.parse(trade_data);
 	//console.log(trade_data);
-	trade_price_plus = trade_data.price * 1.001;
+	
+	if (trade_data.type == 'asks') {
+		trade_price_plus = trade_data.price * 1.001;
+		toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+	}
+	if (trade_data.type == 'bids') {
+		trade_price_plus = trade_data.price / 1.001;
+		toastr.info(`Auto selected price as ${trade_data.price} - 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+	}
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));
-	toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
 
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
 
@@ -2697,8 +2706,21 @@ function CheckOrderBookFn(sig) {
 				if (val.pubkey === mypubkey) {
 					var mytrade_true = 'class="warning"';
 				}
+
+				row_trade_data = {};
+				row_trade_data.price = val.price;
+				//row_trade_data.minvolume = val.minvolume;
+				//row_trade_data.maxvolume = val.maxvolume;
+				row_trade_data.avevolume = val.avevolume;
+				row_trade_data.numutxos = val.numutxos;
+				row_trade_data.depth = val.depth;
+				row_trade_data.maxbuy = val.avevolume / val.price;
+				row_trade_data.pubkey = val.pubkey;
+				row_trade_data.type = 'bids';
+				//row_trade_data.totalbuy = (val.avevolume / val.price) * val.numutxos;
+
 				var orderbook_bids_tr = '';
-				orderbook_bids_tr += '<tr ' + mytrade_true + '>';
+				orderbook_bids_tr += '<tr ' + mytrade_true + ' onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>';
 				orderbook_bids_tr += '<td>' + val.price + '</td>';
 				//orderbook_bids_tr += '<td>' + val.minvolume + '</td>';
 				//orderbook_bids_tr += '<td>' + val.maxvolume + '</td>';
@@ -2735,6 +2757,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.depth = val.depth;
 				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
+				row_trade_data.type = 'asks';
 				//row_trade_data.totalbuy = (val.avevolume / val.price) * val.numutxos;
 				var orderbook_asks_tr = '';
 				orderbook_asks_tr += '<tr ' + mytrade_true + ' onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>';
@@ -3343,6 +3366,11 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	calc_data = {"coin": coin, "balance": balance};
 	clac_coin_inventory(calc_data);
 
+});
+
+$('.your_coins_balance_info').on('click', '.coin_balance_zcredits', function() {
+	console.log('coin_balance_zcredits clicked');
+	console.log($(this).data());
 });
 
 
@@ -4270,7 +4298,12 @@ function bot_screen_sellcoin_balance(sig) {
 					electrum_coin_balance(electrum_coin_balance_data);
 					//$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 				} else {
-					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					if (data.coin.coin == 'KMD') {
+						var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + data.coin.zcredits + '</button>';
+					} else {
+						var show_zcredits = '';
+					}
+					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 				}
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4355,7 +4388,12 @@ function bot_screen_coin_balance(sig) {
 					electrum_coin_balance(electrum_coin_balance_data);
 					//$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 				} else {
-					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					if (data.coin.coin == 'KMD') {
+						var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + data.coin.zcredits + '</button>';
+					} else {
+						var show_zcredits = '';
+					}
+					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 				}
 			}
 
