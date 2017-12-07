@@ -218,7 +218,7 @@ function UpdateDexChart(chartbase, chartrel)  {
 
 function parseBars(data, isIntraday) {
 	var dataSeries = gChart.barDataSeries();
-	data.reverse();
+	//data.reverse();
 
 	$.each(data, function(index,value) {
 		//console.log(index);
