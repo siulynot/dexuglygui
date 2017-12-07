@@ -124,6 +124,8 @@ $('.dexdebug-btn').click(function(e) {
 	$('.dexdebug-close-btn').show();
 	$('.dexdebug-btn').hide();
 	$('.dextradeshistory-btn').hide();
+	$('.dexdashboard-btn').hide();
+	$('.dexsettings-btn').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
@@ -135,6 +137,8 @@ $('.dexdebug-close-btn').click(function(e) {
 	$('.dexlogout-btn').show();
 	$('.dexdebug-close-btn').hide();
 	$('.dextradeshistory-btn').show();
+	$('.dexdashboard-btn').show();
+	$('.dexsettings-btn').show();
 	$('.navbar-right').children().removeClass('active');
 });
 
