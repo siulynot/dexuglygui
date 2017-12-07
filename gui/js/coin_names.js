@@ -7,6 +7,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Komodo';
 			coin_details.explorer = 'https://www.kmd.host/tx/';
 			break;
+		case 'CHIPS':
+			coin_details.name = 'Chips';
+			coin_details.explorer = 'https://explorer.chips.cash/tx/';
+			break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
