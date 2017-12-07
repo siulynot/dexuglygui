@@ -39,7 +39,7 @@ sudo npm install electron-prebuilt -g
 1. Start Komodo Native Wallet
 2. Start Monaize Native Wallet
 3. Wait for both Komodo and Monaize to sync 100%
-4. Start BarterDEX-Simple
+4. Start BarterDEX
 5. Select 'Monzie (MNZ) dICO' option at the login screen.
 6. Login with `passphrase` (either pre-generated or make a new one).
 7. Look for the KMD address and send KMDs to it. Once sent, it will start reflecting there in a minute.
@@ -58,17 +58,17 @@ If your wallet is encrypted, the app will not work with it. This feature will be
 Refer to the original [electron-packager](https://github.com/electron-userland/electron-packager) repository for more detailed information.
 
 ##### Linux
-Change directory to BarterDEX-Simple and execute the following command to build the Linux app
+Change directory to BarterDEX and execute the following command to build the Linux app
 ```shell
-cd BarterDEX-Simple
+cd BarterDEX
 electron-packager . --platform=linux --arch=x64 --icon=assets/icons/barterdex/128x128.png --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/osx --overwrite
 ```
 change architecture build parameter to ```--arch=x32``` for 32 bit build
 
 ##### OSX
-Change directory to BarterDEX-Simple and execute the following command to build the OSX app
+Change directory to BarterDEX and execute the following command to build the OSX app
 ```shell
-cd BarterDEX-Simple
+cd BarterDEX
 electron-packager . --platform=darwin --arch=x64 --icon=assets/icons/barterdex/barterdex.icns --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/win64 --ignore=assets/bin/linux64 --overwrite
 ```
 

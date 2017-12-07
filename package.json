@@ -1,0 +1,35 @@
+{
+  "name": "BarterDEX-Simple",
+  "version": "0.7.3-beta",
+  "description": "A simple BarterDEX Implimentation with powertools for Traders",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/SuperNETorg/BarterDEX-Simple.git",
+  "keywords": [
+    "barterdex",
+    "jumblr",
+    "dex",
+    "atomicswaps",
+    "instantdex",
+    "easydex",
+    "bitcoin",
+    "nativedex",
+    "bitcoinmixer",
+    "bitcointumbler"
+  ],
+  "author": "Satinderjit Singh",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.1"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "fix-path": "^2.1.0",
+    "fs-extra": "^4.0.2",
+    "mkdirp": "^0.5.1",
+    "portscanner": "^2.1.1",
+    "ps-node": "^0.1.6"
+  }
+}

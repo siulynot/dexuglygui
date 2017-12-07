@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg>
+<metadata>
+Created by FontForge 20120731 at Thu Mar 17 14:14:25 2016
+ By www-data
+</metadata>
+<defs>
+<font id="OpenSans" horiz-adv-x="1229" >
+  <font-face 
+    font-family="Open Sans"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="2048"
+    panose-1="2 11 6 6 3 5 4 2 2 4"
+    ascent="1638"
+    descent="-410"
+    bbox="-289 -20 1490 1485"
+    underline-thickness="102"
+    underline-position="-103"
+    unicode-range="U+1F4D-1F4D"
+  />
+<missing-glyph 
+d="M193 1462h841v-1462h-841v1462zM297 104h633v1254h-633v-1254z" />
+    <glyph glyph-name=".notdef" 
+d="M193 1462h841v-1462h-841v1462zM297 104h633v1254h-633v-1254z" />
+    <glyph glyph-name="null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="1044" 
+ />
+    <glyph glyph-name="space" horiz-adv-x="532" 
+ />
+    <glyph glyph-name="O" horiz-adv-x="1595" 
+d="M1470 733q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5
+t-126.5 -446.5z" />
+    <glyph glyph-name="uni1F4D" unicode="&#x1f4d;" horiz-adv-x="1618" 
+d="M1490 733q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552zM325 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5
+t-126.5 -446.5zM-9 1159q70 181 98 303h189v-20q-41 -78 -100.5 -164t-108.5 -143h-78v24zM-289 1253q0 163 237 224v-72q-121 -41 -121 -94q0 -20 15.5 -29.5t34 -17.5t34 -21t15.5 -41q0 -74 -93 -74q-55 0 -88.5 34t-33.5 91z" />
+    <glyph glyph-name="dasiaoxia" horiz-adv-x="819" 
+d="M432 1159q70 181 98 303h189v-20q-41 -78 -100.5 -164t-108.5 -143h-78v24zM152 1253q0 163 237 224v-72q-121 -41 -121 -94q0 -20 15.5 -29.5t34 -17.5t34 -21t15.5 -41q0 -74 -93 -74q-55 0 -88.5 34t-33.5 91z" />
+  </font>
+</defs></svg>

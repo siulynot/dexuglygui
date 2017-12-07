@@ -1,0 +1,421 @@
+
+function return_coin_details(coin) {
+	var coin_details = {};
+
+	switch (coin) {
+		case 'KMD':
+			coin_details.name = 'Komodo';
+			coin_details.explorer = 'https://www.kmd.host/tx/';
+			break;
+		case 'CHIPS':
+			coin_details.name = 'Chips';
+			coin_details.explorer = 'https://explorer.chips.cash/tx/';
+			break;
+		case 'BTC':
+			coin_details.name = 'Bitcoin';
+			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
+			break;
+		case 'MNZ':
+			coin_details.name = 'Monaize';
+			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
+			break;
+		case '888':
+			coin_details.name = 'OctoCoin';
+			coin_details.explorer = 'https://zchain.online/tx/';
+			break;
+		case 'ARG':
+			coin_details.name = 'Argentum';
+			coin_details.explorer = 'https://chainz.cryptoid.info/arg/tx.dws?';
+			break;
+		case 'REVS':
+			coin_details.name = 'REVS';
+			coin_details.explorer = 'http://revs.explorer.supernet.org/tx/';
+			break;
+		case 'JUMBLR':
+			coin_details.name = 'JUMBLR';
+			coin_details.explorer = 'http://jumblr.explorer.supernet.org/tx/';
+			break;
+		case 'DOGE':
+			coin_details.name = 'Dogecoin';
+			coin_details.explorer = 'http://dogechain.info/tx/';
+			break;
+		case 'DGB':
+			coin_details.name = 'Digibyte';
+			coin_details.explorer = 'https://digiexplorer.info/tx/';
+			break;
+		case 'GLT':
+			coin_details.name = 'GlobalToken';
+			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
+			break;
+		case 'MZC':
+			coin_details.name = 'Mazacoin';
+			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
+			break;
+		case 'SYS':
+			coin_details.name = 'Syscoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/sys/tx.dws?';
+			break;
+		case 'UIS':
+			coin_details.name = 'Unitus';
+			coin_details.explorer = 'https://explorer.unitus.online/tx/';
+			break;
+		case 'UNO':
+			coin_details.name = 'Unobtanium';
+			coin_details.explorer = 'https://chainz.cryptoid.info/uno/tx.dws?';
+			break;
+		case 'ZER':
+			coin_details.name = 'Zero';
+			coin_details.explorer = '';
+			break;
+		case 'ZET':
+			coin_details.name = 'Zetacoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/zet/tx.dws?';
+			break;
+		case 'ZEC':
+			coin_details.name = 'Zcash';
+			coin_details.explorer = 'https://explorer.zcha.in/transactions/';
+			break;
+		case 'BTM':
+			coin_details.name = 'Bitmark';
+			coin_details.explorer = 'http://explorer.bitmark.io/tx/';
+			break;
+		case 'CARB':
+			coin_details.name = 'Carboncoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/carbon/tx.dws?';
+			break;
+		case 'ANC':
+			coin_details.name = 'Anoncoin';
+			coin_details.explorer = 'http://abe.darkgamex.ch:2751/tx/';
+			break;
+		case 'FRK':
+			coin_details.name = 'Franko';
+			coin_details.explorer = 'https://cryptobe.com/tx/';
+			break;
+		case 'GAME':
+			coin_details.name = 'Gamecredits';
+			coin_details.explorer = 'https://blockexplorer.gamecredits.com/transactions/';
+			break;
+		case 'LTC':
+			coin_details.name = 'Litecoin';
+			coin_details.explorer = 'https://bchain.info/LTC/tx/';
+			break;
+		case 'SUPERNET':
+			coin_details.name = 'SUPERNET';
+			coin_details.explorer = 'http://supernet.explorer.supernet.org/tx/';
+			break;
+		case 'WLC':
+			coin_details.name = 'Wireless';
+			coin_details.explorer = 'http://wireless.explorer.supernet.org/tx/';
+			break;
+		case 'PANGEA':
+			coin_details.name = 'Pangea';
+			coin_details.explorer = 'http://pangea.explorer.supernet.org/tx/';
+			break;
+		case 'DEX':
+			coin_details.name = 'InstantDEX';
+			coin_details.explorer = 'http://dex.explorer.supernet.org/tx/';
+			break;
+		case 'BET':
+			coin_details.name = 'BET';
+			coin_details.explorer = 'http://bet.explorer.supernet.org/tx/';
+			break;
+		case 'CRYPTO':
+			coin_details.name = 'Crypto777';
+			coin_details.explorer = 'http://crypto.explorer.supernet.org/tx/';
+			break;
+		case 'COQUI':
+			coin_details.name = 'COQUI';
+			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
+			break;
+		case 'HODLC':
+			coin_details.name = 'HODLC';
+			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
+			break;
+		case 'MSHARK':
+			coin_details.name = 'MSHARK';
+			coin_details.explorer = 'http://shark.explorer.supernet.org/tx/';
+			break;
+		case 'BOTS':
+			coin_details.name = 'BOTS';
+			coin_details.explorer = 'http://bots.explorer.supernet.org/tx/';
+			break;
+		case 'MGW':
+			coin_details.name = 'MultiGateway';
+			coin_details.explorer = 'http://mgw.explorer.supernet.org/tx/';
+			break;
+		case 'MVP':
+			coin_details.name = 'MVP';
+			coin_details.explorer = 'http://mvp.explorer.supernet.org/tx/';
+			break;
+		case 'KV':
+			coin_details.name = 'KeyValue';
+			coin_details.explorer = 'http://kv.explorer.supernet.org/tx/';
+			break;
+		case 'CEAL':
+			coin_details.name = 'Ceal';
+			coin_details.explorer = 'http://ceal.explorer.supernet.org/tx/';
+			break;
+		case 'DASH':
+			coin_details.name = 'Dash';
+			coin_details.explorer = 'https://chainz.cryptoid.info/dash/tx.dws?';
+			break;
+		case 'MESH':
+			coin_details.name = 'SuperMesh';
+			coin_details.explorer = 'http://mesh.explorer.supernet.org/tx/';
+			break;
+		case 'CRW':
+			coin_details.name = 'Crown';
+			coin_details.explorer = 'https://chainz.cryptoid.info/crw/tx.dws?';
+			break;
+		case 'HUC':
+			coin_details.name = 'Huntercoin';
+			coin_details.explorer = 'https://www.huntercoin.info/blockExplorer/tx/';
+			break;
+		case 'PIVX':
+			coin_details.name = 'PIVX';
+			coin_details.explorer = 'https://chainz.cryptoid.info/pivx/tx.dws?';
+			break;
+		case 'BDL':
+			coin_details.name = 'Bitdeal';
+			coin_details.explorer = 'https://explorer.bitdeal.co.in/tx/';
+			break;
+		case 'ARC':
+			coin_details.name = 'Arcticcoin';
+			coin_details.explorer = 'http://explorer.arcticcoin.org/tx/';
+			break;
+		case 'ZCL':
+			coin_details.name = 'ZClassic';
+			coin_details.explorer = 'https://cronicc.github.io/tx/';
+			break;
+		case 'VIA':
+			coin_details.name = 'Viacoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/via/tx.dws?';
+			break;
+		case 'ERC':
+			coin_details.name = 'Europecoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/erc/tx.dws?';
+			break;
+		case 'FAIR':
+			coin_details.name = 'Faircoin';
+			coin_details.explorer = 'https://chain.fair.to/transaction?transaction=';
+			break;
+		case 'FLO':
+			coin_details.name = 'Florincoin';
+			coin_details.explorer = 'https://florincoin.info/tx/';
+			break;
+		case 'SXC':
+			coin_details.name = 'Sexcoin';
+			coin_details.explorer = 'http://blockexplorer.lavajumper.com/tx/';
+			break;
+		case 'CREA':
+			coin_details.name = 'Creativecoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/crea/tx.dws?';
+			break;
+		case 'TRC':
+			coin_details.name = 'Terracoin';
+			coin_details.explorer = '';
+			break;
+		case 'BTA':
+			coin_details.name = 'Bata';
+			coin_details.explorer = 'https://chainz.cryptoid.info/bta/tx.dws?';
+			break;
+		case 'SMC':
+			coin_details.name = 'Smartcoin';
+			coin_details.explorer = 'http://smartchain.cc/tx/';
+			break;
+		case 'NMC':
+			coin_details.name = 'Namecoin';
+			coin_details.explorer = 'https://namecoin.webbtc.com/tx/';
+			break;
+		case 'NAV':
+			coin_details.name = 'Navcoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/nav/tx.dws?';
+			break;
+		case 'MOON':
+			coin_details.name = 'Mooncoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/moon/tx.dws?';
+			break;
+		case 'EMC2':
+			coin_details.name = 'Einsteinium';
+			coin_details.explorer = 'https://chainz.cryptoid.info/emc2/tx.dws?';
+			break;
+		case 'I0C':
+			coin_details.name = 'I0Coin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/i0c/tx.dws?';
+			break;
+		case 'STRAT':
+			coin_details.name = 'Stratis';
+			coin_details.explorer = 'https://cryptobe.com/tx/';
+			break;
+		case 'MUE':
+			coin_details.name = 'MonetaryUnit';
+			coin_details.explorer = 'https://chainz.cryptoid.info/mue/tx.dws?';
+			break;
+		case 'MONA':
+			coin_details.name = 'MonaCoin';
+			coin_details.explorer = 'https://mona.chainsight.info/tx/';
+			break;
+		case 'XMY':
+			coin_details.name = 'Myriad';
+			coin_details.explorer = 'https://cryptap.us/myr/explorer/tx/';
+			break;
+		case 'MAC':
+			coin_details.name = 'Machinecoin';
+			coin_details.explorer = 'https://explorer.machinecoin.org/tx/';
+			break;
+		case 'BTX':
+			coin_details.name = 'Bitcore';
+			coin_details.explorer = 'https://chainz.cryptoid.info/btx/tx.dws?';
+			break;
+		case 'XRE':
+			coin_details.name = 'RevolverCoin';
+			coin_details.explorer = 'http://revolvercoin.org:3001/tx/';
+			break;
+		case 'LBC':
+			coin_details.name = 'LBRY Credits';
+			coin_details.explorer = 'https://explorer.lbry.io/tx/';
+			break;
+		case 'SIB':
+			coin_details.name = 'SIBCoin';
+			coin_details.explorer = 'https://chain.sibcoin.net/tx/';
+			break;
+		case 'VTC':
+			coin_details.name = 'Vertcoin';
+			coin_details.explorer = 'https://bitinfocharts.com/vertcoin/tx/';
+			break;
+		case 'HUSH':
+			coin_details.name = 'Hush';
+			coin_details.explorer = 'https://explorer.myhush.org/tx/';
+			break;
+		case 'AUD':
+			coin_details.name = 'Australian Dollar';
+			coin_details.explorer = 'http://aud.explorer.supernet.org/tx/';
+			break;
+		case 'BGN':
+			coin_details.name = 'Bulgarian Lev';
+			coin_details.explorer = 'http://BGN.explorer.supernet.org/tx/';
+			break;
+		case 'CAD':
+			coin_details.name = 'Canadian Dollar';
+			coin_details.explorer = 'http://CAD.explorer.supernet.org/tx/';
+			break;
+		case 'CHF':
+			coin_details.name = 'Swiss Franc';
+			coin_details.explorer = 'http://CHF.explorer.supernet.org/tx/';
+			break;
+		case 'CNY':
+			coin_details.name = 'Chinese Yuan';
+			coin_details.explorer = 'http://CNY.explorer.supernet.org/tx/';
+			break;
+		case 'CZK':
+			coin_details.name = 'Czech Koruna';
+			coin_details.explorer = 'http://CZK.explorer.supernet.org/tx/';
+			break;
+		case 'DKK':
+			coin_details.name = 'Danish Krone';
+			coin_details.explorer = 'http://DKK.explorer.supernet.org/tx/';
+			break;
+		case 'EUR':
+			coin_details.name = 'Euro';
+			coin_details.explorer = 'http://EUR.explorer.supernet.org/tx/';
+			break;
+		case 'GBP':
+			coin_details.name = 'Pound Sterling';
+			coin_details.explorer = 'http://GBP.explorer.supernet.org/tx/';
+			break;
+		case 'HKD':
+			coin_details.name = 'Hong Kong Dollar';
+			coin_details.explorer = 'http://HKD.explorer.supernet.org/tx/';
+			break;
+		case 'HRK':
+			coin_details.name = 'Croatian Kuna';
+			coin_details.explorer = 'http://HRK.explorer.supernet.org/tx/';
+			break;
+		case 'HUF':
+			coin_details.name = 'Hungarian Forint';
+			coin_details.explorer = 'http://HUF.explorer.supernet.org/tx/';
+			break;
+		case 'IDR':
+			coin_details.name = 'Indonesian Rupiah';
+			coin_details.explorer = 'http://IDR.explorer.supernet.org/tx/';
+			break;
+		case 'ILS':
+			coin_details.name = 'Israeli Shekel';
+			coin_details.explorer = 'http://ILS.explorer.supernet.org/tx/';
+			break;
+		case 'INR':
+			coin_details.name = 'Indian Rupee';
+			coin_details.explorer = 'http://INR.explorer.supernet.org/tx/';
+			break;
+		case 'JPY':
+			coin_details.name = 'Japanese Yen';
+			coin_details.explorer = 'http://JPY.explorer.supernet.org/tx/';
+			break;
+		case 'KRW':
+			coin_details.name = 'South Korean Won';
+			coin_details.explorer = 'http://KRW.explorer.supernet.org/tx/';
+			break;
+		case 'MXN':
+			coin_details.name = 'Mexican Peso';
+			coin_details.explorer = 'http://MXN.explorer.supernet.org/tx/';
+			break;
+		case 'MYR':
+			coin_details.name = 'Malaysian Ringgit';
+			coin_details.explorer = 'http://MYR.explorer.supernet.org/tx/';
+			break;
+		case 'NOK':
+			coin_details.name = 'Norwegian Krone';
+			coin_details.explorer = 'http://NOK.explorer.supernet.org/tx/';
+			break;
+		case 'NZD':
+			coin_details.name = 'New Zealand Dollar';
+			coin_details.explorer = 'http://NZD.explorer.supernet.org/tx/';
+			break;
+		case 'PHP':
+			coin_details.name = 'Philippine Peso';
+			coin_details.explorer = 'http://PHP.explorer.supernet.org/tx/';
+			break;
+		case 'PLN':
+			coin_details.name = 'Polish Zloty';
+			coin_details.explorer = 'http://PLN.explorer.supernet.org/tx/';
+			break;
+		case 'BRL':
+			coin_details.name = 'Brazilian Real';
+			coin_details.explorer = 'http://BRL.explorer.supernet.org/tx/';
+			break;
+		case 'RON':
+			coin_details.name = 'Romanian Leu';
+			coin_details.explorer = 'http://RON.explorer.supernet.org/tx/';
+			break;
+		case 'RUB':
+			coin_details.name = 'Russian Ruble';
+			coin_details.explorer = 'http://RUB.explorer.supernet.org/tx/';
+			break;
+		case 'SEK':
+			coin_details.name = 'Swedish Krona';
+			coin_details.explorer = 'http://SEK.explorer.supernet.org/tx/';
+			break;
+		case 'SGD':
+			coin_details.name = 'Singapore Dollar';
+			coin_details.explorer = 'http://SGD.explorer.supernet.org/tx/';
+			break;
+		case 'THB':
+			coin_details.name = 'Thai Baht';
+			coin_details.explorer = 'http://THB.explorer.supernet.org/tx/';
+			break;
+		case 'TRY':
+			coin_details.name = 'Turkish Lira';
+			coin_details.explorer = 'http://TRY.explorer.supernet.org/tx/';
+			break;
+		case 'USD':
+			coin_details.name = 'US Dollar';
+			coin_details.explorer = 'http://USD.explorer.supernet.org/tx/';
+			break;
+		case 'ZAR':
+			coin_details.name = 'South African Rand';
+			coin_details.explorer = 'http://ZAR.explorer.supernet.org/tx/';
+			break;
+
+	}
+	return coin_details;
+}
