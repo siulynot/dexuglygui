@@ -41,10 +41,10 @@ $(document).ready(function() {
 				$('#trading_pair_coin_price_max_min').html('Max');
 			}
 			if (dexmode == 'dICO') {
-				$('.navbar-brandname').html(return_coin_name(selected_dICO_coin) + ' dICO');
+				$('.navbar-brandname').html(return_coin_details(selected_dICO_coin).name + ' dICO');
 				selected_coin = {}
 				selected_coin.coin = selected_dICO_coin;
-				selected_coin.coin_name = return_coin_name(selected_dICO_coin);
+				selected_coin.coin_name = return_coin_details(selected_dICO_coin).name;
 				console.log(selected_coin);
 				sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
@@ -212,7 +212,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
 	$('.trading_pair_coin2').selectpicker('val',coin);
-	$('.coingoal_label_coin_name').html(return_coin_name(coin) + ' ('+coin+')');
+	$('.coingoal_label_coin_name').html(return_coin_details(coin).name + ' ('+coin+')');
 
 	CheckPortfolioFn(false);
 	CheckOrderBookFn();
@@ -801,7 +801,7 @@ function check_coin_balance(chk_coin_data) {
 	$('.coindashboard-address[data-coin="' + coin + '"]').empty();
 	$(".coindashboard-coinicon").attr("src","img/cryptologo/" + coin.toLowerCase() + ".png");
 
-	var coin_name = return_coin_name(coin);
+	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
@@ -909,7 +909,7 @@ function get_coin_info(coin) {
 		if (!get_coin_info_output_data.error == true) {
 			selected_coin = {}
 			selected_coin.coin = coin;
-			selected_coin.coin_name = return_coin_name(coin);
+			selected_coin.coin_name = return_coin_details(coin).name;
 			selected_coin.addr = get_coin_info_output_data.coin.smartaddress;
 			selected_coin.balance = get_coin_info_output_data.coin.balance;
 			console.log(selected_coin);
@@ -1617,19 +1617,9 @@ function mk_inv_sendrawtx(mk_inv_rawtx_data,mk_inv_rawtx_coin) {
 			}
 		} catch(e) {
 			console.log(e);
-			var txid_explorer = '';
-			if(mk_inv_rawtx_coin == 'MNZ') {
-				txid_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(mk_inv_rawtx_coin == 'KMD') {
-				txid_explorer = 'https://www.kmd.host/tx/'
-			} else if(mk_inv_rawtx_coin == 'BTC') {
-				txid_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(mk_inv_rawtx_coin == 'ZEC') {
-				txid_explorer = 'https://zchain.online/tx/'
-			}
 
 			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
-				<a href="#" onclick="shell.openExternal('`+txid_explorer+mk_inv_sendrawtx_output_data+`'); return false;">` + mk_inv_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+return_coin_details(mk_inv_rawtx_coin).explorer+mk_inv_sendrawtx_output_data+`'); return false;">` + mk_inv_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -1750,7 +1740,7 @@ function get_coins_list() {
 				console.log(index);
 				console.log(val);
 
-				var coin_name = return_coin_name(val.coin)
+				var coin_name = return_coin_details(val.coin).name
 
 				var addcoins_tbl_tr = '';
 
@@ -1947,7 +1937,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 		//console.log(index);
 		console.log(val);
 
-		var coin_name = return_coin_name(val.coin)
+		var coin_name = return_coin_details(val.coin).name
 
 		var dex_portfolio_coins_tbl_tr = '';
 
@@ -2827,8 +2817,8 @@ function check_my_prices(sig){
 					//console.log(index);
 					//console.log(val);
 
-					var base_coin_name = return_coin_name(val.base)
-					var rel_coin_name = return_coin_name(val.rel)
+					var base_coin_name = return_coin_details(val.base).name
+					var rel_coin_name = return_coin_details(val.rel).name
 
 					var exchange_my_orders_tr = '';
 					exchange_my_orders_tr += '<tr>';
@@ -2840,8 +2830,8 @@ function check_my_prices(sig){
 					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 				});
 
-				/*var base_coin_name = return_coin_name(data.base)
-				var rel_coin_name = return_coin_name(data.rel)
+				/*var base_coin_name = return_coin_details(data.base).name
+				var rel_coin_name = return_coin_details(data.rel).name
 
 				var exchange_my_orders_tr = '';
 				exchange_my_orders_tr += '<tr>';
@@ -2890,7 +2880,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 
 	selected_coin = {}
 	selected_coin.coin = coin;
-	selected_coin.coin_name = return_coin_name(coin);
+	selected_coin.coin_name = return_coin_details(coin).name;
 	//selected_coin.addr = $(this).data('addr');
 	//selected_coin.balance = $(this).data('balance');
 	console.log(selected_coin);
@@ -2900,7 +2890,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 	$.each($('.coinexchange[data-coin]'), function(index, value) {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
-	$('.coingoal_label_coin_name').html(return_coin_name(coin) + ' ('+coin+')');
+	$('.coingoal_label_coin_name').html(return_coin_details(coin).name + ' ('+coin+')');
 
 	bot_screen_sellcoin_balance();
 	bot_screen_coin_balance();
@@ -3019,7 +3009,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 	console.log($(this).data());
 	coin = $(this).data('coin');
 
-	var coin_name = return_coin_name(coin);
+	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
@@ -3754,19 +3744,9 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 			}
 		} catch(e) {
 			console.log(e);
-			var txid_explorer = '';
-			if(coin == 'MNZ') {
-				txid_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(coin == 'KMD') {
-				txid_explorer = 'https://www.kmd.host/tx/'
-			} else if(coin == 'BTC') {
-				txid_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(coin == 'ZEC') {
-				txid_explorer = 'https://zchain.online/tx/'
-			}
 
 			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
-				<a href="#" onclick="shell.openExternal('`+txid_explorer+bot_sendrawtx_output_data+`'); return false;">` + bot_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+return_coin_details(coin).explorer+bot_sendrawtx_output_data+`'); return false;">` + bot_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -3887,8 +3867,8 @@ function bot_status(bot_data) {
 			}
 
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-			rel_answer = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.rel) + ' ('+data.rel+')';
-			base_answer = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.base) + ' ('+data.base+')';
+			rel_answer = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.rel).name + ' ('+data.rel+')';
+			base_answer = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.base).name + ' ('+data.base+')';
 
 			rel_form = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 50px;"> '+ data.rel;
 			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 50px;"> '+ data.base;
@@ -4183,7 +4163,7 @@ function bot_screen_sellcoin_balance(sig) {
 	coin = $('.trading_pair_coin').selectpicker('val');
 	console.log(coin);
 
-	var coin_name = return_coin_name(coin);
+	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
@@ -4224,7 +4204,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">Enable Native</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">Enable Electrum</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+')'+button_controls);
+				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')'+button_controls);
 				$('.trading_sellcoin_balance').html('Coin is disabled');
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4243,7 +4223,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">Send</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
+				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum')) {
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'rel';
@@ -4277,7 +4257,7 @@ function bot_screen_coin_balance(sig) {
 	var coin = selected_coin.coin;
 	console.log(coin);
 
-	var coin_name = return_coin_name(coin);
+	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
@@ -4312,7 +4292,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">Enable Native</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">Enable Electrum</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+')'+button_controls);
+				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')'+button_controls);
 				$('.trading_coin_balance').html('Coin is disabled');
 			} else {
 				var coin_mode = '';
@@ -4329,7 +4309,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">Send</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
+				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum')) {
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'base';
@@ -4342,7 +4322,7 @@ function bot_screen_coin_balance(sig) {
 				}
 			}
 
-			//$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(coin) + ' ('+coin+')');
+			//$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')');
 			//$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 80%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 		}
 
@@ -4439,40 +4419,9 @@ function check_swap_status_details(swap_status_data) {
 			}
 		} else {
 			result_answer = (swap_status_output_data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + swap_status_output_data.result + '</span></h4>';
-			alice_answer = '<img src="img/cryptologo/'+swap_status_output_data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(swap_status_output_data.alice) + ' ('+swap_status_output_data.alice+')';
-			bob_answer = '<img src="img/cryptologo/'+swap_status_output_data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(swap_status_output_data.bob) + ' ('+swap_status_output_data.bob+')';
+			alice_answer = '<img src="img/cryptologo/'+swap_status_output_data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(swap_status_output_data.alice).name + ' ('+swap_status_output_data.alice+')';
+			bob_answer = '<img src="img/cryptologo/'+swap_status_output_data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(swap_status_output_data.bob).name + ' ('+swap_status_output_data.bob+')';
 			iambob_answer = (swap_status_output_data.iambob == 0) ? 'Buyer' : 'Seller';
-
-
-			var bob_explorer = '';
-			if(swap_status_output_data.bob == 'MNZ') {
-				bob_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(swap_status_output_data.bob == 'KMD') {
-				bob_explorer = 'https://www.kmd.host/tx/'
-			} else if(swap_status_output_data.bob == 'BTC') {
-				bob_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(swap_status_output_data.bob == 'ZEC') {
-				bob_explorer = 'https://zchain.online/tx/'
-			} else if(swap_status_output_data.bob == 'LTC') {
-				bob_explorer = 'https://bchain.info/LTC/tx/'
-			} else if(swap_status_output_data.bob == 'HUSH') {
-				bob_explorer = 'https://explorer.myhush.org/tx/'
-			}
-
-			var alice_explorer = '';
-			if(swap_status_output_data.alice == 'MNZ') {
-				alice_explorer = 'https://www.mnzexplorer.com/tx/'
-			} else if(swap_status_output_data.alice == 'KMD') {
-				alice_explorer = 'https://www.kmd.host/tx/'
-			} else if(swap_status_output_data.alice == 'BTC') {
-				alice_explorer = 'https://www.blocktrail.com/BTC/tx/'
-			} else if(swap_status_output_data.alice == 'ZEC') {
-				alice_explorer = 'https://zchain.online/tx/'
-			} else if(swap_status_output_data.alice == 'LTC') {
-				alice_explorer = 'https://bchain.info/LTC/tx/'
-			} else if(swap_status_output_data.alice == 'HUSH') {
-				alice_explorer = 'https://explorer.myhush.org/tx/'
-			}
 
 			var time = new Date( swap_status_output_data.expiration *1000);
 			//var expiration = moment.unix(data.expiration);
@@ -4570,7 +4519,7 @@ function check_swap_status_details(swap_status_data) {
 										</tr>
 										<tr>
 											<td>Buyer Payment</td>
-											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+alice_explorer+swap_status_output_data.alicepayment+`'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
+											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.alice).explorer+swap_status_output_data.alicepayment+`'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
 										</tr>
 										<tr>
 											<td>Buyer Tx Fee</td>
@@ -4583,11 +4532,11 @@ function check_swap_status_details(swap_status_data) {
 										</tr>
 										<tr>
 											<td>Seller Deposit</td>
-											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+bob_explorer+swap_status_output_data.bobdeposit+`'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
+											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+swap_status_output_data.bobdeposit+`'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
 										</tr>
 										<tr>
 											<td>Seller Payment</td>
-											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+bob_explorer+swap_status_output_data.bobpayment+`'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
+											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+swap_status_output_data.bobpayment+`'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
 										</tr>
 										<tr>
 											<td>Seller Tx Fee</td>
@@ -4662,40 +4611,11 @@ function check_swap_status_details(swap_status_data) {
 						type: 'POST',
 						url: url
 					}).done(function(dataforblinker) {
-						var bob_explorer = '';
-						if(swap_status_output_data.bob == 'MNZ') {
-							bob_explorer = 'https://www.mnzexplorer.com/tx/'
-						} else if(swap_status_output_data.bob == 'KMD') {
-							bob_explorer = 'https://www.kmd.host/tx/'
-						} else if(swap_status_output_data.bob == 'BTC') {
-							bob_explorer = 'https://www.blocktrail.com/BTC/tx/'
-						} else if(swap_status_output_data.bob == 'ZEC') {
-							bob_explorer = 'https://zchain.online/tx/'
-						} else if(swap_status_output_data.bob == 'LTC') {
-							bob_explorer = 'https://bchain.info/LTC/tx/'
-						} else if(swap_status_output_data.bob == 'HUSH') {
-							bob_explorer = 'https://explorer.myhush.org/tx/'
-						}
 
-						var alice_explorer = '';
-						if(swap_status_output_data.alice == 'MNZ') {
-							alice_explorer = 'https://www.mnzexplorer.com/tx/'
-						} else if(swap_status_output_data.alice == 'KMD') {
-							alice_explorer = 'https://www.kmd.host/tx/'
-						} else if(swap_status_output_data.alice == 'BTC') {
-							alice_explorer = 'https://www.blocktrail.com/BTC/tx/'
-						} else if(swap_status_output_data.alice == 'ZEC') {
-							alice_explorer = 'https://zchain.online/tx/'
-						} else if(swap_status_output_data.alice == 'LTC') {
-							alice_explorer = 'https://bchain.info/LTC/tx/'
-						} else if(swap_status_output_data.alice == 'HUSH') {
-							alice_explorer = 'https://explorer.myhush.org/tx/'
-						}
-
-						$('.tbl_alicepayment').html(`<a href="#" onclick="shell.openExternal('`+alice_explorer+dataforblinker.alicepayment+`'); return false;">` + dataforblinker.alicepayment + `</a>`);
+						$('.tbl_alicepayment').html(`<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.alice).explorer+dataforblinker.alicepayment+`'); return false;">` + dataforblinker.alicepayment + `</a>`);
 						$('.tbl_alicetxfee').html(dataforblinker.alicetxfee);
-						$('.tbl_bobdeposit').html(`<a href="#" onclick="shell.openExternal('`+bob_explorer+dataforblinker.bobdeposit+`'); return false;">` + dataforblinker.bobdeposit + `</a>`);
-						$('.tbl_bobpayment').html(`<a href="#" onclick="shell.openExternal('`+bob_explorer+dataforblinker.bobpayment+`'); return false;">` + dataforblinker.bobpayment + `</a>`);
+						$('.tbl_bobdeposit').html(`<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+dataforblinker.bobdeposit+`'); return false;">` + dataforblinker.bobdeposit + `</a>`);
+						$('.tbl_bobpayment').html(`<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+dataforblinker.bobpayment+`'); return false;">` + dataforblinker.bobpayment + `</a>`);
 						$('.tbl_bobtxfee').html(dataforblinker.bobtxfee);;
 						$('.tbl_sentflags').html(JSON.stringify(dataforblinker.sentflags), null, 2);
 						$('.tbl_values').html(renderValues(dataforblinker.values));
@@ -5043,8 +4963,8 @@ function constructTradesHistory() {
 						data.bob) {
 					tradesCounter++;
 					result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-					alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.alice) + ' ('+data.alice+')';
-					bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_name(data.bob) + ' ('+data.bob+')';
+					alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.alice).name + ' ('+data.alice+')';
+					bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.bob).name + ' ('+data.bob+')';
 					iambob_answer = (data.iambob == 0) ? 'Buyer' : 'Seller';
 
 					var time = new Date( data.expiration * 1000);
