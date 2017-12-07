@@ -103,6 +103,25 @@ textarea {
     }
 }
 
+@media screen and (max-width:1530px){
+  body {
+    font-size: 120%;
+  }
+
+  .trading_sellcoin_ticker_name, .trading_coin_ticker_name {
+    font-size: 15px !important;
+    padding: 10px 0;
+  }
+
+  .trading_sellcoin_balance, .trading_coin_balance {
+    padding: 10px 0;
+  }
+
+  .coin_balance_disable, .coin_balance_receive, .coin_balance_send, .coin_balance_inventory, .coin_balance_enable_native, .coin_balance_enable_electrum {
+    font-size: 10px;
+  }
+}
+
 
 .modal-dialog {
   margin-top: 50px;
@@ -446,7 +465,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .relvol_basevol_label, .relvol_basevol_amount {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 200;
   border: 0;
   background-color: #fff;
