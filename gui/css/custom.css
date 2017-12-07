@@ -345,12 +345,11 @@ table tbody tr:first-child td {
 }
 .dexdebug {
   position: fixed;
-  top: 60px;
   left: 0;
   width: 100%;
   height: 100%;
   background: #fff;
-  z-index: 1000;
+  z-index: 1100;
   padding: 20px;
   overflow-y: scroll;
   height: calc(100% - 60px);
@@ -372,7 +371,6 @@ table tbody tr:first-child td {
 /* trades history */
 .dextradeshistory {
   position: fixed;
-  top: 60px;
   left: 0;
   width: 100%;
   height: 100%;
