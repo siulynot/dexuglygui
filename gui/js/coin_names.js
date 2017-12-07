@@ -99,8 +99,8 @@ function return_coin_name(coin) {
 		case 'HODLC':
 			coin_name = 'HODLC';
 			break;
-		case 'SHARK':
-			coin_name = 'SHARK';
+		case 'MSHARK':
+			coin_name = 'MSHARK';
 			break;
 		case 'BOTS':
 			coin_name = 'BOTS';
