@@ -690,6 +690,7 @@ $('.btn-bot_action').click(function(e){
 
 		//manual_buy_sell(trade_data)
 		buy_sell_precheck(trade_data);
+		$('.trading_auto_repeat_trade_yesno').prop('checked', false);
 
 	} else if (bot_or_manual == 'tradeportfolio') {
 
