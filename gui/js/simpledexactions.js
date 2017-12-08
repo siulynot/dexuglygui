@@ -2518,6 +2518,15 @@ function manual_buy_sell(mt_data) {
 
 	if (mt_data.action == 'buy') {
 		if (mt_data.autorepeat == true) {
+			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+			if(buying_or_selling == 'buying') {
+				var base_coin = coin;
+				var rel_coin = $('.trading_pair_coin').selectpicker('val');
+			}
+			if(buying_or_selling == 'selling') {
+				var base_coin = $('.trading_pair_coin').selectpicker('val');
+				var rel_coin = coin;
+			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
 			toastr.success(`Auto-repeat buy order exected at fixed price of ${mt_data.price}`,'Trade Notification');
 		} else {
@@ -2529,6 +2538,15 @@ function manual_buy_sell(mt_data) {
 	}
 	if (mt_data.action == 'sell') {
 		if (mt_data.autorepeat == true) {
+			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+			if(buying_or_selling == 'buying') {
+				var base_coin = coin;
+				var rel_coin = $('.trading_pair_coin').selectpicker('val');
+			}
+			if(buying_or_selling == 'selling') {
+				var base_coin = $('.trading_pair_coin').selectpicker('val');
+				var rel_coin = coin;
+			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
 			toastr.success(`Auto-repeat sell order exected at fixed price of ${mt_data.price}`,'Trade Notification');
 		} else {
