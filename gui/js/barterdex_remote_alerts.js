@@ -20,7 +20,7 @@ check_dex_remote_alerts = function(sig) {
 		// If successful
 		//console.log(data);
 
-		if (data.for_app_version.slice(2,16) < current_app_version.slice(2,16).substring(0, current_app_version.length-7) == true) {
+		if (data.for_app_version.slice(2,16) <= current_app_version.slice(2,16).substring(0, current_app_version.length-7) == true) {
 			if (data.alert_level == 'marquee') {
 				$('.app_top_alert_div').attr('style',data.style);
 				$('.app_top_alert_div').html(data.message);
