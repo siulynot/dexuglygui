@@ -3677,7 +3677,7 @@ function buy_sell_precheck(bot_data){
 			if (!data.error === true && data.error !== 'coin is disabled') {
 				toastr.error(data.error, 'Order precheck info');
 				if (data.coin.txfee >= 100000) {
-					bootbox.alert("Bitcoin Transaction Fee is too high <b>"+ data.coin.txfee / 100000000 + "</b><br> Due to such high BTC transaction fee this order is being stopped to process, since it may affect the completion of this order. Please try agin when Bitcoin transaction fee is lower.");
+					bootbox.alert("Bitcoin Transaction Fee is too high <b>"+ data.coin.txfee / 100000000 + "</b><br> Due to such high BTC transaction fee this order is being stopped to process, since it may affect the completion of this order. Please try again when Bitcoin transaction fee is lower.");
 					return;
 				} else if (data.coin.txfee >= 50000) {
 					bootbox.confirm({
