@@ -10,7 +10,18 @@ var bot_screen_coin_balance_Interval = null;
 var bot_screen_sellcoin_balance_Interval = null;
 var shell = require('electron').shell;
 
+$(window).resize(function() {
+	$('.loginbody').css('height',$(window).height());
+	$('#exchange_coin_asks_togl').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+	$('#exchange_coin_bids_togl').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+	$('#exchange_coin_asks').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+	$('#exchange_coin_bids').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+	$('.exchange_trade_status_body').css('height',$(window).height() - ($('.col1').height() + $('.col2').height() + 135))
+	console.log($(window).height());
+})
+
 $(document).ready(function() {
+	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
 		var mypubkey = sessionStorage.getItem('mm_mypubkey');
@@ -162,6 +173,18 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log($(this).data());
 	console.log($(this).data('coin'));
 	$('.screen-portfolio').hide();
+	setTimeout(function(){
+		if ($(window).height() - ($('.col1').height() + $('.col2').height() + 135) <= 285) {
+			var trade_status_body_height = '285px';
+		} else {
+			var trade_status_body_height = $(window).height() - ($('.col1').height() + $('.col2').height() + 135);
+		}
+		$('.exchange_trade_status_body').css('height',trade_status_body_height);
+		$('#exchange_coin_asks_togl').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+		$('#exchange_coin_bids_togl').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+		$('#exchange_coin_asks').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+		$('#exchange_coin_bids').css('max-height',$('.col1').height() + $('.col2').height() + $('.col3').height() - 470);
+	}, 10);
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
 	$('#trading_mode_options_trademanual').attr('checked','checked');
@@ -234,15 +257,15 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
-		charts_instruments_data.symbol = $(this).data('coin')+'/BTC'
+		charts_instruments_data.symbol = 'BTC/'+$(this).data('coin')
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart($(this).data('coin'), 'BTC');
+		UpdateDexChart('BTC',$(this).data('coin'));
 	} else {
-		charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
+		charts_instruments_data.symbol = 'KMD/'+$(this).data('coin')
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart($(this).data('coin'), 'KMD');
+		UpdateDexChart('KMD',$(this).data('coin'));
 	}
 	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
 
@@ -2950,7 +2973,7 @@ $('.trading_pair_coin').on('change', function (e) {
 	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
-	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
+	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
 });
 
 
@@ -2984,7 +3007,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
-	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
+	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
 
 });
 

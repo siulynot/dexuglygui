@@ -188,7 +188,7 @@ function UpdateDexChart(chartbase, chartrel)  {
 		}
 	}
 
-	gChart.showWaitingBar();
+	//gChart.showWaitingBar();
 	clearChartData();
 	gChart.update();
 
@@ -219,7 +219,7 @@ function UpdateDexChart(chartbase, chartrel)  {
 function parseBars(data, isIntraday) {
 	var dataSeries = gChart.barDataSeries();
 	//data.reverse();
-
+	gChart.showWaitingBar();
 	$.each(data, function(index,value) {
 		//console.log(index);
 		//console.log(value);
