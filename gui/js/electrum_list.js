@@ -24,6 +24,7 @@ var electrum_servers_list = {
   "NMC": [{"173.212.225.176": 50036},{"136.243.45.140": 50036}],
   "PANGEA": [{"electrum2.cipig.net": 10010},{"electrum1.cipig.net": 10010}],
   "REVS": [{"electrum2.cipig.net": 10003},{"electrum1.cipig.net": 10003}],
+  "SIB": [{"electrum2.cipig.net": 10050},{"electrum1.cipig.net": 10050}],
   "SUPERNET": [{"electrum2.cipig.net": 10005},{"electrum1.cipig.net": 10005}],
   "VIA": [{"173.212.225.176": 50033},{"136.243.45.140": 50033}],
   "VTC": [{"173.212.225.176": 50088},{"136.243.45.140": 50088}],
