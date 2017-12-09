@@ -133,7 +133,7 @@ function return_coin_details(coin) {
 			break;
 		case 'MSHARK':
 			coin_details.name = 'MSHARK';
-			coin_details.explorer = 'http://shark.explorer.supernet.org/tx/';
+			coin_details.explorer = 'http://mshark.explorer.supernet.org/tx/';
 			break;
 		case 'BOTS':
 			coin_details.name = 'BOTS';
@@ -213,7 +213,7 @@ function return_coin_details(coin) {
 			break;
 		case 'TRC':
 			coin_details.name = 'Terracoin';
-			coin_details.explorer = '';
+			coin_details.explorer = 'https://bchain.info/TRC/tx/';
 			break;
 		case 'BTA':
 			coin_details.name = 'Bata';
@@ -277,7 +277,7 @@ function return_coin_details(coin) {
 			break;
 		case 'SIB':
 			coin_details.name = 'SIBCoin';
-			coin_details.explorer = 'https://chain.sibcoin.net/tx/';
+			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
 		case 'VTC':
 			coin_details.name = 'Vertcoin';
