@@ -415,7 +415,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'South African Rand';
 			coin_details.explorer = 'http://ZAR.explorer.supernet.org/tx/';
 			break;
-
+		case 'STAK':
+			coin_details.name = 'Straks';
+			coin_details.explorer = 'https://straks.info/transaction/';
+			break;
 	}
 	return coin_details;
 }
