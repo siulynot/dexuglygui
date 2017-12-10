@@ -1336,7 +1336,7 @@ function check_coin_listunspent(coin_listunspent_data) {
 					show_list_unspents_tbl_tr += `<td>` + val.height + `</td>`;
 					show_list_unspents_tbl_tr += `<td>` + val.tx_hash + `</td>`;
 					show_list_unspents_tbl_tr += `<td>` + val.tx_pos + `</td>`;
-					show_list_unspents_tbl_tr += `<td>` + (parseFloat(val.value)).toFixed(8) + ' ' + coin_listunspent_data.coin + `</td>`;
+					show_list_unspents_tbl_tr += `<td>` + (parseFloat(val.value) / 100000000).toFixed(8) + ' ' + coin_listunspent_data.coin + `</td>`;
 				}
 				
 			show_list_unspents_tbl_tr += '</tr>';
