@@ -491,7 +491,7 @@ CheckDefaultLogin = function(sig) {
 	}
 
 	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
-	var ajax_data = {"userpass":userpass,"method":"portfolio"};
+	var ajax_data = {"userpass":userpass,"method":"enable","coin":""};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
