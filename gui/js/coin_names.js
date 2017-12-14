@@ -127,8 +127,8 @@ function return_coin_details(coin) {
 			coin_details.name = 'COQUI';
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			break;
-		case 'HODLC':
-			coin_details.name = 'HODLC';
+		case 'HODL':
+			coin_details.name = 'HODL';
 			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
 			break;
 		case 'MSHARK':
