@@ -4466,11 +4466,18 @@ function electrum_coin_balance(coin_balance_data) {
 	}).done(function(coin_balance_output_data) {
 		// If successful
 		console.log(coin_balance_output_data);
+
+		if (coin_balance_data.coin == 'KMD') {
+			var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + coin_balance_output_data.zcredits + '</button>';
+		} else {
+			var show_zcredits = '';
+		}
+
 		if(coin_balance_data.baserel == 'base'){
-			$('.trading_coin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+			$('.trading_coin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
 		}
 		if(coin_balance_data.baserel == 'rel'){
-			$('.trading_sellcoin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+			$('.trading_sellcoin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
