@@ -2601,7 +2601,7 @@ function manual_buy_sell(mt_data) {
 		//$('.relvol_basevol').html('');
 
 		if (!mt_output_data.error === false) {
-			toastr.error(mt_output_data.error, 'Bot Info');
+			toastr.error(mt_output_data.error, 'Trade Info');
 			if (mt_output_data.error == 'not enough funds') {
 				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
 				bootbox.alert({
@@ -5060,6 +5060,7 @@ function constructTradesHistory() {
     type: 'POST',
     url: url,
 	}).done(function(data) {
+		console.log(data);
 		let out = '';
 		let tradesCounter = 0;
 

@@ -81,7 +81,29 @@ $('.dexdashboard-btn').click(function(e){
 
 
 $('.dextradeshistory-btn').click(function(e) {
-	if ($('.dextradeshistory').is(":visible")) {
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
+	$('.dexdebug').hide();
+	
+	$('.dextradeshistory').show();
+	$('.navbar-right').children().removeClass('active');
+	$('.dextradeshistory-btn').parent().addClass( "active" );
+	constructTradesHistory();
+
+	CheckPortfolioFn(false);
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	bot_screen_coin_balance(false);
+	bot_screen_sellcoin_balance(false);
+
+	check_coin_balance(false);
+	Refresh_active_StockChart(false);
+	
+	/*if ($('.dextradeshistory').is(":visible")) {
 		$('body').css('overflow', 'inherit');
 		$('.dextradeshistory').hide();
 		$('.dextradeshistory-btn').html('Trades history');
@@ -93,7 +115,7 @@ $('.dextradeshistory-btn').click(function(e) {
 		$('.navbar-right').children().removeClass('active');
 		$('.dextradeshistory-btn').parent().addClass( "active" );
 		constructTradesHistory();
-	}
+	}*/
 });
 
 $('.dexlogout-btn').click(function(e) {
@@ -120,15 +142,31 @@ $('.dexlogout-btn').click(function(e) {
 $('.dexdebug-btn').click(function(e) {
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug').show();
-	$('.dexlogout-btn').hide();
-	$('.dexdebug-close-btn').show();
-	$('.dexdebug-btn').hide();
-	$('.dextradeshistory-btn').hide();
-	$('.dexdashboard-btn').hide();
-	$('.dexsettings-btn').hide();
+	//$('.dexlogout-btn').hide();
+	//$('.dexdebug-close-btn').show();
+	//$('.dexdebug-btn').hide();
+	//$('.dextradeshistory-btn').hide();
+	//$('.dexdashboard-btn').hide();
+	//$('.dexsettings-btn').hide();
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
+
+
+	CheckPortfolioFn(false);
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	bot_screen_coin_balance(false);
+	bot_screen_sellcoin_balance(false);
+
+	check_coin_balance(false);
+	Refresh_active_StockChart(false);
 });
 
 $('.dexdebug-close-btn').click(function(e) {
