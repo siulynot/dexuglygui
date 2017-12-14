@@ -3,6 +3,7 @@ var coin_select_options = '';
 coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/kmd.png' width='30px;'/> Komodo (KMD)" data-tokens="kmd komodo ">KMD</option>
       <option data-content="<img src='img/cryptologo/btc.png' width='30px;'/> Bitcoin (BTC)" data-tokens="btc bitcoin ">BTC</option>
+      <option data-content="<img src='img/cryptologo/bch.png' width='30px;'/> Bitcoin Cash (BCH)" data-tokens="bch bitcoin cash ">BCH</option>
       <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
       <option data-content="<img src='img/cryptologo/chips.png' width='30px;'/> CHIPS (CHIPS)" data-tokens="CHIPS CHIPS ">CHIPS</option>
       
@@ -51,6 +52,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/sib.png' width='30px'/> Sibcoin (SIB)" data-tokens="Sibcoin SIB">SIB</option>
       <option data-content="<img src='img/cryptologo/strat.png' width='30px'/> Stratis (STRAT)" data-tokens="Stratis STRAT">STRAT</option>
       <option data-content="<img src='img/cryptologo/smc.png' width='30px'/> SmartCoin (SMC)" data-tokens="SmartCoin SMC">SMC</option>
+      <option data-content="<img src='img/cryptologo/stak.png' width='30px'/> Straks (STAK)" data-tokens="Straks STAK">STAK</option>
       <option data-content="<img src='img/cryptologo/sys.png' width='30px'/> Syscoin (SYS)" data-tokens="Syscoin SYS">SYS</option>
       <option data-content="<img src='img/cryptologo/trc.png' width='30px'/> Terracoin (TRC)" data-tokens="Terracoin TRC">TRC</option>
       
@@ -70,7 +72,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/coqui.png' width='30px;'/> COQUI (COQUI)" data-tokens="COQUI COQUI">COQUI</option>
       <option data-content="<img src='img/cryptologo/crypto.png' width='30px'/> Crypto777 (CRYPTO)" data-tokens="Crypto777 CRYPTO">CRYPTO</option>
       <option data-content="<img src='img/cryptologo/dex.png' width='30px;'/> InstantDEX (DEX)" data-tokens="InstantDEX DEX">DEX</option>
-      <option data-content="<img src='img/cryptologo/hodlc.png' width='30px'/> HODLC (HODLC)" data-tokens="HODLC HODLC">HODLC</option>
+      <option data-content="<img src='img/cryptologo/hodlc.png' width='30px'/> HODL (HODL)" data-tokens="HODL HODL">HODL</option>
       <option data-content="<img src='img/cryptologo/jumblr.png' width='30px;'/> Jumblr (JUMBLR)" data-tokens="Jumblr JUMBLR">JUMBLR</option>
       <option data-content="<img src='img/cryptologo/kv.png' width='30px'/> KeyValue (KV)" data-tokens="KeyValue KV">KV</option>
       <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>

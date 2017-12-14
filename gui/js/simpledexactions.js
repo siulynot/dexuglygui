@@ -257,15 +257,15 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
-		charts_instruments_data.symbol = 'BTC/'+$(this).data('coin')
+		charts_instruments_data.symbol = $(this).data('coin')+'/BTC'
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart('BTC',$(this).data('coin'));
+		UpdateDexChart($(this).data('coin'),'BTC');
 	} else {
-		charts_instruments_data.symbol = 'KMD/'+$(this).data('coin')
+		charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart('KMD',$(this).data('coin'));
+		UpdateDexChart($(this).data('coin'),'KMD');
 	}
 	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
 
@@ -799,6 +799,35 @@ $('.btn-trading_coin_balance_refresh').click(function(e){
 	bot_screen_coin_balance();
 })
 
+
+$('.btn_switch_trading_coin_pairs').click(function(e){
+	e.preventDefault();
+	console.log('btn_switch_trading_coin_pairs clicked');
+
+	var coin_pair1 = $('.trading_pair_coin').selectpicker('val');
+	var coin_pair2 = $('.trading_pair_coin2').selectpicker('val');
+
+	console.log(coin_pair1);
+	console.log(coin_pair2);
+
+	$('.trading_pair_coin').selectpicker('val',coin_pair2);
+	$('.trading_pair_coin2').selectpicker('val',coin_pair1);
+
+
+	$('.relvol_basevol_coin').html(coin_pair2);
+
+	bot_screen_sellcoin_balance();
+	bot_screen_coin_balance();
+
+	CheckOrderBookFn();
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
+
+});
 
 function check_coin_balance(chk_coin_data) {
 	console.log(chk_coin_data);
@@ -2601,7 +2630,7 @@ function manual_buy_sell(mt_data) {
 		//$('.relvol_basevol').html('');
 
 		if (!mt_output_data.error === false) {
-			toastr.error(mt_output_data.error, 'Bot Info');
+			toastr.error(mt_output_data.error, 'Trade Info');
 			if (mt_output_data.error == 'not enough funds') {
 				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
 				bootbox.alert({
@@ -2970,7 +2999,7 @@ $('.trading_pair_coin').on('change', function (e) {
 	CheckOrderBookFn();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
 	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
@@ -3004,7 +3033,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 	CheckOrderBookFn();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
 	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
@@ -4466,11 +4495,18 @@ function electrum_coin_balance(coin_balance_data) {
 	}).done(function(coin_balance_output_data) {
 		// If successful
 		console.log(coin_balance_output_data);
+
+		if (coin_balance_data.coin == 'KMD') {
+			var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + coin_balance_output_data.zcredits + '</button>';
+		} else {
+			var show_zcredits = '';
+		}
+
 		if(coin_balance_data.baserel == 'base'){
-			$('.trading_coin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+			$('.trading_coin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
 		}
 		if(coin_balance_data.baserel == 'rel'){
-			$('.trading_sellcoin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
+			$('.trading_sellcoin_balance').html(coin_balance_output_data.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin_balance_data.coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + coin_balance_data.smartaddress + '</span>');
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -4501,6 +4537,15 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 function check_swap_status_details(swap_status_data) {
 	console.log(swap_status_data);
 
+	var options_holdon = {
+		theme:"sk-bounce",
+		message:'Please wait while getting swap status detail data...',
+		//backgroundColor:"#1847B1",
+		textColor:"white"
+	};
+
+	HoldOn.open(options_holdon);
+
 	var requestid = swap_status_data.requestid;
 	var quoteid = swap_status_data.quoteid;
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -4516,6 +4561,7 @@ function check_swap_status_details(swap_status_data) {
 	    url: url
 	}).done(function(swap_status_output_data) {
 		// If successful
+		HoldOn.close();
 		console.log(swap_status_output_data);
 
 		if (!swap_status_output_data.error === false) {
@@ -4807,6 +4853,7 @@ function check_swap_status_details(swap_status_data) {
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
+	    HoldOn.close();
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
@@ -5040,6 +5087,7 @@ function constructTradesHistory() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	//var ajax_data = {"userpass":userpass,"method":"recentswaps","limit":100};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -5049,6 +5097,7 @@ function constructTradesHistory() {
     type: 'POST',
     url: url,
 	}).done(function(data) {
+		console.log(data);
 		let out = '';
 		let tradesCounter = 0;
 
@@ -5254,12 +5303,12 @@ function constructTradesHistory() {
 
 /* ZEROCONF SETTINGS */
 
-$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
+/*$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
 	e.preventDefault();
 	console.log('zconf_deposit_txid_link clicked');
 	console.log($(this).data());
 	shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
-});
+});*/
 
 $('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_details', function(e) {
 	e.preventDefault();
@@ -5339,6 +5388,13 @@ function getZeroConfDepositHistory(){
 			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
 			
 		}
+	});
+
+	$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
+		e.preventDefault();
+		console.log('zconf_deposit_txid_link clicked');
+		console.log($(this).data());
+		shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
 	});
 }
 

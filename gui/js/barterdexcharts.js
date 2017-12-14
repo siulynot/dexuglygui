@@ -6,7 +6,14 @@ var gChart;
 $(function() {
     "use strict";
 
-    var isDebugMode = window.location.port === '63342';
+    var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
+
+    var chartTheme = StockChartX.Theme.Light;
+    if (barterDEX_settings.theme === "dark") {
+    	chartTheme = StockChartX.Theme.Dark;
+	}
+
+	var isDebugMode = window.location.port === '63342';
     var isFullWindowMode = isDebugMode || ((StockChartX.Environment.isMobile && $(window).width() < 768) || StockChartX.Environment.isPhone);
 
     /*var symbolsFilePath = StockChartX.Environment.isMobile ? "data/symbols.mobile.json" : "data/symbols.json";
@@ -18,6 +25,7 @@ $(function() {
     gChart = $('#chartContainer').StockChartX({
         width: $('#chartContainer').parent().width(),
         height: 360,
+		theme: chartTheme
         //fullWindowMode: isFullWindowMode
     });
 

@@ -15,6 +15,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
 			break;
+		case 'BCH':
+			coin_details.name = 'Bitcoin Cash';
+			coin_details.explorer = 'https://blockchair.com/bitcoin-cash/transaction/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
@@ -127,8 +131,8 @@ function return_coin_details(coin) {
 			coin_details.name = 'COQUI';
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			break;
-		case 'HODLC':
-			coin_details.name = 'HODLC';
+		case 'HODL':
+			coin_details.name = 'HODL';
 			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
 			break;
 		case 'MSHARK':
@@ -415,7 +419,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'South African Rand';
 			coin_details.explorer = 'http://ZAR.explorer.supernet.org/tx/';
 			break;
-
+		case 'STAK':
+			coin_details.name = 'Straks';
+			coin_details.explorer = 'https://straks.info/transaction/';
+			break;
 	}
 	return coin_details;
 }

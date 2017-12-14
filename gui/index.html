@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - v0.7.5-beta</title>
+    <title>BarterDEX - v0.7.6-beta</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" id="bright_css_style">
@@ -21,6 +21,7 @@
     <link href="css/spinner.css" type="text/css" rel="stylesheet">
     <link href="js/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.min.css" type="text/css" rel="stylesheet">
+    <link href="css/HoldOn.min.css" type="text/css" rel="stylesheet">
 
     <link href="css/charts/StockChartX.min.css" type="text/css" rel="stylesheet">
     <link href="css/charts/StockChartX.UI.min.css" type="text/css" rel="stylesheet">
@@ -130,7 +131,7 @@
   <div class="mainbody" style="display: none;">
 
     <!-- Section: Navigation Menu -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -163,7 +164,7 @@
       </div><!-- /.container-fluid -->
     </nav>
     <!-- Section: Navigation Menu END -->
-    <div class="dextradeshistory" style="display: none">
+    <div class="dextradeshistory" style="display: none; margin-top: 60px;">
       <span class="refresh-trades-history-icon" onclick="constructTradesHistory()">
         <i class="fa fa-refresh"></i> Refresh
       </span>
@@ -177,7 +178,7 @@
       </div>
     </div>
 
-    <div class="dexdebug" style="display: none">
+    <div class="dexdebug" style="display: none; margin-top: 60px;">
       <h4>Payload</h4>
       <textarea cols="50" rows="5" id="debug-payload" placeholder="Provide payload"></textarea>
       <button class="btn btn-primary" id="debug-exec">Execute</button>
@@ -186,7 +187,7 @@
       <div id="debug-payload-response"></div>
     </div>
 
-    <div class="screen-portfolio">
+    <div class="screen-portfolio" style="margin-top: 60px;">
 
       <div class="col-sm-12">
         <div class="panel panel-default">
@@ -240,7 +241,7 @@
 
     </div>
 
-    <div class="screen-inventory" style="display: none;">
+    <div class="screen-inventory" style="display: none; margin-top: 60px;">
       <div class="col-sm-12" style="display: none;">
         <p>This screen shows you option to manage your coin's inventory. What is coin inventory?</p>
         <p>Every crypto currency wallet is very much like your regular physical wallet. Just like in your physical wallet if you have different currency notes and coins available, that means they are not spent. You can spend them. If you use the same analogy in crypto currency, these unspent notes and coins can be referred as <b><i>unspent transactions.</i></b> In tiny bit technical term it's called <b>U</b>nspent <b>T</b>ransaction <b>O</b>utput, in short <b>UTXO</b>.</p>
@@ -367,7 +368,7 @@
       </div>
     </div>
 
-    <div class="screen-exchange" style="display: none;">
+    <div class="screen-exchange" style="display: none; margin-top: 60px;">
       
       
 
@@ -378,7 +379,7 @@
             <div class="panel panel-default" style="margin-bottom: 5px;">
               <div class="panel-heading">
                 <h3 class="panel-title"><strong>Your Balance</strong></h3>
-                <!--<button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin: -20px -8px;">ADD COINS <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>-->
+                <button class="btn btn-xs btn-warning btn_switch_trading_coin_pairs" style="float: right; margin: -20px 20px;">SWITCH PAIRS <span class="fa fa-random" aria-hidden="true"></span></button>
                 <button class="btn btn-xs btn-trading_coin_balance_refresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px"><span class="glyphicon glyphicon-refresh"></span></button>
               </div>
               <div> <!-- panel-body -->
@@ -809,6 +810,7 @@
     <script src="js/countdown.min.js" type="text/javascript"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
     <script src="js/jquery.marquee.min.js" type="text/javascript"></script>
+    <script src="js/HoldOn.min.js" type="text/javascript"></script>
     <!-- Crypto Dependencies -->
     <script src="js/wordlist.js" type="text/javascript"></script>
     <script src="js/passphrasegenerator.js" type="text/javascript"></script>

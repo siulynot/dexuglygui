@@ -81,7 +81,29 @@ $('.dexdashboard-btn').click(function(e){
 
 
 $('.dextradeshistory-btn').click(function(e) {
-	if ($('.dextradeshistory').is(":visible")) {
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
+	$('.dexdebug').hide();
+	
+	$('.dextradeshistory').show();
+	$('.navbar-right').children().removeClass('active');
+	$('.dextradeshistory-btn').parent().addClass( "active" );
+	constructTradesHistory();
+
+	CheckPortfolioFn(false);
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	bot_screen_coin_balance(false);
+	bot_screen_sellcoin_balance(false);
+
+	check_coin_balance(false);
+	Refresh_active_StockChart(false);
+	
+	/*if ($('.dextradeshistory').is(":visible")) {
 		$('body').css('overflow', 'inherit');
 		$('.dextradeshistory').hide();
 		$('.dextradeshistory-btn').html('Trades history');
@@ -93,7 +115,7 @@ $('.dextradeshistory-btn').click(function(e) {
 		$('.navbar-right').children().removeClass('active');
 		$('.dextradeshistory-btn').parent().addClass( "active" );
 		constructTradesHistory();
-	}
+	}*/
 });
 
 $('.dexlogout-btn').click(function(e) {
@@ -120,15 +142,31 @@ $('.dexlogout-btn').click(function(e) {
 $('.dexdebug-btn').click(function(e) {
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug').show();
-	$('.dexlogout-btn').hide();
-	$('.dexdebug-close-btn').show();
-	$('.dexdebug-btn').hide();
-	$('.dextradeshistory-btn').hide();
-	$('.dexdashboard-btn').hide();
-	$('.dexsettings-btn').hide();
+	//$('.dexlogout-btn').hide();
+	//$('.dexdebug-close-btn').show();
+	//$('.dexdebug-btn').hide();
+	//$('.dextradeshistory-btn').hide();
+	//$('.dexdashboard-btn').hide();
+	//$('.dexsettings-btn').hide();
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
+
+
+	CheckPortfolioFn(false);
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	bot_screen_coin_balance(false);
+	bot_screen_sellcoin_balance(false);
+
+	check_coin_balance(false);
+	Refresh_active_StockChart(false);
 });
 
 $('.dexdebug-close-btn').click(function(e) {
@@ -289,7 +327,7 @@ $('.dexsettings-btn').click(function(e){
 			<div class="input-group col-sm-2" style="margin: 10px 0;">
 				<select class="selectpicker settings_theme_select" data-hide-disabled="true" data-width="30%">
 					<option data-content="Dark Theme" data-tokens="Dark Theme">dark</option>
-					<!--<option data-content="Light Theme" data-tokens="Light Theme">light</option>-->
+					<option data-content="Light Theme" data-tokens="Light Theme">light</option>
 				</select>
 			</div>`,
 		closeButton: false,
@@ -491,7 +529,7 @@ CheckDefaultLogin = function(sig) {
 	}
 
 	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
-	var ajax_data = {"userpass":userpass,"method":"portfolio"};
+	var ajax_data = {"userpass":userpass,"method":"enable","coin":""};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
