@@ -5273,12 +5273,12 @@ function constructTradesHistory() {
 
 /* ZEROCONF SETTINGS */
 
-$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
+/*$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
 	e.preventDefault();
 	console.log('zconf_deposit_txid_link clicked');
 	console.log($(this).data());
 	shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
-});
+});*/
 
 $('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_details', function(e) {
 	e.preventDefault();
@@ -5358,6 +5358,13 @@ function getZeroConfDepositHistory(){
 			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
 			
 		}
+	});
+
+	$('.zeroconf_deposits_history_tbl tbody').on('click', '.zconf_deposit_txid_link', function(e) {
+		e.preventDefault();
+		console.log('zconf_deposit_txid_link clicked');
+		console.log($(this).data());
+		shell.openExternal('https://kmd.explorer.supernet.org/tx/'+$(this).data('txid'));
 	});
 }
 
