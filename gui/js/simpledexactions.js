@@ -4501,6 +4501,15 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 function check_swap_status_details(swap_status_data) {
 	console.log(swap_status_data);
 
+	var options_holdon = {
+		theme:"sk-bounce",
+		message:'Please wait while getting swap status detail data...',
+		//backgroundColor:"#1847B1",
+		textColor:"white"
+	};
+
+	HoldOn.open(options_holdon);
+
 	var requestid = swap_status_data.requestid;
 	var quoteid = swap_status_data.quoteid;
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -4516,6 +4525,7 @@ function check_swap_status_details(swap_status_data) {
 	    url: url
 	}).done(function(swap_status_output_data) {
 		// If successful
+		HoldOn.close();
 		console.log(swap_status_output_data);
 
 		if (!swap_status_output_data.error === false) {
@@ -4807,6 +4817,7 @@ function check_swap_status_details(swap_status_data) {
 
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
+	    HoldOn.close();
 	    console.log(textStatus + ': ' + errorThrown);
 	});
 }
