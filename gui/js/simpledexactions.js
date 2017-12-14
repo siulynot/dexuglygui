@@ -257,15 +257,15 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
-		charts_instruments_data.symbol = 'BTC/'+$(this).data('coin')
+		charts_instruments_data.symbol = $(this).data('coin')+'/BTC'
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart('BTC',$(this).data('coin'));
+		UpdateDexChart($(this).data('coin'),'BTC');
 	} else {
-		charts_instruments_data.symbol = 'KMD/'+$(this).data('coin')
+		charts_instruments_data.symbol = $(this).data('coin')+'/KMD'
 		charts_instruments_data.company = 'Komodo Platform';
 		ChartsInstruments(charts_instruments_data)
-		UpdateDexChart('KMD',$(this).data('coin'));
+		UpdateDexChart($(this).data('coin'),'KMD');
 	}
 	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
 
@@ -799,6 +799,35 @@ $('.btn-trading_coin_balance_refresh').click(function(e){
 	bot_screen_coin_balance();
 })
 
+
+$('.btn_switch_trading_coin_pairs').click(function(e){
+	e.preventDefault();
+	console.log('btn_switch_trading_coin_pairs clicked');
+
+	var coin_pair1 = $('.trading_pair_coin').selectpicker('val');
+	var coin_pair2 = $('.trading_pair_coin2').selectpicker('val');
+
+	console.log(coin_pair1);
+	console.log(coin_pair2);
+
+	$('.trading_pair_coin').selectpicker('val',coin_pair2);
+	$('.trading_pair_coin2').selectpicker('val',coin_pair1);
+
+
+	$('.relvol_basevol_coin').html(coin_pair2);
+
+	bot_screen_sellcoin_balance();
+	bot_screen_coin_balance();
+
+	CheckOrderBookFn();
+
+	var charts_instruments_data = {}
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
+	charts_instruments_data.company = 'Komodo Platform';
+	ChartsInstruments(charts_instruments_data)
+	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
+
+});
 
 function check_coin_balance(chk_coin_data) {
 	console.log(chk_coin_data);
@@ -2970,7 +2999,7 @@ $('.trading_pair_coin').on('change', function (e) {
 	CheckOrderBookFn();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
 	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
@@ -3004,7 +3033,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 	CheckOrderBookFn();
 
 	var charts_instruments_data = {}
-	charts_instruments_data.symbol = $('.trading_pair_coin').selectpicker('val')+'/'+$('.trading_pair_coin2').selectpicker('val');
+	charts_instruments_data.symbol = $('.trading_pair_coin2').selectpicker('val')+'/'+$('.trading_pair_coin').selectpicker('val');
 	charts_instruments_data.company = 'Komodo Platform';
 	ChartsInstruments(charts_instruments_data)
 	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
