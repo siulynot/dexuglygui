@@ -4900,7 +4900,7 @@ function check_swap_status(sig) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var ajax_data = {"userpass":userpass,"method":"swapstatus","pending":1};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
