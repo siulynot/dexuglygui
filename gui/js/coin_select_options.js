@@ -3,6 +3,7 @@ var coin_select_options = '';
 coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/kmd.png' width='30px;'/> Komodo (KMD)" data-tokens="kmd komodo ">KMD</option>
       <option data-content="<img src='img/cryptologo/btc.png' width='30px;'/> Bitcoin (BTC)" data-tokens="btc bitcoin ">BTC</option>
+      <option data-content="<img src='img/cryptologo/bch.png' width='30px;'/> Bitcoin Cash (BCH)" data-tokens="bch bitcoin cash ">BCH</option>
       <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
       <option data-content="<img src='img/cryptologo/chips.png' width='30px;'/> CHIPS (CHIPS)" data-tokens="CHIPS CHIPS ">CHIPS</option>
       

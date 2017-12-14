@@ -15,6 +15,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
 			break;
+		case 'BCH':
+			coin_details.name = 'Bitcoin Cash';
+			coin_details.explorer = 'https://blockchair.com/bitcoin-cash/transaction/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
