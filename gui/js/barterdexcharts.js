@@ -1,4 +1,3 @@
-
 var Refresh_active_StockChart_Interval = null;
 
 var gChart;
@@ -35,7 +34,7 @@ $(function() {
         var myIndicator = new MyCustomMACD();
         gChart.addIndicators([myIndicator, TASdk.BollingerBands]);
     }
-    
+
 
     var ind = gChart.addIndicators(StockChartX.VolumeIndicator);
     ind.setParameterValue(StockChartX.IndicatorParam.LINE_WIDTH, 5);
@@ -84,7 +83,7 @@ $(function() {
     gChart.hideWaitingBar();
 
 
-    
+
 });
 
 $(window).resize(function() {
@@ -197,7 +196,7 @@ function UpdateDexChart(chartbase, chartrel)  {
 	}
 
 	//gChart.showWaitingBar();
-	clearChartData();
+	//clearChartData();
 	gChart.update();
 
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -223,28 +222,45 @@ function UpdateDexChart(chartbase, chartrel)  {
 	});
 }
 
-
 function parseBars(data, isIntraday) {
-	var dataSeries = gChart.barDataSeries();
-	//data.reverse();
-	gChart.showWaitingBar();
-	$.each(data, function(index,value) {
-		//console.log(index);
-		//console.log(value);
-		var time = new Date( value[0] *1000);
-		//console.log(time);
+    var dataSeries = gChart.barDataSeries();
+    //data.reverse();
+    gChart.showWaitingBar();
+    var newBars = [];
+    $.each(data, function (index, value) {
+        var time = new Date(value[0] * 1000);
 
-		dataSeries.date.add(time);
-		dataSeries.open.add(parseFloat(value[1]));
-		dataSeries.high.add(parseFloat(value[2]));
-		dataSeries.low.add(parseFloat(value[3]));
-		dataSeries.close.add(parseFloat(value[4]));
-		dataSeries.volume.add(parseInt(value[5], 10));
+        if (dataSeries.date.values.length < index) {
+            // if the data received from the API call contains more bars than the chart currently has
+            // those bars should be appended to the chart
+            var newBar = {
+                'date': time,
+                'open': parseFloat(value[1]),
+                'high': parseFloat(value[2]),
+                'low': parseFloat(value[3]),
+                'close': parseFloat(value[4]),
+                'volume': parseInt(value[5], 10),
+            };
+            newBars.push(newBar);
+        } else {
+            // if the bar already exists, just update the data
+            dataSeries.date.values[index] = time;
+            dataSeries.open.values[index] = parseFloat(value[1]);
+            dataSeries.high.values[index] = parseFloat(value[2]);
+            dataSeries.low.values[index] = parseFloat(value[3]);
+            dataSeries.close.values[index] = parseFloat(value[4]);
+            dataSeries.volume.values[index] = parseInt(value[5], 10);
+        }
+    });
 
-	});
-	gChart.updateComputedDataSeries();
-	gChart.update();
-	gChart.hideWaitingBar();
+    if (newBars.length > 0) {
+        gChart.appendBars(newBars);
+    }
+
+    gChart.setNeedsAutoScaleAll();
+    gChart.updateComputedDataSeries();
+    gChart.update();
+    gChart.hideWaitingBar();
 }
 
 
