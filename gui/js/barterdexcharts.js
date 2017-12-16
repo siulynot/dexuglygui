@@ -273,5 +273,5 @@ function Refresh_active_StockChart(sig) {
 	} else {
 		console.log('Refreshing active StockCharts every minute.');
 	}
-	UpdateDexChart($('.trading_pair_coin').selectpicker('val'), $('.trading_pair_coin2').selectpicker('val'));
+	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
 }
