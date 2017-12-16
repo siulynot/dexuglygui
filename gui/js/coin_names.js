@@ -299,6 +299,22 @@ function return_coin_details(coin) {
 			coin_details.name = 'Hush';
 			coin_details.explorer = 'https://explorer.myhush.org/tx/';
 			break;
+		case 'XZC':
+			coin_details.name = 'ZCoin';
+			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
+			break;
+		case 'QTUM':
+			coin_details.name = 'Qtum';
+			coin_details.explorer = 'https://explorer.qtum.org/tx/';
+			break;
+		case 'DSR':
+			coin_details.name = 'Desire';
+			coin_details.explorer = 'http://desire.thecryptochat.net/block.php?hash=';
+			break;
+		case 'PURA':
+			coin_details.name = 'Pura';
+			coin_details.explorer = 'https://chainz.cryptoid.info/pura/tx.dws?';
+			break;
 		case 'AUD':
 			coin_details.name = 'Australian Dollar';
 			coin_details.explorer = 'http://aud.explorer.supernet.org/tx/';
