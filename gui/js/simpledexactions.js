@@ -4373,7 +4373,7 @@ function bot_screen_sellcoin_balance(sig) {
 					} else {
 						var show_zcredits = '';
 					}
-					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span> <!--<button class="btn btn-xs copysellcoinaddr"><i class="fa fa-clipboard" aria-hidden="true"></i></button>-->');
 				}
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4463,7 +4463,7 @@ function bot_screen_coin_balance(sig) {
 					} else {
 						var show_zcredits = '';
 					}
-					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span> <!--<button class="btn btn-xs btn-copycoinaddr"><i class="fa fa-clipboard" aria-hidden="true"></i></button>-->');
 				}
 			}
 

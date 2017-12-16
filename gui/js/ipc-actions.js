@@ -625,11 +625,13 @@ function BarterDEXSettingsFn() {
 		$('.trading_method_options').hide();
 		$('#portfolio_chart_current').addClass(' col-sm-offset-3');
 		$('#portfolio_chart_target').hide();
+		$("a[href='#exchange_botlist']").parent().hide()
 	} else {
 		$('.btn-autogoalall').show();
 		$('.trading_method_options').show();
 		$('#portfolio_chart_current').removeClass('col-sm-offset-3');
 		$('#portfolio_chart_target').show();
+		$("a[href='#exchange_botlist']").parent().show();
 	}
 
 	if (barterDEX_settings.theme == 'dark') {
