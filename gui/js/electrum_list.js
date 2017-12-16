@@ -1,6 +1,7 @@
 var electrum_servers_list = {
   "ARG": [{"173.212.225.176": 50081},{"136.243.45.140": 50081}],
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
+  "BCH": [{"electrum2.cipig.net":10051},{"electrum1.cipig.net":10051}],
   "BTC": [{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
   "CHIPS": [{"173.212.225.176": 50076},{"136.243.45.140": 50076}],

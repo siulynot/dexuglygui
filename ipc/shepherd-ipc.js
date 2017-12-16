@@ -224,8 +224,10 @@ StartMarketMaker = function(data) {
                   if (exists === true) {
                         console.log('file exist');
                         var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
-                        data.coinslist = ProcessCoinsList(coinslist_filedata);
-                        ExecMarketMaker(data);
+                        data.coinslist = ProcessCoinsList(coinslist_filedata); 
+                        // data.coinslist is not used under Windows, if coins.json already exists
+                        // it will be directly used by marketmaker
+                        ExecMarketMaker(data); 
                   } else if (exists === false) {
                         console.log('file doesn\'t exist');
                         fs.copy(defaultCoinsListFile, _coinsListFile)
@@ -233,6 +235,21 @@ StartMarketMaker = function(data) {
                               console.log('file copied!')
                               var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
                               data.coinslist = ProcessCoinsList(coinslist_filedata);
+                              if (os.platform() === 'win32') {
+ 			      // here we should write processed coin.json to it's location from where it will be use by marketmaker
+ 			                /*
+ 			                // ver.1
+ 			                var json_to_write = JSON.stringify(data.coinslist);
+ 			                //json_to_write = json_to_write.replace(/\\\\/g, "\\");
+ 				      	fs.writeFile(_coinsListFile, json_to_write, function(err) {
+   					 if(err) {
+					        console.error(err);
+					    }
+					});
+					*/
+					// ver.2
+					fs.writeJsonSync(_coinsListFile, data.coinslist); 
+			      }
                               ExecMarketMaker(data);
                         })
                         .catch(err => {
@@ -317,6 +334,8 @@ ExecMarketMaker = function(data) {
       var logStream = fs.createWriteStream(`${BarterDEXDir}/logFile.log`, {flags: 'a'});
 
       console.log('mm start');
+      //console.log("[Decker] BarterDEXDir = '"+BarterDEXDir+"'");
+
       console.log(`${BarterDEXBin} ${params}`)
       mmid = exec(`${BarterDEXBin} ${params}`, {
             cwd: BarterDEXDir,
@@ -448,9 +467,12 @@ function ProcessCoinsList(coins) {
 
   if (os.platform() === 'win32') {
     coins = JSON.stringify(coins);
+    //console.log("\n\n[Decker #1] "+coins);
     coins = coins.replace(/USERHOME/g, `${process.env.APPDATA}`);
     coins = coins.replace(/\/\./g, '/');
     coins = path.normalize(coins);
+    coins = coins.replace(/\\/g, "\\\\");
+    //console.log("\n\n[Decker #2] "+coins);
     coins = JSON.parse(coins);
     return coins;
   }
