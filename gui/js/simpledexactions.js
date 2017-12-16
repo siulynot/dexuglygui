@@ -4773,7 +4773,8 @@ function check_swap_status_details(swap_status_data) {
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Full Status</strong></h3>
-									<button class="btn btn-xs btn-warning btn_kickstart_stuck_trade" style="float: right; margin-right: -6px; margin-top: -20px">KICKSTART STUCK TRADE</button>
+									<button class="btn btn-xs btn-default btn_swap_status_details_close" style="float: right; margin-right: -6px; margin-top: -20px">CLOSE</button>
+									<button class="btn btn-xs btn-warning btn_kickstart_stuck_trade" style="float: right; margin-right: 6px; margin-top: -20px">KICKSTART STUCK TRADE</button>
 								</div>
 								<div class=""> <!-- panel-body -->
 									<table width="100%" class="table table-striped" style="margin-bottom: 0;">
@@ -4859,7 +4860,7 @@ function check_swap_status_details(swap_status_data) {
 
 					</div>`,
 				closeButton: false,
-				size: 'large',
+				size: 'large'/*,
 				buttons: {
 					cancel: {
 						label: "Close",
@@ -4867,7 +4868,7 @@ function check_swap_status_details(swap_status_data) {
 						callback: function(){
 						}
 					}
-				}
+				}*/
 			});
 			swap_status_details_bootbox.init(function(){
 				CheckOrderBookFn(false);
@@ -4967,6 +4968,7 @@ function check_swap_status_details(swap_status_data) {
 					//bot_screen_coin_balance();
 					//bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 					//bot_screen_sellcoin_balance();
+					swap_status_details_bootbox.modal('hide');
 
 					var dexmode = sessionStorage.getItem('mm_dexmode');
 					var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -5069,12 +5071,27 @@ function check_swap_status(sig) {
 					exchange_swap_status_tr += '<tr>';
 					exchange_swap_status_tr += '<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> error</div></td>';
 					exchange_swap_status_tr += '<td>-</td>';
-					exchange_swap_status_tr += '<td>-</td>';
+					//exchange_swap_status_tr += '<td>-</td>';
 					exchange_swap_status_tr += '<td>-</td>';
 					exchange_swap_status_tr += '</tr>';
 					$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
 				} else {
 
+					if (val.finishtime == undefined) {
+						var fintime = '-';
+					} else {
+						var fintime = new Date( val.finishtime * 1000);
+					}
+					if (val.alice == undefined) {
+						var aliceval = '-';
+					} else {
+						var aliceval = val.alice;
+					}
+					if (val.bob == undefined) {
+						var bobval = '-';
+					} else {
+						var bobval = val.bob;
+					}
 
 					if(val.status !== 'realtime') {
 						var current_sentflag = get_swapstatus_step(val);
@@ -5097,16 +5114,21 @@ function check_swap_status(sig) {
 							status_color = 'color: #ef6c00;';
 							swap_status = '<span class="glyphicon glyphicon-random" aria-hidden="true"></span>';
 						}
+						var pair_and_time = `<br><b>Pair:</b> ${aliceval}/${bobval}<br>${fintime}`;
 					} else {
 						var status_color = '';
 						var swap_status = '<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>';
+						var pair_and_time = ``;
 					}
 
 					var exchange_swap_status_tr = '';
 					exchange_swap_status_tr += '<tr>';
 					exchange_swap_status_tr += '<td><div style="'+status_color+' font-size: 15px;">' + swap_status + ' ' + val.status +'</div></td>';
-					exchange_swap_status_tr += '<td>' + val.quoteid + '</td>';
-					exchange_swap_status_tr += '<td>' + val.requestid + '</td>';
+					exchange_swap_status_tr += `<td><b>Quote ID:</b> ${val.quoteid}<br>
+													<b>Request ID:</b> ${val.requestid}
+													${pair_and_time}</td>`;
+					//exchange_swap_status_tr += '<td>' + val.quoteid + '</td>';
+					//exchange_swap_status_tr += '<td>' + val.requestid + '</td>';
 					exchange_swap_status_tr += '<td><button class="btn btn-default swapstatus_details" data-quoteid="' + val.quoteid + '" data-requestid="' + val.requestid + '">Details</button></td>';
 					exchange_swap_status_tr += '</tr>';
 					$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
