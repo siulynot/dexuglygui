@@ -2631,6 +2631,19 @@ function manual_buy_sell(mt_data) {
 
 		if (!mt_output_data.error === false) {
 			toastr.error(mt_output_data.error, 'Trade Info');
+			if (mt_output_data.error == 'cant find a deposit that is close enough in size. make another deposit that is just a bit larger than what you want to trade') {
+				if (mt_data.action == 'buy') {
+					var deposit = {};
+					deposit.amount = mt_data.volume.toFixed(8);
+					deposit.coin = rel_coin;
+				}
+				if (mt_data.action == 'sell') {
+					var deposit = {};
+					deposit.amount = mt_data.volume;
+					deposit.coin = base_coin;
+				}
+				DepositOnError(deposit);
+			}
 			if (mt_output_data.error == 'not enough funds') {
 				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
 				bootbox.alert({
@@ -2670,6 +2683,121 @@ function manual_buy_sell(mt_data) {
 
 /* Manual Tradeing END */
 
+
+function DepositOnError(deposit_data) {
+	console.log(deposit_data);
+
+	var coin_name = return_coin_details(deposit_data.coin).name;
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": deposit_data.coin};
+	var url = "http://127.0.0.1:7783";
+
+
+	$.ajax({
+		async: true,
+		data: JSON.stringify(ajax_data),
+		dataType: 'json',
+		type: 'POST',
+		url: url
+	}).done(function(data) {
+		// If successful
+		console.log(data);
+
+		if (deposit_data.amount > data.coin.balance) {
+			var blockquote_text = `Looks like your required trade is over your total balance. If you want to try with same trade, then please send the following ammount to the displayed address<br>
+					<span style="font-size: 200%;">${deposit_data.amount} ${deposit_data.coin}</span>`;
+			var show_table = ``;
+			var make_deposit_btn_state = 'hidden';
+		} else {
+			var blockquote_text = `Want to make a relevant despoit and try again?`;
+			var show_table = `<table class="table table-striped">
+								<tr>
+									<td style="text-align: right;">From</td>
+									<td style="text-align: left;">${data.coin.smartaddress}</td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">To</td>
+									<td style="text-align: left;">${data.coin.smartaddress}</td>
+								</tr>
+								<tr>
+									<td  style="text-align: right;">Amount</td>
+									<td  style="text-align: left;">${deposit_data.amount} ${deposit_data.coin}</td>
+								</tr>
+								<tr>
+									<td  style="text-align: right;">Fees</td>
+									<td  style="text-align: left;">${data.coin.txfee / 100000000} ${deposit_data.coin}</td>
+								</tr>
+								<tr>
+									<td  style="text-align: right; font-size: 150%;">Total</td>
+									<td  style="text-align: left; font-size: 150%;">${parseFloat(deposit_data.amount) + parseFloat(data.coin.txfee / 100000000)} ${deposit_data.coin}</td>
+								</tr>
+							</table>`;
+			var make_deposit_btn_state = 'shown';
+		}
+
+		var deposit_size_error_bootbox = bootbox.dialog({
+			onEscape: true,
+			backdrop: true,
+			message: `<div style="text-align: center; margin-top: -40px;">
+							<img src="img/cryptologo/${deposit_data.coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
+						</div>
+						<div style="text-align: center;">
+							<div id="receive_addr_qrcode"></div>
+							<pre style="font-size: 18px;">${data.coin.smartaddress}</pre class="receive_addr_qrcode_addr">
+							<blockquote style="font-size: 15px; font-weight: 400; color: #ff3b00; background-color: #ffd9bf; border-left: 5px solid #f00;">System did not find matching change to use from your full balance.<br>${blockquote_text}</blockquote>
+							${show_table}
+						</div>`,
+			closeButton: false,
+			size: 'medium',
+			className: 'deposit_size_error_class_bootbox',
+
+			buttons: {
+				cancel: {
+					label: "Cancel",
+					className: 'btn-default',
+					callback: function(){
+
+					}
+				},
+				ok: {
+					label: "Make Deposit",
+					className: 'btn-primary deposit_size_error_send_action',
+					callback: function(){
+						var to_addr = data.coin.smartaddress;
+						console.log(to_addr);
+
+						var output_data = {};
+						output_data[to_addr] = parseFloat(deposit_data.amount) + parseFloat(data.coin.txfee / 100000000);
+						console.log(output_data);
+
+						console.log(deposit_data.coin);
+						create_sendtx(deposit_data.coin, output_data);
+
+					}
+				}
+			}
+		});
+		deposit_size_error_bootbox.init(function(){
+			console.log('deposit_size_error_bootbox dialog opened.')
+			var qrcode = new QRCode("receive_addr_qrcode", {width: 128,height: 128});
+			qrcode.makeCode(data.coin.smartaddress); // make another code.
+			$('#receive_addr_qrcode > img').removeAttr('style');
+			$('#receive_addr_qrcode > img').css('display', 'initial');
+			$('#receive_addr_qrcode > img').css('border', '9px solid #f1f1f1','border-radius','5px','margin', '5px');
+			$('#receive_addr_qrcode > img').css('border-radius','5px');
+			$('#receive_addr_qrcode > img').css('margin', '5px');
+
+			if (make_deposit_btn_state == 'hidden') {
+				$('.deposit_size_error_send_action').hide();
+			}
+		});
+
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		// If fail
+		console.log(textStatus + ': ' + errorThrown);
+	});
+}
 
 
 /* Auto Trading Bot */
@@ -4373,7 +4501,7 @@ function bot_screen_sellcoin_balance(sig) {
 					} else {
 						var show_zcredits = '';
 					}
-					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span> <!--<button class="btn btn-xs copysellcoinaddr"><i class="fa fa-clipboard" aria-hidden="true"></i></button>-->');
 				}
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4463,7 +4591,7 @@ function bot_screen_coin_balance(sig) {
 					} else {
 						var show_zcredits = '';
 					}
-					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
+					$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span>' + show_zcredits + '<br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span> <!--<button class="btn btn-xs btn-copycoinaddr"><i class="fa fa-clipboard" aria-hidden="true"></i></button>-->');
 				}
 			}
 
@@ -5329,7 +5457,35 @@ $('.btn_zeroconf_deposit').click(function(e){
 	var deposit_amount = $('.zeroconf_deposit_amount').val();
 	console.log(deposit_weeks);
 	console.log(deposit_amount);
-	ZeroConfDeposit(deposit_weeks,deposit_amount);
+	var zeroconf_deposit_confirm_bootbox = bootbox.dialog({
+			onEscape: true,
+			backdrop: true,
+			message: `Please confirm you want to send and lock <font style="font-size: 135%;">${deposit_amount} KMD</font> for <font style="font-size: 135%;">${deposit_weeks} week(s)?</font>`,
+			closeButton: false,
+			size: 'medium',
+			className: 'zeroconf_deposit_confirm_class_bootbox',
+
+			buttons: {
+				cancel: {
+					label: "Cancel",
+					className: 'btn-default',
+					callback: function(){
+						toastr.info('Sending Speed Deposit fund is canceled.','Speed Deposit Notification')
+					}
+				},
+				ok: {
+					label: "Yes, I confirm",
+					className: 'btn-primary zeroconf_deposit_confirm_make_despoit',
+					callback: function(){
+						ZeroConfDeposit(deposit_weeks,deposit_amount);
+					}
+				}
+			}
+		});
+		zeroconf_deposit_confirm_bootbox.init(function(){
+			console.log('zeroconf_deposit_confirm_bootbox dialog opened.')
+			
+		});
 });
 
 $('.zeroconf_deposit_amount').keyup(function(){

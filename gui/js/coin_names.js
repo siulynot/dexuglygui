@@ -19,6 +19,14 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin Cash';
 			coin_details.explorer = 'https://blockchair.com/bitcoin-cash/transaction/';
 			break;
+		case 'BLK':
+			coin_details.name = 'BlackCoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
+			break;
+		case 'BTG':
+			coin_details.name = 'Bitcoin Gold';
+			coin_details.explorer = 'https://btgexp.com/tx/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
@@ -290,6 +298,22 @@ function return_coin_details(coin) {
 		case 'HUSH':
 			coin_details.name = 'Hush';
 			coin_details.explorer = 'https://explorer.myhush.org/tx/';
+			break;
+		case 'XZC':
+			coin_details.name = 'ZCoin';
+			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
+			break;
+		case 'QTUM':
+			coin_details.name = 'Qtum';
+			coin_details.explorer = 'https://explorer.qtum.org/tx/';
+			break;
+		case 'DSR':
+			coin_details.name = 'Desire';
+			coin_details.explorer = 'http://desire.thecryptochat.net/block.php?hash=';
+			break;
+		case 'PURA':
+			coin_details.name = 'Pura';
+			coin_details.explorer = 'https://chainz.cryptoid.info/pura/tx.dws?';
 			break;
 		case 'AUD':
 			coin_details.name = 'Australian Dollar';
