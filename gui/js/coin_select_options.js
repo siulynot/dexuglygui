@@ -16,6 +16,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/btx.png' width='30px'/> Bitcore (BTX)" data-tokens="Bitcore BTX">BTX</option>
       <option data-content="<img src='img/cryptologo/btcz.png' width='30px'/> BitcoinZ (BTCZ)" data-tokens="BitcoinZ BTCZ">BTCZ</option>
       <option data-content="<img src='img/cryptologo/bsd.png' width='30px'/> BitSend (BSD)" data-tokens="BitSend BSD">BSD</option>
+      <option data-content="<img src='img/cryptologo/btg.png' width='30px'/> Bitcoin Gold (BTG)" data-tokens="Bitcoin Gold BTG">BTG</option>
       <option data-content="<img src='img/cryptologo/blk.png' width='30px'/> BlackCoin (BLK)" data-tokens="BlackCoin BLK">BLK</option>
       <option data-content="<img src='img/cryptologo/block.png' width='30px'/> Blocknet (BLOCK)" data-tokens="Blocknet BLOCK">BLK</option>
       

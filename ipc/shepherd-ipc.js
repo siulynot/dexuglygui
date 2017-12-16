@@ -223,14 +223,16 @@ StartMarketMaker = function(data) {
             fs.pathExists(_coinsListFile, (err, exists) => {
                   if (exists === true) {
                         console.log('file exist');
-                        data.coinslist = fs.readJsonSync(_coinsListFile, { throws: false });
+                        var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
+                        data.coinslist = ProcessCoinsList(coinslist_filedata);
                         ExecMarketMaker(data);
                   } else if (exists === false) {
                         console.log('file doesn\'t exist');
                         fs.copy(defaultCoinsListFile, _coinsListFile)
                         .then(() => {
                               console.log('file copied!')
-                              data.coinslist = fs.readJsonSync(_coinsListFile, { throws: false });
+                              var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
+                              data.coinslist = ProcessCoinsList(coinslist_filedata);
                               ExecMarketMaker(data);
                         })
                         .catch(err => {
@@ -293,7 +295,7 @@ ExecMarketMaker = function(data) {
             BarterDEXBin = '"'+BarterDEXBin+'"';
             params.userhome = process.env.APPDATA;
             if (!!params.coins) { // if not undefined and true
- 		delete params.coins; // for Windows we should use coins.json file, and don't pass coins in command line
+ 		           delete params.coins; // for Windows we should use coins.json file, and don't pass coins in command line
             }
             //console.log('[Decker] BarterDEXBin = '+BarterDEXBin+', BarterDEXDir = '+BarterDEXDir);
 	    params = JSON.stringify(_customParam);
@@ -423,4 +425,33 @@ UpdateBarterDEXSettings = function(settings_data) {
   .catch(err => {
     console.error(err);
   })
+}
+
+
+
+function ProcessCoinsList(coins) {
+  if (os.platform() === 'darwin') {
+    fixPath();
+    coins = JSON.stringify(coins);
+    coins = coins.replace(/USERHOME/g, `${process.env.HOME}/Library/Application Support`);
+    coins = coins.replace(/\/\./g, '/');
+    coins = JSON.parse(coins);
+    return coins;
+  }
+
+  if (os.platform() === 'linux') {
+    coins = JSON.stringify(coins);
+    coins = coins.replace(/USERHOME/g, `${process.env.HOME}`);
+    coins = JSON.parse(coins);
+    return coins;
+  }
+
+  if (os.platform() === 'win32') {
+    coins = JSON.stringify(coins);
+    coins = coins.replace(/USERHOME/g, `${process.env.APPDATA}`);
+    coins = coins.replace(/\/\./g, '/');
+    coins = path.normalize(coins);
+    coins = JSON.parse(coins);
+    return coins;
+  }
 }

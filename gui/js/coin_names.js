@@ -19,6 +19,14 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin Cash';
 			coin_details.explorer = 'https://blockchair.com/bitcoin-cash/transaction/';
 			break;
+		case 'BLK':
+			coin_details.name = 'BlackCoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
+			break;
+		case 'BTG':
+			coin_details.name = 'Bitcoin Gold';
+			coin_details.explorer = 'https://btgexp.com/tx/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
