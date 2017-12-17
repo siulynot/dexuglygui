@@ -67,7 +67,6 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/zcl.png' width='30px'/> ZClassic (ZCL)" data-tokens="ZClassic ZCL">ZCL</option>
       <option data-content="<img src='img/cryptologo/zer.png' width='30px'/> Zero (ZER)" data-tokens="Zero ZER">ZER</option>
       <option data-content="<img src='img/cryptologo/zet.png' width='30px'/> Zetacoin (ZET)" data-tokens="Zetacoin ZET">ZET</option>
-      <option data-content="<img src='img/cryptologo/zen.png' width='30px'/> ZenCash (ZEN)" data-tokens="ZenCash ZEN">ZEN</option>
       <option data-content="<img src='img/cryptologo/zec.png' width='30px'/> Zcash (ZEC)" data-tokens="Zcash ZEC">ZEC</option>
     </optgroup>
     <optgroup label="AssetChains">
@@ -99,6 +98,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
 <option data-content="<img src='img/cryptologo/MZC.png' width='30px' disabled/> Mazacoin (MZC)" data-tokens="Mazacoin MZC">MZC</option>
 <option data-content="<img src='img/cryptologo/UNO.png' width='30px' disabled/> Unobtanium (UNO)" data-tokens="Unobtanium UNO">UNO</option>
 <option data-content="<img src='img/cryptologo/MVP.png' width='30px' disabled/> MVP (MVP)" data-tokens="MVP MVP">MVP</option>
+<option data-content="<img src='img/cryptologo/zen.png' width='30px'/> ZenCash (ZEN)" data-tokens="ZenCash ZEN">ZEN</option>
 <optgroup label="Komodo Currencies">
       <option data-content="<img src='img/cryptologo/aud.png' width='30px;'/> Australian Dollar (AUD)" data-tokens="Australian Dollar AUD">AUD</option>
       <option data-content="<img src='img/cryptologo/bgn.png' width='30px;'/> Bulgarian Lev (BGN)" data-tokens="Bulgarian Lev BGN">BGN</option>
