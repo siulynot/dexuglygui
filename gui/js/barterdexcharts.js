@@ -269,8 +269,6 @@ function parseBars(data, isIntraday) {
     gChart.updateComputedDataSeries();
     gChart.update();
     gChart.hideWaitingBar();
-
-    console.log('ELEMENTS', gChart.barDataSeries().date.values.length);
 }
 
 
