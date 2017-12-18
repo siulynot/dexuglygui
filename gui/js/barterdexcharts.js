@@ -227,28 +227,12 @@ function parseBars(data, isIntraday) {
     //data.reverse();
     gChart.showWaitingBar();
     var newBars = [];
-    var entryExists;
     $.each(data, function (index, value) {
-    	entryExists = false;
         var time = new Date(value[0] * 1000);
 
-        for (var i = 0; i < dataSeries.date.values.length; i++) {
-        	if (time.getTime() === dataSeries.date.values[i].getTime()) {
-                // if the bar already exists, just update the data
-                dataSeries.open.values[index] = parseFloat(value[1]);
-                dataSeries.high.values[index] = parseFloat(value[2]);
-                dataSeries.low.values[index] = parseFloat(value[3]);
-                dataSeries.close.values[index] = parseFloat(value[4]);
-                dataSeries.volume.values[index] = parseInt(value[5], 10);
-                entryExists = true;
-                break;
-			} else if (time > dataSeries.date.values[i]) {
-        		// since the dates in dataSeries are sorted, if 'time' is after the currently looped date, it surely doesn't exist yet
-        		break;
-			}
-		}
-
-		if (!entryExists) {
+        if (dataSeries.date.values.length < index) {
+            // if the data received from the API call contains more bars than the chart currently has
+            // those bars should be appended to the chart
             var newBar = {
                 'date': time,
                 'open': parseFloat(value[1]),
@@ -258,6 +242,14 @@ function parseBars(data, isIntraday) {
                 'volume': parseInt(value[5], 10),
             };
             newBars.push(newBar);
+        } else {
+            // if the bar already exists, just update the data
+            dataSeries.date.values[index] = time;
+            dataSeries.open.values[index] = parseFloat(value[1]);
+            dataSeries.high.values[index] = parseFloat(value[2]);
+            dataSeries.low.values[index] = parseFloat(value[3]);
+            dataSeries.close.values[index] = parseFloat(value[4]);
+            dataSeries.volume.values[index] = parseInt(value[5], 10);
         }
     });
 
