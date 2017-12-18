@@ -85,6 +85,7 @@ $('.dextradeshistory-btn').click(function(e) {
 	$('.screen-portfolio').hide();
 	$('.screen-coindashboard').hide();
 	$('.screen-exchange').hide();
+	$('.screen-inventory').hide();
 	$('.dexdebug').hide();
 	
 	$('.dextradeshistory').show();
@@ -152,6 +153,7 @@ $('.dexdebug-btn').click(function(e) {
 	$('.screen-portfolio').hide();
 	$('.screen-coindashboard').hide();
 	$('.screen-exchange').hide();
+	$('.screen-inventory').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
@@ -625,12 +627,14 @@ function BarterDEXSettingsFn() {
 		$('.trading_method_options').hide();
 		$('#portfolio_chart_current').addClass(' col-sm-offset-3');
 		$('#portfolio_chart_target').hide();
+		$('.btn_portfolio_coingoal').hide();
 		$("a[href='#exchange_botlist']").parent().hide()
 	} else {
 		$('.btn-autogoalall').show();
 		$('.trading_method_options').show();
 		$('#portfolio_chart_current').removeClass('col-sm-offset-3');
 		$('#portfolio_chart_target').show();
+		$('.btn_portfolio_coingoal').show();
 		$("a[href='#exchange_botlist']").parent().show();
 	}
 

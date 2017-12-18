@@ -1988,6 +1988,14 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 	$('.portfolio_rel').html(portfolio_tbl_data.rel);
 	$('.portfolio_relvolume').html(portfolio_tbl_data.relvolume);
 
+	var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
+	//console.log(barterDEX_settings);
+	if (barterDEX_settings.experimentalFeatures == false) {
+		var coingoal_style_showhide = 'display: none;';
+	} else {
+		var coingoal_style_showhide = '';
+	}
+
 	$('.dex_portfolio_coins_tbl tbody').empty();
 
 	$('.porfolio_coins_list tbody').empty();
@@ -2008,7 +2016,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
             dex_portfolio_coins_tbl_tr += `<td>
-											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false>Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="${coingoal_style_showhide}">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
 											<button class="btn btn-sm btn-default btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>            
 											</td>`
             //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
@@ -3539,6 +3547,8 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 
 	$('.screen-exchange').hide()
 	$('.screen-inventory').show();
+	$('.dextradeshistory').hide();
+	$('.dexdebug').hide();
 	CheckOrderBookFn(false);
 	check_swap_status(false);
 	check_bot_list(false);
@@ -4665,6 +4675,14 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 function check_swap_status_details(swap_status_data) {
 	console.log(swap_status_data);
 
+	CheckOrderBookFn(false);
+	check_swap_status(false);
+	check_bot_list(false);
+	check_my_prices(false);
+	Refresh_active_StockChart(false);
+	//bot_screen_coin_balance(false);
+	//bot_screen_sellcoin_balance(false);
+
 	var options_holdon = {
 		theme:"sk-bounce",
 		message:'Please wait while getting swap status detail data...',
@@ -4871,13 +4889,13 @@ function check_swap_status_details(swap_status_data) {
 				}*/
 			});
 			swap_status_details_bootbox.init(function(){
-				CheckOrderBookFn(false);
+				/*CheckOrderBookFn(false);
 				check_swap_status(false);
 				check_bot_list(false);
 				check_my_prices(false);
 				Refresh_active_StockChart(false);
 				//bot_screen_coin_balance(false);
-				//bot_screen_sellcoin_balance(false);
+				//bot_screen_sellcoin_balance(false);*/
 
 				$('.btn_kickstart_stuck_trade').click(function(e) {
 					e.preventDefault();
