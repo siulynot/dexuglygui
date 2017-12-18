@@ -1,10 +1,11 @@
 var electrum_servers_list = {
   "ARG": [{"173.212.225.176": 50081},{"136.243.45.140": 50081}],
-  "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
   "BCH": [{"electrum2.cipig.net":10051},{"electrum1.cipig.net":10051}],
+  "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
+  "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
+  "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
   "BTC": [{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}],
   "BTG": [{"94.130.224.11":10052},{"173.212.225.176":10052}],
-  "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
   "CHIPS": [{"electrum2.cipig.net":10053},{"electrum1.cipig.net":10053}],
   "COQUI": [{"electrum2.cipig.net":10011},{"electrum1.cipig.net":10011}],
   "CRW": [{"173.212.225.176": 50041},{"136.243.45.140": 50041}],
