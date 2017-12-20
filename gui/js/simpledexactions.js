@@ -706,9 +706,15 @@ $('.btn-bot_action').click(function(e){
 
 		console.log(trade_data);
 
-		if (pair_volume <= 0.01 || pair_price <= 0.01) {
-			console.log('Order is too small. Please try again.');
-			toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
+		if (trading_options == 'disabled') {
+			if (pair_volume <= 0.01 || pair_price <= 0.01) {
+				console.log('Order is too small. Please try again.');
+				toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
+			} else {
+				//manual_buy_sell(trade_data)
+				buy_sell_precheck(trade_data);
+				$('.trading_auto_repeat_trade_yesno').attr('checked', false);
+			}
 		} else {
 			//manual_buy_sell(trade_data)
 			buy_sell_precheck(trade_data);
