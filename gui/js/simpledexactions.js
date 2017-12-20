@@ -3035,7 +3035,7 @@ function CheckOrderBookFn(sig) {
 				orderbook_bids_tr += '<td>' + val.price + '</td>';
 				//orderbook_bids_tr += '<td>' + val.minvolume + '</td>';
 				//orderbook_bids_tr += '<td>' + val.maxvolume + '</td>';
-				orderbook_bids_tr += '<td>' + val.avevolume + '</td>';
+				orderbook_bids_tr += '<td>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 				orderbook_bids_tr += '<td>' + val.depth + '</td>';
 				//orderbook_bids_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_bids_tr += '<td>' + val.age + '</td>';
@@ -3075,7 +3075,7 @@ function CheckOrderBookFn(sig) {
 				orderbook_asks_tr += '<td>' + val.price + '</td>';
 				//orderbook_asks_tr += '<td>' + val.minvolume + ' - ' + val.maxvolume + '</td>';
 				//orderbook_asks_tr += '<td>' + row_trade_data.totalbuy.toFixed(8) + '</td>';
-				orderbook_asks_tr += '<td>' + val.avevolume + '</td>';
+				orderbook_asks_tr += '<td>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 				orderbook_asks_tr += '<td>' + val.depth + '</td>';
 				//orderbook_asks_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
 				orderbook_asks_tr += '<td>' + val.age + '</td>';
