@@ -21,6 +21,18 @@ $(window).resize(function() {
 })
 
 $(document).ready(function() {
+	document.addEventListener('drop', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	document.addEventListener('dragover', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	});
+	webview.addEventListener('dragover', function(e) {
+		e.preventDefault();
+	});
+
 	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
