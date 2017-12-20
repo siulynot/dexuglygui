@@ -628,7 +628,8 @@ function BarterDEXSettingsFn() {
 		$('#portfolio_chart_current').addClass(' col-sm-offset-3');
 		$('#portfolio_chart_target').hide();
 		$('.btn_portfolio_coingoal').hide();
-		$("a[href='#exchange_botlist']").parent().hide()
+		$("a[href='#exchange_botlist']").parent().hide();
+		$('input[name=trading_manual_buy_sell_options]:nth(0)').trigger('click');
 	} else {
 		$('.btn-autogoalall').show();
 		$('.trading_method_options').show();

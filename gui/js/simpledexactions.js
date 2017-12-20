@@ -668,11 +668,9 @@ $('.btn-bot_action').click(function(e){
 			console.log('Order is too small. Please try again.');
 			toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
 		} else {
-			//toastr.success('Placing Order', 'Order Notification');
+			//bot_buy_sell(bot_data);
+			buy_sell_precheck(bot_data);
 		}
-
-		//bot_buy_sell(bot_data);
-		buy_sell_precheck(bot_data);
 
 	} else if (bot_or_manual == 'trademanual') {
 
@@ -687,7 +685,8 @@ $('.btn-bot_action').click(function(e){
 		trader_only = $('.trading_pair_destpubkey_yesno').is(":checked");
 		trader_pubkey = $('.trading_pair_destpubkey').val();
 
-		autorepeat_trade = $('.trading_auto_repeat_trade_yesno').is(":checked");
+		//autorepeat_trade = $('.trading_auto_repeat_trade_yesno').is(":checked");
+		trading_options = $('input[name=trading_manual_buy_sell_options]:checked').val();
 
 		trade_data = {}
 		trade_data.price = pair_price;
@@ -699,7 +698,8 @@ $('.btn-bot_action').click(function(e){
 		}
 		trade_data.trader_only = trader_only;
 		trade_data.destpubkey = trader_pubkey;
-		trade_data.autorepeat = autorepeat_trade;
+		//trade_data.autorepeat = autorepeat_trade;
+		trade_data.trading_options = trading_options;
 		//trade_data.action = $(this).data('action');
 		//trade_data.action = $('.btn-bot_action').attr('data-action');
 		trade_data.action = $(this).attr('data-action');
@@ -710,12 +710,10 @@ $('.btn-bot_action').click(function(e){
 			console.log('Order is too small. Please try again.');
 			toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
 		} else {
-			//toastr.success('Placing Order', 'Order Notification');
+			//manual_buy_sell(trade_data)
+			buy_sell_precheck(trade_data);
+			$('.trading_auto_repeat_trade_yesno').attr('checked', false);
 		}
-
-		//manual_buy_sell(trade_data)
-		buy_sell_precheck(trade_data);
-		$('.trading_auto_repeat_trade_yesno').attr('checked', false);
 
 	} else if (bot_or_manual == 'tradeportfolio') {
 
@@ -740,6 +738,93 @@ $('.btn-bot_action').click(function(e){
 		autoprice_buy_sell(trade_data);
 	}
 });
+
+$('input[name=trading_manual_buy_sell_options]').change(function() {
+	var trading_options = $('input[name=trading_manual_buy_sell_options]:checked').val();
+
+	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
+	//console.log(buying_or_selling);
+
+	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
+	//console.log(bot_or_manual);
+
+	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
+
+	if (trading_options == 'coinmarketcap') {
+		$('.trading_pair_lable_text_one').html('Auto');
+		$('.trading_selected_trader_label').hide();
+		$('.trading_selected_trader').hide();
+		$('.trading_pair_coin_autoprice_mode_span').show();
+		$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on');
+		$('#trading_pair_coin_autoprice_mode').parent().addClass(' disabled');
+		$('#trading_pair_coin_autoprice_mode').attr('disabled', 'disabled');
+		$('#trading_pair_coin_price_max_min').html('%');
+		if(buying_or_selling == 'buying') {
+			if(margin_or_fixed == true){
+				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
+				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO BUY PRICE');
+				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+			}
+		}
+		if(buying_or_selling == 'selling') {
+			if(margin_or_fixed == true){
+				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
+				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+			} else {
+				$('.btn-bot_action').html('SET AUTO SELL PRICE');
+				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+			}
+		}
+		$('.buy_sell_amount_to').hide();
+		$('#trading_pair_coin_ticker').hide();
+		$('.trading_pair_coin2').hide();
+		$('.trading_pair_coin_volume').hide();
+		$('.btn-bot_action').addClass(' btn-block');
+		$('.btn-bot_action').css('border-top-left-radius','4px');
+		$('.btn-bot_action').css('border-bottom-left-radius','4px');
+		$('.buy_sell_button_div').css('margin-top', '20px');
+		$('.relvol_basevol_amount').hide();
+		$('.relvol_basevol_label').hide();
+		$('.portfolio_info_text').show();
+	} else {
+		$('#trading_pair_coin_autoprice_mode').parent().removeClass(' disabled');
+		$('#trading_pair_coin_autoprice_mode').removeAttr('disabled');
+		//$('#trading_pair_coin_price_max_min').html('Min');
+		$('.trading_pair_lable_text_one').html('');
+		//$('.trading_pair_lable_text_two').html('Sell');
+		if(buying_or_selling == 'buying') {
+			$('.btn-bot_action').html('BUY');
+			$('.relvol_basevol_label').html("It'll cost you")
+			$('.btn-bot_action').attr('data-action', 'buy');
+		}
+		if(buying_or_selling == 'selling') {
+			$('.btn-bot_action').html('SELL');
+			$('.relvol_basevol_label').html("You'll get");
+			$('.btn-bot_action').attr('data-action', 'sell');
+		}
+		//$('.btn-bot_action').attr('data-action', 'sell');
+		//$('.trading_selected_trader_label').show();
+		//$('.trading_selected_trader').show();
+		$('.trading_pair_coin_autoprice_mode_span').hide();
+		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').show();
+		$('.buy_sell_amount_to').show();
+		$('#trading_pair_coin_ticker').show();
+		$('.trading_pair_coin2').show();
+		$('.trading_pair_coin_volume').show();
+		$('.btn-bot_action').removeAttr('btn-block');
+		$('.btn-bot_action').css('border-top-left-radius','0');
+		$('.btn-bot_action').css('border-bottom-left-radius','0');
+		$('.buy_sell_button_div').css('margin-top', '0');
+		$('.relvol_basevol_amount').show();
+		$('.relvol_basevol_label').show();
+		$('.portfolio_info_text').hide();
+		$('.coingoal_label_div').hide();
+		$('.coingoal_div').hide();
+	}
+})
 
 $('.trading_pair_coin_price').keyup(function(){
 	pair_price = $('.trading_pair_coin_price').val();
@@ -2443,6 +2528,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('#trading_pair_coin_price_max_min').html('Max');
 		$('.trading_pair_lable_text_one').html('Max');
 		$('.trading_pair_lable_text_two').html('Buy');
+		$('.buy_sell_advanced_options_div').hide();
 		if(buying_or_selling == 'buying') {
 			$('.btn-bot_action').html('BUY');
 			$('.relvol_basevol_label').html("It'll cost you");
@@ -2474,8 +2560,10 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.coingoal_div').hide();
 	}
 	if(bot_or_manual == 'trademanual') {
+		$('input[name=trading_manual_buy_sell_options]:nth(0)').trigger('click');
 		//$('#trading_pair_coin_price_max_min').html('Min');
 		$('.trading_pair_lable_text_one').html('');
+		$('.buy_sell_advanced_options_div').show();
 		//$('.trading_pair_lable_text_two').html('Sell');
 		if(buying_or_selling == 'buying') {
 			$('.btn-bot_action').html('BUY');
@@ -2513,6 +2601,9 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.trading_selected_trader').hide();
 		$('.trading_pair_coin_autoprice_mode_span').show();
 		$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
+		$('#trading_pair_coin_autoprice_mode').parent().removeClass(' disabled');
+		$('#trading_pair_coin_autoprice_mode').removeAttr('disabled');
+		$('.buy_sell_advanced_options_div').hide();
 		$('#trading_pair_coin_price_max_min').html('%');
 		if(buying_or_selling == 'buying') {
 			if(margin_or_fixed == true){
@@ -2577,18 +2668,24 @@ function manual_buy_sell(mt_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 
 	if (mt_data.action == 'buy') {
-		if (mt_data.autorepeat == true) {
+		if (mt_data.trading_options !== 'disabled') {
 			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 			if(buying_or_selling == 'buying') {
-				var base_coin = coin;
-				var rel_coin = $('.trading_pair_coin').selectpicker('val');
-			}
-			if(buying_or_selling == 'selling') {
 				var base_coin = $('.trading_pair_coin').selectpicker('val');
 				var rel_coin = coin;
 			}
+			if(buying_or_selling == 'selling') {
+				var base_coin = coin;
+				var rel_coin = $('.trading_pair_coin').selectpicker('val');
+			}
+		}
+		if (mt_data.trading_options == 'autorepeat') {
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
-			toastr.success(`Auto-repeat buy order exected at fixed price of ${mt_data.price}`,'Trade Notification');
+			toastr.success(`Auto-repeat buy order executed at fixed price of ${mt_data.price}`,'Trade Notification');
+		} else if (mt_data.trading_options == 'coinmarketcap') {
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
+			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
+			toastr.success(`Buy order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"price":mt_data.price,"relvolume":mt_data.volume};
 		}
@@ -2597,18 +2694,24 @@ function manual_buy_sell(mt_data) {
 		}
 	}
 	if (mt_data.action == 'sell') {
-		if (mt_data.autorepeat == true) {
+		if (mt_data.trading_options !== 'disabled') {
 			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 			if(buying_or_selling == 'buying') {
-				var base_coin = coin;
-				var rel_coin = $('.trading_pair_coin').selectpicker('val');
-			}
-			if(buying_or_selling == 'selling') {
 				var base_coin = $('.trading_pair_coin').selectpicker('val');
 				var rel_coin = coin;
 			}
+			if(buying_or_selling == 'selling') {
+				var base_coin = coin;
+				var rel_coin = $('.trading_pair_coin').selectpicker('val');
+			}
+		}
+		if (mt_data.trading_options == 'autorepeat') {
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
-			toastr.success(`Auto-repeat sell order exected at fixed price of ${mt_data.price}`,'Trade Notification');
+			toastr.success(`Auto-repeat sell order executed at fixed price of ${mt_data.price}`,'Trade Notification');
+		} else if (mt_data.trading_options == 'coinmarketcap') {
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
+			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
+			toastr.success(`Sell order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"price":mt_data.price,"basevolume":mt_data.volume};
 		}
@@ -2818,10 +2921,12 @@ function setOrderPrice(trade_data) {
 	if (trade_data.type == 'asks') {
 		trade_price_plus = trade_data.price * 1.001;
 		toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+		$('#trading_pair_options_selling').trigger('click');
 	}
 	if (trade_data.type == 'bids') {
 		trade_price_plus = trade_data.price / 1.001;
 		toastr.info(`Auto selected price as ${trade_data.price} - 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+		$('#trading_pair_options_buying').trigger('click');
 	}
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));

@@ -22,6 +22,7 @@
     <link href="js/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.min.css" type="text/css" rel="stylesheet">
     <link href="css/HoldOn.min.css" type="text/css" rel="stylesheet">
+    <link href="css/pretty-checkbox.min.css" type="text/css" rel="stylesheet">
 
     <link href="css/charts/StockChartX.min.css" type="text/css" rel="stylesheet">
     <link href="css/charts/StockChartX.UI.min.css" type="text/css" rel="stylesheet">
@@ -442,7 +443,9 @@
                         <div class="input-group col-sm-12">
                           <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
                           <span class="input-group-addon trading_pair_coin_autoprice_mode_span" style="font-size: 0px; margin: 0; padding: 0; width: 120px; background-color: #fff; border: 0;">
-                            <input class="toggle_checkbox toggle_font_lg" id="trading_pair_coin_autoprice_mode" type="checkbox" checked data-toggle="toggle" data-on="Margin" data-off="Fixed" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px" data-class="toggle-font-lg">
+                            <div class="checkbox" style="margin: 0;">
+                              <input class="toggle_checkbox toggle_font_lg" id="trading_pair_coin_autoprice_mode" type="checkbox" checked data-toggle="toggle" data-on="Margin" data-off="Fixed" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px" data-class="toggle-font-lg">
+                            </div>
                           </span>
                           <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 44px; font-size: 20px;">
                           <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
@@ -473,7 +476,30 @@
                           </span>
                         </div>
                         <div class="input-group col-sm-12 trading_auto_repeat_trade">
-                          <input class="big-checkbox trading_auto_repeat_trade_yesno" type="checkbox"> Enable auto-repeat this trade
+                          <!--<input class="big-checkbox trading_auto_repeat_trade_yesno" type="checkbox"> Enable auto-repeat this trade <br>-->
+                          <div class="buy_sell_advanced_options_div" style="border: 1px solid #4c4c4c; padding: 10px; border-radius: 3px; margin: 10px 0;">
+                            <div class="pretty p-default p-curve">
+                                <input type="radio" name="trading_manual_buy_sell_options" value="disabled" checked />
+                                <div class="state p-danger-o">
+                                    <label>Disabled</label>
+                                </div>
+                            </div> <br>
+
+                            <div class="pretty p-default p-curve">
+                                <input type="radio" name="trading_manual_buy_sell_options" value="autorepeat" />
+                                <div class="state p-success-o">
+                                    <label>Enable auto-repeat this trade</label>
+                                </div>
+                            </div> <br>
+
+                            <div class="pretty p-default p-curve">
+                                <input type="radio" name="trading_manual_buy_sell_options" value="coinmarketcap" />
+                                <div class="state p-success-o">
+                                    <label>Enable auto-repeat + CoinMarketCap Prices</label>
+                                </div>
+                            </div>
+                          </div>
+
                         </div>
 
                         <div class="input-group col-sm-12">
