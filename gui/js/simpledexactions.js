@@ -2921,12 +2921,12 @@ function setOrderPrice(trade_data) {
 	if (trade_data.type == 'asks') {
 		trade_price_plus = trade_data.price * 1.001;
 		toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
-		$('#trading_pair_options_selling').trigger('click');
+		$('#trading_pair_options_buying').trigger('click');
 	}
 	if (trade_data.type == 'bids') {
 		trade_price_plus = trade_data.price / 1.001;
 		toastr.info(`Auto selected price as ${trade_data.price} - 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
-		$('#trading_pair_options_buying').trigger('click');
+		$('#trading_pair_options_selling').trigger('click');
 	}
 
 	$('.trading_pair_coin_price').val(trade_price_plus.toFixed(8));
