@@ -2022,6 +2022,40 @@ function addcoins_dialog(){
 /* Portfolio section functions START */
 
 
+$('.porfolio_coins_list').on('click', '.btn_portfolio_disable', function() {
+	console.log('btn_portfolio_disable clicked');
+	console.log($(this).data());
+
+	enable_disable_coin($(this).data());
+	$('.porfolio_coins_list tbody').empty();
+	var actiavte_portfolio_coins_list_spinner = ''
+	actiavte_portfolio_coins_list_spinner += '<th colspan="7">';
+      actiavte_portfolio_coins_list_spinner += '<div style="text-align: center; height: 100px;">';
+        actiavte_portfolio_coins_list_spinner += '<svg id="portfolio-coins-spinner">';
+          actiavte_portfolio_coins_list_spinner += '<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+          actiavte_portfolio_coins_list_spinner += '<circle class="path2" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+          actiavte_portfolio_coins_list_spinner += '<circle class="path3" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+          actiavte_portfolio_coins_list_spinner += '<circle class="path4" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>';
+        actiavte_portfolio_coins_list_spinner += '</svg>';
+      actiavte_portfolio_coins_list_spinner += '</div>';
+    actiavte_portfolio_coins_list_spinner += '</th>';
+    $('.porfolio_coins_list tbody').append(actiavte_portfolio_coins_list_spinner);
+	CheckPortfolioFn();
+});
+
+$('.porfolio_coins_list').on('click', '.btn_portfolio_receive', function() {
+	console.log('btn_portfolio_receive clicked');
+	console.log($(this).data());
+	coinBalanceReceiveAddr($(this).data('coin'));
+})
+
+$('.porfolio_coins_list').on('click', '.btn_portfolio_send', function() {
+	console.log('btn_portfolio_send clicked');
+	console.log($(this).data());
+	coinBalanceSendFn($(this).data('coin'));
+});
+
+
 function CheckPortfolioFn(sig) {
 	if (sig == false) {
 		clearInterval(CheckPortfolio_Interval);
@@ -2116,8 +2150,11 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
             dex_portfolio_coins_tbl_tr += `<td>
-											<button class="btn btn-sm btn-default btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="${coingoal_style_showhide}">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
-											<button class="btn btn-sm btn-default btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>            
+											<button class="btn btn-sm btn-warning btn_portfolio_send" data-coin="` + val.coin + `">Send <span class="fa fa-paper-plane-o" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-success btn_portfolio_receive" data-coin="` + val.coin + `">Receive <span class="fa fa-inbox" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-info btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="${coingoal_style_showhide}">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-primary btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-danger btn_portfolio_disable" data-electrum=true data-method="disable" data-coin="` + val.coin + `">Disable <span class="fa fa-times" aria-hidden="true"></span></button>
 											</td>`
             //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             /*dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';
@@ -3398,7 +3435,16 @@ $('.your_coins_balance_info').on('click', '.coin_balance_disable', function() {
 $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 	console.log('coin_balance_receive clicked');
 	console.log($(this).data());
-	coin = $(this).data('coin');
+	coinBalanceReceiveAddr($(this).data('coin'));
+})
+
+$('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
+	console.log('coin_balance_send clicked');
+	console.log($(this).data());
+	coinBalanceSendFn($(this).data('coin'));
+});
+
+function coinBalanceReceiveAddr(coin) {
 
 	var coin_name = return_coin_details(coin).name;
 
@@ -3448,14 +3494,11 @@ $('.your_coins_balance_info').on('click', '.coin_balance_receive', function() {
 		// If fail
 		console.log(textStatus + ': ' + errorThrown);
 	});
-})
+}
 
 
-$('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
-	console.log('coin_balance_send clicked');
-	console.log($(this).data());
-
-	var tx_coin = $(this).data('coin');
+function coinBalanceSendFn(coin) {
+	var tx_coin = coin;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data0 = {"userpass":userpass,"method":"getcoin","coin": tx_coin};
@@ -3654,8 +3697,8 @@ $('.your_coins_balance_info').on('click', '.coin_balance_send', function() {
 
 		});
 	});
+}
 
-});
 
 $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() {
 	console.log('coin_balance_inventory clicked');
