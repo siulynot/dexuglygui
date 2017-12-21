@@ -29,9 +29,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 	});
-	webview.addEventListener('dragover', function(e) {
-		e.preventDefault();
-	});
 
 	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
@@ -2701,7 +2698,7 @@ function manual_buy_sell(mt_data) {
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
 			toastr.success(`Auto-repeat buy order executed at fixed price of ${mt_data.price}`,'Trade Notification');
 		} else if (mt_data.trading_options == 'coinmarketcap') {
-			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
 			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
 			toastr.success(`Buy order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
 		} else {
@@ -2727,7 +2724,7 @@ function manual_buy_sell(mt_data) {
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
 			toastr.success(`Auto-repeat sell order executed at fixed price of ${mt_data.price}`,'Trade Notification');
 		} else if (mt_data.trading_options == 'coinmarketcap') {
-			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
+			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
 			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
 			toastr.success(`Sell order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
 		} else {
