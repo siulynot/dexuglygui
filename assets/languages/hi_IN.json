@@ -7,6 +7,16 @@
     "author": "Satinder Greawl",
     "authorEmail": "satinder@komodoplatform.com"
   },
+  "Common": {
+    "loading_wait": "लोड हो रहा है...",
+    "btn_send": "भेजें",
+    "btn_receive": "प्राप्त करना",
+    "btn_enable_native": "जोड़ें Native",
+    "btn_enable_electrum": "जोड़ें Electrum",
+    "btn_disable": "अलग करें",
+    "btn_set_goal": "लक्ष्य सेट करें",
+    "btn_exchange": "आदान प्रदान"
+  },
   "loading": {
     "starting_barterdex": "BarterDEX शुरू हो रहा है। कृपया प्रतीक्षा करें..."
   },
@@ -18,5 +28,39 @@
     "login_btn": "लॉग इन करें",
     "generate_a_new_passphrase": "एक नया पास वाक्यांश उत्पन्न करें",
     "login_passphrase_input_placeholder": "पास वाक्यांश"
+  },
+  "Navigation": {
+    "nav_dashboard": "डैशबोर्ड",
+    "nav_trade_history": "व्यापार इतिहास",
+    "nav_close" : "बंद करें",
+    "nav_debug": "डिबग",
+    "nav_settings": "सेटिंग्स",
+    "nav_logout": "लोग आउट"
+  },
+  "Debug": {
+    "debug_payload": "पेलोड",
+    "debug_execute": "Execute",
+    "debug_response": "उत्तर",
+    "debug_playload_input_placeholder": "पेलोड प्रदान करें"
+  },
+  "Portfolio": {
+    "portfolio_portfolio_chart": "निवेश सूची चित्र",
+    "portfolio_add_coins": "सिक्के जोडो",
+    "portfolio_portfolio_coins": "निवेश सूची सिक्के",
+    "portfolio_auto_goal_all_active_coins": "AUTO GOAL ALL ACTIVE COINS",
+    "portfolio_th_coin": "सिक्का",
+    "portfolio_th_balance": "शेष",
+    "portfolio_th_price": "मूल्य",
+    "portfolio_th_current_percent": "वर्तमान %",
+    "portfolio_th_goal_percent": "लक्ष्य %",
+    "portfolio_th_kmdvalue": "KMD मूल्य",
+    "portfolio_th_action": "कार्य"
+  },
+  "Inventory": {
+    "inventory_tab_inventory": "संख्यापत्र"
+  },
+  "Exchange": {
+    "exchange_your_balance": "आपका शेष",
+    "exchange_switch_pairs": "जोड़ी बदलें"
   }
 }

@@ -2108,6 +2108,7 @@ function CheckPortfolioFn(sig) {
 
 function PortfolioTblDataFn(portfolio_tbl_data) {
 	console.log(portfolio_tbl_data.portfolio.length);
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	if (portfolio_tbl_data.portfolio &&
 			portfolio_tbl_data.portfolio.length) {
 		$('#portfolio-coins-spinner').hide();
@@ -2150,11 +2151,11 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
             dex_portfolio_coins_tbl_tr += '<td>' + val.goalperc + '</td>';
             dex_portfolio_coins_tbl_tr += '<td>' + val.kmd_equiv + '</td>';
             dex_portfolio_coins_tbl_tr += `<td>
-											<button class="btn btn-sm btn-success btn_portfolio_send" data-coin="` + val.coin + `">Send <span class="fa fa-paper-plane-o" aria-hidden="true"></span></button>
-											<button class="btn btn-sm btn-warning btn_portfolio_receive" data-coin="` + val.coin + `">Receive <span class="fa fa-inbox" aria-hidden="true"></span></button>
-											<button class="btn btn-sm btn-info btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="${coingoal_style_showhide}">Set Goal <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
-											<button class="btn btn-sm btn-primary btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">Exchange <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-											<button class="btn btn-sm btn-danger btn_portfolio_disable" data-electrum=true data-method="disable" data-coin="` + val.coin + `">Disable <span class="fa fa-times" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-success btn_portfolio_send" data-coin="` + val.coin + `">${default_lang.Common.btn_send} <span class="fa fa-paper-plane-o" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-warning btn_portfolio_receive" data-coin="` + val.coin + `">${default_lang.Common.btn_receive} <span class="fa fa-inbox" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-info btn_portfolio_coingoal" data-coin="` + val.coin + `" data-auto=false style="${coingoal_style_showhide}">${default_lang.Common.btn_set_goal} <span class="glyphicon glyphicon-export" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-primary btn-portfoliogo" data-coin="` + val.coin + `" data-coinname="` + coin_name + `" data-addr="` + val.address + `" data-balance="` + val.amount + `">${default_lang.Common.btn_exchange} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+											<button class="btn btn-sm btn-danger btn_portfolio_disable" data-electrum=true data-method="disable" data-coin="` + val.coin + `">${default_lang.Common.btn_disable} <span class="fa fa-times" aria-hidden="true"></span></button>
 											</td>`
             //dex_portfolio_coins_tbl_tr += '<td>' + val.perc + '</td>';
             /*dex_portfolio_coins_tbl_tr += '<td>' + val.relvolume + '</td>';

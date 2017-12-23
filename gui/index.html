@@ -154,12 +154,12 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <!--<li><a href="#">Link</a></li>-->
-            <li class="active"><a href="javascript:void(0)" class="dexdashboard-btn">Dashboard</a></li>
-            <li><a href="javascript:void(0)" class="dextradeshistory-btn">Trade history</a></li>
-            <li><a href="javascript:void(0)" class="dexdebug-close-btn" style="display: none">Close</a></li>
-            <li><a href="javascript:void(0)" class="dexdebug-btn">Debug</a></li>
-            <li><a href="javascript:void(0)" class="dexsettings-btn">Settings</a></li>
-            <li><a href="javascript:void(0)" class="dexlogout-btn">Logout</a></li>
+            <li class="active"><a href="javascript:void(0)" class="dexdashboard-btn language" data-langstr="nav_dashboard"></a></li>
+            <li><a href="javascript:void(0)" class="dextradeshistory-btn language" data-langstr="nav_trade_history"></a></li>
+            <li><a href="javascript:void(0)" class="dexdebug-close-btn language" data-langstr="nav_close" style="display: none"></a></li>
+            <li><a href="javascript:void(0)" class="dexdebug-btn language" data-langstr="nav_debug"></a></li>
+            <li><a href="javascript:void(0)" class="dexsettings-btn language" data-langstr="nav_settings"></a></li>
+            <li><a href="javascript:void(0)" class="dexlogout-btn language" data-langstr="nav_logout"></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -180,11 +180,11 @@
     </div>
 
     <div class="dexdebug" style="display: none; margin-top: 60px;">
-      <h4>Payload</h4>
-      <textarea cols="50" rows="5" id="debug-payload" placeholder="Provide payload"></textarea>
-      <button class="btn btn-primary" id="debug-exec">Execute</button>
+      <h4 class="language" data-langstr="debug_payload"></h4>
+      <textarea cols="50" rows="5" id="debug-payload" class="language" data-langstr="debug_playload_input_placeholder" placeholder=""></textarea>
+      <button class="btn btn-primary language" data-langstr="debug_execute" id="debug-exec"></button>
       <hr />
-      <h4>Response</h4>
+      <h4 class="language" data-langstr="debug_response"></h4>
       <div id="debug-payload-response"></div>
     </div>
 
@@ -193,8 +193,8 @@
       <div class="col-sm-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Portfolio Chart</h3>
-            <button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px">ADD COINS <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <h3 class="panel-title language" data-langstr="portfolio_portfolio_chart"></h3>
+            <button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px"><span class="language" data-langstr="portfolio_add_coins"></span> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             <button class="btn btn-xs btn-refreshportfolio portfolio" style="float: right; margin-right: 6px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
           </div>
           <div class="portfolio portfolio-coinslist"> <!-- panel-body -->
@@ -207,20 +207,20 @@
       <div class="col-sm-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Portfolio Coins</h3>
-            <button class="btn btn-xs btn-info btn-autogoalall portfolio" data-auto=true style="float: right; margin-right: -6px; margin-top: -20px">AUTO GOAL ALL ACTIVE COINS</button>
+            <h3 class="panel-title language" data-langstr="portfolio_portfolio_coins"></h3>
+            <button class="btn btn-xs btn-info btn-autogoalall portfolio language" data-langstr="portfolio_auto_goal_all_active_coins" data-auto=true style="float: right; margin-right: -6px; margin-top: -20px"></button>
           </div>
           <div class="portfolio portfolio-coinslist"> <!-- panel-body -->
             <table class="table table-striped porfolio_coins_list" style="margin-bottom: 0;">
               <thead>
                 <tr>
-                  <th>Coin</th>
-                  <th>Balance</th>
-                  <th>Price</th>
-                  <th>Current %</th>
-                  <th>Goal %</th>
-                  <th>KMD Value</th>
-                  <th width="430px">Action</th>
+                  <th class="language" data-langstr="portfolio_th_coin"></th>
+                  <th class="language" data-langstr="portfolio_th_balance"></th>
+                  <th class="language" data-langstr="portfolio_th_price"></th>
+                  <th class="language" data-langstr="portfolio_th_current_percent"></th>
+                  <th class="language" data-langstr="portfolio_th_goal_percent"></th>
+                  <th class="language" data-langstr="portfolio_th_kmdvalue"></th>
+                  <th class="language" data-langstr="portfolio_th_action" width="430px"></th>
                 </tr>
               </thead>
               <tbody>
@@ -339,7 +339,7 @@
                 <button class="btn btn-xs btn-inventoryclose coininventory" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
                 <button class="btn btn-xs btn-inventoryrefresh coininventory" style="float: right; margin: 6px 6px 0px 3px;" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button>
                 <ul class="nav nav-tabs">
-                    <li style="display: none;"><a href="#AliceInventory" data-toggle="tab">Inventory</a></li>
+                    <li style="display: none;"><a href="#AliceInventory" data-toggle="tab" class="language" data-langstr="inventory_tab_inventory"></a></li>
                     <li class="active"><a href="#ListUnspents" data-toggle="tab">List Unspents</a></li>
                     <li style="display: none;"><a href="#RawJSONInventory" data-toggle="tab">Raw JSON</a></li>
                 </ul>
@@ -349,14 +349,14 @@
                       <div class="tab-pane fade" id="AliceInventory" style="display: none;">
                         <table class="table table-striped dex_showinv_alice_tbl" style="margin-bottom: 0;">
                           <tbody>
-                            <th><div style="text-align: center;">Loading...</div></th>
+                            <th><div style="text-align: center;" class="language" data-langstr="loading_wait"></div></th>
                           </tbody>
                         </table>
                       </div>
                       <div class="tab-pane fade in active" id="ListUnspents">
                         <table class="table table-striped dex_showlist_unspents_tbl" style="margin-bottom: 0;">
                           <tbody>
-                            <th><div style="text-align: center;">Loading...</div></th>
+                            <th><div style="text-align: center;" class="language" data-langstr="loading_wait"></div></th>
                           </tbody>
                         </table>
                       </div>
@@ -379,8 +379,8 @@
           <div class="col-sm-12 col1">
             <div class="panel panel-default" style="margin-bottom: 5px;">
               <div class="panel-heading">
-                <h3 class="panel-title"><strong>Your Balance</strong></h3>
-                <button class="btn btn-xs btn-warning btn_switch_trading_coin_pairs" style="float: right; margin: -20px 20px;">SWITCH PAIRS <span class="fa fa-random" aria-hidden="true"></span></button>
+                <h3 class="panel-title"><strong class="language" data-langstr="exchange_your_balance"></strong></h3>
+                <button class="btn btn-xs btn-warning btn_switch_trading_coin_pairs" style="float: right; margin: -20px 20px;"><span class="language" data-langstr="exchange_switch_pairs"></span> <span class="fa fa-random" aria-hidden="true"></span></button>
                 <button class="btn btn-xs btn-trading_coin_balance_refresh coinexchange" data-coin="COIN" style="float: right; margin: -20px -8px"><span class="glyphicon glyphicon-refresh"></span></button>
               </div>
               <div> <!-- panel-body -->

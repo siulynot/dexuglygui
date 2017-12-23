@@ -7,6 +7,16 @@
     "author": "Satinder Greawl",
     "authorEmail": "satinder@komodoplatform.com"
   },
+  "Common": {
+    "loading_wait": "Loading...",
+    "btn_send": "Send",
+    "btn_receive": "Receive",
+    "btn_enable_native": "Enable Native",
+    "btn_enable_electrum": "Enable Electrum",
+    "btn_disable": "Disable",
+    "btn_set_goal": "Set Goal",
+    "btn_exchange": "Exchange"
+  },
   "loading": {
     "starting_barterdex": "Starting BarterDEX. Please wait..."
   },
@@ -18,5 +28,39 @@
     "login_btn": "Login",
     "generate_a_new_passphrase": "Generate a New Passphrase",
     "login_passphrase_input_placeholder": "Passphrase"
+  },
+  "Navigation": {
+    "nav_dashboard": "Dashboard",
+    "nav_trade_history": "Trade history",
+    "nav_close" : "Close",
+    "nav_debug": "Debug",
+    "nav_settings": "Settings",
+    "nav_logout": "Logout"
+  },
+  "Debug": {
+    "debug_payload": "Payload",
+    "debug_execute": "Execute",
+    "debug_response": "Response",
+    "debug_playload_input_placeholder": "Provide payload"
+  },
+  "Portfolio": {
+    "portfolio_portfolio_chart": "Portfolio Chart",
+    "portfolio_add_coins": "ADD COINS",
+    "portfolio_portfolio_coins": "Portfolio Coins",
+    "portfolio_auto_goal_all_active_coins": "AUTO GOAL ALL ACTIVE COINS",
+    "portfolio_th_coin": "Coin",
+    "portfolio_th_balance": "Balance",
+    "portfolio_th_price": "Price",
+    "portfolio_th_current_percent": "Current %",
+    "portfolio_th_goal_percent": "Goal %",
+    "portfolio_th_kmdvalue": "KMD Value",
+    "portfolio_th_action": "Action"
+  },
+  "Inventory": {
+    "inventory_tab_inventory": "Inventory"
+  },
+  "Exchange": {
+    "exchange_your_balance": "Your Balance",
+    "exchange_switch_pairs": "SWITCH PAIRS"
   }
 }
