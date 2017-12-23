@@ -68,6 +68,65 @@ function PopulateDefaultLanguage() {
 	// Populate exchange localization
 	$('.language[data-langstr="exchange_your_balance"]').text(default_lang.Exchange.exchange_your_balance);
 	$('.language[data-langstr="exchange_switch_pairs"]').text(default_lang.Exchange.exchange_switch_pairs);
+	$('.language[data-langstr="exchange_trading_pair"]').text(default_lang.Exchange.exchange_trading_pair);
+	$('.language[data-langstr="exchange_speed_mode_settings"]').text(default_lang.Exchange.exchange_speed_mode_settings);
+	$('.language[data-langstr="exchange_btn_buy_caps"]').text(default_lang.Exchange.exchange_btn_buy_caps);
+	$('.language[data-langstr="exchange_btn_sell_caps"]').text(default_lang.Exchange.exchange_btn_sell_caps);
+	$('.language[data-langstr="exchange_btn_trade_bot"]').text(default_lang.Exchange.exchange_btn_trade_bot);
+	$('.language[data-langstr="exchange_btn_manual_trade"]').text(default_lang.Exchange.exchange_btn_manual_trade);
+	
+	$('.language[data-langstr="exchange_btn_portfolio"]').text(default_lang.Exchange.exchange_btn_portfolio);
+	$('.language[data-langstr="exchange_lbl_one_max"]').text(default_lang.Exchange.exchange_lbl_one_max);
+	$('.language[data-langstr="exchange_lbl_one_price_to"]').text(default_lang.Exchange.exchange_lbl_one_price_to);
+	$('.language[data-langstr="exchange_lbl_buy_small"]').text(default_lang.Exchange.exchange_lbl_buy_small);
+
+	$('.language[data-langstr="exchange_trade_with_selected_trader"]').text(default_lang.Exchange.exchange_trade_with_selected_trader);
+	$('.language[data-langstr="exchange_coin_price_max"]').text(default_lang.Exchange.exchange_coin_price_max);
+	$('.language[data-langstr="exchange_destpubkey_yes"]').text(default_lang.Exchange.exchange_destpubkey_yes);
+	$('.language[data-langstr="exchange_lbl_two_max"]').text(default_lang.Exchange.exchange_lbl_two_max);
+	$('.language[data-langstr="exchange_lbl_amount_to"]').text(default_lang.Exchange.exchange_lbl_amount_to);
+
+	$('.language[data-langstr="exchange_dont_auto_repeat_order"]').text(default_lang.Exchange.exchange_dont_auto_repeat_order);
+	$('.language[data-langstr="exchange_enable_auto_repeat_this_trade"]').text(default_lang.Exchange.exchange_enable_auto_repeat_this_trade);
+	$('.language[data-langstr="exchange_enable_auto_repeat_coinmarketcap"]').text(default_lang.Exchange.exchange_enable_auto_repeat_coinmarketcap);
+
+	$('.language[data-langstr="exchange_0conf_settings_text_one"]').text(default_lang.Exchange.exchange_0conf_settings_text_one);
+	$('.language[data-langstr="exchange_0conf_settings_text_two"]').text(default_lang.Exchange.exchange_0conf_settings_text_two);
+	$('.language[data-langstr="exchange_0conf_settings_a"]').text(default_lang.Exchange.exchange_0conf_settings_a);
+	$('.language[data-langstr="exchange_0conf_settings_text_three"]').text(default_lang.Exchange.exchange_0conf_settings_text_three);
+	$('.language[data-langstr="excahnge_0conf_deposit_high_speed_mode_sec"]').text(default_lang.Exchange.excahnge_0conf_deposit_high_speed_mode_sec);
+	$('.language[data-langstr="exchange_0conf_make_sec_deposit"]').text(default_lang.Exchange.exchange_0conf_make_sec_deposit);
+	$('.language[data-langstr="exchange_0conf_see_deposit_history"]').text(default_lang.Exchange.exchange_0conf_see_deposit_history);
+	$('.language[data-langstr="exchange_0conf_claim_deposit"]').text(default_lang.Exchange.exchange_0conf_claim_deposit);
+
+	$('.language[data-langstr="exchange_my_prices"]').text(default_lang.Exchange.exchange_my_prices);
+	$('.language[data-langstr="exchange_auto_bot_list"]').text(default_lang.Exchange.exchange_auto_bot_list);
+	$('.language[data-langstr="exchange_trade_status"]').text(default_lang.Exchange.exchange_trade_status);
+
+
+	$('.language[data-langstr="exchange_th_my_orders_base"]').text(default_lang.Exchange.exchange_th_my_orders_base);
+    $('.language[data-langstr="exchange_th_my_orders_rel"]').text(default_lang.Exchange.exchange_th_my_orders_rel);
+    $('.language[data-langstr="exchange_th_my_orders_bid"]').text(default_lang.Exchange.exchange_th_my_orders_bid);
+    $('.language[data-langstr="exchange_th_my_orders_ask"]').text(default_lang.Exchange.exchange_th_my_orders_ask);
+    $('.language[data-langstr="exchange_th_bot_list_tradebot_info"]').text(default_lang.Exchange.exchange_th_bot_list_tradebot_info);
+    $('.language[data-langstr="exchange_th_bot_list_progress_info"]').text(default_lang.Exchange.exchange_th_bot_list_progress_info);
+    $('.language[data-langstr="exchange_th_bot_list_actions"]').text(default_lang.Exchange.exchange_th_bot_list_actions);
+    $('.language[data-langstr="exchange_th_swap_status_status"]').text(default_lang.Exchange.exchange_th_swap_status_status);
+    $('.language[data-langstr="exchange_th_swap_status_info"]').text(default_lang.Exchange.exchange_th_swap_status_info);
+    $('.language[data-langstr="exchange_th_swap_status_action"]').text(default_lang.Exchange.exchange_th_swap_status_action);
+
+
+    $('.language[data-langstr="exchange_sellers_caps"]').text(default_lang.Exchange.exchange_sellers_caps);
+    $('.language[data-langstr="exchange_buyers_caps"]').text(default_lang.Exchange.exchange_buyers_caps);
+    $('.language[data-langstr="exchange_th_orderbook_price_in"]').text(default_lang.Exchange.exchange_th_orderbook_price_in);
+    $('.language[data-langstr="exchange_th_orderbook_avg_volume"]').text(default_lang.Exchange.exchange_th_orderbook_avg_volume);
+    $('.language[data-langstr="exchange_th_orderbook_depth"]').text(default_lang.Exchange.exchange_th_orderbook_depth);
+    //$('.language[data-langstr="exchange_th_orderbook_trader_pubkey"]').text(default_lang.Exchange.exchange_th_orderbook_trader_pubkey);
+    $('.language[data-langstr="exchange_th_orderbook_age"]').text(default_lang.Exchange.exchange_th_orderbook_age);
+    $('.language[data-langstr="exchange_th_orderbook_utxos"]').text(default_lang.Exchange.exchange_th_orderbook_utxos);
+    $('.language[data-langstr="exchange_th_orderbook_zcredits"]').text(default_lang.Exchange.exchange_th_orderbook_zcredits);
+
+
 	
 
 

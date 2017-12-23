@@ -409,8 +409,8 @@
             <div class="panel with-nav-tabs panel-default" style="margin-bottom: 5px;">
               <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#exchange_trading_pair" data-toggle="tab">Trading Pair <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a></li>
-                    <li><a href="#exchange_zeroconf_settings" data-toggle="tab">Speed Mode Settings</a></li>
+                    <li class="active"><a href="#exchange_trading_pair" data-toggle="tab"><span class="language" data-langstr="exchange_trading_pair"></span> <button class="btn btn-xs btn-refreshtrading_pair coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></a></li>
+                    <li><a href="#exchange_zeroconf_settings" data-toggle="tab" class="language" data-langstr="exchange_speed_mode_settings"></a></li>
                 </ul>
               </div>
               <div class=""> <!-- panel-body -->
@@ -422,23 +422,23 @@
                         <div class="form-group trading_buysell_options">
                           <div class="btn-group btn-group-justified colors" data-toggle="buttons">
                             <label class="btn btn-info active">
-                              <input type="radio" name="trading_pair_options" id="trading_pair_options_buying" value="buying" autocomplete="off" checked> BUY <span class="coin_ticker"></span></label>
+                              <input type="radio" name="trading_pair_options" id="trading_pair_options_buying" value="buying" autocomplete="off" checked> <span class="language" data-langstr="exchange_btn_buy_caps"></span> <span class="coin_ticker"></span></label>
                             <label class="btn btn-info">
-                              <input type="radio" name="trading_pair_options" id="trading_pair_options_selling" value="selling" autocomplete="off"> SELL <span class="coin_ticker"></span></label>
+                              <input type="radio" name="trading_pair_options" id="trading_pair_options_selling" value="selling" autocomplete="off"> <span class="language" data-langstr="exchange_btn_sell_caps"></span> <span class="coin_ticker"></span></label>
                           </div>
                         </div>
                         <div class="form-group trading_method_options">
                           <div class="btn-group btn-group-justified colors" data-toggle="buttons">
                             <label class="btn btn-warning active">
-                              <input type="radio" name="trading_mode_options" id="trading_mode_options_tradebot" value="tradebot" autocomplete="off"> TRADE BOT</label>
+                              <input type="radio" name="trading_mode_options" id="trading_mode_options_tradebot" value="tradebot" autocomplete="off"><span class="language" data-langstr="exchange_btn_trade_bot"></span></label>
                             <label class="btn btn-warning">
-                              <input type="radio" name="trading_mode_options" id="trading_mode_options_trademanual" value="trademanual" autocomplete="off"> MANUAL TRADE</label>
+                              <input type="radio" name="trading_mode_options" id="trading_mode_options_trademanual" value="trademanual" autocomplete="off"><span class="language" data-langstr="exchange_btn_manual_trade"></span></label>
                             <label class="btn btn-warning">
-                              <input type="radio" name="trading_mode_options" id="trading_mode_options_tradeportfolio" value="tradeportfolio" autocomplete="off"> PORTFOLIO</label>
+                              <input type="radio" name="trading_mode_options" id="trading_mode_options_tradeportfolio" value="tradeportfolio" autocomplete="off"><span class="language" data-langstr="exchange_btn_portfolio"></span></label>
                           </div>
                         </div>
                         <div class="form-group">
-                          <span style="float: left; font-size: 18px;"><span class="trading_pair_lable_text_one">Max</span> Price to <span class="trading_pair_lable_text_two">Buy</span></span>
+                          <span style="float: left; font-size: 18px;"><span class="trading_pair_lable_text_one language" data-langstr="exchange_lbl_one_max"></span> <span class="language" data-langstr="exchange_lbl_one_price_to"></span> <span class="trading_pair_lable_text_two language" data-langstr="exchange_lbl_buy_small"></span></span>
                         </div>
                         <div class="input-group col-sm-12">
                           <select class="selectpicker trading_pair_coin" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
@@ -448,21 +448,21 @@
                             </div>
                           </span>
                           <input type="number" class="form-control trading_pair_coin_price" placeholder="Price e.g. 0.01" style="height: 44px; font-size: 20px;">
-                          <span class="input-group-addon" id="trading_pair_coin_price_max_min" style="font-size: 20px;">Max</span>
+                          <span class="input-group-addon language" data-langstr="exchange_coin_price_max" id="trading_pair_coin_price_max_min" style="font-size: 20px;"></span>
                         </div>
 
                         <div class="form-group trading_selected_trader_label" style="margin-top: 15px; margin-bottom: 0px; display: none;">
-                          <span style="font-size: 18px;">Trade with selected trader only (optional)</span>
+                          <span style="font-size: 18px;" class="language" data-langstr="exchange_trade_with_selected_trader"></span>
                         </div>
                         <div class="input-group col-sm-12 trading_selected_trader" style="display: none;">
                           <span class="input-group-addon">
-                            <input class="big-checkbox trading_pair_destpubkey_yesno" type="checkbox"> Yes
+                            <input class="big-checkbox trading_pair_destpubkey_yesno" type="checkbox"> <span class="language" data-langstr="exchange_destpubkey_yes"></span>
                           </span>
                           <input type="text" class="form-control trading_pair_destpubkey" placeholder="eg. bab6ad2eebe1e666369cab504d4622b22c1f1ef718ef388e88020f30a1573e01" style="height: 44px; font-size: 20px;">
                         </div>
 
                         <div class="form-group buy_sell_amount_to" style="margin-top: 15px; margin-bottom: 0px;">
-                          <span style="font-size: 18px;"><span>Max</span> Amount to <span class="trading_pair_lable_text_two">Buy</span></span>
+                          <span style="font-size: 18px;"><span class="language" data-langstr="exchange_lbl_two_max"></span> <span class="language" data-langstr="exchange_lbl_amount_to"></span> <span class="trading_pair_lable_text_two language" data-langstr="exchange_lbl_buy_small"></span></span>
                         </div>
                         <div class="input-group col-sm-12">
                           <p class="portfolio_info_text" style="font-size: 120%; font-weight: 200;"></p>
@@ -472,7 +472,7 @@
                           <select class="selectpicker trading_pair_coin2" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
                           <input type="number" class="form-control trading_pair_coin_volume" placeholder="Amount e.g. 12.5" style="height: 44px; font-size: 20px;">
                           <span class="input-group-btn">
-                            <button class="btn btn-primary btn-bot_action" data-action="buy" style="height: 44px; font-size: 20px;">BUY</button>
+                            <button class="btn btn-primary btn-bot_action language" data-action="buy" style="height: 44px; font-size: 20px;" data-langstr="exchange_btn_buy_caps"></button>
                           </span>
                         </div>
                         <div class="input-group col-sm-12 trading_auto_repeat_trade">
@@ -481,21 +481,21 @@
                             <div class="pretty p-default p-curve">
                                 <input type="radio" name="trading_manual_buy_sell_options" value="disabled" checked />
                                 <div class="state p-danger-o">
-                                    <label>Don't auto-repeat order</label>
+                                    <label class="language" data-langstr="exchange_dont_auto_repeat_order"></label>
                                 </div>
                             </div> <br>
 
                             <div class="pretty p-default p-curve">
                                 <input type="radio" name="trading_manual_buy_sell_options" value="autorepeat" />
                                 <div class="state p-success-o">
-                                    <label>Enable auto-repeat this trade</label>
+                                    <label class="language" data-langstr="exchange_enable_auto_repeat_this_trade"></label>
                                 </div>
                             </div> <br>
 
                             <div class="pretty p-default p-curve">
                                 <input type="radio" name="trading_manual_buy_sell_options" value="coinmarketcap" />
                                 <div class="state p-success-o">
-                                    <label>Enable auto-repeat + CoinMarketCap Prices</label>
+                                    <label class="language" data-langstr="exchange_enable_auto_repeat_coinmarketcap"></label>
                                 </div>
                             </div>
                           </div>
@@ -503,18 +503,18 @@
                         </div>
 
                         <div class="input-group col-sm-12">
-                          <span class="input-group-addon relvol_basevol_label">It'll cost you</span>
+                          <span class="input-group-addon relvol_basevol_label language" data-langstr="exchange_itll_cost_you"></span>
                           <span class="input-group-addon relvol_basevol_amount"><span class="relvol_basevol">0</span> <span class="relvol_basevol_coin"></span></span>
                         </div>
 
                         <div class="form-group coingoal_label_div" style="margin-top: 15px; margin-bottom: 0px; display: none;">
-                          <span style="font-size: 118%;">Set <span class="coingoal_label_coin_name"></span> Goal percentage for your portfolio</span>
+                          <span style="font-size: 118%;"><span class="language" data-langstr="exchange_set_small"></span> <span class="coingoal_label_coin_name"></span> <span class="language" data-langstr="exchange_goal_percent_for_your_portfolio"></span></span>
                         </div>
                         <div class="input-group col-sm-12 coingoal_div" style="display: none;">
                           <span class="input-group-addon coin_ticker" id="coingoal_coin_ticker" style="font-size: 20px;"></span>
                           <input type="number" class="form-control coingoal_percentage" placeholder="e.g. 12.5" style="height: 44px; font-size: 20px;">
                           <span class="input-group-btn">
-                            <button class="btn btn-primary btn_set_coin_goal" data-action="goal" data-auto=false style="height: 44px; font-size: 20px;">SET GOAL</button>
+                            <button class="btn btn-primary btn_set_coin_goal language" data-langstr="exchange_set_gaol_caps" data-action="goal" data-auto=false style="height: 44px; font-size: 20px;"></button>
                           </span>
                         </div>
 
@@ -525,10 +525,10 @@
                   <div class="tab-pane fade" id="exchange_zeroconf_settings">
                     <div class="row" style="padding: 15px;">
                       <div class="col-sm-12">
-                        <p>The High Speed Mode feature enables you to make trades in seconds, without having to wait for blockchain confirmations. Please <a href="#" class="info_box_for_zeroconf">click here</a> to read more.</p>
+                        <p><span class="language" data-langstr="exchange_0conf_settings_text_one"></span> <span class="language" data-langstr="exchange_0conf_settings_text_two"></span> <a href="#" class="info_box_for_zeroconf language" data-langstr="exchange_0conf_settings_a"></a> <span class="language" data-langstr="exchange_0conf_settings_text_three"></span></p>
 
                         <div class="form-group">
-                          <span style="float: left; font-size: 18px;">Deposit High Speed Mode Security</span>
+                          <span style="float: left; font-size: 18px;" class="language" data-langstr="exchange_0conf_deposit_high_speed_mode_sec"></span>
                         </div>
                         <div class="input-group col-sm-12">
                           <select class="selectpicker zeroconf_weeks_select" data-live-search="true" data-hide-disabled="true" data-width="30%"></select>
@@ -540,11 +540,11 @@
                           <span style="float: left; font-size: 18px;"></span>
                         </div>
                         <div class="input-group col-sm-12">
-                          <button class="btn btn-primary btn-block btn_zeroconf_deposit">MAKE SECURITY DEPOSIT</button>
+                          <button class="btn btn-primary btn-block btn_zeroconf_deposit language" data-langstr="exchange_0conf_make_sec_deposit"></button>
                         </div>
                         <div class="input-group col-sm-12" style="padding-top: 15px;">
-                          <button class="btn btn-warning btn_zeroconf_deposit_history">SEE DEPOSIT HISTORY</button>
-                          <button class="btn btn-success btn_zeroconf_claim_deposit" style="margin-left: 10px;">CLAIM DEPOSIT</button>
+                          <button class="btn btn-warning btn_zeroconf_deposit_history language" data-langstr="exchange_0conf_see_deposit_history"></button>
+                          <button class="btn btn-success btn_zeroconf_claim_deposit language" data-langstr="exchange_0conf_claim_deposit" style="margin-left: 10px;"></button>
                         </div>
 
                       </div>
@@ -569,9 +569,9 @@
                     <!--<button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>-->
                     <ul class="nav nav-tabs">
-                        <li><a href="#exchange_myorders" data-toggle="tab">My Orders <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
-                        <li class="autobot_tab"><a href="#exchange_botlist" data-toggle="tab">Auto Bots List <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
-                        <li class="active"><a href="#exchange_tradestatus" data-toggle="tab">Trade Status <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                        <li><a href="#exchange_myorders" data-toggle="tab"><span class="language" data-langstr="exchange_my_prices"></span> <button class="btn btn-xs btn-myordersrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                        <li class="autobot_tab"><a href="#exchange_botlist" data-toggle="tab"><span class="language" data-langstr="exchange_auto_bot_list"></span> <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
+                        <li class="active"><a href="#exchange_tradestatus" data-toggle="tab"><span class="language" data-langstr="exchange_trade_status"></span> <button class="btn btn-xs btn-botlistrefresh coinexchange" data-coin="COIN"><span class="glyphicon glyphicon-refresh"></span></button></a></li>
                     </ul>
                   </div>
                   <div class=""> <!-- panel-body -->
@@ -580,14 +580,14 @@
 
                             <table class="table table-striped exchange_my_orders_tbl" style="margin-bottom: 0;">
                               <thead>
-                                <th>Base</th>
-                                <th>Rel</th>
-                                <th>Bid</th>
-                                <th>Ask</th>
+                                <th class="language" data-langstr="exchange_th_my_orders_base"></th>
+                                <th class="language" data-langstr="exchange_th_my_orders_rel"></th>
+                                <th class="language" data-langstr="exchange_th_my_orders_bid"></th>
+                                <th class="language" data-langstr="exchange_th_my_orders_ask"></th>
                                 <th>-</th>
                               </thead>
                               <tbody>
-                                <th><div style="text-align: center;">Loading...</div></th>
+                                <th><div style="text-align: center;" class="language" data-langstr="loading_wait"></div></th>
                               </tbody>
                             </table>
 
@@ -597,12 +597,12 @@
                             <table class="table exchange_bot_list_tbl" width="100%" style="margin-bottom: 0;">
                               <thead>
                                 <!--<th>Bot ID</th>-->
-                                <th>TradeBot Info</th>
+                                <th class="language" data-langstr="exchange_th_bot_list_tradebot_info"></th>
                                 <!--<th>Bot Action</th>-->
                                 <!--<th>Price</th>
                                 <th>Max Volume</th>-->
-                                <th>Progress Info</th>
-                                <th>Actions</th>
+                                <th class="language" data-langstr="exchange_th_bot_list_progress_info"></th>
+                                <th class="language" data-langstr="exchange_th_bot_list_actions"></th>
                               </thead>
                               <tbody></tbody>
                             </table>
@@ -612,11 +612,11 @@
                             <div class="exchange_trade_status_body mCustomScrollbar" data-mcs-theme="minimal-dark">
                               <table class="table table-striped exchange_swap_status_tbl" width="100%" style="margin-bottom: 0;">
                                 <thead>
-                                  <th>Status</th>
-                                  <th>Info</th>
+                                  <th class="language" data-langstr="exchange_th_swap_status_status"></th>
+                                  <th class="language" data-langstr="exchange_th_swap_status_info"></th>
                                   <!--<th>Quote ID</th>
                                   <th>Request ID</th>-->
-                                  <th>Action</th>
+                                  <th class="language" data-langstr="exchange_th_swap_status_action"></th>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -650,23 +650,23 @@
           <div class="hidden-xs hidden-sm hidden-md col-lg-6 col-xl-6" style="padding-right: 2px;">
             <div class="panel panel-default">
                   <div class="panel-heading">
-                    SELLERS: <span class="orderbook_numasks"></span>
+                    <span class="language" data-langstr="exchange_sellers_caps"></span>: <span class="orderbook_numasks"></span>
                     <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;">BACK</button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 0px 0px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                   </div>
                   <div class=""> <!-- panel-body -->
                       <div class="mCustomScrollbar" data-mcs-theme="minimal-dark" id="exchange_coin_asks">
                         <table class="table table-striped orderbook_asks" width="100%" style="margin-bottom: 0;">
-                          <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                          <thead><th><span class="language" data-langstr="exchange_th_orderbook_price_in"></span> <span class="orderbook_rel_coin"></span></th>
                             <!--<th>Size(Min-Max <span class="orderbook_base_coin"></span>)</th>
                             <th>Size(Min-Max <span class="orderbook_rel_coin"></span>)</th>
                             <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
-                            <th>Avg. Volume</th>
-                            <th>Depth</th>
-                            <!--<th>Trader Pubkey</th>-->
-                            <th>Age</th>
-                            <th>UTXOs</th>
-                            <th>ZCredits</th>
+                            <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
+                            <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                            <th class="language" data-langstr="exchange_th_orderbook_age"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
                             </thead>
                           <tbody></tbody>
                         </table>
@@ -684,22 +684,22 @@
           <div class="hidden-xs hidden-sm hidden-md col-lg-6 col-xl-6" style="padding-left: 2px;">
             <div class="panel panel-default">
                   <div class="panel-heading">
-                    BUYERS: <span class="orderbook_numbids"></span>
+                    <span class="language" data-langstr="exchange_buyers_caps"></span>: <span class="orderbook_numbids"></span>
                     <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;">BACK</button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 0px 0px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                   </div>
                   <div class=""> <!-- panel-body -->
                       <div class="mCustomScrollbar" data-mcs-theme="minimal-dark" id="exchange_coin_bids">
                         <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
-                          <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                          <thead><th><span class="language" data-langstr="exchange_th_orderbook_price_in"></span> <span class="orderbook_rel_coin"></span></th>
                             <!--<th>Min <span class="orderbook_rel_coin"></span></th>
                             <th>Max <span class="orderbook_rel_coin"></span></th>-->
-                            <th>Avg. Volume</th>
-                            <th>Depth</th>
-                            <!--<th>Trader Pubkey</th>-->
-                            <th>Age</th>
-                            <th>UTXOs</th>
-                            <th>ZCredits</th>
+                            <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
+                            <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                            <th class="language" data-langstr="exchange_th_orderbook_age"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
+                            <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
                           </thead>
                           <tbody></tbody>
                         </table>
@@ -714,8 +714,8 @@
                     <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#exchange_coin_asks_togl" data-toggle="tab">SELLERS: <span class="orderbook_numasks"></span></a></li>
-                        <li><a href="#exchange_coin_bids_togl" data-toggle="tab">BUYERS: <span class="orderbook_numbids"></span></a></li>
+                        <li class="active"><a href="#exchange_coin_asks_togl" data-toggle="tab"><span class="language" data-langstr="exchange_sellers_caps"></span>: <span class="orderbook_numasks"></span></a></li>
+                        <li><a href="#exchange_coin_bids_togl" data-toggle="tab"><span class="language" data-langstr="exchange_buyers_caps"></span>: <span class="orderbook_numbids"></span></a></li>
                     </ul>
                   </div>
                   <div class=""> <!-- panel-body -->
@@ -723,16 +723,16 @@
                           <div class="tab-pane fade in active mCustomScrollbar" data-mcs-theme="minimal-dark" id="exchange_coin_asks_togl">
 
                             <table class="table table-striped orderbook_asks" width="100%" style="margin-bottom: 0;">
-                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                              <thead><th><span class="language" data-langstr="exchange_th_orderbook_price_in"></span> <span class="orderbook_rel_coin"></span></th>
                                 <!--<th>Size(Min-Max <span class="orderbook_base_coin"></span>)</th>
                                 <th>Size(Min-Max <span class="orderbook_rel_coin"></span>)</th>
                                 <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
-                                <th>Avg. Volume</th>
-                                <th>Depth</th>
-                                <!--<th>Trader Pubkey</th>-->
-                                <th>Age</th>
-                                <th>UTXOs</th>
-                                <th>ZCredits</th>
+                                <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
+                                <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                                <th class="language" data-langstr="exchange_th_orderbook_age"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
                                 </thead>
                               <tbody></tbody>
                             </table>
@@ -746,15 +746,15 @@
                           <div class="tab-pane fade mCustomScrollbar" data-mcs-theme="minimal-dark" id="exchange_coin_bids_togl">
 
                             <table class="table table-striped orderbook_bids" width="100%" style="margin-bottom: 0;">
-                              <thead><th>Price in <span class="orderbook_rel_coin"></span></th>
+                              <thead><th><span class="language" data-langstr="exchange_th_orderbook_price_in"></span> <span class="orderbook_rel_coin"></span></th>
                                 <!--<th>Min <span class="orderbook_rel_coin"></span></th>
                                 <th>Max <span class="orderbook_rel_coin"></span></th>-->
-                                <th>Avg. Volume</th>
-                                <th>Depth</th>
-                                <!--<th>Trader Pubkey</th>-->
-                                <th>Age</th>
-                                <th>UTXOs</th>
-                                <th>ZCredits</th>
+                                <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
+                                <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                                <th class="language" data-langstr="exchange_th_orderbook_age"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
+                                <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
                               </thead>
                               <tbody></tbody>
                             </table>

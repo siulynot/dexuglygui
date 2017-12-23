@@ -281,6 +281,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	// Fix width of chart
 	gChart.size = {width: $('#chartContainer').parent().width()};
 	gChart.update();
+	setTimeout(function(){ PopulateDefaultLanguage(); }, 100);
 });
 
 
@@ -2175,6 +2176,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 
 function PortfolioChartUpdate(chart_data) {
 	console.log(chart_data)
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var chart = AmCharts.makeChart( "portfolio_chart_current", {
 	  "type": "pie",
 	  "theme": "black",
@@ -2196,14 +2198,14 @@ function PortfolioChartUpdate(chart_data) {
 	      "align": "center",
 	      "size": 25,
 	      "bold": true,
-	      "text": "Now",
+	      "text": default_lang.Portfolio.portfolio_goal_now,
 	      "color": "#e2e2e2"
 	    },
 	    {
 	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
-	      "text": "Goal",
+	      "text": default_lang.Portfolio.portfolio_goal,
 	      "color": "#e2e2e2"
 	    }
 	  ],
@@ -2233,14 +2235,14 @@ function PortfolioChartUpdate(chart_data) {
 	      "align": "center",
 	      "size": 25,
 	      "bold": true,
-	      "text": "Target",
+	      "text": default_lang.Portfolio.portfolio_goal_target,
 	      "color": "#e2e2e2"
 	    },
 	    {
 	      "y": "40%",
 	      "align": "center",
 	      "size": 15,
-	      "text": "Goal",
+	      "text": default_lang.Portfolio.portfolio_goal,
 	      "color": "#e2e2e2"
 	    }
 	  ],
