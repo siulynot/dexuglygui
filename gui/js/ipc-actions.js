@@ -2,25 +2,28 @@ var CheckMM_Interval = null;
 var CheckDefaultLogin_Interval = null;
 
 $(document).ready(function() {
-	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	if (mypubkey !== '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
-		var loginstate = sessionStorage.getItem('mm_loginstate');
-		if (loginstate == null || loginstate == 'default') {
-			var shepherdresult = ShepherdIPC({"command":"login","passphrase":"default"});
-			$('.mainbody').hide();
-			$('.loginbody').hide();
-			CheckMM_Interval = setInterval(CheckMMStatus,1000);
-			$('.loadingbody').fadeIn();
-		} else if (loginstate == 'loggedout') {
+	BarterDEXInitLang();
+	setTimeout(function(){
+		var mypubkey = sessionStorage.getItem('mm_mypubkey');
+		if (mypubkey !== '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
+			var loginstate = sessionStorage.getItem('mm_loginstate');
+			if (loginstate == null || loginstate == 'default') {
+				var shepherdresult = ShepherdIPC({"command":"login","passphrase":"default"});
+				$('.mainbody').hide();
+				$('.loginbody').hide();
+				CheckMM_Interval = setInterval(CheckMMStatus,1000);
+				$('.loadingbody').fadeIn();
+			} else if (loginstate == 'loggedout') {
+				$('.mainbody').hide();
+				$('.loginbody').fadeIn();
+				$('.loadingbody').fadeOut();
+			}
+		} else {
 			$('.mainbody').hide();
 			$('.loginbody').fadeIn();
 			$('.loadingbody').fadeOut();
 		}
-	} else {
-		$('.mainbody').hide();
-		$('.loginbody').fadeIn();
-		$('.loadingbody').fadeOut();
-	}
+	}, 1000);
 });
 
 
@@ -331,6 +334,14 @@ $('.dexsettings-btn').click(function(e){
 					<option data-content="Dark Theme" data-tokens="Dark Theme">dark</option>
 					<option data-content="Light Theme" data-tokens="Light Theme">light</option>
 				</select>
+			</div>
+			<div class="form-group col-sm-3" style="padding: 0;">
+				<span style="float: left; font-size: 18px;">Default Language:</span>
+			</div>
+			<div class="input-group col-sm-2" style="margin: 10px 0;">
+				<select class="selectpicker settings_deflang_select" data-hide-disabled="true" data-width="30%">
+					<option data-content="English (US)" data-tokens="English US">en_US</option>
+				</select>
 			</div>`,
 		closeButton: false,
 		size: 'large',
@@ -349,6 +360,7 @@ $('.dexsettings-btn').click(function(e){
 					ShepherdIPC({"command":"reset_settings"});
 					$('#trading_mode_options_trademanual').trigger('click');
 					setTimeout(function(){ BarterDEXSettingsFn(); }, 1000);
+					setTimeout(function(){ BarterDEXDefaultLangFn('en_US') }, 1000);
 				}
 			},
 			ok: {
@@ -357,7 +369,9 @@ $('.dexsettings-btn').click(function(e){
 				callback: function(){
 					var experimental_features = $('input[name=experimental_features]:checked').val();
 					var selected_theme = $('.settings_theme_select').selectpicker('val');
+					var selected_deflang = $('.settings_deflang_select').selectpicker('val');
 					barterDEX_settings.theme = selected_theme;
+					barterDEX_settings.deflang = selected_deflang;
 					
 					console.log(experimental_features);
 					if (experimental_features == 'enable') {
@@ -371,6 +385,7 @@ $('.dexsettings-btn').click(function(e){
 					console.log(barterDEX_settings);
 					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
 					BarterDEXSettingsFn();
+					BarterDEXDefaultLangFn(selected_deflang);
 					toastr.info('Settings update processed.', 'BarterDEX Settings');
 				}
 			}
@@ -378,6 +393,9 @@ $('.dexsettings-btn').click(function(e){
 	});
 	dex_settings_bootbox.init(function(){
 		$('.settings_theme_select').selectpicker('render');
+		$('.settings_deflang_select').html(GetListofAvailableLocalization());
+		$('.settings_deflang_select').selectpicker('render');
+
 		console.log('settings dialog opened.');
 		//var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
 		console.log(barterDEX_settings);
@@ -398,6 +416,8 @@ $('.dexsettings-btn').click(function(e){
 		if (barterDEX_settings.theme == 'light') {
 			$('.settings_theme_select').selectpicker('val', 'light');
 		}
+
+		$('.settings_deflang_select').selectpicker('val', barterDEX_settings.deflang);
 	});
 });
 
@@ -646,5 +666,6 @@ function BarterDEXSettingsFn() {
 		$('#dark_css_style').prop('disabled', true);
 	}
 };
+
 
 

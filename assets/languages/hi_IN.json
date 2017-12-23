@@ -1,0 +1,22 @@
+{
+  "langinfo": {
+    "name": "Hindi (India)",
+    "tag": "hi_IN",
+    "version": "0.8.0",
+    "creationDate": "23 Dec 2017",
+    "author": "Satinder Greawl",
+    "authorEmail": "satinder@komodoplatform.com"
+  },
+  "loading": {
+    "starting_barterdex": "BarterDEX शुरू हो रहा है। कृपया प्रतीक्षा करें..."
+  },
+  "login": {
+    "welcome_to_barterdex": "BarterDEX में आपका स्वागत है",
+    "please_login": "कृपया लॉगिन करें",
+    "passphrase": "पास वाक्यांश",
+    "login_passphrase_label": "लॉग इन करें",
+    "login_btn": "लॉग इन करें",
+    "generate_a_new_passphrase": "एक नया पास वाक्यांश उत्पन्न करें",
+    "login_passphrase_input_placeholder": "पास वाक्यांश"
+  }
+}

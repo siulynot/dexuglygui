@@ -1,0 +1,22 @@
+{
+  "langinfo": {
+    "name": "English (US)",
+    "tag": "en_US",
+    "version": "0.8.0",
+    "creationDate": "23 Dec 2017",
+    "author": "Satinder Greawl",
+    "authorEmail": "satinder@komodoplatform.com"
+  },
+  "loading": {
+    "starting_barterdex": "Starting BarterDEX. Please wait..."
+  },
+  "login": {
+    "welcome_to_barterdex": "Welcome to BarterDEX",
+    "please_login": "Please Login",
+    "passphrase": "Passphrase",
+    "login_passphrase_label": "Login",
+    "login_btn": "Login",
+    "generate_a_new_passphrase": "Generate a New Passphrase",
+    "login_passphrase_input_placeholder": "Passphrase"
+  }
+}

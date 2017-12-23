@@ -207,6 +207,22 @@ ipcMain.on('shepherd-command', (event, arg) => {
             case 'app_info':
                   event.returnValue = app.getVersion();
                   break;
+            case 'get_lang_data':
+                  console.log(arg.lang);
+                  fs.readJson(path.join(__dirname, `../assets/languages/${arg.lang}.json`))
+                  .then(barterdex_deflang_file_output => {
+                    event.returnValue = barterdex_deflang_file_output;
+                  })
+                  .catch(err => {
+                    console.error(err)
+                  })
+                  break;
+            case 'get_lang_file_list':
+                  fs.readdir(path.join(__dirname, `../assets/languages/`),function(err,lang_files){
+                  if(err) throw err;
+                    console.log(lang_files);
+                    event.returnValue = lang_files;
+                  });
       }
 })
 
