@@ -33,7 +33,7 @@ function return_coin_details(coin) {
 			break;
 		case '888':
 			coin_details.name = 'OctoCoin';
-			coin_details.explorer = 'https://zchain.online/tx/';
+			coin_details.explorer = 'https://chainz.cryptoid.info/octo/tx.dws?';
 			break;
 		case 'ARG':
 			coin_details.name = 'Argentum';
@@ -77,7 +77,7 @@ function return_coin_details(coin) {
 			break;
 		case 'ZER':
 			coin_details.name = 'Zero';
-			coin_details.explorer = '';
+			coin_details.explorer = 'http://zeroexplorer.forgetop.com/tx/';
 			break;
 		case 'ZET':
 			coin_details.name = 'Zetacoin';
@@ -197,7 +197,7 @@ function return_coin_details(coin) {
 			break;
 		case 'ZCL':
 			coin_details.name = 'ZClassic';
-			coin_details.explorer = 'https://cronicc.github.io/tx/';
+			coin_details.explorer = 'http://explorer.zclmine.pro/tx/';
 			break;
 		case 'VIA':
 			coin_details.name = 'Viacoin';
