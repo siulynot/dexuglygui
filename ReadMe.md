@@ -9,7 +9,7 @@ https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-No
 ### Setup
 Once running, follow these steps:
 ```shell
-git clone https://github.com/SuperNETorg/BarterDEX.git
+git clone https://github.com/KomodoPlatform/BarterDEX.git
 cd BarterDEX
 git pull
 git checkout v0.8
@@ -50,7 +50,7 @@ sudo npm install electron-prebuilt -g
 10. Wait and watch the MNZ balance increasing as trades happen.
 
 #### Report Issues
-Please feel free to test and post any bugs or issues found here: https://github.com/SuperNETorg/BarterDEX/issues
+Please feel free to test and post any bugs or issues found here: https://github.com/KomodoPlatform/BarterDEX/issues
 
 #### Testing Notes
 If your wallet is encrypted, the app will not work with it. This feature will be made available in coming releases.
