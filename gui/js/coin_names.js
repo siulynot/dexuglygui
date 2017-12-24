@@ -23,6 +23,14 @@ function return_coin_details(coin) {
 			coin_details.name = 'BlackCoin';
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			break;
+		case 'BLOCK':
+			coin_details.name = 'Blocknet';
+			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
+			break;
+		case 'BTCZ':
+			coin_details.name = 'BitcoinZ';
+			coin_details.explorer = 'https://explorer.bitcoinz.site/tx/';
+			break;
 		case 'BTG':
 			coin_details.name = 'Bitcoin Gold';
 			coin_details.explorer = 'https://btgexp.com/tx/';
@@ -58,6 +66,10 @@ function return_coin_details(coin) {
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
+			break;
+		case 'IOP':
+			coin_details.name = 'Internet of People';
+			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
 			break;
 		case 'MZC':
 			coin_details.name = 'Mazacoin';
