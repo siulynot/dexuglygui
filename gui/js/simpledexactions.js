@@ -2305,6 +2305,7 @@ $('.refresh_dex_potfolio_coins').click(function() {
 
 
 $('.portfolio_set_price_btn').click(function() {
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var price = $('#portfolio_set_price').val();
 	var base_coin = $('.buy_coin_p').selectpicker('val');
 	var rel_coin = $('.sell_coin_p').selectpicker('val');
@@ -2325,7 +2326,7 @@ $('.portfolio_set_price_btn').click(function() {
 	}).done(function(data) {
 	    // If successful
 	   console.log(data);
-	   toastr.success('Price for Base: ' + base_coin + ' Rel: ' + rel_coin + ' set to: ' + price + ' ' + rel_coin, 'Portfolio Info')
+	   toastr.success(`${default_lang.Exchange.exchange_portfolio_price_for_base}: ` + base_coin + `<br> ${default_lang.Exchange.exchange_th_my_orders_rel}: ` + rel_coin + `<br> ${default_lang.Exchange.exchange_portfolio_price_set_to}: ` + price + ' ' + rel_coin, exchange_portfolio_toastr_portfolio_info_title)
 	   $('.initcoinswap-output').html(JSON.stringify(data, null, 2));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -2475,6 +2476,7 @@ $('.btn_set_coin_goal').click(function(e){
 
 $('.btn-autogoalall').click(function(e){
 	e.preventDefault();
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	console.log('btn-autogoalall clicked');
 	console.log($(this).data());
 
@@ -2482,14 +2484,14 @@ $('.btn-autogoalall').click(function(e){
 	goal_data.auto = $(this).data('auto');
 
 	bootbox.confirm({
-		message: "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel.",
+		message: `${default_lang.Portfolio.portfolio_auto_goal_all_text}`,
 		buttons: {
 			confirm: {
-				label: 'Yes',
+				label: default_lang.Common.yes_small,
 				className: 'btn-success'
 			},
 			cancel: {
-				label: 'No',
+				label: default_lang.Common.no_small,
 				className: 'btn-danger'
 			}
 		},
@@ -2567,21 +2569,23 @@ function autoprice_buy_sell(autoprice_data) {
 			var autoprice_modeinfo = '';
 			var autoprice_modeval = '';
 			if (autoprice_data.mode == 'margin'){
-				autoprice_mode = 'Margin';
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				autoprice_mode = default_lang.Exchange.exchange_portfolio_margin;
 				percent_on_off = '%';
-				autoprice_modeinfo = 'Margin Percentage';
+				autoprice_modeinfo = default_lang.Exchange.exchange_portfolio_margin_percent;
 				autoprice_modeval = autoprice_data.modeval * 100;
 			}
 			if (autoprice_data.mode == 'fixed'){
-				autoprice_mode = 'Fixed';
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				autoprice_mode = default_lang.Exchange.exchange_portfolio_fixed;
 				percent_on_off = '';
-				autoprice_modeinfo = 'Fixed Price';
+				autoprice_modeinfo = default_lang.Exchange.exchange_portfolio_fixed_price;
 				autoprice_modeval = autoprice_data.modeval;
 
 			}
-			bootbox.alert(autoprice_mode + ` auto price order executed:<br>
-						<b>Buying Currency (base):</b>` + base_coin + ` <br>
-						<b>Selling Currency (rel):</b>` + rel_coin + ` <br>
+			bootbox.alert(autoprice_mode + ` ${default_lang.Exchange.exchange_portfolio_auto_price_order_executed}:<br>
+						<b>${default_lang.Exchange.exchange_portfolio_buying_currency_base}:</b>` + base_coin + ` <br>
+						<b>${default_lang.Exchange.exchange_portfolio_selling_currency_rel}:</b>` + rel_coin + ` <br>
 						<b>` + autoprice_modeinfo + `:</b> ` + autoprice_modeval + `` + percent_on_off);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -2609,6 +2613,7 @@ $('input[name=trading_mode_options]').change(function() {
 	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
 
 	if(bot_or_manual == 'tradebot') {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('.trading_pair_lable_text_two').html('Buy');
@@ -2761,11 +2766,13 @@ function manual_buy_sell(mt_data) {
 
 	if (mt_data.action == 'buy') {
 		if (mt_data.trading_options == 'autorepeat') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			//var base_coin = coin;
 			//var rel_coin = $('.trading_pair_coin').selectpicker('val');
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":1 / mt_data.price};
-			toastr.success(`Auto-repeat buy order executed at fixed price of ${mt_data.price}`,'Trade Notification');
+			toastr.success(`${default_lang.Exchange.exchange_manual_auto_repeat_buy_order_executed} ${mt_data.price}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else if (mt_data.trading_options == 'coinmarketcap') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 			if(buying_or_selling == 'buying') {
 				var base_coin = $('.trading_pair_coin').selectpicker('val');
@@ -2776,8 +2783,8 @@ function manual_buy_sell(mt_data) {
 				var rel_coin = $('.trading_pair_coin').selectpicker('val');
 			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
-			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
-			toastr.success(`Buy order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
+			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`Buy order prices will be auto adjusted based on coinmarketcap.com prices.`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"price":mt_data.price,"relvolume":mt_data.volume};
 		}
@@ -2787,11 +2794,13 @@ function manual_buy_sell(mt_data) {
 	}
 	if (mt_data.action == 'sell') {
 		if (mt_data.trading_options == 'autorepeat') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var base_coin = $('.trading_pair_coin').selectpicker('val');
 			var rel_coin = coin;
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
-			toastr.success(`Auto-repeat sell order executed at fixed price of ${mt_data.price}`,'Trade Notification');
+			toastr.success(`Auto-repeat sell order executed at fixed price of ${mt_data.price}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else if (mt_data.trading_options == 'coinmarketcap') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 			if(buying_or_selling == 'buying') {
 				var base_coin = $('.trading_pair_coin').selectpicker('val');
@@ -2802,8 +2811,8 @@ function manual_buy_sell(mt_data) {
 				var rel_coin = $('.trading_pair_coin').selectpicker('val');
 			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
-			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`,'Trade Notification');
-			toastr.success(`Sell order prices will be auto adjusted based on coinmarketcap.com prices.`,'Trade Notification');
+			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`Sell order prices will be auto adjusted based on coinmarketcap.com prices.`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"price":mt_data.price,"basevolume":mt_data.volume};
 		}

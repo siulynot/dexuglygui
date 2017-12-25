@@ -92,7 +92,8 @@
     "portfolio_goal_now": "Now",
     "portfolio_goal_target": "Target",
     "portfolio_set_goal_percentage_for_your_portfolio": "Set Goal percentage for your portfolio",
-    "portfolio_set_goal": "Set Goal"
+    "portfolio_set_goal": "Set Goal",
+    "portfolio_auto_goal_all_text": "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel."
 
   },
   "Inventory": {
@@ -183,7 +184,19 @@
     "exchange_portfolio_set_auto_sell_margin_percent": "SET AUTO SELL MARGIN %",
     "exchange_portfolio_auto_sell_margin_will_make": "Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.",
     "exchange_portfolio_set_auto_sell_price": "SET AUTO SELL PRICE",
-    "exchange_portfolio_auto_sell_on_fixed_price_will_make": "Auto sell on fixed price will make automatic sell orders on prices based on the specified price."
+    "exchange_portfolio_auto_sell_on_fixed_price_will_make": "Auto sell on fixed price will make automatic sell orders on prices based on the specified price.",
+    "exchange_portfolio_price_for_base": "Price for Base",
+    "exchange_portfolio_price_set_to": "Set to",
+    "exchange_portfolio_toastr_portfolio_info_title": "Portfolio Info",
+    "exchange_portfolio_margin": "Margin",
+    "exchange_portfolio_margin_percent": "Margin Percentage",
+    "exchange_portfolio_fixed": "Fixed",
+    "exchange_portfolio_fixed_price": "Fixed Price",
+    "exchange_portfolio_auto_price_order_executed": "auto price order executed",
+    "exchange_portfolio_buying_currency_base": "Buying Currency (base)",
+    "exchange_portfolio_selling_currency_rel": "Selling Currency (rel)",
+    "exchange_manual_auto_repeat_buy_order_executed": "Auto-repeat buy order executed at fixed price of",
+    "exchange_toastr_trade_notification_title": "Trade Notification"
   },
   "Settings": {
     "settings_enable_experimental_features": "Enable Experimental Features?",
