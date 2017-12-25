@@ -33,6 +33,7 @@ $(document).ready(function() {
 	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		var mypubkey = sessionStorage.getItem('mm_mypubkey');
 		var loginstate = sessionStorage.getItem('mm_loginstate');
 		if (loginstate !== null && loginstate == 'loggedin') {
@@ -58,7 +59,7 @@ $(document).ready(function() {
 				$('#trading_mode_options_trademanual').attr('checked','checked');
 				$('.trading_pair_coin_autoprice_mode_span').hide();
 				$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-				$('#trading_pair_coin_price_max_min').html('Max');
+				$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 			}
 			if (dexmode == 'dICO') {
 				$('.navbar-brandname').html(return_coin_details(selected_dICO_coin).name + ' dICO');
@@ -101,7 +102,7 @@ $(document).ready(function() {
 				$('.trading_buysell_options').hide();
 				$('.trading_pair_coin_autoprice_mode_span').hide();
 				$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-				$('#trading_pair_coin_price_max_min').html('Max');
+				$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 
 				var charts_instruments_data = {}
 				charts_instruments_data.symbol = selected_dICO_coin+'/KMD'
@@ -183,6 +184,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	console.log('portfolio coin button clicked')
 	console.log($(this).data());
 	console.log($(this).data('coin'));
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	$('.screen-portfolio').hide();
 	setTimeout(function(){
 		if ($(window).height() - ($('.col1').height() + $('.col2').height() + 135) <= 285) {
@@ -211,7 +213,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	$('.navbar-right').children().removeClass('active');
 	$('.trading_pair_coin_autoprice_mode_span').hide();
 	$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-	$('#trading_pair_coin_price_max_min').html('Max');
+	$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 
 	$('.trading_sellcoin_ticker_name').empty();
 	$('.trading_sellcoin_balance').empty();
@@ -400,10 +402,11 @@ $('.btn-inventoryclose').click(function(e) {
 
 $('.btn-inventoryrefresh').click(function(e) {
 	e.preventDefault();
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	console.log('btn-inventoryrefresh clicked');
 	console.log($(this).data());
-	$('.dex_showinv_alice_tbl tbody').html('<th><div style="text-align: center;">Loading...</div></th>');
-	$('.dex_showlist_unspents_tbl tbody').html('<th><div style="text-align: center;">Loading...</div></th>');
+	$('.dex_showinv_alice_tbl tbody').html(`<th><div style="text-align: center;">${default_lang.Common.loading_wait}</div></th>`);
+	$('.dex_showlist_unspents_tbl tbody').html(`<th><div style="text-align: center;">${default_lang.Common.loading_wait}</div></th>`);
 
 	check_coin_inventory($(this).data('coin'));
 	check_coin_listunspent($(this).data());
@@ -643,6 +646,7 @@ $('.btn-botlistrefresh').click(function(e){
 
 $('.btn-bot_action').click(function(e){
 	e.preventDefault();
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	console.log('btn-botlistrefresh clicked');
 	console.log($(this).data());
 	console.log($(this).data('action'));
@@ -678,7 +682,7 @@ $('.btn-bot_action').click(function(e){
 
 		if (pair_volume <= 0.01 || pair_price <= 0.01) {
 			console.log('Order is too small. Please try again.');
-			toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
+			toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 		} else {
 			//bot_buy_sell(bot_data);
 			buy_sell_precheck(bot_data);
@@ -721,7 +725,7 @@ $('.btn-bot_action').click(function(e){
 		if (trading_options == 'disabled') {
 			if (pair_volume <= 0.01 || pair_price <= 0.01) {
 				console.log('Order is too small. Please try again.');
-				toastr.warning('Order is too small. Please try again with bigger order.', 'Order Notification')
+				toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 			} else {
 				//manual_buy_sell(trade_data)
 				buy_sell_precheck(trade_data);
@@ -758,6 +762,7 @@ $('.btn-bot_action').click(function(e){
 });
 
 $('input[name=trading_manual_buy_sell_options]').change(function() {
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var trading_options = $('input[name=trading_manual_buy_sell_options]:checked').val();
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -769,7 +774,7 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
 
 	if (trading_options == 'coinmarketcap') {
-		$('.trading_pair_lable_text_one').html('Auto');
+		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`);
 		$('.trading_selected_trader_label').hide();
 		$('.trading_selected_trader').hide();
 		$('.trading_pair_coin_autoprice_mode_span').show();
@@ -809,7 +814,7 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 	} else {
 		$('#trading_pair_coin_autoprice_mode').parent().removeClass(' disabled');
 		$('#trading_pair_coin_autoprice_mode').removeAttr('disabled');
-		//$('#trading_pair_coin_price_max_min').html('Min');
+		//$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 		$('.trading_pair_lable_text_one').html('');
 		//$('.trading_pair_lable_text_two').html('Sell');
 		if(buying_or_selling == 'buying') {
@@ -826,7 +831,7 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 		//$('.trading_selected_trader_label').show();
 		//$('.trading_selected_trader').show();
 		$('.trading_pair_coin_autoprice_mode_span').hide();
-		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('#trading_pair_coin_price_max_min').show();
 		$('.buy_sell_amount_to').show();
 		$('#trading_pair_coin_ticker').show();
@@ -2573,6 +2578,8 @@ function autoprice_buy_sell(autoprice_data) {
 $('input[name=trading_mode_options]').change(function() {
 	console.log('trading_mode_options changed');
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 	//console.log(buying_or_selling);
 
@@ -2582,8 +2589,8 @@ $('input[name=trading_mode_options]').change(function() {
 	var margin_or_fixed = $('#trading_pair_coin_autoprice_mode').prop('checked');
 
 	if(bot_or_manual == 'tradebot') {
-		$('#trading_pair_coin_price_max_min').html('Max');
-		$('.trading_pair_lable_text_one').html('Max');
+		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
+		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('.trading_pair_lable_text_two').html('Buy');
 		$('.buy_sell_advanced_options_div').hide();
 		if(buying_or_selling == 'buying') {
@@ -2600,7 +2607,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.trading_selected_trader').hide();
 		$('.trading_pair_coin_autoprice_mode_span').hide();
 		$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('#trading_pair_coin_price_max_min').show();
 		$('.buy_sell_amount_to').show();
 		$('#trading_pair_coin_ticker').show();
@@ -2618,7 +2625,7 @@ $('input[name=trading_mode_options]').change(function() {
 	}
 	if(bot_or_manual == 'trademanual') {
 		$('input[name=trading_manual_buy_sell_options]:nth(0)').trigger('click');
-		//$('#trading_pair_coin_price_max_min').html('Min');
+		//$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 		$('.trading_pair_lable_text_one').html('');
 		$('.buy_sell_advanced_options_div').show();
 		//$('.trading_pair_lable_text_two').html('Sell');
@@ -2636,7 +2643,7 @@ $('input[name=trading_mode_options]').change(function() {
 		//$('.trading_selected_trader_label').show();
 		//$('.trading_selected_trader').show();
 		$('.trading_pair_coin_autoprice_mode_span').hide();
-		$('#trading_pair_coin_price_max_min').html('Max');
+		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('#trading_pair_coin_price_max_min').show();
 		$('.buy_sell_amount_to').show();
 		$('#trading_pair_coin_ticker').show();
@@ -2653,7 +2660,7 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.coingoal_div').hide();
 	}
 	if(bot_or_manual == 'tradeportfolio') {
-		$('.trading_pair_lable_text_one').html('Auto')
+		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 		$('.trading_selected_trader_label').hide();
 		$('.trading_selected_trader').hide();
 		$('.trading_pair_coin_autoprice_mode_span').show();
@@ -3349,6 +3356,8 @@ $('.btn-refreshtrading_pair').click(function(e){
 $('input[name=trading_pair_options]').change(function() {
 	console.log('trading_pair_options changed');
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 	console.log(buying_or_selling);
 
@@ -3359,7 +3368,7 @@ $('input[name=trading_pair_options]').change(function() {
 
 	if(buying_or_selling == 'buying') {
 		if(bot_or_manual == 'tradeportfolio') {
-			$('.trading_pair_lable_text_one').html('Auto')
+			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 			$('#trading_pair_coin_price_max_min').html('%');
 			if(margin_or_fixed == true) {
 				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
@@ -3369,8 +3378,8 @@ $('input[name=trading_pair_options]').change(function() {
 				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
 			}
 		} else {
-			$('#trading_pair_coin_price_max_min').html('Max');
-			$('.trading_pair_lable_text_one').html('Max');
+			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
+			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 			$('.btn-bot_action').html('BUY');
 			$('.btn-bot_action').attr('data-action', 'buy');
 			$('.relvol_basevol_label').html("It'll cost you")
@@ -3381,7 +3390,7 @@ $('input[name=trading_pair_options]').change(function() {
 	}
 	if(buying_or_selling == 'selling') {
 		if(bot_or_manual == 'tradeportfolio') {
-			$('.trading_pair_lable_text_one').html('Auto')
+			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 			$('#trading_pair_coin_price_max_min').html('%');
 			if(margin_or_fixed == true) {
 				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
@@ -3391,8 +3400,8 @@ $('input[name=trading_pair_options]').change(function() {
 				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
 			}
 		} else {
-			$('#trading_pair_coin_price_max_min').html('Min');
-			$('.trading_pair_lable_text_one').html('Min');
+			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
+			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 			$('.btn-bot_action').html('SELL');
 			$('.btn-bot_action').attr('data-action', 'sell');
 			$('.relvol_basevol_label').html("You'll get");
@@ -3981,6 +3990,7 @@ function check_bot_list(sig) {
 function buy_sell_precheck(bot_data){
 	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
 	//console.log(coin);
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 	var bot_or_manual = $('input[name=trading_mode_options]:checked').val();
@@ -4030,21 +4040,21 @@ function buy_sell_precheck(bot_data){
 						callback: function (result) {
 							console.log('This was logged in the callback: ' + result);
 							if (result == true) {
-								toastr.success('Okay! Proceeding with your order.','Order Notification');
+								toastr.success('Okay! Proceeding with your order.',`${default_lang.Exchange.exchange_toastr_order_title}`);
 								if (bot_or_manual == 'tradebot') {
 									bot_buy_sell(bot_data);
 								} else if (bot_or_manual == 'trademanual') {
 									manual_buy_sell(bot_data);
 								}
 							} else {
-								toastr.info('Your oder has been stopped to process.', 'Order Notification');
+								toastr.info('Your oder has been stopped to process.', `${default_lang.Exchange.exchange_toastr_order_title}`);
 								return;
 							}
 						}
 					});
 				} else {
 					console.log("BTC transaction fee seems OK. Proceeding with trade.")
-					toastr.success('BTC transaction fee seems OK. Proceeding with trade.', 'Order Notification');
+					toastr.success('BTC transaction fee seems OK. Proceeding with trade.', `${default_lang.Exchange.exchange_toastr_order_title}`);
 					if (bot_or_manual == 'tradebot') {
 						bot_buy_sell(bot_data);
 					} else if (bot_or_manual == 'trademanual') {
@@ -4057,7 +4067,7 @@ function buy_sell_precheck(bot_data){
 		});
 	} else {
 		console.log("Trading pair doesn't have BTC in it. Precheck done.")
-		toastr.success('Placing Order', 'Order Notification');
+		toastr.success('Placing Order', `${default_lang.Exchange.exchange_toastr_order_title}`);
 		if (bot_or_manual == 'tradebot') {
 			bot_buy_sell(bot_data);
 		} else if (bot_or_manual == 'trademanual') {
@@ -4316,7 +4326,7 @@ function bot_status(bot_data) {
 			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 50px;"> '+ data.base;
 
 			buy_sell_text = (data.action == 'buy') ? 'Buy' : 'Sell';
-			max_min_text = (data.action == 'buy') ? 'Max' : 'Min';
+			max_min_text = (data.action == 'buy') ? `${default_lang.Exchange.exchange_lbl_one_max}` : `${default_lang.Exchange.exchange_lbl_one_min}`;
 
 			// "tradeid": 1750749844, "price": 0.13749702, "volume":
 
