@@ -132,13 +132,15 @@ $('.porfolio_coins_list tbody').on('click', '.btn_portfolio_coingoal', function(
 	console.log('portfolio set goal button clicked')
 	console.log($(this).data());
 	console.log($(this).data('coin'));
+
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var coin = $(this).data('coin');
 
 	var set_coingoal_bootbox = bootbox.dialog({
 		backdrop: true,
 		onEscape: true,
 		message: `<div class="form-group coingoal_label_div" style="margin-top: 15px; margin-bottom: 0px;">
-                      <span style="font-size: 18px;">Set `+$(this).data('coin')+` Goal percentage for your portfolio</span>
+                      <span style="font-size: 18px;">${$(this).data('coin')}: ${default_lang.Portfolio.portfolio_set_goal_percentage_for_your_portfolio}</span>
                     </div>
                     <div class="input-group col-sm-12 coingoal_div">
                       <span class="input-group-addon coin_ticker" style="font-size: 20px;">`+$(this).data('coin')+`</span>
@@ -149,13 +151,13 @@ $('.porfolio_coins_list tbody').on('click', '.btn_portfolio_coingoal', function(
 
 		buttons: {
 			cancel: {
-				label: "Close",
+				label: `${default_lang.Common.btn_close_smallcaps}`,
 				className: 'btn-default',
 				callback: function(){
 				}
 			},
 			ok: {
-				label: "Set Goal",
+				label: `${default_lang.Portfolio.portfolio_set_goal}`,
 				className: 'btn-primary btn_set_coin_goal_bootbox',
 				callback: function(){
 					var goal_data = {}
@@ -4478,7 +4480,7 @@ function bot_status(bot_data) {
 
 				buttons: {
 					cancel: {
-						label: "Close",
+						label: `${default_lang.Common.btn_close_smallcaps}`,
 						className: 'btn-default',
 						callback: function(){
 
@@ -5047,7 +5049,7 @@ function check_swap_status_details(swap_status_data) {
 				size: 'large'/*,
 				buttons: {
 					cancel: {
-						label: "Close",
+						label: `${default_lang.Common.btn_close_smallcaps}`,
 						className: 'btn-default btn_swap_status_details_close',
 						callback: function(){
 						}
@@ -5791,7 +5793,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 				size: 'medium',
 				buttons: {
 					cancel: {
-						label: "Close",
+						label: `${default_lang.Common.btn_close_smallcaps}`,
 						className: 'btn-default',
 						callback: function(){
 						}
@@ -5847,7 +5849,7 @@ function ZeroConfClaim() {
 				size: 'medium',
 				buttons: {
 					cancel: {
-						label: "Close",
+						label: `${default_lang.Common.btn_close_smallcaps}`,
 						className: 'btn-default',
 						callback: function(){
 						}
@@ -5913,7 +5915,7 @@ $('.btn_zeroconf_deposit_history').click(function(e){
 		size: 'medium',
 		buttons: {
 			cancel: {
-				label: "Close",
+				label: `${default_lang.Common.btn_close_smallcaps}`,
 				className: 'btn-default',
 				callback: function(){
 				}

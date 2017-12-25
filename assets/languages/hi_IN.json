@@ -4,18 +4,24 @@
     "tag": "hi_IN",
     "version": "0.8.0",
     "creationDate": "23 Dec 2017",
-    "author": "Satinder Greawl",
+    "author": "Satinder Grewal",
     "authorEmail": "satinder@komodoplatform.com"
   },
   "Common": {
     "loading_wait": "लोड हो रहा है...",
     "btn_send": "भेजें",
-    "btn_receive": "प्राप्त करना",
+    "btn_receive": "प्राप्त करें",
     "btn_enable_native": "जोड़ें Native",
     "btn_enable_electrum": "जोड़ें Electrum",
     "btn_disable": "अलग करें",
     "btn_set_goal": "लक्ष्य सेट करें",
-    "btn_exchange": "आदान प्रदान"
+    "btn_exchange": "आदान प्रदान",
+    "btn_close_smallcaps": "बंद करे",
+    "btn_open_smallcaps": "Open",
+    "yes_caps": "हाँ",
+    "yes_small": "हाँ",
+    "no_caps": "नहीं",
+    "no_small": "नहीं"
   },
   "loading": {
     "starting_barterdex": "BarterDEX शुरू हो रहा है। कृपया प्रतीक्षा करें..."
@@ -27,7 +33,14 @@
     "login_passphrase_label": "लॉग इन करें",
     "login_btn": "लॉग इन करें",
     "generate_a_new_passphrase": "एक नया पास वाक्यांश उत्पन्न करें",
-    "login_passphrase_input_placeholder": "पास वाक्यांश"
+    "login_passphrase_input_placeholder": "पास वाक्यांश",
+    "login_genpass_new_pass_label": "नया पास वाक्यांश",
+    "login_genpass_regen": "दोबारा बनाओ",
+    "login_genpass_verify_passphrase": "सत्यापित पास वाक्यांश करें",
+    "login_genpass_repeat_the_pass_here_placeholder": "पहले इनपुट फ़ील्ड में दिखाए गए अनुसार पास वाक्यांश को दोहराएं",
+    "login_genpass_click_on_regen_button": "To generate a new passphrase click on \"Regen\" button.",
+    "login_genpass_make_sure_to_save_new_pass": "Make sure to save this new passphrase.<br> To confirm if you have saved it, please type in the passphrase in \"Verify Passphrase\" field.",
+    "login_genpass_login_with_new_pass": "नए पास वाक्यांश के साथ लॉगिन करें"
   },
   "Navigation": {
     "nav_dashboard": "डैशबोर्ड",
@@ -57,7 +70,9 @@
     "portfolio_th_action": "कार्य",
     "portfolio_goal": "लक्ष्य",
     "portfolio_goal_now": "अब",
-    "portfolio_goal_target": "आगामी"
+    "portfolio_goal_target": "आगामी",
+    "portfolio_set_goal_percentage_for_your_portfolio": "अपने पोर्टफोलियो का लक्ष्य प्रतिशत निर्धारित करें",
+    "portfolio_set_goal": "लक्ष्य सेट करें"
   },
   "Inventory": {
     "inventory_tab_inventory": "संख्यापत्र"
@@ -117,6 +132,17 @@
     "exchange_th_orderbook_age": "आयु",
     "exchange_th_orderbook_utxos": "UTXOs",
     "exchange_th_orderbook_zcredits": "ZCredits"
+  },
+  "Settings": {
+    "settings_enable_experimental_features": "प्रायोगिक सुविधाओं को सक्षम करें?",
+    "settings_default_theme": "डिफ़ॉल्ट थीम",
+    "settings_dark_theme": "अंधेरा थीम",
+    "settings_light_theme": "रोशनी थीम",
+    "settings_default_language": "डिफ़ॉल्ट भाषा",
+    "settings_reset_settings": "सेटिंग रीसेट करें",
+    "settings_save_settings": "सेटिंग लागू करें",
+    "settings_toastr_settings_update_processed": "सेटिंग लागू हो गई।",
+    "settings_toastr_title": "BarterDEX सेटिंग"
   }
 }
 

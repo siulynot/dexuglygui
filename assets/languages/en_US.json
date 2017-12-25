@@ -4,7 +4,7 @@
     "tag": "en_US",
     "version": "0.8.0",
     "creationDate": "23 Dec 2017",
-    "author": "Satinder Greawl",
+    "author": "Satinder Grewal",
     "authorEmail": "satinder@komodoplatform.com"
   },
   "Common": {
@@ -15,7 +15,14 @@
     "btn_enable_electrum": "Enable Electrum",
     "btn_disable": "Disable",
     "btn_set_goal": "Set Goal",
-    "btn_exchange": "Exchange"
+    "btn_exchange": "Exchange",
+    "btn_close_smallcaps": "Close",
+    "btn_open_smallcaps": "Open",
+    "yes_caps": "YES",
+    "yes_small": "Yes",
+    "no_caps": "NO",
+    "no_small": "No"
+
   },
   "loading": {
     "starting_barterdex": "Starting BarterDEX. Please wait..."
@@ -27,7 +34,14 @@
     "login_passphrase_label": "Login",
     "login_btn": "Login",
     "generate_a_new_passphrase": "Generate a New Passphrase",
-    "login_passphrase_input_placeholder": "Passphrase"
+    "login_passphrase_input_placeholder": "Passphrase",
+    "login_genpass_new_pass_label": "New Passphrase",
+    "login_genpass_regen": "Regen",
+    "login_genpass_verify_passphrase": "Verify Passphrase",
+    "login_genpass_repeat_the_pass_here_placeholder": "Repat the passphrase here as shown in first input field",
+    "login_genpass_click_on_regen_button": "To generate a new passphrase click on \"Regen\" button.",
+    "login_genpass_make_sure_to_save_new_pass": "Make sure to save this new passphrase.<br> To confirm if you have saved it, please type in the passphrase in \"Verify Passphrase\" field.",
+    "login_genpass_login_with_new_pass": "Login with new passphrase"
   },
   "Navigation": {
     "nav_dashboard": "Dashboard",
@@ -59,7 +73,9 @@
     "portfolio_th_action": "Action",
     "portfolio_goal": "Goal",
     "portfolio_goal_now": "Now",
-    "portfolio_goal_target": "Target"
+    "portfolio_goal_target": "Target",
+    "portfolio_set_goal_percentage_for_your_portfolio": "Set Goal percentage for your portfolio",
+    "portfolio_set_goal": "Set Goal"
 
   },
   "Inventory": {
@@ -120,6 +136,17 @@
     "exchange_th_orderbook_age": "Age",
     "exchange_th_orderbook_utxos": "UTXOs",
     "exchange_th_orderbook_zcredits": "ZCredits"
+  },
+  "Settings": {
+    "settings_enable_experimental_features": "Enable Experimental Features?",
+    "settings_default_theme": "Default Theme",
+    "settings_dark_theme": "Dark Theme",
+    "settings_light_theme": "Light Theme",
+    "settings_default_language": "Default Language",
+    "settings_reset_settings": "Reset Settings",
+    "settings_save_settings": "Save Settings",
+    "settings_toastr_settings_update_processed": "Settings update processed.",
+    "settings_toastr_title": "BarterDEX Settings"
   }
 }
 

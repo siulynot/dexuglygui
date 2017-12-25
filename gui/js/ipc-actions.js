@@ -188,27 +188,28 @@ $('.dexdebug-close-btn').click(function(e) {
 $('.login-genpass-btn').click(function(e){
 	e.preventDefault();
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var login_gen_pass = bootbox.dialog({
 		backdrop: true,
 		onEscape: true,
 		message: `
 <form>
   <div class="form-group">
-    <label>New Passphrase</label>
+    <label>${default_lang.login.login_genpass_new_pass_label}</label>
     <div class="input-group">
       <input type="text" class="form-control btn_gen_pass_input1">
     <span class="input-group-btn">
-	    <button class="btn btn-info btn_gen_pass_regenpass" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Regen</button>
+	    <button class="btn btn-info btn_gen_pass_regenpass" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> ${default_lang.login.login_genpass_regen}</button>
 	</span>
     </div>
   </div>
   <div class="form-group">
-    <label>Verify Passphrase</label>
-    <input type="text" class="form-control btn_gen_pass_input2" placeholder="Repat the passphrase here as shown in first input field">
+    <label>${default_lang.login.login_genpass_verify_passphrase}</label>
+    <input type="text" class="form-control btn_gen_pass_input2" placeholder="${default_lang.login.login_genpass_repeat_the_pass_here_placeholder}">
   </div>
   <div class="form-group">
-  	<div class="col-sm-12 input-group"><p>To generate a new passphrase click on "Regen" button.</p>
-	<p>Make sure to save this new passphrase.<br> To confirm if you have saved it, please type in the passphrase in "Verify Passphrase" field.</p></div></div>
+  	<div class="col-sm-12 input-group"><p>${default_lang.login.login_genpass_click_on_regen_button}</p>
+	<p>${default_lang.login.login_genpass_make_sure_to_save_new_pass}</p></div></div>
   </div>
 </form>`,
 		closeButton: false,
@@ -216,14 +217,14 @@ $('.login-genpass-btn').click(function(e){
 
 		buttons: {
 			cancel: {
-				label: "Close",
+				label: `${default_lang.Common.btn_close_smallcaps}`,
 				className: 'btn-default',
 				callback: function(){
 
 				}
 			},
 			ok: {
-				label: "Login with new passphrase",
+				label: `${default_lang.login.login_genpass_login_with_new_pass}`,
 				className: 'btn-primary btn_gen_pass_regenpass_login',
 				callback: function(){
 					var pass_input1 = $('.btn_gen_pass_input1').val();
@@ -310,6 +311,7 @@ $('.login-btn').click(function(e) {
 $('.dexsettings-btn').click(function(e){
 	e.preventDefault();
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
 
 	var dex_settings_bootbox = bootbox.dialog({
@@ -317,26 +319,26 @@ $('.dexsettings-btn').click(function(e){
 		onEscape: true,
 		message: `
 			<div class="form-group">
-				<span style="float: left; font-size: 18px;">Enable Experimental Features?</span>
+				<span style="float: left; font-size: 18px;">${default_lang.Settings.settings_enable_experimental_features}</span>
 			</div>
 			<div class="btn-group btn-group-justified colors" data-toggle="buttons">
 				<label class="btn btn-info label_experimental_features_enable">
-				<input type="radio" name="experimental_features" id="experimental_features_enable" value="enable" autocomplete="off">YES</label>
+				<input type="radio" name="experimental_features" id="experimental_features_enable" value="enable" autocomplete="off">${default_lang.Common.yes_caps}</label>
 				<label class="btn btn-info label_trading_pair_options_disable active">
-				<input type="radio" name="experimental_features" id="trading_pair_options_disable" value="disable" autocomplete="off" checked>NO</label>
+				<input type="radio" name="experimental_features" id="trading_pair_options_disable" value="disable" autocomplete="off" checked>${default_lang.Common.no_caps}</label>
 			</div>
 
 			<div class="form-group col-sm-3" style="margin-top: 10px; padding: 0;">
-				<span style="float: left; font-size: 18px;">Default Theme:</span>
+				<span style="float: left; font-size: 18px;">${default_lang.Settings.settings_default_theme}:</span>
 			</div>
 			<div class="input-group col-sm-2" style="margin: 10px 0;">
 				<select class="selectpicker settings_theme_select" data-hide-disabled="true" data-width="30%">
-					<option data-content="Dark Theme" data-tokens="Dark Theme">dark</option>
-					<option data-content="Light Theme" data-tokens="Light Theme">light</option>
+					<option data-content="${default_lang.Settings.settings_dark_theme}" data-tokens="${default_lang.Settings.settings_dark_theme}">dark</option>
+					<option data-content="${default_lang.Settings.settings_light_theme}" data-tokens="${default_lang.Settings.settings_light_theme}">light</option>
 				</select>
 			</div>
 			<div class="form-group col-sm-3" style="padding: 0;">
-				<span style="float: left; font-size: 18px;">Default Language:</span>
+				<span style="float: left; font-size: 18px;">${default_lang.Settings.settings_default_language}:</span>
 			</div>
 			<div class="input-group col-sm-2" style="margin: 10px 0;">
 				<select class="selectpicker settings_deflang_select" data-hide-disabled="true" data-width="30%">
@@ -348,13 +350,13 @@ $('.dexsettings-btn').click(function(e){
 
 		buttons: {
 			cancel: {
-				label: "Close",
+				label: `${default_lang.Common.btn_close_smallcaps}`,
 				className: 'btn-default',
 				callback: function(){
 				}
 			},
 			reset: {
-				label: "Reset Settings",
+				label: `${default_lang.Settings.settings_reset_settings}`,
 				className: 'btn-warning btn_dex_reset_settings',
 				callback: function(){
 					ShepherdIPC({"command":"reset_settings"});
@@ -364,7 +366,7 @@ $('.dexsettings-btn').click(function(e){
 				}
 			},
 			ok: {
-				label: "Save Settings",
+				label: `${default_lang.Settings.settings_save_settings}`,
 				className: 'btn-primary btn_dex_save_settings',
 				callback: function(){
 					var experimental_features = $('input[name=experimental_features]:checked').val();
@@ -386,7 +388,7 @@ $('.dexsettings-btn').click(function(e){
 					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
 					BarterDEXSettingsFn();
 					BarterDEXDefaultLangFn(selected_deflang);
-					toastr.info('Settings update processed.', 'BarterDEX Settings');
+					toastr.info(`${default_lang.Settings.settings_toastr_settings_update_processed}`, `${default_lang.Settings.settings_toastr_title}`);
 				}
 			}
 		}
@@ -439,6 +441,8 @@ function loginBarterdEX(){
 function logindICO(coin){
 	console.log('LOGIN TO dICO OPTION SEELCTED.')
 	console.log('COIN SELECTED: ' + coin)
+	
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	$('.mainbody').hide();
 	$('.loginbody').hide();
 	$('.btn-exchangeclose').hide();
@@ -487,7 +491,7 @@ function logindICO(coin){
 	$('.trading_buysell_options').hide();
 	$('.trading_pair_coin_autoprice_mode_span').hide();
 	$('#trading_pair_coin_autoprice_mode').bootstrapToggle('on')
-	$('#trading_pair_coin_price_max_min').html('Max');
+	$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 
 	var charts_instruments_data = {}
 	charts_instruments_data.symbol = coin+'/KMD'
