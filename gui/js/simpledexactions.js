@@ -783,21 +783,25 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 		$('#trading_pair_coin_autoprice_mode').attr('disabled', 'disabled');
 		$('#trading_pair_coin_price_max_min').html('%');
 		if(buying_or_selling == 'buying') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			if(margin_or_fixed == true){
-				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
-				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO BUY PRICE');
-				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_on_fixed_price_will_make);
 			}
 		}
 		if(buying_or_selling == 'selling') {
 			if(margin_or_fixed == true){
-				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
-				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO SELL PRICE');
-				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_on_fixed_price_will_make);
 			}
 		}
 		$('.buy_sell_amount_to').hide();
@@ -818,13 +822,15 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 		$('.trading_pair_lable_text_one').html('');
 		//$('.trading_pair_lable_text_two').html('Sell');
 		if(buying_or_selling == 'buying') {
-			$('.btn-bot_action').html('BUY');
-			$('.relvol_basevol_label').html("It'll cost you")
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_buy_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_cost_you)
 			$('.btn-bot_action').attr('data-action', 'buy');
 		}
 		if(buying_or_selling == 'selling') {
-			$('.btn-bot_action').html('SELL');
-			$('.relvol_basevol_label').html("You'll get");
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -997,6 +1003,7 @@ function check_coin_balance(chk_coin_data) {
 		}
 
 		if (!chk_coin_output_data.error === false && chk_coin_output_data.error == 'coin is disabled') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			console.log(chk_coin_output_data.coin);
 			console.log('coin '+ chk_coin_output_data.coin.coin + ' is disabled');
 			$('.btn_coindashboard_send[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
@@ -1006,7 +1013,7 @@ function check_coin_balance(chk_coin_data) {
 			$('.btn_coindashboard_enable[data-coin="' + chk_coin_output_data.coin.coin + '"]').show();
 			$('.btn_coindashboard_disable[data-coin="' + chk_coin_output_data.coin.coin + '"]').hide();
 
-			$('.coindashboard-balance').html('Coin is disabled.<br>Please enable before trading ')
+			$('.coindashboard-balance').html(default_lang.Exchange.exchange_coin_is_disabled_enable_before_trading)
 			$('.coindashboard-balance').css( "font-size", "35px" );
 
 		} else {
@@ -1209,10 +1216,12 @@ function enable_disable_coin(enable_disable_coin_data) {
 			}
 
 					if (ajax_data.status === 'enable') {
-						toastr.success(ajax_data.coin+' Enabled','Coin Status');
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+						toastr.success(ajax_data.coin+default_lang.CoinControl.coincontrol_enabled,default_lang.CoinControl.coincontrol_toastr_title_coin_status);
 					}
 					if (ajax_data.status === 'disable') {
-						toastr.success(ajax_data.coin+' Disabled','Coin Status');
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+						toastr.success(ajax_data.coin+default_lang.CoinControl.coincontrol_disabled,default_lang.CoinControl.coincontrol_toastr_title_coin_status);
 					}
 					//get_coins_list(data.coins);
 				} else {
@@ -1227,12 +1236,14 @@ function enable_disable_coin(enable_disable_coin_data) {
 
 				if (!enable_electrum_coin_output_data.error === false) {
 					//console.log(data.error);
-					toastr.info(enable_electrum_coin_output_data.error,'Coin Status');
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					toastr.info(enable_electrum_coin_output_data.error,default_lang.CoinControl.coincontrol_toastr_title_coin_status);
 					if (enable_electrum_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						bootbox.alert({
 							onEscape: true,
 							backdrop: true,
-							title: "Couldn't find "+enable_disable_coin_data.coin+" locally installed",
+							title: default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
 							message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
 							<ol>
 								<li>Make sure your wallet is installed properly.</li>
@@ -1302,18 +1313,19 @@ function enable_disable_coin(enable_disable_coin_data) {
 				//console.log(enable_native_coin_output_data.error);
 				toastr.info(enable_native_coin_output_data.error,'Coin Status');
 				if (enable_native_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					bootbox.alert({
 						onEscape: true,
 						backdrop: true,
-						title: "Couldn't find "+enable_disable_coin_data.coin+" locally installed",
-						message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+						title: ` ${return_coin_details(enable_disable_coin_data.coin).name} (${enable_disable_coin_data.coin}) : ` + default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
+						message: `<p>${return_coin_details(enable_disable_coin_data.coin).name} (${enable_disable_coin_data.coin}) : ${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p1}</p>
 						<ol>
-							<li>Make sure your wallet is installed properly.</li>
-							<li>Make sure your wallet is running and synced to network.</li>
-							<li>Make sure your wallet has proper RPC settings configured in it's configuration file.</li>
-							<li>If you have all the above covered properly, please logout and then login back and try activating the coin again.</li>
+							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_01}</li>
+							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_02}</li>
+							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_03}</li>
+							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_04}</li>
 						</ol>
-						<p>If you still having issues activating the your wallet, please get in touch with our support desk.</p>
+						<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 						<ul>
 							<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
 						</ul>`,
@@ -1425,25 +1437,28 @@ function check_coin_listunspent(coin_listunspent_data) {
 		console.log(coin_listunspent_output_data);
 		console.log(coin_listunspent_output_data[0].hasOwnProperty('account'));
 
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$('.dex_showlist_unspents_tbl tbody').empty();
 		var show_list_unspents_tbl_tr = '';
 		show_list_unspents_tbl_tr += '<tr>';
-			show_list_unspents_tbl_tr += '<th style="width: 30px;">Index</th>';
+			show_list_unspents_tbl_tr += `<th style="width: 30px;">${default_lang.Inventory.inventory_th_index}</th>`;
 			if (coin_listunspent_output_data[0].hasOwnProperty('account') == true) {
-				show_list_unspents_tbl_tr += '<th>Coin Info</th>';
-				show_list_unspents_tbl_tr += '<th>Value info</th>';
-				show_list_unspents_tbl_tr += '<th>Transaction Info</th>';
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_coin_info}</th>`;
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_value_info}</th>`;
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_transaction_info}</th>`;
 			} else {
-				show_list_unspents_tbl_tr += '<th>Height</th>';
-				show_list_unspents_tbl_tr += '<th>Tx Hash</th>';
-				show_list_unspents_tbl_tr += '<th>Tx Pos</th>';
-				show_list_unspents_tbl_tr += '<th>Value</th>';
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_height}</th>`;
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_tx_hash}</th>`;
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_tx_pos}</th>`;
+				show_list_unspents_tbl_tr += `<th>${default_lang.Inventory.inventory_th_value}</th>`;
 			}
 			show_list_unspents_tbl_tr += '</tr>';
 		$('.dex_showlist_unspents_tbl tbody').append(show_list_unspents_tbl_tr);
 		$.each(coin_listunspent_output_data, function(index, val) {
 			//console.log(index);
 			//console.log(val);
+
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 
 			if (val.hasOwnProperty('interest') == true) {
 				var utxo_interest = val.interest;
@@ -1456,18 +1471,18 @@ function check_coin_listunspent(coin_listunspent_data) {
 				show_list_unspents_tbl_tr += '<td>' + index + '</td>';
 				if (coin_listunspent_output_data[0].hasOwnProperty('account') == true) {
 					show_list_unspents_tbl_tr += `<td>
-													<b>Coin:</b> `+ coin_listunspent_data.coin +`<br>
-													<b>Account:</b> `+ val.account +`<br>
-													<b>Address:</b> `+ val.address +`<br>
+													<b>${default_lang.Inventory.inventory_td_coin}:</b> `+ coin_listunspent_data.coin +`<br>
+													<b>${default_lang.Inventory.inventory_td_account}:</b> `+ val.account +`<br>
+													<b>${default_lang.Inventory.inventory_td_address}:</b> `+ val.address +`<br>
 													</td>`;
 					show_list_unspents_tbl_tr += `<td>
-													<b>Amount:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
-													<b>Confirmations:</b> `+ val.confirmations +`<br>
-													<b>Interest:</b> `+ utxo_interest +`<br>
+													<b>${default_lang.Inventory.inventory_td_amount}:</b> `+ (parseFloat(val.amount)).toFixed(8) + ' ' + coin_listunspent_data.coin +`<br>
+													<b>${default_lang.Inventory.inventory_td_confirmations}:</b> `+ val.confirmations +`<br>
+													<b>${default_lang.Inventory.inventory_td_interest}:</b> `+ utxo_interest +`<br>
 													</td>`;
 					show_list_unspents_tbl_tr += `<td>
-													<b>scriptPubKey:</b> `+ val.scriptPubKey +`<br>
-													<b>TxID:</b> `+ val.txid +`<br>
+													<b>${default_lang.Inventory.inventory_td_scriptpubkey}:</b> `+ val.scriptPubKey +`<br>
+													<b>${default_lang.Inventory.inventory_td_txid}:</b> `+ val.txid +`<br>
 													</td>`;
 				} else {
 					show_list_unspents_tbl_tr += `<td>` + val.height + `</td>`;
@@ -1947,6 +1962,7 @@ function get_coins_list() {
 
 function addcoins_dialog(){
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var bot_update_bootbox = bootbox.dialog({
 		onEscape: true,
 		backdrop: true,
@@ -1955,7 +1971,7 @@ function addcoins_dialog(){
 				<div class="col-sm-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-						<h3 class="panel-title"><strong>Add Coin</strong></h3>
+						<h3 class="panel-title"><strong>${default_lang.Portfolio.portfolio_add_coins}</strong></h3>
 						</div>
 						<div class="panel-body"> <!-- panel-body -->
 
@@ -1963,7 +1979,7 @@ function addcoins_dialog(){
 							<select class="selectpicker addcoin_enable_disable_selection" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
 							</div>
 							<div class="col-sm-6">
-							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px">
+							<input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="${default_lang.CoinControl.coincontrol_native_mode}" data-off="${default_lang.CoinControl.coincontrol_electrum_mode}" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px">
 							</div>
 
 
@@ -1976,14 +1992,14 @@ function addcoins_dialog(){
 
 		buttons: {
 			cancel: {
-				label: "Cancel",
+				label: `${default_lang.Common.btn_cancel}`,
 				className: 'btn-default',
 				callback: function(){
 
 				}
 			},
 			ok: {
-				label: "Enable",
+				label: `${default_lang.CoinControl.coincontrol_enable}`,
 				className: 'btn-success btn-addcoins_enable',
 				callback: function(){
 					var addcoin_data = {}
@@ -2412,25 +2428,29 @@ $('#trading_pair_coin_autoprice_mode').change(function() {
 			$('#trading_pair_coin_price_max_min').show();
 			$('.trading_pair_coin_price').css('border-radius', '0')
 			//$('.trading_pair_coin_price').attr("placeholder", "Margin e.g. 0.01");
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			if(buying_or_selling == 'buying') {
-				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
-				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_margin_will_make);
 			}
 			if(buying_or_selling == 'selling') {
-				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
-				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_margin_will_make);
 			}
 		} else {
 			$('#trading_pair_coin_price_max_min').hide();
 			$('.trading_pair_coin_price').css('border-radius', '4px')
 			//$('.trading_pair_coin_price').attr("placeholder", "Price e.g. 0.01");
 			if(buying_or_selling == 'buying') {
-				$('.btn-bot_action').html('SET AUTO BUY PRICE');
-				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_on_fixed_price_will_make);
 			}
 			if(buying_or_selling == 'selling') {
-				$('.btn-bot_action').html('SET AUTO SELL PRICE');
-				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_on_fixed_price_will_make);
 			}
 		}
 	}
@@ -2594,13 +2614,15 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.trading_pair_lable_text_two').html('Buy');
 		$('.buy_sell_advanced_options_div').hide();
 		if(buying_or_selling == 'buying') {
-			$('.btn-bot_action').html('BUY');
-			$('.relvol_basevol_label').html("It'll cost you");
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_buy_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_cost_you);
 			$('.btn-bot_action').attr('data-action', 'buy');
 		}
 		if(buying_or_selling == 'selling') {
-			$('.btn-bot_action').html('SELL');
-			$('.relvol_basevol_label').html("You'll get");
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		$('.trading_selected_trader_label').hide();
@@ -2630,13 +2652,15 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.buy_sell_advanced_options_div').show();
 		//$('.trading_pair_lable_text_two').html('Sell');
 		if(buying_or_selling == 'buying') {
-			$('.btn-bot_action').html('BUY');
-			$('.relvol_basevol_label').html("It'll cost you")
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_buy_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_cost_you)
 			$('.btn-bot_action').attr('data-action', 'buy');
 		}
 		if(buying_or_selling == 'selling') {
-			$('.btn-bot_action').html('SELL');
-			$('.relvol_basevol_label').html("You'll get");
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -2670,21 +2694,25 @@ $('input[name=trading_mode_options]').change(function() {
 		$('.buy_sell_advanced_options_div').hide();
 		$('#trading_pair_coin_price_max_min').html('%');
 		if(buying_or_selling == 'buying') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			if(margin_or_fixed == true){
-				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
-				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO BUY PRICE');
-				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_on_fixed_price_will_make);
 			}
 		}
 		if(buying_or_selling == 'selling') {
 			if(margin_or_fixed == true){
-				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
-				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO SELL PRICE');
-				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_on_fixed_price_will_make);
 			}
 		}
 		$('.btn-bot_action').attr('data-action', 'autoprice');
@@ -3370,12 +3398,14 @@ $('input[name=trading_pair_options]').change(function() {
 		if(bot_or_manual == 'tradeportfolio') {
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 			$('#trading_pair_coin_price_max_min').html('%');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			if(margin_or_fixed == true) {
-				$('.btn-bot_action').html('SET AUTO BUY MARGIN %');
-				$('.portfolio_info_text').html("Auto buy margin will make automatic buy orders on lower prices based on the specified percentage.");
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO BUY PRICE');
-				$('.portfolio_info_text').html("Auto buy on fixed price will make automatic buy orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_buy_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_buy_on_fixed_price_will_make);
 			}
 		} else {
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
@@ -3393,11 +3423,13 @@ $('input[name=trading_pair_options]').change(function() {
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 			$('#trading_pair_coin_price_max_min').html('%');
 			if(margin_or_fixed == true) {
-				$('.btn-bot_action').html('SET AUTO SELL MARGIN %');
-				$('.portfolio_info_text').html("Auto sell margin will make automatic sell orders on higher prices based on the specified percentage.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_margin_percent);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_margin_will_make);
 			} else {
-				$('.btn-bot_action').html('SET AUTO SELL PRICE');
-				$('.portfolio_info_text').html("Auto sell on fixed price will make automatic sell orders on prices based on the specified price.");
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('.btn-bot_action').html(default_lang.Exchange.exchange_portfolio_set_auto_sell_price);
+				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_on_fixed_price_will_make);
 			}
 		} else {
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
@@ -5845,6 +5877,7 @@ function ZeroConfClaim() {
 			toastr.error(zconf_claim_data.error, 'InstantDEX Notification');
 		}
 		if (zconf_claim_data.result == 'success') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var zconf_claim_bootbox = bootbox.dialog({
 				title: 'InstantDEX Deposit Claim',
 				message: `<div class="zeroconf_claims_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">
@@ -5909,6 +5942,7 @@ $('.btn_zeroconf_deposit_history').click(function(e){
 	e.preventDefault();
 	console.log('info_box_for_zeroconf clicked');
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var zconf_deposit_history_bootbox = bootbox.dialog({
 		title: 'High Speed Mode Deposits History',
 		message: `<div class="zeroconf_settings_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">

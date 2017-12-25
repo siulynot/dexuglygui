@@ -18,6 +18,7 @@
     "btn_exchange": "Exchange",
     "btn_close_smallcaps": "Close",
     "btn_open_smallcaps": "Open",
+    "btn_cancel": "Cancel",
     "yes_caps": "YES",
     "yes_small": "Yes",
     "no_caps": "NO",
@@ -26,6 +27,22 @@
   },
   "loading": {
     "starting_barterdex": "Starting BarterDEX. Please wait..."
+  },
+  "CoinControl": {
+    "coincontrol_toastr_title_coin_status": "Coin Status",
+    "coincontrol_enabled": "Enabled",
+    "coincontrol_disabled": "Disabled",
+    "coincontrol_enable": "Enable",
+    "coincontrol_disable": "Disable",
+    "coincontrol_native_mode": "Native Mode",
+    "coincontrol_electrum_mode": "Electrum Mode",
+    "coincontrol_couldnt_find_coin_locally_installed": "Couldn't find this coin locally installed",
+    "coincontrol_it_seems_you_dont_have_p1": "It seems you don't have this coin wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:",
+    "coincontrol_it_seems_you_dont_have_check_points_li_01": "Make sure your wallet is installed properly.",
+    "coincontrol_it_seems_you_dont_have_check_points_li_02": "Make sure your wallet is running and synced to network.",
+    "coincontrol_it_seems_you_dont_have_check_points_li_03": "Make sure your wallet has proper RPC settings configured in it's configuration file.",
+    "coincontrol_it_seems_you_dont_have_check_points_li_04": "If you have all the above covered properly, please logout and then login back and try activating the coin again.",
+    "coincontrol_it_seems_you_dont_have_p2": "If you still having issues activating the your wallet, please get in touch with our support desk."
   },
   "login": {
     "welcome_to_barterdex": "Welcome to BarterDEX",
@@ -79,10 +96,27 @@
 
   },
   "Inventory": {
-    "inventory_tab_inventory": "Inventory"
+    "inventory_tab_inventory": "Inventory",
+    "inventory_th_index": "Index",
+    "inventory_th_coin_info": "Coin Info",
+    "inventory_th_value_info": "Value info",
+    "inventory_th_transaction_info": "Transaction Info",
+    "inventory_th_height": "Height",
+    "inventory_th_tx_hash": "Tx Hash",
+    "inventory_th_tx_pos": "Tx Pos",
+    "inventory_th_value": "Value",
+    "inventory_td_coin": "Coin",
+    "inventory_td_account": "Account",
+    "inventory_td_address": "Address",
+    "inventory_td_amount": "Amount",
+    "inventory_td_confirmations": "Confirmations",
+    "inventory_td_interest": "Interest",
+    "inventory_td_scriptpubkey": "scriptPubKey",
+    "inventory_td_txid": "TxID"
   },
   "Exchange": {
     "exchange_your_balance": "Your Balance",
+    "exchange_coin_is_disabled_enable_before_trading": "Coin is disabled.<br>Please enable before trading",
     "exchange_switch_pairs": "SWITCH PAIRS",
     "exchange_trading_pair": "Trading Pair",
     "exchange_speed_mode_settings": "Speed Mode Settings",
@@ -106,6 +140,7 @@
     "exchange_enable_auto_repeat_coinmarketcap": "Enable auto-repeat + CoinMarketCap Prices",
     "exchange_itll_cost_you": "It'll cost you",
     "exchange_set_small": "Sell",
+    "exchange_itll_get": "You'll get",
     "exchange_goal_percent_for_your_portfolio": "Goal percentage for your portfolio",
     "exchange_set_gaol_caps": "SET GOAL",
     "exchange_0conf_settings_text_one": "The High Speed Mode feature enables you to make trades in seconds, without having to wait for blockchain confirmations.",
