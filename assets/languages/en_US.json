@@ -22,8 +22,12 @@
     "yes_caps": "YES",
     "yes_small": "Yes",
     "no_caps": "NO",
-    "no_small": "No"
-
+    "no_small": "No",
+    "tx_from": "From",
+    "tx_to": "To",
+    "tx_amount": "Amount",
+    "tx_fees": "Fees",
+    "tx_total": "Total"
   },
   "loading": {
     "starting_barterdex": "Starting BarterDEX. Please wait..."
@@ -93,7 +97,18 @@
     "portfolio_goal_target": "Target",
     "portfolio_set_goal_percentage_for_your_portfolio": "Set Goal percentage for your portfolio",
     "portfolio_set_goal": "Set Goal",
-    "portfolio_auto_goal_all_text": "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel."
+    "portfolio_auto_goal_all_text": "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel.",
+    "portfolio_receive_address_dialog_01": "If you are sending a transaction to your barterDEX smartaddress, then",
+    "portfolio_receive_address_dialog_02": "please send 3 small transactions instead of 1 big transaction",
+    "portfolio_receive_address_dialog_03": "for best experience.",
+    "portfolio_send_dialog_title_send_tx": "Send Transaction",
+    "portfolio_send_to_address": "To Address",
+    "portfolio_send_amount": "Amount",
+    "portfolio_send_subtract_txfee": "Subtract Transaction Fees from the sending amount?",
+    "portfolio_send_total": "Total",
+    "portfolio_send_tx": "Send Transaction",
+    "portfolio_tx_did_not_complete": "Transaction did not complete. Please try again.",
+    "portfolio_toastr_title_tx_info": "Transaction Info"
 
   },
   "Inventory": {
@@ -196,12 +211,36 @@
     "exchange_portfolio_buying_currency_base": "Buying Currency (base)",
     "exchange_portfolio_selling_currency_rel": "Selling Currency (rel)",
     "exchange_manual_auto_repeat_buy_order_executed": "Auto-repeat buy order executed at fixed price of",
+    "exchange_order_executed": "Order Executed",
     "exchange_toastr_trade_notification_title": "Trade Notification",
     "exchange_autorepat_buy_order_executed_at_margin_percent": "Auto-repeat buy order executed at margin percent at",
     "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_buy": "Buy order prices will be auto adjusted based on coinmarketcap.com prices.",
     "exchange_manual_auto_repeat_sell_order_executed": "Auto-repeat sell order executed at fixed price of",
     "exchange_autorepat_sell_order_executed_at_margin_percent": "Auto-repeat sell order executed at margin percent at",
-    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell": "Sell order prices will be auto adjusted based on coinmarketcap.com prices."
+    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell": "Sell order prices will be auto adjusted based on coinmarketcap.com prices.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos": "Looks like you don't have enough UTXOs in your balance.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p1": "Not a problem. I have executed the recommended command to make required UTXOs for you.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p2": "If you see the message saying \"Executed Auto Split Funds\", then please wait for approx. 30 seconds to 1 minute before trying again.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p3": "If you see some outgoing transactions from your barterDEX smartaddress that's sent to the same smartaddress of yours to create some inventory transactions for barterDEX to make required trades.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p4": "Please try in a moment with same or different volume and you should be all good to go.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p5": "If you are still getting the same error again, here are few things you can try:",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li1": "Please try the \"Inventory\" button under the coin's logo where you see it's balance.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li2": "That will give you good overview what exactly UTXO means and what you need to do to fix this error.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li3": "Try lower amount of buy which makes final cost in total lower.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li4": "Logout and login back and try lower amount of buy counts total cost lower than previous attempt.",
+    "exchange_depositonerror_required_trade_is_over_your_total_balance": "Looks like your required trade is over your total balance. If you want to try with same trade, then please send the following amount to the displayed address",
+    "exchange_depositonerror_want_to_make_a_relevant_despoit": "Want to make a relevant despoit and try again?",
+    "exchange_depositonerror_system_did_not_find_matching_deposit": "System did not find matching deposit to use from your full balance.",
+    "exchange_depositonerror_make_deposit_btn": "Make Deposit",
+    "exchange_tradingbot_toastr_trade_info_title": "Trade Info",
+    "exchange_tradingbot_auto_selected_price_as": "Auto selected price as"
+  },
+  "ZeroConfirmation": {
+    "zeroconf_please_confirm_you_want_to_send_and_lock_01": "Please confirm you want to send and lock",
+    "zeroconf_please_confirm_you_want_to_send_and_lock_02": "for",
+    "zeroconf_please_confirm_you_want_to_send_and_lock_03": "",
+    "zeroconf_week_weeks": "week(s)",
+    "zeroconf_yes_i_confirm": "Yes, I confirm"
   },
   "Settings": {
     "settings_enable_experimental_features": "Enable Experimental Features?",

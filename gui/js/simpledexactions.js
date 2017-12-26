@@ -1790,7 +1790,8 @@ function mk_inv_sendrawtx(mk_inv_rawtx_data,mk_inv_rawtx_coin) {
 			console.log(parsed_mk_inv_sendrawtx_output_data);
 
 			if ( !parsed_mk_inv_sendrawtx_output_data.hasOwnProperty('error') === false && parsed_mk_inv_sendrawtx_output_data.error === false) {
-				toastr.error(parsed_mk_inv_sendrawtx_output_data.error.message, 'Transaction Info');
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				toastr.error(parsed_mk_inv_sendrawtx_output_data.error.message, default_lang.Portfolio.portfolio_toastr_title_tx_info);
 			} else if (parsed_mk_inv_sendrawtx_output_data.result == null) {
 				bootbox.alert('<p>Error making withdraw transaction: </p><br>' + JSON.stringify(parsed_mk_inv_sendrawtx_output_data.error, null, 2));
 			} else if (parsed_mk_inv_sendrawtx_output_data.result == 'success') {
@@ -2560,9 +2561,9 @@ function autoprice_buy_sell(autoprice_data) {
 		$('.relvol_basevol').html('');
 
 		if (!data.error === false) {
-			toastr.error(data.error, 'Trade Info');
+			toastr.error(data.error, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		} else if (data.result == 'success') {
-			toastr.success('Order Executed', 'Trade Info');
+			toastr.success('Order Executed', default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 			
 			var autoprice_mode = '';
 			var percent_on_off = '';
@@ -2842,7 +2843,8 @@ function manual_buy_sell(mt_data) {
 		//$('.relvol_basevol').html('');
 
 		if (!mt_output_data.error === false) {
-			toastr.error(mt_output_data.error, 'Trade Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(mt_output_data.error, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 			if (mt_output_data.error == 'cant find a deposit that is close enough in size. make another deposit that is just a bit larger than what you want to trade') {
 				if (mt_data.action == 'buy') {
 					var deposit = {};
@@ -2857,21 +2859,22 @@ function manual_buy_sell(mt_data) {
 				DepositOnError(deposit);
 			}
 			if (mt_output_data.error == 'not enough funds') {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
-					title: `Looks like you don't have enough UTXOs in your balance.`,
-					message: `<p>Not a problem. I have executed the recommended command to make required UTXOs for you.</p>
-					<p>If you see the message saying "Executed Auto Split Funds", then please wait for approx. 30 seconds to 1 minute before trying again.</p>
-					<p>If you see some outgoing transactions from your barterDEX smartaddress that's sent to the same smartaddress of yours to create some inventory transactions for barterDEX to make required trades.<br>
-					Please try in a moment with same or different volume and you should be all good to go.</p>
-					<p>If you are still getting the same error again, here are few things you can try:</>
+					title: `${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos}`,
+					message: `<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p1}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p2}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p3}<br>
+					${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p4}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p5}</p>
 					<ul>
-					<li>Please try the "Inventory" button under the coin's logo where you see it's balance.<br>
-					That will give you good overview what exactly UTXO means and what you need to do to fix this error.</li>
-					<li>Try lower amount of buy which makes final cost in total lower.</li>
-					<li>Logout and login back and try lower amount of buy counts total cost lower than previous attempt.</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li1}<br>
+					${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li2}</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li3}</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li4}</li>
 					</ul>`});
 				console.log(JSON.stringify(mt_output_data))
 
@@ -2883,7 +2886,8 @@ function manual_buy_sell(mt_data) {
 				}*/
 			}
 		} else if (mt_output_data.result == 'success') {
-			toastr.success('Order Executed', 'Trade Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.success(default_lang.Exchange.exchange_order_executed, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -2917,37 +2921,40 @@ function DepositOnError(deposit_data) {
 		console.log(data);
 
 		if (deposit_data.amount > data.coin.balance) {
-			var blockquote_text = `Looks like your required trade is over your total balance. If you want to try with same trade, then please send the following ammount to the displayed address<br>
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			var blockquote_text = `${default_lang.Exchange.exchange_depositonerror_required_trade_is_over_your_total_balance}<br>
 					<span style="font-size: 200%;">${deposit_data.amount} ${deposit_data.coin}</span>`;
 			var show_table = ``;
 			var make_deposit_btn_state = 'hidden';
 		} else {
-			var blockquote_text = `Want to make a relevant despoit and try again?`;
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			var blockquote_text = `${default_lang.Exchange.exchange_depositonerror_want_to_make_a_relevant_despoit}`;
 			var show_table = `<table class="table table-striped">
 								<tr>
-									<td style="text-align: right;">From</td>
+									<td style="text-align: right;">${default_lang.Common.tx_from}</td>
 									<td style="text-align: left;">${data.coin.smartaddress}</td>
 								</tr>
 								<tr>
-									<td style="text-align: right;">To</td>
+									<td style="text-align: right;">${default_lang.Common.tx_to}</td>
 									<td style="text-align: left;">${data.coin.smartaddress}</td>
 								</tr>
 								<tr>
-									<td  style="text-align: right;">Amount</td>
+									<td  style="text-align: right;">${default_lang.Common.tx_amount}</td>
 									<td  style="text-align: left;">${deposit_data.amount} ${deposit_data.coin}</td>
 								</tr>
 								<tr>
-									<td  style="text-align: right;">Fees</td>
+									<td  style="text-align: right;">${default_lang.Common.tx_fees}</td>
 									<td  style="text-align: left;">${data.coin.txfee / 100000000} ${deposit_data.coin}</td>
 								</tr>
 								<tr>
-									<td  style="text-align: right; font-size: 150%;">Total</td>
+									<td  style="text-align: right; font-size: 150%;">${default_lang.Common.tx_total}</td>
 									<td  style="text-align: left; font-size: 150%;">${parseFloat(deposit_data.amount) + parseFloat(data.coin.txfee / 100000000)} ${deposit_data.coin}</td>
 								</tr>
 							</table>`;
 			var make_deposit_btn_state = 'shown';
 		}
 
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		var deposit_size_error_bootbox = bootbox.dialog({
 			onEscape: true,
 			backdrop: true,
@@ -2957,7 +2964,7 @@ function DepositOnError(deposit_data) {
 						<div style="text-align: center;">
 							<div id="receive_addr_qrcode"></div>
 							<pre style="font-size: 18px;">${data.coin.smartaddress}</pre class="receive_addr_qrcode_addr">
-							<blockquote style="font-size: 15px; font-weight: 400; color: #ff3b00; background-color: #ffd9bf; border-left: 5px solid #f00;">System did not find matching change to use from your full balance.<br>${blockquote_text}</blockquote>
+							<blockquote style="font-size: 15px; font-weight: 400; color: #ff3b00; background-color: #ffd9bf; border-left: 5px solid #f00;">${default_lang.Exchange.exchange_depositonerror_system_did_not_find_matching_deposit}<br>${blockquote_text}</blockquote>
 							${show_table}
 						</div>`,
 			closeButton: false,
@@ -2966,14 +2973,14 @@ function DepositOnError(deposit_data) {
 
 			buttons: {
 				cancel: {
-					label: "Cancel",
+					label: default_lang.Common.btn_cancel,
 					className: 'btn-default',
 					callback: function(){
 
 					}
 				},
 				ok: {
-					label: "Make Deposit",
+					label: default_lang.Exchange.exchange_depositonerror_make_deposit_btn,
 					className: 'btn-primary deposit_size_error_send_action',
 					callback: function(){
 						var to_addr = data.coin.smartaddress;
@@ -3020,13 +3027,15 @@ function setOrderPrice(trade_data) {
 	//console.log(trade_data);
 	
 	if (trade_data.type == 'asks') {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		trade_price_plus = trade_data.price * 1.001;
-		toastr.info(`Auto selected price as ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+		toastr.info(`${default_lang.Exchange.exchange_tradingbot_auto_selected_price_as} ${trade_data.price} + 0.1% = ${trade_price_plus.toFixed(8)}`, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		$('#trading_pair_options_buying').trigger('click');
 	}
 	if (trade_data.type == 'bids') {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		trade_price_plus = trade_data.price / 1.001;
-		toastr.info(`Auto selected price as ${trade_data.price} - 0.1% = ${trade_price_plus.toFixed(8)}`,'Trade Info');
+		toastr.info(`${default_lang.Exchange.exchange_tradingbot_auto_selected_price_as} ${trade_data.price} - 0.1% = ${trade_price_plus.toFixed(8)}`, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		$('#trading_pair_options_selling').trigger('click');
 	}
 
@@ -3429,6 +3438,7 @@ $('input[name=trading_pair_options]').change(function() {
 	}
 	if(buying_or_selling == 'selling') {
 		if(bot_or_manual == 'tradeportfolio') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_portfolio_auto_price}`)
 			$('#trading_pair_coin_price_max_min').html('%');
 			if(margin_or_fixed == true) {
@@ -3441,6 +3451,7 @@ $('input[name=trading_pair_options]').change(function() {
 				$('.portfolio_info_text').html(default_lang.Exchange.exchange_portfolio_auto_sell_on_fixed_price_will_make);
 			}
 		} else {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 			$('.btn-bot_action').html('SELL');
@@ -3530,11 +3541,19 @@ function coinBalanceReceiveAddr(coin) {
 			}
 		}
 
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		bootbox.dialog({
 		    //title: 'A custom dialog with init',
 		  onEscape: true,
 		  backdrop: true,
-			message: '<div style="text-align: center; margin-top: -40px;"><img src="img/cryptologo/'+coin.toLowerCase()+'.png" class="coin_balance_receive_coin_logo"/></div><div style="text-align: center;"><div id="receive_addr_qrcode"></div><blockquote style="font-size: 15px; font-weight: 400; color: #c10a0a; background-color: #ffd5d5; #7d0b0b; border-left: 5px solid #f00;">If you are sending a transaction to your barterDEX smartaddress, then <b>please send 3 small transactions instead of 1 big transaction</b> for best experience.</blockquote><pre style="font-size: 18px;">'+data.coin.smartaddress+'</pre class="receive_addr_qrcode_addr"></div>'
+			message: `<div style="text-align: center; margin-top: -40px;">
+						<img src="img/cryptologo/${coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
+					</div>
+					<div style="text-align: center;">
+						<div id="receive_addr_qrcode"></div>
+						<blockquote style="font-size: 15px; font-weight: 400; color: #c10a0a; background-color: #ffd5d5; #7d0b0b; border-left: 5px solid #f00;">${default_lang.Portfolio.portfolio_receive_address_dialog_01} <b>${default_lang.Portfolio.portfolio_receive_address_dialog_02}</b> ${default_lang.Portfolio.portfolio_receive_address_dialog_03}</blockquote>
+						<pre style="font-size: 18px;">${data.coin.smartaddress}</pre class="receive_addr_qrcode_addr">
+					</div>`
 		});
 
 		var qrcode = new QRCode("receive_addr_qrcode");
@@ -3568,6 +3587,7 @@ function coinBalanceSendFn(coin) {
 	}).done(function(data) {
 		console.log(data.coin.balance);
 		console.log(data.coin.txfee);
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		var coin_balance_send_bootbox = bootbox.dialog({
 			onEscape: true,
 			backdrop: true,
@@ -3576,27 +3596,27 @@ function coinBalanceSendFn(coin) {
 					<div class="col-sm-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-							<h3 class="panel-title"><strong>Send Transaction (<span class="bot_sending_coin_balance">`+data.coin.balance+`</span> `+ tx_coin+`)</strong></h3>
+							<h3 class="panel-title"><strong>${default_lang.Portfolio.portfolio_send_dialog_title_send_tx} (<span class="bot_sending_coin_balance">${data.coin.balance}</span> ${tx_coin})</strong></h3>
 							</div>
 							<div class="panel-body"> <!-- panel-body -->
 								<div class="form-group">
 									<div class="input-group col-sm-12">
-										<span class="input-group-addon coin_ticker" style="font-size: 20px;">To Address</span>
+										<span class="input-group-addon coin_ticker" style="font-size: 20px;">${default_lang.Portfolio.portfolio_send_to_address}</span>
 										<input type="text" class="form-control" id="bot_send_toaddr" placeholder="Address" style="height: 64px; font-size: 20px;">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group col-sm-12">
-										<span class="input-group-addon coin_ticker" style="font-size: 20px;">Amount</span>
+										<span class="input-group-addon coin_ticker" style="font-size: 20px;">${default_lang.Portfolio.portfolio_send_amount}</span>
 										<input type="number" class="form-control" id="bot_send_amount" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
 									</div>
 								</div>
 								<div class="form-group">
 									<span class="input-group-addon">
-										<input type="checkbox" id="bot_send_amount_txfee_checkbox" name="bot_send_amount_txfee_checkbox"> Subtract Transaction Fees from the sending amount?
+										<input type="checkbox" id="bot_send_amount_txfee_checkbox" name="bot_send_amount_txfee_checkbox"> ${default_lang.Portfolio.portfolio_send_subtract_txfee}
 									</span>
-									<span class="input-group-addon" style="font-size: 20px;">TxFee: <span class="bot_send_txfee">`+data.coin.txfee / 100000000+`</span></span>
-									<span class="input-group-addon" style="font-size: 20px;">Total: <span class="bot_send_total_amount"></span></span>
+									<span class="input-group-addon" style="font-size: 20px;">TxFee: <span class="bot_send_txfee">${data.coin.txfee / 100000000}</span></span>
+									<span class="input-group-addon" style="font-size: 20px;">${default_lang.Portfolio.portfolio_send_total}: <span class="bot_send_total_amount"></span></span>
 								</div>
 							</div>
 						</div>
@@ -3608,14 +3628,14 @@ function coinBalanceSendFn(coin) {
 
 			buttons: {
 				cancel: {
-					label: "Cancel",
+					label: default_lang.Common.btn_cancel,
 					className: 'btn-default',
 					callback: function(){
 
 					}
 				},
 				ok: {
-					label: "Send Transaction",
+					label: default_lang.Portfolio.portfolio_send_tx,
 					className: 'btn-primary bot_send_action',
 					callback: function(){
 						var to_addr = $('#bot_send_toaddr').val();
@@ -3758,6 +3778,7 @@ function coinBalanceSendFn(coin) {
 $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() {
 	console.log('coin_balance_inventory clicked');
 	console.log($(this).data());
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	coin = $(this).data('coin');
 	addr = $(this).data('addr');
 	balance = $(this).data('balance');
@@ -3783,8 +3804,8 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	$('.coininventory[data-coin]').attr('data-addr', addr);
 	$('.inventory-sliderTotalCoin').html(' '+coin);
 
-	$('.dex_showinv_alice_tbl tbody').html('<th><div style="text-align: center;">Loading...</div></th>');
-	$('.dex_showlist_unspents_tbl tbody').html('<th><div style="text-align: center;">Loading...</div></th>');
+	$('.dex_showinv_alice_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
+	$('.dex_showlist_unspents_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
 
 	check_coin_inventory(coin);
 	check_coin_listunspent($(this).data());
@@ -3833,7 +3854,8 @@ function create_sendtx(coin,tx_data){
 				if (!data.hasOwnProperty('coin')) { data.coin = coin; }
 				bot_sendrawtx(data);
 			} else {
-				toastr.error('Transaction did not complete. Please try again.', 'Transaction Info');
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				toastr.error(default_lang.Portfolio.portfolio_tx_did_not_complete, default_lang.Portfolio.portfolio_toastr_title_tx_info);
 			}
 		}
 
@@ -4163,21 +4185,22 @@ function bot_buy_sell(bot_data) {
 		if (!bot_output_data.error === false) {
 			toastr.error(bot_output_data.error, 'Bot Info');
 			if (bot_output_data.error == 'not enough funds') {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				//toastr.info(bot_output_data.error + '<br>Balance: ' + bot_output_data.balance + ' ' + bot_output_data.coin, 'Bot Info');
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
-					title: `Looks like you don't have enough UTXOs in your balance.`,
-					message: `<p>Not a problem. I have executed the recommended command to make required UTXOs for you.</p>
-					<p>If you see the message saying "Executed Auto Split Funds", then please wait for approx. 30 seconds to 1 minute before trying again.</p>
-					<p>If you see some outgoing transactions from your barterDEX smartaddress that's sent to the same smartaddress of yours to create some inventory transactions for barterDEX to make required trades.<br>
-					Please try in a moment with same or different volume and you should be all good to go.</p>
-					<p>If you are still getting the same error again, here are few things you can try:</>
+					title: `${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos}`,
+					message: `<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p1}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p2}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p3}<br>
+					${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p4}</p>
+					<p>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p5}</p>
 					<ul>
-					<li>Please try the "Inventory" button under the coin's logo where you see it's balance.<br>
-					That will give you good overview what exactly UTXO means and what you need to do to fix this error.</li>
-					<li>Try lower amount of buy which makes final cost in total lower.</li>
-					<li>Logout and login back and try lower amount of buy counts total cost lower than previous attempt.</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li1}<br>
+					${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li2}</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li3}</li>
+					<li>${default_lang.Exchange.exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li4}</li>
 					</ul>`});
 				console.log(JSON.stringify(bot_output_data))
 
@@ -4229,7 +4252,8 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 			console.log(parsed_bot_sendrawtx_output_data);
 
 			if ( !parsed_bot_sendrawtx_output_data.hasOwnProperty('error') === false && parsed_bot_sendrawtx_output_data.error === false) {
-				toastr.error(parsed_bot_sendrawtx_output_data.error.message, 'Transaction Info');
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				toastr.error(parsed_bot_sendrawtx_output_data.error.message, default_lang.Portfolio.portfolio_toastr_title_tx_info);
 			} else if (parsed_bot_sendrawtx_output_data.result == null) {
 				bootbox.alert('<p>Error making withdraw transaction: </p><br>' + JSON.stringify(parsed_bot_sendrawtx_output_data.error, null, 2));
 			} else if (parsed_bot_sendrawtx_output_data.result == 'success') {
@@ -5716,24 +5740,25 @@ $('.btn_zeroconf_deposit').click(function(e){
 	var deposit_amount = $('.zeroconf_deposit_amount').val();
 	console.log(deposit_weeks);
 	console.log(deposit_amount);
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var zeroconf_deposit_confirm_bootbox = bootbox.dialog({
 			onEscape: true,
 			backdrop: true,
-			message: `Please confirm you want to send and lock <font style="font-size: 135%;">${deposit_amount} KMD</font> for <font style="font-size: 135%;">${deposit_weeks} week(s)?</font>`,
+			message: `${default_lang.ZeroConfirmation.zeroconf_please_confirm_you_want_to_send_and_lock_01} <font style="font-size: 135%;">${deposit_amount} KMD</font> ${default_lang.ZeroConfirmation.zeroconf_please_confirm_you_want_to_send_and_lock_02} <font style="font-size: 135%;">${deposit_weeks} ${default_lang.ZeroConfirmation.zeroconf_week_weeks} </font>${default_lang.ZeroConfirmation.zeroconf_please_confirm_you_want_to_send_and_lock_03}?`,
 			closeButton: false,
 			size: 'medium',
 			className: 'zeroconf_deposit_confirm_class_bootbox',
 
 			buttons: {
 				cancel: {
-					label: "Cancel",
+					label: default_lang.Common.btn_close_smallcaps,
 					className: 'btn-default',
 					callback: function(){
 						toastr.info('Sending Speed Deposit fund is canceled.','Speed Deposit Notification')
 					}
 				},
 				ok: {
-					label: "Yes, I confirm",
+					label: default_lang.ZeroConfirmation.zeroconf_yes_i_confirm,
 					className: 'btn-primary zeroconf_deposit_confirm_make_despoit',
 					callback: function(){
 						ZeroConfDeposit(deposit_weeks,deposit_amount);
@@ -5834,6 +5859,7 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 			toastr.error(zconf_deposit_data.error, 'InstantDEX Notification');
 		}
 		if (zconf_deposit_data.result == 'success') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var zconf_depoit_bootbox = bootbox.dialog({
 				title: 'InstantDEX security deposit sent!',
 				message: `<b>Address: </b> ${zconf_deposit_data.address}<br>

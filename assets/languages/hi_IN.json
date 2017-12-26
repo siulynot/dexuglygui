@@ -22,7 +22,12 @@
     "yes_caps": "हाँ",
     "yes_small": "हाँ",
     "no_caps": "नहीं",
-    "no_small": "नहीं"
+    "no_small": "नहीं",
+    "tx_from": "From",
+    "tx_to": "To",
+    "tx_amount": "Amount",
+    "tx_fees": "Fees",
+    "tx_total": "Total"
   },
   "loading": {
     "starting_barterdex": "BarterDEX शुरू हो रहा है। कृपया प्रतीक्षा करें..."
@@ -90,7 +95,18 @@
     "portfolio_goal_target": "आगामी",
     "portfolio_set_goal_percentage_for_your_portfolio": "अपने पोर्टफोलियो का लक्ष्य प्रतिशत निर्धारित करें",
     "portfolio_set_goal": "लक्ष्य सेट करें",
-    "portfolio_auto_goal_all_text": "क्या आप वाकई सभी सक्रिय सिक्कों के लिए ऑटो लक्ष्य सेट करना चाहते हैं?<br>यह आपके मौजूदा सिक्का लक्ष्यों को रीसेट कर देगा और आपको व्यक्तिगत सिक्के का लक्ष्य फिर से सेट करना होगा। कृपया आगे बढ़ने के लिए \"हां\" बटन पर क्लिक करें, या रद्द करने के लिए कोई बटन \"नहीं\" दबाएं।"
+    "portfolio_auto_goal_all_text": "क्या आप वाकई सभी सक्रिय सिक्कों के लिए ऑटो लक्ष्य सेट करना चाहते हैं?<br>यह आपके मौजूदा सिक्का लक्ष्यों को रीसेट कर देगा और आपको व्यक्तिगत सिक्के का लक्ष्य फिर से सेट करना होगा। कृपया आगे बढ़ने के लिए \"हां\" बटन पर क्लिक करें, या रद्द करने के लिए कोई बटन \"नहीं\" दबाएं।",
+    "portfolio_receive_address_dialog_01": "If you are sending a transaction to your barterDEX smartaddress, then",
+    "portfolio_receive_address_dialog_02": "please send 3 small transactions instead of 1 big transaction",
+    "portfolio_receive_address_dialog_03": "for best experience.",
+    "portfolio_send_dialog_title_send_tx": "Send Transaction",
+    "portfolio_send_to_address": "To Address",
+    "portfolio_send_amount": "Amount",
+    "portfolio_send_subtract_txfee": "Subtract Transaction Fees from the sending amount?",
+    "portfolio_send_total": "Total",
+    "portfolio_send_tx": "Send Transaction",
+    "portfolio_tx_did_not_complete": "Transaction did not complete. Please try again.",
+    "portfolio_toastr_title_tx_info": "Transaction Info"
   },
   "Inventory": {
     "inventory_tab_inventory": "संख्यापत्र",
@@ -188,15 +204,39 @@
     "exchange_portfolio_margin_percent": "लाभ प्रतिशत",
     "exchange_portfolio_fixed": "निश्चित",
     "exchange_portfolio_fixed_price": "निश्चित क़ीमत",
-    "exchange_portfolio_auto_price_order_executed": "ऑटो कीमत आदेश निष्पादित",
+    "exchange_portfolio_auto_price_order_executed": "ऑटो कीमत आदेश कर दिया",
     "exchange_portfolio_buying_currency_base": "खरीदी जा रही मुद्रा (आधार)",
     "exchange_portfolio_selling_currency_rel": "बेची जा रही मुद्रा (सापेक्ष)",
     "exchange_manual_auto_repeat_buy_order_executed": "तय किए मूल्य पर ऑटो-दोहराएं आर्डर चला दिया। कीमत",
+    "exchange_order_executed": "आदेश कर दिया",
     "exchange_autorepat_buy_order_executed_at_margin_percent": "Auto-repeat buy order executed at margin percent at",
     "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_buy": "Buy order prices will be auto adjusted based on coinmarketcap.com prices.",
     "exchange_manual_auto_repeat_sell_order_executed": "Auto-repeat sell order executed at fixed price of",
     "exchange_autorepat_sell_order_executed_at_margin_percent": "Auto-repeat sell order executed at margin percent at",
-    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell": "Sell order prices will be auto adjusted based on coinmarketcap.com prices."
+    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell": "Sell order prices will be auto adjusted based on coinmarketcap.com prices.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos": "Looks like you don't have enough UTXOs in your balance.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p1": "Not a problem. I have executed the recommended command to make required UTXOs for you.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p2": "If you see the message saying \"Executed Auto Split Funds\", then please wait for approx. 30 seconds to 1 minute before trying again.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p3": "If you see some outgoing transactions from your barterDEX smartaddress that's sent to the same smartaddress of yours to create some inventory transactions for barterDEX to make required trades.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p4": "Please try in a moment with same or different volume and you should be all good to go.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_p5": "If you are still getting the same error again, here are few things you can try:",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li1": "Please try the \"Inventory\" button under the coin's logo where you see it's balance.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li2": "That will give you good overview what exactly UTXO means and what you need to do to fix this error.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li3": "Try lower amount of buy which makes final cost in total lower.",
+    "exchange_utxo_dialog_looks_like_you_dont_have_enough_utxos_li4": "Logout and login back and try lower amount of buy counts total cost lower than previous attempt.",
+    "exchange_depositonerror_required_trade_is_over_your_total_balance": "ऐसा लगता है की आपका ट्रेड अबके जमा खाते के संतुलन से ज़्यादा है। अगर आप फिर से वही ट्रेड दोबारा से कोशिश करना चाहते हैं तो कृपया निचे दिखाई गई रकम साथ ही में दिख रहे पते पर भेजें",
+    "exchange_depositonerror_want_to_make_a_relevant_despoit": "प्रासंगिक जमा करना और फिर से प्रयास करना चाहते हैं?",
+    "exchange_depositonerror_system_did_not_find_matching_deposit": "सिस्टम को आपके पूर्ण शेष राशि से उपयोग करने के लिए मिलान जमा नहीं मिला।",
+    "exchange_depositonerror_make_deposit_btn": "जमा कर दो",
+    "exchange_tradingbot_toastr_trade_info_title": "व्यापार जानकारी",
+    "exchange_tradingbot_auto_selected_price_as": "ऑटो-चयनित कीमत"
+  },
+  "ZeroConfirmation": {
+    "zeroconf_please_confirm_you_want_to_send_and_lock_01": "कृपया पुष्टि करें कि आप भेजना और लॉक करना चाहते हैं",
+    "zeroconf_please_confirm_you_want_to_send_and_lock_02": "",
+    "zeroconf_please_confirm_you_want_to_send_and_lock_03": "के लिए",
+    "zeroconf_week_weeks": "सप्ताह/सप्ताहों",
+    "zeroconf_yes_i_confirm": "हां, मैं पुष्टि करता हूं"
   },
   "Settings": {
     "settings_enable_experimental_features": "प्रायोगिक सुविधाओं को सक्षम करें?",
