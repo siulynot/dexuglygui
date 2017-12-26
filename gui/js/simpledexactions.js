@@ -2783,8 +2783,8 @@ function manual_buy_sell(mt_data) {
 				var rel_coin = $('.trading_pair_coin').selectpicker('val');
 			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
-			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
-			toastr.success(`Buy order prices will be auto adjusted based on coinmarketcap.com prices.`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`${default_lang.Exchange.exchange_autorepat_buy_order_executed_at_margin_percent} ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`${default_lang.Exchange.exchange_autorepeat_auto_adjust_based_on_coinmarketcap_buy}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"buy","base":base_coin,"rel":rel_coin,"price":mt_data.price,"relvolume":mt_data.volume};
 		}
@@ -2798,7 +2798,7 @@ function manual_buy_sell(mt_data) {
 			var base_coin = $('.trading_pair_coin').selectpicker('val');
 			var rel_coin = coin;
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"fixed":mt_data.price};
-			toastr.success(`Auto-repeat sell order executed at fixed price of ${mt_data.price}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`${default_lang.Exchange.exchange_manual_auto_repeat_sell_order_executed} ${mt_data.price}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else if (mt_data.trading_options == 'coinmarketcap') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
@@ -2811,8 +2811,8 @@ function manual_buy_sell(mt_data) {
 				var rel_coin = $('.trading_pair_coin').selectpicker('val');
 			}
 			var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":mt_data.price / 100,"refbase":base_coin.toLowerCase(),"refrel":"coinmarketcap"}
-			toastr.success(`Auto-repeat buy order executed at margin percent at ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
-			toastr.success(`Sell order prices will be auto adjusted based on coinmarketcap.com prices.`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`${default_lang.Exchange.exchange_autorepat_sell_order_executed_at_margin_percent} ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
+			toastr.success(`${default_lang.Exchange.exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
 			var ajax_data = {"userpass":userpass,"method":"sell","base":base_coin,"rel":rel_coin,"price":mt_data.price,"basevolume":mt_data.volume};
 		}

@@ -196,7 +196,12 @@
     "exchange_portfolio_buying_currency_base": "Buying Currency (base)",
     "exchange_portfolio_selling_currency_rel": "Selling Currency (rel)",
     "exchange_manual_auto_repeat_buy_order_executed": "Auto-repeat buy order executed at fixed price of",
-    "exchange_toastr_trade_notification_title": "Trade Notification"
+    "exchange_toastr_trade_notification_title": "Trade Notification",
+    "exchange_autorepat_buy_order_executed_at_margin_percent": "Auto-repeat buy order executed at margin percent at",
+    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_buy": "Buy order prices will be auto adjusted based on coinmarketcap.com prices.",
+    "exchange_manual_auto_repeat_sell_order_executed": "Auto-repeat sell order executed at fixed price of",
+    "exchange_autorepat_sell_order_executed_at_margin_percent": "Auto-repeat sell order executed at margin percent at",
+    "exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell": "Sell order prices will be auto adjusted based on coinmarketcap.com prices."
   },
   "Settings": {
     "settings_enable_experimental_features": "Enable Experimental Features?",
