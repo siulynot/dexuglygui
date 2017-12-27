@@ -102,6 +102,7 @@
     "portfolio_set_goal_percentage_for_your_portfolio": "अपने पोर्टफोलियो का लक्ष्य प्रतिशत निर्धारित करें",
     "portfolio_set_goal": "लक्ष्य सेट करें",
     "portfolio_auto_goal_all_text": "क्या आप वाकई सभी सक्रिय सिक्कों के लिए ऑटो लक्ष्य सेट करना चाहते हैं?<br>यह आपके मौजूदा सिक्का लक्ष्यों को रीसेट कर देगा और आपको व्यक्तिगत सिक्के का लक्ष्य फिर से सेट करना होगा। कृपया आगे बढ़ने के लिए \"हां\" बटन पर क्लिक करें, या रद्द करने के लिए कोई बटन \"नहीं\" दबाएं।",
+    "portfolio_set_auto_goal_executed": "सभी सक्रिय सिक्कों के लिए ऑटो गोल सेट कर दिया है। सुनिश्चित करें कि आपने इन सिक्कों के लिए ऑटो कीमत निर्धारित किया है।",
     "portfolio_receive_address_dialog_01": "If you are sending a transaction to your barterDEX smartaddress, then",
     "portfolio_receive_address_dialog_02": "please send 3 small transactions instead of 1 big transaction",
     "portfolio_receive_address_dialog_03": "for best experience.",

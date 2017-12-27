@@ -2395,7 +2395,17 @@ function set_coin_goal(goal_data){
 	   if (goal_data.auto == false){
 			toastr.success('Goal for ' + goal_data.coin + ' set to: ' + goal_data.percent +'%', 'Portfolio Info')
 	   } else {
-			bootbox.alert('Auto Goal executed for all active coins. Make sure you have set Auto Price for these coins.');
+	   		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			bootbox.alert({message: `${default_lang.Portfolio.portfolio_set_auto_goal_executed}`,
+			buttons: {
+				ok: {
+					label: `${default_lang.Common.btn_ok_caps}`,
+					className: 'btn-primary',
+					callback: function(){
+					}
+				}
+			}
+		});
 	   }
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail

@@ -104,6 +104,7 @@
     "portfolio_set_goal_percentage_for_your_portfolio": "Set Goal percentage for your portfolio",
     "portfolio_set_goal": "Set Goal",
     "portfolio_auto_goal_all_text": "Are you sure you want to set Auto Goal for all active/enabled coins?<br>It will reset your existing coin goals and you have to set individual coin's goal again. Please click Yes button to proceed, or hit No button to cancel.",
+    "portfolio_set_auto_goal_executed": "Auto Goal executed for all active coins. Make sure you have set Auto Price for these coins.",
     "portfolio_receive_address_dialog_01": "If you are sending a transaction to your barterDEX smartaddress, then",
     "portfolio_receive_address_dialog_02": "please send 3 small transactions instead of 1 big transaction",
     "portfolio_receive_address_dialog_03": "for best experience.",
