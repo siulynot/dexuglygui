@@ -1,0 +1,15 @@
+
+
+@font-face{
+	font-family:'piqad';
+	src:url('../fonts/piqad.eot');
+	src:url('../fonts/piqad.eot?#iefix') format('embedded-opentype'),url('../fonts/piqad.woff') format('woff'),url('../fonts/piqad.ttf') format('truetype'),url('../fonts/piqad.svg#piqad') format('svg');
+	font-weight:normal;
+	font-style:normal
+}
+.klingon{
+	font-family:'piqad'
+}
+.klingon div, .klingon span, .klingon p, .klingon a {
+	font-family:'piqad'
+}
