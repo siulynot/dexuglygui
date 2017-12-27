@@ -4391,7 +4391,7 @@ function bot_status(bot_data) {
 		} else if (data.result == 'success') {
 
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-			
+
 			var max_min = null;
 			var max_min_val = null;
 			if (!data.minprice === false){
@@ -4410,7 +4410,7 @@ function bot_status(bot_data) {
 			rel_form = '<img src="img/cryptologo/'+data.rel.toLowerCase()+'.png" style="width: 50px;"> '+ data.rel;
 			base_form = '<img src="img/cryptologo/'+data.base.toLowerCase()+'.png" style="width: 50px;"> '+ data.base;
 
-			buy_sell_text = (data.action == 'buy') ? 'Buy' : 'Sell';
+			buy_sell_text = (data.action == 'buy') ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_sell;
 			max_min_text = (data.action == 'buy') ? `${default_lang.Exchange.exchange_lbl_one_max}` : `${default_lang.Exchange.exchange_lbl_one_min}`;
 
 			// "tradeid": 1750749844, "price": 0.13749702, "volume":
@@ -4424,11 +4424,12 @@ function bot_status(bot_data) {
 						requestNonEmpty: false,
 						tradeNonEmpty: false,
 					};
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 
 					_out.request = `<table width="100%" class="table table-striped">
 												<tr>
-													<th>Request ID</th>
-													<th>Quote ID</th>`;
+													<th>${default_lang.Exchange.exchange_botstatus_th_request_id}</th>
+													<th>${default_lang.Exchange.exchange_botstatus_th_quote_id}</th>`;
 
 					for (let i = 0; i < trades.length; i++) {
 						if (trades[i].requestid) {
@@ -4444,10 +4445,10 @@ function bot_status(bot_data) {
 
 					_out.trade = `<table width="100%" class="table table-striped">
 												<tr>
-													<th>Trade ID</th>
-													<th>Status</th>
-													<th>Price</th>
-													<th>Volume</th>`;
+													<th>${default_lang.Exchange.exchange_botstatus_th_trade_id}</th>
+													<th>${default_lang.Exchange.exchange_botstatus_th_status}</th>
+													<th>${default_lang.Exchange.exchange_botstatus_th_price}</th>
+													<th>${default_lang.Exchange.exchange_botstatus_th_volume}</th>`;
 
 					for (let i = 0; i < trades.length; i++) {
 						if (trades[i].tradeid) {
@@ -4490,29 +4491,30 @@ function bot_status(bot_data) {
 				}
 			}
 
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var bot_update_bootbox = bootbox.dialog({
 				backdrop: true,
 				onEscape: true,
 				message: `
 					<table width="100%" class="table table-striped">
 						<tr>
-							<td style="width: 150px;">Auto Trader ID</td>
+							<td style="width: 150px;">${default_lang.Exchange.exchange_botstatus_td_auto_trader_id}</td>
 							<td>` + data.botid + `</td>
 						</tr>
 						<tr>
-							<td>Auto Trade Name</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_auto_trade_name}</td>
 							<td>` + data.name + `</td>
 						</tr>
 						<tr>
-							<td>Trade Action</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_trade_action}</td>
 							<td>` + data.action + `</td>
 						</tr>
 						<tr>
-							<td>Selling Currency</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_selling_currency}</td>
 							<td>` + rel_answer + `</td>
 						</tr>
 						<tr>
-							<td>Buying Currency</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_buying_currency}</td>
 							<td>` + base_answer + `</td>
 						</tr>
 						<tr>
@@ -4520,19 +4522,19 @@ function bot_status(bot_data) {
 							<td>` + max_min_val + ` ` + data.rel + `</td>
 						</tr>
 						<tr>
-							<td>Total Selling Volume</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_total_selling_volume}</td>
 							<td>` + data.totalrelvolume + ` ` + data.rel + `</td>
 						</tr>
 						<tr>
-							<td>Total Buying Volume</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_total_buying_volume}</td>
 							<td>` + data.totalbasevolume + ` ` + data.base + `</td>
 						</tr>
 						<tr>
-							<td>Result</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_result}</td>
 							<td>` + result_answer + `</td>
 						</tr>
 						<tr>
-							<td>Trades Attempts</td>
+							<td>${default_lang.Exchange.exchange_botstatus_td_trade_attempts}</td>
 							<td><div style="max-height: 450px; overflow-y: scroll;">` + renderTradeAttempts(data.trades) + `</div></td>
 						</tr>
 					</table>
@@ -4541,12 +4543,12 @@ function bot_status(bot_data) {
 						<div class="col-sm-12">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-								<h3 class="panel-title"><strong>Change This Auto Trade's Settings</strong></h3>
+								<h3 class="panel-title"><strong>${default_lang.Exchange.exchange_botstatus_dialog_change_this_auto_traders_settings}</strong></h3>
 								</div>
 								<div class="panel-body"> <!-- panel-body -->
 
 									<div class="form-group">
-										<span style="float: right; font-size: 18px;"><span>New ` + max_min_text + `</span> Price to <span>` + buy_sell_text + `</span></span>
+										<span style="float: right; font-size: 18px;"><span>${default_lang.Exchange.exchange_botstatus_dialog_new} ` + max_min_text + `</span> ${default_lang.Exchange.exchange_botstatus_dialog_price_to} <span>` + buy_sell_text + `</span></span>
 									</div>
 									<div class="input-group col-sm-12">
 										<span class="input-group-addon">` + rel_form + `</span>
@@ -4554,14 +4556,14 @@ function bot_status(bot_data) {
 										<span class="input-group-addon" id="trading_pair_coin_price_max_min_update" style="font-size: 20px;">` + max_min_text + `</span>
 									</div>
 									<div class="form-group" style="margin-top: 15px; margin-bottom: 0px;">
-										<span style="font-size: 18px;"><span>New Max</span> Amount to <span>` + buy_sell_text + `</span></span>
+										<span style="font-size: 18px;">${default_lang.Exchange.exchange_botstatus_dialog_new_max_amount_to} ` + buy_sell_text + `</span>
 									</div>
 									<div class="input-group col-sm-12">
 										<span class="input-group-addon coin_ticker" id="trading_pair_coin_ticker" style="font-size: 20px;">` + base_form + `</span>
 										<input type="number" class="form-control trading_pair_coin_newvolume" placeholder="Amount e.g. 12.5" style="height: 64px; font-size: 20px;">
 									</div>
 									<div class="input-group col-sm-12">
-										<span class="input-group-addon bot_settings_label1">It'll cost you</span>
+										<span class="input-group-addon bot_settings_label1">${default_lang.Exchange.exchange_itll_cost_you}</span>
 										<span class="input-group-addon bot_settings_label2"><span class="new_relvol_basevol">0</span> <span class="bot_settings_label3">` + data.rel.toUpperCase() + `</span></span>
 									</div>
 
@@ -4582,7 +4584,7 @@ function bot_status(bot_data) {
 						}
 					},
 					ok: {
-						label: "Update",
+						label: default_lang.Common.btn_update,
 						className: 'btn-primary btn-bot_settings_update',
 						callback: function(){
 							//console.log($('.trading_pair_coin_newprice').val())
@@ -4736,32 +4738,37 @@ function bot_screen_sellcoin_balance(sig) {
 			bot_screen_sellcoin_balance();
 		} else {
 			if (!data.error === false && data.error === 'coin is disabled') {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				var button_controls = `<br>
 				<span>
-					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">Enable Native</button>
-					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">Enable Electrum</button>
+					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
+					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
 				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')'+button_controls);
 				$('.trading_sellcoin_balance').html('Coin is disabled');
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
 			} else {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				//console.warn(data.coin)
 				var coin_mode = '';
 				if (data.coin.hasOwnProperty('electrum')) {
-					coin_mode = '<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="Electrum Mode"></i>'
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
-					coin_mode = '<i class="fa fa-shield" data-toggle="tooltip" data-placement="top" title="Native Mode"></i>'
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					coin_mode = `<i class="fa fa-shield" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_native}"></i>`
 				}
 				var button_controls = `<br>
 				<span>
-					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">Disable</button>
-					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">Receive</button>
-					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">Send</button>
-					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
+					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">${default_lang.Common.btn_disable}</button>
+					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_receive}</button>
+					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
+					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum')) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'rel';
 					electrum_coin_balance_data.coin = coin;
@@ -4769,6 +4776,7 @@ function bot_screen_sellcoin_balance(sig) {
 					electrum_coin_balance(electrum_coin_balance_data);
 					//$('.trading_sellcoin_balance').html(data.coin.balance + ' <span style="font-size: 60%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 				} else {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					if (data.coin.coin == 'KMD') {
 						var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + data.coin.zcredits + '</button>';
 					} else {
@@ -4828,27 +4836,31 @@ function bot_screen_coin_balance(sig) {
 			bot_screen_coin_balance();
 		} else {
 			if (!data.error === false && data.error === 'coin is disabled') {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				var button_controls = `<br>
 				<span>
-					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">Enable Native</button>
-					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">Enable Electrum</button>
+					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
+					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
 				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')'+button_controls);
 				$('.trading_coin_balance').html('Coin is disabled');
 			} else {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				var coin_mode = '';
 				//console.warn(data.coin)
 				if (data.coin.hasOwnProperty('electrum')) {
-					coin_mode = '<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="Electrum Mode"></i>'
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
-					coin_mode = '<i class="fa fa-shield" data-toggle="tooltip" data-placement="top" title="Native Mode"></i>'
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					coin_mode = `<i class="fa fa-shield" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_native}"></i>`
 				}
 				var button_controls = `<br>
 				<span>
-					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">Disable</button>
-					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">Receive</button>
-					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">Send</button>
-					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">Inventory</button>
+					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">${default_lang.Common.btn_disable}</button>
+					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_receive}</button>
+					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
+					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum')) {
@@ -4936,6 +4948,7 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 
 
 function check_swap_status_details(swap_status_data) {
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	console.log(swap_status_data);
 
 	CheckOrderBookFn(false);
@@ -4948,7 +4961,7 @@ function check_swap_status_details(swap_status_data) {
 
 	var options_holdon = {
 		theme:"sk-bounce",
-		message:'Please wait while getting swap status detail data...',
+		message: default_lang.Exchange.exchange_swapstatus_getting_swap_status_detail,
 		//backgroundColor:"#1847B1",
 		textColor:"white"
 	};
@@ -4974,7 +4987,8 @@ function check_swap_status_details(swap_status_data) {
 		console.log(swap_status_output_data);
 
 		if (!swap_status_output_data.error === false) {
-			toastr.error(swap_status_output_data.error, 'Status Notification');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(swap_status_output_data.error, default_lang.Exchange.exchange_swapstatus_toastr_title_status_notification);
 		}
 
 		if (!swap_status_output_data.userpass === false) {
@@ -4989,10 +5003,11 @@ function check_swap_status_details(swap_status_data) {
 				get_coin_info(selected_dICO_coin);
 			}
 		} else {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			result_answer = (swap_status_output_data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + swap_status_output_data.result + '</span></h4>';
 			alice_answer = '<img src="img/cryptologo/'+swap_status_output_data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(swap_status_output_data.alice).name + ' ('+swap_status_output_data.alice+')';
 			bob_answer = '<img src="img/cryptologo/'+swap_status_output_data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(swap_status_output_data.bob).name + ' ('+swap_status_output_data.bob+')';
-			iambob_answer = (swap_status_output_data.iambob == 0) ? 'Buyer' : 'Seller';
+			iambob_answer = (swap_status_output_data.iambob == 0) ? default_lang.Exchange.exchange_swapstatus_iambob_buyer : default_lang.Exchange.exchange_swapstatus_iambob_seller;
 
 			var time = new Date( swap_status_output_data.expiration *1000);
 			//var expiration = moment.unix(data.expiration);
@@ -5013,27 +5028,29 @@ function check_swap_status_details(swap_status_data) {
 
 			var simplified_dexdetail_tr = '';
 			if (swap_status_output_data.iambob == 0) {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				console.log("I'm Buyer.");
 				var total_sell_unit = parseFloat(swap_status_output_data.values[3])+parseFloat(swap_status_output_data.values[6]);
 				var single_unit_price = parseFloat(swap_status_output_data.srcamount) / parseFloat(total_sell_unit);
 				var price_per_bought_unit = parseFloat(total_sell_unit) / parseFloat(swap_status_output_data.srcamount);
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid in ' + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[6].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + swap_status_output_data.alice + ' paid:</b> ' + total_sell_unit.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' received:</b> ' + swap_status_output_data.srcamount.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + swap_status_output_data.alice + ' can buy:</b> ' + swap_status_output_data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid per ' + swap_status_output_data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + swap_status_output_data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_price_paid_in} ` + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_fee_paid_in} ` + swap_status_output_data.alice + ':</b> ' + swap_status_output_data.values[6].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_total} ` + swap_status_output_data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_paid}:</b> ` + total_sell_unit.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_received}:</b> ` + swap_status_output_data.srcamount.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + swap_status_output_data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_can_buy}:</b> ` + swap_status_output_data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_price_paid_per} ` + swap_status_output_data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + swap_status_output_data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
 			}
 
 			if (swap_status_output_data.iambob == 1) {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				console.log("I'm Seller.");
 				var total_sell_unit = parseFloat(swap_status_output_data.values[0])+parseFloat(swap_status_output_data.bobtxfee);
 				var units_sold_at_price = parseFloat(swap_status_output_data.values[3]) / parseFloat(total_sell_unit);
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' sold: </b> = ' + swap_status_output_data.values[0].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + swap_status_output_data.bob + ': </b> = ' + swap_status_output_data.bobtxfee + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + swap_status_output_data.bob + ' deducted: </b> = ' + total_sell_unit + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.alice + ' received: </b> = ' + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
-				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ' sold at price: </b> = ' + swap_status_output_data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_sold}: </b> = ` + swap_status_output_data.values[0].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_fee_paid_in} ` + swap_status_output_data.bob + ': </b> = ' + swap_status_output_data.bobtxfee + '</td></tr>';
+				simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_total} ` + swap_status_output_data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_deducted}: </b> = ` + total_sell_unit + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_received}: </b> = ` + swap_status_output_data.values[3].toFixed(8) + '</td></tr>';
+				simplified_dexdetail_tr += '<tr><td colspan=2><b>' + swap_status_output_data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_sold_at_price}: </b> = ` + swap_status_output_data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
 			}
 
 			var swap_status_details_bootbox = bootbox.dialog({
@@ -5041,10 +5058,10 @@ function check_swap_status_details(swap_status_data) {
 			//backdrop: true,
 			message: `
 					<div class="input-group col-sm-12">
-						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobdeposit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span><br>Seller Deposit</div></span>
-						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_alicepayment"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><br>Buyer Payment</div></span>
-						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobpayment"><span class="glyphicon glyphicon-random" aria-hidden="true"></span><br>Seller Payment</div></span>
-						<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>All Done!</div></span>
+						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobdeposit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_seller_deposit}</div></span>
+						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_alicepayment"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_buyer_payment}</div></span>
+						<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobpayment"><span class="glyphicon glyphicon-random" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_seller_payment}</div></span>
+						<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_all_done}</div></span>
 					</div>
 					<div class="input-group col-sm-12">
 						<span class="input-group-addon swapdetail_info"></span>
@@ -5053,70 +5070,70 @@ function check_swap_status_details(swap_status_data) {
 						<div class="col-sm-12">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title"><strong>Full Status</strong></h3>
-									<button class="btn btn-xs btn-default btn_swap_status_details_close" style="float: right; margin-right: -6px; margin-top: -20px">CLOSE</button>
-									<button class="btn btn-xs btn-warning btn_kickstart_stuck_trade" style="float: right; margin-right: 6px; margin-top: -20px">KICKSTART STUCK TRADE</button>
+									<h3 class="panel-title"><strong>${default_lang.Exchange.exchange_swapstatus_full_status}</strong></h3>
+									<button class="btn btn-xs btn-default btn_swap_status_details_close" style="float: right; margin-right: -6px; margin-top: -20px">${default_lang.Common.btn_close_caps}</button>
+									<button class="btn btn-xs btn-warning btn_kickstart_stuck_trade" style="float: right; margin-right: 6px; margin-top: -20px">${default_lang.Exchange.exchange_swapstatus_btn_kickstart_stuck_trade}</button>
 								</div>
 								<div class=""> <!-- panel-body -->
 									<table width="100%" class="table table-striped" style="margin-bottom: 0;">
 										<tr>
-											<td rowspan=5>Trade info</td>
-											<td>Quote ID</td>
+											<td rowspan=5>${default_lang.Exchange.exchange_swapstatus_td_trade_info}</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_quote_id}</td>
 											<td>` + swap_status_output_data.quoteid + `</td>
 										</tr>
 										<tr>
-											<td>Request ID</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_request_id}</td>
 											<td>` + swap_status_output_data.requestid + `</td>
 										</tr>
 										<tr>
-											<td>Trade id</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_trade_id}</td>
 											<td>` + swap_status_output_data.tradeid + `</td>
 										</tr>
 										<tr>
-											<td>Expires In</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_expires_in}</td>
 											<td>` + time + `</td>
 										</tr>
 										<tr>
-											<td>Source Amount</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_source_amount}</td>
 											<td>` + swap_status_output_data.srcamount + `</td>
 										</tr>
 										<tr>
-											<td rowspan=4>Buyer Info</td>
-											<td>Buyer Coin</td>
+											<td rowspan=4>${default_lang.Exchange.exchange_swapstatus_td_buyer_info}</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_coin}</td>
 											<td>` + alice_answer + `</td>
 										</tr>
 										<tr>
-											<td>Buyer ID</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_id}</td>
 											<td>` + swap_status_output_data.aliceid + `</td>
 										</tr>
 										<tr>
-											<td>Buyer Payment</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_payment}</td>
 											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.alice).explorer+swap_status_output_data.alicepayment+`'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
 										</tr>
 										<tr>
-											<td>Buyer Tx Fee</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_tx_fee}</td>
 											<td class="tbl_alicetxfee">` + swap_status_output_data.alicetxfee + `</td>
 										</tr>
 										<tr>
-											<td rowspan=4>Seller Info</td>
-											<td>Seller Coin</td>
+											<td rowspan=4>${default_lang.Exchange.exchange_swapstatus_td_seller_info}</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_coin}</td>
 											<td>` + bob_answer + `</td>
 										</tr>
 										<tr>
-											<td>Seller Deposit</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_deposit}</td>
 											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+swap_status_output_data.bobdeposit+`'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
 										</tr>
 										<tr>
-											<td>Seller Payment</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_payment}</td>
 											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.bob).explorer+swap_status_output_data.bobpayment+`'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
 										</tr>
 										<tr>
-											<td>Seller Tx Fee</td>
+											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_tx_fee}</td>
 											<td class="tbl_bobtxfee">` + swap_status_output_data.bobtxfee + `</td>
 										</tr>
 										<tr>
-											<td rowspan=8>Other Info</td>
-											<td colspan=2><b>You are:</b> ` + iambob_answer + `</td>
+											<td rowspan=8>${default_lang.Exchange.exchange_swapstatus_td_other_info}</td>
+											<td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_you_are}:</b> ` + iambob_answer + `</td>
 										</tr>
 										`+ simplified_dexdetail_tr +`
 										<tr>
@@ -5165,11 +5182,13 @@ function check_swap_status_details(swap_status_data) {
 					console.log('btn_kickstart_stuck_trade clicked');
 					var remove_finished_swap_file_status = ShepherdIPC({"command":"remove_finished_swap_file", "requestid":swap_status_output_data.requestid, "quoteid":swap_status_output_data.quoteid});
 					if (remove_finished_swap_file_status == 'removed') {
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						console.log(`${swap_status_output_data.requestid}-${swap_status_output_data.quoteid}.finished file removed.`);
-						toastr.success(`${swap_status_output_data.requestid}-${swap_status_output_data.quoteid}.finished file removed.`,'Swap Status Update');
+						toastr.success(`${swap_status_output_data.requestid}-${swap_status_output_data.quoteid}.finished ${default_lang.Exchange.exchange_swapstatus_kickstart_file_removed}`,default_lang.Exchange.exchange_swapstatus_toastr_title_swap_status_update);
 					} else if (remove_finished_swap_file_status == 'error') {
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						console.log(`Failed to remove ${swap_status_output_data.requestid}-${swap_status_output_data.quoteid} file`);
-						toastr.error(`Failed to remove ${swap_status_output_data.requestid}-${swap_status_output_data.quoteid} file`,'Swap Status Update');
+						toastr.error(`${default_lang.Exchange.exchange_swapstatus_kickstart_failed_to_remove} ${swap_status_output_data.requestid}-${swap_status_output_data.quoteid} ${default_lang.Exchange.exchange_swapstatus_kickstart_failed_to_remove_file}`,default_lang.Exchange.exchange_swapstatus_toastr_title_swap_status_update);
 					}
 				});
 
@@ -5204,26 +5223,32 @@ function check_swap_status_details(swap_status_data) {
 						}
 
 						if(dataforblinker.bobpayment !== '0000000000000000000000000000000000000000000000000000000000000000'){
-							$('.swapdetail_info').html('<h3><i class="fa fa-handshake-o"></i> Barter Completed!! Buyer Received Funds!</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3><i class="fa fa-handshake-o"></i> ${default_lang.Exchange.exchange_swapstatus_state_barter_completed}</h3>`);
 							blinker(false);
 						} else if (current_sentflag == 'alicespend') {
-							$('.swapdetail_info').html('<h3>Buyer Received Funds.</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3>${default_lang.Exchange.exchange_swapstatus_state_buyer_received_funds}</h3>`);
 							$('.swapdetail_alicespend').fadeOut(500);
 							$('.swapdetail_alicespend').fadeIn(500);
 						} else if (current_sentflag == 'bobpayment') {
-							$('.swapdetail_info').html('<h3>Seller Sent Payment.</h3><h3> Waiting for Buyer to confirm Payment..</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3>${default_lang.Exchange.exchange_swapstatus_state_seller_sent_payment}</h3>`);
 							$('.swapdetail_alicespend').fadeOut(500);
 							$('.swapdetail_alicespend').fadeIn(500);
 						} else if (current_sentflag == 'alicepayment') {
-							$('.swapdetail_info').html('<h3>Buyer Payment Made. Waiting for Seller\'s Payment.</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3>${default_lang.Exchange.exchange_swapstatus_state_buyer_payment_made}</h3>`);
 							$('.swapdetail_bobpayment').fadeOut(500);
 							$('.swapdetail_bobpayment').fadeIn(500);
 						} else if (current_sentflag == 'bobdeposit') {
-							$('.swapdetail_info').html('<h3>Seller Deposited his security. Waiting for Buyer\'s Payment.</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3>${default_lang.Exchange.exchange_swapstatus_state_seller_deposited_his_security}</h3>`);
 							$('.swapdetail_alicepayment').fadeOut(500);
 							$('.swapdetail_alicepayment').fadeIn(500);
 						} else if(current_sentflag == 'myfee'){
-							$('.swapdetail_info').html('<h3>My BarterDEX fee has been paid.</h3>');
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+							$('.swapdetail_info').html(`<h3>${default_lang.Exchange.exchange_swapstatus_state_my_barterdex_fee_paid}</h3>`);
 							$('.swapdetail_bobdeposit').fadeOut(500);
 							$('.swapdetail_bobdeposit').fadeIn(500);
 						}
@@ -5348,9 +5373,10 @@ function check_swap_status(sig) {
 				//console.log(index);
 				//console.log(val);
 				if(!val.error === false) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var exchange_swap_status_tr = '';
 					exchange_swap_status_tr += '<tr>';
-					exchange_swap_status_tr += '<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> error</div></td>';
+					exchange_swap_status_tr += `<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> ${default_lang.SwapStatus.swapstatus_status_error}</div></td>`;
 					exchange_swap_status_tr += '<td>-</td>';
 					//exchange_swap_status_tr += '<td>-</td>';
 					exchange_swap_status_tr += '<td>-</td>';
@@ -5375,6 +5401,7 @@ function check_swap_status(sig) {
 					}
 
 					if(val.status !== 'realtime') {
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						var current_sentflag = get_swapstatus_step(val);
 						if(val.bobpayment !== '0000000000000000000000000000000000000000000000000000000000000000'){
 							status_color = 'color: #43a047;';
@@ -5395,22 +5422,23 @@ function check_swap_status(sig) {
 							status_color = 'color: #ef6c00;';
 							swap_status = '<span class="glyphicon glyphicon-random" aria-hidden="true"></span>';
 						}
-						var pair_and_time = `<br><b>Pair:</b> ${aliceval}/${bobval}<br>${fintime}`;
+						var pair_and_time = `<br><b>${default_lang.SwapStatus.swapstatus_pair}:</b> ${aliceval}/${bobval}<br>${fintime}`;
 					} else {
 						var status_color = '';
 						var swap_status = '<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>';
 						var pair_and_time = ``;
 					}
 
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var exchange_swap_status_tr = '';
 					exchange_swap_status_tr += '<tr>';
 					exchange_swap_status_tr += '<td><div style="'+status_color+' font-size: 15px;">' + swap_status + ' ' + val.status +'</div></td>';
-					exchange_swap_status_tr += `<td><b>Quote ID:</b> ${val.quoteid}<br>
-													<b>Request ID:</b> ${val.requestid}
+					exchange_swap_status_tr += `<td><b>${default_lang.SwapStatus.swapstatus_quote_id}:</b> ${val.quoteid}<br>
+													<b>${default_lang.SwapStatus.swapstatus_request_id}:</b> ${val.requestid}
 													${pair_and_time}</td>`;
 					//exchange_swap_status_tr += '<td>' + val.quoteid + '</td>';
 					//exchange_swap_status_tr += '<td>' + val.requestid + '</td>';
-					exchange_swap_status_tr += '<td><button class="btn btn-default swapstatus_details" data-quoteid="' + val.quoteid + '" data-requestid="' + val.requestid + '">Details</button></td>';
+					exchange_swap_status_tr += '<td><button class="btn btn-default swapstatus_details" data-quoteid="' + val.quoteid + '" data-requestid="' + val.requestid + `">${default_lang.SwapStatus.swapstatus_btn_details}</button></td>`;
 					exchange_swap_status_tr += '</tr>';
 					$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
 				}
@@ -5475,17 +5503,20 @@ function coloredPubkey(pubkey){
 function openTradeDetails(index, total) {
 	for (let i = 0; i < total; i++) {
 		if (i !== index) {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$(`.trade-details-${i}`).hide();
-			$(`.trade-history-toggle-${i}`).html('Show details');
+			$(`.trade-history-toggle-${i}`).html(default_lang.TradeHistory.tradehistory_btn_show_history);
 		}
 	}
 
 	if ($(`.trade-details-${index}`).is(":visible")) {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$(`.trade-details-${index}`).hide();
-		$(`.trade-history-toggle-${index}`).html('Show details');
+		$(`.trade-history-toggle-${index}`).html(default_lang.TradeHistory.tradehistory_btn_show_history);
 	} else {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$(`.trade-details-${index}`).show();
-		$(`.trade-history-toggle-${index}`).html('Hide details');
+		$(`.trade-history-toggle-${index}`).html(default_lang.TradeHistory.tradehistory_btn_hide_history);
 	}
 }
 
@@ -5532,21 +5563,23 @@ function constructTradesHistory() {
 		let out = '';
 		let tradesCounter = 0;
 
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		if (data &&
 				data.swaps &&
 				data.swaps.length) {
-			out += `<h4 style="margin-bottom: 35px">Total trades: ${data.swaps.length}</h4>`;
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			out += `<h4 style="margin-bottom: 35px">${default_lang.TradeHistory.tradehistory_total_trades}: ${data.swaps.length}</h4>`;
 
 			let tradesOut = `
 				<table class="trades-history-table">
 					<tr>
 						<th>#</th>
-						<th>Direction</th>
-						<th>Pair</th>
-						<th>Sent</th>
-						<th>Received</th>
-						<th>Rate</th>
-						<th>Details</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_direction}</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_pair}</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_sent}</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_received}</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_rate}</th>
+						<th>${default_lang.TradeHistory.tradehistory_th_details}</th>
 					</tr>
 				`;
 			const trades = data.swaps;
@@ -5556,43 +5589,47 @@ function constructTradesHistory() {
 
 				if (data.alice &&
 						data.bob) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					tradesCounter++;
 					result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
 					alice_answer = '<img src="img/cryptologo/'+data.alice.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.alice).name + ' ('+data.alice+')';
 					bob_answer = '<img src="img/cryptologo/'+data.bob.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(data.bob).name + ' ('+data.bob+')';
-					iambob_answer = (data.iambob == 0) ? 'Buyer' : 'Seller';
+					iambob_answer = (data.iambob == 0) ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy;
 
 					var time = new Date( data.expiration * 1000);
 
 					var simplified_dexdetail_tr = '';
 					if (data.iambob == 0) {
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						var total_sell_unit = parseFloat(data.values[3])+parseFloat(data.values[6]);
 						var single_unit_price = parseFloat(data.srcamount) / parseFloat(total_sell_unit);
 						var price_per_bought_unit = parseFloat(total_sell_unit) / parseFloat(data.srcamount);
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid in ' + data.alice + ':</b> ' + data.values[3].toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.alice + ':</b> ' + data.values[6].toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.alice + ' paid:</b> ' + total_sell_unit.toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' received:</b> ' + data.srcamount.toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + data.alice + ' can buy:</b> ' + data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Price paid per ' + data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_price_paid_in} ` + data.alice + ':</b> ' + data.values[3].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_fee_paid_in} ` + data.alice + ':</b> ' + data.values[6].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_total} ` + data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_paid}:</b> ` + total_sell_unit.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_received}:</b> ` + data.srcamount.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>1 ' + data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_can_buy}:</b> ` + data.srcamount.toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ~' + single_unit_price.toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_price_paid_per} ` + data.bob + ':</b> ' + total_sell_unit.toFixed(8) + ' / ' + data.srcamount.toFixed(8) + ' = ' + price_per_bought_unit.toFixed(8) + '</td></tr>';
 					}
 
 					if (data.iambob == 1) {
+						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						var total_sell_unit = parseFloat(data.values[0])+parseFloat(data.bobtxfee);
 						var units_sold_at_price = parseFloat(data.values[3]) / parseFloat(total_sell_unit);
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold: </b> = ' + data.values[0].toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Fee paid in ' + data.bob + ': </b> = ' + data.bobtxfee + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>Total ' + data.bob + ' deducted: </b> = ' + total_sell_unit + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.alice + ' received: </b> = ' + data.values[3].toFixed(8) + '</td></tr>';
-						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ' sold at price: </b> = ' + data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_sold}: </b> = ` + data.values[0].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_fee_paid_in} ` + data.bob + ': </b> = ' + data.bobtxfee + '</td></tr>';
+						simplified_dexdetail_tr += `<tr><td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_total} ` + data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_deducted}: </b> = ` + total_sell_unit + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.alice + ` ${default_lang.Exchange.exchange_swapstatus_td_received}: </b> = ` + data.values[3].toFixed(8) + '</td></tr>';
+						simplified_dexdetail_tr += '<tr><td colspan=2><b>' + data.bob + ` ${default_lang.Exchange.exchange_swapstatus_td_sold_at_price}: </b> = ` + data.values[3].toFixed(8) + ' / ' + total_sell_unit.toFixed(8) + ' = ' + units_sold_at_price + '</td></tr>';
 					}
 
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					tradesOut += `
 						<tr>
 							<td>${i + 1}</td>
 							<td>
 								<i class="fa fa-arrow-${data.iambob == 0 ? 'right col-green' : 'left col-red'}"></i>&nbsp;
-								<span>${ data.iambob == 0 ? 'Buy' : 'Sell' }</span>
+								<span>${ data.iambob == 0 ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_bought : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_sold }</span>
 							</td>
 							<td>
 								<span class="${data.iambob == 0 ? '' : 'hide'}">${data.alice} &nbsp;<i class="fa fa-exchange"></i>&nbsp; ${data.bob}</span>
@@ -5619,17 +5656,17 @@ function constructTradesHistory() {
 								<span class="${data.iambob == 0 ? 'hide' : ''}">${units_sold_at_price ? formatValue(units_sold_at_price) : ''} (${formatValue(data.values[3])} / ${formatValue(total_sell_unit)})</span>
 							</td>
 							<td>
-								<button class="btn btn-gray trade-history-toggle-${i}" onClick="openTradeDetails(${i}, ${trades.length})">Show details</buton>
+								<button class="btn btn-gray trade-history-toggle-${i}" onClick="openTradeDetails(${i}, ${trades.length})">${default_lang.TradeHistory.tradehistory_btn_show_history}</buton>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="7">
 								<div class="trade-details-${i}" style="display: none; margin-top: 15px">
 							<div class="input-group col-sm-12">
-								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobdeposit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span><br>Seller Deposit</div></span>
-								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_alicepayment"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><br>Buyer Payment</div></span>
-								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobpayment"><span class="glyphicon glyphicon-random" aria-hidden="true"></span><br>Seller Payment</div></span>
-								<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>All Done!</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobdeposit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_seller_deposit}</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_alicepayment"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_buyer_payment}</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px;"><div class="swapdetail_bobpayment"><span class="glyphicon glyphicon-random" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_seller_payment}</div></span>
+								<span class="input-group-addon" style="font-size: 20px; border: 0px; text-align: center;"><div class="swapdetail_alicespend"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><br>${default_lang.Exchange.exchange_swapstatus_statusbar_all_done}</div></span>
 							</div>
 							<div class="input-group col-sm-12">
 								<span class="input-group-addon swapdetail_info"></span>
@@ -5638,68 +5675,68 @@ function constructTradesHistory() {
 								<div class="col-sm-12">
 									<div class="panel panel-default">
 										<div class="panel-heading">
-											<h3 class="panel-title"><strong>Full Status</strong></h3>
+											<h3 class="panel-title"><strong>${default_lang.Exchange.exchange_swapstatus_full_status}</strong></h3>
 										</div>
 										<div class="">
 											<table width="100%" class="table table-striped" style="margin-bottom: 0;">
 												<tr>
-													<td rowspan=5>Trade info</td>
-													<td>Quote ID</td>
+													<td rowspan=5>${default_lang.Exchange.exchange_swapstatus_td_trade_info}</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_quote_id}</td>
 													<td>` + data.quoteid + `</td>
 												</tr>
 												<tr>
-													<td>Request ID</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_request_id}</td>
 													<td>` + data.requestid + `</td>
 												</tr>
 												<tr>
-													<td>Trade id</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_trade_id}</td>
 													<td>` + data.tradeid + `</td>
 												</tr>
 												<tr>
-													<td>Expires In</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_expires_in}</td>
 													<td>` + time + `</td>
 												</tr>
 												<tr>
-													<td>Source Amount</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_source_amount}</td>
 													<td>` + data.srcamount + `</td>
 												</tr>
 												<tr>
-													<td rowspan=4>Buyer Info</td>
-													<td>Buyer Coin</td>
+													<td rowspan=4>${default_lang.Exchange.exchange_swapstatus_td_buyer_info}</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_coin}</td>
 													<td>` + alice_answer + `</td>
 												</tr>
 												<tr>
-													<td>Buyer ID</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_id}</td>
 													<td>` + data.aliceid + `</td>
 												</tr>
 												<tr>
-													<td>Buyer Payment</td>
-													<td class="tbl_alicepayment">` + data.alicepayment + `</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_payment}</td>
+													<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(data.alice).explorer+data.alicepayment+`'); return false;">` + data.alicepayment + `</a></td>
 												</tr>
 												<tr>
-													<td>Buyer Tx Fee</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_tx_fee}</td>
 													<td class="tbl_alicetxfee">` + data.alicetxfee + `</td>
 												</tr>
 												<tr>
-													<td rowspan=4>Seller Info</td>
-													<td>Seller Coin</td>
+													<td rowspan=4>${default_lang.Exchange.exchange_swapstatus_td_seller_info}</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_coin}</td>
 													<td>` + bob_answer + `</td>
 												</tr>
 												<tr>
-													<td>Seller Deposit</td>
-													<td class="tbl_bobdeposit">` + data.bobdeposit + `</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_deposit}</td>
+													<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('`+return_coin_details(data.bob).explorer+data.bobdeposit+`'); return false;">` + data.bobdeposit + `</a></td>
 												</tr>
 												<tr>
-													<td>Seller Payment</td>
-													<td class="tbl_bobpayment">` + data.bobpayment + `</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_payment}</td>
+													<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+return_coin_details(data.bob).explorer+data.bobpayment+`'); return false;">` + data.bobpayment + `</a></td>
 												</tr>
 												<tr>
-													<td>Seller Tx Fee</td>
+													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_tx_fee}</td>
 													<td class="tbl_bobtxfee">` + data.bobtxfee + `</td>
 												</tr>
 												<tr>
-													<td rowspan=7>Other Info</td>
-													<td colspan=2><b>You are:</b> ` + iambob_answer + `</td>
+													<td rowspan=8>${default_lang.Exchange.exchange_swapstatus_td_other_info}</td>
+													<td colspan=2><b>${default_lang.Exchange.exchange_swapstatus_td_you_are}:</b> ` + iambob_answer + `</td>
 												</tr>
 												`+ simplified_dexdetail_tr +`
 											</table>
@@ -5718,10 +5755,12 @@ function constructTradesHistory() {
 			if (tradesCounter > 0) {
 				$('#trades-history-content').html(out + tradesOut);
 			} else {
-				$('#trades-history-content').html('No trade history or swap(s) still in progress');
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				$('#trades-history-content').html(default_lang.TradeHistory.tradehistory_no_trade_history);
 			}
 		} else {
-			$('#trades-history-content').html('No trade history or swap(s) still in progress');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			$('#trades-history-content').html(default_lang.TradeHistory.tradehistory_no_trade_history);
 		}
 	});
 }
