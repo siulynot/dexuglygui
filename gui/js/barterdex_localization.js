@@ -6,7 +6,13 @@ function BarterDEXInitLang() {
 		ShepherdIPC({"command":"reset_settings"});
 		BarterDEXDefaultLangFn('en_US');
 	} else {
-		BarterDEXDefaultLangFn(barterDEX_settings.deflang);
+		if (barterDEX_settings.deflang == 'tlh_UNI') {
+			$('body').css('font-family','piqad');
+			BarterDEXDefaultLangFn(barterDEX_settings.deflang);
+		} else {
+			$('body').css('font-family',"'Open Sans', 'Helvetica Neue', Helvetica, sans-serif");
+			BarterDEXDefaultLangFn(barterDEX_settings.deflang);
+		}
 	}
 }
 

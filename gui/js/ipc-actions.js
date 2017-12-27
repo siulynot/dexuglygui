@@ -387,7 +387,13 @@ $('.dexsettings-btn').click(function(e){
 					console.log(barterDEX_settings);
 					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
 					BarterDEXSettingsFn();
-					BarterDEXDefaultLangFn(selected_deflang);
+					if (barterDEX_settings.deflang == 'tlh_UNI') {
+						$('body').css('font-family','piqad');
+						BarterDEXDefaultLangFn(selected_deflang);
+					} else {
+						$('body').css('font-family',"'Open Sans', 'Helvetica Neue', Helvetica, sans-serif");
+						BarterDEXDefaultLangFn(selected_deflang);
+					}
 					toastr.info(`${default_lang.Settings.settings_toastr_settings_update_processed}`, `${default_lang.Settings.settings_toastr_title}`);
 				}
 			}
