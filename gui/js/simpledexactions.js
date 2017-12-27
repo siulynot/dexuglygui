@@ -2860,7 +2860,7 @@ function manual_buy_sell(mt_data) {
 			}
 			if (mt_output_data.error == 'not enough funds') {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, 'Bot Info');
+				//toastr.info(mt_output_data.error + '<br>Balance: ' + mt_output_data.balance + ' ' + mt_output_data.coin, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
@@ -2880,9 +2880,9 @@ function manual_buy_sell(mt_data) {
 
 				/*if (mt_output_data.withdraw.complete === true) {
 					//bot_sendrawtx(mt_output_data);
-					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', 'Bot Info');
+					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				} else {
-					toastr.error('No withdraw info found. Please try again with lower buy amount.', 'Bot Info');
+					toastr.error('No withdraw info found. Please try again with lower buy amount.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				}*/
 			}
 		} else if (mt_output_data.result == 'success') {
@@ -4017,22 +4017,23 @@ function check_bot_list(sig) {
 						var max_min_val = val.maxprice;
 					}
 
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var exchange_bot_list_tr = '';
 					exchange_bot_list_tr += '<tr>';
 						//exchange_bot_list_tr += '<td>'+val.botid+'</td>';
 						exchange_bot_list_tr += `<td style="font-size: 14px; font-weight: 200;">
 													<span><font style="font-weight: 400;">`+val.name+`</font></span><br>
-													<span><font style="font-weight: 400;">Max Price:</font> `+ max_min_val +` `+val.rel+`</span><br>
-													<span><font style="font-weight: 400;">Total Spending:</font> `+val.totalrelvolume+` `+val.rel+`</span>
+													<span><font style="font-weight: 400;">${default_lang.Exchange.exchange_tradingbot_td_max_price}:</font> `+ max_min_val +` `+val.rel+`</span><br>
+													<span><font style="font-weight: 400;">${default_lang.Exchange.exchange_tradingbot_td_total_spending}:</font> `+val.totalrelvolume+` `+val.rel+`</span>
 												</td>`;
 						//exchange_bot_list_tr += '<td>'+val.action+'</td>';
 						//exchange_bot_list_tr += '<td>'+max_min_val+'</td>';
 						//exchange_bot_list_tr += '<td>'+val.totalrelvolume+'</td>';
 						exchange_bot_list_tr += `<td>
 													<div style="font-size: 14px; font-weight: 200;">
-													<span><font style="font-weight: 400;">Total to Buy:</font> `+val.totalbasevolume+` `+val.base+`</span><br>
-													<!--<span><font style="font-weight: 400;">Total Bought:</font> `+ bot_progress_data.total.toFixed(8) +` `+val.base+`</span><br>-->
-													<span><font style="font-weight: 400;">Trade Attempts:</font> `+val.trades.length+`</span>
+													<span><font style="font-weight: 400;">${default_lang.Exchange.exchange_tradingbot_td_total_to_buy}:</font> `+val.totalbasevolume+` `+val.base+`</span><br>
+													<!--<span><font style="font-weight: 400;">${default_lang.Exchange.exchange_tradingbot_td_total_bought}:</font> `+ bot_progress_data.total.toFixed(8) +` `+val.base+`</span><br>-->
+													<span><font style="font-weight: 400;">${default_lang.Exchange.exchange_tradingbot_td_trade_attempts}:</font> `+val.trades.length+`</span>
 													</div>
 												</td>`;
 						exchange_bot_list_tr += '<td style="text-align: center;"><div class="btn-group"><button class="btn btn-sm btn-info btn_bot_status" data-botid="' + val.botid + '" data-action="status"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button><button class="btn btn-sm btn-success btn_bot_resume" data-botid="' + val.botid + '" data-action="resume" ' + disable_resume_btn + '><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button><button class="btn btn-sm btn-warning btn_bot_pause" data-botid="' + val.botid + '" data-action="pause" ' + disable_pause_btn + '><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button><button class="btn btn-sm btn-danger btn_bot_stop" data-botid="' + val.botid + '" data-action="stop" ' + disable_stop_btn + '><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button></div></td>';
@@ -4085,39 +4086,44 @@ function buy_sell_precheck(bot_data){
 			if (!data.error === true && data.error !== 'coin is disabled') {
 				toastr.error(data.error, 'Order precheck info');
 				if (data.coin.txfee >= 100000) {
-					bootbox.alert("Bitcoin Transaction Fee is too high <b>"+ data.coin.txfee / 100000000 + "</b><br> Due to such high BTC transaction fee this order is being stopped to process, since it may affect the completion of this order. Please try again when Bitcoin transaction fee is lower.");
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					bootbox.alert(`${default_lang.Exchange.exchange_precheck_btc_tx_fee_too_high_100k_01} <b>${data.coin.txfee / 100000000}</b><br> ${default_lang.Exchange.exchange_precheck_btc_tx_fee_too_high_100k_02}`);
 					return;
 				} else if (data.coin.txfee >= 50000) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					bootbox.confirm({
-						message: "Bitcoin Transaction Fee is high <b>"+ data.coin.txfee / 100000000 + "</b><br>It is not recommended to go with your order with such high fees. It may take longer to confirm the transaction and that may affect your order completion. Are you sure you want to continue?",
+						message: `${default_lang.Exchange.exchange_precheck_btc_tx_high_50k_01} <b>${data.coin.txfee / 100000000}</b><br>${default_lang.Exchange.exchange_precheck_btc_tx_high_50k_02}`,
 						buttons: {
 							confirm: {
-								label: 'Yes',
+								label: default_lang.Common.yes_small,
 								className: 'btn-success'
 							},
 							cancel: {
-								label: 'No',
+								label: default_lang.Common.no_small,
 								className: 'btn-danger'
 							}
 						},
 						callback: function (result) {
 							console.log('This was logged in the callback: ' + result);
+							var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 							if (result == true) {
-								toastr.success('Okay! Proceeding with your order.',`${default_lang.Exchange.exchange_toastr_order_title}`);
+								toastr.success(`${default_lang.Exchange.exchange_precheck_okay_proceeding_with_your_order}`,`${default_lang.Exchange.exchange_toastr_order_title}`);
 								if (bot_or_manual == 'tradebot') {
 									bot_buy_sell(bot_data);
 								} else if (bot_or_manual == 'trademanual') {
 									manual_buy_sell(bot_data);
 								}
 							} else {
-								toastr.info('Your oder has been stopped to process.', `${default_lang.Exchange.exchange_toastr_order_title}`);
+								var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+								toastr.info(`${default_lang.Exchange.exchange_precheck_your_order_has_been_stopped_to_process}`, `${default_lang.Exchange.exchange_toastr_order_title}`);
 								return;
 							}
 						}
 					});
 				} else {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					console.log("BTC transaction fee seems OK. Proceeding with trade.")
-					toastr.success('BTC transaction fee seems OK. Proceeding with trade.', `${default_lang.Exchange.exchange_toastr_order_title}`);
+					toastr.success(`${default_lang.Exchange.exchange_precheck_btc_tx_fee_seems_ok}`, `${default_lang.Exchange.exchange_toastr_order_title}`);
 					if (bot_or_manual == 'tradebot') {
 						bot_buy_sell(bot_data);
 					} else if (bot_or_manual == 'trademanual') {
@@ -4129,8 +4135,9 @@ function buy_sell_precheck(bot_data){
 			}
 		});
 	} else {
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		console.log("Trading pair doesn't have BTC in it. Precheck done.")
-		toastr.success('Placing Order', `${default_lang.Exchange.exchange_toastr_order_title}`);
+		toastr.success(`${default_lang.Exchange.exchange_precheck_placing_order}`, `${default_lang.Exchange.exchange_toastr_order_title}`);
 		if (bot_or_manual == 'tradebot') {
 			bot_buy_sell(bot_data);
 		} else if (bot_or_manual == 'trademanual') {
@@ -4182,11 +4189,12 @@ function bot_buy_sell(bot_data) {
 		$('.trading_pair_coin_volume').val('');
 		$('.relvol_basevol').html('');
 
+		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		if (!bot_output_data.error === false) {
-			toastr.error(bot_output_data.error, 'Bot Info');
+			toastr.error(bot_output_data.error, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 			if (bot_output_data.error == 'not enough funds') {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-				//toastr.info(bot_output_data.error + '<br>Balance: ' + bot_output_data.balance + ' ' + bot_output_data.coin, 'Bot Info');
+				//toastr.info(bot_output_data.error + '<br>Balance: ' + bot_output_data.balance + ' ' + bot_output_data.coin, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				bootbox.alert({
 					backdrop: true,
 					onEscape: true,
@@ -4205,14 +4213,17 @@ function bot_buy_sell(bot_data) {
 				console.log(JSON.stringify(bot_output_data))
 
 				if (bot_output_data.withdraw.complete === true) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					bot_sendrawtx(bot_output_data);
-					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', 'Bot Info');
+					toastr.success(`${default_lang.Exchange.exchange_botbuysell_executed_auto_split_funds}`, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				} else {
-					toastr.error('No withdraw info found. Please try again with lower buy amount.', 'Bot Info');
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					toastr.error(`${default_lang.Exchange.exchange_botbuysell_no_withdraw_info_found}`, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				}
 			}
 		} else if (bot_output_data.result == 'success') {
-			toastr.success(bot_output_data.name + ' started <br> Bot ID: ' + bot_output_data.botid, 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.success(bot_output_data.name + ' started <br> Bot ID: ' + bot_output_data.botid, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -4255,14 +4266,16 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				toastr.error(parsed_bot_sendrawtx_output_data.error.message, default_lang.Portfolio.portfolio_toastr_title_tx_info);
 			} else if (parsed_bot_sendrawtx_output_data.result == null) {
-				bootbox.alert('<p>Error making withdraw transaction: </p><br>' + JSON.stringify(parsed_bot_sendrawtx_output_data.error, null, 2));
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				bootbox.alert(`<p>${default_lang.Exchange.exchange_sendrawtx_error_making_withdraw_tx}: </p><br>` + JSON.stringify(parsed_bot_sendrawtx_output_data.error, null, 2));
 			} else if (parsed_bot_sendrawtx_output_data.result == 'success') {
-				toastr.info('Low no. of UTXOs<br>Please try again in 1 Minute.', 'Transaction Status');
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				toastr.info(`${default_lang.Exchange.exchange_sendrawtx_low_no_of_utxos_01}<br>${default_lang.Exchange.exchange_sendrawtx_low_no_of_utxos_02}`, 'Transaction Status');
 			}
 		} catch(e) {
 			console.log(e);
-
-			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
 				<a href="#" onclick="shell.openExternal('`+return_coin_details(coin).explorer+bot_sendrawtx_output_data+`'); return false;">` + bot_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
@@ -4304,9 +4317,11 @@ function bot_stop_pause_resume(bot_data) {
 		console.log(data);
 
 		if (!data.error === false) {
-			toastr.error(data.error, 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(data.error, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		} else if (data.result == 'success') {
-			toastr.success('Bot ID: ' + bot_data.botid + ' ' + action_result, 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.success('Bot ID: ' + bot_data.botid + ' ' + action_result, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -4338,9 +4353,11 @@ function bot_settings(bot_data) {
 		console.log(data);
 
 		if (!data.error === false) {
-			toastr.error(data.error, 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(data.error, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		} else if (data.result == 'success') {
-			toastr.success('Bot ID: ' + bot_data.botid + ' Updateded', 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.success('Bot ID: ' + bot_data.botid + ' Updateded', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -4369,9 +4386,12 @@ function bot_status(bot_data) {
 		console.log(data);
 
 		if (!data.error === false) {
-			toastr.error(data.error, 'Bot Info');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(data.error, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		} else if (data.result == 'success') {
 
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			
 			var max_min = null;
 			var max_min_val = null;
 			if (!data.minprice === false){
@@ -4659,7 +4679,7 @@ function bot_status(bot_data) {
 
 			});
 
-			//toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', 'Bot Info');
+			//toastr.success('Bot ID: ' + bot_data.botid + ' ' + bot_data.action + ' presented.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
