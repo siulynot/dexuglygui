@@ -5860,14 +5860,16 @@ function getZeroConfDepositHistory(){
 		//console.log(val);
 
 		if(!val.error === false) {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var zeroconf_deposits_history_tr = '';
 			zeroconf_deposits_history_tr += '<tr>';
 			//zeroconf_deposits_history_tr += '<td>' + index + '</td>';
-			zeroconf_deposits_history_tr += '<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> error</div></td>';
+			zeroconf_deposits_history_tr += `<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> ${default_lang.ZeroConfirmation.zeroconf_history_td_error}</div></td>`;
 			//zeroconf_deposits_history_tr += '<td>-</td>';
 			zeroconf_deposits_history_tr += '</tr>';
 			$('.zeroconf_deposits_history_tbl tbody').append(zeroconf_deposits_history_tr);
 		} else {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 
 			var expiration_time = new Date( val.expiration *1000);
 
@@ -5875,10 +5877,10 @@ function getZeroConfDepositHistory(){
 			zeroconf_deposits_history_tr += '<tr>';
 			//zeroconf_deposits_history_tr += '<td>' + index + '</td>';
 			zeroconf_deposits_history_tr += `<td>
-											<b>Address:</b> ${val.address}<br>
-											<b>Deposit:</b> ${val.deposit} KMD<br>
-											<b>Expiration:</b> ${expiration_time}<br>
-											<b>Transaction ID:</b> <a class="zconf_deposit_txid_link" href="#" data-txid="${val.txid}">Open in Explorer</a>
+											<b>${default_lang.ZeroConfirmation.zeroconf_history_td_address}:</b> ${val.address}<br>
+											<b>${default_lang.ZeroConfirmation.zeroconf_history_td_deposit}:</b> ${val.deposit} KMD<br>
+											<b>${default_lang.ZeroConfirmation.zeroconf_history_td_expiration}:</b> ${expiration_time}<br>
+											<b>${default_lang.ZeroConfirmation.zeroconf_history_td_txid}:</b> <a class="zconf_deposit_txid_link" href="#" data-txid="${val.txid}">${default_lang.ZeroConfirmation.zeroconf_history_td_open_in_explorer}</a>
 											</td>`;
 			/*zeroconf_deposits_history_tr += `<td><button class="btn btn-xs btn-default zconf_deposit_details" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="display: none;">Details</button>
 												<button class="btn btn-xs btn-success zconf_deposit_claim" data-address="` + val.address + `" data-expiration="` + val.expiration + `" style="margin: 3px;">Claim Deposit</button>
@@ -5915,15 +5917,16 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 		var update_deposit_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_deposit_data),"type":"deposit"}});
 		console.log(update_deposit_log_file);
 		if (!zconf_deposit_data.error === false) {
-			toastr.error(zconf_deposit_data.error, 'InstantDEX Notification');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(zconf_deposit_data.error, default_lang.ZeroConfirmation.zeroconf_toastr_title_instantdex_notification);
 		}
 		if (zconf_deposit_data.result == 'success') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var zconf_depoit_bootbox = bootbox.dialog({
-				title: 'InstantDEX security deposit sent!',
-				message: `<b>Address: </b> ${zconf_deposit_data.address}<br>
-						<b>deposit: </b> ${zconf_deposit_data.deposit}<br>
-						<b>expiration: </b> ${zconf_deposit_data.expiration}<br>
+				title: default_lang.ZeroConfirmation.zeroconf_deposit_security_deposit_sent,
+				message: `<b>${default_lang.ZeroConfirmation.zeroconf_history_td_address}: </b> ${zconf_deposit_data.address}<br>
+						<b>${default_lang.ZeroConfirmation.zeroconf_history_td_deposit}: </b> ${zconf_deposit_data.deposit}<br>
+						<b>${default_lang.ZeroConfirmation.zeroconf_history_td_expiration}: </b> ${zconf_deposit_data.expiration}<br>
 						<a href="#" class="zconf_deposit_txid_bootbox" data-txid="${zconf_deposit_data.txid}">` + zconf_deposit_data.txid + `</a>`,
 				closeButton: false,
 				size: 'medium',
@@ -5968,16 +5971,17 @@ function ZeroConfClaim() {
 		var update_claim_log_file = ShepherdIPC({"command":"update_zeroconf_log", "data":{"logdata": JSON.stringify(zconf_claim_data),"type":"claim"}});
 		console.log(update_claim_log_file);
 		if (!zconf_claim_data.error === false) {
-			toastr.error(zconf_claim_data.error, 'InstantDEX Notification');
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+			toastr.error(zconf_claim_data.error, default_lang.ZeroConfirmation.zeroconf_toastr_title_instantdex_notification);
 		}
 		if (zconf_claim_data.result == 'success') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			var zconf_claim_bootbox = bootbox.dialog({
-				title: 'InstantDEX Deposit Claim',
+				title: default_lang.ZeroConfirmation.zeroconf_claim_deposit_claim,
 				message: `<div class="zeroconf_claims_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">
 								<table class="table table-striped zeroconf_claims_tbl" width="100%" style="margin-bottom: 0;">
 									<thead>
-										<th>List of Claimable Deposit</th>
+										<th>${default_lang.ZeroConfirmation.zeroconf_claim_list_of_claimable}</th>
 									</thead>
 									<tbody></tbody>
 								</table>
@@ -5997,6 +6001,7 @@ function ZeroConfClaim() {
 
 				$('.zeroconf_claims_tbl tbody').empty();
 				$.each(zconf_claim_data.txids,function(index, val) {
+					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					console.log(index);
 					console.log(val);
 
@@ -6009,10 +6014,10 @@ function ZeroConfClaim() {
 
 					zeroconf_claims_tbl_tr += '<tr>';
 					zeroconf_claims_tbl_tr += `<td>
-													<b>Deposit:</b> ${val.deposit} KMD<br>
-													<b>Interest:</b> ${val.interest}<br>
-													<b>Wait Time:</b> ${formatted_waittime} (HH:mm:ss)<br>
-													<b>Transaction ID:</b> <a class="zconf_claim_txid_bootbox" href="#" data-txid="${val.txid}">Open in Explorer</a>
+													<b>${default_lang.ZeroConfirmation.zeroconf_history_td_deposit}:</b> ${val.deposit} KMD<br>
+													<b>${default_lang.ZeroConfirmation.zeroconf_claim_td_interest}:</b> ${val.interest}<br>
+													<b>${default_lang.ZeroConfirmation.zeroconf_claim_td_wait_time}:</b> ${formatted_waittime} (HH:mm:ss)<br>
+													<b>${default_lang.ZeroConfirmation.zeroconf_history_td_txid}:</b> <a class="zconf_claim_txid_bootbox" href="#" data-txid="${val.txid}">${default_lang.ZeroConfirmation.zeroconf_history_td_open_in_explorer}</a>
 													</td>`;
 					zeroconf_claims_tbl_tr += '</tr>';
 					$('.zeroconf_claims_tbl tbody').append(zeroconf_claims_tbl_tr);
@@ -6038,12 +6043,12 @@ $('.btn_zeroconf_deposit_history').click(function(e){
 
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var zconf_deposit_history_bootbox = bootbox.dialog({
-		title: 'High Speed Mode Deposits History',
+		title: default_lang.ZeroConfirmation.zeroconf_history_dialog_title,
 		message: `<div class="zeroconf_settings_table_div mCustomScrollbar" data-mcs-theme="minimal-dark">
 					<table class="table table-striped zeroconf_deposits_history_tbl" width="100%" style="margin-bottom: 0;">
 						<thead>
 							<!--<th>Index</th>-->
-							<th>High Speed Mode Deposits History</th>
+							<th>${default_lang.ZeroConfirmation.zeroconf_history_th_deposit_history}</th>
 							<!--<th>Actions</th>-->
 						</thead>
 						<tbody></tbody>
@@ -6070,19 +6075,28 @@ $('.btn_zeroconf_deposit_history').click(function(e){
 $('.info_box_for_zeroconf').click(function(e){
 	e.preventDefault();
 	console.log('info_box_for_zeroconf clicked');
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	bootbox.alert({
-		title: `What is High Speed Mode Confirmations Feature?`,
-		message: `<p>Use of this feature requires a security deposit, equal to or greater than the amount you wish to actively trade. This deposit is placed in a special multisig address for safe keeping. The following conditions apply:</p>
+		title: `${default_lang.ZeroConfirmation.zeroconf_info_dialog_title}`,
+		message: `<p>${default_lang.ZeroConfirmation.zeroconf_info_dialog_p_01}:</p>
 			<ul>
-				<li>The minimum deposit amount is 10 KMD.</li>
-				<li>The minimum deposit period is 1 week, and the maximum period is 52 weeks.</li>
-                <li>The expiration date is permanently set and recorded within your blockchain transaction at the time of sending the deposit.</li>
-                <li>Choose your time period appropriately, as you can only reclaim your deposit after the expiration date.</li>
-                <li>Your KMD security deposit will continue to accrue the 5% APR throughout the time period, as usual.</li>
-                <li>Upon conclusion, you will receive your deposit and interest, less a security fee of 0.1%.</li>
+				<li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_01}</li>
+				<li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_02}</li>
+                <li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_03}</li>
+                <li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_04}</li>
+                <li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_05}</li>
+                <li>${default_lang.ZeroConfirmation.zeroconf_info_dialog_li_06}</li>
             </ul>
-			<p>IMPORTANT: If you attempt to cheat while using High Speed Mode, both the amount of your offense and an additional penalty fee can be deducted from your deposit and forfeited to the affected parties. The remaining amount in your deposit balance will be claimable at the normal time of expiration.</p>`,
-		size: 'large'
+			<p>${default_lang.ZeroConfirmation.zeroconf_info_dialog_p_02}</p>`,
+		size: 'large',
+		buttons: {
+			ok: {
+				label: `${default_lang.Common.btn_ok_caps}`,
+				className: 'btn-primary',
+				callback: function(){
+				}
+			}
+		}
 	});
 })
 /* ZEROCONF SETTINGS END */
