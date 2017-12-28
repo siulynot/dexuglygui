@@ -133,17 +133,17 @@ textarea {
 
 .exchange_trade_status_body {
   overflow: hidden;
-  height: 285px;
+  min-height: 285px;
 }
 
 #exchange_coin_asks, #exchange_coin_bids {
   overflow: hidden;
-  height: 431px;
+  min-height: 521px;
 }
 
 #exchange_coin_asks_togl, #exchange_coin_bids_togl {
   overflow: hidden;
-  max-height: 431px;
+  min-height: 521px;
 }
 
 .zeroconf_settings_table_div {
@@ -349,7 +349,7 @@ table tbody tr:first-child td {
   width: 100%;
   height: 100%;
   background: #fff;
-  z-index: 1100;
+  /*z-index: 1100;*/
   padding: 20px;
   overflow-y: scroll;
   height: calc(100% - 60px);
@@ -375,7 +375,7 @@ table tbody tr:first-child td {
   width: 100%;
   height: 100%;
   background: #fff;
-  z-index: 1100;
+  /*z-index: 1100;*/
   padding: 20px;
   overflow-y: scroll;
   height: calc(100% - 60px);

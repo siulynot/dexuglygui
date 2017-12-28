@@ -87,3 +87,16 @@ electron-packager . --platform=win32 --arch=ia32 --icon=assets/icons/barterdex/b
 electron-packager . --platform=win32 --arch=all --icon=assets/icons/barterdex/barterdex.ico --out=build/ --buildVersion=VERSION_NUMBER_HERE --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite
 ```
 change architecture build parameter to ```--arch=x64``` for 64 bit build
+
+
+
+## Localization Instructions
+
+BarterDEX follows langauge and country code list localization file names. Please use the following links to get more info on the standard codes for country and language codes:
+
+https://datahub.io/core/language-codes
+
+https://datahub.io/core/country-list
+
+
+

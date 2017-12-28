@@ -14,10 +14,11 @@ check_dex_remote_alerts = function(sig) {
 		async: true,
 	    dataType: 'json',
 	    type: 'GET',
+	    cache: false,
 	    url: url
 	}).done(function(data) {
 		// If successful
-		console.log(data);
+		//console.log(data);
 
 		if (data.for_app_version.slice(2,16) <= current_app_version.slice(2,16).substring(0, current_app_version.length-7) == true) {
 			if (data.alert_level == 'marquee') {
@@ -48,5 +49,5 @@ function alert_open_external_link(link) {
 /** Remote Alert settings **/
 var check_dex_remote_alerts_Interval = null;
 check_dex_remote_alerts();
-check_dex_remote_alerts_Interval = setInterval(check_dex_remote_alerts, 300000);
+check_dex_remote_alerts_Interval = setInterval(check_dex_remote_alerts, 120000);
 /** Remote Alert settings END **/

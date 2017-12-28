@@ -1,5 +1,6 @@
 {
 	"dev": false,
 	"experimentalFeatures": false,
-	"theme": "dark"
+	"theme": "dark",
+	"deflang": "en_US"
 }

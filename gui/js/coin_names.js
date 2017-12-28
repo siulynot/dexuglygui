@@ -15,13 +15,33 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
 			break;
+		case 'BCH':
+			coin_details.name = 'Bitcoin Cash';
+			coin_details.explorer = 'https://blockchair.com/bitcoin-cash/transaction/';
+			break;
+		case 'BLK':
+			coin_details.name = 'BlackCoin';
+			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
+			break;
+		case 'BLOCK':
+			coin_details.name = 'Blocknet';
+			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
+			break;
+		case 'BTCZ':
+			coin_details.name = 'BitcoinZ';
+			coin_details.explorer = 'https://explorer.bitcoinz.site/tx/';
+			break;
+		case 'BTG':
+			coin_details.name = 'Bitcoin Gold';
+			coin_details.explorer = 'https://btgexp.com/tx/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
 			break;
 		case '888':
 			coin_details.name = 'OctoCoin';
-			coin_details.explorer = 'https://zchain.online/tx/';
+			coin_details.explorer = 'https://chainz.cryptoid.info/octo/tx.dws?';
 			break;
 		case 'ARG':
 			coin_details.name = 'Argentum';
@@ -47,6 +67,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
 			break;
+		case 'IOP':
+			coin_details.name = 'Internet of People';
+			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
+			break;
 		case 'MZC':
 			coin_details.name = 'Mazacoin';
 			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
@@ -65,7 +89,7 @@ function return_coin_details(coin) {
 			break;
 		case 'ZER':
 			coin_details.name = 'Zero';
-			coin_details.explorer = '';
+			coin_details.explorer = 'http://zeroexplorer.forgetop.com/tx/';
 			break;
 		case 'ZET':
 			coin_details.name = 'Zetacoin';
@@ -127,13 +151,13 @@ function return_coin_details(coin) {
 			coin_details.name = 'COQUI';
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			break;
-		case 'HODLC':
-			coin_details.name = 'HODLC';
+		case 'HODL':
+			coin_details.name = 'HODL';
 			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
 			break;
 		case 'MSHARK':
 			coin_details.name = 'MSHARK';
-			coin_details.explorer = 'http://shark.explorer.supernet.org/tx/';
+			coin_details.explorer = 'http://mshark.explorer.supernet.org/tx/';
 			break;
 		case 'BOTS':
 			coin_details.name = 'BOTS';
@@ -185,7 +209,7 @@ function return_coin_details(coin) {
 			break;
 		case 'ZCL':
 			coin_details.name = 'ZClassic';
-			coin_details.explorer = 'https://cronicc.github.io/tx/';
+			coin_details.explorer = 'http://explorer.zclmine.pro/tx/';
 			break;
 		case 'VIA':
 			coin_details.name = 'Viacoin';
@@ -213,7 +237,7 @@ function return_coin_details(coin) {
 			break;
 		case 'TRC':
 			coin_details.name = 'Terracoin';
-			coin_details.explorer = '';
+			coin_details.explorer = 'https://bchain.info/TRC/tx/';
 			break;
 		case 'BTA':
 			coin_details.name = 'Bata';
@@ -277,7 +301,7 @@ function return_coin_details(coin) {
 			break;
 		case 'SIB':
 			coin_details.name = 'SIBCoin';
-			coin_details.explorer = 'https://chain.sibcoin.net/tx/';
+			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
 		case 'VTC':
 			coin_details.name = 'Vertcoin';
@@ -286,6 +310,22 @@ function return_coin_details(coin) {
 		case 'HUSH':
 			coin_details.name = 'Hush';
 			coin_details.explorer = 'https://explorer.myhush.org/tx/';
+			break;
+		case 'XZC':
+			coin_details.name = 'ZCoin';
+			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
+			break;
+		case 'QTUM':
+			coin_details.name = 'Qtum';
+			coin_details.explorer = 'https://explorer.qtum.org/tx/';
+			break;
+		case 'DSR':
+			coin_details.name = 'Desire';
+			coin_details.explorer = 'http://desire.thecryptochat.net/block.php?hash=';
+			break;
+		case 'PURA':
+			coin_details.name = 'Pura';
+			coin_details.explorer = 'https://chainz.cryptoid.info/pura/tx.dws?';
 			break;
 		case 'AUD':
 			coin_details.name = 'Australian Dollar';
@@ -415,7 +455,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'South African Rand';
 			coin_details.explorer = 'http://ZAR.explorer.supernet.org/tx/';
 			break;
-
+		case 'STAK':
+			coin_details.name = 'Straks';
+			coin_details.explorer = 'https://straks.info/transaction/';
+			break;
 	}
 	return coin_details;
 }

@@ -432,7 +432,7 @@ var Toolbar_html = `
                     <span class="scxToolbarButton-dropdownElement-image"></span>
                     <span class="scxToolbarButton-dropdownElement-text">Full Window Mode</span>
                 </div>
-                <div class="scxToolbarButton-dropdownElement" data-scxValue="toggleFullScreen" title="Full Screen Mode">
+                <div class="scxToolbarButton-dropdownElement" data-scxValue="toggleFullScreen" title="Full Screen Mode" style="display: none;">
                     <span class="scxToolbarButton-dropdownElement-image"></span>
                     <span class="scxToolbarButton-dropdownElement-text">Full Screen Mode</span>
                 </div>
