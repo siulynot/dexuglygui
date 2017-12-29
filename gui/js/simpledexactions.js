@@ -2996,8 +2996,21 @@ function DepositOnError(deposit_data) {
 						var to_addr = data.coin.smartaddress;
 						console.log(to_addr);
 
-						var output_data = {};
-						output_data[to_addr] = parseFloat(deposit_data.amount) + parseFloat(data.coin.txfee / 100000000);
+						var output_data = [];
+						var output_data_obj = new Object();
+						output_data_obj[to_addr] = parseFloat(deposit_data.amount) + parseFloat(data.coin.txfee / 100000000);
+						output_data.push(output_data_obj);
+						console.log(output_data);
+
+						var output_data_2nd = new Object();
+						var calc_2nd_amount = (deposit_data.amount - 0.0001*2)/777
+						output_data_2nd[to_addr] = calc_2nd_amount.toFixed(8);
+						output_data.push(output_data_2nd);
+						console.log(output_data);
+
+						var output_data_feetx = new Object();
+						output_data_feetx[to_addr] = 0.0001;
+						output_data.push(output_data_feetx);
 						console.log(output_data);
 
 						console.log(deposit_data.coin);
@@ -3654,8 +3667,10 @@ function coinBalanceSendFn(coin) {
 						console.log(to_addr);
 						console.log(send_amount);
 
-						var output_data = {};
-						output_data[to_addr] = send_amount;
+						var output_data = [];
+						var output_data_obj = new Object();
+						output_data_obj[to_addr] = send_amount;
+						output_data.push(output_data_obj);
 						console.log(output_data);
 
 
@@ -3834,10 +3849,12 @@ $('.your_coins_balance_info').on('click', '.coin_balance_zcredits', function() {
 
 
 function create_sendtx(coin,tx_data){
+	
 	console.log(tx_data);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": [tx_data]};
+	//var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": [tx_data]};
+	var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": tx_data};
 	var url = "http://127.0.0.1:7783";
 
 	console.log(ajax_data);
