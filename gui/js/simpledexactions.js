@@ -3608,6 +3608,7 @@ function coinBalanceSendFn(coin) {
 		type: 'POST',
 		url: url
 	}).done(function(data) {
+		console.log(data.coin.smartaddress);
 		console.log(data.coin.balance);
 		console.log(data.coin.txfee);
 		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -3667,15 +3668,39 @@ function coinBalanceSendFn(coin) {
 						console.log(to_addr);
 						console.log(send_amount);
 
-						var output_data = [];
-						var output_data_obj = new Object();
-						output_data_obj[to_addr] = send_amount;
-						output_data.push(output_data_obj);
-						console.log(output_data);
 
+						if (to_addr == data.coin.smartaddress) {
+							var output_data = [];
+							var output_data_obj = new Object();
+							output_data_obj[to_addr] = parseFloat(send_amount) + parseFloat(data.coin.txfee / 100000000);
+							output_data.push(output_data_obj);
+							console.log(output_data);
 
-						console.log(tx_coin);
-						create_sendtx(tx_coin, output_data);
+							var output_data_2nd = new Object();
+							var calc_2nd_amount = (send_amount - 0.0001*2)/777
+							output_data_2nd[to_addr] = calc_2nd_amount.toFixed(8);
+							output_data.push(output_data_2nd);
+							console.log(output_data);
+
+							var output_data_feetx = new Object();
+							output_data_feetx[to_addr] = 0.0001;
+							output_data.push(output_data_feetx);
+							console.log(output_data);
+							console.log(JSON.stringify(output_data));
+
+							console.log(tx_coin);
+							create_sendtx(tx_coin, output_data);
+						} else {
+							var output_data = [];
+							var output_data_obj = new Object();
+							output_data_obj[to_addr] = send_amount;
+							output_data.push(output_data_obj);
+							console.log(output_data);
+							console.log(JSON.stringify(output_data));
+
+							console.log(tx_coin);
+							create_sendtx(tx_coin, output_data);
+						}
 					}
 				}
 			}
