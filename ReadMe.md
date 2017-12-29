@@ -99,4 +99,12 @@ https://datahub.io/core/language-codes
 https://datahub.io/core/country-list
 
 
+## Troubleshooting
+
+Windows users might need to install required DLL file(s) for `marketmaker.exe`.
+
+You can install this in case you find BaeterDEX GUI keep loading and not ending up to login screen.
+
+Visual C++ Redistributable for Visual Studio 2015
+https://www.microsoft.com/en-US/download/details.aspx?id=48145
 
