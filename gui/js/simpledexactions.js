@@ -830,7 +830,7 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -2627,7 +2627,7 @@ $('input[name=trading_mode_options]').change(function() {
 		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
-		$('.trading_pair_lable_text_two').html('Buy');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_two_buy_small);
 		$('.buy_sell_advanced_options_div').hide();
 		if(buying_or_selling == 'buying') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -2638,7 +2638,7 @@ $('input[name=trading_mode_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		$('.trading_selected_trader_label').hide();
@@ -2676,7 +2676,7 @@ $('input[name=trading_mode_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -3451,11 +3451,11 @@ $('input[name=trading_pair_options]').change(function() {
 		} else {
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
-			$('.btn-bot_action').html('BUY');
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_buy_caps);
 			$('.btn-bot_action').attr('data-action', 'buy');
-			$('.relvol_basevol_label').html("It'll cost you")
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_cost_you)
 		}
-		$('.trading_pair_lable_text_two').html('Buy');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_two_buy_small);
 		$('.btn-bot_action').attr('data-action', 'buy');
 		CheckOrderBookFn();
 	}
@@ -3477,11 +3477,11 @@ $('input[name=trading_pair_options]').change(function() {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
-			$('.btn-bot_action').html('SELL');
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
 			$('.btn-bot_action').attr('data-action', 'sell');
-			$('.relvol_basevol_label').html("You'll get");
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 		}
-		$('.trading_pair_lable_text_two').html('Sell');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_sell_small);
 		$('.btn-bot_action').attr('data-action', 'sell');
 		CheckOrderBookFn();
 	}
