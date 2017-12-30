@@ -602,7 +602,14 @@ CheckDefaultLogin = function(sig) {
 LoginWithPassphrase = function(login_passphrase,action_mode) {
 	console.log('Login using passphrase from Login form input');
 
-	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
+
+	var userpass = '';
+	if (sessionStorage.getItem('mm_loginstate') == 'loggedin') {
+		var userpass = sessionStorage.getItem('mm_userpass');
+	} else {
+		var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
+	}
+	
 	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":login_passphrase,"gui":"simplegui"};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
