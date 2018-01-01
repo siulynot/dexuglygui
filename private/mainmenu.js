@@ -91,12 +91,12 @@ const template = [
     label: 'Support',
     submenu: [
       {
-        label: 'Supernet.org',
+        label: 'komodoplatform.com',
         click () {
           if (process.platform === 'linux') {
-            require('child_process').exec('xdg-open http://support.supernet.org');
+            require('child_process').exec('xdg-open https://www.komodoplatform.com');
           } else {
-            shell.openExternal('http://support.supernet.org');
+            shell.openExternal('https://www.komodoplatform.com');
           }
         }
       },
@@ -104,9 +104,9 @@ const template = [
         label: 'Slack',
         click () {
           if (process.platform === 'linux') {
-            require('child_process').exec('xdg-open https://sprnt.slack.com/messages/support');
+            require('child_process').exec('xdg-open https://www.komodoplatform.com/en/slack-invite');
           } else {
-            shell.openExternal('https://sprnt.slack.com/messages/support');
+            shell.openExternal('https://www.komodoplatform.com/en/slack-invite');
           }
         }
       },
@@ -114,9 +114,9 @@ const template = [
         label: 'Github',
         click () {
           if (process.platform === 'linux') {
-            require('child_process').exec('xdg-open https://github.com/SuperNETorg/iguana/issues');
+            require('child_process').exec('xdg-open https://github.com/KomodoPlatform/BarterDEX/issues');
           } else {
-            shell.openExternal('https://github.com/SuperNETorg/iguana/issues');
+            shell.openExternal('https://github.com/KomodoPlatform/BarterDEX/issues');
           }
         }
       }
