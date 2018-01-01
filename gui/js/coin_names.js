@@ -199,6 +199,18 @@ function return_coin_details(coin) {
 			coin_details.name = 'SuperMesh';
 			coin_details.explorer = 'http://mesh.explorer.supernet.org/tx/';
 			break;
+		case 'AXO':
+			coin_details.name = 'AXO';
+			coin_details.explorer = 'http://axo.explorer.supernet.org/tx/';
+			break;
+		case 'ETOMIC':
+			coin_details.name = 'ETOMIC';
+			coin_details.explorer = 'http://etomic.explorer.supernet.org/tx/';
+			break;
+		case 'BTCH':
+			coin_details.name = 'BTCH';
+			coin_details.explorer = 'http://btch.explorer.supernet.org/tx/';
+			break;
 		case 'CRW':
 			coin_details.name = 'Crown';
 			coin_details.explorer = 'https://chainz.cryptoid.info/crw/tx.dws?';
