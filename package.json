@@ -1,6 +1,6 @@
 {
   "name": "BarterDEX",
-  "version": "0.8.1-beta",
+  "version": "0.8.2-beta",
   "description": "Full BarterDEX implimentation with powertools for Traders",
   "main": "main.js",
   "scripts": {
