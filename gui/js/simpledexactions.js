@@ -1244,14 +1244,14 @@ function enable_disable_coin(enable_disable_coin_data) {
 							onEscape: true,
 							backdrop: true,
 							title: default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
-							message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+							message: `<p>`+enable_disable_coin_data.coin+`: ${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p1}</p>
 							<ol>
-								<li>Make sure your wallet is installed properly.</li>
-								<li>Make sure your wallet is running and synced to network.</li>
-								<li>Make sure your wallet has proper RPC settings configured in it's configuration file.</li>
-								<li>If you have all the above covered properly, please logout and then login back and try activating the coin again.</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_01}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_02}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_03}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_04}</li>
 							</ol>
-							<p>If you still having issues activating the your wallet, please get in touch with our support desk.</p>
+							<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 							<ul>
 								<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
 							</ul>`,
