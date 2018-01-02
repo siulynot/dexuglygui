@@ -285,7 +285,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	// Fix width of chart
 	gChart.size = {width: $('#chartContainer').parent().width()};
 	gChart.update();
-	setTimeout(function(){ PopulateDefaultLanguage(); }, 100);
+	setTimeout(function(){
+		PopulateDefaultLanguage();
+		$('input:radio[name="trading_manual_buy_sell_options"]').filter('[value="disabled"]').trigger('click');
+	}, 100);
 });
 
 
