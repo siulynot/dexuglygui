@@ -933,6 +933,12 @@ $('.btn_switch_trading_coin_pairs').click(function(e){
 
 	$('.relvol_basevol_coin').html(coin_pair2);
 
+	coin = $('.trading_pair_coin2').selectpicker('val');
+	$('.coin_ticker').html(coin);
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').data('coin', coin);
+	});
+
 	bot_screen_sellcoin_balance();
 	bot_screen_coin_balance();
 
