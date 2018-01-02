@@ -20,7 +20,13 @@ It has the pre-compiled `marketmaker` bundled with it. But in any case you still
 https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-Node#installing-liquidity-provider-lp-node-on-ubuntudebian-system
 
 ### Setup
-Once running, follow these steps:
+
+#### Requirements
+- Git
+- Node.js - v7.10.0 or above
+
+
+To get started follow these steps:
 ```shell
 git clone https://github.com/KomodoPlatform/BarterDEX.git
 cd BarterDEX
