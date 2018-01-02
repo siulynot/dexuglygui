@@ -48,6 +48,6 @@ function alert_open_external_link(link) {
 
 /** Remote Alert settings **/
 var check_dex_remote_alerts_Interval = null;
-check_dex_remote_alerts();
-check_dex_remote_alerts_Interval = setInterval(check_dex_remote_alerts, 120000);
+//check_dex_remote_alerts();
+//check_dex_remote_alerts_Interval = setInterval(check_dex_remote_alerts, 120000);
 /** Remote Alert settings END **/
