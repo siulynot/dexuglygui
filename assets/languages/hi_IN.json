@@ -190,6 +190,7 @@
     "exchange_th_swap_status_action": "कार्य",
     "exchange_sellers_caps": "बेचनेवाले",
     "exchange_buyers_caps": "खरीददार",
+    "exchange_btn_back": "वापस",
     "exchange_th_orderbook_price_in": "मूल्य",
     "exchange_th_orderbook_avg_volume": "औसत मात्रा",
     "exchange_th_orderbook_depth": "गहराई",

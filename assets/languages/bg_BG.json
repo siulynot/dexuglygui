@@ -189,6 +189,7 @@
     "exchange_th_swap_status_action": "Действие",
     "exchange_sellers_caps": "ПРОДАВАЧИ",
     "exchange_buyers_caps": "КУПУВАЧИ",
+    "exchange_btn_back": "НАЗАД",
     "exchange_th_orderbook_price_in": "Цена в",
     "exchange_th_orderbook_avg_volume": "Среден обем",
     "exchange_th_orderbook_depth": "Дълбочина",
@@ -203,7 +204,7 @@
     "exchange_portfolio_auto_buy_margin_will_make": "Автоматичната марж покупка, ще прави поръчки за покупка на по-ниски цени според зададения процент.",
     "exchange_portfolio_set_auto_buy_price": "ЗАДАЙ ЦЕНА ЗА АВТОМ. ПОКУПКА",
     "exchange_portfolio_auto_buy_on_fixed_price_will_make": "Автоматичната покупка на фиксирана цена ще прави поръчки според зададената цена.",
-    "exchange_portfolio_set_auto_sell_margin_percent": "ЗАДАЙ МАРЖ на АВТОМ. ПРОДАЖБА %",
+    "exchange_portfolio_set_auto_sell_margin_percent": "ЗАДАЙ МАРЖ НА АВТОМ. ПРОДАЖБА %",
     "exchange_portfolio_auto_sell_margin_will_make": "Автоматичната марж продажба, ще прави поръчки за продажба на по-високи цени според зададения процент.",
     "exchange_portfolio_set_auto_sell_price": "ЗАДАЙТЕ ЦЕНА НА АВТОМ. ПРОДАЖБА",
     "exchange_portfolio_auto_sell_on_fixed_price_will_make": "Автоматичната продажба на фиксирана цена ще прави поръчки според зададената цена.",
@@ -390,7 +391,7 @@
     "settings_default_language": "Език по подразбиране",
     "settings_reset_settings": "Върни настройките",
     "settings_save_settings": "Запази настройките",
-    "settings_toastr_settings_update_processed": "Обновените настройки са обработени.",
+    "settings_toastr_settings_update_processed": "Обновените настройки са запазени.",
     "settings_toastr_title": "BarterDEX настройки"
   }
 }
