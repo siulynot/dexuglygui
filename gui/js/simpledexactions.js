@@ -1253,7 +1253,7 @@ function enable_disable_coin(enable_disable_coin_data) {
 							</ol>
 							<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 							<ul>
-								<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
+								<li><a href="https://support.komodoplatform.com/" target="_blank">https://support.komodoplatform.com</a></li>
 							</ul>`,
 							size: 'large'
 						});
@@ -1327,7 +1327,7 @@ function enable_disable_coin(enable_disable_coin_data) {
 						</ol>
 						<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 						<ul>
-							<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
+							<li><a href="https://support.komodoplatform.com/" target="_blank">https://support.komodoplatform.com</a></li>
 						</ul>`,
 						size: 'large'
 					});
