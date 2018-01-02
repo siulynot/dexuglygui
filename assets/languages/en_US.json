@@ -120,6 +120,7 @@
   },
   "Inventory": {
     "inventory_tab_inventory": "Inventory",
+    "inventory_list_unspent_tab": "List Unspents",
     "inventory_th_index": "Index",
     "inventory_th_coin_info": "Coin Info",
     "inventory_th_value_info": "Value info",

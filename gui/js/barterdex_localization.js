@@ -70,6 +70,7 @@ function PopulateDefaultLanguage() {
 
 	// Populate inventory localization
 	$('.language[data-langstr="inventory_tab_inventory"]').text(default_lang.Inventory.inventory_tab_inventory);
+	$('.language[data-langstr="inventory_list_unspent_tab"]').text(default_lang.Inventory.inventory_list_unspent_tab);
 
 	// Populate exchange localization
 	$('.language[data-langstr="exchange_your_balance"]').text(default_lang.Exchange.exchange_your_balance);
