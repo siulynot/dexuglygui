@@ -75,6 +75,8 @@ function PopulateDefaultLanguage() {
 	$('.language[data-langstr="exchange_your_balance"]').text(default_lang.Exchange.exchange_your_balance);
 	$('.language[data-langstr="exchange_switch_pairs"]').text(default_lang.Exchange.exchange_switch_pairs);
 	$('.language[data-langstr="exchange_trading_pair"]').text(default_lang.Exchange.exchange_trading_pair);
+	$('.trading_pair_coin_price[data-langstr="exchange_trading_pair_coin_price_input_placeholder"]').attr('placeholder',default_lang.Exchange.exchange_trading_pair_coin_price_input_placeholder);
+	$('.trading_pair_coin_volume[data-langstr="exchange_trading_pair_coin_volume_input_placeholder"]').attr('placeholder',default_lang.Exchange.exchange_trading_pair_coin_volume_input_placeholder);
 	$('.language[data-langstr="exchange_speed_mode_settings"]').text(default_lang.Exchange.exchange_speed_mode_settings);
 	$('.language[data-langstr="exchange_btn_buy_caps"]').text(default_lang.Exchange.exchange_btn_buy_caps);
 	$('.language[data-langstr="exchange_btn_sell_caps"]').text(default_lang.Exchange.exchange_btn_sell_caps);

@@ -830,7 +830,7 @@ $('input[name=trading_manual_buy_sell_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -1244,16 +1244,16 @@ function enable_disable_coin(enable_disable_coin_data) {
 							onEscape: true,
 							backdrop: true,
 							title: default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
-							message: `<p>It seems you don't have `+enable_disable_coin_data.coin+` wallet installed on your OS. Please check these following points to make sure you have your wallet setup properly:</p>
+							message: `<p>`+enable_disable_coin_data.coin+`: ${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p1}</p>
 							<ol>
-								<li>Make sure your wallet is installed properly.</li>
-								<li>Make sure your wallet is running and synced to network.</li>
-								<li>Make sure your wallet has proper RPC settings configured in it's configuration file.</li>
-								<li>If you have all the above covered properly, please logout and then login back and try activating the coin again.</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_01}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_02}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_03}</li>
+								<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_04}</li>
 							</ol>
-							<p>If you still having issues activating the your wallet, please get in touch with our support desk.</p>
+							<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 							<ul>
-								<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
+								<li><a href="https://support.komodoplatform.com/" target="_blank">https://support.komodoplatform.com</a></li>
 							</ul>`,
 							size: 'large'
 						});
@@ -1327,7 +1327,7 @@ function enable_disable_coin(enable_disable_coin_data) {
 						</ol>
 						<p>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p2}</p>
 						<ul>
-							<li><a href="https://support.supernet.org/" target="_blank">https://support.supernet.org</a></li>
+							<li><a href="https://support.komodoplatform.com/" target="_blank">https://support.komodoplatform.com</a></li>
 						</ul>`,
 						size: 'large'
 					});
@@ -2627,7 +2627,7 @@ $('input[name=trading_mode_options]').change(function() {
 		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 		$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
-		$('.trading_pair_lable_text_two').html('Buy');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_two_buy_small);
 		$('.buy_sell_advanced_options_div').hide();
 		if(buying_or_selling == 'buying') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -2638,7 +2638,7 @@ $('input[name=trading_mode_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		$('.trading_selected_trader_label').hide();
@@ -2676,7 +2676,7 @@ $('input[name=trading_mode_options]').change(function() {
 		if(buying_or_selling == 'selling') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
-			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_get);
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 			$('.btn-bot_action').attr('data-action', 'sell');
 		}
 		//$('.btn-bot_action').attr('data-action', 'sell');
@@ -3451,11 +3451,11 @@ $('input[name=trading_pair_options]').change(function() {
 		} else {
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
-			$('.btn-bot_action').html('BUY');
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_buy_caps);
 			$('.btn-bot_action').attr('data-action', 'buy');
-			$('.relvol_basevol_label').html("It'll cost you")
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_itll_cost_you)
 		}
-		$('.trading_pair_lable_text_two').html('Buy');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_two_buy_small);
 		$('.btn-bot_action').attr('data-action', 'buy');
 		CheckOrderBookFn();
 	}
@@ -3477,11 +3477,11 @@ $('input[name=trading_pair_options]').change(function() {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
 			$('.trading_pair_lable_text_one').html(`${default_lang.Exchange.exchange_lbl_one_min}`);
-			$('.btn-bot_action').html('SELL');
+			$('.btn-bot_action').html(default_lang.Exchange.exchange_btn_sell_caps);
 			$('.btn-bot_action').attr('data-action', 'sell');
-			$('.relvol_basevol_label').html("You'll get");
+			$('.relvol_basevol_label').html(default_lang.Exchange.exchange_youll_get);
 		}
-		$('.trading_pair_lable_text_two').html('Sell');
+		$('.trading_pair_lable_text_two').html(default_lang.Exchange.exchange_lbl_sell_small);
 		$('.btn-bot_action').attr('data-action', 'sell');
 		CheckOrderBookFn();
 	}

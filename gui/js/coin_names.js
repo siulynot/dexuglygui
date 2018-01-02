@@ -35,6 +35,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bitcoin Gold';
 			coin_details.explorer = 'https://btgexp.com/tx/';
 			break;
+		case 'BCO':
+			coin_details.name = 'BridgeCoin';
+			coin_details.explorer = 'https://explorer.bridgecoin.org/tx/';
+			break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
@@ -63,6 +67,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Digibyte';
 			coin_details.explorer = 'https://digiexplorer.info/tx/';
 			break;
+		case 'EFL':
+			coin_details.name = 'e-Gulden';
+			coin_details.explorer = 'https://chainz.cryptoid.info/efl/tx.dws?';
+			break;
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
@@ -70,6 +78,10 @@ function return_coin_details(coin) {
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
+			break;
+		case 'INN':
+			coin_details.name = 'Innova';
+			coin_details.explorer = 'http://explorer.innovacoin.info/tx/';
 			break;
 		case 'MZC':
 			coin_details.name = 'Mazacoin';
@@ -187,6 +199,18 @@ function return_coin_details(coin) {
 			coin_details.name = 'SuperMesh';
 			coin_details.explorer = 'http://mesh.explorer.supernet.org/tx/';
 			break;
+		case 'AXO':
+			coin_details.name = 'AXO';
+			coin_details.explorer = 'http://axo.explorer.supernet.org/tx/';
+			break;
+		case 'ETOMIC':
+			coin_details.name = 'ETOMIC';
+			coin_details.explorer = 'http://etomic.explorer.supernet.org/tx/';
+			break;
+		case 'BTCH':
+			coin_details.name = 'BTCH';
+			coin_details.explorer = 'http://btch.explorer.supernet.org/tx/';
+			break;
 		case 'CRW':
 			coin_details.name = 'Crown';
 			coin_details.explorer = 'https://chainz.cryptoid.info/crw/tx.dws?';
@@ -226,6 +250,10 @@ function return_coin_details(coin) {
 		case 'FLO':
 			coin_details.name = 'Florincoin';
 			coin_details.explorer = 'https://florincoin.info/tx/';
+			break;
+		case 'GBX':
+			coin_details.name = 'GoByte';
+			coin_details.explorer = 'http://explorer.gobyte.network:5001/tx/';
 			break;
 		case 'SXC':
 			coin_details.name = 'Sexcoin';
