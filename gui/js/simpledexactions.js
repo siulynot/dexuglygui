@@ -2571,8 +2571,10 @@ function autoprice_buy_sell(autoprice_data) {
 		$('.relvol_basevol').html('');
 
 		if (!data.error === false) {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			toastr.error(data.error, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		} else if (data.result == 'success') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			toastr.success('Order Executed', default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 			
 			var autoprice_mode = '';
