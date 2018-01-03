@@ -683,7 +683,8 @@ $('.btn-bot_action').click(function(e){
 
 		console.log(bot_data);
 
-		if (pair_volume <= 0.01 || pair_price <= 0.01) {
+		//if (pair_volume <= 0.01 || pair_price <= 0.01) {
+		if (bot_data.volume <= 0.01) {
 			console.log('Order is too small. Please try again.');
 			toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 		} else {
