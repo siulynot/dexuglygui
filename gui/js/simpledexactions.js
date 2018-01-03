@@ -5269,6 +5269,7 @@ function check_swap_status_details(swap_status_data) {
 						data: JSON.stringify(ajax_data),
 						dataType: 'json',
 						type: 'POST',
+						timeout: 6000, // sets timeout to 5 seconds
 						url: url
 					}).done(function(dataforblinker) {
 
@@ -5324,7 +5325,7 @@ function check_swap_status_details(swap_status_data) {
 					});
 				}
 
-				swapdetail_blinker = setInterval(blinker, 1000);
+				swapdetail_blinker = setInterval(blinker, 5000);
 
 				$('.btn_swap_status_details_close').click(function(e){
 					e.preventDefault();
