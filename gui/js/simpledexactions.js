@@ -3282,6 +3282,7 @@ function check_my_prices(sig){
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful
@@ -5415,6 +5416,7 @@ function check_swap_status(sig) {
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful
