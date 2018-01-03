@@ -168,9 +168,11 @@
     </nav>
     <!-- Section: Navigation Menu END -->
     <div class="dextradeshistory" style="display: none; margin-top: 60px;">
+      
       <span class="refresh-trades-history-icon" onclick="constructTradesHistory()">
-        <i class="fa fa-refresh"></i> Refresh
+        <i class="fa fa-refresh"></i>
       </span>
+      
       <div id="trades-history-content">
         <svg id="trades-history-spinner">
           <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
@@ -653,7 +655,7 @@
             <div class="panel panel-default">
                   <div class="panel-heading">
                     <span class="language" data-langstr="exchange_sellers_caps"></span>: <span class="orderbook_numasks"></span>
-                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;">BACK</button>
+                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;"><span class="language" data-langstr="exchange_btn_back"></span></button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 0px 0px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                   </div>
                   <div class=""> <!-- panel-body -->
@@ -687,7 +689,7 @@
             <div class="panel panel-default">
                   <div class="panel-heading">
                     <span class="language" data-langstr="exchange_buyers_caps"></span>: <span class="orderbook_numbids"></span>
-                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;">BACK</button>
+                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 0px -8px 0px 3px;"><span class="language" data-langstr="exchange_btn_back"></span></button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 0px 0px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                   </div>
                   <div class=""> <!-- panel-body -->
@@ -713,7 +715,7 @@
           <div class="col-sm-12 col-md-12 hidden-lg hidden-xl">
             <div class="panel with-nav-tabs panel-default">
                   <div class="panel-heading">
-                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;">BACK</button>
+                    <button class="btn btn-xs btn-exchangeclose coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="language" data-langstr="exchange_btn_back"></span></button>
                     <button class="btn btn-xs btn-exchangerefresh coinexchange" data-coin="COIN" style="float: right; margin: 6px 6px 0px 3px;"><span class="glyphicon glyphicon-refresh"></span></button>
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#exchange_coin_asks_togl" data-toggle="tab"><span class="language" data-langstr="exchange_sellers_caps"></span>: <span class="orderbook_numasks"></span></a></li>

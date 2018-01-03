@@ -189,6 +189,7 @@
     "exchange_th_swap_status_action": "Действие",
     "exchange_sellers_caps": "ПРОДАВЦЫ",
     "exchange_buyers_caps": "ПОКУПАТЕЛИ",
+    "exchange_btn_back": "НАЗАД",
     "exchange_th_orderbook_price_in": "Цена в",
     "exchange_th_orderbook_avg_volume": "Сред. Объем",
     "exchange_th_orderbook_depth": "Глубина",
