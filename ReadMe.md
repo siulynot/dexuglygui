@@ -13,14 +13,20 @@ BarterDEX Whitepaper :  https://www.komodoplatform.com/en/technology/whitepaper
 
 # BarterDEX App
 
-Before starting make sure you have `marketmaker` daemon compiled and running on your machine.
+BarterDEX App includes all things required to run. You don't need to do anything else. Just use the following instructions to start using it.
 
-You can find instructions to install `marketmaker` here:
+It has the pre-compiled `marketmaker` bundled with it. But in any case you still wish to compile `marketmaker` yourself, you ca follow these instructions:
 
 https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-Node#installing-liquidity-provider-lp-node-on-ubuntudebian-system
 
 ### Setup
-Once running, follow these steps:
+
+#### Requirements
+- Git
+- Node.js - v7.10.0 or above
+
+
+To get started follow these steps:
 ```shell
 git clone https://github.com/KomodoPlatform/BarterDEX.git
 cd BarterDEX
