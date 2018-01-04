@@ -24,7 +24,8 @@ $(function() {
     gChart = $('#chartContainer').StockChartX({
         width: $('#chartContainer').parent().width(),
         height: 360,
-		theme: chartTheme
+		theme: chartTheme,
+        timeInterval: 1000 * 60
         //fullWindowMode: isFullWindowMode
     });
 
@@ -99,7 +100,7 @@ function ChartsInstruments(instrument_data){
 		company: instrument_data.company,
 		exchange: "BarterDEX"
 	};
-	gChart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_DAY;
+	// gChart.timeInterval = StockChartX.TimeSpan.MILLISECONDS_IN_DAY;
 	gChart.removeDrawings();
 	gChart.setNeedsUpdate(!0);
 	gChart.setNeedsAutoScaleAll();
@@ -274,4 +275,13 @@ function Refresh_active_StockChart(sig) {
 		console.log('Refreshing active StockCharts every minute.');
 	}
 	UpdateDexChart($('.trading_pair_coin2').selectpicker('val'),$('.trading_pair_coin').selectpicker('val'));
+}
+
+function RefreshStockChartTheme(selectedTheme) {
+    var chartTheme = StockChartX.Theme.Light;
+    if (selectedTheme === "dark") {
+        chartTheme = StockChartX.Theme.Dark;
+    }
+    gChart.theme = chartTheme;
+    gChart.update();
 }
