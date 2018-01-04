@@ -387,7 +387,8 @@ $('.dexsettings-btn').click(function(e){
 					console.log(barterDEX_settings);
 					ShepherdIPC({"command":"update_settings", "data":barterDEX_settings});
 					BarterDEXSettingsFn();
-					if (barterDEX_settings.deflang == 'tlh_UNI') {
+                    RefreshStockChartTheme(selected_theme);
+                    if (barterDEX_settings.deflang == 'tlh_UNI') {
 						$('body').css('font-family','piqad');
 						BarterDEXDefaultLangFn(selected_deflang);
 					} else {

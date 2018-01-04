@@ -266,7 +266,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	//getZeroConfDepositHistory();
 
-	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"","interval":1}));
+	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"h","interval":1}));
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
