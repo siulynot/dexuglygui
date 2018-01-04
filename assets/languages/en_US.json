@@ -195,6 +195,7 @@
     "exchange_th_swap_status_action": "Action",
     "exchange_sellers_caps": "SELLERS",
     "exchange_buyers_caps": "BUYERS",
+    "exchange_btn_back": "BACK",
     "exchange_th_orderbook_price_in": "Price in",
     "exchange_th_orderbook_avg_volume": "Avg. Volume",
     "exchange_th_orderbook_depth": "Depth",
