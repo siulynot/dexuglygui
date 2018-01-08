@@ -51,9 +51,8 @@ git pull
 
 To build the production ready app, install `electron-packager` and `electron-prebuilt` packages from npm
 ```shell
-sudo npm install -g electron --unsafe-perm=true
 sudo npm install electron-packager -g
-sudo npm install electron-prebuilt -g
+sudo npm install -g electron --unsafe-perm=true
 ```
 
 
