@@ -22,6 +22,7 @@ var electrum_servers_list = {
   "JUMBLR": [{"electrum2.cipig.net": 10004},{"electrum1.cipig.net": 10004}],
   "KMD": [{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}],
   "LTC": [{"173.212.225.176": 50012},{"136.243.45.140": 50012}],
+  "MGW": [{"electrum2.cipig.net":10015},{"electrum1.cipig.net":10015}],
   "MNZ": [{"electrum2.cipig.net":10002},{"electrum1.cipig.net":10002}],
   "MONA": [{"173.212.225.176": 50002},{"136.243.45.140": 50002}],
   "MSHARK": [{"electrum2.cipig.net": 10013},{"electrum1.cipig.net": 10013}],
