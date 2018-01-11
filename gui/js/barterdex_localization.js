@@ -70,6 +70,7 @@ function PopulateDefaultLanguage() {
 
 	// Populate inventory localization
 	$('.language[data-langstr="inventory_tab_inventory"]').text(default_lang.Inventory.inventory_tab_inventory);
+	$('.language[data-langstr="inventory_list_unspent_tab"]').text(default_lang.Inventory.inventory_list_unspent_tab);
 
 	// Populate exchange localization
 	$('.language[data-langstr="exchange_your_balance"]').text(default_lang.Exchange.exchange_your_balance);
@@ -83,6 +84,7 @@ function PopulateDefaultLanguage() {
 	$('.language[data-langstr="exchange_btn_trade_bot"]').text(default_lang.Exchange.exchange_btn_trade_bot);
 	$('.language[data-langstr="exchange_btn_manual_trade"]').text(default_lang.Exchange.exchange_btn_manual_trade);
 	
+	$('.language[data-langstr="exchange_set_gaol_caps"]').text(default_lang.Exchange.exchange_set_gaol_caps);
 	$('.language[data-langstr="exchange_btn_portfolio"]').text(default_lang.Exchange.exchange_btn_portfolio);
 	$('.language[data-langstr="exchange_lbl_one_max"]').text(default_lang.Exchange.exchange_lbl_one_max);
 	$('.language[data-langstr="exchange_lbl_one_price_to"]').text(default_lang.Exchange.exchange_lbl_one_price_to);

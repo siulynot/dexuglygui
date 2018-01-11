@@ -266,7 +266,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 
 	//getZeroConfDepositHistory();
 
-	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"","interval":1}));
+	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"h","interval":1}));
 
 	var charts_instruments_data = {}
 	if ($(this).data('coin') == 'KMD') {
@@ -285,7 +285,10 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	// Fix width of chart
 	gChart.size = {width: $('#chartContainer').parent().width()};
 	gChart.update();
-	setTimeout(function(){ PopulateDefaultLanguage(); }, 100);
+	setTimeout(function(){
+		PopulateDefaultLanguage();
+		$('input:radio[name="trading_manual_buy_sell_options"]').filter('[value="disabled"]').trigger('click');
+	}, 100);
 });
 
 
@@ -680,7 +683,9 @@ $('.btn-bot_action').click(function(e){
 
 		console.log(bot_data);
 
-		if (pair_volume <= 0.01 || pair_price <= 0.01) {
+		//if (pair_volume <= 0.01 || pair_price <= 0.01) {
+		if (bot_data.volume <= 0.01) {
+			console.log(bot_data.volume)
 			console.log('Order is too small. Please try again.');
 			toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 		} else {
@@ -723,7 +728,8 @@ $('.btn-bot_action').click(function(e){
 		console.log(trade_data);
 
 		if (trading_options == 'disabled') {
-			if (pair_volume <= 0.01 || pair_price <= 0.01) {
+			if (trade_data.volume <= 0.01) {
+				console.log(bot_data.volume)
 				console.log('Order is too small. Please try again.');
 				toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 			} else {
@@ -929,6 +935,12 @@ $('.btn_switch_trading_coin_pairs').click(function(e){
 
 
 	$('.relvol_basevol_coin').html(coin_pair2);
+
+	coin = $('.trading_pair_coin2').selectpicker('val');
+	$('.coin_ticker').html(coin);
+	$.each($('.coinexchange[data-coin]'), function(index, value) {
+		$('.coinexchange[data-coin]').data('coin', coin);
+	});
 
 	bot_screen_sellcoin_balance();
 	bot_screen_coin_balance();
@@ -2571,8 +2583,10 @@ function autoprice_buy_sell(autoprice_data) {
 		$('.relvol_basevol').html('');
 
 		if (!data.error === false) {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			toastr.error(data.error, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 		} else if (data.result == 'success') {
+			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			toastr.success('Order Executed', default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
 			
 			var autoprice_mode = '';
@@ -3268,6 +3282,7 @@ function check_my_prices(sig){
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful
@@ -4000,6 +4015,7 @@ function check_bot_list(sig) {
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 11000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful
@@ -4766,6 +4782,7 @@ function bot_screen_sellcoin_balance(sig) {
 		data: JSON.stringify(ajax_data),
 		dataType: 'json',
 		type: 'POST',
+		timeout: 5000, // sets timeout to 5 seconds
 		url: url
 	}).done(function(data) {
 		// If successful
@@ -4870,6 +4887,7 @@ function bot_screen_coin_balance(sig) {
 		data: JSON.stringify(ajax_data),
 		dataType: 'json',
 		type: 'POST',
+		timeout: 5000, // sets timeout to 5 seconds
 		url: url
 	}).done(function(data) {
 		// If successful
@@ -4956,6 +4974,7 @@ function electrum_coin_balance(coin_balance_data) {
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(coin_balance_output_data) {
 		// If successful
@@ -5252,6 +5271,7 @@ function check_swap_status_details(swap_status_data) {
 						data: JSON.stringify(ajax_data),
 						dataType: 'json',
 						type: 'POST',
+						timeout: 6000, // sets timeout to 5 seconds
 						url: url
 					}).done(function(dataforblinker) {
 
@@ -5307,7 +5327,7 @@ function check_swap_status_details(swap_status_data) {
 					});
 				}
 
-				swapdetail_blinker = setInterval(blinker, 1000);
+				swapdetail_blinker = setInterval(blinker, 5000);
 
 				$('.btn_swap_status_details_close').click(function(e){
 					e.preventDefault();
@@ -5396,6 +5416,7 @@ function check_swap_status(sig) {
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful

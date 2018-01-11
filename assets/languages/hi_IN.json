@@ -117,6 +117,7 @@
   },
   "Inventory": {
     "inventory_tab_inventory": "संख्यापत्र",
+    "inventory_list_unspent_tab": "अव्ययित सूची",
     "inventory_th_index": "क्रम",
     "inventory_th_coin_info": "सिक्का जानकारी",
     "inventory_th_value_info": "मूल्य जानकारी",

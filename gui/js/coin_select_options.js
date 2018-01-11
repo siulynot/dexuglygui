@@ -19,7 +19,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/bsd.png' width='30px'/> BitSend (BSD)" data-tokens="BitSend BSD">BSD</option>
       <option data-content="<img src='img/cryptologo/btg.png' width='30px'/> Bitcoin Gold (BTG)" data-tokens="Bitcoin Gold BTG">BTG</option>
       <option data-content="<img src='img/cryptologo/blk.png' width='30px'/> BlackCoin (BLK)" data-tokens="BlackCoin BLK">BLK</option>
-      <option data-content="<img src='img/cryptologo/block.png' width='30px'/> Blocknet (BLOCK)" data-tokens="Blocknet BLOCK">BLK</option>
+      <option data-content="<img src='img/cryptologo/block.png' width='30px'/> Blocknet (BLOCK)" data-tokens="Blocknet BLOCK">BLOCK</option>
       
       <option data-content="<img src='img/cryptologo/crw.png' width='30px'/> Crown (CRW)" data-tokens="crw crown ">CRW</option>
       <option data-content="<img src='img/cryptologo/crea.png' width='30px'/> Creativecoin (CREA)" data-tokens="Creativecoin CREA">CREA</option>
@@ -53,7 +53,6 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/nav.png' width='30px'/> Navcoin (NAV)" data-tokens="Navcoin NAV">NAV</option>
       <option data-content="<img src='img/cryptologo/nmc.png' width='30px'/> Namecoin (NMC)" data-tokens="Namecoin NMC">NMC</option>
       <option data-content="<img src='img/cryptologo/pura.png' width='30px'/> Pura (PURA)" data-tokens="PURA">PURA</option>
-      <option data-content="<img src='img/cryptologo/pivx.png' width='30px'/> PIVX (PIVX)" data-tokens="PIVX">PIVX</option>
       <option data-content="<img src='img/cryptologo/qtum.png' width='30px'/> Qtum (QTUM)" data-tokens="Qtum">QTUM</option>
       <option data-content="<img src='img/cryptologo/xre.png' width='30px'/> RevolverCoin (XRE)" data-tokens="RevolverCoin XRE">XRE</option>
       <option data-content="<img src='img/cryptologo/sxc.png' width='30px'/> Sexcoin (SXC)" data-tokens="Sexcoin SXC">SXC</option>
@@ -105,6 +104,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
 <option data-content="<img src='img/cryptologo/MZC.png' width='30px' disabled/> Mazacoin (MZC)" data-tokens="Mazacoin MZC">MZC</option>
 <option data-content="<img src='img/cryptologo/UNO.png' width='30px' disabled/> Unobtanium (UNO)" data-tokens="Unobtanium UNO">UNO</option>
 <option data-content="<img src='img/cryptologo/MVP.png' width='30px' disabled/> MVP (MVP)" data-tokens="MVP MVP">MVP</option>
+<option data-content="<img src='img/cryptologo/pivx.png' width='30px'/> PIVX (PIVX)" data-tokens="PIVX">PIVX</option>
 <option data-content="<img src='img/cryptologo/zen.png' width='30px'/> ZenCash (ZEN)" data-tokens="ZenCash ZEN">ZEN</option>
 <optgroup label="Komodo Currencies">
       <option data-content="<img src='img/cryptologo/aud.png' width='30px;'/> Australian Dollar (AUD)" data-tokens="Australian Dollar AUD">AUD</option>

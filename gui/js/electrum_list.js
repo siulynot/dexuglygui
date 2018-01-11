@@ -4,7 +4,8 @@ var electrum_servers_list = {
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
   "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
-  "BTC": [{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}],
+  "BTC": [{"173.212.225.176":10000},{"node1.komodo.rocks":50001}],
+  "BTCH": [{"electrum2.cipig.net":10020},{"electrum1.cipig.net":10020}],
   "BTG": [{"94.130.224.11":10052},{"173.212.225.176":10052}],
   "CHIPS": [{"electrum2.cipig.net":10053},{"electrum1.cipig.net":10053}],
   "COQUI": [{"electrum2.cipig.net":10011},{"electrum1.cipig.net":10011}],
@@ -21,6 +22,7 @@ var electrum_servers_list = {
   "JUMBLR": [{"electrum2.cipig.net": 10004},{"electrum1.cipig.net": 10004}],
   "KMD": [{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}],
   "LTC": [{"173.212.225.176": 50012},{"136.243.45.140": 50012}],
+  "MGW": [{"electrum2.cipig.net":10015},{"electrum1.cipig.net":10015}],
   "MNZ": [{"electrum2.cipig.net":10002},{"electrum1.cipig.net":10002}],
   "MONA": [{"173.212.225.176": 50002},{"136.243.45.140": 50002}],
   "MSHARK": [{"electrum2.cipig.net": 10013},{"electrum1.cipig.net": 10013}],
@@ -32,6 +34,7 @@ var electrum_servers_list = {
   "VIA": [{"173.212.225.176": 50033},{"136.243.45.140": 50033}],
   "VTC": [{"173.212.225.176": 50088},{"136.243.45.140": 50088}],
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
+  "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
   "ZEC": [{"173.212.225.176": 50032},{"136.243.45.140": 50032}]
 }
 
