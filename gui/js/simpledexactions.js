@@ -39,14 +39,14 @@ $(document).ready(function() {
 		if (loginstate !== null && loginstate == 'loggedin') {
 			$('.mainbody').show();
 			$('.loginbody').hide();
-			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,300000);
 			CheckPortfolioFn();
 
 			//check_coin_balance_Interval = setInterval(check_coin_balance,3000);
 			//check_coin_balance();
 
 	//---- dICO App Settings START ----//
-			//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			//CheckPortfolio_Interval = setInterval(CheckPortfolioFn,300000);
 			//CheckPortfolioFn();
 
 			var dexmode = sessionStorage.getItem('mm_dexmode');
@@ -318,7 +318,7 @@ $('.btn-activatecoins').click(function(e){
 	$('.screen-addcoins').hide();
 
 	CheckPortfolioFn();
-	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,300000);
 });
 
 $('.btn-addcoinsrefresh').click(function(e){
@@ -617,7 +617,7 @@ $('.btn-exchangeclose').click(function(e){
     actiavte_portfolio_coins_list_spinner += '</th>';
     $('.porfolio_coins_list tbody').append(actiavte_portfolio_coins_list_spinner);
 	CheckPortfolioFn();
-	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+	CheckPortfolio_Interval = setInterval(CheckPortfolioFn,300000);
 });
 
 
@@ -2113,6 +2113,7 @@ function CheckPortfolioFn(sig) {
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
 	    type: 'POST',
+	    timeout: 61000, // sets timeout to 61 seconds
 	    url: url
 	}).done(function(data) {
 		// If successful
