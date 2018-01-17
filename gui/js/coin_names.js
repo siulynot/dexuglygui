@@ -167,6 +167,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'HODL';
 			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
 			break;
+                case 'HODLC':
+                        coin_details.name = 'HOdlcoin';
+                        coin_details.explorer = 'http://hodl.amit177.cf:1781/tx/';
+                        break;
 		case 'MSHARK':
 			coin_details.name = 'MSHARK';
 			coin_details.explorer = 'http://mshark.explorer.supernet.org/tx/';
