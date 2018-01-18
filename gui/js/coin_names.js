@@ -315,6 +315,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'MonaCoin';
 			coin_details.explorer = 'https://mona.chainsight.info/tx/';
 			break;
+                case 'XMCC':
+                        coin_details.name = 'Monoeci';
+                        coin_details.explorer = 'http://block.monacocoin.net:8080/tx/';
+                        break;
 		case 'XMY':
 			coin_details.name = 'Myriad';
 			coin_details.explorer = 'https://cryptap.us/myr/explorer/tx/';
