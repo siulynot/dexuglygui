@@ -11,6 +11,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Chips';
 			coin_details.explorer = 'https://explorer.chips.cash/tx/';
 			break;
+                case 'ABY':
+                        coin_details.name = 'ArtByte';
+                        coin_details.explorer = 'http://explorer.artbyte.me/tx/';
+                        break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
