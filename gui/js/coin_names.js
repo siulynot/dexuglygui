@@ -343,6 +343,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'SIBCoin';
 			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
+                case 'VOT':
+                        coin_details.name = 'VoteCoin';
+                        coin_details.explorer = 'http://explorer.votecoin.site/tx/';
+                        break;
 		case 'VTC':
 			coin_details.name = 'Vertcoin';
 			coin_details.explorer = 'https://bitinfocharts.com/vertcoin/tx/';
