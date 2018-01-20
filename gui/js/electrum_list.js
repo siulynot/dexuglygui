@@ -17,6 +17,7 @@ var electrum_servers_list = {
   "DOGE": [{"173.212.225.176": 50015},{"136.243.45.140": 50015}],
   "EMC2": [{"173.212.225.176": 50079},{"136.243.45.140": 50079}],
   "FAIR": [{"173.212.225.176": 50005},{"136.243.45.140": 50005}],
+  "GRS": [{"electrum10.groestlcoin.org":50001},{"electrum11.groestlcoin.org":50001},{"electrum13.groestlcoin.org":50001},{"electrum14.groestlcoin.org":50001}],
   "HODL": [{"electrum2.cipig.net":10009},{"electrum1.cipig.net":10009}],
   "HODLC": [{"hodl2.amit177.cf":17989},{"hodl.amit177.cf":17989}],
   "HUSH": [{"173.212.225.176": 50013},{"136.243.45.140": 50013}],

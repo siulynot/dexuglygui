@@ -79,6 +79,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
 			break;
+                case 'GRS':
+                        coin_details.name = 'Groestlcoin';
+                        coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
+                        break;
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';

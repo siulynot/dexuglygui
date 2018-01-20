@@ -36,6 +36,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       
       <option data-content="<img src='img/cryptologo/gbx.png' width='30px'/> GoByte (GBX)" data-tokens="GoByte GBX">GBX</option>
       <option data-content="<img src='img/cryptologo/glt.png' width='30px'/> GlobalToken (GLT)" data-tokens="GlobalToken GLT">GLT</option>
+      <option data-content="<img src='img/cryptologo/grs.png' width='30px'/> Groestlcoin (GRS)" data-tokens="Groestlcoin GRS">GRS</option>
       <option data-content="<img src='img/cryptologo/hodlc.png' width='30px'/> HODLCoin (HODLC)" data-tokens="HODLCoin HODLC">HODLC</option>
       <option data-content="<img src='img/cryptologo/huc.png' width='30px'/> Huntercoin (HUC)" data-tokens="Huntercoin HUC">HUC</option>
       <option data-content="<img src='img/cryptologo/hush.png' width='30px'/> Hush (HUSH)" data-tokens="Hush HUSH">HUSH</option>
