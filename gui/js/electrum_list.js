@@ -30,6 +30,7 @@ var electrum_servers_list = {
   "MSHARK": [{"electrum2.cipig.net": 10013},{"electrum1.cipig.net": 10013}],
   "NMC": [{"173.212.225.176": 50036},{"136.243.45.140": 50036}],
   "PANGEA": [{"electrum2.cipig.net": 10010},{"electrum1.cipig.net": 10010}],
+  "QTUM": [{"s1.qtum.info":50001},{"s2.qtum.info":50001},{"s3.qtum.info":50001},{"s4.qtum.info":50001}],
   "REVS": [{"electrum2.cipig.net": 10003},{"electrum1.cipig.net": 10003}],
   "SIB": [{"electrum2.cipig.net": 10050},{"electrum1.cipig.net": 10050}],
   "SUPERNET": [{"electrum2.cipig.net": 10005},{"electrum1.cipig.net": 10005}],
