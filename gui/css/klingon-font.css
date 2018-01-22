@@ -8,8 +8,12 @@
 	font-style:normal
 }
 .klingon{
-	font-family:'piqad'
+	font-family:'piqad' !important
 }
 .klingon div, .klingon span, .klingon p, .klingon a {
-	font-family:'piqad'
+	font-family:'piqad' !important
+}
+
+body {
+	font-family: 'piqad','Open Sans', 'Helvetica Neue', Helvetica, sans-serif !important;
 }
