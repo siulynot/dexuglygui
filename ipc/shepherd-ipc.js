@@ -402,7 +402,7 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
             zconf_deposit_log.push(JSON.parse(zeroconf_log_data.logdata));
             console.log('===============')
             console.log(zconf_deposit_log);
-            fs.writeJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, zconf_deposit_log, function (err) {
+            fs.writeJsonSync(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, zconf_deposit_log, function (err) {
               if (err) throw err;
               console.log('ZeroConf deposit log updated!');
             });
@@ -432,7 +432,7 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
             zconf_claim_log.push(JSON.parse(zeroconf_log_data.logdata));
             //console.log('===============')
             //console.log(zconf_claim_log);
-            fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
+            fs.writeJsonSync(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
               if (err) throw err;
               console.log('ZeroConf claim log updated!');
             });
@@ -452,7 +452,7 @@ UpdateBarterDEXSettings = function(settings_data) {
   
   fs.ensureFile(_BarterDEXSettingsFile)
   .then(() => {
-    fs.writeJson(_BarterDEXSettingsFile, settings_data, function (err) {
+    fs.writeJsonSync(_BarterDEXSettingsFile, settings_data, function (err) {
       if (err) throw err;
       console.log('ZeroConf claim log updated!');
     });
