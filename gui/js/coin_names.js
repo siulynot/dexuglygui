@@ -11,10 +11,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Chips';
 			coin_details.explorer = 'https://explorer.chips.cash/tx/';
 			break;
-                case 'ABY':
-                        coin_details.name = 'ArtByte';
-                        coin_details.explorer = 'http://explorer.artbyte.me/tx/';
-                        break;
+		case 'ABY':
+			coin_details.name = 'ArtByte';
+			coin_details.explorer = 'http://explorer.artbyte.me/tx/';
+			break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
@@ -79,10 +79,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
 			break;
-                case 'GRS':
-                        coin_details.name = 'Groestlcoin';
-                        coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
-                        break;
+		case 'GRS':
+			coin_details.name = 'Groestlcoin';
+			coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
+			break;
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
@@ -175,10 +175,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'HODL';
 			coin_details.explorer = 'http://HODL.explorer.supernet.org/tx/';
 			break;
-                case 'HODLC':
-                        coin_details.name = 'HOdlcoin';
-                        coin_details.explorer = 'http://hodl.amit177.cf:1781/tx/';
-                        break;
+		case 'HODLC':
+			coin_details.name = 'HOdlcoin';
+			coin_details.explorer = 'http://hodl.amit177.cf:1781/tx/';
+			break;
 		case 'MSHARK':
 			coin_details.name = 'MSHARK';
 			coin_details.explorer = 'http://mshark.explorer.supernet.org/tx/';
@@ -319,10 +319,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'MonaCoin';
 			coin_details.explorer = 'https://mona.chainsight.info/tx/';
 			break;
-                case 'XMCC':
-                        coin_details.name = 'Monoeci';
-                        coin_details.explorer = 'http://block.monacocoin.net:8080/tx/';
-                        break;
+		case 'XMCC':
+			coin_details.name = 'Monoeci';
+			coin_details.explorer = 'http://block.monacocoin.net:8080/tx/';
+			break;
 		case 'XMY':
 			coin_details.name = 'Myriad';
 			coin_details.explorer = 'https://cryptap.us/myr/explorer/tx/';
@@ -347,10 +347,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'SIBCoin';
 			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
-                case 'VOT':
-                        coin_details.name = 'VoteCoin';
-                        coin_details.explorer = 'http://explorer.votecoin.site/tx/';
-                        break;
+		case 'VOT':
+			coin_details.name = 'VoteCoin';
+			coin_details.explorer = 'http://explorer.votecoin.site/tx/';
+			break;
 		case 'VTC':
 			coin_details.name = 'Vertcoin';
 			coin_details.explorer = 'https://bitinfocharts.com/vertcoin/tx/';
@@ -506,6 +506,14 @@ function return_coin_details(coin) {
 		case 'STAK':
 			coin_details.name = 'Straks';
 			coin_details.explorer = 'https://straks.info/transaction/';
+			break;
+		case 'BEER':
+			coin_details.name = 'BEER TESTCOIN';
+			coin_details.explorer = 'http://beer.explorer.supernet.org/tx/';
+			break;
+		case 'PIZZA':
+			coin_details.name = 'PIZZA TESTCOIN';
+			coin_details.explorer = 'http://pizza.explorer.supernet.org/tx/';
 			break;
 	}
 	return coin_details;

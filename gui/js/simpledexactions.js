@@ -5409,7 +5409,7 @@ function check_swap_status(sig) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
+	var ajax_data = {"userpass":userpass,"method":"swapstatus","pending":0};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
@@ -5451,7 +5451,7 @@ function check_swap_status(sig) {
 					var exchange_swap_status_tr = '';
 					exchange_swap_status_tr += '<tr>';
 					exchange_swap_status_tr += `<td><div style="color: #e53935; font-size: 15px;"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> ${default_lang.SwapStatus.swapstatus_status_error}</div></td>`;
-					exchange_swap_status_tr += '<td>-</td>';
+					exchange_swap_status_tr += `<td>${val.error}</td>`;
 					//exchange_swap_status_tr += '<td>-</td>';
 					exchange_swap_status_tr += '<td>-</td>';
 					exchange_swap_status_tr += '</tr>';
@@ -5648,6 +5648,7 @@ function constructTradesHistory() {
 				<table class="trades-history-table">
 					<tr>
 						<th>#</th>
+						<th>Finish Time</th>
 						<th>${default_lang.TradeHistory.tradehistory_th_direction}</th>
 						<th>${default_lang.TradeHistory.tradehistory_th_pair}</th>
 						<th>${default_lang.TradeHistory.tradehistory_th_sent}</th>
@@ -5671,6 +5672,7 @@ function constructTradesHistory() {
 					iambob_answer = (data.iambob == 0) ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy;
 
 					var time = new Date( data.expiration * 1000);
+					var fintime = new Date( data.finishtime * 1000);
 
 					var simplified_dexdetail_tr = '';
 					if (data.iambob == 0) {
@@ -5701,6 +5703,7 @@ function constructTradesHistory() {
 					tradesOut += `
 						<tr>
 							<td>${i + 1}</td>
+							<td>${fintime}</td>
 							<td>
 								<i class="fa fa-arrow-${data.iambob == 0 ? 'right col-green' : 'left col-red'}"></i>&nbsp;
 								<span>${ data.iambob == 0 ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_bought : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_sold }</span>

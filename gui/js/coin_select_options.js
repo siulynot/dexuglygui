@@ -6,6 +6,9 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/bch.png' width='30px;'/> Bitcoin Cash (BCH)" data-tokens="bch bitcoin cash ">BCH</option>
       <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
       <option data-content="<img src='img/cryptologo/chips.png' width='30px;'/> CHIPS (CHIPS)" data-tokens="CHIPS CHIPS ">CHIPS</option>
+
+      <option data-content="<img src='img/cryptologo/beer.png' width='30px;'/> BEER (BEER TESTCOIN)" data-tokens="BEER BEER TESTCOIN">BEER</option>
+      <option data-content="<img src='img/cryptologo/pizza.png' width='30px;'/> PIZZA (PIZZA TESTCOIN)" data-tokens="PIZZA PIZZA TESTCOIN">PIZZA</option>
       
       <option data-content="<img src='img/cryptologo/888.png' width='30px'/> OctoCoin (888)" data-tokens="OctoCoin 888">888</option>
       <option data-content="<img src='img/cryptologo/aby.png' width='30px'/> ArtByte (ABY)" data-tokens="ArtByte ABY">ABY</option>
