@@ -104,29 +104,28 @@
             <button class="btn btn-grey btn_login_show_passphrase" style="height: 44px; margin-bottom: 10px;"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button> 
           </span> -->
         </div>
-        <div class="input-group col-sm-12" style="margin-bottom: 10px;">
-          <select class="selectpicker login_mode_options" data-hide-disabled="true" data-width="30%"></select>
-          <span class="input-group-btn">
-            <button class="btn btn-lg btn-primary btn-block login-btn language" data-langstr="login_btn" type="submit" style="height: 64px;"></button>
-          </span>
-        </div>
-        <!--<input type="password" id="loginPassphrase" class="form-control loginPassphrase" placeholder="Passphrase" required>-->
-        <!--<button class="btn btn-lg btn-primary btn-block login-btn" type="submit">Login</button>-->
 
-        <div class="col-sm-4" style="margin-bottom: 10px; padding: 0 5px;">
+        <div class="col-sm-4" style="margin-bottom: 10px; padding: 0 5px 0 0;">
           <span class="input-group">
             <span class="input-group-addon" class="language" data-langstr="">Net ID</span>
-            <input type="number" id="loginPassphrase" class="form-control loginnetid language" data-langstr="login_netid_input_placeholder" placeholder="" value="0" required>
+            <input type="number" id="loginNetid" class="form-control loginNetid language" data-langstr="login_netid_input_placeholder" placeholder="" value="0" required>
           </span>
 
           
         </div>
 
-        <div class="col-sm-8" style="margin-bottom: 10px; padding: 0 5px;">
+        <div class="col-sm-8" style="margin-bottom: 10px; padding: 0 0 0 5px;">
 
           <span class="input-group">
             <span class="input-group-addon" class="language" data-langstr="">Seed Node IP</span>
-            <input type="number" id="loginPassphrase" class="form-control loginnetid language" data-langstr="login_netid_input_placeholder" placeholder="" required>
+            <input type="text" id="loginSeednode" class="form-control loginSeednode language" data-langstr="login_seednode_input_placeholder" placeholder="" value="" required>
+          </span>
+        </div>
+
+        <div class="input-group col-sm-12" style="margin-bottom: 10px;">
+          <select class="selectpicker login_mode_options" data-hide-disabled="true" data-width="30%"></select>
+          <span class="input-group-btn">
+            <button class="btn btn-lg btn-primary btn-block login-btn language" data-langstr="login_btn" type="submit" style="height: 64px;"></button>
           </span>
         </div>
 

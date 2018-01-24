@@ -128,7 +128,12 @@ $('.dexlogout-btn').click(function(e) {
 	$('.mainbody').fadeOut();
 	$('.loginbody').fadeIn();
 
-	LoginWithPassphrase('default','logout');
+	var login_data = {};
+	login_data.passphrase = 'default';
+	login_data.netid = 0;
+	login_data.seednode = '';
+
+	LoginWithPassphrase(login_data,'logout');
 
 	CheckPortfolioFn(false);
 	CheckOrderBookFn(false);
@@ -287,24 +292,34 @@ $('.login-genpass-btn').click(function(e){
 
 $('.login-btn').click(function(e) {
 	e.preventDefault();
-	var passphrase = $('.loginPassphrase').val();
-	LoginWithPassphrase(passphrase,'login');
-	//var shepherdresult = ShepherdIPC({"command":"login","passphrase":passphrase});
-	$('.loginPassphrase').val('');
-	$('.mainbody').hide();
-	$('.loginbody').hide();
-	//CheckMM_Interval = setInterval(CheckMMStatus,1000);
-	$('.loadingbody').fadeIn();
+	var login_data = {};
+	login_data.passphrase = $('.loginPassphrase').val();
+	login_data.netid = $('.loginNetid').val();
+	login_data.seednode = $('.loginSeednode').val();
 
-	var dexmode = $('.login_mode_options').selectpicker('val');
-	if (dexmode == 'BarterDEX') {
-		loginBarterdEX();
-	}
-	if (dexmode == 'dICO') {
-		logindICO(dICO_coin);
-	}
+	if (login_data.netid > 14420) {
+		bootbox.alert({
+			message: `<b>Net ID:</b> ${login_data.netid} <br>Net ID can not be bigger than 14420.`
+		});
+	} else {
+		LoginWithPassphrase(login_data,'login');
+		//var shepherdresult = ShepherdIPC({"command":"login","passphrase":passphrase});
+		$('.loginPassphrase').val('');
+		$('.mainbody').hide();
+		$('.loginbody').hide();
+		//CheckMM_Interval = setInterval(CheckMMStatus,1000);
+		$('.loadingbody').fadeIn();
 
-	BarterDEXSettingsFn();
+		var dexmode = $('.login_mode_options').selectpicker('val');
+		if (dexmode == 'BarterDEX') {
+			loginBarterdEX();
+		}
+		if (dexmode == 'dICO') {
+			logindICO(dICO_coin);
+		}
+
+		BarterDEXSettingsFn();
+	}
 });
 
 
@@ -389,7 +404,7 @@ $('.dexsettings-btn').click(function(e){
 					BarterDEXSettingsFn();
                     RefreshStockChartTheme(selected_theme);
                     if (barterDEX_settings.deflang == 'tlh_UNI') {
-						$('body').css('font-family','piqad');
+						$('body').css('font-family',"'piqad', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif");
 						BarterDEXDefaultLangFn(selected_deflang);
 					} else {
 						$('body').css('font-family',"'Open Sans', 'Helvetica Neue', Helvetica, sans-serif");
@@ -600,9 +615,9 @@ CheckDefaultLogin = function(sig) {
 }
 
 
-LoginWithPassphrase = function(login_passphrase,action_mode) {
+LoginWithPassphrase = function(login_passphrase_data,action_mode) {
 	console.log('Login using passphrase from Login form input');
-
+	//console.log(login_passphrase_data);
 
 	var userpass = '';
 	if (sessionStorage.getItem('mm_loginstate') == 'loggedin') {
@@ -611,7 +626,18 @@ LoginWithPassphrase = function(login_passphrase,action_mode) {
 		var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
 	}
 	
-	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":login_passphrase,"gui":"simplegui"};
+	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":login_passphrase_data.passphrase,"gui":"simplegui"};
+
+	if (login_passphrase_data.netid == 0) {
+		console.log(login_passphrase_data.netid);
+		delete ajax_data.netid;
+		delete ajax_data.seednode;
+	} else {
+		console.log('Net ID: ' + login_passphrase_data.netid);
+		console.log('Seed Node IP: ' + login_passphrase_data.seednode);
+		ajax_data.netid = login_passphrase_data.netid;
+		ajax_data.seednode = login_passphrase_data.seednode;
+	}
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
