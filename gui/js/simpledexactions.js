@@ -3160,6 +3160,7 @@ function CheckOrderBookFn(sig) {
 				//console.log(index);
 				//console.log(val);
 				var colorpbk = coloredPubkey(val.pubkey);
+				var coloraddr = coloredPubkey(val.address);
 
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
@@ -3185,7 +3186,7 @@ function CheckOrderBookFn(sig) {
 				//orderbook_bids_tr += '<td>' + val.maxvolume + '</td>';
 				orderbook_bids_tr += '<td>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 				orderbook_bids_tr += '<td>' + val.depth + '</td>';
-				//orderbook_bids_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
+				orderbook_bids_tr += '<td>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
 				orderbook_bids_tr += '<td>' + val.age + '</td>';
 				orderbook_bids_tr += '<td>' + val.numutxos + '</td>';
 				orderbook_bids_tr += '<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
@@ -3201,6 +3202,7 @@ function CheckOrderBookFn(sig) {
 				//console.log(index);
 				//console.log(val);
 				var colorpbk = coloredPubkey(val.pubkey);
+				var coloraddr = coloredPubkey(val.address);
 
 				var mytrade_true = '';
 				if (val.pubkey === mypubkey) {
@@ -3225,7 +3227,7 @@ function CheckOrderBookFn(sig) {
 				//orderbook_asks_tr += '<td>' + row_trade_data.totalbuy.toFixed(8) + '</td>';
 				orderbook_asks_tr += '<td>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 				orderbook_asks_tr += '<td>' + val.depth + '</td>';
-				//orderbook_asks_tr += '<td>' + colorpbk.firstpart + '<font style="color: #' + colorpbk.colorpart1 + '; background-color: #' + colorpbk.colorpart1 + ';">' + colorpbk.char1 + '</font><font style="color: #' + colorpbk.colorpart2 + '; background-color: #' + colorpbk.colorpart2 + ';">' + colorpbk.char2 + '</font><font style="color: #' + colorpbk.colorpart3 + '; background-color: #' + colorpbk.colorpart3 + ';">' + colorpbk.char3 + '</font>' + colorpbk.lastpart + '</td>';
+				orderbook_asks_tr += '<td>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
 				orderbook_asks_tr += '<td>' + val.age + '</td>';
 				orderbook_asks_tr += '<td>' + val.numutxos + '</td>';
 				orderbook_asks_tr += '<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
