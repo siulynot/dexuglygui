@@ -363,6 +363,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'ZCoin';
 			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
 			break;
+                case 'ZOI':
+                        coin_details.name = 'Zoin';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/zoi/tx.dws?';
+                        break;
 		case 'QTUM':
 			coin_details.name = 'Qtum';
 			coin_details.explorer = 'https://explorer.qtum.org/tx/';
