@@ -8,7 +8,7 @@ var electrum_servers_list = {
   "BTCH": [{"electrum2.cipig.net":10020},{"electrum1.cipig.net":10020}],
   "BTG": [{"94.130.224.11":10052},{"173.212.225.176":10052}],
   "CHIPS": [{"electrum2.cipig.net":10053},{"electrum1.cipig.net":10053}],
-  "COQUI": [{"electrum2.cipig.net":10011},{"electrum1.cipig.net":10011}],
+  "COQUI": [{"78.47.146.222":10011},{"94.130.173.120":10011},{"electrum2.cipig.net":10011},{"electrum1.cipig.net":10011}],
   "CRW": [{"173.212.225.176": 50041},{"136.243.45.140": 50041}],
   "CRYPTO": [{"electrum2.cipig.net":10008},{"electrum1.cipig.net":10008}],
   "DASH": [{"173.212.225.176": 50098},{"136.243.45.140": 50098}],
