@@ -223,6 +223,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'BTCH';
 			coin_details.explorer = 'http://btch.explorer.supernet.org/tx/';
 			break;
+                case 'CRC':
+                        coin_details.name = 'CrowdCoin';
+                        coin_details.explorer = 'http://explorer.cryptopros.us/tx/';
+                        break;
 		case 'CRW':
 			coin_details.name = 'Crown';
 			coin_details.explorer = 'https://chainz.cryptoid.info/crw/tx.dws?';
