@@ -230,6 +230,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
 StartMarketMaker = function(data) {
       //console.log(data.passphrase);
     try {
+      fs.unlink(BarterDEXDir+'/coins.json');
       // check if marketmaker instance is already running
       portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
@@ -240,10 +241,10 @@ StartMarketMaker = function(data) {
                   if (exists === true) {
                         console.log('file exist');
                         var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
-                        data.coinslist = ProcessCoinsList(coinslist_filedata); 
+                        data.coinslist = ProcessCoinsList(coinslist_filedata);
                         // data.coinslist is not used under Windows, if coins.json already exists
                         // it will be directly used by marketmaker
-                        ExecMarketMaker(data); 
+                        ExecMarketMaker(data);
                   } else if (exists === false) {
                         console.log('file doesn\'t exist');
                         fs.copy(defaultCoinsListFile, _coinsListFile)
@@ -264,7 +265,7 @@ StartMarketMaker = function(data) {
 					});
 					*/
 					// ver.2
-					fs.writeJsonSync(_coinsListFile, data.coinslist); 
+					fs.writeJsonSync(_coinsListFile, data.coinslist);
 			      }
                               ExecMarketMaker(data);
                         })
@@ -449,7 +450,7 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
 
 UpdateBarterDEXSettings = function(settings_data) {
   console.log(settings_data);
-  
+
   fs.ensureFile(_BarterDEXSettingsFile)
   .then(() => {
     fs.writeJsonSync(_BarterDEXSettingsFile, settings_data, function (err) {
