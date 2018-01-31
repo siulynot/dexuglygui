@@ -15,7 +15,7 @@
     "btn_enable_electrum": "エレクトラムを有効にする",
     "btn_disable": "停止",
     "btn_set_goal": "目標を設定",
-    "btn_exchange": "取引する",　
+    "btn_exchange": "取引する",
     "btn_inventory": "在庫",
     "btn_close_smallcaps": "閉じる",
     "btn_close_caps": "閉じる",
@@ -73,7 +73,7 @@
   "Navigation": {
     "nav_dashboard": "ダッシュボード",
     "nav_trade_history": "取引の歴史",
-    "nav_close" : "閉じる",
+    "nav_close": "閉じる",
     "nav_debug": "デバッグ",
     "nav_settings": "設定",
     "nav_logout": "ログアウト"
@@ -116,7 +116,6 @@
     "portfolio_send_tx": "取引を送信",
     "portfolio_tx_did_not_complete": "取引は完了しませんでした。再度お試しください。",
     "portfolio_toastr_title_tx_info": "取引情報"
-
   },
   "Inventory": {
     "inventory_tab_inventory": "在庫",
@@ -153,7 +152,7 @@
     "exchange_btn_portfolio": "ポートフォリオ",
     "exchange_lbl_one_max": "最大",
     "exchange_lbl_one_min": "最小",
-    "exchange_lbl_one_price_to":  "価格設定～まで",
+    "exchange_lbl_one_price_to": "価格設定～まで",
     "exchange_lbl_buy_small": "買い",
     "exchange_lbl_sell_small": "売り",
     "exchange_trade_with_selected_trader": "選択したトレーダーとの取引のみ（オプション）",
@@ -362,7 +361,7 @@
   "ZeroConfirmation": {
     "zeroconf_please_confirm_you_want_to_send_and_lock_01": "送付してロックしたいか確認してください - 1",
     "zeroconf_please_confirm_you_want_to_send_and_lock_02": "送付してロックしたいか確認してください - 2",
-    "zeroconf_please_confirm_you_want_to_send_and_lock_03": "送付してロックしたいか確認してください - 3",　
+    "zeroconf_please_confirm_you_want_to_send_and_lock_03": "送付してロックしたいか確認してください - 3",
     "zeroconf_week_weeks": "週",
     "zeroconf_yes_i_confirm": "確認します",
     "zeroconf_history_dialog_title": "スピード・モードの預金の歴史",
@@ -387,7 +386,7 @@
     "zeroconf_info_dialog_li_04": "預金の再要求は有効期限後のみ可能ですので、有効期間の設定は慎重に行ってください。",
     "zeroconf_info_dialog_li_05": "KMDの保証金は通常通り、期間を通じて5%の年利を生じます。",
     "zeroconf_info_dialog_li_06": "完了時に、セキュリティ手数料の0.1％を控除した預金と利息を受け取ることになります。",
-    "zeroconf_info_dialog_p_02": "重要事項：スピード・モードを使用中に不正行為を試みた場合、犯行額と追加の罰金額の両方が預金から差し引かれ、影響を受けた関係者に払い戻すために没収されます。お客様の預金の残高は、通常の有効期限終了後に請求できます。"　
+    "zeroconf_info_dialog_p_02": "重要事項：スピード・モードを使用中に不正行為を試みた場合、犯行額と追加の罰金額の両方が預金から差し引かれ、影響を受けた関係者に払い戻すために没収されます。お客様の預金の残高は、通常の有効期限終了後に請求できます。"
   },
   "Settings": {
     "settings_enable_experimental_features": "試験的機能を有効にしますか。",
