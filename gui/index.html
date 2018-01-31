@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - v0.8.5-rc</title>
+    <title>BarterDEX - v0.8.8-rc</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" id="bright_css_style">
@@ -101,18 +101,36 @@
           <input type="password" id="loginPassphrase" class="form-control loginPassphrase language" data-langstr="login_passphrase_input_placeholder" placeholder="" data-toggle="password" required>
           <!--
           <span class="input-group-btn">
-            <button class="btn btn-grey btn_login_show_passphrase" style="height: 44px; margin-bottom: 10px;"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button> 
+            <button class="btn btn-grey btn_login_show_passphrase" style="height: 44px; margin-bottom: 10px;"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
           </span> -->
         </div>
+
+        <div class="col-sm-4" style="margin-bottom: 10px; padding: 0 5px 0 0;">
+          <span class="input-group">
+            <span class="input-group-addon" class="language" data-langstr="">Net ID</span>
+            <input type="number" id="loginNetid" class="form-control loginNetid language" data-langstr="login_netid_input_placeholder" placeholder="" value="0" required>
+          </span>
+
+
+        </div>
+
+        <div class="col-sm-8" style="margin-bottom: 10px; padding: 0 0 0 5px;">
+
+          <span class="input-group">
+            <span class="input-group-addon" class="language" data-langstr="">Seed Node IP</span>
+            <input type="text" id="loginSeednode" class="form-control loginSeednode language" data-langstr="login_seednode_input_placeholder" placeholder="" value="" required>
+          </span>
+        </div>
+
         <div class="input-group col-sm-12" style="margin-bottom: 10px;">
           <select class="selectpicker login_mode_options" data-hide-disabled="true" data-width="30%"></select>
           <span class="input-group-btn">
             <button class="btn btn-lg btn-primary btn-block login-btn language" data-langstr="login_btn" type="submit" style="height: 64px;"></button>
           </span>
         </div>
-        <!--<input type="password" id="loginPassphrase" class="form-control loginPassphrase" placeholder="Passphrase" required>-->
-        <!--<button class="btn btn-lg btn-primary btn-block login-btn" type="submit">Login</button>-->
-        <button class="btn btn-lg btn-default btn-block login-genpass-btn language" data-langstr="generate_a_new_passphrase"></button>
+
+        <button class="btn btn-lg btn-default btn-block login-genpass-btn language" data-langstr="generate_a_new_passphrase" style="margin-bottom: 10px;"></button>
+
       </form>
     </div>
   </div>
@@ -168,11 +186,11 @@
     </nav>
     <!-- Section: Navigation Menu END -->
     <div class="dextradeshistory" style="display: none; margin-top: 60px;">
-      
+
       <span class="refresh-trades-history-icon" onclick="constructTradesHistory()">
         <i class="fa fa-refresh"></i>
       </span>
-      
+
       <div id="trades-history-content">
         <svg id="trades-history-spinner">
           <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
@@ -247,18 +265,17 @@
     </div>
 
     <div class="screen-inventory" style="display: none; margin-top: 60px;">
-      <div class="col-sm-12" style="display: none;">
+      <div class="col-sm-12" style="display: ;">
         <p>This screen shows you option to manage your coin's inventory. What is coin inventory?</p>
         <p>Every crypto currency wallet is very much like your regular physical wallet. Just like in your physical wallet if you have different currency notes and coins available, that means they are not spent. You can spend them. If you use the same analogy in crypto currency, these unspent notes and coins can be referred as <b><i>unspent transactions.</i></b> In tiny bit technical term it's called <b>U</b>nspent <b>T</b>ransaction <b>O</b>utput, in short <b>UTXO</b>.</p>
         <p>The decentralised Exchange doesn't run on total balance of your crypto currency wallet. It needs small unspent transactions. So, if you have sent a big transaction to your BarterDEX smart address, you can use this screen to split your balance to number of small UTXOs.</p>
         <p>By clicking <i>Make Inventory</i> button, it will split your smart address balance to number of UTXOs and send them back to your smart address. It will cost regular transaction fee to split your smart address balance.</p>
 
       </div>
-      <div class="col-sm-12" style="display: none;">
+      <div class="col-sm-12" style="display: ;">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title inventory-title coininventory" data-coin="COIN">Manage Inventory</h3>
-            <button class="btn btn-xs btn-inventoryclose coininventory" data-coin="COIN" style="float: right; margin-right: 3px; margin-top: -20px">BACK</button>
           </div>
           <div class="panel-body">
 
@@ -271,10 +288,10 @@
                   <input type="number" class="form-control" id="inventory_slider_input1">
                 </div>
                 <div class="col-sm-5">
-                  <input id="inventory-slider1" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="4"/>
+                  <input id="inventory-slider1" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="3" data-slider-step="1" data-slider-value="3"/>
                 </div>
                 <div class="col-sm-2">
-                  <span id="inventory-slider1CurrentValLabel">No. of deposit: <span id="inventory-slider1Val" style="font-weight: bold;">4</span></span>
+                  <span id="inventory-slider1CurrentValLabel">No. of deposit: <span id="inventory-slider1Val" style="font-weight: bold;">3</span></span>
                 </div>
                 <div class="col-sm-2">
                   <span id="inventory-slider1CurrentTotalLabel">Total: <span id="inventory-slider1Total" style="font-weight: bold;"></span></span>
@@ -289,10 +306,10 @@
                   <input type="number" class="form-control" id="inventory_slider_input2">
                 </div>
                 <div class="col-sm-5">
-                  <input id="inventory-slider2" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="8"/>
+                  <input id="inventory-slider2" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="3" data-slider-step="1" data-slider-value="3"/>
                 </div>
                 <div class="col-sm-2">
-                  <span id="inventory-slider2CurrentValLabel">No. of deposit: <span id="inventory-slider2Val" style="font-weight: bold;">8</span></span>
+                  <span id="inventory-slider2CurrentValLabel">No. of deposit: <span id="inventory-slider2Val" style="font-weight: bold;">3</span></span>
                 </div>
                 <div class="col-sm-2">
                   <span id="inventory-slider2CurrentTotalLabel">Total: <span id="inventory-slider2Total" style="font-weight: bold;"></span></span>
@@ -307,7 +324,7 @@
                   <input type="number" class="form-control" id="inventory_slider_input3">
                 </div>
                 <div class="col-sm-5">
-                  <input id="inventory-slider3" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="4"/>
+                  <input id="inventory-slider3" type="text" class="col-sm-8 form-control" data-slider-min="0" data-slider-max="4" data-slider-step="1" data-slider-value="4"/>
                 </div>
                 <div class="col-sm-2">
                   <span id="inventory-slider3CurrentValLabel">No. of deposit: <span id="inventory-slider3Val" style="font-weight: bold;">4</span></span>
@@ -374,8 +391,8 @@
     </div>
 
     <div class="screen-exchange" style="display: none; margin-top: 60px;">
-      
-      
+
+
 
       <div class="col-md-5 col-lg-4" style="padding: 2px;">
         <div class="row">
@@ -419,7 +436,7 @@
               </div>
               <div class=""> <!-- panel-body -->
                 <div class="tab-content">
-                  
+
                   <div class="tab-pane fade in active" id="exchange_trading_pair" style="padding: 15px;">
                     <div class="row">
                       <div class="col-sm-12">
@@ -558,13 +575,13 @@
 
                 </div>
 
-                
+
 
               </div>
             </div>
           </div>
 
-          
+
 
 
           <div class="col-sm-12 col3">
@@ -667,7 +684,7 @@
                             <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
                             <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
-                            <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                            <th class="language" data-langstr="exchange_th_orderbook_trader_addr">Address</th>
                             <th class="language" data-langstr="exchange_th_orderbook_age"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
@@ -700,7 +717,7 @@
                             <th>Max <span class="orderbook_rel_coin"></span></th>-->
                             <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
-                            <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                            <th class="language" data-langstr="exchange_th_orderbook_trader_addr">Address</th>
                             <th class="language" data-langstr="exchange_th_orderbook_age"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
                             <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
@@ -733,7 +750,7 @@
                                 <th>Sum(<span class="orderbook_rel_coin"></span>)</th>-->
                                 <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
-                                <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                                <th class="language" data-langstr="exchange_th_orderbook_trader_addr">Address</th>
                                 <th class="language" data-langstr="exchange_th_orderbook_age"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
@@ -755,7 +772,7 @@
                                 <th>Max <span class="orderbook_rel_coin"></span></th>-->
                                 <th class="language" data-langstr="exchange_th_orderbook_avg_volume"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_depth"></th>
-                                <!--<th class="language" data-langstr="exchange_th_orderbook_trader_pubkey">Trader Pubkey</th>-->
+                                <th class="language" data-langstr="exchange_th_orderbook_trader_addr">Address</th>
                                 <th class="language" data-langstr="exchange_th_orderbook_age"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_utxos"></th>
                                 <th class="language" data-langstr="exchange_th_orderbook_zcredits"></th>
@@ -885,7 +902,7 @@
     <script src="js/simpledexactions.js" type="text/javascript"></script>
     <script src="js/electrum_list.js" type="text/javascript"></script>
     <script src="js/barterdex_remote_alerts.js" type="text/javascript"></script>
-    
+
     <script src="js/language-codes_json.js" type="text/javascript"></script>
     <script src="js/country_list_json.js" type="text/javascript"></script>
     <script src="js/barterdex_localization.js" type="text/javascript"></script>

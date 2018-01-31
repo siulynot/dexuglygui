@@ -230,6 +230,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
 StartMarketMaker = function(data) {
       //console.log(data.passphrase);
     try {
+      fs.unlink(BarterDEXDir+'/coins.json');
       // check if marketmaker instance is already running
       portscanner.checkPortStatus(7783, '127.0.0.1', function(error, status) {
         // Status is 'open' if currently in use or 'closed' if available
@@ -240,10 +241,10 @@ StartMarketMaker = function(data) {
                   if (exists === true) {
                         console.log('file exist');
                         var coinslist_filedata = fs.readJsonSync(_coinsListFile, { throws: false });
-                        data.coinslist = ProcessCoinsList(coinslist_filedata); 
+                        data.coinslist = ProcessCoinsList(coinslist_filedata);
                         // data.coinslist is not used under Windows, if coins.json already exists
                         // it will be directly used by marketmaker
-                        ExecMarketMaker(data); 
+                        ExecMarketMaker(data);
                   } else if (exists === false) {
                         console.log('file doesn\'t exist');
                         fs.copy(defaultCoinsListFile, _coinsListFile)
@@ -264,7 +265,7 @@ StartMarketMaker = function(data) {
 					});
 					*/
 					// ver.2
-					fs.writeJsonSync(_coinsListFile, data.coinslist); 
+					fs.writeJsonSync(_coinsListFile, data.coinslist);
 			      }
                               ExecMarketMaker(data);
                         })
@@ -402,7 +403,7 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
             zconf_deposit_log.push(JSON.parse(zeroconf_log_data.logdata));
             console.log('===============')
             console.log(zconf_deposit_log);
-            fs.writeJson(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, zconf_deposit_log, function (err) {
+            fs.writeJsonSync(`${BarterDEXDir}/ZeroConf_Deposit_logFile.log`, zconf_deposit_log, function (err) {
               if (err) throw err;
               console.log('ZeroConf deposit log updated!');
             });
@@ -432,7 +433,7 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
             zconf_claim_log.push(JSON.parse(zeroconf_log_data.logdata));
             //console.log('===============')
             //console.log(zconf_claim_log);
-            fs.writeJson(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
+            fs.writeJsonSync(`${BarterDEXDir}/ZeroConf_Claim_logFile.log`, zconf_claim_log, function (err) {
               if (err) throw err;
               console.log('ZeroConf claim log updated!');
             });
@@ -449,10 +450,10 @@ UpdateZeroConfLogs = function(zeroconf_log_data) {
 
 UpdateBarterDEXSettings = function(settings_data) {
   console.log(settings_data);
-  
+
   fs.ensureFile(_BarterDEXSettingsFile)
   .then(() => {
-    fs.writeJson(_BarterDEXSettingsFile, settings_data, function (err) {
+    fs.writeJsonSync(_BarterDEXSettingsFile, settings_data, function (err) {
       if (err) throw err;
       console.log('ZeroConf claim log updated!');
     });

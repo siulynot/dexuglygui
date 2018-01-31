@@ -1,6 +1,6 @@
 {
   "name": "BarterDEX",
-  "version": "0.8.5-rc",
+  "version": "0.8.8-rc",
   "description": "Full BarterDEX implimentation with powertools for Traders",
   "main": "main.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "fix-path": "^2.1.0",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^4.0.3",
     "mkdirp": "^0.5.1",
     "portscanner": "^2.1.1",
     "ps-node": "^0.1.6"
