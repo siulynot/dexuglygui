@@ -3225,11 +3225,11 @@ function CheckOrderBookFn(sig) {
 				orderbook_asks_tr += '<td>' + val.price + '</td>';
 				//orderbook_asks_tr += '<td>' + val.minvolume + ' - ' + val.maxvolume + '</td>';
 				//orderbook_asks_tr += '<td>' + row_trade_data.totalbuy.toFixed(8) + '</td>';
-				orderbook_asks_tr += '<td>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
+				orderbook_asks_tr += '<td>' + ((val.avevolume == 0) ? 'n/a' : val.avevolume) + '</td>';
 				orderbook_asks_tr += '<td>' + val.depth + '</td>';
 				orderbook_asks_tr += '<td>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
 				orderbook_asks_tr += '<td>' + val.age + '</td>';
-				orderbook_asks_tr += '<td>' + val.numutxos + '</td>';
+				orderbook_asks_tr += '<td>' + ((val.numutxos == 0) ? 'n/a' : val.numutxos) + '</td>';
 				orderbook_asks_tr += '<td><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
 				orderbook_asks_tr += '</tr>';
 				$('.orderbook_asks tbody').append(orderbook_asks_tr);
