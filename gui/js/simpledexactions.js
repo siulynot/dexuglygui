@@ -1734,7 +1734,7 @@ function make_inventory_withdraw(mk_inv_data) {
 		var paprsed_mk_inv_withdraw_data = JSON.parse(mk_inv_withdraw_data);
 
 		if (paprsed_mk_inv_withdraw_data.complete == false) {
-			toastr.error('Uncessful Transaction. Please try again.','Tansaction info');
+			toastr.error('Unsuccessful Transaction. Please try again.','Tansaction info');
 		}
 		if (paprsed_mk_inv_withdraw_data.complete == true) {
 			var mk_inv_confirm_bootbox = bootbox.dialog({
