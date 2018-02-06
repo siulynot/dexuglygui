@@ -15,6 +15,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'ArtByte';
 			coin_details.explorer = 'http://explorer.artbyte.me/tx/';
 			break;
+                case 'BAY':
+                        coin_details.name = 'BitBay';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/bay/tx.dws?';
+                        break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
