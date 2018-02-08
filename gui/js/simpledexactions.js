@@ -82,7 +82,7 @@ $(document).ready(function() {
 				check_coin_balance(false);
 				CheckOrderBookFn();
 				CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-				check_swap_status_Interval = setInterval(check_swap_status,20000);
+				check_swap_status_Interval = setInterval(check_swap_status,60000);
 				check_swap_status();
 				check_bot_list_Interval = setInterval(check_bot_list, 10000);
 				check_bot_list();
@@ -253,7 +253,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	CheckPortfolioFn(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,60000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -383,7 +383,7 @@ $('.btn-inventoryclose').click(function(e) {
 	check_coin_balance(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,60000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -571,7 +571,7 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	check_coin_balance(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,60000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -5362,7 +5362,7 @@ function check_swap_status_details(swap_status_data) {
 
 					CheckOrderBookFn();
 					CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-					check_swap_status_Interval = setInterval(check_swap_status,20000);
+					check_swap_status_Interval = setInterval(check_swap_status,60000);
 					check_swap_status();
 					check_bot_list_Interval = setInterval(check_bot_list, 10000);
 					check_bot_list();
