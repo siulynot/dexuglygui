@@ -95,6 +95,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Innova';
 			coin_details.explorer = 'http://explorer.innovacoin.info/tx/';
 			break;
+                case 'LTZ':
+                        coin_details.name = 'LitecoinZ';
+                        coin_details.explorer = 'https://explorer.litecoinz.info/tx/';
+                        break;
 		case 'MZC':
 			coin_details.name = 'Mazacoin';
 			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
