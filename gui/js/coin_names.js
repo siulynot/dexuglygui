@@ -87,6 +87,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Groestlcoin';
 			coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
 			break;
+                case 'HTML':
+                        coin_details.name = 'HTMLCOIN';
+                        coin_details.explorer = 'https://html.mastercalls.io/tx/';
+                        break;
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
