@@ -95,6 +95,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/hodl.png' width='30px'/> HODL (HODL)" data-tokens="HODL HODL">HODL</option>
       <option data-content="<img src='img/cryptologo/jumblr.png' width='30px;'/> Jumblr (JUMBLR)" data-tokens="Jumblr JUMBLR">JUMBLR</option>
       <option data-content="<img src='img/cryptologo/kv.png' width='30px'/> KeyValue (KV)" data-tokens="KeyValue KV">KV</option>
+      <option data-content="<img src='img/cryptologo/oot.png' width='30px'/> Utrum (OOT)" data-tokens="OOT">OOT</option>
       <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>
       <option data-content="<img src='img/cryptologo/mgw.png' width='30px'/> MultiGateway (MGW)" data-tokens="MultiGateway MGW">MGW</option>
       <option data-content="<img src='img/cryptologo/pangea.png' width='30px'/> Pangea (PANGEA)" data-tokens="Pangea PANGEA">PANGEA</option>
