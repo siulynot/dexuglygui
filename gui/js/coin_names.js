@@ -383,6 +383,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'ZCoin';
 			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
 			break;
+                case 'ZEL':
+                        coin_details.name = 'Zelcash';
+                        coin_details.explorer = 'http://explorer.zel.cash/tx/';
+                        break;
                 case 'ZOI':
                         coin_details.name = 'Zoin';
                         coin_details.explorer = 'https://chainz.cryptoid.info/zoi/tx.dws?';
