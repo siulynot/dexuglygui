@@ -9,6 +9,7 @@ $(document).ready(function() {
 			var loginstate = sessionStorage.getItem('mm_loginstate');
 			if (loginstate == null || loginstate == 'default') {
 				var shepherdresult = ShepherdIPC({"command":"login","passphrase":"default"});
+				sessionStorage.setItem('mm_mypubkey', "739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78"); //Add default login pubkey to sessionStorage
 				$('.mainbody').hide();
 				$('.loginbody').hide();
 				CheckMM_Interval = setInterval(CheckMMStatus,1000);
@@ -576,9 +577,18 @@ CheckDefaultLogin = function(sig) {
 		console.log("Checking if it's default login");
 	}
 
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+	if (mypubkey == '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
+		$('.mainbody').hide();
+		$('.loadingbody').fadeOut();
+		$('.loginbody').fadeIn();
+		clearInterval(CheckDefaultLogin_Interval);
+	}
+
+	/*
 	var userpass = '1d8b27b21efabcd96571cd56f91a40fb9aa4cc623d273c63bf9223dc6f8cd81f';
 	//var ajax_data = {"userpass":userpass,"method":"enable","coin":""};
-	var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":"default","gui":"simplegui"};
+	//var ajax_data = {"userpass":userpass,"method":"passphrase","passphrase":"default","gui":"simplegui"};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
 
@@ -613,6 +623,7 @@ CheckDefaultLogin = function(sig) {
 	    // If fail
 	    console.log(textStatus + ': ' + errorThrown);
 	});
+	*/
 }
 
 
