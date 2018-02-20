@@ -127,7 +127,7 @@ $('.dexlogout-btn').click(function(e) {
 	e.preventDefault();
 	//var shepherdresult = ShepherdIPC({"command":"logout"});
 	$('.mainbody').fadeOut();
-	$('.loginbody').fadeIn();
+	$('.loadingbody').fadeIn();
 
 	var login_data = {};
 	login_data.passphrase = 'default';
