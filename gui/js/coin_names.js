@@ -367,6 +367,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'SIBCoin';
 			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
+                case 'SNG':
+                        coin_details.name = 'SnowGem';
+                        coin_details.explorer = 'https://explorer.snowgem.org/tx/';
+                        break;
 		case 'VOT':
 			coin_details.name = 'VoteCoin';
 			coin_details.explorer = 'http://explorer.votecoin.site/tx/';
