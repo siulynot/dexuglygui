@@ -4451,7 +4451,7 @@ function bot_settings(bot_data) {
 			toastr.error(data.error, `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		} else if (data.result == 'success') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-			toastr.success('Bot ID: ' + bot_data.botid + ' Updateded', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
+			toastr.success('Bot ID: ' + bot_data.botid + ' Updated', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
