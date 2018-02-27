@@ -73,6 +73,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/stak.png' width='30px'/> Straks (STAK)" data-tokens="Straks STAK">STAK</option>
       <option data-content="<img src='img/cryptologo/sys.png' width='30px'/> Syscoin (SYS)" data-tokens="Syscoin SYS">SYS</option>
       <option data-content="<img src='img/cryptologo/trc.png' width='30px'/> Terracoin (TRC)" data-tokens="Terracoin TRC">TRC</option>
+      <option data-content="<img src='img/cryptologo/ufo.png' width='30px'/> Uniform Fiscal Object (UFO)" data-tokens="Uniform Fiscal Object UFO">UFO</option>
       <option data-content="<img src='img/cryptologo/uis.png' width='30px'/> Unitus (UIS)" data-tokens="Unitus UIS">UIS</option>
       <option data-content="<img src='img/cryptologo/vtc.png' width='30px'/> Vertcoin (VTC)" data-tokens="Vertcoin VTC">VTC</option>
       <option data-content="<img src='img/cryptologo/via.png' width='30px'/> Viacoin (VIA)" data-tokens="Viacoin VIA">VIA</option>

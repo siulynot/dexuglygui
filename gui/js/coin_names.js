@@ -303,6 +303,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Terracoin';
 			coin_details.explorer = 'https://bchain.info/TRC/tx/';
 			break;
+                case 'UFO':
+                        coin_details.name = 'Uniform Fiscal Object';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/ufo/tx.dws?';
+                        break;
 		case 'BTA':
 			coin_details.name = 'Bata';
 			coin_details.explorer = 'https://chainz.cryptoid.info/bta/tx.dws?';
