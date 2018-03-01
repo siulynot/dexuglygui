@@ -315,6 +315,10 @@ function return_coin_details(coin) {
                         coin_details.name = 'Uniform Fiscal Object';
                         coin_details.explorer = 'https://chainz.cryptoid.info/ufo/tx.dws?';
                         break;
+                case 'VIVO':
+                        coin_details.name = 'VIVO';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/vivo/tx.dws?';
+                        break;
 		case 'BTA':
 			coin_details.name = 'Bata';
 			coin_details.explorer = 'https://chainz.cryptoid.info/bta/tx.dws?';
