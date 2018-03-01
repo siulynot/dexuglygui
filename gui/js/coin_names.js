@@ -259,6 +259,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Huntercoin';
 			coin_details.explorer = 'https://www.huntercoin.info/blockExplorer/tx/';
 			break;
+		case 'OOT':
+			coin_details.name = 'Utrum';
+			coin_details.explorer = 'http://explorer.utrum.io/tx/';
+			break;
 		case 'PIVX':
 			coin_details.name = 'PIVX';
 			coin_details.explorer = 'https://chainz.cryptoid.info/pivx/tx.dws?';
