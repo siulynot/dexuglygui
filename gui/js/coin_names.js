@@ -99,6 +99,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Innova';
 			coin_details.explorer = 'http://explorer.innovacoin.info/tx/';
 			break;
+                case 'KNG':
+                        coin_details.name = 'BetKings';
+                        coin_details.explorer = 'https://explorer.kings.ag/tx/';
+                        break;
                 case 'KREDS':
                         coin_details.name = 'Kreds';
                         coin_details.explorer = 'https://www.kredsexplorer.com/tx/';
