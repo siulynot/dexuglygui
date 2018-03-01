@@ -297,7 +297,7 @@ function return_coin_details(coin) {
 			break;
 		case 'TRC':
 			coin_details.name = 'Terracoin';
-			coin_details.explorer = 'https://bchain.info/TRC/tx/';
+			coin_details.explorer = 'https://explorer.terracoin.io/tx/';
 			break;
 		case 'BTA':
 			coin_details.name = 'Bata';
