@@ -267,6 +267,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'PIVX';
 			coin_details.explorer = 'https://chainz.cryptoid.info/pivx/tx.dws?';
 			break;
+                case 'RVN':
+                        coin_details.name = 'Ravencoin';
+                        coin_details.explorer = 'http://threeeyed.info/tx/';
+                        break;
 		case 'BDL':
 			coin_details.name = 'Bitdeal';
 			coin_details.explorer = 'https://explorer.bitdeal.co.in/tx/';
