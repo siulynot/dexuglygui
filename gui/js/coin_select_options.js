@@ -31,6 +31,7 @@ coin_select_options = `<optgroup label="Crytpo Coins">
       <option data-content="<img src='img/cryptologo/dash.png' width='30px'/> Dash (DASH)" data-tokens="dash">DASH</option>
       <option data-content="<img src='img/cryptologo/dgb.png' width='30px'/> Digibyte (DGB)" data-tokens="dgb digibyte">DGB</option>
       <option data-content="<img src='img/cryptologo/doge.png' width='30px'/> Dogecoin (DOGE)" data-tokens="doge dogecoin">DOGE</option>
+      <option data-content="<img src='img/cryptologo/dnr.png' width='30px'/> Denarius (DNR)" data-tokens="dnr denarius">DNR</option>
       <option data-content="<img src='img/cryptologo/dsr.png' width='30px'/> Desire (DSR)" data-tokens="Desire dsr">DSR</option>
       <option data-content="<img src='img/cryptologo/efl.png' width='30px'/> e-Gulden (EFL)" data-tokens="e-Gulden EFL">EFL</option>
       <option data-content="<img src='img/cryptologo/emc2.png' width='30px'/> Einsteinium (EMC2)" data-tokens="emc2 einsteinium">EMC2</option>
