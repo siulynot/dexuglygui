@@ -1562,7 +1562,7 @@ $("#inventory_slider_input1").keyup(function(){
 	console.log(coin_balance);
 
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
@@ -1588,7 +1588,7 @@ $("#inventory_slider_input2").keyup(function(){
 	var coin_balance = $('.inventory-title').data('balance');
 	console.log(coin_balance);
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
@@ -1614,7 +1614,7 @@ $("#inventory_slider_input3").keyup(function(){
 	var coin_balance = $('.inventory-title').data('balance');
 	console.log(coin_balance);
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
@@ -1644,7 +1644,7 @@ $("#inventory-slider1").on("slide", function(slideEvt) {
 	var coin_balance = $('.inventory-title').data('balance');
 	console.log(coin_balance);
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
@@ -1672,7 +1672,7 @@ $("#inventory-slider2").on("slide", function(slideEvt) {
 	var coin_balance = $('.inventory-title').data('balance');
 	console.log(coin_balance);
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
@@ -1700,7 +1700,7 @@ $("#inventory-slider3").on("slide", function(slideEvt) {
 	var coin_balance = $('.inventory-title').data('balance');
 	console.log(coin_balance);
 
-	if(slider_total >= coin_balance) {
+	if(slider_total >= coin_balance || slider_total < 0) {
 		$('.inventory-sliderTotal').css('color', 'red');
 		$('.inventory-sliderTotalCoin').css('color', 'red');
 		$('.btn-makeinventory').attr("disabled", "disabled");
