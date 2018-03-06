@@ -397,6 +397,10 @@
     "settings_reset_settings": "設定をリセット",
     "settings_save_settings": "設定を保存",
     "settings_toastr_settings_update_processed": "設定の更新済",
-    "settings_toastr_title": " BarterDEX設定"
+    "settings_toastr_title": " BarterDEX設定",
+    "settings_charts": "Charts",
+    "settings_charts_show": "Show",
+    "settings_charts_hide": "Hide",
+    "settings_charts_desc": "Trading charts settings update will take affect next time you get back to Exchange screen. (Doesn't require app restart)"
   }
 }

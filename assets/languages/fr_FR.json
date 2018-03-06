@@ -390,6 +390,10 @@
     "settings_reset_settings": "Réinitialiser les Paramètres",
     "settings_save_settings": "Sauvegarder les paramètres",
     "settings_toastr_settings_update_processed": "Mise à jour des paramètres effectuée.",
-    "settings_toastr_title": "Paramètres BarterDEX"
+    "settings_toastr_title": "Paramètres BarterDEX",
+    "settings_charts": "Charts",
+    "settings_charts_show": "Show",
+    "settings_charts_hide": "Hide",
+    "settings_charts_desc": "Trading charts settings update will take affect next time you get back to Exchange screen. (Doesn't require app restart)"
   }
 }

@@ -109,7 +109,15 @@ $(document).ready(function() {
 				charts_instruments_data.company = 'Komodo Platform';
 				ChartsInstruments(charts_instruments_data)
 				UpdateDexChart(selected_dICO_coin, 'KMD');
-				Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+				
+				var trading_chart_status = sessionStorage.getItem('mm_tradingchart');
+				if (trading_chart_status == 'show') {
+					$('.trading_chart_div').show();
+					Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+					Refresh_active_StockChart();
+				} else {
+					$('.trading_chart_div').hide();
+				}
 			}
 
 	//---- dICO App Settings END ----//
@@ -280,7 +288,14 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 		ChartsInstruments(charts_instruments_data)
 		UpdateDexChart($(this).data('coin'),'KMD');
 	}
-	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+	
+	var trading_chart_status = sessionStorage.getItem('mm_tradingchart');
+	if (trading_chart_status == 'show') {
+		$('.trading_chart_div').show();
+		Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+	} else {
+		$('.trading_chart_div').hide();
+	}
 
 	// Fix width of chart
 	gChart.size = {width: $('#chartContainer').parent().width()};
@@ -393,8 +408,15 @@ $('.btn-inventoryclose').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
-	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
-	Refresh_active_StockChart();
+	
+	var trading_chart_status = sessionStorage.getItem('mm_tradingchart');
+	if (trading_chart_status == 'show') {
+		$('.trading_chart_div').show();
+		Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+		Refresh_active_StockChart();
+	} else {
+		$('.trading_chart_div').hide();
+	}
 
 	var dexmode = sessionStorage.getItem('mm_dexmode');
 	var selected_dICO_coin = sessionStorage.getItem('mm_selected_dICO_coin');
@@ -581,8 +603,15 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	bot_screen_coin_balance();
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
-	Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
-	Refresh_active_StockChart();
+	
+	var trading_chart_status = sessionStorage.getItem('mm_tradingchart');
+	if (trading_chart_status == 'show') {
+		$('.trading_chart_div').show();
+		Refresh_active_StockChart_Interval = setInterval(Refresh_active_StockChart, 60000);
+		Refresh_active_StockChart();
+	} else {
+		$('.trading_chart_div').hide();
+	}
 });
 
 $('.btn-exchangeclose').click(function(e){
@@ -2167,6 +2196,13 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 		var coingoal_style_showhide = 'display: none;';
 	} else {
 		var coingoal_style_showhide = '';
+	}
+
+	if (barterDEX_settings.charts == 'show') {
+		sessionStorage.setItem('mm_tradingchart', 'show');
+	}
+	if (barterDEX_settings.charts == 'hide') {
+		sessionStorage.setItem('mm_tradingchart', 'hide');
 	}
 
 	$('.dex_portfolio_coins_tbl tbody').empty();

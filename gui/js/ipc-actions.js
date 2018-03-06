@@ -360,7 +360,17 @@ $('.dexsettings-btn').click(function(e){
 				<select class="selectpicker settings_deflang_select" data-hide-disabled="true" data-width="30%">
 					<option data-content="English (US)" data-tokens="English US">en_US</option>
 				</select>
-			</div>`,
+			</div>
+			<div class="form-group col-sm-3" style="padding: 0;">
+				<span style="float: left; font-size: 18px;">${default_lang.Settings.settings_charts}:</span>
+			</div>
+			<div class="input-group col-sm-2" style="margin: 10px 0;">
+				<select class="selectpicker settings_charts_status_select" data-hide-disabled="true" data-width="30%">
+					<option data-content="${default_lang.Settings.settings_charts_show}" data-tokens="${default_lang.Settings.settings_charts_show}">show</option>
+					<option data-content="${default_lang.Settings.settings_charts_hide}" data-tokens="${default_lang.Settings.settings_charts_hide}">hide</option>
+				</select>
+			</div>
+			<span>${default_lang.Settings.settings_charts_desc}<span>`,
 		closeButton: false,
 		size: 'large',
 
@@ -376,6 +386,7 @@ $('.dexsettings-btn').click(function(e){
 				className: 'btn-warning btn_dex_reset_settings',
 				callback: function(){
 					ShepherdIPC({"command":"reset_settings"});
+					sessionStorage.setItem('mm_tradingchart', 'show');
 					$('#trading_mode_options_trademanual').trigger('click');
 					setTimeout(function(){ BarterDEXSettingsFn(); }, 1000);
 					setTimeout(function(){ BarterDEXDefaultLangFn('en_US') }, 1000);
@@ -390,6 +401,14 @@ $('.dexsettings-btn').click(function(e){
 					var selected_deflang = $('.settings_deflang_select').selectpicker('val');
 					barterDEX_settings.theme = selected_theme;
 					barterDEX_settings.deflang = selected_deflang;
+					barterDEX_settings.charts = $('.settings_charts_status_select').selectpicker('val');
+
+					if (barterDEX_settings.charts == 'show') {
+						sessionStorage.setItem('mm_tradingchart', 'show');
+					}
+					if (barterDEX_settings.charts == 'hide') {
+						sessionStorage.setItem('mm_tradingchart', 'hide');
+					}
 					
 					console.log(experimental_features);
 					if (experimental_features == 'enable') {
@@ -420,6 +439,8 @@ $('.dexsettings-btn').click(function(e){
 		$('.settings_theme_select').selectpicker('render');
 		$('.settings_deflang_select').html(GetListofAvailableLocalization());
 		$('.settings_deflang_select').selectpicker('render');
+		$('.settings_charts_status_select').selectpicker('render');
+		
 
 		console.log('settings dialog opened.');
 		//var barterDEX_settings = ShepherdIPC({"command":"read_settings"});
@@ -440,6 +461,13 @@ $('.dexsettings-btn').click(function(e){
 		}
 		if (barterDEX_settings.theme == 'light') {
 			$('.settings_theme_select').selectpicker('val', 'light');
+		}
+
+		if (barterDEX_settings.charts == 'show') {
+			$('.settings_charts_status_select').selectpicker('val', 'show');
+		}
+		if (barterDEX_settings.charts == 'hide') {
+			$('.settings_charts_status_select').selectpicker('val', 'hide');
 		}
 
 		$('.settings_deflang_select').selectpicker('val', barterDEX_settings.deflang);

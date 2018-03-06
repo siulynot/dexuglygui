@@ -393,7 +393,11 @@
     "settings_reset_settings": "सेटिंग रीसेट करें",
     "settings_save_settings": "सेटिंग लागू करें",
     "settings_toastr_settings_update_processed": "सेटिंग लागू हो गई।",
-    "settings_toastr_title": "BarterDEX सेटिंग"
+    "settings_toastr_title": "BarterDEX सेटिंग",
+    "settings_charts": "Charts",
+    "settings_charts_show": "Show",
+    "settings_charts_hide": "Hide",
+    "settings_charts_desc": "Trading charts settings update will take affect next time you get back to Exchange screen. (Doesn't require app restart)"
   }
 }
 

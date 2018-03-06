@@ -392,7 +392,11 @@
     "settings_reset_settings": "Върни настройките",
     "settings_save_settings": "Запази настройките",
     "settings_toastr_settings_update_processed": "Обновените настройки са запазени.",
-    "settings_toastr_title": "BarterDEX настройки"
+    "settings_toastr_title": "BarterDEX настройки",
+    "settings_charts": "Charts",
+    "settings_charts_show": "Show",
+    "settings_charts_hide": "Hide",
+    "settings_charts_desc": "Trading charts settings update will take affect next time you get back to Exchange screen. (Doesn't require app restart)"
   }
 }
 
