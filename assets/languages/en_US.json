@@ -381,7 +381,7 @@
     "zeroconf_claim_td_wait_time": "Wait Time",
     "zeroconf_info_dialog_title": "What is \"Speed Mode\"?",
     "zeroconf_info_dialog_p_01": "Use of this feature requires a security deposit, equal to or greater than the amount you wish to actively trade. This deposit is placed in a special multisig address for safe keeping. The following conditions apply",
-    "zeroconf_info_dialog_li_01": "The minimum deposit amount is 10 KMD.",
+    "zeroconf_info_dialog_li_01": "The minimum deposit amount is 10.01 KMD.",
     "zeroconf_info_dialog_li_02": "The minimum deposit period is 1 week, and the maximum period is 52 weeks.",
     "zeroconf_info_dialog_li_03": "The expiration date is permanently set and recorded within your blockchain transaction at the time of sending the deposit.",
     "zeroconf_info_dialog_li_04": "Choose your time period appropriately, as you can only reclaim your deposit after the expiration date.",

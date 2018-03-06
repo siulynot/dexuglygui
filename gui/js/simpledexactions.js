@@ -3137,13 +3137,21 @@ function infoOrderPrice(trade_data) {
 		onEscape: true,
 		backdrop: true,
 		message: `<table class="table table-striped orderbook_row_data" width="100%" style="margin-bottom: 0;">
-                          <tbody>
-                          	<tr>
-                          	<td>Address</td>
-                          	<td>${trade_data.address}</td>
-                          	</tr>
-                          </tbody>
-                        </table>`
+						<tbody>
+							<tr>
+								<td>Address</td>
+								<td>${trade_data.address}</td>
+							</tr>
+							<tr>
+								<td>Age</td>
+								<td>${trade_data.age}</td>
+							</tr>
+							<tr>
+								<td>UTXOs</td>
+								<td>${trade_data.numutxos}</td>
+							</tr>
+						</tbody>
+					</table>`
 	});
 }
 
@@ -3231,6 +3239,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
 				row_trade_data.address = val.address;
+				row_trade_data.age = val.age;
 				row_trade_data.type = 'bids';
 				//row_trade_data.totalbuy = (val.avevolume / val.price) * val.numutxos;
 
@@ -3242,8 +3251,8 @@ function CheckOrderBookFn(sig) {
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.depth + '</td>';
 					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
-					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
-					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
+					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
+					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
 					orderbook_bids_tr += '<td><button class="btn btn-xs" onclick=infoOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
 				orderbook_bids_tr += '</tr>';
@@ -3276,6 +3285,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
 				row_trade_data.address = val.address;
+				row_trade_data.age = val.age;
 				row_trade_data.type = 'asks';
 				//row_trade_data.totalbuy = (val.avevolume / val.price) * val.numutxos;
 				var orderbook_asks_tr = '';
@@ -3286,8 +3296,8 @@ function CheckOrderBookFn(sig) {
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.depth + '</td>';
 				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
-				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
-				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
+				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
+				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
 				orderbook_asks_tr += '<td><button class="btn btn-xs" onclick=infoOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
 				orderbook_asks_tr += '</tr>';
@@ -5976,8 +5986,8 @@ $('.zeroconf_deposit_amount').keyup(function(){
 	//console.log(deposit_amount);
 
 	var empty = false;
-	if (deposit_amount < 10) {
-		console.log('Send Address is empty or less than 10');
+	if (deposit_amount < 10.01) {
+		console.log('Send Address is empty or less than 10.01');
 		empty = true;
 	}
 	//console.log(empty);
