@@ -656,6 +656,7 @@ $('.btn-exchangerefresh').click(function(e){
 	console.log($(this).data());
 
 	CheckOrderBookFn();
+	toastr.info('Updating Orderbooks')
 });
 
 
@@ -665,6 +666,7 @@ $('.btn-myordersrefresh').click(function(e){
 	console.log($(this).data());
 
 	check_my_prices();
+	toastr.info('Updating My Offers/Prices');
 });
 
 $('.btn-botlistrefresh').click(function(e){
@@ -673,6 +675,7 @@ $('.btn-botlistrefresh').click(function(e){
 	console.log($(this).data());
 
 	check_bot_list();
+	toastr.info('Updating Trade Status')
 });
 
 
@@ -946,6 +949,7 @@ $('.btn-trading_coin_balance_refresh').click(function(e){
 
 	bot_screen_sellcoin_balance();
 	bot_screen_coin_balance();
+	toastr.info('Updating balance info')
 })
 
 
@@ -1914,6 +1918,7 @@ function addcoin_enable_disable_coin(data) {
 			if (electrum_option == false) {
 				//get_coins_list('');
 				$('.refresh_dex_balances').trigger('click');
+				toastr.info('Coins List updating');
 			} else {
 				get_coins_list(data);
 			}
@@ -2341,6 +2346,7 @@ $('.btn-refreshportfolio').click(function() {
     actiavte_portfolio_coins_list_spinner += '</th>';
     $('.porfolio_coins_list tbody').append(actiavte_portfolio_coins_list_spinner);
 	CheckPortfolioFn();
+	toastr.info('Updating Coins list');
 });
 
 $('.refresh_dex_potfolio').click(function() {
@@ -3507,6 +3513,11 @@ $('.btn-refreshtrading_pair').click(function(e){
 	console.log($(this).data());
 
 	//update_min_max_price_input();
+})
+
+$('.refresh-trades-history-icon').click(function(e){
+	e.preventDefault();
+	toastr.info('Trade history updated')
 })
 
 $('input[name=trading_pair_options]').change(function() {
