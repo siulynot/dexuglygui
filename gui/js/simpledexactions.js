@@ -82,7 +82,7 @@ $(document).ready(function() {
 				check_coin_balance(false);
 				CheckOrderBookFn();
 				CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-				//check_swap_status_Interval = setInterval(check_swap_status,20000);
+				check_swap_status_Interval = setInterval(check_swap_status,20000);
 				check_swap_status();
 				check_bot_list_Interval = setInterval(check_bot_list, 10000);
 				check_bot_list();
@@ -253,7 +253,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	CheckPortfolioFn(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	//check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,20000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -383,7 +383,7 @@ $('.btn-inventoryclose').click(function(e) {
 	check_coin_balance(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	//check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,20000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -411,7 +411,7 @@ $('.btn-inventoryrefresh').click(function(e) {
 	$('.dex_showinv_alice_tbl tbody').html(`<th><div style="text-align: center;">${default_lang.Common.loading_wait}</div></th>`);
 	$('.dex_showlist_unspents_tbl tbody').html(`<th><div style="text-align: center;">${default_lang.Common.loading_wait}</div></th>`);
 
-	check_coin_inventory($(this).data('coin'));
+	//check_coin_inventory($(this).data('coin'));
 	check_coin_listunspent($(this).data());
 });
 
@@ -571,7 +571,7 @@ $('.btn_coindashboard_exchange').click(function(e) {
 	check_coin_balance(false);
 	CheckOrderBookFn();
 	CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-	//check_swap_status_Interval = setInterval(check_swap_status,20000);
+	check_swap_status_Interval = setInterval(check_swap_status,20000);
 	check_swap_status();
 	check_bot_list_Interval = setInterval(check_bot_list, 10000);
 	check_bot_list();
@@ -3890,6 +3890,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	$('.inventory-title').html('Manage Inventory ('+balance+' '+coin+')');
 	$('.inventory-title').data('coin', coin);
 	$('.inventory-title').data('balance', balance);
+	$('.btn-makeinventory').data('coin', coin);
 	$('.coininventory[data-coin]').attr('data-coin', coin);
 	//$('.coininventory[data-coin]').attr('data-pair', $(this).data('pair'));
 	$('.coininventory[data-coin]').attr('data-addr', addr);
@@ -3898,7 +3899,8 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	$('.dex_showinv_alice_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
 	$('.dex_showlist_unspents_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
 
-	check_coin_inventory(coin);
+	//check_coin_inventory(coin);
+	get_coin_info(coin);
 	check_coin_listunspent($(this).data());
 
 	calc_data = {"coin": coin, "balance": balance};
@@ -5362,7 +5364,7 @@ function check_swap_status_details(swap_status_data) {
 
 					CheckOrderBookFn();
 					CheckOrderbook_Interval = setInterval(CheckOrderBookFn,30000);
-					//check_swap_status_Interval = setInterval(check_swap_status,20000);
+					check_swap_status_Interval = setInterval(check_swap_status,20000);
 					check_swap_status();
 					check_bot_list_Interval = setInterval(check_bot_list, 10000);
 					check_bot_list();
@@ -5434,7 +5436,7 @@ function check_swap_status(sig) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
-	var ajax_data = {"userpass":userpass,"method":"swapstatus","pending":0};
+	var ajax_data = {"userpass":userpass,"method":"swapstatus","pending":0,"fast":1,"limit":30};
 	var url = "http://127.0.0.1:7783";
 
 	$.ajax({
