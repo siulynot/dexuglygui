@@ -35,6 +35,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
 			break;
+                case 'BTCP':
+                        coin_details.name = 'BitcoinPrivate';
+                        coin_details.explorer = 'https://explorer.btcprivate.org/tx/';
+                        break;
 		case 'BTCZ':
 			coin_details.name = 'BitcoinZ';
 			coin_details.explorer = 'https://explorer.bitcoinz.site/tx/';
