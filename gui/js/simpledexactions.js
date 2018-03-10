@@ -6316,6 +6316,7 @@ $('.btn-managecoins_add_to_startup').click(function(e){
 	var addcoin_startup_data = {};
 	addcoin_startup_data.coin = $('.addcoin_startup_select').selectpicker('val');
 	addcoin_startup_data.electrum = $('#addcoin_toggle_startup_native_electrum').prop('checked');
+	addcoin_startup_data.method = 'enable';
 
 	console.log(addcoin_startup_data);
 	ManageDEXCoins('add',addcoin_startup_data);
