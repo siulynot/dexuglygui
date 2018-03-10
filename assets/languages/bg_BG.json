@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Графика на портфолиото",
     "portfolio_add_coins": "ДОБАВИ ВАЛУТА",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "Продажба",
     "exchange_goal_percent_for_your_portfolio": "Желано разпределение на портфолиото",
     "portfolio_portfolio_coins": "Валути в портфолиото",

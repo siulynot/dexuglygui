@@ -68,6 +68,7 @@ $('.dexdashboard-btn').click(function(e){
 	//$('.screen-coindashboard').show()
 	$('.screen-exchange').hide();
 	$('.screen-inventory').hide();
+	$('.screen-managecoins').hide();
 	$('.screen-portfolio').show();
 	CheckOrderBookFn(false);
 	check_swap_status(false);
@@ -91,6 +92,7 @@ $('.dextradeshistory-btn').click(function(e) {
 	$('.screen-exchange').hide();
 	$('.screen-inventory').hide();
 	$('.dexdebug').hide();
+	$('.screen-managecoins').hide();
 	
 	$('.dextradeshistory').show();
 	$('.navbar-right').children().removeClass('active');
@@ -128,7 +130,8 @@ $('.dexlogout-btn').click(function(e) {
 	//var shepherdresult = ShepherdIPC({"command":"logout"});
 	$('.mainbody').fadeOut();
 	$('.loadingbody').fadeIn();
-
+	$('.screen-managecoins').hide();
+	
 	var login_data = {};
 	login_data.passphrase = 'default';
 	login_data.netid = 0;
@@ -163,6 +166,7 @@ $('.dexdebug-btn').click(function(e) {
 	$('.screen-coindashboard').hide();
 	$('.screen-exchange').hide();
 	$('.screen-inventory').hide();
+	$('.screen-managecoins').hide();
 
 	$('.navbar-right').children().removeClass('active');
 	$('.dexdebug-btn').parent().addClass( "active" );
@@ -308,6 +312,7 @@ $('.login-btn').click(function(e) {
 		$('.loginPassphrase').val('');
 		$('.mainbody').hide();
 		$('.loginbody').hide();
+		$('.screen-managecoins').hide();
 		//CheckMM_Interval = setInterval(CheckMMStatus,1000);
 		$('.loadingbody').fadeIn();
 
@@ -487,6 +492,7 @@ function loginBarterdEX(){
 	$('#trading_mode_options_trademanual').trigger('click');
 	$('#trading_mode_options_tradebot').removeAttr("checked");
 	$('#trading_mode_options_trademanual').attr('checked','checked');
+	//ManageDEXCoins();
 }
 
 function logindICO(coin){
@@ -702,6 +708,7 @@ LoginWithPassphrase = function(login_passphrase_data,action_mode) {
 			$('.loadingbody').hide();
 
 			CheckPortfolio_Interval = setInterval(CheckPortfolioFn,60000);
+			ManageDEXCoins('enable',null);
 			CheckPortfolioFn();
 		}
 
@@ -750,6 +757,60 @@ function BarterDEXSettingsFn() {
 		$('#dark_css_style').prop('disabled', true);
 	}
 };
+
+
+
+function ManageDEXCoins(mng_coin_action,mng_coins_data) {
+	console.log('DEX Coins Management function called.');
+	console.log(mng_coin_action);
+	//console.log(mng_coins_data);
+
+	var default_coins_list_array = [{coin: "KMD", electrum: false}]
+
+	switch(mng_coin_action) {
+		case 'enable':
+			if (JSON.parse(localStorage.getItem('mm_default_coins_list')) == null) {
+				localStorage.setItem('mm_default_coins_list', JSON.stringify(default_coins_list_array));
+				enable_disable_coin(default_coins_list_array[0])
+			} else {
+				var lstore_default_coins_list_array = JSON.parse(localStorage.getItem('mm_default_coins_list'));
+				
+				$.each(lstore_default_coins_list_array, function(index, val) {
+					console.log(index);
+					console.log(val);
+					enable_disable_coin(val);
+				})
+			}
+			break;
+		case 'add':
+			console.log(mng_coins_data);
+			var lstore_default_coins_list_array = JSON.parse(localStorage.getItem('mm_default_coins_list'));
+			console.log(lstore_default_coins_list_array);
+			lstore_default_coins_list_array.push(mng_coins_data);
+			localStorage.setItem('mm_default_coins_list', JSON.stringify(lstore_default_coins_list_array));
+			break;
+		case 'remove':
+			console.log(mng_coins_data);
+			var lstore_default_coins_list_array = JSON.parse(localStorage.getItem('mm_default_coins_list'));
+			lstore_default_coins_list_array = _.without(lstore_default_coins_list_array, _.findWhere(lstore_default_coins_list_array, {coin: mng_coins_data.coin}));
+			console.log(lstore_default_coins_list_array);
+			localStorage.setItem('mm_default_coins_list', JSON.stringify(lstore_default_coins_list_array));
+			break;
+		default:
+			if (JSON.parse(localStorage.getItem('mm_default_coins_list')) == null) {
+				localStorage.setItem('mm_default_coins_list', JSON.stringify(default_coins_list_array));
+				enable_disable_coin(default_coins_list_array[0])
+			} else {
+				var lstore_default_coins_list_array = JSON.parse(localStorage.getItem('mm_default_coins_list'));
+				
+				$.each(lstore_default_coins_list_array, function(index, val) {
+					console.log(index);
+					console.log(val);
+					enable_disable_coin(val);
+				})
+			}
+	}
+}
 
 
 

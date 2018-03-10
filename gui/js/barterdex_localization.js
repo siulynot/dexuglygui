@@ -58,6 +58,9 @@ function PopulateDefaultLanguage() {
 	// Populate portfolio localization
 	$('.language[data-langstr="portfolio_portfolio_chart"]').text(default_lang.Portfolio.portfolio_portfolio_chart);
 	$('.language[data-langstr="portfolio_add_coins"]').text(default_lang.Portfolio.portfolio_add_coins);
+	$('.language[data-langstr="portfolio_add_default_startup_coins"]').text(default_lang.Portfolio.portfolio_add_default_startup_coins);
+	$('.language[data-langstr="portfolio_default_startup_coins"]').text(default_lang.Portfolio.portfolio_default_startup_coins);
+	$('.language[data-langstr="portfolio_manage_coins"]').text(default_lang.Portfolio.portfolio_manage_coins);
 	$('.language[data-langstr="portfolio_portfolio_coins"]').text(default_lang.Portfolio.portfolio_portfolio_coins);
 	$('.language[data-langstr="portfolio_auto_goal_all_active_coins"]').text(default_lang.Portfolio.portfolio_auto_goal_all_active_coins);
 	$('.language[data-langstr="portfolio_th_coin"]').text(default_lang.Portfolio.portfolio_th_coin);

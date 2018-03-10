@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Grafico Portfolio",
     "portfolio_add_coins": "AGGIUNGI MONETE",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "Vendi",
     "exchange_goal_percent_for_your_portfolio": "Traguardo percentuale per il tuo portafoglio",
     "portfolio_portfolio_coins": "Portfolio Monete",

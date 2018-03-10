@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Portfølje-diagram",
     "portfolio_add_coins": "Legg til mynter",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "Selg",
     "exchange_goal_percent_for_your_portfolio": "Prosentmål for din portfølje",
     "portfolio_portfolio_coins": "Mynter i portføljen",

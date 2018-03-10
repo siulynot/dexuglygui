@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Graphique Portefeuille",
     "portfolio_add_coins": "AJOUTER JETONS",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "Vendre",
     "exchange_goal_percent_for_your_portfolio": "Objectif en pourcentage pour le portefeuille",
     "portfolio_portfolio_coins": "Jetons du Portefeuille",

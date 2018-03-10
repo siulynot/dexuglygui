@@ -165,6 +165,8 @@ coin_select_options = `<optgroup label="Crypto Coins">
 $('.trading_pair_coin').html(coin_select_options);
 $('.trading_pair_coin2').html(coin_select_options);
 
+$('.addcoin_startup_select').html(coin_select_options);
+
 
 $('.sell_coin').html(coin_select_options);
 $('.buy_coin').html(coin_select_options);

@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "निवेश सूची चित्र",
     "portfolio_add_coins": "सिक्के सक्रिय करो",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "portfolio_portfolio_coins": "निवेश सूची सिक्के",
     "portfolio_auto_goal_all_active_coins": "सभी सक्रिय सिक्के को ऑटो लक्ष्य करो",
     "portfolio_th_coin": "सिक्का",
