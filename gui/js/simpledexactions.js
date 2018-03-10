@@ -1230,6 +1230,12 @@ function enable_disable_coin(enable_disable_coin_data) {
 		console.log(electrum_option);
 		console.log("electrum selected for " + enable_disable_coin_data.coin);
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
+
+		if (electrum_servers_list[enable_disable_coin_data.coin] == undefined) {
+			console.log('no electrum servers found for: ' + enable_disable_coin_data.coin);
+			toastr.warning('No Electrum Servers found for ' + enable_disable_coin_data.coin + '<br> Please use Native Mode for ' + enable_disable_coin_data.coin, 'Coin Status');
+		}
+		
 		$.each(electrum_servers_list[enable_disable_coin_data.coin], function(index,val){
 			var ipaddr = _.keys(val);
 			var return_data_ipaddr = ipaddr[0];
