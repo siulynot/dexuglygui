@@ -3929,7 +3929,7 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	coin = $(this).data('coin');
 	addr = $(this).data('addr');
-	balance = JSON.parse(sessionStorage.getItem(coin + ".balance"));
+	balance = $(this).data('balance');
 
 
 	$('.screen-exchange').hide()
@@ -5063,7 +5063,7 @@ function electrum_coin_balance(coin_balance_data) {
 	    url: url
 	}).done(function(coin_balance_output_data) {
 		// If successful
-		sessionStorage.setItem(coin_balance_data.coin + ".balance", JSON.stringify(coin_balance_output_data.balance));
+		console.log(coin_balance_output_data);
 
 		if (coin_balance_data.coin == 'KMD') {
 			var show_zcredits = '<br><button class="btn btn-xs btn-warning coin_balance_zcredits" style="font-size: 50%;"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + coin_balance_output_data.zcredits + '</button>';
