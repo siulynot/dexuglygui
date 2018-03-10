@@ -765,7 +765,7 @@ function ManageDEXCoins(mng_coin_action,mng_coins_data) {
 	console.log(mng_coin_action);
 	//console.log(mng_coins_data);
 
-	var default_coins_list_array = [{coin: "KMD", electrum: true, method: "enable"}]
+	var default_coins_list_array = [{coin: "KMD", electrum: false, method: "enable"}]
 
 	switch(mng_coin_action) {
 		case 'enable':
