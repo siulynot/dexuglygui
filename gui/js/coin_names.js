@@ -31,6 +31,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'BlackCoin';
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			break;
+    case 'ROI':
+			coin_details.name = 'ROICoin';
+			coin_details.explorer = 'https://roi-coin-blockexplorer.roi-coin.com/tx/';
+			break;
 		case 'BLOCK':
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
