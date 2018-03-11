@@ -35,6 +35,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'ROICoin';
 			coin_details.explorer = 'https://roi-coin-blockexplorer.roi-coin.com/tx/';
 			break;
+		case 'XCOIN':
+			coin_details.name = 'xCoin';
+			coin_details.explorer = 'http://xcoin.ddns.net/tx/';
+			break;
 		case 'BLOCK':
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
