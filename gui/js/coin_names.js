@@ -31,7 +31,7 @@ function return_coin_details(coin) {
 			coin_details.name = 'BlackCoin';
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			break;
-    case 'ROI':
+		case 'ROI':
 			coin_details.name = 'ROICoin';
 			coin_details.explorer = 'https://roi-coin-blockexplorer.roi-coin.com/tx/';
 			break;
@@ -87,7 +87,7 @@ function return_coin_details(coin) {
 			coin_details.name = 'Dogecoin';
 			coin_details.explorer = 'http://dogechain.info/tx/';
 			break;
-        case 'DNR':
+		case 'DNR':
 			coin_details.name = 'Denarius';
 			coin_details.explorer = 'http://denariusexplorer.org/tx/';
 			break;
@@ -347,6 +347,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Bata';
 			coin_details.explorer = 'https://chainz.cryptoid.info/bta/tx.dws?';
 			break;
+                case 'SMART':
+                        coin_details.name = 'SmartCash';
+                        coin_details.explorer = 'https://explorer3.smartcash.cc/tx/';
+                        break;
 		case 'SMC':
 			coin_details.name = 'Smartcoin';
 			coin_details.explorer = 'http://smartchain.cc/tx/';
