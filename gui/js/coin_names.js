@@ -39,6 +39,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'xCoin';
 			coin_details.explorer = 'http://xcoin.ddns.net/tx/';
 			break;
+		case 'ELP':
+			coin_details.name = 'Ellerium';
+			coin_details.explorer = 'https://elp.overemo.com/transaction/';
+			break;
 		case 'BLOCK':
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
