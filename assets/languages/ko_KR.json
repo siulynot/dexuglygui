@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "포트폴리오 차트",
     "portfolio_add_coins": "코인 추가하기",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "매도",
     "exchange_goal_percent_for_your_portfolio": "포트폴리오 목표 배분율",
     "portfolio_portfolio_coins": "포트폴리오 코인들",

@@ -87,6 +87,9 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Portfolio",
     "portfolio_add_coins": "TILFØJ MØNTENHED",
+    "portfolio_add_default_startup_coins": "Default Startup Coins",
+    "portfolio_default_startup_coins": "Default Startup Coins",
+    "portfolio_manage_coins": "MANAGE COINS",
     "exchange_set_small": "Sælg",
     "exchange_goal_percent_for_your_portfolio": "Procentvise mål for portfolio",
     "portfolio_portfolio_coins": "Portfolio Mønter",

@@ -761,7 +761,6 @@ $('.btn-bot_action').click(function(e){
 
 		if (trading_options == 'disabled') {
 			if (trade_data.volume <= 0.01) {
-				console.log(bot_data.volume)
 				console.log('Order is too small. Please try again.');
 				toastr.warning(`${default_lang.Exchange.exchange_toastr_order_is_too_small}`, `${default_lang.Exchange.exchange_toastr_order_title}`)
 			} else {
@@ -1230,6 +1229,12 @@ function enable_disable_coin(enable_disable_coin_data) {
 		console.log(electrum_option);
 		console.log("electrum selected for " + enable_disable_coin_data.coin);
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
+
+		if (electrum_servers_list[enable_disable_coin_data.coin] == undefined) {
+			console.log('no electrum servers found for: ' + enable_disable_coin_data.coin);
+			toastr.warning('No Electrum Servers found for ' + enable_disable_coin_data.coin + '<br> Please use Native Mode for ' + enable_disable_coin_data.coin, 'Coin Status');
+		}
+
 		$.each(electrum_servers_list[enable_disable_coin_data.coin], function(index,val){
 			var ipaddr = _.keys(val);
 			var return_data_ipaddr = ipaddr[0];
@@ -3254,11 +3259,11 @@ function CheckOrderBookFn(sig) {
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.price + '</td>';
 					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.minvolume + '</td>';
 					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.maxvolume + '</td>';
-					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
+					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? 'n/a' : val.avevolume) + '</td>';
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.depth + '</td>';
 					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
 					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
-					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
+					//orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.numutxos == 0) ? 'n/a' : val.numutxos) + '</td>';
 					orderbook_bids_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
 					orderbook_bids_tr += '<td><button class="btn btn-xs" onclick=infoOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
 				orderbook_bids_tr += '</tr>';
@@ -3299,11 +3304,11 @@ function CheckOrderBookFn(sig) {
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.price + '</td>';
 				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.minvolume + ' - ' + val.maxvolume + '</td>';
 				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + row_trade_data.totalbuy.toFixed(8) + '</td>';
-				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? '-' : val.avevolume) + '</td>';
+				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.avevolume == 0) ? 'n/a' : val.avevolume) + '</td>';
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.depth + '</td>';
 				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + coloraddr.firstpart + '<font style="color: #' + coloraddr.colorpart1 + '; background-color: #' + coloraddr.colorpart1 + ';">' + coloraddr.char1 + '</font><font style="color: #' + coloraddr.colorpart2 + '; background-color: #' + coloraddr.colorpart2 + ';">' + coloraddr.char2 + '</font><font style="color: #' + coloraddr.colorpart3 + '; background-color: #' + coloraddr.colorpart3 + ';">' + coloraddr.char3 + '</font>' + coloraddr.lastpart + '</td>';
 				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.age + '</td>';
-				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + val.numutxos + '</td>';
+				//orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')>' + ((val.numutxos == 0) ? 'n/a' : val.numutxos) + '</td>';
 				orderbook_asks_tr += '<td onclick=setOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> ' + val.zcredits.toFixed(2) + '</td>';
 				orderbook_asks_tr += '<td><button class="btn btn-xs" onclick=infoOrderPrice(' + JSON.stringify(row_trade_data) + ')><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></td>';
 				orderbook_asks_tr += '</tr>';
@@ -6262,3 +6267,74 @@ $('.info_box_for_zeroconf').click(function(e){
 	});
 })
 /* ZEROCONF SETTINGS END */
+
+
+
+
+/** DEX COINS MANAGEMENT SETTINGS **/
+
+
+$('.btn-managecoins').click(function(e){
+	e.preventDefault();
+	console.log('btn-managecoins clicked');
+
+	$('.screen-portfolio').hide();
+	$('.screen-coindashboard').hide();
+	$('.screen-exchange').hide();
+	$('.screen-inventory').hide();
+	$('.dexdebug').hide();
+	$('.dextradeshistory').hide();
+	$('.screen-managecoins').show();
+
+	$('.navbar-right').children().removeClass('active');
+	$('.screen-managecoins').css("height", $(document).height());
+
+	RefreshDEXManageCoinsFn();
+})
+
+$('.dex_mng_coins_list tbody').on('click', '.btn_dex_mng_coins_list_remove', function(e) {
+	e.preventDefault();
+	console.log('btn-btn_dex_mng_coins_list_remove clicked');
+	console.log($(this).data());
+
+	var tmp_remove_coin_obj = {coin: $(this).data('coin'), electrum: false, method: "enable"}
+	ManageDEXCoins('remove',tmp_remove_coin_obj);
+	RefreshDEXManageCoinsFn();
+	toastr.info($(this).data('coin') + ' removed from Startup Coins list.', 'DEX Coins Mangement')
+});
+
+$('.btn-refreshmanagecoins').click(function(e){
+	e.preventDefault();
+	console.log('btn-refreshmanagecoins clicked');
+	RefreshDEXManageCoinsFn();
+})
+
+$('.btn-managecoins_add_to_startup').click(function(e){
+	e.preventDefault();
+	console.log('btn-managecoins_add_to_startup clicked');
+	var addcoin_startup_data = {};
+	addcoin_startup_data.coin = $('.addcoin_startup_select').selectpicker('val');
+	addcoin_startup_data.electrum = $('#addcoin_toggle_startup_native_electrum').prop('checked');
+	addcoin_startup_data.method = 'enable';
+
+	console.log(addcoin_startup_data);
+	ManageDEXCoins('add',addcoin_startup_data);
+	RefreshDEXManageCoinsFn();
+	toastr.info(addcoin_startup_data.coin + ' added to Startup Coins list.', 'DEX Coins Mangement')
+})
+
+function RefreshDEXManageCoinsFn() {
+	var lstore_default_coins_list_array = JSON.parse(localStorage.getItem('mm_default_coins_list'));
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+	$('.dex_mng_coins_list tbody').empty();
+	var dex_mng_coins_list_tr = '<tr><td>COIN</td><td>MODE</td><td>ACTIONS</td></tr>';
+	$.each(lstore_default_coins_list_array, function(index,value) {
+		console.log(index);
+		console.log(value);
+		dex_mng_coins_list_tr += `<tr><td>${value.coin}</td><td>${ (value.electrum == false ? "Electrum" : "Native")}</td><td><button class="btn btn-xs btn-danger btn_dex_mng_coins_list_remove" data-coin="${value.coin}">Remove</button></td></tr>`
+	});
+	$('.dex_mng_coins_list tbody').append(dex_mng_coins_list_tr);
+	toastr.info('Default Startup Coins list refreshed', 'DEX Coins Mangement')
+}
+
+/** DEX COINS MANAGEMENT SETTINGS END **/

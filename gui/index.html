@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - v0.8.10-rc</title>
+    <title>BarterDEX - v0.8.11-rc</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" id="bright_css_style">
@@ -216,7 +216,8 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title language" data-langstr="portfolio_portfolio_chart"></h3>
-            <button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px"><span class="language" data-langstr="portfolio_add_coins"></span> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-warning btn-managecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px"><span class="language" data-langstr="portfolio_manage_coins"></span> <span class="fa fa-cogs" aria-hidden="true"></span></button>
+            <button class="btn btn-xs btn-info btn-activatecoins portfolio" style="float: right; margin-right: 6px; margin-top: -20px"><span class="language" data-langstr="portfolio_add_coins"></span> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             <button class="btn btn-xs btn-refreshportfolio portfolio" style="float: right; margin-right: 6px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
           </div>
           <div class="portfolio portfolio-coinslist"> <!-- panel-body -->
@@ -262,6 +263,42 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="screen-managecoins" style="display: none; margin-top: 60px;">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title language" data-langstr="portfolio_add_default_startup_coins"></h3>
+          </div>
+          <div class="panel-body"> <!-- panel-body -->
+            <div class="col-sm-6">
+              <select class="selectpicker addcoin_startup_select" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
+              </div>
+              <div class="col-sm-6">
+              <input class="toggle_checkbox toggle_font_lg" id="addcoin_toggle_startup_native_electrum" type="checkbox" checked data-toggle="toggle" data-on="Native Mode" data-off="Electrum Mode" data-onstyle="primary" data-offstyle="info" data-width="100%" data-height="44px">
+              </div>
+              <div class="col-sm-12" style="text-align: center;">
+              <button class="btn btn-lg btn-warning btn-managecoins_add_to_startup">Add Coin to Startup</button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title language" data-langstr="portfolio_default_startup_coins"></h3>
+            <button class="btn btn-xs btn-refreshmanagecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+          </div>
+          <div class=""> <!-- panel-body -->
+            <table class="table table-striped dex_mng_coins_list" style="margin-bottom: 0px;">
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="screen-inventory" style="display: none; margin-top: 60px;">

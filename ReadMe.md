@@ -17,7 +17,8 @@ BarterDEX App includes all things required to run. You don't need to do anything
 
 It has the pre-compiled `marketmaker` bundled with it. But in any case you still wish to compile `marketmaker` yourself, you ca follow these instructions:
 
-https://github.com/SuperNETorg/komodo/wiki/Setting-up-Liquidity-Provider-(LP)-Node#installing-liquidity-provider-lp-node-on-ubuntudebian-system
+https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-Linux
+https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-MacOS
 
 ### Setup
 

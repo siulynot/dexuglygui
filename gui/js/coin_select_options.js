@@ -18,7 +18,6 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/bco.png' width='30px;'/> BridgeCoin (BCO)" data-tokens="BridgeCoin BCO">BCO</option>
       <option data-content="<img src='img/cryptologo/bta.png' width='30px;'/> Bata (BTA)" data-tokens="Bata BTA">BTA</option>
       <option data-content="<img src='img/cryptologo/bdl.png' width='30px;'/> Bitdeal (BDL)" data-tokens="Bitdeal BDL">BDL</option>
-      
       <option data-content="<img src='img/cryptologo/btx.png' width='30px'/> Bitcore (BTX)" data-tokens="Bitcore BTX">BTX</option>
       <option data-content="<img src='img/cryptologo/btcp.png' width='30px'/> BitcoinPrivate (BTCP)" data-tokens="BitcoinPrivate BTCP">BTCP</option>
       <option data-content="<img src='img/cryptologo/btcz.png' width='30px'/> BitcoinZ (BTCZ)" data-tokens="BitcoinZ BTCZ">BTCZ</option>
@@ -35,11 +34,11 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/dnr.png' width='30px'/> Denarius (DNR)" data-tokens="dnr denarius">DNR</option>
       <option data-content="<img src='img/cryptologo/dsr.png' width='30px'/> Desire (DSR)" data-tokens="Desire dsr">DSR</option>
       <option data-content="<img src='img/cryptologo/efl.png' width='30px'/> e-Gulden (EFL)" data-tokens="e-Gulden EFL">EFL</option>
+      <option data-content="<img src='img/cryptologo/elp.png' width='30px'/> Ellerium (ELP)" data-tokens="Ellerium ELP">ELP</option>
       <option data-content="<img src='img/cryptologo/emc2.png' width='30px'/> Einsteinium (EMC2)" data-tokens="emc2 einsteinium">EMC2</option>
       <option data-content="<img src='img/cryptologo/erc.png' width='30px'/> EuropeCoin (ERC)" data-tokens="EuropeCoin ERC">ERC</option>
       <option data-content="<img src='img/cryptologo/fair.png' width='30px'/> Faircoin (FAIR)" data-tokens="FAIR Faircoin">FAIR</option>
       <option data-content="<img src='img/cryptologo/flo.png' width='30px'/> Florincoin (FLO)" data-tokens="Florincoin FLO">FLO</option>
-      
       <option data-content="<img src='img/cryptologo/gbx.png' width='30px'/> GoByte (GBX)" data-tokens="GoByte GBX">GBX</option>
       <option data-content="<img src='img/cryptologo/glt.png' width='30px'/> GlobalToken (GLT)" data-tokens="GlobalToken GLT">GLT</option>
       <option data-content="<img src='img/cryptologo/grs.png' width='30px'/> Groestlcoin (GRS)" data-tokens="Groestlcoin GRS">GRS</option>
@@ -70,8 +69,10 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/qtum.png' width='30px'/> Qtum (QTUM)" data-tokens="Qtum">QTUM</option>
       <option data-content="<img src='img/cryptologo/rvn.png' width='30px'/> Ravencoin (RVN)" data-tokens="Ravencoin RVN">RVN</option>
       <option data-content="<img src='img/cryptologo/xre.png' width='30px'/> RevolverCoin (XRE)" data-tokens="RevolverCoin XRE">XRE</option>
+      <option data-content="<img src='img/cryptologo/roi.png' width='30px'/> ROIcoin (ROI)" data-tokens="ROICoin ROI">ROI</option>
       <option data-content="<img src='img/cryptologo/sxc.png' width='30px'/> Sexcoin (SXC)" data-tokens="Sexcoin SXC">SXC</option>
       <option data-content="<img src='img/cryptologo/sib.png' width='30px'/> Sibcoin (SIB)" data-tokens="Sibcoin SIB">SIB</option>
+      <option data-content="<img src='img/cryptologo/smart.png' width='30px'/> SmartCash (SMART)" data-tokens="SmartCash SMART">SMART</option>
       <option data-content="<img src='img/cryptologo/smc.png' width='30px'/> SmartCoin (SMC)" data-tokens="SmartCoin SMC">SMC</option>
       <option data-content="<img src='img/cryptologo/sng.png' width='30px'/> SnowGem (SNG)" data-tokens="SnowGem SNG">SNG</option>
       <option data-content="<img src='img/cryptologo/stak.png' width='30px'/> Straks (STAK)" data-tokens="Straks STAK">STAK</option>
@@ -83,6 +84,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/via.png' width='30px'/> Viacoin (VIA)" data-tokens="Viacoin VIA">VIA</option>
       <option data-content="<img src='img/cryptologo/vivo.png' width='30px'/> VIVO (VIVO)" data-tokens="VIVO VIVO">VIVO</option>
       <option data-content="<img src='img/cryptologo/vot.png' width='30px'/> VoteCoin (VOT)" data-tokens="VoteCoin VOT">VOT</option>
+      <option data-content="<img src='img/cryptologo/xcoin.png' width='30px'/> xCoin (XCOIN)" data-tokens="xCoin XCOIN">XCOIN</option>
       <option data-content="<img src='img/cryptologo/xzc.png' width='30px'/> ZCoin (XZC)" data-tokens="ZCoin XZC">XZC</option>
       <option data-content="<img src='img/cryptologo/zcl.png' width='30px'/> ZClassic (ZCL)" data-tokens="ZClassic ZCL">ZCL</option>
       <option data-content="<img src='img/cryptologo/zel.png' width='30px'/> Zelcash (ZEL)" data-tokens="Zelcash ZEL">ZEL</option>
@@ -164,6 +166,8 @@ coin_select_options = `<optgroup label="Crypto Coins">
 
 $('.trading_pair_coin').html(coin_select_options);
 $('.trading_pair_coin2').html(coin_select_options);
+
+$('.addcoin_startup_select').html(coin_select_options);
 
 
 $('.sell_coin').html(coin_select_options);
