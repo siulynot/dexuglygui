@@ -70,6 +70,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/rvn.png' width='30px'/> Ravencoin (RVN)" data-tokens="Ravencoin RVN">RVN</option>
       <option data-content="<img src='img/cryptologo/xre.png' width='30px'/> RevolverCoin (XRE)" data-tokens="RevolverCoin XRE">XRE</option>
       <option data-content="<img src='img/cryptologo/roi.png' width='30px'/> ROIcoin (ROI)" data-tokens="ROICoin ROI">ROI</option>
+      <option data-content="<img src='img/cryptologo/scriv.png' width='30px'/> Scriv (SCRIV)" data-tokens="Scriv SCRIV">SCRIV</option>
       <option data-content="<img src='img/cryptologo/sxc.png' width='30px'/> Sexcoin (SXC)" data-tokens="Sexcoin SXC">SXC</option>
       <option data-content="<img src='img/cryptologo/sib.png' width='30px'/> Sibcoin (SIB)" data-tokens="Sibcoin SIB">SIB</option>
       <option data-content="<img src='img/cryptologo/smart.png' width='30px'/> SmartCash (SMART)" data-tokens="SmartCash SMART">SMART</option>

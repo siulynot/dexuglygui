@@ -139,6 +139,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Mazacoin';
 			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
 			break;
+                case 'SCRIV':
+                        coin_details.name = 'Scriv';
+                        coin_details.explorer = 'http://explorer.scriv.network/tx/';
+                        break;
 		case 'SYS':
 			coin_details.name = 'Syscoin';
 			coin_details.explorer = 'https://chainz.cryptoid.info/sys/tx.dws?';
