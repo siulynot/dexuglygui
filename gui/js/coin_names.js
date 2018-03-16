@@ -15,10 +15,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'ArtByte';
 			coin_details.explorer = 'http://explorer.artbyte.me/tx/';
 			break;
-                case 'BAY':
-                        coin_details.name = 'BitBay';
-                        coin_details.explorer = 'https://chainz.cryptoid.info/bay/tx.dws?';
-                        break;
+		case 'BAY':
+            coin_details.name = 'BitBay';
+            coin_details.explorer = 'https://chainz.cryptoid.info/bay/tx.dws?';
+            break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
@@ -51,10 +51,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
 			break;
-                case 'BTCP':
-                        coin_details.name = 'BitcoinPrivate';
-                        coin_details.explorer = 'https://explorer.btcprivate.org/tx/';
-                        break;
+        case 'BTCP':
+            coin_details.name = 'BitcoinPrivate';
+            coin_details.explorer = 'https://explorer.btcprivate.org/tx/';
+            break;
 		case 'BTCZ':
 			coin_details.name = 'BitcoinZ';
 			coin_details.explorer = 'https://explorer.bitcoinz.site/tx/';
@@ -103,6 +103,14 @@ function return_coin_details(coin) {
 			coin_details.name = 'e-Gulden';
 			coin_details.explorer = 'https://chainz.cryptoid.info/efl/tx.dws?';
 			break;
+		case 'ETH':
+			coin_details.name = 'Ethereum';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			break;
+		case 'JST':
+			coin_details.name = 'JST';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			break;
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
@@ -111,10 +119,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'Groestlcoin';
 			coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
 			break;
-                case 'HTML':
-                        coin_details.name = 'HTMLCOIN';
-                        coin_details.explorer = 'https://html.mastercalls.io/tx/';
-                        break;
+        case 'HTML':
+            coin_details.name = 'HTMLCOIN';
+            coin_details.explorer = 'https://html.mastercalls.io/tx/';
+            break;
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
@@ -123,30 +131,30 @@ function return_coin_details(coin) {
 			coin_details.name = 'Innova';
 			coin_details.explorer = 'http://explorer.innovacoin.info/tx/';
 			break;
-                case 'KNG':
-                        coin_details.name = 'BetKings';
-                        coin_details.explorer = 'https://explorer.kings.ag/tx/';
-                        break;
-                case 'KREDS':
-                        coin_details.name = 'Kreds';
-                        coin_details.explorer = 'https://www.kredsexplorer.com/tx/';
-                        break;
-                case 'LTZ':
-                        coin_details.name = 'LitecoinZ';
-                        coin_details.explorer = 'https://explorer.litecoinz.info/tx/';
-                        break;
-                case 'MNX':
-                        coin_details.name = 'MinexCoin';
-                        coin_details.explorer = 'https://minexexplorer.com/?r=explorer/tx&hash=';
-                        break;
+        case 'KNG':
+            coin_details.name = 'BetKings';
+            coin_details.explorer = 'https://explorer.kings.ag/tx/';
+            break;
+        case 'KREDS':
+            coin_details.name = 'Kreds';
+            coin_details.explorer = 'https://www.kredsexplorer.com/tx/';
+            break;
+        case 'LTZ':
+            coin_details.name = 'LitecoinZ';
+            coin_details.explorer = 'https://explorer.litecoinz.info/tx/';
+            break;
+        case 'MNX':
+            coin_details.name = 'MinexCoin';
+            coin_details.explorer = 'https://minexexplorer.com/?r=explorer/tx&hash=';
+            break;
 		case 'MZC':
 			coin_details.name = 'Mazacoin';
 			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
 			break;
-                case 'SCRIV':
-                        coin_details.name = 'Scriv';
-                        coin_details.explorer = 'http://explorer.scriv.network/tx/';
-                        break;
+        case 'SCRIV':
+            coin_details.name = 'Scriv';
+            coin_details.explorer = 'http://explorer.scriv.network/tx/';
+            break;
 		case 'SYS':
 			coin_details.name = 'Syscoin';
 			coin_details.explorer = 'https://chainz.cryptoid.info/sys/tx.dws?';
@@ -275,10 +283,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'BTCH';
 			coin_details.explorer = 'http://btch.explorer.supernet.org/tx/';
 			break;
-                case 'CRC':
-                        coin_details.name = 'CrowdCoin';
-                        coin_details.explorer = 'http://explorer.cryptopros.us/tx/';
-                        break;
+        case 'CRC':
+            coin_details.name = 'CrowdCoin';
+            coin_details.explorer = 'http://explorer.cryptopros.us/tx/';
+            break;
 		case 'CRW':
 			coin_details.name = 'Crown';
 			coin_details.explorer = 'https://chainz.cryptoid.info/crw/tx.dws?';
@@ -295,10 +303,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'PIVX';
 			coin_details.explorer = 'https://chainz.cryptoid.info/pivx/tx.dws?';
 			break;
-                case 'RVN':
-                        coin_details.name = 'Ravencoin';
-                        coin_details.explorer = 'http://threeeyed.info/tx/';
-                        break;
+        case 'RVN':
+            coin_details.name = 'Ravencoin';
+            coin_details.explorer = 'http://threeeyed.info/tx/';
+            break;
 		case 'BDL':
 			coin_details.name = 'Bitdeal';
 			coin_details.explorer = 'https://explorer.bitdeal.co.in/tx/';
@@ -343,22 +351,22 @@ function return_coin_details(coin) {
 			coin_details.name = 'Terracoin';
 			coin_details.explorer = 'https://explorer.terracoin.io/tx/';
 			break;
-                case 'UFO':
-                        coin_details.name = 'Uniform Fiscal Object';
-                        coin_details.explorer = 'https://chainz.cryptoid.info/ufo/tx.dws?';
-                        break;
-                case 'VIVO':
-                        coin_details.name = 'VIVO';
-                        coin_details.explorer = 'https://chainz.cryptoid.info/vivo/tx.dws?';
-                        break;
+        case 'UFO':
+            coin_details.name = 'Uniform Fiscal Object';
+            coin_details.explorer = 'https://chainz.cryptoid.info/ufo/tx.dws?';
+            break;
+        case 'VIVO':
+            coin_details.name = 'VIVO';
+            coin_details.explorer = 'https://chainz.cryptoid.info/vivo/tx.dws?';
+            break;
 		case 'BTA':
 			coin_details.name = 'Bata';
 			coin_details.explorer = 'https://chainz.cryptoid.info/bta/tx.dws?';
 			break;
-                case 'SMART':
-                        coin_details.name = 'SmartCash';
-                        coin_details.explorer = 'https://explorer3.smartcash.cc/tx/';
-                        break;
+        case 'SMART':
+            coin_details.name = 'SmartCash';
+            coin_details.explorer = 'https://explorer3.smartcash.cc/tx/';
+            break;
 		case 'SMC':
 			coin_details.name = 'Smartcoin';
 			coin_details.explorer = 'http://smartchain.cc/tx/';
@@ -423,10 +431,10 @@ function return_coin_details(coin) {
 			coin_details.name = 'SIBCoin';
 			coin_details.explorer = 'https://chain.sibcoin.net/en/tx/';
 			break;
-                case 'SNG':
-                        coin_details.name = 'SnowGem';
-                        coin_details.explorer = 'https://explorer.snowgem.org/tx/';
-                        break;
+        case 'SNG':
+            coin_details.name = 'SnowGem';
+            coin_details.explorer = 'https://explorer.snowgem.org/tx/';
+            break;
 		case 'VOT':
 			coin_details.name = 'VoteCoin';
 			coin_details.explorer = 'http://explorer.votecoin.site/tx/';
@@ -443,14 +451,14 @@ function return_coin_details(coin) {
 			coin_details.name = 'ZCoin';
 			coin_details.explorer = 'http://explorer.zcoin.io/tx/';
 			break;
-                case 'ZEL':
-                        coin_details.name = 'Zelcash';
-                        coin_details.explorer = 'http://explorer.zel.cash/tx/';
-                        break;
-                case 'ZOI':
-                        coin_details.name = 'Zoin';
-                        coin_details.explorer = 'https://chainz.cryptoid.info/zoi/tx.dws?';
-                        break;
+        case 'ZEL':
+            coin_details.name = 'Zelcash';
+            coin_details.explorer = 'http://explorer.zel.cash/tx/';
+            break;
+        case 'ZOI':
+            coin_details.name = 'Zoin';
+            coin_details.explorer = 'https://chainz.cryptoid.info/zoi/tx.dws?';
+            break;
 		case 'QTUM':
 			coin_details.name = 'Qtum';
 			coin_details.explorer = 'https://explorer.qtum.org/tx/';

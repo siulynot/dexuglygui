@@ -4,8 +4,9 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/kmd.png' width='30px;'/> Komodo (KMD)" data-tokens="kmd komodo ">KMD</option>
       <option data-content="<img src='img/cryptologo/btc.png' width='30px;'/> Bitcoin (BTC)" data-tokens="btc bitcoin ">BTC</option>
       <option data-content="<img src='img/cryptologo/bch.png' width='30px;'/> Bitcoin Cash (BCH)" data-tokens="bch bitcoin cash ">BCH</option>
-      <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
       <option data-content="<img src='img/cryptologo/chips.png' width='30px;'/> CHIPS (CHIPS)" data-tokens="CHIPS CHIPS ">CHIPS</option>
+      <option data-content="<img src='img/cryptologo/eth.png' width='30px;'/> Ethereum (ETH)" data-tokens="Ethereum ETH ">ETH</option>
+      <option data-content="<img src='img/cryptologo/jst.png' width='30px;'/> JST (JST)" data-tokens="JST JST ">JST</option>
 
       <option data-content="<img src='img/cryptologo/beer.png' width='30px;'/> BEER (BEER TESTCOIN)" data-tokens="BEER BEER TESTCOIN">BEER</option>
       <option data-content="<img src='img/cryptologo/pizza.png' width='30px;'/> PIZZA (PIZZA TESTCOIN)" data-tokens="PIZZA PIZZA TESTCOIN">PIZZA</option>
@@ -111,6 +112,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/oot.png' width='30px'/> Utrum (OOT)" data-tokens="OOT">OOT</option>
       <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>
       <option data-content="<img src='img/cryptologo/mgw.png' width='30px'/> MultiGateway (MGW)" data-tokens="MultiGateway MGW">MGW</option>
+      <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
       <option data-content="<img src='img/cryptologo/pangea.png' width='30px'/> Pangea (PANGEA)" data-tokens="Pangea PANGEA">PANGEA</option>
       <option data-content="<img src='img/cryptologo/revs.png' width='30px'/> REVS (REVS)" data-tokens="REVS REVS">REVS</option>
       <option data-content="<img src='img/cryptologo/mshark.png' width='30px'/> MSHARK (MSHARK)" data-tokens="MSHARK MSHARK">MSHARK</option>
