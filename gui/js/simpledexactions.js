@@ -5364,6 +5364,16 @@ function check_swap_status_details(swap_status_data) {
 						timeout: 6000, // sets timeout to 5 seconds
 						url: url
 					}).done(function(dataforblinker) {
+						console.log(dataforblinker);
+
+						if (!dataforblinker.error === false) {
+							clearInterval(swapdetail_blinker);
+							if (dataforblinker.error == 'swap never started') {
+								$('.swapdetail_info').html(`<h3><i class="fa fa-ban"></i> ${dataforblinker.error}. Please try again.</h3>`);
+							} else {
+								$('.swapdetail_info').html(`<h3><i class="fa fa-ban"></i> ${dataforblinker.error}</h3>`);
+							}
+						}
 
 						$('.tbl_alicepayment').html(`<a href="#" onclick="shell.openExternal('`+return_coin_details(swap_status_output_data.alice).explorer+dataforblinker.alicepayment+`'); return false;">` + dataforblinker.alicepayment + `</a>`);
 						$('.tbl_alicetxfee').html(dataforblinker.alicetxfee);
@@ -5457,7 +5467,7 @@ function check_swap_status_details(swap_status_data) {
 }
 
 function get_swapstatus_step(swap_data) {
-	//console.log(swap_data.sentflags);
+	console.log(swap_data.sentflags);
 	var status = "realtime";
 	for(var i = 0; i < swap_data.sentflags.length; i++) {
 		if (swap_data.sentflags[i] == 'alicespend') {
@@ -5533,8 +5543,8 @@ function check_swap_status(sig) {
 			}*/
 			$('.exchange-swap-status-spinner').hide();
 			$.each(reversed_swap_list, function(index, val) {
-				//console.log(index);
-				//console.log(val);
+				console.log(index);
+				console.log(val);
 				if(!val.error === false) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var exchange_swap_status_tr = '';
