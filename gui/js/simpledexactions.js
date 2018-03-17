@@ -1138,6 +1138,49 @@ function get_coin_info(coin) {
 	});
 }
 
+function get_coin_info_spv_inv(coin_data) {
+
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var ajax_data = {"userpass":userpass,"method":"balance","coin":coin_data.coin,"address":coin_data.addr};
+	var url = "http://127.0.0.1:7783";
+
+	$.ajax({
+		async: true,
+	    data: JSON.stringify(ajax_data),
+	    dataType: 'json',
+	    type: 'POST',
+	    timeout: 5000, // sets timeout to 5 seconds
+	    url: url
+	}).done(function(coin_balance_output_data) {
+		// If successful
+		console.log(coin_balance_output_data);
+
+		$('.inventory-title').html('Manage Inventory ('+coin_balance_output_data.balance+' '+coin_data.coin+')');
+		$('.inventory-title').data('coin', coin_data.coin);
+		$('.inventory-title').data('balance', coin_balance_output_data.balance);
+		$('.btn-makeinventory').data('coin', coin_data.coin);
+		$('.coininventory[data-coin]').attr('data-coin', coin_data.coin);
+		$('.coininventory[data-coin]').attr('data-addr', coin_data.addr);
+		$('.inventory-sliderTotalCoin').html(' '+coin_data.coin);
+
+		calc_data = {"coin": coin_data.coin, "balance": coin_balance_output_data.balance};
+		clac_coin_inventory(calc_data);
+
+		if (!coin_balance_output_data.error == true) {
+			selected_coin = {}
+			selected_coin.coin = coin_data.coin;
+			selected_coin.coin_name = return_coin_details(coin_data.coin).name;
+			selected_coin.addr = coin_data.addr;
+			selected_coin.balance = coin_balance_output_data.balance;
+			console.log(selected_coin);
+			sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
+		}
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    // If fail
+	    console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
 function get_coins() {
 	//console.log(data);
 
@@ -3932,9 +3975,41 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	console.log('coin_balance_inventory clicked');
 	console.log($(this).data());
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-	coin = $(this).data('coin');
-	addr = $(this).data('addr');
-	balance = $(this).data('balance');
+	if ($(this).data('spvinv') == true && $(this).data('ethinv') == false ) {
+		coin = $(this).data('coin');
+		addr = $(this).data('addr');
+		balance = $(this).data('balance');
+
+		get_coin_info_spv_inv($(this).data());
+
+		check_coin_listunspent($(this).data());
+	} else if ($(this).data('ethinv') == true ) {
+		coin = 'ETOMIC';
+		addr = _.where(JSON.parse(sessionStorage.getItem('mm_usercoins')), {"coin": "ETOMIC"})[0].smartaddress;
+
+		get_coin_info_spv_inv({"coin": coin, "addr": addr});
+		check_coin_listunspent({"coin": coin, "addr": addr});
+	} else {
+		coin = $(this).data('coin');
+		addr = $(this).data('addr');
+		balance = $(this).data('balance');
+
+		$('.inventory-title').html('Manage Inventory ('+balance+' '+coin+')');
+		$('.inventory-title').data('coin', coin);
+		$('.inventory-title').data('balance', balance);
+		$('.btn-makeinventory').data('coin', coin);
+		$('.coininventory[data-coin]').attr('data-coin', coin);
+		//$('.coininventory[data-coin]').attr('data-pair', $(this).data('pair'));
+		$('.coininventory[data-coin]').attr('data-addr', addr);
+		$('.inventory-sliderTotalCoin').html(' '+coin);
+
+		get_coin_info(coin);
+
+		calc_data = {"coin": coin, "balance": balance};
+		clac_coin_inventory(calc_data);
+
+		check_coin_listunspent($(this).data());
+	}
 
 
 	$('.screen-exchange').hide()
@@ -3949,24 +4024,14 @@ $('.your_coins_balance_info').on('click', '.coin_balance_inventory', function() 
 	bot_screen_sellcoin_balance(false);
 	Refresh_active_StockChart(false);
 
-	$('.inventory-title').html('Manage Inventory ('+balance+' '+coin+')');
-	$('.inventory-title').data('coin', coin);
-	$('.inventory-title').data('balance', balance);
-	$('.btn-makeinventory').data('coin', coin);
-	$('.coininventory[data-coin]').attr('data-coin', coin);
-	//$('.coininventory[data-coin]').attr('data-pair', $(this).data('pair'));
-	$('.coininventory[data-coin]').attr('data-addr', addr);
-	$('.inventory-sliderTotalCoin').html(' '+coin);
+	
 
 	$('.dex_showinv_alice_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
 	$('.dex_showlist_unspents_tbl tbody').html('<th><div style="text-align: center;">' + default_lang.Common.loading_wait + '</div></th>');
 
 	//check_coin_inventory(coin);
-	get_coin_info(coin);
-	check_coin_listunspent($(this).data());
 
-	calc_data = {"coin": coin, "balance": balance};
-	clac_coin_inventory(calc_data);
+	
 
 });
 
@@ -4911,8 +4976,12 @@ function bot_screen_sellcoin_balance(sig) {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				//console.warn(data.coin)
 				var coin_mode = '';
-				if (data.coin.hasOwnProperty('electrum')) {
+				var ethinv = false;
+				var spvinv = false;
+				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					ethinv = true;
+					spvinv = true;
 					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -4923,7 +4992,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">${default_lang.Common.btn_disable}</button>
 					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_receive}</button>
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
-					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
+					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=`+ethinv+` data-spvinv=`+spvinv+`>${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
@@ -5007,9 +5076,13 @@ function bot_screen_coin_balance(sig) {
 			} else {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				var coin_mode = '';
+				var ethinv = false;
+				var spvinv = false;
 				//console.warn(data.coin)
-				if (data.coin.hasOwnProperty('electrum')) {
+				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+					ethinv = true;
+					spvinv = true;
 					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -5020,7 +5093,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-danger btn-xs coin_balance_disable" style="margin-top: 6px;" data-electrum=true data-method="disable" data-coin="` + coin + `">${default_lang.Common.btn_disable}</button>
 					<button class="btn btn-warning btn-xs coin_balance_receive" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_receive}</button>
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
-					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
+					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=`+ethinv+` data-spvinv="`+spvinv+`">${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
