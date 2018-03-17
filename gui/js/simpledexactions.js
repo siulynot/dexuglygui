@@ -4926,7 +4926,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
-				if (data.coin.hasOwnProperty('electrum')) {
+				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'rel';
@@ -5023,7 +5023,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
 				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>'+button_controls);
-				if (data.coin.hasOwnProperty('electrum')) {
+				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'base';
 					electrum_coin_balance_data.coin = coin;
