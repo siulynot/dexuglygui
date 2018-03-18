@@ -7,7 +7,7 @@ The BarterDEX application created by Komodo Platform allows trading cryptocurren
 
 Komodo Platform Official Site:  https://komodoplatform.com
 Komodo BarterDEX Page :  https://www.komodoplatform.com/en/technology/barterdex
-BarterDEX Whitepaper :  https://www.komodoplatform.com/en/technology/whitepapers/BarterDEX-Whitepaper-v0.4.pdf
+BarterDEX Whitepaper :  https://komodoplatform.com/wp-content/uploads/2018/03/2018-03-12-Komodo-White-Paper-Full.pdf
 
 
 
