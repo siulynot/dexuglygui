@@ -4980,7 +4980,9 @@ function bot_screen_sellcoin_balance(sig) {
 				var spvinv = false;
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-					ethinv = true;
+					if (return_coin_details(coin).eth == true) {
+						ethinv = true;
+					}
 					spvinv = true;
 					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
@@ -5081,7 +5083,9 @@ function bot_screen_coin_balance(sig) {
 				//console.warn(data.coin)
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-					ethinv = true;
+					if (return_coin_details(coin).eth == true) {
+						ethinv = true;
+					}
 					spvinv = true;
 					coin_mode = `<i class="fa fa-bolt" data-toggle="tooltip" data-placement="top" title="${default_lang.Common.label_enable_electrum}"></i>`
 				} else {
