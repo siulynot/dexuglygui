@@ -128,16 +128,6 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/efl/tx.dws?';
 			coin_details.eth = false;
 			break;
-		case 'ETH':
-			coin_details.name = 'Ethereum';
-			coin_details.explorer = 'https://etherscan.io/tx/';
-			coin_details.eth = true;
-			break;
-		case 'JST':
-			coin_details.name = 'JST';
-			coin_details.explorer = 'https://etherscan.io/tx/';
-			coin_details.eth = true;
-			break;
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
@@ -762,6 +752,342 @@ function return_coin_details(coin) {
 			coin_details.name = 'PIZZA TESTCOIN';
 			coin_details.explorer = 'http://pizza.explorer.supernet.org/tx/';
 			coin_details.eth = false;
+			break;
+
+		case 'ETH':
+			coin_details.name = 'Ethereum';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'JST':
+			coin_details.name = 'JST';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'USDT':
+			coin_details.name = 'Tether';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'BBT':
+			coin_details.name = 'BitBoost';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'OMG':
+			coin_details.name = 'OmiseGO';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ICX':
+			coin_details.name = 'ICON';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'BNB':
+			coin_details.name = 'Binance Coin';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'DGD':
+			coin_details.name = 'DigixDAO';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'PPT':
+			coin_details.name = 'Populous';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'MKR':
+			coin_details.name = 'Maker';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'SNT':
+			coin_details.name = 'Status';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'REP':
+			coin_details.name = 'Augur';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ZRX':
+			coin_details.name = '0x';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'BAT':
+			coin_details.name = 'Basic Attention Token';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'GNT':
+			coin_details.name = 'Golem';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ETHOS':
+			coin_details.name = 'Ethos';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'QASH':
+			coin_details.name = 'QASH';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'FUN':
+			coin_details.name = 'FunFair';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'KNC':
+			coin_details.name = 'Kyber Network';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'SALT':
+			coin_details.name = 'SALT';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'BNT':
+			coin_details.name = 'Bancor';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ICN':
+			coin_details.name = 'Iconomi';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'PAY':
+			coin_details.name = 'TenX';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'REQ':
+			coin_details.name = 'Request Network';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'STORJ':
+			coin_details.name = 'Storj';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'GNO':
+			coin_details.name = 'Gnosis';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'RLC':
+			coin_details.name = 'iExec RLC';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ENJ':
+			coin_details.name = 'Enjin Coin';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'QSP':
+			coin_details.name = 'Quantstamp';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'RDN':
+			coin_details.name = 'Raiden Network Token';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'CVC':
+			coin_details.name = 'Civic';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'SAN':
+			coin_details.name = 'Santiment Network Token';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ANT':
+			coin_details.name = 'Aragon';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'MANA':
+			coin_details.name = 'Decentraland';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'MCO':
+			coin_details.name = 'Monaco';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'MTL':
+			coin_details.name = 'Metal';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'EDG':
+			coin_details.name = 'Edgeless';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'MLN':
+			coin_details.name = 'Melon';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'AMB':
+			coin_details.name = 'Ambrosus';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'WINGS':
+			coin_details.name = 'Wings';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'RCN':
+			coin_details.name = 'Ripio Credit Network';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'SNGLS':
+			coin_details.name = 'SingularDTV';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'TAAS':
+			coin_details.name = 'TaaS';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'DNT':
+			coin_details.name = 'district0x';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'CFI':
+			coin_details.name = 'Cofound.it';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'LUN':
+			coin_details.name = 'Lunyr';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'ADT':
+			coin_details.name = 'adToken';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'AST':
+			coin_details.name = 'AirSwap';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'CDT':
+			coin_details.name = 'Blox';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'TKN':
+			coin_details.name = 'TokenCard';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'HMQ':
+			coin_details.name = 'Humaniq';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'BCAP':
+			coin_details.name = 'Bcap';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'NMR':
+			coin_details.name = 'Numeraire';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'NET':
+			coin_details.name = 'NetCoin';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'TRST':
+			coin_details.name = 'WeTrust';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'GUP':
+			coin_details.name = 'Matchpool';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case '1ST':
+			coin_details.name = 'FirstBlood';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'TIME':
+			coin_details.name = 'Chronobank';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'SWT':
+			coin_details.name = 'Swarm City';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'DICE':
+			coin_details.name = 'Etheroll';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'XAUR':
+			coin_details.name = 'Xaurum';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'PLU':
+			coin_details.name = 'Pluton';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'HGT':
+			coin_details.name = 'HelloGold';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'VSL':
+			coin_details.name = 'vSlice';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'IND':
+			coin_details.name = 'Indorse Token';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'FYN':
+			coin_details.name = 'FundYourselfNow';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'EOS':
+			coin_details.name = 'EOS';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
 			break;
 	}
 	return coin_details;
