@@ -760,7 +760,12 @@ function return_coin_details(coin) {
 			coin_details.eth = true;
 			break;
 		case 'JST':
-			coin_details.name = 'JST';
+			coin_details.name = 'JST (TESTCOIN)';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
+		case 'DEC8':
+			coin_details.name = 'DEC8 (TESTCOIN)';
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;

@@ -3018,7 +3018,12 @@ function manual_buy_sell(mt_data) {
 function DepositOnError(deposit_data) {
 	console.log(deposit_data);
 
-	var coin_name = return_coin_details(deposit_data.coin).name;
+	if (return_coin_details(deposit_data.coin).eth == true) {
+		deposit_data.coin = 'ETOMIC';
+		var coin_name = 'ETOMIC';
+	} else {
+		var coin_name = return_coin_details(deposit_data.coin).name;
+	}
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": deposit_data.coin};
