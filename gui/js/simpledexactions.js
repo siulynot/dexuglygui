@@ -3759,6 +3759,7 @@ function coinBalanceSendFn(coin) {
 		type: 'POST',
 		url: url
 	}).done(function(data) {
+		console.log(JSON.stringify(data.coin));
 		console.log(data.coin.smartaddress);
 		console.log(data.coin.balance);
 		console.log(data.coin.txfee);
@@ -3821,36 +3822,58 @@ function coinBalanceSendFn(coin) {
 
 
 						if (to_addr == data.coin.smartaddress) {
-							var output_data = [];
-							var output_data_obj = new Object();
-							output_data_obj[to_addr] = parseFloat(send_amount) + parseFloat(data.coin.txfee / 100000000);
-							output_data.push(output_data_obj);
-							console.log(output_data);
+							if (return_coin_details(data.coin.coin).eth == true) {
+								var output_data = {};
+								output_data.to_addr = to_addr;
+								output_data.send_amount = send_amount;
+								console.log(output_data);
+								console.log(JSON.stringify(output_data));
 
-							var output_data_2nd = new Object();
-							var calc_2nd_amount = (send_amount - 0.0001*2)/777
-							output_data_2nd[to_addr] = calc_2nd_amount.toFixed(8);
-							output_data.push(output_data_2nd);
-							console.log(output_data);
+								console.log(tx_coin);
+								create_sendtx(tx_coin, output_data);
+							} else {
+								var output_data = [];
+								var output_data_obj = new Object();
+								output_data_obj[to_addr] = parseFloat(send_amount) + parseFloat(data.coin.txfee / 100000000);
+								output_data.push(output_data_obj);
+								console.log(output_data);
 
-							var output_data_feetx = new Object();
-							output_data_feetx[to_addr] = 0.0001;
-							output_data.push(output_data_feetx);
-							console.log(output_data);
-							console.log(JSON.stringify(output_data));
+								var output_data_2nd = new Object();
+								var calc_2nd_amount = (send_amount - 0.0001*2)/777
+								output_data_2nd[to_addr] = calc_2nd_amount.toFixed(8);
+								output_data.push(output_data_2nd);
+								console.log(output_data);
 
-							console.log(tx_coin);
-							create_sendtx(tx_coin, output_data);
+								var output_data_feetx = new Object();
+								output_data_feetx[to_addr] = 0.0001;
+								output_data.push(output_data_feetx);
+								console.log(output_data);
+								console.log(JSON.stringify(output_data));
+
+								console.log(tx_coin);
+								create_sendtx(tx_coin, output_data);
+							}
 						} else {
-							var output_data = [];
-							var output_data_obj = new Object();
-							output_data_obj[to_addr] = send_amount;
-							output_data.push(output_data_obj);
-							console.log(output_data);
-							console.log(JSON.stringify(output_data));
+							if (return_coin_details(data.coin.coin).eth == true) {
+								var output_data = {};
+								output_data.to_addr = to_addr;
+								output_data.send_amount = send_amount;
+								console.log(output_data);
+								console.log(JSON.stringify(output_data));
 
-							console.log(tx_coin);
-							create_sendtx(tx_coin, output_data);
+								console.log(tx_coin);
+								create_sendtx(tx_coin, output_data);
+							} else {
+								var output_data = [];
+								var output_data_obj = new Object();
+								output_data_obj[to_addr] = send_amount;
+								output_data.push(output_data_obj);
+								console.log(output_data);
+								console.log(JSON.stringify(output_data));
+
+								console.log(tx_coin);
+								create_sendtx(tx_coin, output_data);
+							}
 						}
 					}
 				}
@@ -4053,8 +4076,12 @@ function create_sendtx(coin,tx_data){
 	console.log(tx_data);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
-	//var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": [tx_data]};
-	var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": tx_data};
+	
+	if (return_coin_details(coin).eth == true) {
+		var ajax_data = {"userpass":userpass,"method":"eth_withdraw","coin":coin,"to":tx_data.to_addr,"amount":tx_data.send_amount}
+	} else {
+		var ajax_data = {"userpass":userpass,"method":"withdraw","coin": coin, "outputs": tx_data};
+	}
 	var url = "http://127.0.0.1:7783";
 
 	console.log(ajax_data);
@@ -4076,7 +4103,12 @@ function create_sendtx(coin,tx_data){
 			sessionStorage.setItem('mm_userpass', data.userpass);
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 		} else {
-			if (data.complete == true) {
+
+			if (return_coin_details(coin).eth == true) {
+				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+				bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
+				<a href="#" onclick="shell.openExternal('`+return_coin_details(coin).explorer+data.tx_id+`'); return false;">` + data.tx_id + `</a>`);
+			} else if (data.complete == true) {
 				console.log(data.hex);
 				if (!data.hasOwnProperty('coin')) { data.coin = coin; }
 				bot_sendrawtx(data);
