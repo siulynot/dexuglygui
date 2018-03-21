@@ -1099,6 +1099,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+		case 'TUSD':
+			coin_details.name = 'True USD';
+			coin_details.explorer = 'https://etherscan.io/tx/';
+			coin_details.eth = true;
+			break;
 	}
 	return coin_details;
 }
