@@ -1,35 +1,35 @@
 {
-    "name": "BarterDEX",
-    "version": "1.0.0-rc",
-    "description": "Full BarterDEX implimentation with powertools for Traders",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron ."
-    },
-    "repository": "https://github.com/TheComputerGenie/BarterDEX.git",
-    "keywords": [
-        "barterdex",
-        "jumblr",
-        "dex",
-        "atomicswaps",
-        "instantdex",
-        "easydex",
-        "bitcoin",
-        "nativedex",
-        "bitcoinmixer",
-        "bitcointumbler"
-    ],
-    "author": "Satinderjit Singh",
-    "license": "MIT",
-    "devDependencies": {
-        "electron": "^1.8.3"
-    },
-    "dependencies": {
-        "bluebird": "^3.5.1",
-        "fix-path": "^2.1.0",
-        "fs-extra": "^4.0.3",
-        "mkdirp": "^0.5.1",
-        "portscanner": "^2.1.1",
-        "ps-node": "^0.1.6"
-    }
+  "name": "BarterDEX",
+  "version": "1.0.0-rc",
+  "description": "Full BarterDEX implimentation with powertools for Traders",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/KomodoPlatform/BarterDEX.git",
+  "keywords": [
+    "barterdex",
+    "jumblr",
+    "dex",
+    "atomicswaps",
+    "instantdex",
+    "easydex",
+    "bitcoin",
+    "nativedex",
+    "bitcoinmixer",
+    "bitcointumbler"
+  ],
+  "author": "Satinderjit Singh",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.3"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "fix-path": "^2.1.0",
+    "fs-extra": "^4.0.3",
+    "mkdirp": "^0.5.1",
+    "portscanner": "^2.1.1",
+    "ps-node": "^0.1.6"
+  }
 }
