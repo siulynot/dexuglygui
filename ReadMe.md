@@ -31,7 +31,7 @@ To get started follow these steps:
 git clone https://github.com/KomodoPlatform/BarterDEX.git
 cd BarterDEX
 git pull
-git checkout v0.8
+git checkout dev
 npm install
 npm start
 ```
@@ -43,7 +43,7 @@ To update, follow these steps:
 ```shell
 cd BarterDEX
 git pull
-git checkout v0.8
+git checkout dev
 git pull
 ```
 
