@@ -3767,7 +3767,7 @@ function coinBalanceSendFn(coin) {
 		/*if (return_coin_details(data.coin.coin).eth == true) {
 			data.coin.txfee = 0;			
 		}*/
-
+    
 		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		var coin_balance_send_bootbox = bootbox.dialog({
 			onEscape: true,
