@@ -19,10 +19,10 @@ function return_coin_details(coin) {
 			coin_details.eth = false;
 			break;
 		case 'BAY':
-            coin_details.name = 'BitBay';
-            coin_details.explorer = 'https://chainz.cryptoid.info/bay/tx.dws?';
-            coin_details.eth = false;
-            break;
+			coin_details.name = 'BitBay';
+			coin_details.explorer = 'https://chainz.cryptoid.info/bay/tx.dws?';
+			coin_details.eth = false;
+			break;
 		case 'BTC':
 			coin_details.name = 'Bitcoin';
 			coin_details.explorer = 'https://www.blocktrail.com/BTC/tx/';
@@ -58,16 +58,21 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://explorer.elicoin.net/?page=tx&id=';
 			coin_details.eth = false;
 			break;
+                case 'FTC':
+                        coin_details.name = 'Feathercoin';
+                        coin_details.explorer = 'https://fsight.chain.tips/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'BLOCK':
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
 			coin_details.eth = false;
 			break;
-        case 'BTCP':
-            coin_details.name = 'BitcoinPrivate';
-            coin_details.explorer = 'https://explorer.btcprivate.org/tx/';
-            coin_details.eth = false;
-            break;
+		case 'BTCP':
+			coin_details.name = 'BitcoinPrivate';
+			coin_details.explorer = 'https://explorer.btcprivate.org/tx/';
+			coin_details.eth = false;
+			break;
 		case 'BTCZ':
 			coin_details.name = 'BitcoinZ';
 			coin_details.explorer = 'https://explorer.bitcoinz.site/tx/';
