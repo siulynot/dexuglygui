@@ -14,7 +14,6 @@ const electron = require('electron'),
   fixPath = require('fix-path'),
   numCPUs = require('os').cpus().length,
   killmm = require('./killmm'),
-  _BarterDEXSettingsFile = `${BarterDEXDir}/settings.json`,
   { ipcMain } = require('electron');
 
 var ps = require('ps-node'),
@@ -45,7 +44,7 @@ switch (osPlatform) {
     BarterDEXIcon = path.join(__dirname, '/assets/icons/barterdex/barterdex.ico');
     break;
 }
-
+_BarterDEXSettingsFile = `${BarterDEXDir}/settings.json`;
 // DEFAULT COINS LIST FOR MARKETMAKER
 defaultCoinsListFile = path.join(__dirname, '../assets/coins.json');
 // DEFAULT BARTERDEX SETTINGS FILE
