@@ -1,6 +1,7 @@
 var electrum_servers_list = {
   "ARG": [{"173.212.225.176": 50081},{"136.243.45.140": 50081}],
   "BCH": [{"electrum2.cipig.net":10051},{"electrum1.cipig.net":10051}],
+  "BEER": [{"electrum2.cipig.net": 10022},{"electrum1.cipig.net": 10022}],
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
   "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
@@ -19,6 +20,7 @@ var electrum_servers_list = {
   "DGB": [{"136.243.45.140": 50022},{"173.212.225.176": 50022}],
   "DOGE": [{"173.212.225.176": 50015},{"136.243.45.140": 50015}],
   "EMC2": [{"173.212.225.176": 50079},{"136.243.45.140": 50079}],
+  "ETOMIC": [{"electrum2.cipig.net": 10025},{"electrum1.cipig.net": 10025}],
   "FAIR": [{"173.212.225.176": 50005},{"136.243.45.140": 50005}],
   "GRS": [{"electrum10.groestlcoin.org":50001},{"electrum11.groestlcoin.org":50001},{"electrum13.groestlcoin.org":50001},{"electrum14.groestlcoin.org":50001}],
   "HODL": [{"electrum2.cipig.net":10009},{"electrum1.cipig.net":10009}],
@@ -34,6 +36,7 @@ var electrum_servers_list = {
   "NMC": [{"173.212.225.176": 50036},{"136.243.45.140": 50036}],
   "OOT": [{"electrum1.utrum.io": 10088},{"electrum2.utrum.io": 10088}],
   "PANGEA": [{"electrum2.cipig.net": 10010},{"electrum1.cipig.net": 10010}],
+  "PIZZA": [{"electrum2.cipig.net": 10024},{"electrum1.cipig.net": 10024}],
   "QTUM": [{"s1.qtum.info":50001},{"s2.qtum.info":50001},{"s3.qtum.info":50001},{"s4.qtum.info":50001}],
   "REVS": [{"electrum2.cipig.net": 10003},{"electrum1.cipig.net": 10003}],
   "SIB": [{"electrum2.cipig.net": 10050},{"electrum1.cipig.net": 10050}],
@@ -43,9 +46,7 @@ var electrum_servers_list = {
   "VTC": [{"173.212.225.176": 50088},{"136.243.45.140": 50088}],
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
   "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
-  "ZEC": [{"173.212.225.176": 50032},{"136.243.45.140": 50032}],
-  "BEER": [{"electrum1.cipig.net": 10022},{"electrum2.cipig.net": 10022}],
-  "PIZZA": [{"electrum1.cipig.net": 10024},{"electrum2.cipig.net": 10024}]
+  "ZEC": [{"173.212.225.176": 50032},{"136.243.45.140": 50032}]
 }
 
 
