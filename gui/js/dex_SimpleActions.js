@@ -1291,8 +1291,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 			console.log(return_data_port);
 
 			var ajax_data = {"userpass":userpass,"method":"electrum","coin":enable_disable_coin_data.coin,"ipaddr":return_data_ipaddr,"port":return_data_port};
-			var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
-			console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
+			//var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+			//console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 			$.ajax({
 				async: true,
 				data: JSON.stringify(ajax_data),
