@@ -1023,7 +1023,8 @@ function check_coin_balance(chk_coin_data) {
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
 	var url = "http://127.0.0.1:7783";
 
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data),
@@ -1100,7 +1101,8 @@ function get_coin_info(coin) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin":coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -1143,7 +1145,8 @@ function get_coin_info_spv_inv(coin_data) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"balance","coin":coin_data.coin,"address":coin_data.addr};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -1187,7 +1190,8 @@ function get_coins() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoins"};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -1256,7 +1260,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 	if (enable_disable_coin_data.method === 'disable') {
 		console.warn('disable coin called');
 		var ajax_data = {"userpass":userpass,"method":"electrum","coin":enable_disable_coin_data.coin};
-
+		var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+		console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 		$.ajax({
 			async: true,
 			data: JSON.stringify(ajax_data),
@@ -1286,7 +1291,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 			console.log(return_data_port);
 
 			var ajax_data = {"userpass":userpass,"method":"electrum","coin":enable_disable_coin_data.coin,"ipaddr":return_data_ipaddr,"port":return_data_port};
-
+			var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+			console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 			$.ajax({
 				async: true,
 				data: JSON.stringify(ajax_data),
@@ -1363,7 +1369,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 		var ajax_data = {"userpass":userpass,"method":enable_disable_coin_data.method,"coin":enable_disable_coin_data.coin};
 
 		console.log(ajax_data);
-
+		var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+		console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 		$.ajax({
 			async: true,
 		    data: JSON.stringify(ajax_data),
@@ -1445,7 +1452,8 @@ function check_coin_inventory(coin) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"inventory","coin":coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data),
@@ -1518,7 +1526,8 @@ function check_coin_listunspent(coin_listunspent_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"listunspent","coin":coin_listunspent_data.coin,"address":coin_listunspent_data.addr};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data),
@@ -1803,7 +1812,8 @@ function make_inventory_withdraw(mk_inv_data) {
 
 	console.log(ajax_data);
 	console.log(JSON.stringify(ajax_data));
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
@@ -1868,7 +1878,8 @@ function mk_inv_sendrawtx(mk_inv_rawtx_data,mk_inv_rawtx_coin) {
 
 	console.log(ajax_data);
 	console.log(JSON.stringify(ajax_data));
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    //dataType: 'json',
@@ -1933,7 +1944,8 @@ function addcoin_enable_disable_coin(data) {
 	var url = "http://127.0.0.1:7783";
 
 	console.log(ajax_data);
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -1985,7 +1997,8 @@ function get_coins_list() {
 	var ajax_data = {"userpass":userpass,"method":"getcoins"};
 	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data),
@@ -2189,7 +2202,8 @@ function CheckPortfolioFn(sig) {
 	var ajax_data = {"userpass":userpass,"method":"portfolio"};
 	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -2421,7 +2435,8 @@ $('.portfolio_set_price_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"setprice","base":base_coin,"rel":rel_coin,"price":price};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -2452,7 +2467,8 @@ $('.portfolio_set_autoprice_btn').click(function() {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"autoprice","base":base_coin,"rel":rel_coin,"margin":margin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -2485,7 +2501,8 @@ function set_coin_goal(goal_data){
 		var ajax_data = {"userpass":userpass,"method":"goal"};
 	}
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -2658,7 +2675,8 @@ function autoprice_buy_sell(autoprice_data) {
 	console.log(JSON.stringify(ajax_data));
 
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -2942,7 +2960,8 @@ function manual_buy_sell(mt_data) {
 	console.log(JSON.stringify(ajax_data));
 
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -2999,10 +3018,19 @@ function manual_buy_sell(mt_data) {
 				} else {
 					toastr.error('No withdraw info found. Please try again with lower buy amount.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
 				}*/
+			} else {
+				if (mt_output_data.error == 'only one pending request at a time') {
+					toastr.error("Please wait " + JSON.stringify(mt_output_data.wait) + " seconds before trying to place your next order", default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
+				} else {
+					toastr.error(mt_output_data.error, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
+				}
 			}
 		} else if (mt_output_data.result == 'success') {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			toastr.success(default_lang.Exchange.exchange_order_executed, default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
+			if (!mt_output_data.pending === false) {
+				toastr.info("Please wait " + JSON.stringify(mt_output_data.pending.timeleft) + " seconds before placing your next order", default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
+			}
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -3029,7 +3057,8 @@ function DepositOnError(deposit_data) {
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": deposit_data.coin};
 	var url = "http://127.0.0.1:7783";
 
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data),
@@ -3224,7 +3253,7 @@ function CheckOrderBookFn(sig) {
 	}
 
 	var coin = $('.trading_pair_coin2').selectpicker('val',coin);
-	console.log(coin);
+	console.log('trading_pair_coin2 is: ' + coin);
 
 	var buying_or_selling = $('input[name=trading_pair_options]:checked').val();
 
@@ -3249,7 +3278,8 @@ function CheckOrderBookFn(sig) {
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -3408,7 +3438,8 @@ function check_my_prices(sig){
 	var ajax_data = {"userpass":userpass,"method":"myprices"};
 	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -3417,7 +3448,7 @@ function check_my_prices(sig){
 	    url: url
 	}).done(function(data) {
 		// If successful
-		console.log(data);
+		console.log('check_my_prices data: ' + JSON.stringify(data));
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
 			sessionStorage.setItem('mm_usercoins', JSON.stringify(data.coins));
@@ -3487,7 +3518,8 @@ function cancel_my_prices(cancel_data){
 	var ajax_data = {"userpass":userpass,"method":"setprice","base":cancel_data.base,"rel":cancel_data.rel,"price":0,"broadcast":1};
 	console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -3691,7 +3723,8 @@ function coinBalanceReceiveAddr(coin) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 
 	$.ajax({
 		async: true,
@@ -3751,7 +3784,8 @@ function coinBalanceSendFn(coin) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data0 = {"userpass":userpass,"method":"getcoin","coin": tx_coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 		data: JSON.stringify(ajax_data0),
@@ -4091,7 +4125,8 @@ function create_sendtx(coin,tx_data){
 
 	console.log(ajax_data);
 	console.log(JSON.stringify(ajax_data));
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 
 	$.ajax({
 		async: true,
@@ -4154,7 +4189,8 @@ function update_min_max_price_input(){
 	var ajax_data = {"userpass":userpass,"method":"orderbook","base":base_coin,"rel":rel_coin};
 	//console.log(ajax_data)
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -4207,7 +4243,8 @@ function check_bot_list(sig) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"bot_statuslist"};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -4216,7 +4253,7 @@ function check_bot_list(sig) {
 	    url: url
 	}).done(function(data) {
 		// If successful
-		console.log(data);
+		console.log('check_bot_list data: ' + JSON.stringify(data));
 
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
@@ -4338,7 +4375,8 @@ function buy_sell_precheck(bot_data){
 		var userpass = sessionStorage.getItem('mm_userpass');
 		var ajax_data0 = {"userpass":userpass,"method":"getcoin","coin": 'BTC'};
 		var url = "http://127.0.0.1:7783";
-
+		var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+		console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 		$.ajax({
 			async: true,
 			data: JSON.stringify(ajax_data0),
@@ -4439,7 +4477,8 @@ function bot_buy_sell(bot_data) {
 	console.log(JSON.stringify(ajax_data));
 
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -4513,7 +4552,8 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 
 	console.log(ajax_data);
 	console.log(JSON.stringify(ajax_data));
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    //dataType: 'json',
@@ -4571,7 +4611,8 @@ function bot_stop_pause_resume(bot_data) {
 	}
 
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -4606,7 +4647,8 @@ function bot_settings(bot_data) {
 	console.log(ajax_data);
 
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -4640,7 +4682,8 @@ function bot_status(bot_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"bot_status","botid":bot_data.botid};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 	    data: JSON.stringify(ajax_data),
 	    dataType: 'json',
@@ -4965,14 +5008,15 @@ function bot_screen_sellcoin_balance(sig) {
 	}
 
 	coin = $('.trading_pair_coin').selectpicker('val');
-	console.log(coin);
+	console.log('trading_pair_coin is: ' + coin);
 
 	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 
 	$.ajax({
 		async: true,
@@ -5083,7 +5127,8 @@ function bot_screen_coin_balance(sig) {
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = {"userpass":userpass,"method":"getcoin","coin": coin};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 
 	$.ajax({
 		async: true,
@@ -5177,7 +5222,8 @@ function electrum_coin_balance(coin_balance_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"balance","coin":coin_balance_data.coin,"address":coin_balance_data.smartaddress};
 	var url = "http://127.0.0.1:7783/";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -5254,7 +5300,8 @@ function check_swap_status_details(swap_status_data) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","requestid":requestid,"quoteid":quoteid};
 	var url = "http://127.0.0.1:7783/";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -5473,7 +5520,8 @@ function check_swap_status_details(swap_status_data) {
 				});
 
 				var swapdetail_blinker = null;
-
+				var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+				console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 				function blinker(sig) {
 					$.ajax({
 						async: true,
@@ -5629,7 +5677,8 @@ function check_swap_status(sig) {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"swapstatus","pending":0,"fast":1,"limit":30};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -5661,9 +5710,11 @@ function check_swap_status(sig) {
 				$('.exchange-swap-status-spinner').hide();
 			}*/
 			$('.exchange-swap-status-spinner').hide();
+			console.groupCollapsed('Swap Status Info');
+
 			$.each(reversed_swap_list, function(index, val) {
-				console.log(index);
-				console.log(val);
+				console.log(index); //swap #
+				console.log(val); //swap data
 				if(!val.error === false) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var exchange_swap_status_tr = '';
@@ -5735,6 +5786,8 @@ function check_swap_status(sig) {
 					$('.exchange_swap_status_tbl tbody').append(exchange_swap_status_tr);
 				}
 			})
+console.groupEnd();
+
 		}
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 	    // If fail
@@ -5843,7 +5896,8 @@ function constructTradesHistory() {
 	var ajax_data = {"userpass":userpass,"method":"swapstatus"};
 	//var ajax_data = {"userpass":userpass,"method":"recentswaps","limit":100};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
     data: JSON.stringify(ajax_data),
@@ -6201,7 +6255,8 @@ function ZeroConfDeposit(deposit_weeks, deposit_amount) {
 	var ajax_data = {"userpass":userpass,"method":"instantdex_deposit","weeks":deposit_weeks,"amount":deposit_amount,"broadcast": 1};
 	var url = "http://127.0.0.1:7783";
 	console.log(ajax_data);
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
@@ -6255,7 +6310,8 @@ function ZeroConfClaim() {
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = {"userpass":userpass,"method":"instantdex_claim"};
 	var url = "http://127.0.0.1:7783";
-
+	var fName = arguments.callee.toString().match(/function ([^\(]+)/)[1]
+    console.warn(new Date().toLocaleTimeString() + " MM_CALL: " + fName);;
 	$.ajax({
 		async: true,
 	    data: JSON.stringify(ajax_data),
