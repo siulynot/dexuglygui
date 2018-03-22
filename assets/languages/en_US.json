@@ -167,7 +167,7 @@
     "exchange_lbl_two_buy_small": "Buy",
     "exchange_lbl_two_sell_small": "Sell",
     "exchange_lbl_amount_to": "Amount to",
-    "exchange_dont_auto_repeat_order": "Limit price order - Inmeadiate",
+    "exchange_dont_auto_repeat_order": "Limit price order - Immediate",
     "exchange_enable_auto_repeat_this_trade": "Limit price order - Good 'til canceled",
     "exchange_enable_auto_repeat_coinmarketcap": "Enable auto-price market maker mode",
     "exchange_itll_cost_you": "Total Cost",
