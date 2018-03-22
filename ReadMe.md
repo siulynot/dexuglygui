@@ -5,10 +5,9 @@ The BarterDEX application created by Komodo Platform allows trading cryptocurren
  The parent project, Komodo Platform, freely provides BarterDEX technology through open-source philosophy. BarterDEX fully realizes decentralized order matching, trade clearing, and settlement. The order
 -matching aspect uses a low-level pubkey-to-pubkey messaging protocol, and the final settlement is executed through an atomic cross-chain swap. 
 
-Komodo Platform Official Site:  https://komodoplatform.com
-Komodo BarterDEX Page:  https://www.komodoplatform.com/decentralized-exchange
-Komodo Whitepaper:  https://www.komodoplatform.com/wp-content/uploads/2018/03/2018-03-12-Komodo-White-Paper-Full.pdf
-
+[Komodo Platform Official Site](https://komodoplatform.com)  
+[Komodo BarterDEX Page](https://komodoplatform.com/decentralized-exchange)  
+[Komodo Whitepaper](https://komodoplatform.com/wp-content/uploads/2018/03/2018-03-12-Komodo-White-Paper-Full.pdf)
 
 
 # BarterDEX App
