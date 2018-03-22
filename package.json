@@ -22,7 +22,7 @@
   "author": "Satinderjit Singh",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.8.3"
+    "electron": "^1.8.4"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
