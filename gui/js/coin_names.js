@@ -58,6 +58,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://explorer.elicoin.net/?page=tx&id=';
 			coin_details.eth = false;
 			break;
+		case 'BITS':
+			coin_details.name = 'BitStar';
+			coin_details.explorer = 'http://explorer.v2.bitstarcoin.com/tx/';
+			coin_details.eth = false;
+			break;
                 case 'FTC':
                         coin_details.name = 'Feathercoin';
                         coin_details.explorer = 'https://fsight.chain.tips/tx/';
