@@ -210,7 +210,7 @@ function return_coin_details(coin) {
 			break;
                 case 'VRT':
                         coin_details.name = 'Virtus';
-                        coin_details.explorer = 'https://virtus.blockxplorer.info/tx/';
+                        coin_details.explorer = 'http://213.183.45.119:3001/tx/';
                         coin_details.eth = false;
                         break;
 		case 'ZER':
