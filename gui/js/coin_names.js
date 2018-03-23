@@ -148,11 +148,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://groestlsight.groestlcoin.org/tx/';
 			coin_details.eth = false;
 			break;
-        case 'HTML':
-            coin_details.name = 'HTMLCOIN';
-            coin_details.explorer = 'https://html.mastercalls.io/tx/';
-            coin_details.eth = false;
-            break;
+		case 'HTML':
+			coin_details.name = 'HTMLCOIN';
+			coin_details.explorer = 'https://html.mastercalls.io/tx/';
+			coin_details.eth = false;
+			break;
 		case 'IOP':
 			coin_details.name = 'Internet of People';
 			coin_details.explorer = 'http://mainnet.iop.cash/tx/';
@@ -208,6 +208,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/uno/tx.dws?';
 			coin_details.eth = false;
 			break;
+                case 'VRT':
+                        coin_details.name = 'Virtus';
+                        coin_details.explorer = 'http://213.183.45.119:3001/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'ZER':
 			coin_details.name = 'Zero';
 			coin_details.explorer = 'http://zeroexplorer.forgetop.com/tx/';
