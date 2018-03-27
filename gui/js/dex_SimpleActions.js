@@ -2643,7 +2643,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.avevolume = val.avevolume;
 				row_trade_data.numutxos = val.numutxos;
 				row_trade_data.depth = val.depth;
-				row_trade_data.maxbuy = val.maxvolume * 0.98;
+				row_trade_data.maxbuy = val.avevolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
 				row_trade_data.address = val.address;
 				row_trade_data.age = val.age;
@@ -2689,7 +2689,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data.avevolume = val.avevolume;
 				row_trade_data.numutxos = val.numutxos;
 				row_trade_data.depth = val.depth;
-				row_trade_data.maxbuy = val.maxvolume * 0.98;
+				row_trade_data.maxbuy = val.maxvolume / val.price;
 				row_trade_data.pubkey = val.pubkey;
 				row_trade_data.address = val.address;
 				row_trade_data.age = val.age;
