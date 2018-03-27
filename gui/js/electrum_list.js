@@ -40,7 +40,7 @@ var electrum_servers_list = {
   "QTUM": [{"s1.qtum.info":50001},{"s2.qtum.info":50001},{"s3.qtum.info":50001},{"s4.qtum.info":50001}],
   "REVS": [{"electrum2.cipig.net": 10003},{"electrum1.cipig.net": 10003}],
   "SIB": [{"electrum2.cipig.net": 10050},{"electrum1.cipig.net": 10050}],
-  "SNG": [{"128.199.233.38": 10001},{"45.77.254.232": 10001}],
+  "SNG": [{"electrumsvr2.snowgem.org": 50001},{"electrumsvr.snowgem.org": 50001}],
   "SUPERNET": [{"electrum2.cipig.net": 10005},{"electrum1.cipig.net": 10005}],
   "VIA": [{"173.212.225.176": 50033},{"136.243.45.140": 50033}],
   "VTC": [{"173.212.225.176": 50088},{"136.243.45.140": 50088}],
