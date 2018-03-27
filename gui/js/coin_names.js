@@ -359,8 +359,8 @@ function return_coin_details(coin) {
 			coin_details.eth = false;
 			break;
 		case 'BTCH':
-			coin_details.name = 'BTCH';
-			coin_details.explorer = 'http://btch.explorer.supernet.org/tx/';
+			coin_details.name = 'Bitcoin Hush';
+			coin_details.explorer = 'https://explorer.btchush.org/tx/';
 			coin_details.eth = false;
 			break;
         case 'CRC':
