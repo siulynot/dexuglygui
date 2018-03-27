@@ -22,6 +22,7 @@ var electrum_servers_list = {
   "EMC2": [{"173.212.225.176": 50079},{"136.243.45.140": 50079}],
   "ETOMIC": [{"electrum2.cipig.net": 10025},{"electrum1.cipig.net": 10025}],
   "FAIR": [{"173.212.225.176": 50005},{"136.243.45.140": 50005}],
+  "FJC": [{"electrumx3.fujicoin.org": 50001}, {"electrumx2.fujicoin.org": 50001}, {"electrumx1.fujicoin.org": 50001}],
   "GRS": [{"electrum10.groestlcoin.org":50001},{"electrum11.groestlcoin.org":50001},{"electrum13.groestlcoin.org":50001},{"electrum14.groestlcoin.org":50001}],
   "HODL": [{"electrum2.cipig.net":10009},{"electrum1.cipig.net":10009}],
   "HODLC": [{"hodl2.amit.systems":17989},{"hodl.amit.systems":17989}],
