@@ -2552,6 +2552,10 @@ function infoOrderPrice(trade_data) {
 								<td>UTXOs</td>
 								<td>${trade_data.numutxos}</td>
 							</tr>
+							<tr>
+								<td>Max Volume</td>
+								<td>${trade_data.maxvolume}</td>
+							</tr>
 						</tbody>
 					</table>`
 	});
@@ -2635,7 +2639,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data = {};
 				row_trade_data.price = val.price;
 				//row_trade_data.minvolume = val.minvolume;
-				//row_trade_data.maxvolume = val.maxvolume;
+				row_trade_data.maxvolume = val.maxvolume;
 				row_trade_data.avevolume = val.avevolume;
 				row_trade_data.numutxos = val.numutxos;
 				row_trade_data.depth = val.depth;
@@ -2681,7 +2685,7 @@ function CheckOrderBookFn(sig) {
 				row_trade_data = {};
 				row_trade_data.price = val.price;
 				//row_trade_data.minvolume = val.minvolume;
-				//row_trade_data.maxvolume = val.maxvolume;
+				row_trade_data.maxvolume = val.maxvolume;
 				row_trade_data.avevolume = val.avevolume;
 				row_trade_data.numutxos = val.numutxos;
 				row_trade_data.depth = val.depth;
