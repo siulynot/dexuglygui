@@ -201,6 +201,7 @@
     "exchange_btn_back": "TILBAGE",
     "exchange_th_orderbook_price_in": "Pris i",
     "exchange_th_orderbook_avg_volume": "Gns. Volumen",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Dybde",
     "exchange_th_orderbook_trader_pubkey": "Handlende Pubkey",
     "exchange_th_orderbook_age": "Alder",

@@ -201,6 +201,7 @@
     "exchange_btn_back": "INDIETRO",
     "exchange_th_orderbook_price_in": "Prezzo in",
     "exchange_th_orderbook_avg_volume": "Volume Medio",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Depth",
     "exchange_th_orderbook_trader_pubkey": "Trader Pubkey",
     "exchange_th_orderbook_age": "Age",

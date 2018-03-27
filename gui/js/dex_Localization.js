@@ -133,7 +133,8 @@ function PopulateDefaultLanguage() {
     $('.language[data-langstr="exchange_buyers_caps"]').text(default_lang.Exchange.exchange_buyers_caps);
     $('.language[data-langstr="exchange_btn_back"]').text(default_lang.Exchange.exchange_btn_back);
     $('.language[data-langstr="exchange_th_orderbook_price_in"]').text(default_lang.Exchange.exchange_th_orderbook_price_in);
-    $('.language[data-langstr="exchange_th_orderbook_avg_volume"]').text(default_lang.Exchange.exchange_th_orderbook_avg_volume);
+    //$('.language[data-langstr="exchange_th_orderbook_avg_volume"]').text(default_lang.Exchange.exchange_th_orderbook_avg_volume);
+    $('.language[data-langstr="exchange_th_orderbook_max_volume"]').text(default_lang.Exchange.exchange_th_orderbook_max_volume);
     $('.language[data-langstr="exchange_th_orderbook_depth"]').text(default_lang.Exchange.exchange_th_orderbook_depth);
     //$('.language[data-langstr="exchange_th_orderbook_trader_pubkey"]').text(default_lang.Exchange.exchange_th_orderbook_trader_pubkey);
     $('.language[data-langstr="exchange_th_orderbook_age"]').text(default_lang.Exchange.exchange_th_orderbook_age);

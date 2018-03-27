@@ -193,6 +193,7 @@
     "exchange_buyers_caps": "매수자",
     "exchange_th_orderbook_price_in": "가격 - ",
     "exchange_th_orderbook_avg_volume": "평균 볼륨",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "누적합계",
     "exchange_th_orderbook_trader_pubkey": "트레이더 PubKey",
     "exchange_th_orderbook_age": "시간",

@@ -193,6 +193,7 @@
     "exchange_buyers_caps": "COMPRADORES",
     "exchange_th_orderbook_price_in": "Precio en",
     "exchange_th_orderbook_avg_volume": "Promedio Volumen",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Profundidad",
     "exchange_th_orderbook_trader_pubkey": "Trader Pubkey",
     "exchange_th_orderbook_age": "Edad",

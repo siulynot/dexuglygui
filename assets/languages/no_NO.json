@@ -193,6 +193,7 @@
     "exchange_buyers_caps": "KJØPERE",
     "exchange_th_orderbook_price_in": "Pris inn",
     "exchange_th_orderbook_avg_volume": "Gjennomsnitt Volum",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Dybde",
     "exchange_th_orderbook_trader_pubkey": "Trader Pubkey",
     "exchange_th_orderbook_age": "Alder",

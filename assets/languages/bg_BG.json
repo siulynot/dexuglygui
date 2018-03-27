@@ -195,6 +195,7 @@
     "exchange_btn_back": "НАЗАД",
     "exchange_th_orderbook_price_in": "Цена в",
     "exchange_th_orderbook_avg_volume": "Среден обем",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Дълбочина",
     "exchange_th_orderbook_trader_pubkey": "Публ. ключ",
     "exchange_th_orderbook_age": "Възраст",

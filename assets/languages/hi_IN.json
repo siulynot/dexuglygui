@@ -197,6 +197,7 @@
     "exchange_btn_back": "वापस",
     "exchange_th_orderbook_price_in": "मूल्य",
     "exchange_th_orderbook_avg_volume": "औसत मात्रा",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "गहराई",
     "exchange_th_orderbook_trader_pubkey": "व्यापारी Pubkey",
     "exchange_th_orderbook_age": "आयु",

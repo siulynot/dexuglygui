@@ -201,6 +201,7 @@
     "exchange_btn_back": "BACK",
     "exchange_th_orderbook_price_in": "Price in",
     "exchange_th_orderbook_avg_volume": "Avg. UTXO size",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "UTXO sum",
     "exchange_th_orderbook_trader_pubkey": "Trader Pubk",
     "exchange_th_orderbook_age": "Age",

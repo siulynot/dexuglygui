@@ -193,6 +193,7 @@
     "exchange_buyers_caps": "ACHETEURS",
     "exchange_th_orderbook_price_in": "Prix en",
     "exchange_th_orderbook_avg_volume": "Moy. Volume",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "Profondeur",
     "exchange_th_orderbook_trader_pubkey": "Courtier Pubkey",
     "exchange_th_orderbook_age": "Age",

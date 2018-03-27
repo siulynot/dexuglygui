@@ -200,6 +200,7 @@
     "exchange_btn_back": "戻る",
     "exchange_th_orderbook_price_in": "取引価格",
     "exchange_th_orderbook_avg_volume": "平均量",
+    "exchange_th_orderbook_max_volume": "Max UTXO size",
     "exchange_th_orderbook_depth": "深さ",
     "exchange_th_orderbook_trader_pubkey": "トレーダー・パブキイ",
     "exchange_th_orderbook_age": "期間",
