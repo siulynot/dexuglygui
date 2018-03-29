@@ -43,6 +43,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://dyn.blocksandchain.com/tx/';
 			coin_details.eth = false;
 			break;
+		case 'SEQ':
+			coin_details.name = 'Sequence';
+			coin_details.explorer = 'http://seq.blocksandchain.com/tx/';
+			coin_details.eth = false;
+			break;
 		case 'ROI':
 			coin_details.name = 'ROICoin';
 			coin_details.explorer = 'https://roi-coin-blockexplorer.roi-coin.com/tx/';
