@@ -829,6 +829,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'DRT':
+                        coin_details.name = 'DomRaider';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'PPT':
 			coin_details.name = 'Populous';
 			coin_details.explorer = 'https://etherscan.io/tx/';
