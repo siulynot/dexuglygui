@@ -1,4 +1,11 @@
 /*** JS that controls the HTML and changes it***/
+const electron = require('electron'),
+	app = electron.app,
+	BrowserWindow = electron.BrowserWindow,
+	path = require('path'),
+	url = require('url'),
+	os = require('os'),
+	osPlatform = os.platform();
 
 $(document).ready(function() {
 	document.addEventListener('drop', function(e) {
@@ -9,6 +16,23 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 	});
+
+	/* OS Changes - Here we change anything on the page that's OS specific 
+	This could grow enough to need its own function call, but this for now*/
+	console.log('Platform: ' + osPlatform);
+	switch (osPlatform) {
+		case "darwin":
+
+			break;
+		case "linux":
+
+			break;
+		case "win32":
+			/* CMC pricing isn't working in win, so we remove it from view */
+			document.getElementById("cmcRadio").remove();
+			break;
+	}
+	/* End OS Changes */
 
 	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
