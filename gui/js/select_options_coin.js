@@ -107,6 +107,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/dec8.png' width='30px;'/> DEC8 (TESTCOIN)" data-tokens="JST JST ">DEC8</option>
       <option data-content="<img src='img/cryptologo/usdt.png' width='30px'/> Tether (USDT)" data-tokens=" USDT">USDT</option>
       <option data-content="<img src='img/cryptologo/bbt.png' width='30px'/> BitBoost (BBT)" data-tokens=" BBT">BBT</option>
+      <option data-content="<img src='img/cryptologo/btcl.png' width='30px'/> BTC Lite (BTCL)" data-tokens=" BTCL">BTCL</option>
       <option data-content="<img src='img/cryptologo/omg.png' width='30px'/> OmiseGO (OMG)" data-tokens=" OMG">OMG</option>
       <option data-content="<img src='img/cryptologo/icx.png' width='30px'/> ICON (ICX)" data-tokens=" ICX">ICX</option>
       <option data-content="<img src='img/cryptologo/bnb.png' width='30px'/> Binance Coin (BNB)" data-tokens=" BNB">BNB</option>
