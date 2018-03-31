@@ -9,13 +9,15 @@ The BarterDEX application created by Komodo Platform allows trading cryptocurren
 [Komodo BarterDEX Page](https://komodoplatform.com/decentralized-exchange)  
 [Komodo Whitepaper](https://komodoplatform.com/wp-content/uploads/2018/03/2018-03-12-Komodo-White-Paper-Full.pdf)
 
+
 # BarterDEX App
 
 BarterDEX App includes all things required to run. You don't need to do anything else. Just use the following instructions to start using it.
 
 It has the pre-compiled `marketmaker` bundled with it. But in any case you still wish to compile `marketmaker` yourself, you ca follow these instructions:
 
-https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-Linux https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-MacOS
+https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-Linux
+https://github.com/KomodoPlatform/KomodoPlatform/wiki/Compile-marketmaker-Binary-with-Static-nanomsg-in-MacOS
 
 ### Setup
 
