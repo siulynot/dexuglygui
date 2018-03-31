@@ -30,6 +30,7 @@ $(document).ready(function() {
 		case "win32":
 			/* CMC pricing isn't working in win, so we remove it from view */
 			document.getElementById("cmcRadio").remove();
+			document.getElementById("cmcHelpBtn").remove();
 			break;
 	}
 	/* End OS Changes */
