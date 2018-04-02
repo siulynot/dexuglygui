@@ -28,13 +28,13 @@ $(document).ready(function() {
 
 			break;
 		case "win32":
-			/* CMC pricing isn't working in win, so we remove it from view */
-			document.getElementById("cmcRadio").remove();
-			document.getElementById("cmcHelpBtn").remove();
+			
 			break;
 	}
 	/* End OS Changes */
-
+	/* Because grrr */ 
+	sessionStorage.setItem('mm_chartinterval', JSON.stringify({ "periodicity": "h", "interval": 1 })); 
+	/* End Because grrr */ 
 	$('.loginbody').css('height',$(window).height())
 	var mmstatus = ShepherdIPC({"command":"mmstatus"});
 	if (mmstatus !== 'closed') {
