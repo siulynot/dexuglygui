@@ -38,6 +38,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			coin_details.eth = false;
 			break;
+		case 'RADIUS':
+			coin_details.name = 'Radius';
+			coin_details.explorer = 'http://explorer.radiuscrypto.online/tx/';
+			coin_details.eth = false;
+			break;
 		case 'DYN':
 			coin_details.name = 'Dynamic';
 			coin_details.explorer = 'http://dyn.blocksandchain.com/tx/';
