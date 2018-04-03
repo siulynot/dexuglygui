@@ -74,6 +74,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/pura.png' width='30px'/> Pura (PURA)" data-tokens="PURA">PURA</option>
       <option data-content="<img src='img/cryptologo/qtum.png' width='30px'/> Qtum (QTUM)" data-tokens="Qtum">QTUM</option>
       <option data-content="<img src='img/cryptologo/radius.png' width='30px'/> Radius (RADIUS)" data-tokens="Radius RADIUS">RADIUS</option>
+      <option data-content="<img src='img/cryptologo/rap.png' width='30px'/> Rapture (RAP)" data-tokens="Rapture RAP">RAP</option>
       <option data-content="<img src='img/cryptologo/rvn.png' width='30px'/> Ravencoin (RVN)" data-tokens="Ravencoin RVN">RVN</option>
       <option data-content="<img src='img/cryptologo/xre.png' width='30px'/> RevolverCoin (XRE)" data-tokens="RevolverCoin XRE">XRE</option>
       <option data-content="<img src='img/cryptologo/roi.png' width='30px'/> ROIcoin (ROI)" data-tokens="ROICoin ROI">ROI</option>
