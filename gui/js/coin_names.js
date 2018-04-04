@@ -38,6 +38,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			coin_details.eth = false;
 			break;
+		case 'DIN':
+			coin_details.name = 'Dinero';
+			coin_details.explorer = 'https://explorer.dinerocoin.org/tx/';
+			coin_details.eth = false;
+			break;
 		case 'BUCK':
 			coin_details.name = 'Buck';
 			coin_details.explorer = 'https://explorer.buck.red/tx/';
