@@ -26,6 +26,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/btg.png' width='30px'/> Bitcoin Gold (BTG)" data-tokens="Bitcoin Gold BTG">BTG</option>
       <option data-content="<img src='img/cryptologo/blk.png' width='30px'/> BlackCoin (BLK)" data-tokens="BlackCoin BLK">BLK</option>
       <option data-content="<img src='img/cryptologo/block.png' width='30px'/> Blocknet (BLOCK)" data-tokens="Blocknet BLOCK">BLOCK</option>
+      <option data-content="<img src='img/cryptologo/buck.png' width='30px'/> Buck (BUCK)" data-tokens="Buck BUCK">BUCK</option>
       <option data-content="<img src='img/cryptologo/crc.png' width='30px'/> CrowdCoin (CRC)" data-tokens="CrowdCoin CRC">CRC</option>
       <option data-content="<img src='img/cryptologo/crw.png' width='30px'/> Crown (CRW)" data-tokens="crw crown ">CRW</option>
       <option data-content="<img src='img/cryptologo/crea.png' width='30px'/> Creativecoin (CREA)" data-tokens="Creativecoin CREA">CREA</option>
