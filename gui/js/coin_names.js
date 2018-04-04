@@ -38,6 +38,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			coin_details.eth = false;
 			break;
+    case 'BUCK':
+      coin_details.name = 'Buck';
+			coin_details.explorer = 'https://explorer.buck.red/tx/';
+			coin_details.eth = false;
+      break;
 		case 'RAP':
 			coin_details.name = 'Rapture';
 			coin_details.explorer = 'http://explorer.our-rapture.com/tx/';
