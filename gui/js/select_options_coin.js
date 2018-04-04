@@ -32,6 +32,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/crea.png' width='30px'/> Creativecoin (CREA)" data-tokens="Creativecoin CREA">CREA</option>
       <option data-content="<img src='img/cryptologo/dash.png' width='30px'/> Dash (DASH)" data-tokens="dash">DASH</option>
       <option data-content="<img src='img/cryptologo/dgb.png' width='30px'/> Digibyte (DGB)" data-tokens="dgb digibyte">DGB</option>
+      <option data-content="<img src='img/cryptologo/din.png' width='30px'/> Dinero (DIN)" data-tokens="Dinero DIN">DIN</option>
       <option data-content="<img src='img/cryptologo/doge.png' width='30px'/> Dogecoin (DOGE)" data-tokens="doge dogecoin">DOGE</option>
       <option data-content="<img src='img/cryptologo/dnr.png' width='30px'/> Denarius (DNR)" data-tokens="dnr denarius">DNR</option>
       <option data-content="<img src='img/cryptologo/dsr.png' width='30px'/> Desire (DSR)" data-tokens="Desire dsr">DSR</option>
