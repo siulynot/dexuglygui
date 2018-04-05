@@ -146,6 +146,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/mana.png' width='30px'/> Decentraland (MANA)" data-tokens=" MANA">MANA</option>
       <option data-content="<img src='img/cryptologo/mco.png' width='30px'/> Monaco (MCO)" data-tokens=" MCO">MCO</option>
       <option data-content="<img src='img/cryptologo/mtl.png' width='30px'/> Metal (MTL)" data-tokens=" MTL">MTL</option>
+      <option data-content="<img src='img/cryptologo/occ.png' width='30px'/> Original Crypto Coin (OCC)" data-tokens=" OCC">OCC</option>
       <option data-content="<img src='img/cryptologo/edg.png' width='30px'/> Edgeless (EDG)" data-tokens=" EDG">EDG</option>
       <option data-content="<img src='img/cryptologo/mln.png' width='30px'/> Melon (MLN)" data-tokens=" MLN">MLN</option>
       <option data-content="<img src='img/cryptologo/amb.png' width='30px'/> Ambrosus (AMB)" data-tokens=" AMB">AMB</option>

@@ -939,6 +939,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'OCC':
+                        coin_details.name = 'Original Crypto Coin';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'PAY':
 			coin_details.name = 'TenX';
 			coin_details.explorer = 'https://etherscan.io/tx/';
