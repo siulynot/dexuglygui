@@ -99,6 +99,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/vrt.png' width='30px'/> Virtus (VRT)" data-tokens="Virtus VRT">VRT</option>
       <option data-content="<img src='img/cryptologo/vivo.png' width='30px'/> VIVO (VIVO)" data-tokens="VIVO VIVO">VIVO</option>
       <option data-content="<img src='img/cryptologo/vot.png' width='30px'/> VoteCoin (VOT)" data-tokens="VoteCoin VOT">VOT</option>
+      <option data-content="<img src='img/cryptologo/xcg.png' width='30px'/> Xchange (XCG)" data-tokens="Xchange XCG">XCG</option>
       <option data-content="<img src='img/cryptologo/xcoin.png' width='30px'/> xCoin (XCOIN)" data-tokens="xCoin XCOIN">XCOIN</option>
       <option data-content="<img src='img/cryptologo/xzc.png' width='30px'/> ZCoin (XZC)" data-tokens="ZCoin XZC">XZC</option>
       <option data-content="<img src='img/cryptologo/zcl.png' width='30px'/> ZClassic (ZCL)" data-tokens="ZClassic ZCL">ZCL</option>

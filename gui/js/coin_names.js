@@ -258,6 +258,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'http://213.183.45.119:3001/tx/';
                         coin_details.eth = false;
                         break;
+                case 'XCG':
+                        coin_details.name = 'Xchange';
+                        coin_details.explorer = '';
+                        coin_details.eth = false;
+                        break;
 		case 'ZER':
 			coin_details.name = 'Zero';
 			coin_details.explorer = 'http://zeroexplorer.forgetop.com/tx/';
