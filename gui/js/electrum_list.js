@@ -6,6 +6,7 @@ var electrum_servers_list = {
   "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
   "BTC": [{"node1.komodo.rocks":50001},{"e-x.not.fyi":50001},{"helicarrier.bauerj.eu":50001},{"electrum.hsmiths.com":50001}],
+  "BTCP": [{"electrum.btcprivate.org":5222},{"electrum2.btcprivate.org":5222}],
   "BTCZ": [{"electrum2.cipig.net":10056},{"electrum1.cipig.net":10056}],
   "BTCH": [{"electrum2.cipig.net":10020},{"electrum1.cipig.net":10020}],
   "BTG": [{"94.130.224.11":10052},{"173.212.225.176":10052}],
