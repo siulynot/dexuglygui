@@ -265,7 +265,7 @@ function return_coin_details(coin) {
 			break;
 		case 'XCG':
 			coin_details.name = 'Xchange';
-			coin_details.explorer = '';
+			coin_details.explorer = 'http://159.203.59.19:3001/tx/';
 			coin_details.eth = false;
 			break;
 		case 'ZER':
