@@ -63,6 +63,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.buck.red/tx/';
 			coin_details.eth = false;
 			break;
+                case 'PGN':
+                        coin_details.name = 'Pigeon';
+                        coin_details.explorer = 'http://explorer.pigeoncoin.org/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'RAP':
 			coin_details.name = 'Rapture';
 			coin_details.explorer = 'http://explorer.our-rapture.com/tx/';
