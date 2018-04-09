@@ -1,7 +1,7 @@
 var electrum_servers_list = {
   "ARG": [{"173.212.225.176": 50081},{"136.243.45.140": 50081}],
   "BCH": [{"electrum2.cipig.net":10051},{"electrum1.cipig.net":10051}],
-  "BEER": [{"electrum2.cipig.net": 10022},{"electrum1.cipig.net": 10022}],
+  "BEER": [{"electrum2.cipig.net": 10022},{"electrum1.cipig.net": 10022},{"159.89.209.63":10923}],
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
   "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
@@ -29,7 +29,7 @@ var electrum_servers_list = {
   "HODLC": [{"hodl2.amit.systems":17989},{"hodl.amit.systems":17989}],
   "HUSH": [{"173.212.225.176": 50013},{"136.243.45.140": 50013}],
   "JUMBLR": [{"electrum2.cipig.net": 10004},{"electrum1.cipig.net": 10004}],
-  "KMD": [{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}],
+  "KMD": [{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001},{"159.89.209.63":10001}],
   "LTC": [{"173.212.225.176": 50012},{"136.243.45.140": 50012}],
   "MGW": [{"electrum2.cipig.net":10015},{"electrum1.cipig.net":10015}],
   "MNZ": [{"electrum2.cipig.net":10002},{"electrum1.cipig.net":10002}],
@@ -49,7 +49,7 @@ var electrum_servers_list = {
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
   "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
   "ZEC": [{"173.212.225.176": 50032},{"136.243.45.140": 50032}],
- "EQL": [{"159.65.91.235": 10801},{"167.99.204.42": 10801}]
+  "EQL": [{"159.65.91.235": 10801},{"167.99.204.42": 10801}]
 }
 
 
