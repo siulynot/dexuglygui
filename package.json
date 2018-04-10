@@ -30,6 +30,7 @@
     "fs-extra": "^4.0.3",
     "mkdirp": "^0.5.1",
     "portscanner": "^2.1.1",
-    "ps-node": "^0.1.6"
+    "ps-node": "^0.1.6",
+    "request": "^2.85.0"
   }
 }
