@@ -248,6 +248,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://mazacoin.thecoin.pw/tx/';
 			coin_details.eth = false;
 			break;
+                case 'PYRO':
+                        coin_details.name = 'Pyro';
+                        coin_details.explorer = 'http://138.68.246.198:3001/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'SCRIV':
 			coin_details.name = 'Scriv';
 			coin_details.explorer = 'http://explorer.scriv.network/tx/';
