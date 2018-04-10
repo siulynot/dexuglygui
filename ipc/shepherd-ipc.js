@@ -161,7 +161,8 @@ ipcMain.on('shepherd-command', (event, arg) => {
       event.returnValue = 'reset_done';
       break;
     case 'app_info':
-      event.returnValue = app.getVersion();
+      var return_app_info_data = {"app_version": app.getVersion(),"BarterDEXDir": BarterDEXDir};
+      event.returnValue = return_app_info_data;
       break;
     case 'get_lang_data':
       console.log(arg.lang);
