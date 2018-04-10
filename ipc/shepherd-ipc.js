@@ -193,10 +193,20 @@ ipcMain.on('shepherd-command', (event, arg) => {
       event.returnValue = 'CoinsDB command executed';
       break;
     case 'coins_db_get_coins_file':
-      event.returnValue = 'Getting Coins DB file...';
+      console.log('Getting Coins DB file...');
+      fs.readJson(path.join(`${CoinsDBDir}/coins`))
+        .then(coins_db_coins_local_file => {
+          event.returnValue = coins_db_coins_local_file;
+        })
+        .catch(err => { console.error(err) })
       break;
     case 'coins_db_update_coins_json_file':
-      event.returnValue = 'Updating Coins JSON file...';
+      const _coinsListFile = BarterDEXDir + '/coins.json'
+      fs.writeJsonSync(_coinsListFile, arg.data, function (err) {
+        if (err) throw err;
+        console.log('Coins JSON file updated!');
+        event.returnValue = 'Coins JSON file updated!';
+      });
       break;
     default:
       event.returnValue = 'Command not found';
@@ -375,8 +385,8 @@ function ProcessCoinsList(coins) {
 
 /* Coins DB IPC calls and functions */
 
-var coin_db_img_url = 'https://raw.githubusercontent.com/satindergrewal/coins/master/icons/';
-var coins_db_coins_url = 'https://raw.githubusercontent.com/satindergrewal/coins/master/coins';
+var coin_db_img_url = 'https://raw.githubusercontent.com/jl777/coins/master/icons/';
+var coins_db_coins_url = 'https://raw.githubusercontent.com/jl777/coins/master/coins';
 
 CoinsDBDownloadFiles = function (action_data) {
   console.log(action_data);
