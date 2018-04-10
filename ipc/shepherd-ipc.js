@@ -216,7 +216,11 @@ ipcMain.on('shepherd-command', (event, arg) => {
 
 StartMarketMaker = function (data) {
   try {
+    
+    //Delete coins.json file so that BarterDEX always gets the same copy of coins.json from default file.
+    //Disable this line when coinsDB feature is enabled.
     fs.unlink(BarterDEXDir + '/coins.json');
+    
     // check if marketmaker instance is already running
     portscanner.checkPortStatus(7783, '127.0.0.1', function (error, status) {
       // Status is 'open' if currently in use or 'closed' if available
