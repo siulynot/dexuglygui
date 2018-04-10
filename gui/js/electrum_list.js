@@ -1,5 +1,6 @@
 var electrum_servers_list = {
   "ARG": [{"173.212.225.176": 50081},{"136.243.45.140": 50081}],
+  "BCBC": [{"bsmn0.cleanblockchain.io":50001},{"bsmn1.cleanblockchain.org":50001}],
   "BCH": [{"electrum2.cipig.net":10051},{"electrum1.cipig.net":10051}],
   "BEER": [{"electrum2.cipig.net": 10022},{"electrum1.cipig.net": 10022},{"159.89.209.63":10923}],
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
