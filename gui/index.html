@@ -1080,6 +1080,7 @@
 
     <script>
         var ipc = require('electron').ipcRenderer;
+        var bip39 = require('bip39');
         if (typeof module === 'object') {
             window.module = module;
             module = undefined;
@@ -1114,10 +1115,6 @@
     <script src="js/Plugins/jquery.marquee.min.js"></script>
     <script src="js/Plugins/HoldOn.min.js"></script>
     <script src="js/Plugins/Bootstrap/BootstrapMenu.min.js"></script>
-    <!-- Crypto Dependencies -->
-    <script src="js/wordlist.js"></script>
-    <script src="js/passphrasegenerator.js"></script>
-    <script src="js/seedrandom.js"></script>
     <!-- amcharts libs -->
     <script src="js/amcharts/amcharts.js"></script>
     <script src="js/amcharts/pie.js"></script>

@@ -208,12 +208,12 @@ $('.login-genpass-btn').click(function (e) {
 	login_gen_pass.init(function () {
 		console.log('dialog opened.')
 		$('.btn_gen_pass_regenpass_login').attr("disabled", "disabled");
-		$('.btn_gen_pass_input1').val(PassPhraseGenerator.generatePassPhrase(128));
+		$('.btn_gen_pass_input1').val(bip39.generateMnemonic());
 
 		$('.btn_gen_pass_regenpass').click(function (e) {
 			e.preventDefault();
 			console.log('btn_gen_pass_regenpass clicked');
-			$('.btn_gen_pass_input1').val(PassPhraseGenerator.generatePassPhrase(128));
+			$('.btn_gen_pass_input1').val(bip39.generateMnemonic());
 		})
 
 		$('.btn_gen_pass_input1').keyup(function () {
