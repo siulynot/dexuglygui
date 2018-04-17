@@ -15,6 +15,7 @@ ShepherdIPC = function (data) {
 
 $(document).ready(function () {
 	BarterDEXInitLang();
+	BarterDEX_Init_CoinsDB();
 	setTimeout(function () {
 		var mypubkey = sessionStorage.getItem('mm_mypubkey');
 		if (mypubkey !== '739860d6114f01f8bae9e1132945c4d4523a423d97c3573b84d4caf9cb8f0c78') {
@@ -207,12 +208,12 @@ $('.login-genpass-btn').click(function (e) {
 	login_gen_pass.init(function () {
 		console.log('dialog opened.')
 		$('.btn_gen_pass_regenpass_login').attr("disabled", "disabled");
-		$('.btn_gen_pass_input1').val(PassPhraseGenerator.generatePassPhrase(128));
+		$('.btn_gen_pass_input1').val(bip39.generateMnemonic());
 
 		$('.btn_gen_pass_regenpass').click(function (e) {
 			e.preventDefault();
 			console.log('btn_gen_pass_regenpass clicked');
-			$('.btn_gen_pass_input1').val(PassPhraseGenerator.generatePassPhrase(128));
+			$('.btn_gen_pass_input1').val(bip39.generateMnemonic());
 		})
 
 		$('.btn_gen_pass_input1').keyup(function () {

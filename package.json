@@ -1,6 +1,6 @@
 {
   "name": "BarterDEX",
-  "version": "1.0.1-rc",
+  "version": "1.0.2-rc",
   "description": "Full BarterDEX implimentation with powertools for Traders",
   "main": "main.js",
   "scripts": {
@@ -25,11 +25,13 @@
     "electron": "^1.8.4"
   },
   "dependencies": {
+    "bip39": "^2.5.0",
     "bluebird": "^3.5.1",
     "fix-path": "^2.1.0",
     "fs-extra": "^4.0.3",
     "mkdirp": "^0.5.1",
     "portscanner": "^2.1.1",
-    "ps-node": "^0.1.6"
+    "ps-node": "^0.1.6",
+    "request": "^2.85.0"
   }
 }

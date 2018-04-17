@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>BarterDEX - v1.0.1-rc</title>
+    <title>BarterDEX - v1.0.2-rc</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" id="bright_css_style">
@@ -690,9 +690,9 @@
                                                             <div class="state p-success-o">
                                                                 <label class="language" data-langstr="exchange_enable_auto_repeat_coinmarketcap"></label>
                                                             </div>
+                                                        </div>
                                                         <button class="btn btn-xs exchange_enable_auto_repeat_coinmarketcap_info_btn"><i class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="info"></i></button>
                                                     </div>
-                                                        </div>
 
                                                 </div>
 
@@ -1080,6 +1080,7 @@
 
     <script>
         var ipc = require('electron').ipcRenderer;
+        var bip39 = require('bip39');
         if (typeof module === 'object') {
             window.module = module;
             module = undefined;
@@ -1114,10 +1115,6 @@
     <script src="js/Plugins/jquery.marquee.min.js"></script>
     <script src="js/Plugins/HoldOn.min.js"></script>
     <script src="js/Plugins/Bootstrap/BootstrapMenu.min.js"></script>
-    <!-- Crypto Dependencies -->
-    <script src="js/wordlist.js"></script>
-    <script src="js/passphrasegenerator.js"></script>
-    <script src="js/seedrandom.js"></script>
     <!-- amcharts libs -->
     <script src="js/amcharts/amcharts.js"></script>
     <script src="js/amcharts/pie.js"></script>
@@ -1162,6 +1159,7 @@
     <script src="js/dex_ComplexActions.js"></script>
     <script src="js/dex_RemoteAlerts.js"></script>
     <script src="js/dex_Help.js"></script>
+    <script src="js/dex_CoinsDB.js"></script>
 
     <script src="js/language-codes_json.js"></script>
     <script src="js/country_list_json.js"></script>
