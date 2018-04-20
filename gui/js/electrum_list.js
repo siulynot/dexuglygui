@@ -6,7 +6,7 @@ var electrum_servers_list = {
   "BET": [{"electrum2.cipig.net":10012},{"electrum1.cipig.net":10012}],
   "BLK": [{"electrum2.cipig.net":10054},{"electrum1.cipig.net":10054}],
   "BOTS": [{"electrum2.cipig.net":10007},{"electrum1.cipig.net":10007}],
-  "BTC": [{"node1.komodo.rocks":50001},{"e-x.not.fyi":50001},{"helicarrier.bauerj.eu":50001},{"electrum.hsmiths.com":50001}],
+  "BTC": [{"node1.komodo.rocks":50001},{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}],
   "BTCP": [{"electrum.btcprivate.org":5222},{"electrum2.btcprivate.org":5222}],
   "BTCZ": [{"electrum2.cipig.net":10056},{"electrum1.cipig.net":10056}],
   "BTCH": [{"electrum2.cipig.net":10020},{"electrum1.cipig.net":10020}],
@@ -19,9 +19,10 @@ var electrum_servers_list = {
   "DASH": [{"173.212.225.176": 50098},{"136.243.45.140": 50098}],
   "DEX": [{"electrum2.cipig.net":10006},{"electrum1.cipig.net":10006}],
   "DNR": [{"144.202.95.223":50001},{"45.77.137.111":50001}],
-  "DGB": [{"136.243.45.140": 50022},{"173.212.225.176": 50022}],
+  "DGB": [{"electrum2.cipig.net":10059},{"electrum1.cipig.net":10059}],
   "DOGE": [{"173.212.225.176": 50015},{"136.243.45.140": 50015}],
   "EMC2": [{"173.212.225.176": 50079},{"136.243.45.140": 50079}],
+  "EQL": [{"159.65.91.235": 10801},{"167.99.204.42": 10801}],
   "ETOMIC": [{"electrum2.cipig.net": 10025},{"electrum1.cipig.net": 10025}],
   "FAIR": [{"173.212.225.176": 50005},{"136.243.45.140": 50005}],
   "FJC": [{"electrumx3.fujicoin.org": 50001}, {"electrumx2.fujicoin.org": 50001}, {"electrumx1.fujicoin.org": 50001}],
@@ -49,8 +50,7 @@ var electrum_servers_list = {
   "VTC": [{"173.212.225.176": 50088},{"136.243.45.140": 50088}],
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
   "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
-  "ZEC": [{"173.212.225.176": 50032},{"136.243.45.140": 50032}],
-  "EQL": [{"159.65.91.235": 10801},{"167.99.204.42": 10801}]
+  "ZEC": [{"electrum2.cipig.net":10058},{"electrum1.cipig.net":10058}]
 }
 
 
