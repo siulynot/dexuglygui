@@ -15,6 +15,7 @@ var electrum_servers_list = {
   "CHIPS": [{"electrum2.cipig.net":10053},{"electrum1.cipig.net":10053}],
   "COQUI": [{"78.47.146.222":10011},{"94.130.173.120":10011},{"electrum2.cipig.net":10011},{"electrum1.cipig.net":10011}],
   "CRW": [{"electrum2.cipig.net":10069},{"electrum1.cipig.net":10069}],
+  "GLXT": [{"electrum1.glx.co":60012},{"electrum2.glx.co":60012}],
   "CRYPTO": [{"electrum2.cipig.net":10008},{"electrum1.cipig.net":10008}],
   "DASH": [{"electrum2.cipig.net":10061},{"electrum1.cipig.net":10061}],
   "DEX": [{"electrum2.cipig.net":10006},{"electrum1.cipig.net":10006}],
