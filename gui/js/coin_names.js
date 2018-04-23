@@ -364,7 +364,7 @@ function return_coin_details(coin) {
 			coin_details.eth = false;
 			break;
 		case 'GLXT':
-                        coin_details.name = 'GLXT';
+                        coin_details.name = 'GLXToken';
                         coin_details.explorer = 'http://glx.info/tx/';
                         coin_details.eth = false;
                         break;
