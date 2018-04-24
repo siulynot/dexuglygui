@@ -32,6 +32,7 @@ var electrum_servers_list = {
   "HODLC": [{"hodl2.amit.systems":17989},{"hodl.amit.systems":17989}],
   "HUSH": [{"electrum2.cipig.net":10064},{"electrum1.cipig.net":10064}],
   "JUMBLR": [{"electrum2.cipig.net": 10004},{"electrum1.cipig.net": 10004}],
+  "KV": [{"electrum2.cipig.net":10016},{"electrum1.cipig.net":10016}],
   "KMD": [{"159.89.209.63":10001},{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}],
   "LTC": [{"electrum2.cipig.net":10065},{"electrum1.cipig.net":10065}],
   "MGW": [{"electrum2.cipig.net":10015},{"electrum1.cipig.net":10015}],
