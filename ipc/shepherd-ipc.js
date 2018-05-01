@@ -378,7 +378,8 @@ function ProcessCoinsList(coins) {
       coins = coins.replace(/USERHOME/g, `${process.env.APPDATA}`);
       coins = coins.replace(/\/\./g, '/');
       coins = path.normalize(coins);
-      coins = coins.replace(/\\/g, "\\\\");
+      // coins = coins.replace(/\\/g, "\\\\");
+      coins = coins.replace(/\\/g,'/');  // FIXED - ERROR on windows
       break;
   }
   coins = JSON.parse(coins);

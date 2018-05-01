@@ -363,6 +363,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			coin_details.eth = false;
 			break;
+		case 'GLXT':
+                        coin_details.name = 'GLXToken';
+                        coin_details.explorer = 'http://glx.info/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'EQL':
 			coin_details.name = 'Equaliser';
 			coin_details.explorer = 'http://178.62.240.191/tx/';
