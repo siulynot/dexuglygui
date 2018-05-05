@@ -879,6 +879,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'CIX':
+                        coin_details.name = 'Cryptonetix';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'OMG':
 			coin_details.name = 'OmiseGO';
 			coin_details.explorer = 'https://etherscan.io/tx/';
