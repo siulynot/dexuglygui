@@ -16,7 +16,7 @@ const electron = require('electron'),
   killmm = require('./ipc/killmm'),
   appBasicInfo = {
     name: 'BarterDEX',
-    version: '1.0.2-rc'
+    version: '1.0.3-rc'
   };
 var shepherd = require('./ipc/shepherd-ipc'),
   MNZdICOIcon;
