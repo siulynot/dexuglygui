@@ -984,6 +984,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'PCL':
+                        coin_details.name = 'Peculium';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'RLTY':
                         coin_details.name = 'SMARTRealty';
                         coin_details.explorer = 'https://etherscan.io/tx/';
