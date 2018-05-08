@@ -363,6 +363,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			coin_details.eth = false;
 			break;
+		case 'GLXT':
+                        coin_details.name = 'GLXToken';
+                        coin_details.explorer = 'http://glx.info/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'EQL':
 			coin_details.name = 'Equaliser';
 			coin_details.explorer = 'http://178.62.240.191/tx/';
@@ -874,6 +879,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'CIX':
+                        coin_details.name = 'Cryptonetix';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'OMG':
 			coin_details.name = 'OmiseGO';
 			coin_details.explorer = 'https://etherscan.io/tx/';
@@ -974,6 +984,16 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'PCL':
+                        coin_details.name = 'Peculium';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
+                case 'RLTY':
+                        coin_details.name = 'SMARTRealty';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'SALT':
 			coin_details.name = 'SALT';
 			coin_details.explorer = 'https://etherscan.io/tx/';
