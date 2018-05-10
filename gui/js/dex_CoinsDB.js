@@ -4,6 +4,7 @@ function BarterDEX_Init_CoinsDB() {
 	console.log(barterDEX_app_info);
 
 	localStorage.setItem('mm_barterdex_app_info', JSON.stringify(barterDEX_app_info));
+	CoinsDB_ManageCoinsJson();
 }
 
 function CoinsDB_UpdatedCoinsDbFile() {
@@ -26,7 +27,53 @@ function CoinsDB_ReadLocalDB() {
 
 
 function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
-	//TODO
+	
+	var default_coinsdb_json_array = ["BTC","KMD"]
+
+	switch (coins_json_action) {
+		case 'add':
+			console.log('Adding: ' + coins_json_data);
+			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
+				console.warn(`localStorage object mm_coinsdb_json_array not found. Creating with default values...`);
+				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
+			} else {
+				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+				if (_.contains(lstore_coinsdb_json_array, coins_json_data) == false) {
+					lstore_coinsdb_json_array.push(coins_json_data);
+					localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(_.sortBy(lstore_coinsdb_json_array)));
+					console.log(`Coin ${coins_json_data} added to the local array.`);
+					return lstore_coinsdb_json_array;
+				} else {
+					console.warn(`Coin ${coins_json_data} already exists in local array`);
+					return lstore_coinsdb_json_array
+				}
+			}
+			break;
+		case 'remove':
+			console.log('Removing: ' + coins_json_data);
+			var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+			if (_.contains(lstore_coinsdb_json_array, coins_json_data) == false) {
+				console.warn(`Coin ${coins_json_data} does't exists in local array. Remove coin action terminated.`);
+				return lstore_coinsdb_json_array;
+			} else {
+				console.log(`Coin ${coins_json_data} found in local array. Updating local array with updated list...`)
+				lstore_coinsdb_json_array = _.without(lstore_coinsdb_json_array, coins_json_data);
+				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(_.sortBy(lstore_coinsdb_json_array)));
+				console.log(`Coin ${coins_json_data} removed from the local array.`);
+				return lstore_coinsdb_json_array;
+			}
+			
+			break;
+		default:
+			console.warn(`No action specified. Executing default action...`);
+			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
+				console.warn(`localStorage object mm_coinsdb_json_array not found. Creating with default values...`);
+				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
+			} else {
+				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+				return lstore_coinsdb_json_array;
+			}
+	}
 }
 
 function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
