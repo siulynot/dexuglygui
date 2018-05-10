@@ -37,7 +37,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 function CoinsDB_GetCoinDetails(coin_code) {
 	console.log(coin_code)
 
-	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false},{"coin": "CHIPS", "Name": "Chips","explorer":["http://chips1.explorer.supernet.org/tx/"],"eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 
 	var coin_details = '';
 	$.each(coins_detail_list, function(index, value){
@@ -55,7 +55,7 @@ function CoinDB_coin_select_options() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	//console.log(coinsdbdir);
 
-	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false},{"coin": "CHIPS", "Name": "Chips","explorer":["http://chips1.explorer.supernet.org/tx/"],"eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 	
 	var options_data = '';
 	$.each(coins_detail_list, function(index, value){
