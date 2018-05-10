@@ -25,6 +25,15 @@ function CoinsDB_ReadLocalDB() {
 }
 
 
+function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
+	//TODO
+}
+
+function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
+	//TODO
+}
+
+
 function CoinsDB_GetCoinDetails(coin_code) {
 	console.log(coin_code)
 
