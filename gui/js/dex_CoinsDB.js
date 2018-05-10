@@ -13,7 +13,7 @@ function CoinsDB_UpdatedCoinsDbFile() {
 
 
 function CoinsDB_DlIcons(icons_array) {
-	console.log(icons_array); //Expected value is ["kmd","btc","oot"] if multiple. If single ["kmd"]
+	console.log(icons_array); //if multiple expected value is ["kmd","btc","oot"]. If single ["kmd"]. MUST be small letters.
 	var icons_dl = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"dl_icons","coin_array":icons_array} });
 }
 
