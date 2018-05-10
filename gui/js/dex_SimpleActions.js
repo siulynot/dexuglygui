@@ -1593,7 +1593,7 @@ function addcoins_dialog() {
 		$('.addcoin_enable_disable_selection').html(coin_select_options);
 		$('.addcoin_enable_disable_selection').selectpicker('render');
 
-		$('.toggle_checkbox').bootstrapToggle();
+		$('.toggle_checkbox').bootstrapToggle('off');
 
 		//console.log('bot_update_settings dialog opened.')
 		//$('.btn-bot_settings_update').attr("disabled", "disabled");
