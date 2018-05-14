@@ -146,6 +146,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/pay.png' width='30px'/> TenX (PAY)" data-tokens=" PAY">PAY</option>
       <option data-content="<img src='img/cryptologo/req.png' width='30px'/> Request Network (REQ)" data-tokens=" REQ">REQ</option>
       <option data-content="<img src='img/cryptologo/storj.png' width='30px'/> Storj (STORJ)" data-tokens=" STORJ">STORJ</option>
+      <option data-content="<img src='img/cryptologo/stwy.png' width='30px'/> StorweeyToken (STWY)" data-tokens="STWY">STWY</option>
       <option data-content="<img src='img/cryptologo/gno.png' width='30px'/> Gnosis (GNO)" data-tokens=" GNO">GNO</option>
       <option data-content="<img src='img/cryptologo/rlc.png' width='30px'/> iExec RLC (RLC)" data-tokens=" RLC">RLC</option>
       <option data-content="<img src='img/cryptologo/rlty.png' width='30px'/> SMARTRealty (RLTY)" data-tokens="RLTY">RLTY</option>
