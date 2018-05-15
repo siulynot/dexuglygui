@@ -53,7 +53,8 @@ var electrum_servers_list = {
   "VTC": [{"electrum2.cipig.net":10071},{"electrum1.cipig.net":10071}],
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
   "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
-  "ZEC": [{"electrum2.cipig.net":10058},{"electrum1.cipig.net":10058}]
+  "ZEC": [{"electrum2.cipig.net":10058},{"electrum1.cipig.net":10058}],
+  "CHAIN": [{"electrum1.chainmakers.co":55417}, {"electrum2.chainmakers.co":55417}]
 }
 
 
