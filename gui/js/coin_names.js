@@ -198,6 +198,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/efl/tx.dws?';
 			coin_details.eth = false;
 			break;
+                case 'GLD':
+                        coin_details.name = 'GoldCoin';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/gld/tx.dws?';
+                        coin_details.eth = false;
+                        break;
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
