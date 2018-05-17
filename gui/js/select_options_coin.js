@@ -123,6 +123,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/omg.png' width='30px'/> OmiseGO (OMG)" data-tokens=" OMG">OMG</option>
       <option data-content="<img src='img/cryptologo/icx.png' width='30px'/> ICON (ICX)" data-tokens=" ICX">ICX</option>
       <option data-content="<img src='img/cryptologo/bnb.png' width='30px'/> Binance Coin (BNB)" data-tokens=" BNB">BNB</option>
+      <option data-content="<img src='img/cryptologo/btk.png' width='30px'/> BitcoinToken (BTK)" data-tokens="BTK">BTK</option>
       <option data-content="<img src='img/cryptologo/cennz.png' width='30px'/> Centrality (CENNZ)" data-tokens="CENNZ">CENNZ</option>
       <option data-content="<img src='img/cryptologo/cix.png' width='30px'/> Cryptonetix (CIX)" data-tokens="CIX">CIX</option>
       <option data-content="<img src='img/cryptologo/dgd.png' width='30px'/> DigixDAO (DGD)" data-tokens=" DGD">DGD</option>

@@ -969,6 +969,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'BTK':
+                        coin_details.name = 'BitcoinToken';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'CENNZ':
                         coin_details.name = 'Centrality';
                         coin_details.explorer = 'https://etherscan.io/tx/';
