@@ -984,6 +984,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'DRGN':
+                        coin_details.name = 'Dragonchain';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'GNT':
 			coin_details.name = 'Golem';
 			coin_details.explorer = 'https://etherscan.io/tx/';
