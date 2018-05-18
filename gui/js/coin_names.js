@@ -1109,6 +1109,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'MGO':
+                        coin_details.name = 'MobileGo';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'MTL':
 			coin_details.name = 'Metal';
 			coin_details.explorer = 'https://etherscan.io/tx/';
