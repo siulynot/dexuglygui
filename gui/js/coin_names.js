@@ -198,6 +198,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/efl/tx.dws?';
 			coin_details.eth = false;
 			break;
+                case 'GLD':
+                        coin_details.name = 'GoldCoin';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/gld/tx.dws?';
+                        coin_details.eth = false;
+                        break;
 		case 'GLT':
 			coin_details.name = 'GlobalToken';
 			coin_details.explorer = 'https://explorer.globaltoken.org/tx/';
@@ -924,6 +929,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'DGPT':
+                        coin_details.name = 'DigiPulse';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'DRT':
 			coin_details.name = 'DomRaider';
 			coin_details.explorer = 'https://etherscan.io/tx/';
@@ -969,16 +979,21 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'BTK':
+                        coin_details.name = 'BitcoinToken';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'CENNZ':
                         coin_details.name = 'Centrality';
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
-		case 'GNT':
-			coin_details.name = 'Golem';
-			coin_details.explorer = 'https://etherscan.io/tx/';
-			coin_details.eth = true;
-			break;
+                case 'DRGN':
+                        coin_details.name = 'Dragonchain';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'ETHOS':
 			coin_details.name = 'Ethos';
 			coin_details.explorer = 'https://etherscan.io/tx/';
@@ -1034,6 +1049,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'PRL':
+                        coin_details.name = 'Oyster';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'REQ':
 			coin_details.name = 'Request Network';
 			coin_details.explorer = 'https://etherscan.io/tx/';
@@ -1094,6 +1114,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'MGO':
+                        coin_details.name = 'MobileGo';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'MTL':
 			coin_details.name = 'Metal';
 			coin_details.explorer = 'https://etherscan.io/tx/';
