@@ -914,6 +914,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'ANN':
+                        coin_details.name = 'Agent Not Needed';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'BNB':
 			coin_details.name = 'Binance Coin';
 			coin_details.explorer = 'https://etherscan.io/tx/';
