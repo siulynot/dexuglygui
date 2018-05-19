@@ -363,6 +363,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.coqui.cash/tx/';
 			coin_details.eth = false;
 			break;
+		case 'RUM':
+        	coin_details.name = 'RUM';
+            coin_details.explorer = 'https://explorer.coqui.cash/tx/';
+            coin_details.eth = false;
+            break;
 		case 'CHAIN':
             coin_details.name = 'Chainmakers';
             coin_details.explorer = 'https://explorer.chainmakers.co/tx/';

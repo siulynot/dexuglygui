@@ -54,7 +54,8 @@ var electrum_servers_list = {
   "WLC": [{"electrum2.cipig.net": 10014},{"electrum1.cipig.net": 10014}],
   "ZCL": [{"electrum2.cipig.net": 10055},{"electrum1.cipig.net": 10055}],
   "ZEC": [{"electrum2.cipig.net":10058},{"electrum1.cipig.net":10058}],
-  "CHAIN": [{"electrum1.chainmakers.co":55417}, {"electrum2.chainmakers.co":55417}]
+  "CHAIN": [{"electrum1.chainmakers.co":55417}, {"electrum2.chainmakers.co":55417}],
+  "RUM": [{"195.201.219.118":70025}]
 }
 
 
