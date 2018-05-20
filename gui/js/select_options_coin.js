@@ -160,6 +160,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/cvc.png' width='30px'/> Civic (CVC)" data-tokens=" CVC">CVC</option>
       <option data-content="<img src='img/cryptologo/san.png' width='30px'/> Santiment Network Token (SAN)" data-tokens=" SAN">SAN</option>
       <option data-content="<img src='img/cryptologo/ant.png' width='30px'/> Aragon (ANT)" data-tokens=" ANT">ANT</option>
+      <option data-content="<img src='img/cryptologo/loom.png' width='30px'/> Loom Network (LOOM)" data-tokens="LOOM">LOOM</option>
       <option data-content="<img src='img/cryptologo/mana.png' width='30px'/> Decentraland (MANA)" data-tokens=" MANA">MANA</option>
       <option data-content="<img src='img/cryptologo/mco.png' width='30px'/> Monaco (MCO)" data-tokens=" MCO">MCO</option>
       <option data-content="<img src='img/cryptologo/mgo.png' width='30px'/> MobileGo (MGO)" data-tokens="MGO">MGO</option>

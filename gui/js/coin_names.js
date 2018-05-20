@@ -1044,6 +1044,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'LOOM':
+                        coin_details.name = 'Loom Network';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'OCC':
 			coin_details.name = 'Original Crypto Coin';
 			coin_details.explorer = 'https://etherscan.io/tx/';
