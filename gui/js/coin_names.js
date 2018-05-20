@@ -1274,6 +1274,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'VEN':
+                        coin_details.name = 'VeChain';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'VSL':
 			coin_details.name = 'vSlice';
 			coin_details.explorer = 'https://etherscan.io/tx/';
