@@ -1059,6 +1059,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'POWR':
+                        coin_details.name = 'Power Ledger';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'PRL':
                         coin_details.name = 'Oyster';
                         coin_details.explorer = 'https://etherscan.io/tx/';

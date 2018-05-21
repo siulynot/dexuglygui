@@ -168,6 +168,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/occ.png' width='30px'/> Original Crypto Coin (OCC)" data-tokens=" OCC">OCC</option>
       <option data-content="<img src='img/cryptologo/oct.png' width='30px'/> Octus (OCT)" data-tokens="OCT">OCT</option>
       <option data-content="<img src='img/cryptologo/pcl.png' width='30px'/> Peculium (PCL)" data-tokens="PCL">PCL</option>
+      <option data-content="<img src='img/cryptologo/powr.png' width='30px'/> Power Ledger (POWR)" data-tokens="POWR">POWR</option>
       <option data-content="<img src='img/cryptologo/prl.png' width='30px'/> Oyster (PRL)" data-tokens="PRL">PRL</option>
       <option data-content="<img src='img/cryptologo/edg.png' width='30px'/> Edgeless (EDG)" data-tokens=" EDG">EDG</option>
       <option data-content="<img src='img/cryptologo/mln.png' width='30px'/> Melon (MLN)" data-tokens=" MLN">MLN</option>
