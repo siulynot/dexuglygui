@@ -210,24 +210,25 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/bots.png' width='30px'/> BOTS (BOTS)" data-tokens="BOTS BOTS">BOTS</option>
       <option data-content="<img src='img/cryptologo/btch.png' width='30px'/> BTCH (BTCH)" data-tokens="BTCH BTCH">BTCH</option>
       <option data-content="<img src='img/cryptologo/ceal.png' width='30px'/> Ceal (CEAL)" data-tokens="Ceal CEAL">CEAL</option>
-      <option data-content="<img src='img/cryptologo/coqui.png' width='30px;'/> COQUI (COQUI)" data-tokens="COQUI COQUI">COQUI</option>
-      <option data-content="<img src='img/cryptologo/rum.png' width='30px;'/> RUM (RUM)" data-tokens="RUM RUM">RUM</option>
       <option data-content="<img src='img/cryptologo/chain.png' width='30px;'/> Chainmakers (CHAIN)" data-tokens="Chainmakers CHAIN">CHAIN</option>
-      <option data-content="<img src='img/cryptologo/glxt.png' width='30px;'/> GLXToken (GLXT)" data-tokens="GLXToken GLXT">GLXT</option>
-      <option data-content="<img src='img/cryptologo/eql.png' width='30px;'/> Equaliser (EQL)" data-tokens="Equaliser EQL">EQL</option>
+      <option data-content="<img src='img/cryptologo/coqui.png' width='30px;'/> COQUI (COQUI)" data-tokens="COQUI COQUI">COQUI</option>
       <option data-content="<img src='img/cryptologo/crypto.png' width='30px'/> Crypto777 (CRYPTO)" data-tokens="Crypto777 CRYPTO">CRYPTO</option>
+      <option data-content="<img src='img/cryptologo/dsec.png' width='30px;'/> DSEC (DSEC)" data-tokens="DSEC">DSEC</option>
+      <option data-content="<img src='img/cryptologo/eql.png' width='30px;'/> Equaliser (EQL)" data-tokens="Equaliser EQL">EQL</option>
       <option data-content="<img src='img/cryptologo/etomic.png' width='30px'/> ETOMIC (ETOMIC)" data-tokens="ETOMIC ETOMIC">ETOMIC</option>
-      <option data-content="<img src='img/cryptologo/dex.png' width='30px;'/> InstantDEX (DEX)" data-tokens="InstantDEX DEX">DEX</option>
+      <option data-content="<img src='img/cryptologo/glxt.png' width='30px;'/> GLXToken (GLXT)" data-tokens="GLXToken GLXT">GLXT</option>
       <option data-content="<img src='img/cryptologo/hodl.png' width='30px'/> HODL (HODL)" data-tokens="HODL HODL">HODL</option>
+      <option data-content="<img src='img/cryptologo/dex.png' width='30px;'/> InstantDEX (DEX)" data-tokens="InstantDEX DEX">DEX</option>
       <option data-content="<img src='img/cryptologo/jumblr.png' width='30px;'/> Jumblr (JUMBLR)" data-tokens="Jumblr JUMBLR">JUMBLR</option>
       <option data-content="<img src='img/cryptologo/kv.png' width='30px'/> KeyValue (KV)" data-tokens="KeyValue KV">KV</option>
-      <option data-content="<img src='img/cryptologo/oot.png' width='30px'/> Utrum (OOT)" data-tokens="OOT">OOT</option>
-      <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>
-      <option data-content="<img src='img/cryptologo/mgw.png' width='30px'/> MultiGateway (MGW)" data-tokens="MultiGateway MGW">MGW</option>
       <option data-content="<img src='img/cryptologo/mnz.png' width='30px;'/> Monaize (MNZ)" data-tokens="mnz monaize ">MNZ</option>
+      <option data-content="<img src='img/cryptologo/mshark.png' width='30px'/> MSHARK (MSHARK)" data-tokens="MSHARK MSHARK">MSHARK</option>
+      <option data-content="<img src='img/cryptologo/mgw.png' width='30px'/> MultiGateway (MGW)" data-tokens="MultiGateway MGW">MGW</option>
+      <option data-content="<img src='img/cryptologo/oot.png' width='30px'/> Utrum (OOT)" data-tokens="OOT">OOT</option>
       <option data-content="<img src='img/cryptologo/pangea.png' width='30px'/> Pangea (PANGEA)" data-tokens="Pangea PANGEA">PANGEA</option>
       <option data-content="<img src='img/cryptologo/revs.png' width='30px'/> REVS (REVS)" data-tokens="REVS REVS">REVS</option>
-      <option data-content="<img src='img/cryptologo/mshark.png' width='30px'/> MSHARK (MSHARK)" data-tokens="MSHARK MSHARK">MSHARK</option>
+      <option data-content="<img src='img/cryptologo/rum.png' width='30px;'/> RUM (RUM)" data-tokens="RUM RUM">RUM</option>
+      <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>
       <option data-content="<img src='img/cryptologo/supernet.png' width='30px'/> SUPERNET (SUPERNET)" data-tokens="SUPERNET SUPERNET">SUPERNET</option>
       <option data-content="<img src='img/cryptologo/wlc.png' width='30px'/> Wireless (WLC)" data-tokens="Wireless WLC">WLC</option>>
     </optgroup>`;

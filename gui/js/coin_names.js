@@ -168,6 +168,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/arg/tx.dws?';
 			coin_details.eth = false;
 			break;
+                case 'DSEC':
+                        coin_details.name = 'DSEC';
+                        coin_details.explorer = 'https://dsec.ac/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'REVS':
 			coin_details.name = 'REVS';
 			coin_details.explorer = 'http://revs.explorer.supernet.org/tx/';
