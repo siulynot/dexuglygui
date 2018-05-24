@@ -954,6 +954,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'HYD':
+                        coin_details.name = 'Hydra';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'PPT':
 			coin_details.name = 'Populous';
 			coin_details.explorer = 'https://etherscan.io/tx/';
