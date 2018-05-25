@@ -130,6 +130,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/btk.png' width='30px'/> BitcoinToken (BTK)" data-tokens="BTK">BTK</option>
       <option data-content="<img src='img/cryptologo/cennz.png' width='30px'/> Centrality (CENNZ)" data-tokens="CENNZ">CENNZ</option>
       <option data-content="<img src='img/cryptologo/cix.png' width='30px'/> Cryptonetix (CIX)" data-tokens="CIX">CIX</option>
+      <option data-content="<img src='img/cryptologo/dai.png' width='30px'/> Dai (DAI)" data-tokens="DAI">DAI</option>
       <option data-content="<img src='img/cryptologo/dgd.png' width='30px'/> DigixDAO (DGD)" data-tokens=" DGD">DGD</option>
       <option data-content="<img src='img/cryptologo/dgpt.png' width='30px'/> DigiPulse (DGPT)" data-tokens="DGPT">DGPT</option>
       <option data-content="<img src='img/cryptologo/drgn.png' width='30px'/> Dragonchain (DRGN)" data-tokens="DRGN">DRGN</option>
@@ -144,7 +145,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/ethos.png' width='30px'/> Ethos (ETHOS)" data-tokens=" ETHOS">ETHOS</option>
       <option data-content="<img src='img/cryptologo/qash.png' width='30px'/> QASH (QASH)" data-tokens=" QASH">QASH</option>
       <option data-content="<img src='img/cryptologo/fun.png' width='30px'/> FunFair (FUN)" data-tokens=" FUN">FUN</option>
-      <option data-content="<img src='img/cryptologo/fun.png' width='30px'/> Hydra (HYD)" data-tokens="HYD">HYD</option>
+      <option data-content="<img src='img/cryptologo/hyd.png' width='30px'/> Hydra (HYD)" data-tokens="HYD">HYD</option>
       <option data-content="<img src='img/cryptologo/knc.png' width='30px'/> Kyber Network (KNC)" data-tokens=" KNC">KNC</option>
       <option data-content="<img src='img/cryptologo/salt.png' width='30px'/> SALT (SALT)" data-tokens=" SALT">SALT</option>
       <option data-content="<img src='img/cryptologo/icn.png' width='30px'/> Iconomi (ICN)" data-tokens=" ICN">ICN</option>
