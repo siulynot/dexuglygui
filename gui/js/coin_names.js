@@ -934,6 +934,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'BTM':
+                        coin_details.name = 'Bytom';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'DAI':
                         coin_details.name = 'Dai';
                         coin_details.explorer = 'https://etherscan.io/tx/';

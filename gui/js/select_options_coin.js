@@ -118,7 +118,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
     <optgroup label="ETH/ERC20 Coins">
       <option data-content="<img src='img/cryptologo/jst.png' width='30px;'/> JST (TESTCOIN)" data-tokens="JST JST ">JST</option>
       <option data-content="<img src='img/cryptologo/dec8.png' width='30px;'/> DEC8 (TESTCOIN)" data-tokens="JST JST ">DEC8</option>
-      <option data-content="<img src='img/cryptologo/ann.png' width='30px'/> Aeternity (AE)" data-tokens="AE">AE</option>
+      <option data-content="<img src='img/cryptologo/ae.png' width='30px'/> Aeternity (AE)" data-tokens="AE">AE</option>
       <option data-content="<img src='img/cryptologo/ann.png' width='30px'/> Agent Not Needed (ANN)" data-tokens="ANN">ANN</option>
       <option data-content="<img src='img/cryptologo/ast.png' width='30px'/> AirSwap (AST)" data-tokens=" AST">AST</option>
       <option data-content="<img src='img/cryptologo/amb.png' width='30px'/> Ambrosus (AMB)" data-tokens=" AMB">AMB</option>
@@ -131,6 +131,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/bnb.png' width='30px'/> Binance Coin (BNB)" data-tokens=" BNB">BNB</option>
       <option data-content="<img src='img/cryptologo/btk.png' width='30px'/> BitcoinToken (BTK)" data-tokens="BTK">BTK</option>
       <option data-content="<img src='img/cryptologo/btcl.png' width='30px'/> BTC Lite (BTCL)" data-tokens=" BTCL">BTCL</option>
+      <option data-content="<img src='img/cryptologo/btm.png' width='30px'/> Bytom (BTM)" data-tokens="BTM">BTM</option>
       <option data-content="<img src='img/cryptologo/cdt.png' width='30px'/> Blox (CDT)" data-tokens=" CDT">CDT</option>
       <option data-content="<img src='img/cryptologo/cennz.png' width='30px'/> Centrality (CENNZ)" data-tokens="CENNZ">CENNZ</option>
       <option data-content="<img src='img/cryptologo/cvc.png' width='30px'/> Civic (CVC)" data-tokens=" CVC">CVC</option>
@@ -241,7 +242,6 @@ coin_select_options = `<optgroup label="Crypto Coins">
 
 /*
 <option data-content="<img src='img/cryptologo/ANC.png' width='30px' disabled/> Anoncoin (ANC)" data-tokens="anc anoncoin">ANC</option>
-<option data-content="<img src='img/cryptologo/BTM.png' width='30px' disabled/> Bitmark (BTM)" data-tokens="btm bitmark">BTM</option>
 <option data-content="<img src='img/cryptologo/CARB.png' width='30px' disabled/> Carboncoin (CARB)" data-tokens="carb carboncoin">CARB</option>
 <option data-content="<img src='img/cryptologo/FRK.png' width='30px' disabled/> Franko (FRK)" data-tokens="Franko FRK">FRK</option>
 <option data-content="<img src='img/cryptologo/MZC.png' width='30px' disabled/> Mazacoin (MZC)" data-tokens="Mazacoin MZC">MZC</option>
