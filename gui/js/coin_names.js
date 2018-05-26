@@ -1054,6 +1054,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'RHOC':
+                        coin_details.name = 'RChain';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'RLTY':
                         coin_details.name = 'SMARTRealty';
                         coin_details.explorer = 'https://etherscan.io/tx/';

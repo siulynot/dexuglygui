@@ -188,6 +188,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/qash.png' width='30px'/> QASH (QASH)" data-tokens=" QASH">QASH</option>
       <option data-content="<img src='img/cryptologo/rdn.png' width='30px'/> Raiden Network Token (RDN)" data-tokens=" RDN">RDN</option>
       <option data-content="<img src='img/cryptologo/req.png' width='30px'/> Request Network (REQ)" data-tokens=" REQ">REQ</option>
+      <option data-content="<img src='img/cryptologo/rhoc.png' width='30px'/> RChain (RHOC)" data-tokens="RHOC">RHOC</option>
       <option data-content="<img src='img/cryptologo/rcn.png' width='30px'/> Ripio Credit Network (RCN)" data-tokens=" RCN">RCN</option>
       <option data-content="<img src='img/cryptologo/salt.png' width='30px'/> SALT (SALT)" data-tokens=" SALT">SALT</option>
       <option data-content="<img src='img/cryptologo/san.png' width='30px'/> Santiment Network Token (SAN)" data-tokens=" SAN">SAN</option>
