@@ -959,6 +959,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'FLLW':
+                        coin_details.name = 'FollowCoin';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'HYD':
                         coin_details.name = 'Hydra';
                         coin_details.explorer = 'https://etherscan.io/tx/';
