@@ -919,6 +919,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'AION':
+                        coin_details.name = 'Aion';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
                 case 'ANN':
                         coin_details.name = 'Agent Not Needed';
                         coin_details.explorer = 'https://etherscan.io/tx/';
