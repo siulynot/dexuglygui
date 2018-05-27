@@ -174,6 +174,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/mco.png' width='30px'/> Monaco (MCO)" data-tokens=" MCO">MCO</option>
       <option data-content="<img src='img/cryptologo/mgo.png' width='30px'/> MobileGo (MGO)" data-tokens="MGO">MGO</option>
       <option data-content="<img src='img/cryptologo/mtl.png' width='30px'/> Metal (MTL)" data-tokens=" MTL">MTL</option>
+      <option data-content="<img src='img/cryptologo/nas.png' width='30px'/> Nebulas (NAS)" data-tokens="NAS">NAS</option>
       <option data-content="<img src='img/cryptologo/net.png' width='30px'/> NetCoin (NET)" data-tokens=" NET">NET</option>
       <option data-content="<img src='img/cryptologo/nmr.png' width='30px'/> Numeraire (NMR)" data-tokens=" NMR">NMR</option>
       <option data-content="<img src='img/cryptologo/omg.png' width='30px'/> OmiseGO (OMG)" data-tokens=" OMG">OMG</option>

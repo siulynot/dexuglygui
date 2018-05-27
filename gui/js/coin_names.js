@@ -989,6 +989,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'NAS':
+                        coin_details.name = 'Nebulas';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'SNT':
 			coin_details.name = 'Status';
 			coin_details.explorer = 'https://etherscan.io/tx/';
