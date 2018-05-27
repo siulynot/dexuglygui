@@ -155,6 +155,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/1st.png' width='30px'/> FirstBlood (1ST)" data-tokens=" 1ST">1ST</option>
       <option data-content="<img src='img/cryptologo/fllw.png' width='30px'/> FollowCoin (FLLW)" data-tokens="FLLW">FLLW</option>
       <option data-content="<img src='img/cryptologo/fun.png' width='30px'/> FunFair (FUN)" data-tokens=" FUN">FUN</option>
+      <option data-content="<img src='img/cryptologo/fsn.png' width='30px'/> Fusion (FSN)" data-tokens="FSN">FSN</option>
       <option data-content="<img src='img/cryptologo/fyn.png' width='30px'/> FundYourselfNow (FYN)" data-tokens=" FYN">FYN</option>
       <option data-content="<img src='img/cryptologo/gno.png' width='30px'/> Gnosis (GNO)" data-tokens=" GNO">GNO</option>
       <option data-content="<img src='img/cryptologo/hgt.png' width='30px'/> HelloGold (HGT)" data-tokens=" HGT">HGT</option>
