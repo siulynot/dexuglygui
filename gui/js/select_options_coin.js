@@ -163,6 +163,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/hyd.png' width='30px'/> Hydra (HYD)" data-tokens="HYD">HYD</option>
       <option data-content="<img src='img/cryptologo/icn.png' width='30px'/> Iconomi (ICN)" data-tokens=" ICN">ICN</option>
       <option data-content="<img src='img/cryptologo/icx.png' width='30px'/> ICON (ICX)" data-tokens=" ICX">ICX</option>
+      <option data-content="<img src='img/cryptologo/iost.png' width='30px'/> IOST (IOST)" data-tokens="IOST">IOST</option>
       <option data-content="<img src='img/cryptologo/rlc.png' width='30px'/> iExec RLC (RLC)" data-tokens=" RLC">RLC</option>
       <option data-content="<img src='img/cryptologo/ind.png' width='30px'/> Indorse Token (IND)" data-tokens=" IND">IND</option>
       <option data-content="<img src='img/cryptologo/knc.png' width='30px'/> Kyber Network (KNC)" data-tokens=" KNC">KNC</option>
