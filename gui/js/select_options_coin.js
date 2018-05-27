@@ -209,6 +209,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/ven.png' width='30px'/> VeChain (VEN)" data-tokens="VEN">VEN</option>
       <option data-content="<img src='img/cryptologo/vsl.png' width='30px'/> vSlice (VSL)" data-tokens=" VSL">VSL</option>
       <option data-content="<img src='img/cryptologo/trst.png' width='30px'/> WeTrust (TRST)" data-tokens=" TRST">TRST</option>
+      <option data-content="<img src='img/cryptologo/wtc.png' width='30px'/> Waltonchain (WTC)" data-tokens="WTC">WTC</option>
       <option data-content="<img src='img/cryptologo/wings.png' width='30px'/> Wings (WINGS)" data-tokens=" WINGS">WINGS</option>
       <option data-content="<img src='img/cryptologo/xaur.png' width='30px'/> Xaurum (XAUR)" data-tokens=" XAUR">XAUR</option>
       <option data-content="<img src='img/cryptologo/xov.png' width='30px'/> XOVBank (XOV)" data-tokens="XOV">XOV</option>
