@@ -13,16 +13,7 @@ const electron = require('electron'),
   ipc = require('electron').ipcMain,
   fs = require('fs-extra'),
   mkdirp = require('mkdirp'),
-<<<<<<< HEAD
-  killmm = require('./ipc/killmm'),
-  appBasicInfo = {
-    name: 'BarterDEX',
-    version: '1.0.5-rc'
-  };
-=======
   killmm = require('./ipc/killmm');
-  
->>>>>>> dev
 var shepherd = require('./ipc/shepherd-ipc'),
   MNZdICOIcon;
 
