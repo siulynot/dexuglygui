@@ -171,6 +171,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/lala.png' width='30px'/> LALA World (LALA)" data-tokens=" LALA">LALA</option>
       <option data-content="<img src='img/cryptologo/lys.png' width='30px'/> Lightyears (LYS)" data-tokens=" LYS">LYS</option>
       <option data-content="<img src='img/cryptologo/loom.png' width='30px'/> Loom Network (LOOM)" data-tokens="LOOM">LOOM</option>
+      <option data-content="<img src='img/cryptologo/lrc.png' width='30px'/> Loopring (LRC)" data-tokens="LRC">LRC</option>
       <option data-content="<img src='img/cryptologo/lun.png' width='30px'/> Lunyr (LUN)" data-tokens=" LUN">LUN</option>
       <option data-content="<img src='img/cryptologo/mkr.png' width='30px'/> Maker (MKR)" data-tokens=" MKR">MKR</option>
       <option data-content="<img src='img/cryptologo/gup.png' width='30px'/> Matchpool (GUP)" data-tokens=" GUP">GUP</option>

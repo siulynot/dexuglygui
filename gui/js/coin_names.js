@@ -1109,6 +1109,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'LRC':
+                        coin_details.name = 'Loopring';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'OCC':
 			coin_details.name = 'Original Crypto Coin';
 			coin_details.explorer = 'https://etherscan.io/tx/';
