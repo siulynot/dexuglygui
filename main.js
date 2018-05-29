@@ -18,7 +18,7 @@ const electron = require('electron'),
 var shepherd = require('./ipc/shepherd-ipc'),
   MNZdICOIcon;
 
-const package_json = fs.readJsonSync('./resources/app/package.json');
+const package_json = fs.readJsonSync(path.join(__dirname, 'package.json'));
 
 app.setName(package_json.name);
 app.setVersion(package_json.version);
