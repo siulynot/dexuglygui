@@ -458,6 +458,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.btchush.org/tx/';
 			coin_details.eth = false;
 			break;
+                case 'CMM':
+                        coin_details.name = 'Commercium';
+                        coin_details.explorer = 'https://explorer.commercium.net/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'CRC':
 			coin_details.name = 'CrowdCoin';
 			coin_details.explorer = 'http://explorer.cryptopros.us/tx/';
