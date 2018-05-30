@@ -48,6 +48,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://chainz.cryptoid.info/blk//tx.dws?';
 			coin_details.eth = false;
 			break;
+ 		case 'SPK':
+			coin_details.name = 'Sparks';
+			coin_details.explorer = 'http://explorer.sparkscoin.io/tx/';
+			coin_detalis.eth = false;
+			break;
 		case 'GRLC':
 			coin_details.name = 'Garlicoin';
 			coin_details.explorer = 'https://garli.co.in/tx/';
