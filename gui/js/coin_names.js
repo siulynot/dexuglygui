@@ -1179,6 +1179,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'SANC':
+                        coin_details.name = 'Sancoj';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'SAN':
 			coin_details.name = 'Santiment Network Token';
 			coin_details.explorer = 'https://etherscan.io/tx/';
