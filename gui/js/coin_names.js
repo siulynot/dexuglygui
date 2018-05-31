@@ -1164,6 +1164,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'DROP':
+                        coin_details.name = 'Dropil';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'ENJ':
 			coin_details.name = 'Enjin Coin';
 			coin_details.explorer = 'https://etherscan.io/tx/';
