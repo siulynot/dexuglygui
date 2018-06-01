@@ -298,6 +298,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://159.203.59.19:3001/tx/';
 			coin_details.eth = false;
 			break;
+                case 'XSN':
+                        coin_details.name = 'Stakenet';
+                        coin_details.explorer = 'https://xsnexplorer.io/transactions/';
+                        coin_details.eth = false;
+                        break;
 		case 'ZER':
 			coin_details.name = 'Zero';
 			coin_details.explorer = 'http://zeroexplorer.forgetop.com/tx/';
