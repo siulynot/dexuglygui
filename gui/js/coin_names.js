@@ -1069,6 +1069,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'ELF':
+                        coin_details.name = 'aelf';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'ETHOS':
 			coin_details.name = 'Ethos';
 			coin_details.explorer = 'https://etherscan.io/tx/';
