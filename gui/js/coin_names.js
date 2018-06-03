@@ -158,6 +158,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.bridgecoin.org/tx/';
 			coin_details.eth = false;
 			break;
+                case 'HXX':
+                        coin_details.name = 'Hexx';
+                        coin_details.explorer = 'https://chainz.cryptoid.info/hxx/tx.dws?';
+                        coin_details.eth = false;
+                        break;
 		case 'MNZ':
 			coin_details.name = 'Monaize';
 			coin_details.explorer = 'https://www.mnzexplorer.com/tx/';
