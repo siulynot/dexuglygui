@@ -1114,6 +1114,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'SRN':
+                        coin_details.name = 'SIRIN LABS Token';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'BNT':
 			coin_details.name = 'Bancor';
 			coin_details.explorer = 'https://etherscan.io/tx/';
