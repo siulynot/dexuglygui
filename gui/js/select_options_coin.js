@@ -14,6 +14,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/aby.png' width='30px'/> ArtByte (ABY)" data-tokens="ArtByte ABY">ABY</option>
       <option data-content="<img src='img/cryptologo/arc.png' width='30px'/> ArcticCoin (ARC)" data-tokens="ArcticCoin ARC">ARC</option>
       <option data-content="<img src='img/cryptologo/arg.png' width='30px'/> Argentum (ARG)" data-tokens="Argentum ARG">ARG</option>
+      <option data-content="<img src='img/cryptologo/atb.png' width='30px'/> ATBCoin (ATB)" data-tokens="ATB">ATB</option>
       <option data-content="<img src='img/cryptologo/axe.png' width='30px'/> Axe (AXE)" data-tokens="Axe AXE">AXE</option>
       <option data-content="<img src='img/cryptologo/bcbc.png' width='30px'/> Bitcoin@CBC (BCBC)" data-tokens="Bitcoin@CBC BCBC">BCBC</option>
       <option data-content="<img src='img/cryptologo/bay.png' width='30px'/> BitBay (BAY)" data-tokens="BitBay BAY">BAY</option>

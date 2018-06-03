@@ -133,6 +133,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://explorer.fujicoin.org/tx/';
 			coin_details.eth = false;
 			break;
+                case 'ATB':
+                        coin_details.name = 'ATBCoin';
+                        coin_details.explorer = 'https://explorer.atbcoin.com/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'BLOCK':
 			coin_details.name = 'Blocknet';
 			coin_details.explorer = 'https://chainz.cryptoid.info/block/tx.dws?';
