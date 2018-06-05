@@ -974,6 +974,11 @@ function return_coin_details(coin) {
                         coin_details.explorer = 'https://etherscan.io/tx/';
                         coin_details.eth = true;
                         break;
+                case 'DCN':
+                        coin_details.name = 'Dentacoin';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'DGD':
 			coin_details.name = 'DigixDAO';
 			coin_details.explorer = 'https://etherscan.io/tx/';

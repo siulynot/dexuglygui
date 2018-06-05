@@ -147,6 +147,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/cix.png' width='30px'/> Cryptonetix (CIX)" data-tokens="CIX">CIX</option>
       <option data-content="<img src='img/cryptologo/dai.png' width='30px'/> Dai (DAI)" data-tokens="DAI">DAI</option>
       <option data-content="<img src='img/cryptologo/mana.png' width='30px'/> Decentraland (MANA)" data-tokens=" MANA">MANA</option>
+      <option data-content="<img src='img/cryptologo/dcn.png' width='30px'/> Dentacoin (DCN)" data-tokens="DCN">DCN</option>
       <option data-content="<img src='img/cryptologo/dgd.png' width='30px'/> DigixDAO (DGD)" data-tokens=" DGD">DGD</option>
       <option data-content="<img src='img/cryptologo/dgpt.png' width='30px'/> DigiPulse (DGPT)" data-tokens="DGPT">DGPT</option>
       <option data-content="<img src='img/cryptologo/dnt.png' width='30px'/> district0x (DNT)" data-tokens=" DNT">DNT</option>
