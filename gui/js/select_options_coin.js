@@ -123,6 +123,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
     <optgroup label="ETH/ERC20 Coins">
       <option data-content="<img src='img/cryptologo/jst.png' width='30px;'/> JST (TESTCOIN)" data-tokens="JST JST ">JST</option>
       <option data-content="<img src='img/cryptologo/dec8.png' width='30px;'/> DEC8 (TESTCOIN)" data-tokens="JST JST ">DEC8</option>
+      <option data-content="<img src='img/cryptologo/adt.png' width='30px'/> adToken (ADT)" data-tokens="ADT">ADT</option>
       <option data-content="<img src='img/cryptologo/ae.png' width='30px'/> Aeternity (AE)" data-tokens="AE">AE</option>
       <option data-content="<img src='img/cryptologo/elf.png' width='30px'/> aelf (ELF)" data-tokens="ELF">ELF</option>
       <option data-content="<img src='img/cryptologo/aion.png' width='30px'/> Aion (AION)" data-tokens="AION">AION</option>
