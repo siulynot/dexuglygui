@@ -1364,6 +1364,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'RVT':
+                        coin_details.name = 'Rivetz';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case '1ST':
 			coin_details.name = 'FirstBlood';
 			coin_details.explorer = 'https://etherscan.io/tx/';
