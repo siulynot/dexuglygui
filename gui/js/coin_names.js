@@ -193,6 +193,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'http://revs.explorer.supernet.org/tx/';
 			coin_details.eth = false;
 			break;
+                case 'VRSC':
+                        coin_details.name = 'VerusCoin';
+                        coin_details.explorer = 'https://explorer.veruscoin.io/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'JUMBLR':
 			coin_details.name = 'JUMBLR';
 			coin_details.explorer = 'http://jumblr.explorer.supernet.org/tx/';

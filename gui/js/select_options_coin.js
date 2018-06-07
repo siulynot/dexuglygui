@@ -255,6 +255,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/rum.png' width='30px;'/> RUM (RUM)" data-tokens="RUM RUM">RUM</option>
       <option data-content="<img src='img/cryptologo/mesh.png' width='30px'/> SuperMesh (MESH)" data-tokens="SuperMesh MESH">MESH</option>
       <option data-content="<img src='img/cryptologo/supernet.png' width='30px'/> SUPERNET (SUPERNET)" data-tokens="SUPERNET SUPERNET">SUPERNET</option>
+      <option data-content="<img src='img/cryptologo/vrsc.png' width='30px'/> VerusCoin (VRSC)" data-tokens="VRSC">VRSC</option>
       <option data-content="<img src='img/cryptologo/wlc.png' width='30px'/> Wireless (WLC)" data-tokens="Wireless WLC">WLC</option>>
     </optgroup>`;
 
