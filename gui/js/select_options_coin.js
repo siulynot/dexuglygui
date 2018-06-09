@@ -221,6 +221,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/tusd.png' width='30px'/> TrueUSD (TUSD)" data-tokens=" TUSD">TUSD</option>
       <option data-content="<img src='img/cryptologo/taas.png' width='30px'/> TaaS (TAAS)" data-tokens=" TAAS">TAAS</option>
       <option data-content="<img src='img/cryptologo/tkn.png' width='30px'/> TokenCard (TKN)" data-tokens=" TKN">TKN</option>
+      <option data-content="<img src='img/cryptologo/ucash.png' width='30px'/> U.CASH (UCASH)" data-tokens="UCASH">UCASH</option>
       <option data-content="<img src='img/cryptologo/ven.png' width='30px'/> VeChain (VEN)" data-tokens="VEN">VEN</option>
       <option data-content="<img src='img/cryptologo/vsl.png' width='30px'/> vSlice (VSL)" data-tokens=" VSL">VSL</option>
       <option data-content="<img src='img/cryptologo/trst.png' width='30px'/> WeTrust (TRST)" data-tokens=" TRST">TRST</option>

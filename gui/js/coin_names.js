@@ -1304,6 +1304,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'UCASH':
+                        coin_details.name = 'U.CASH';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'DNT':
 			coin_details.name = 'district0x';
 			coin_details.explorer = 'https://etherscan.io/tx/';
