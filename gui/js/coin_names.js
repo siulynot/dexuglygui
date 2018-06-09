@@ -1094,6 +1094,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://etherscan.io/tx/';
 			coin_details.eth = true;
 			break;
+                case 'GPN':
+                        coin_details.name = 'GPN Coin';
+                        coin_details.explorer = 'https://etherscan.io/tx/';
+                        coin_details.eth = true;
+                        break;
 		case 'QASH':
 			coin_details.name = 'QASH';
 			coin_details.explorer = 'https://etherscan.io/tx/';
