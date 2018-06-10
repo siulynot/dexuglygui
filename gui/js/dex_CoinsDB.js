@@ -111,6 +111,10 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 		default:
 			console.log(`Default action. No action selected.`);
 		}
+
+	/*
+	ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}] });
+	*/
 }
 
 
