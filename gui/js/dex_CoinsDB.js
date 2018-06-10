@@ -9,7 +9,7 @@ function BarterDEX_Init_CoinsDB() {
 
 function CoinsDB_UpdatedCoinsDbFile() {
 	var update_coinsdb_file = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"update_coins_file"} });
-	console.log(update_coins_file);
+	console.log(update_coinsdb_file);
 }
 
 
@@ -78,6 +78,43 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 
 function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 	//TODO
+	var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://kmdexplorer.ru/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
+
+	var local_coinsdb = ShepherdIPC({ "command": "coins_db_read_db" });
+	var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+	switch (coins_detail_action) {
+		case 'gen':
+			console.log(`Generating coins.json file...`);
+			//console.log(lstore_coinsdb_json_array);
+			$.each(lstore_coinsdb_json_array, function(index, value){
+				//console.log(index);
+				//console.log(value);
+				$.each(local_coinsdb, function(db_index, db_val) {
+					if (db_val.coin == value) {
+						//console.log(db_val);
+						if (db_val.etomic != undefined) {
+							console.log(`${db_val.coin} is ETOMIC`);
+							db_val.eth = true
+							console.log(db_val);
+						} else {
+							db_val.eth = false
+							console.log(db_val);
+						}
+					}
+				});
+			});
+			break;
+		case 'update':
+			console.log(`Updating coins.json file...`);
+			console.log(lstore_coinsdb_json_array);
+			break;
+		default:
+			console.log(`Default action. No action selected.`);
+		}
+
+	/*
+	ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}] });
+	*/
 }
 
 

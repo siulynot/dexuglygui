@@ -30,8 +30,8 @@ To get started, follow these steps:
 ```shell
 git clone https://github.com/KomodoPlatform/BarterDEX.git
 cd BarterDEX
-git pull
 git checkout dev
+git pull
 npm install
 npm start
 ```
