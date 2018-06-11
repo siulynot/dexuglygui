@@ -22,7 +22,7 @@
   "author": "Satinderjit Singh",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.8.7",
+    "electron": "^2.0.0",
     "electron-packager": "^12.1.0"
   },
   "dependencies": {
