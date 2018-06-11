@@ -273,6 +273,11 @@ function return_coin_details(coin) {
 			coin_details.explorer = 'https://explorer.litecoinz.info/tx/';
 			coin_details.eth = false;
 			break;
+                case 'MLM':
+                        coin_details.name = 'MktCoin';
+                        coin_details.explorer = 'https://info.mktcoin.org/tx/';
+                        coin_details.eth = false;
+                        break;
 		case 'MNX':
 			coin_details.name = 'MinexCoin';
 			coin_details.explorer = 'https://minexexplorer.com/?r=explorer/tx&hash=';
