@@ -167,6 +167,7 @@ function CoinsDB_GetCoinDetails(coin_code) {
 	var coin_explorers = ShepherdIPC({ "command": "coins_db_read_explorers", "coin": coin_code });
 	var coin_electrums = ShepherdIPC({ "command": "coins_db_read_electrums", "coin": coin_code });
 	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
+	coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
 	var local_coins_json = local_coins_json.concat(coins_detail_list);
 
 	var coin_details = '';
@@ -189,6 +190,7 @@ function CoinDB_coin_json_select_options() {
 
 	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
+	coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
 	var local_coins_json = local_coins_json.concat(coins_detail_list);
 	
 	var options_data = '';
@@ -223,6 +225,7 @@ function CoinDB_manage_coin_select_options() {
 			$('.addcoin_coinsdb_select').selectpicker('render');
 		}, 5 * 1000);
 	}
+	coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
 	var local_coins_db = _.sortBy(local_coins_db.concat(coins_detail_list), 'name');
 	
 	var options_data = '';
