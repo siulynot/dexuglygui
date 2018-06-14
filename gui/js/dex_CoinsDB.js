@@ -18,7 +18,7 @@ function BarterDEX_Init_CoinsDB() {
 	$('.buy_coin_p').html(CoinDB_coin_json_select_options());
 
 	// Startup coins select options populated with all coins db select options //
-	$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options);
+	$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options());
 	$('.addcoin_startup_select').html(CoinDB_coin_json_select_options());
 }
 
@@ -59,9 +59,11 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 					lstore_coinsdb_json_array.push(coins_json_data);
 					localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(_.sortBy(lstore_coinsdb_json_array)));
 					console.log(`Coin ${coins_json_data} added to the local array.`);
+					CoinsDB_Dl_Extra([`${coins_json_data}`])
 					return lstore_coinsdb_json_array;
 				} else {
 					console.warn(`Coin ${coins_json_data} already exists in local array`);
+					CoinsDB_Dl_Extra([`${coins_json_data}`])
 					return lstore_coinsdb_json_array
 				}
 			}
@@ -93,17 +95,15 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 	}
 }
 
-function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
+function CoinsDB_ManageCoinsDetails(coins_detail_action) {
 	//TODO
-	var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}];
+	var default_coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
 
 	var local_coinsdb = ShepherdIPC({ "command": "coins_db_read_db" });
 	var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
 	switch (coins_detail_action) {
 		case 'gen':
 			console.log(`Generating coins.json file...`);
-			//var gen_coins_json = ShepherdIPC({ "command": "coinsdb_manage", "data":{"cmd":"gen","coin_array":lstore_coinsdb_json_array}});
-			//console.log(gen_coins_json);
 			console.log(lstore_coinsdb_json_array);
 			var processed_coins_db = [];
 			$.each(lstore_coinsdb_json_array, function(index, value){
@@ -127,7 +127,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 			});
 			console.log(processed_coins_db);
 			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": processed_coins_db });
-			console.log(update_coins_json_file);
+			//console.log(update_coins_json_file);
 			break;
 		case 'update':
 			console.log(`Updating coins.json file...`);
@@ -149,8 +149,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 
 
 function CoinsDB_GetCoinDetails(coin_code) {
-	console.log(coin_code)
-
+	//console.log(coin_code)
 	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
 	//var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 
@@ -202,6 +201,17 @@ function CoinDB_manage_coin_select_options() {
 
 	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
 	var local_coins_db = ShepherdIPC({ "command": "coins_db_read_db" });
+	if (local_coins_db.length == 0) {
+		console.log('local coins db is empty!');
+		CoinsDB_UpdatedCoinsDbFile();
+		var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+		CoinsDB_Dl_Extra(lstore_coinsdb_json_array);
+		setTimeout(function(){
+			$('.addcoin_coinsdb_select').selectpicker('destroy');
+			$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options());
+			$('.addcoin_coinsdb_select').selectpicker('render');
+		}, 5 * 1000);
+	}
 	var local_coins_db = local_coins_db.concat(coins_detail_list);
 	
 	var options_data = '';
@@ -210,7 +220,7 @@ function CoinDB_manage_coin_select_options() {
 		//console.log(value);
 		//console.log(value.coin.toLowerCase());
 		options_data += `
-<option data-content="<img src='${coin_db_img_url}/${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
+<option data-content="<img src='${coin_db_img_url}${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
 	})
 	//console.log(options_data);
 

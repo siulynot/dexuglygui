@@ -187,7 +187,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
         .then(barterdex_deflang_file_output => {
           event.returnValue = barterdex_deflang_file_output;
         })
-        .catch(err => { console.error(err) })
+        .catch(err => { console.error(err); event.returnValue = ""; })
       break;
     case 'get_lang_file_list':
       fs.readdir(path.join(__dirname, `../assets/languages/`), function (err, lang_files) {
@@ -207,7 +207,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
         .then(coins_db_coins_local_file => {
           event.returnValue = coins_db_coins_local_file;
         })
-        .catch(err => { console.error(err) })
+        .catch(err => { console.error(err); event.returnValue = ""; })
       break;
     case 'coinsdb_manage':
       console.log(arg);
@@ -216,11 +216,13 @@ ipcMain.on('shepherd-command', (event, arg) => {
       break;
     case 'coins_db_update_coins_json_file':
       const _coinsListFile = BarterDEXDir + '/coins.json'
-      fs.writeJsonSync(_coinsListFile, arg.data, function (err) {
+      fs.writeJsonSync(_coinsListFile, arg.data);
+      event.returnValue = 'Coins JSON file updated!';
+      /*fs.writeJsonSync(_coinsListFile, arg.data, function (err) {
         if (err) throw err;
         console.log('Coins JSON file updated!');
         event.returnValue = 'Coins JSON file updated!';
-      });
+      });*/
       break;
     case 'coins_db_read_coins_json':
       fs.readJson(`${BarterDEXDir}/coins.json`)
@@ -230,7 +232,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
     case 'coins_db_read_db':
       fs.readJson(`${CoinsDBDir}/coins`)
         .then(coins_db_file => { event.returnValue = coins_db_file; })
-        .catch(err => { console.error(err); event.returnValue = ""; })
+        .catch(err => { console.error(err); event.returnValue = []; })
       break;
     case 'coins_db_read_explorers':
       console.log(arg.coin);

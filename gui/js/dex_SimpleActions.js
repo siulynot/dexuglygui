@@ -1668,7 +1668,7 @@ function CheckPortfolioFn(sig) {
 		url: url
 	}).done(function (data) {
 		// If successful
-		console.log(data);
+		//console.log(data);
 
 		if (!data.userpass === false) {
 			console.log('first marketmaker api call execution after marketmaker started.')
@@ -1696,7 +1696,7 @@ function CheckPortfolioFn(sig) {
 
 
 function PortfolioTblDataFn(portfolio_tbl_data) {
-	console.log(portfolio_tbl_data.portfolio.length);
+	//console.log(portfolio_tbl_data.portfolio.length);
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	if (portfolio_tbl_data.portfolio &&
@@ -1733,7 +1733,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 	$('.porfolio_coins_list tbody').empty();
 	$.each(portfolio_tbl_data.portfolio, function (index, val) {
 		//console.log(index);
-		console.log(val);
+		//console.log(val);
 
 		var coin_name = CoinsDB_GetCoinDetails(val.coin).fname
 
@@ -1804,7 +1804,7 @@ function portfolio_get_eth_erc20_balance(etherc20_balance_data) {
 }
 
 function PortfolioChartUpdate(chart_data) {
-	console.log(chart_data)
+	//console.log(chart_data)
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	var chart = AmCharts.makeChart("portfolio_chart_current", {
 		"type": "pie",
