@@ -88,6 +88,46 @@ $('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_lis
 	$('.alert_coindb').show();
 });
 
+$('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_list_detail', function(e) {
+	e.preventDefault();
+	console.log('btn-dex_mng_local_db_coins_list_detail clicked');
+	console.log($(this).data());
+
+	var local_db_detail_bootbox = bootbox.dialog({
+		onEscape: true,
+		backdrop: true,
+		message: `
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						<h3 class="panel-title"><strong>Local Coins DB Details</strong></h3>
+						</div>
+						<div class="panel-body"> <!-- panel-body -->
+
+							
+						</div>
+					</div>
+				</div>
+			</div>`,
+		closeButton: false,
+		size: 'large',
+
+		buttons: {
+			ok: {
+				label: `${default_lang.CoinControl.coincontrol_enable}`,
+				className: 'btn-default',
+				callback: function () {
+					
+				}
+			}
+		}
+	});
+	local_db_detail_bootbox.init(function () {
+		
+	});
+});
+
 $('.btn-managecoins_add_to_localdb').click(function(e){
 	e.preventDefault();
 	console.log('btn-managecoins_add_to_localdb clicked');

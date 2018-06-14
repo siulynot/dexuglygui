@@ -223,7 +223,7 @@ function CoinDB_manage_coin_select_options() {
 			$('.addcoin_coinsdb_select').selectpicker('render');
 		}, 5 * 1000);
 	}
-	var local_coins_db = local_coins_db.concat(coins_detail_list);
+	var local_coins_db = _.sortBy(local_coins_db.concat(coins_detail_list), 'name');
 	
 	var options_data = '';
 	$.each(local_coins_db, function(index, value){
