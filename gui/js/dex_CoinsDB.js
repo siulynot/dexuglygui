@@ -13,9 +13,11 @@ function CoinsDB_UpdatedCoinsDbFile() {
 }
 
 
-function CoinsDB_DlIcons(icons_array) {
-	console.log(icons_array); //if multiple expected value is ["kmd","btc","oot"]. If single ["kmd"]. MUST be small letters.
+function CoinsDB_Dl_Extra(icons_array) {
+	console.log(icons_array);
 	var icons_dl = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"dl_icons","coin_array":icons_array} });
+	var explorers_dl = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"dl_coin_explorers","coin_array":icons_array} });
+	var electrums_dl = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"dl_coin_electrums","coin_array":icons_array} });
 }
 
 
@@ -85,8 +87,10 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 	switch (coins_detail_action) {
 		case 'gen':
 			console.log(`Generating coins.json file...`);
+			var gen_coins_json = ShepherdIPC({ "command": "coinsdb_manage", "data": lstore_coinsdb_json_array });
+			console.log(gen_coins_json);
 			//console.log(lstore_coinsdb_json_array);
-			$.each(lstore_coinsdb_json_array, function(index, value){
+			/*$.each(lstore_coinsdb_json_array, function(index, value){
 				//console.log(index);
 				//console.log(value);
 				$.each(local_coinsdb, function(db_index, db_val) {
@@ -102,7 +106,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 						}
 					}
 				});
-			});
+			});*/
 			break;
 		case 'update':
 			console.log(`Updating coins.json file...`);
@@ -113,7 +117,11 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 		}
 
 	/*
+	
+	ShepherdIPC({ "command": "coinsdb_manage", "data": ["BTC", "CHIPS", "JST", "KMD", "OOT"] });
+
 	ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}] });
+	
 	*/
 }
 
