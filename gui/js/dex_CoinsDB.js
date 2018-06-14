@@ -18,7 +18,8 @@ function BarterDEX_Init_CoinsDB() {
 	$('.buy_coin_p').html(CoinDB_coin_json_select_options());
 
 	// Startup coins select options populated with all coins db select options //
-	$('.addcoin_startup_select').html(CoinDB_manage_coin_select_options);
+	$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options);
+	$('.addcoin_startup_select').html(CoinDB_coin_json_select_options());
 }
 
 function CoinsDB_UpdatedCoinsDbFile() {

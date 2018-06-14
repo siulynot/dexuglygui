@@ -442,6 +442,7 @@ $('.btn_switch_trading_coin_pairs').click(function (e) {
 
 function check_coin_balance(chk_coin_data) {
 	console.log(chk_coin_data);
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	if (chk_coin_data == false) {
 		clearInterval(check_coin_balance_Interval);
 		console.log('checking coin balance stopped.')
@@ -468,7 +469,7 @@ function check_coin_balance(chk_coin_data) {
 	$('.coindashboard-coin').empty();
 	$('.coindashboard-balance').empty();
 	$('.coindashboard-address[data-coin="' + coin + '"]').empty();
-	$(".coindashboard-coinicon").attr("src", "img/cryptologo/" + coin.toLowerCase() + ".png");
+	$(".coindashboard-coinicon").attr("src", `${coinsdbdir}/icons/${coin.toLowerCase()}.png`);
 
 	var coin_name = return_coin_details(coin).name;
 
@@ -1443,6 +1444,7 @@ function addcoin_enable_disable_coin(data) {
 }
 
 function get_coins_list() {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
@@ -1487,7 +1489,7 @@ function get_coins_list() {
 				var addcoins_tbl_tr = '';
 
 				addcoins_tbl_tr += '<tr>';
-				addcoins_tbl_tr += '<td><img src="img/cryptologo/' + val.coin.toLowerCase() + '.png" width="30px;"/> ' + coin_name + ' (' + val.coin + ')</td>';
+				addcoins_tbl_tr += `<td><img src="${coinsdbdir}/icons/${val.coin.toLowerCase()}.png" width="30px;"/>${coin_name} ( ${val.coin} )</td>`;
 				addcoins_tbl_tr += '<td>' + val.balance + '</td>';
 				addcoins_tbl_tr += '<td>' + val.smartaddress + '</td>';
 				addcoins_tbl_tr += '<td><span class="label label-uppercase label-' + ((val.status == 'active') ? 'grey' : 'default') + '">' + val.status + '</span></td>';
@@ -1696,6 +1698,7 @@ function CheckPortfolioFn(sig) {
 function PortfolioTblDataFn(portfolio_tbl_data) {
 	console.log(portfolio_tbl_data.portfolio.length);
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	if (portfolio_tbl_data.portfolio &&
 		portfolio_tbl_data.portfolio.length) {
 		$('#portfolio-coins-spinner').hide();
@@ -1737,7 +1740,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 		var dex_portfolio_coins_tbl_tr = '';
 
 		dex_portfolio_coins_tbl_tr += '<tr>';
-		dex_portfolio_coins_tbl_tr += '<td><img src="img/cryptologo/' + val.coin.toLowerCase() + '.png" width="30px;"/> ' + coin_name + ' (' + val.coin + ')</td>';
+		dex_portfolio_coins_tbl_tr += `<td><img src="${coinsdbdir}/icons/${val.coin.toLowerCase()}.png" width="30px;"/> ${coin_name}(${val.coin})</td>`;
 		//dex_portfolio_coins_tbl_tr += '<td>' + val.address + '</td>';
 		dex_portfolio_coins_tbl_tr += '<td class="porfolio_coins_list_td_amount" data-coin="' + val.coin + '" data-address="' + val.address + '">' + val.amount + '</td>';
 		dex_portfolio_coins_tbl_tr += '<td>' + val.price + '</td>';
@@ -2393,6 +2396,8 @@ function manual_buy_sell(mt_data) {
 function DepositOnError(deposit_data) {
 	console.log(deposit_data);
 
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+
 	if (return_coin_details(deposit_data.coin).eth == true) {
 		deposit_data.coin = 'ETOMIC';
 		var coin_name = 'ETOMIC';
@@ -2455,7 +2460,7 @@ function DepositOnError(deposit_data) {
 			onEscape: true,
 			backdrop: true,
 			message: `<div style="text-align: center; margin-top: -40px;">
-							<img src="img/cryptologo/${deposit_data.coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
+							<img src="${coinsdbdir}/icons/${deposit_data.coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
 						</div>
 						<div style="text-align: center;">
 							<div id="receive_addr_qrcode"></div>
@@ -3070,6 +3075,8 @@ $('.your_coins_balance_info').on('click', '.coin_balance_send', function () {
 
 function coinBalanceReceiveAddr(coin) {
 
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+
 	var coin_name = return_coin_details(coin).name;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -3106,7 +3113,7 @@ function coinBalanceReceiveAddr(coin) {
 			onEscape: true,
 			backdrop: true,
 			message: `<div style="text-align: center; margin-top: -40px;">
-						<img src="img/cryptologo/${coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
+						<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" class="coin_balance_receive_coin_logo"/>
 					</div>
 					<div style="text-align: center;">
 						<div id="receive_addr_qrcode"></div>
@@ -4063,6 +4070,8 @@ function bot_settings(bot_data) {
 function bot_status(bot_data) {
 	console.log(bot_data);
 
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = { "userpass": userpass, "method": "bot_status", "botid": bot_data.botid };
@@ -4097,11 +4106,11 @@ function bot_status(bot_data) {
 			}
 
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-			rel_answer = '<img src="img/cryptologo/' + data.rel.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(data.rel).name + ' (' + data.rel + ')';
-			base_answer = '<img src="img/cryptologo/' + data.base.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(data.base).name + ' (' + data.base + ')';
+			rel_answer = `<img src="${coinsdbdir}/icons/${data.rel.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.rel).name} ( ${data.rel} )`;
+			base_answer = `<img src="${coinsdbdir}/icons/${data.base.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.base).name} ( ${data.base} )`;
 
-			rel_form = '<img src="img/cryptologo/' + data.rel.toLowerCase() + '.png" style="width: 50px;"> ' + data.rel;
-			base_form = '<img src="img/cryptologo/' + data.base.toLowerCase() + '.png" style="width: 50px;"> ' + data.base;
+			rel_form = `<img src="${coinsdbdir}/icons/${data.rel.toLowerCase()}.png" style="width: 50px;"> ${data.rel}`;
+			base_form = `<img src="${coinsdbdir}/icons/${data.base.toLowerCase()}.png" style="width: 50px;"> ${data.base}`;
 
 			buy_sell_text = (data.action == 'buy') ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_sell;
 			max_min_text = (data.action == 'buy') ? `${default_lang.Exchange.exchange_lbl_one_max}` : `${default_lang.Exchange.exchange_lbl_one_min}`;
@@ -4385,6 +4394,7 @@ function bot_status(bot_data) {
 }
 
 function bot_screen_sellcoin_balance(sig) {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	if (sig == false) {
 		clearInterval(bot_screen_sellcoin_balance_Interval);
 		return
@@ -4439,7 +4449,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/' + coin.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(coin).name + ' (' + coin + ')' + button_controls);
+				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;"> ${return_coin_details(coin).name} (${coin}) ${button_controls}`);
 				$('.trading_sellcoin_balance').html('Coin is disabled');
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4467,7 +4477,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=` + ethinv + ` data-spvinv=` + spvinv + `>${default_lang.Common.btn_inventory}</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html('<img src="img/cryptologo/' + coin.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(coin).name + ' (' + coin + ') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>' + button_controls);
+				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name} (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small>${button_controls}`);
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var electrum_coin_balance_data = {};
@@ -4497,6 +4507,8 @@ function bot_screen_sellcoin_balance(sig) {
 }
 
 function bot_screen_coin_balance(sig) {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+
 	if (sig == false) {
 		clearInterval(bot_screen_coin_balance_Interval);
 		return
@@ -4545,7 +4557,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/' + coin.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(coin).name + ' (' + coin + ')' + button_controls);
+				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name} (${coin}) ${button_controls}`);
 				$('.trading_coin_balance').html('Coin is disabled');
 			} else {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -4571,7 +4583,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=` + ethinv + ` data-spvinv="` + spvinv + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html('<img src="img/cryptologo/' + coin.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(coin).name + ' (' + coin + ') <small style="vertical-align: top; margin-left: 10px">' + coin_mode + '</small>' + button_controls);
+				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name}  (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small> ${button_controls}`);
 				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'base';
@@ -4659,6 +4671,7 @@ $('.exchange_swap_status_tbl tbody').on('click', '.swapstatus_details', function
 
 
 function check_swap_status_details(swap_status_data) {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 	console.log(swap_status_data);
 
@@ -4717,8 +4730,8 @@ function check_swap_status_details(swap_status_data) {
 		} else {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			result_answer = (swap_status_output_data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + swap_status_output_data.result + '</span></h4>';
-			alice_answer = '<img src="img/cryptologo/' + swap_status_output_data.alice.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(swap_status_output_data.alice).name + ' (' + swap_status_output_data.alice + ')';
-			bob_answer = '<img src="img/cryptologo/' + swap_status_output_data.bob.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(swap_status_output_data.bob).name + ' (' + swap_status_output_data.bob + ')';
+			alice_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.alice.toLowerCase()}.png" style="width: 30px;">${return_coin_details(swap_status_output_data.alice).name} (${swap_status_output_data.alice})`;
+			bob_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.bob.toLowerCase()}.png" style="width: 30px;">${return_coin_details(swap_status_output_data.bob).name} (${swap_status_output_data.bob})`;
 			iambob_answer = (swap_status_output_data.iambob == 0) ? default_lang.Exchange.exchange_swapstatus_iambob_buyer : default_lang.Exchange.exchange_swapstatus_iambob_seller;
 
 			var time = new Date(swap_status_output_data.expiration * 1000);
@@ -5276,6 +5289,7 @@ function formatValue(formatValue) {
 }
 
 function constructTradesHistory() {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var mypubkey = sessionStorage.getItem('mm_mypubkey');
 	var ajax_data = { "userpass": userpass, "method": "swapstatus" };
@@ -5324,8 +5338,8 @@ function constructTradesHistory() {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					tradesCounter++;
 					result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-					alice_answer = '<img src="img/cryptologo/' + data.alice.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(data.alice).name + ' (' + data.alice + ')';
-					bob_answer = '<img src="img/cryptologo/' + data.bob.toLowerCase() + '.png" style="width: 30px;"> ' + return_coin_details(data.bob).name + ' (' + data.bob + ')';
+					alice_answer = `<img src="${coinsdbdir}/icons/${data.alice.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.alice).name} (${data.alice})`;
+					bob_answer = `<img src="${coinsdbdir}/icons/${data.bob.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.bob).name} (${data.bob})`;
 					iambob_answer = (data.iambob == 0) ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy;
 
 					var time = new Date(data.expiration * 1000);

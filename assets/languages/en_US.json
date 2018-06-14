@@ -87,6 +87,7 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Portfolio Chart",
     "portfolio_add_coins": "ADD COINS",
+    "portfolio_manage_local_coins_database": "Manage Local Coins Database",
     "portfolio_add_default_startup_coins": "Default Startup Coins",
     "portfolio_default_startup_coins": "Default Startup Coins",
     "portfolio_manage_coins": "MANAGE COINS",

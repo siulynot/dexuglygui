@@ -305,8 +305,28 @@
         </div>
 
         <div class="screen-managecoins" style="display: none; margin-top: 60px;">
-            <div class="col-sm-6">
-                <div class="panel panel-default">
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title language" data-langstr="portfolio_manage_local_coins_database"></h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- panel-body -->
+                        <div class="col-sm-6">
+                            <select class="selectpicker addcoin_coinsdb_select" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-lg btn-warning btn-managecoins_add_to_startup">Add Coin to local database</button>
+                        </div>
+                        <div class="col-sm-12" style="text-align: center;">
+                            <button class="btn btn-lg btn-warning btn-managecoins_add_to_startup">Update Coins DB</button>
+                            <button class="btn btn-lg btn-warning btn-managecoins_add_to_startup">Fetch Latest Updates</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
                     <div class="panel-heading">
                         <h3 class="panel-title language" data-langstr="portfolio_add_default_startup_coins"></h3>
                     </div>
@@ -326,8 +346,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="panel panel-default">
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title language" data-langstr="portfolio_default_startup_coins"></h3>
+                        <button class="btn btn-xs btn-refreshmanagecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="">
+                        <!-- panel-body -->
+                        <table class="table table-striped dex_mng_coins_list" style="margin-bottom: 0px;">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
                     <div class="panel-heading">
                         <h3 class="panel-title language" data-langstr="portfolio_default_startup_coins"></h3>
                         <button class="btn btn-xs btn-refreshmanagecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
