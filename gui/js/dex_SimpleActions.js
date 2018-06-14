@@ -732,7 +732,7 @@ function enable_disable_coin(enable_disable_coin_data) {
 		console.log("electrum selected for " + enable_disable_coin_data.coin);
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
 
-		if (CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == undefined) {
+		if (CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == undefined || CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == "") {
 			console.log('no electrum servers found for: ' + enable_disable_coin_data.coin);
 			toastr.warning('No Electrum Servers found for ' + enable_disable_coin_data.coin + '<br> Please use Native Mode for ' + enable_disable_coin_data.coin, 'Coin Status');
 		}
