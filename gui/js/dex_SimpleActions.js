@@ -731,12 +731,12 @@ function enable_disable_coin(enable_disable_coin_data) {
 		console.log("electrum selected for " + enable_disable_coin_data.coin);
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
 
-		if (electrum_servers_list[enable_disable_coin_data.coin] == undefined) {
+		if (CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == undefined) {
 			console.log('no electrum servers found for: ' + enable_disable_coin_data.coin);
 			toastr.warning('No Electrum Servers found for ' + enable_disable_coin_data.coin + '<br> Please use Native Mode for ' + enable_disable_coin_data.coin, 'Coin Status');
 		}
 
-		$.each(electrum_servers_list[enable_disable_coin_data.coin], function (index, val) {
+		$.each(CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum, function (index, val) {
 			var ipaddr = _.keys(val);
 			var return_data_ipaddr = ipaddr[0];
 			var return_data_port = val[ipaddr[0]];
@@ -1590,7 +1590,7 @@ function addcoins_dialog() {
 		}
 	});
 	bot_update_bootbox.init(function () {
-		$('.addcoin_enable_disable_selection').html(coin_select_options);
+		$('.addcoin_enable_disable_selection').html(CoinDB_coin_json_select_options());
 		$('.addcoin_enable_disable_selection').selectpicker('render');
 
 		$('.toggle_checkbox').bootstrapToggle('off');

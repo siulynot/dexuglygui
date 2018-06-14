@@ -309,7 +309,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/zar.png' width='30px;'/> South African Rand (ZAR)" data-tokens="South African Rand ZAR">ZAR</option>
     </optgroup>
 */
-
+/*
 $('.trading_pair_coin').html(coin_select_options);
 $('.trading_pair_coin2').html(coin_select_options);
 
@@ -321,3 +321,4 @@ $('.buy_coin').html(coin_select_options);
 
 $('.sell_coin_p').html(coin_select_options);
 $('.buy_coin_p').html(coin_select_options);
+*/

@@ -5,6 +5,20 @@ function BarterDEX_Init_CoinsDB() {
 
 	localStorage.setItem('mm_barterdex_app_info', JSON.stringify(barterDEX_app_info));
 	CoinsDB_ManageCoinsJson();
+
+
+	//Populate drop down select coins options in app//
+	$('.trading_pair_coin').html(CoinDB_coin_json_select_options());
+	$('.trading_pair_coin2').html(CoinDB_coin_json_select_options());
+
+	$('.sell_coin').html(CoinDB_coin_json_select_options());
+	$('.buy_coin').html(CoinDB_coin_json_select_options());
+
+	$('.sell_coin_p').html(CoinDB_coin_json_select_options());
+	$('.buy_coin_p').html(CoinDB_coin_json_select_options());
+
+	// Startup coins select options populated with all coins db select options //
+	$('.addcoin_startup_select').html(CoinDB_manage_coin_select_options);
 }
 
 function CoinsDB_UpdatedCoinsDbFile() {
@@ -80,17 +94,18 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 
 function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 	//TODO
-	var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://kmdexplorer.ru/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
+	var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}];
 
 	var local_coinsdb = ShepherdIPC({ "command": "coins_db_read_db" });
 	var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
 	switch (coins_detail_action) {
 		case 'gen':
 			console.log(`Generating coins.json file...`);
-			var gen_coins_json = ShepherdIPC({ "command": "coinsdb_manage", "data": lstore_coinsdb_json_array });
-			console.log(gen_coins_json);
-			//console.log(lstore_coinsdb_json_array);
-			/*$.each(lstore_coinsdb_json_array, function(index, value){
+			//var gen_coins_json = ShepherdIPC({ "command": "coinsdb_manage", "data":{"cmd":"gen","coin_array":lstore_coinsdb_json_array}});
+			//console.log(gen_coins_json);
+			console.log(lstore_coinsdb_json_array);
+			var processed_coins_db = [];
+			$.each(lstore_coinsdb_json_array, function(index, value){
 				//console.log(index);
 				//console.log(value);
 				$.each(local_coinsdb, function(db_index, db_val) {
@@ -100,13 +115,18 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 							console.log(`${db_val.coin} is ETOMIC`);
 							db_val.eth = true
 							console.log(db_val);
+							processed_coins_db.push(db_val);
 						} else {
 							db_val.eth = false
 							console.log(db_val);
+							processed_coins_db.push(db_val);
 						}
 					}
 				});
-			});*/
+			});
+			console.log(processed_coins_db);
+			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": processed_coins_db });
+			console.log(update_coins_json_file);
 			break;
 		case 'update':
 			console.log(`Updating coins.json file...`);
@@ -114,6 +134,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 			break;
 		default:
 			console.log(`Default action. No action selected.`);
+			break;
 		}
 
 	/*
@@ -129,33 +150,66 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 function CoinsDB_GetCoinDetails(coin_code) {
 	console.log(coin_code)
 
-	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
+	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}]
+	//var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
+
+	var coin_explorers = ShepherdIPC({ "command": "coins_db_read_explorers", "coin": coin_code });
+	var coin_electrums = ShepherdIPC({ "command": "coins_db_read_electrums", "coin": coin_code });
+	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
+	var local_coins_json = local_coins_json.concat(coins_detail_list);
 
 	var coin_details = '';
-	$.each(coins_detail_list, function(index, value){
+	$.each(local_coins_json, function(index, value){
 		//console.log(index);
 		//console.log(value);
 		if (coin_code == value.coin) {
 			coin_details = value;
+			coin_details.explorer = coin_explorers;
+			coin_details.electrum = coin_electrums;
 		}
 	});
 
 	return coin_details;
 }
 
-function CoinDB_coin_select_options() {
+function CoinDB_coin_json_select_options() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	//console.log(coinsdbdir);
 
-	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
+	var local_coins_json = local_coins_json.concat(coins_detail_list);
 	
 	var options_data = '';
-	$.each(coins_detail_list, function(index, value){
+	$.each(local_coins_json, function(index, value){
 		//console.log(index);
 		//console.log(value);
 		//console.log(value.coin.toLowerCase());
 		options_data += `
-<option data-content="<img src='${coinsdbdir}/icons/${value.coin.toLowerCase()}.png' width='30px;'/> ${value.Name} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.Name} ">${value.coin}</option>`;
+<option data-content="<img src='${coinsdbdir}/icons/${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
+	})
+	//console.log(options_data);
+
+	return options_data
+}
+
+function CoinDB_manage_coin_select_options() {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+	//console.log(coinsdbdir);
+
+	var coin_db_img_url = 'https://raw.githubusercontent.com/jl777/coins/master/icons/';
+
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var local_coins_db = ShepherdIPC({ "command": "coins_db_read_db" });
+	var local_coins_db = local_coins_db.concat(coins_detail_list);
+	
+	var options_data = '';
+	$.each(local_coins_db, function(index, value){
+		//console.log(index);
+		//console.log(value);
+		//console.log(value.coin.toLowerCase());
+		options_data += `
+<option data-content="<img src='${coin_db_img_url}/${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
 	})
 	//console.log(options_data);
 

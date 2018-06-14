@@ -222,10 +222,27 @@ ipcMain.on('shepherd-command', (event, arg) => {
         event.returnValue = 'Coins JSON file updated!';
       });
       break;
+    case 'coins_db_read_coins_json':
+      fs.readJson(`${BarterDEXDir}/coins.json`)
+        .then(coins_json_file => { event.returnValue = coins_json_file; })
+        .catch(err => { console.error(err); event.returnValue = ""; })
+      break;
     case 'coins_db_read_db':
       fs.readJson(`${CoinsDBDir}/coins`)
         .then(coins_db_file => { event.returnValue = coins_db_file; })
-        .catch(err => { console.error(err) })
+        .catch(err => { console.error(err); event.returnValue = ""; })
+      break;
+    case 'coins_db_read_explorers':
+      console.log(arg.coin);
+      fs.readJson(`${CoinsDBExplorersDir}/${arg.coin}`)
+        .then(coins_db_explorers_file => { event.returnValue = coins_db_explorers_file; })
+        .catch(err => { console.error(err); event.returnValue = ""; })
+      break;
+    case 'coins_db_read_electrums':
+      console.log(arg.coin);
+      fs.readJson(`${CoinsDBElectrumsDir}/${arg.coin}`)
+        .then(coins_db_elecrum_file => { event.returnValue = coins_db_elecrum_file; })
+        .catch(err => { console.error(err); event.returnValue = ""; })
       break;
     default:
       event.returnValue = 'Command not found';
@@ -238,7 +255,7 @@ StartMarketMaker = function (data) {
     
     //Delete coins.json file so that BarterDEX always gets the same copy of coins.json from default file.
     //Disable this line when coinsDB feature is enabled.
-    fs.unlink(BarterDEXDir + '/coins.json');
+    //fs.unlink(BarterDEXDir + '/coins.json');
     
     // check if marketmaker instance is already running
     portscanner.checkPortStatus(7783, '127.0.0.1', function (error, status) {
@@ -575,10 +592,35 @@ CoinsDBDownloadFiles = function (action_data) {
 
 CoinsDB_Manage = function (action_data) {
   console.log(action_data);
-  for (let i=0; i<action_data.length; i++) {
-    if (action_data[i] !== 'BTC' && action_data[i] !== 'KMD') {
-      console.log(action_data[i]);
-    }
+
+  var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}];
+
+  switch (action_data.cmd) {
+    case 'gen':
+      console.log(`Generating coins.json file...`);
+      console.log(action_data.coin_array)
+      for (let i=0; i<action_data.coin_array.length; i++) {
+        if (action_data.coin_array[i] !== 'BTC' && action_data.coin_array[i] !== 'KMD') {
+          console.log(action_data.coin_array[i]);
+          if (action_data.coin_array[i].coin == value) {
+            //console.log(action_data.coin_array[i]);
+            if (action_data.coin_array[i].etomic != undefined) {
+              console.log(`${action_data.coin_array[i].coin} is ETOMIC`);
+              action_data.coin_array[i].eth = true
+              console.log(action_data.coin_array[i]);
+            } else {
+              action_data.coin_array[i].eth = false
+              console.log(action_data.coin_array[i]);
+            }
+          }
+        }
+      }
+    case 'update':
+      console.log(`Updating coins.json file...`);
+      console.log(lstore_coinsdb_json_array);
+      break;
+    default:
+      console.log(`Default action. No action selected.`);
   }
 }
 
