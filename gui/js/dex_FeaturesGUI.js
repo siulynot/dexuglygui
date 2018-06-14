@@ -133,6 +133,17 @@ $('.btn-updatelocalcoinsdb').click(function(e){
 	toastr.info('Fetching latest Explorers & Electrum server info for local coins database.', 'DEX Coins DB Mangement')
 })
 
+$('.btn-resetlocalcoinsdb').click(function(e){
+	e.preventDefault();
+	console.log('btn-resetlocalcoinsdb clicked');
+
+	CoinsDB_ManageCoinsJson('reset');
+	RefreshCoinsDBLocalDBList();
+	$('.app-notifications').show();
+	$('.alert_coindb').show();
+	$('.alert_coindb').html(`<strong>Local DB Update: </strong> Local Coins DB set to default state. You can update local db from coins db list or just restart now to complete this udpate.`);
+	toastr.success('Local Coins DB set to default state. Please restart BarterDEX App to complete db setup.', 'DEX Coins DB Mangement')
+})
 
 function RefreshCoinsDBLocalDBList() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;

@@ -83,6 +83,11 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 			}
 			
 			break;
+		case 'reset':
+			console.log('Resetting localStorage Coins DB array...');
+			localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
+			CoinsDB_ManageCoinsDetails('reset');
+			return default_coinsdb_json_array;
 		default:
 			console.warn(`No action specified. Executing default action...`);
 			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
@@ -129,10 +134,9 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action) {
 			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": processed_coins_db });
 			//console.log(update_coins_json_file);
 			break;
-		case 'update':
-			console.log(`Updating coins.json file...`);
-			console.log(lstore_coinsdb_json_array);
-			break;
+		case 'reset':
+			console.log('Resetting existing coins.json file...');
+			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [] });
 		default:
 			console.log(`Default action. No action selected.`);
 			break;
