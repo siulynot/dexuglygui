@@ -93,21 +93,37 @@ $('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_lis
 	console.log('btn-dex_mng_local_db_coins_list_detail clicked');
 	console.log($(this).data());
 
+	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
+
 	var local_db_detail_bootbox = bootbox.dialog({
 		onEscape: true,
 		backdrop: true,
 		message: `
 			<div class="row">
-				<div class="col-sm-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-						<h3 class="panel-title"><strong>Local Coins DB Details</strong></h3>
-						</div>
-						<div class="panel-body"> <!-- panel-body -->
-
+				<div class="col-sm-6">
+					<table class="table table-striped local_db_detail_explorers" width="100%" style="margin-bottom: 0;">
+						<thead>
+							<tr>
+								<td>Explorer URL</td>
+							</tr>
+						</thead>
+						<tbody>
 							
-						</div>
-					</div>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-sm-6">
+					<table class="table table-striped local_db_detail_electrums" width="100%" style="margin-bottom: 0;">
+						<thead>
+							<tr>
+								<td>Electrum Server</td>
+								<td>Port</td>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
 				</div>
 			</div>`,
 		closeButton: false,
@@ -115,7 +131,7 @@ $('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_lis
 
 		buttons: {
 			ok: {
-				label: `${default_lang.CoinControl.coincontrol_enable}`,
+				label: `${default_lang.Common.btn_ok_caps}`,
 				className: 'btn-default',
 				callback: function () {
 					
