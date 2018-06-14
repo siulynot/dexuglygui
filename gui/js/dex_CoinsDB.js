@@ -56,11 +56,18 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 			} else {
 				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
 				if (_.contains(lstore_coinsdb_json_array, coins_json_data) == false) {
-					lstore_coinsdb_json_array.push(coins_json_data);
-					localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(_.sortBy(lstore_coinsdb_json_array)));
-					console.log(`Coin ${coins_json_data} added to the local array.`);
-					CoinsDB_Dl_Extra([`${coins_json_data}`])
-					return lstore_coinsdb_json_array;
+					if (lstore_coinsdb_json_array.length >= 255) {
+						$('.app-notifications').show();
+						$('.alert_coindb').show();
+						$('.alert_coindb').html(`There can only be 255 coins in Local Coimns DB. Please remove some coins from existing lisgt and then try adding a new coin to this list.`);
+						toastr.warning(`the local coins db length exceeded.`, `DEX Coins DB Notification`);
+					} else {
+						lstore_coinsdb_json_array.push(coins_json_data);
+						localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(_.sortBy(lstore_coinsdb_json_array)));
+						console.log(`Coin ${coins_json_data} added to the local array.`);
+						CoinsDB_Dl_Extra([`${coins_json_data}`])
+						return lstore_coinsdb_json_array;
+					}
 				} else {
 					console.warn(`Coin ${coins_json_data} already exists in local array`);
 					CoinsDB_Dl_Extra([`${coins_json_data}`])
