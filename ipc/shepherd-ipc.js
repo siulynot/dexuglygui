@@ -595,7 +595,7 @@ CoinsDBDownloadFiles = function (action_data) {
 CoinsDB_Manage = function (action_data) {
   console.log(action_data);
 
-  var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}];
+  var default_coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}];
 
   switch (action_data.cmd) {
     case 'gen':

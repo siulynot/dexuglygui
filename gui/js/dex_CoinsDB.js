@@ -45,7 +45,7 @@ function CoinsDB_ReadLocalDB() {
 
 function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 	
-	var default_coinsdb_json_array = ["BTC","KMD"]
+	var default_coinsdb_json_array = ["BTC","KMD","ETOMIC"]
 
 	switch (coins_json_action) {
 		case 'add':
@@ -109,7 +109,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 
 function CoinsDB_ManageCoinsDetails(coins_detail_action) {
 	//TODO
-	var default_coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var default_coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 
 	var local_coinsdb = ShepherdIPC({ "command": "coins_db_read_db" });
 	var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
@@ -143,7 +143,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action) {
 			break;
 		case 'reset':
 			console.log('Resetting existing coins.json file...');
-			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [] });
+			var update_coins_json_file = ShepherdIPC({ "command": "coins_db_update_coins_json_file", "data": [{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}] });
 		default:
 			console.log(`Default action. No action selected.`);
 			break;
@@ -161,7 +161,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action) {
 
 function CoinsDB_GetCoinDetails(coin_code) {
 	//console.log(coin_code)
-	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 	//var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 
 	var coin_explorers = ShepherdIPC({ "command": "coins_db_read_explorers", "coin": coin_code });
@@ -187,7 +187,7 @@ function CoinDB_coin_json_select_options() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	//console.log(coinsdbdir);
 
-	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
 	var local_coins_json = local_coins_json.concat(coins_detail_list);
 	
@@ -210,7 +210,7 @@ function CoinDB_manage_coin_select_options() {
 
 	var coin_db_img_url = 'https://raw.githubusercontent.com/jl777/coins/master/icons/';
 
-	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 	var local_coins_db = ShepherdIPC({ "command": "coins_db_read_db" });
 	if (local_coins_db.length == 0) {
 		console.log('local coins db is empty!');
