@@ -1,4 +1,4 @@
-
+/*
 function return_coin_details(coin) {
 	var coin_details = {};
 
@@ -1472,3 +1472,4 @@ function return_coin_details(coin) {
 	}
 	return coin_details;
 }
+*/

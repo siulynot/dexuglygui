@@ -151,7 +151,7 @@ function CoinsDB_ManageCoinsDetails(coins_detail_action, coins_detail_data) {
 function CoinsDB_GetCoinDetails(coin_code) {
 	console.log(coin_code)
 
-	var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","eth":false},{"coin": "BTC", "Name": "Bitcoin","eth":false}]
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false}]
 	//var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 
 	var coin_explorers = ShepherdIPC({ "command": "coins_db_read_explorers", "coin": coin_code });

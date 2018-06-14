@@ -471,7 +471,7 @@ function check_coin_balance(chk_coin_data) {
 	$('.coindashboard-address[data-coin="' + coin + '"]').empty();
 	$(".coindashboard-coinicon").attr("src", `${coinsdbdir}/icons/${coin.toLowerCase()}.png`);
 
-	var coin_name = return_coin_details(coin).name;
+	var coin_name = CoinsDB_GetCoinDetails(coin).fname;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = { "userpass": userpass, "method": "getcoin", "coin": coin };
@@ -582,7 +582,7 @@ function get_coin_info(coin) {
 		if (!get_coin_info_output_data.error == true) {
 			selected_coin = {}
 			selected_coin.coin = coin;
-			selected_coin.coin_name = return_coin_details(coin).name;
+			selected_coin.coin_name = CoinsDB_GetCoinDetails(coin).fname;
 			selected_coin.addr = get_coin_info_output_data.coin.smartaddress;
 			selected_coin.balance = get_coin_info_output_data.coin.balance;
 			console.log(selected_coin);
@@ -626,7 +626,7 @@ function get_coin_info_spv_inv(coin_data) {
 		if (!coin_balance_output_data.error == true) {
 			selected_coin = {}
 			selected_coin.coin = coin_data.coin;
-			selected_coin.coin_name = return_coin_details(coin_data.coin).name;
+			selected_coin.coin_name = CoinsDB_GetCoinDetails(coin_data.coin).fname;
 			selected_coin.addr = coin_data.addr;
 			selected_coin.balance = coin_balance_output_data.balance;
 			console.log(selected_coin);
@@ -871,8 +871,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 					bootbox.alert({
 						onEscape: true,
 						backdrop: true,
-						title: ` ${return_coin_details(enable_disable_coin_data.coin).name} (${enable_disable_coin_data.coin}) : ` + default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
-						message: `<p>${return_coin_details(enable_disable_coin_data.coin).name} (${enable_disable_coin_data.coin}) : ${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p1}</p>
+						title: ` ${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin}) : ` + default_lang.CoinControl.coincontrol_couldnt_find_coin_locally_installed,
+						message: `<p>${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin}) : ${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_p1}</p>
 						<ol>
 							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_01}</li>
 							<li>${default_lang.CoinControl.coincontrol_it_seems_you_dont_have_check_points_li_02}</li>
@@ -1359,7 +1359,7 @@ function mk_inv_sendrawtx(mk_inv_rawtx_data, mk_inv_rawtx_coin) {
 			console.log(e);
 
 			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
-				<a href="#" onclick="shell.openExternal('`+ return_coin_details(mk_inv_rawtx_coin).explorer + mk_inv_sendrawtx_output_data + `'); return false;">` + mk_inv_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(mk_inv_rawtx_coin).explorer[0] + mk_inv_sendrawtx_output_data + `'); return false;">` + mk_inv_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		// If fail
@@ -1484,7 +1484,7 @@ function get_coins_list() {
 				console.log(index);
 				console.log(val);
 
-				var coin_name = return_coin_details(val.coin).name
+				var coin_name = CoinsDB_GetCoinDetails(val.coin).fname
 
 				var addcoins_tbl_tr = '';
 
@@ -1735,7 +1735,7 @@ function PortfolioTblDataFn(portfolio_tbl_data) {
 		//console.log(index);
 		console.log(val);
 
-		var coin_name = return_coin_details(val.coin).name
+		var coin_name = CoinsDB_GetCoinDetails(val.coin).fname
 
 		var dex_portfolio_coins_tbl_tr = '';
 
@@ -2398,11 +2398,11 @@ function DepositOnError(deposit_data) {
 
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 
-	if (return_coin_details(deposit_data.coin).eth == true) {
+	if (CoinsDB_GetCoinDetails(deposit_data.coin).eth == true) {
 		deposit_data.coin = 'ETOMIC';
 		var coin_name = 'ETOMIC';
 	} else {
-		var coin_name = return_coin_details(deposit_data.coin).name;
+		var coin_name = CoinsDB_GetCoinDetails(deposit_data.coin).fname;
 	}
 
 	var userpass = sessionStorage.getItem('mm_userpass');
@@ -2834,8 +2834,8 @@ function check_my_prices(sig) {
 					//console.log(index);
 					//console.log(val);
 
-					var base_coin_name = return_coin_details(val.base).name
-					var rel_coin_name = return_coin_details(val.rel).name
+					var base_coin_name = CoinsDB_GetCoinDetails(val.base).fname
+					var rel_coin_name = CoinsDB_GetCoinDetails(val.rel).fname
 
 					var exchange_my_orders_tr = '';
 					exchange_my_orders_tr += '<tr>';
@@ -2848,8 +2848,8 @@ function check_my_prices(sig) {
 					$('.exchange_my_orders_tbl tbody').append(exchange_my_orders_tr);
 				});
 
-				/*var base_coin_name = return_coin_details(data.base).name
-				var rel_coin_name = return_coin_details(data.rel).name
+				/*var base_coin_name = CoinsDB_GetCoinDetails(data.base).fname
+				var rel_coin_name = CoinsDB_GetCoinDetails(data.rel).fname
 
 				var exchange_my_orders_tr = '';
 				exchange_my_orders_tr += '<tr>';
@@ -2924,7 +2924,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 
 	selected_coin = {}
 	selected_coin.coin = coin;
-	selected_coin.coin_name = return_coin_details(coin).name;
+	selected_coin.coin_name = CoinsDB_GetCoinDetails(coin).fname;
 	//selected_coin.addr = $(this).data('addr');
 	//selected_coin.balance = $(this).data('balance');
 	console.log(selected_coin);
@@ -2934,7 +2934,7 @@ $('.trading_pair_coin2').on('change', function (e) {
 	$.each($('.coinexchange[data-coin]'), function (index, value) {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
-	$('.coingoal_label_coin_name').html(return_coin_details(coin).name + ' (' + coin + ')');
+	$('.coingoal_label_coin_name').html(CoinsDB_GetCoinDetails(coin).fname + ' (' + coin + ')');
 
 	bot_screen_sellcoin_balance();
 	bot_screen_coin_balance();
@@ -3077,7 +3077,7 @@ function coinBalanceReceiveAddr(coin) {
 
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 
-	var coin_name = return_coin_details(coin).name;
+	var coin_name = CoinsDB_GetCoinDetails(coin).fname;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = { "userpass": userpass, "method": "getcoin", "coin": coin };
@@ -3157,7 +3157,7 @@ function coinBalanceSendFn(coin) {
 		console.log(data.coin.balance);
 		console.log(data.coin.txfee);
 
-		/*if (return_coin_details(data.coin.coin).eth == true) {
+		/*if (CoinsDB_GetCoinDetails(data.coin.coin).eth == true) {
 			data.coin.txfee = 0;			
 		}*/
 
@@ -3220,7 +3220,7 @@ function coinBalanceSendFn(coin) {
 
 
 						if (to_addr == data.coin.smartaddress) {
-							if (return_coin_details(data.coin.coin).eth == true) {
+							if (CoinsDB_GetCoinDetails(data.coin.coin).eth == true) {
 								var output_data = {};
 								output_data.to_addr = to_addr;
 								output_data.send_amount = send_amount;
@@ -3252,7 +3252,7 @@ function coinBalanceSendFn(coin) {
 								create_sendtx(tx_coin, output_data);
 							}
 						} else {
-							if (return_coin_details(data.coin.coin).eth == true) {
+							if (CoinsDB_GetCoinDetails(data.coin.coin).eth == true) {
 								var output_data = {};
 								output_data.to_addr = to_addr;
 								output_data.send_amount = send_amount;
@@ -3508,7 +3508,7 @@ function create_sendtx(coin, tx_data) {
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 
-	if (return_coin_details(coin).eth == true) {
+	if (CoinsDB_GetCoinDetails(coin).eth == true) {
 		var ajax_data = { "userpass": userpass, "method": "eth_withdraw", "coin": coin, "to": tx_data.to_addr, "amount": tx_data.send_amount }
 	} else {
 		var ajax_data = { "userpass": userpass, "method": "withdraw", "coin": coin, "outputs": tx_data };
@@ -3536,10 +3536,10 @@ function create_sendtx(coin, tx_data) {
 			sessionStorage.setItem('mm_mypubkey', data.mypubkey);
 		} else {
 
-			if (return_coin_details(coin).eth == true) {
+			if (CoinsDB_GetCoinDetails(coin).eth == true) {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
-				<a href="#" onclick="shell.openExternal('`+ return_coin_details(coin).explorer + data.tx_id + `'); return false;">` + data.tx_id + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + data.tx_id + `'); return false;">` + data.tx_id + `</a>`);
 			} else if (data.complete == true) {
 				console.log(data.hex);
 				if (!data.hasOwnProperty('coin')) { data.coin = coin; }
@@ -3973,7 +3973,7 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 			console.log(e);
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
-				<a href="#" onclick="shell.openExternal('`+ return_coin_details(coin).explorer + bot_sendrawtx_output_data + `'); return false;">` + bot_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + bot_sendrawtx_output_data + `'); return false;">` + bot_sendrawtx_output_data + `</a>`);
 		}
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		// If fail
@@ -4106,8 +4106,8 @@ function bot_status(bot_data) {
 			}
 
 			result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-			rel_answer = `<img src="${coinsdbdir}/icons/${data.rel.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.rel).name} ( ${data.rel} )`;
-			base_answer = `<img src="${coinsdbdir}/icons/${data.base.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.base).name} ( ${data.base} )`;
+			rel_answer = `<img src="${coinsdbdir}/icons/${data.rel.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(data.rel).fname} ( ${data.rel} )`;
+			base_answer = `<img src="${coinsdbdir}/icons/${data.base.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(data.base).fname} ( ${data.base} )`;
 
 			rel_form = `<img src="${coinsdbdir}/icons/${data.rel.toLowerCase()}.png" style="width: 50px;"> ${data.rel}`;
 			base_form = `<img src="${coinsdbdir}/icons/${data.base.toLowerCase()}.png" style="width: 50px;"> ${data.base}`;
@@ -4405,7 +4405,7 @@ function bot_screen_sellcoin_balance(sig) {
 	coin = $('.trading_pair_coin').selectpicker('val');
 	console.log('trading_pair_coin is: ' + coin);
 
-	var coin_name = return_coin_details(coin).name;
+	var coin_name = CoinsDB_GetCoinDetails(coin).fname;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = { "userpass": userpass, "method": "getcoin", "coin": coin };
@@ -4449,7 +4449,7 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;"> ${return_coin_details(coin).name} (${coin}) ${button_controls}`);
+				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;"> ${CoinsDB_GetCoinDetails(coin).fname} (${coin}) ${button_controls}`);
 				$('.trading_sellcoin_balance').html('Coin is disabled');
 				$('#balance-spinner').hide();
 				$('.balance-block').show();
@@ -4459,9 +4459,9 @@ function bot_screen_sellcoin_balance(sig) {
 				var coin_mode = '';
 				var ethinv = false;
 				var spvinv = false;
-				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
+				if (data.coin.hasOwnProperty('electrum') || CoinsDB_GetCoinDetails(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-					if (return_coin_details(coin).eth == true) {
+					if (CoinsDB_GetCoinDetails(coin).eth == true) {
 						ethinv = true;
 					}
 					spvinv = true;
@@ -4477,8 +4477,8 @@ function bot_screen_sellcoin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=` + ethinv + ` data-spvinv=` + spvinv + `>${default_lang.Common.btn_inventory}</button>
 				</span>`;
-				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name} (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small>${button_controls}`);
-				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
+				$('.trading_sellcoin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(coin).fname} (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small>${button_controls}`);
+				if (data.coin.hasOwnProperty('electrum') || CoinsDB_GetCoinDetails(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'rel';
@@ -4519,7 +4519,7 @@ function bot_screen_coin_balance(sig) {
 	var coin = $('.trading_pair_coin2').selectpicker('val');
 	console.log(coin);
 
-	var coin_name = return_coin_details(coin).name;
+	var coin_name = CoinsDB_GetCoinDetails(coin).fname;
 
 	var userpass = sessionStorage.getItem('mm_userpass');
 	var ajax_data = { "userpass": userpass, "method": "getcoin", "coin": coin };
@@ -4557,7 +4557,7 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-primary btn-xs coin_balance_enable_native" style="margin-top: 6px; margin-right: 3px;" data-electrum=true data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_native}</button>
 					<button class="btn btn-warning btn-xs coin_balance_enable_electrum" style="margin-top: 6px;" data-electrum=false data-method="enable" data-coin="` + coin + `">${default_lang.Common.btn_enable_electrum}</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name} (${coin}) ${button_controls}`);
+				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(coin).fname} (${coin}) ${button_controls}`);
 				$('.trading_coin_balance').html('Coin is disabled');
 			} else {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
@@ -4565,9 +4565,9 @@ function bot_screen_coin_balance(sig) {
 				var ethinv = false;
 				var spvinv = false;
 				//console.warn(data.coin)
-				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
+				if (data.coin.hasOwnProperty('electrum') || CoinsDB_GetCoinDetails(coin).eth == true) {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-					if (return_coin_details(coin).eth == true) {
+					if (CoinsDB_GetCoinDetails(coin).eth == true) {
 						ethinv = true;
 					}
 					spvinv = true;
@@ -4583,8 +4583,8 @@ function bot_screen_coin_balance(sig) {
 					<button class="btn btn-success btn-xs coin_balance_send" style="margin-top: 6px;" data-coin="` + coin + `">${default_lang.Common.btn_send}</button>
 					<button class="btn btn-info btn-xs coin_balance_inventory" style="margin-top: 6px;" data-coin="` + coin + `" data-addr="` + data.coin.smartaddress + `" data-balance="` + data.coin.balance + `" data-ethinv=` + ethinv + ` data-spvinv="` + spvinv + `">${default_lang.Common.btn_inventory}</button>
 				</span>`;
-				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${return_coin_details(coin).name}  (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small> ${button_controls}`);
-				if (data.coin.hasOwnProperty('electrum') || return_coin_details(coin).eth == true) {
+				$('.trading_coin_ticker_name').html(`<img src="${coinsdbdir}/icons/${coin.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(coin).fname}  (${coin}) <small style="vertical-align: top; margin-left: 10px">${coin_mode}</small> ${button_controls}`);
+				if (data.coin.hasOwnProperty('electrum') || CoinsDB_GetCoinDetails(coin).eth == true) {
 					var electrum_coin_balance_data = {};
 					electrum_coin_balance_data.baserel = 'base';
 					electrum_coin_balance_data.coin = coin;
@@ -4601,7 +4601,7 @@ function bot_screen_coin_balance(sig) {
 				}
 			}
 
-			//$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ return_coin_details(coin).name + ' ('+coin+')');
+			//$('.trading_coin_ticker_name').html('<img src="img/cryptologo/'+coin.toLowerCase()+'.png" style="width: 30px;"> '+ CoinsDB_GetCoinDetails(coin).fname + ' ('+coin+')');
 			//$('.trading_coin_balance').html(data.coin.balance + ' <span style="font-size: 80%; font-weight: 100;">' + coin + '</span><br><span style="font-size: 50%; font-weight: 200;">' + data.coin.smartaddress + '</span>');
 		}
 
@@ -4730,8 +4730,8 @@ function check_swap_status_details(swap_status_data) {
 		} else {
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			result_answer = (swap_status_output_data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + swap_status_output_data.result + '</span></h4>';
-			alice_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.alice.toLowerCase()}.png" style="width: 30px;">${return_coin_details(swap_status_output_data.alice).name} (${swap_status_output_data.alice})`;
-			bob_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.bob.toLowerCase()}.png" style="width: 30px;">${return_coin_details(swap_status_output_data.bob).name} (${swap_status_output_data.bob})`;
+			alice_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.alice.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(swap_status_output_data.alice).fname} (${swap_status_output_data.alice})`;
+			bob_answer = `<img src="${coinsdbdir}/icons/${swap_status_output_data.bob.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(swap_status_output_data.bob).fname} (${swap_status_output_data.bob})`;
 			iambob_answer = (swap_status_output_data.iambob == 0) ? default_lang.Exchange.exchange_swapstatus_iambob_buyer : default_lang.Exchange.exchange_swapstatus_iambob_seller;
 
 			var time = new Date(swap_status_output_data.expiration * 1000);
@@ -4833,7 +4833,7 @@ function check_swap_status_details(swap_status_data) {
 										</tr>
 										<tr>
 											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_payment}</td>
-											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('` + return_coin_details(swap_status_output_data.alice).explorer + swap_status_output_data.alicepayment + `'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
+											<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(swap_status_output_data.alice).explorer[0] + swap_status_output_data.alicepayment + `'); return false;">` + swap_status_output_data.alicepayment + `</a></td>
 										</tr>
 										<tr>
 											<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_tx_fee}</td>
@@ -4846,11 +4846,11 @@ function check_swap_status_details(swap_status_data) {
 										</tr>
 										<tr>
 											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_deposit}</td>
-											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('` + return_coin_details(swap_status_output_data.bob).explorer + swap_status_output_data.bobdeposit + `'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
+											<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(swap_status_output_data.bob).explorer[0] + swap_status_output_data.bobdeposit + `'); return false;">` + swap_status_output_data.bobdeposit + `</a></td>
 										</tr>
 										<tr>
 											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_payment}</td>
-											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+ return_coin_details(swap_status_output_data.bob).explorer + swap_status_output_data.bobpayment + `'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
+											<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(swap_status_output_data.bob).explorer[0] + swap_status_output_data.bobpayment + `'); return false;">` + swap_status_output_data.bobpayment + `</a></td>
 										</tr>
 										<tr>
 											<td>${default_lang.Exchange.exchange_swapstatus_td_seller_tx_fee}</td>
@@ -4940,10 +4940,10 @@ function check_swap_status_details(swap_status_data) {
 							}
 						}
 
-						$('.tbl_alicepayment').html(`<a href="#" onclick="shell.openExternal('` + return_coin_details(swap_status_output_data.alice).explorer + dataforblinker.alicepayment + `'); return false;">` + dataforblinker.alicepayment + `</a>`);
+						$('.tbl_alicepayment').html(`<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(swap_status_output_data.alice).explorer[0] + dataforblinker.alicepayment + `'); return false;">` + dataforblinker.alicepayment + `</a>`);
 						$('.tbl_alicetxfee').html(dataforblinker.alicetxfee);
-						$('.tbl_bobdeposit').html(`<a href="#" onclick="shell.openExternal('` + return_coin_details(swap_status_output_data.bob).explorer + dataforblinker.bobdeposit + `'); return false;">` + dataforblinker.bobdeposit + `</a>`);
-						$('.tbl_bobpayment').html(`<a href="#" onclick="shell.openExternal('` + return_coin_details(swap_status_output_data.bob).explorer + dataforblinker.bobpayment + `'); return false;">` + dataforblinker.bobpayment + `</a>`);
+						$('.tbl_bobdeposit').html(`<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(swap_status_output_data.bob).explorer[0] + dataforblinker.bobdeposit + `'); return false;">` + dataforblinker.bobdeposit + `</a>`);
+						$('.tbl_bobpayment').html(`<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(swap_status_output_data.bob).explorer[0] + dataforblinker.bobpayment + `'); return false;">` + dataforblinker.bobpayment + `</a>`);
 						$('.tbl_bobtxfee').html(dataforblinker.bobtxfee);;
 						$('.tbl_sentflags').html(JSON.stringify(dataforblinker.sentflags), null, 2);
 						$('.tbl_values').html(renderValues(dataforblinker.values));
@@ -5338,8 +5338,8 @@ function constructTradesHistory() {
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 					tradesCounter++;
 					result_answer = (data.result == 'success') ? '<h4><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Success</span></h4>' : '<h4><span class="label label-danger"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ' + data.result + '</span></h4>';
-					alice_answer = `<img src="${coinsdbdir}/icons/${data.alice.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.alice).name} (${data.alice})`;
-					bob_answer = `<img src="${coinsdbdir}/icons/${data.bob.toLowerCase()}.png" style="width: 30px;">${return_coin_details(data.bob).name} (${data.bob})`;
+					alice_answer = `<img src="${coinsdbdir}/icons/${data.alice.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(data.alice).fname} (${data.alice})`;
+					bob_answer = `<img src="${coinsdbdir}/icons/${data.bob.toLowerCase()}.png" style="width: 30px;">${CoinsDB_GetCoinDetails(data.bob).fname} (${data.bob})`;
 					iambob_answer = (data.iambob == 0) ? default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy : default_lang.Exchange.exchange_botstatus_dialog_buyselltext_buy;
 
 					var time = new Date(data.expiration * 1000);
@@ -5459,7 +5459,7 @@ function constructTradesHistory() {
 												</tr>
 												<tr>
 													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_payment}</td>
-													<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('` + return_coin_details(data.alice).explorer + data.alicepayment + `'); return false;">` + data.alicepayment + `</a></td>
+													<td class="tbl_alicepayment">` + `<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(data.alice).explorer[0] + data.alicepayment + `'); return false;">` + data.alicepayment + `</a></td>
 												</tr>
 												<tr>
 													<td>${default_lang.Exchange.exchange_swapstatus_td_buyer_tx_fee}</td>
@@ -5472,11 +5472,11 @@ function constructTradesHistory() {
 												</tr>
 												<tr>
 													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_deposit}</td>
-													<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('` + return_coin_details(data.bob).explorer + data.bobdeposit + `'); return false;">` + data.bobdeposit + `</a></td>
+													<td class="tbl_bobdeposit">` + `<a href="#" onclick="shell.openExternal('` + CoinsDB_GetCoinDetails(data.bob).explorer[0] + data.bobdeposit + `'); return false;">` + data.bobdeposit + `</a></td>
 												</tr>
 												<tr>
 													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_payment}</td>
-													<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+ return_coin_details(data.bob).explorer + data.bobpayment + `'); return false;">` + data.bobpayment + `</a></td>
+													<td class="tbl_bobpayment"><a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(data.bob).explorer[0] + data.bobpayment + `'); return false;">` + data.bobpayment + `</a></td>
 												</tr>
 												<tr>
 													<td>${default_lang.Exchange.exchange_swapstatus_td_seller_tx_fee}</td>
