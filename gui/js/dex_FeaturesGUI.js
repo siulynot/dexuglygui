@@ -93,6 +93,7 @@ $('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_lis
 	console.log('btn-dex_mng_local_db_coins_list_detail clicked');
 	console.log($(this).data());
 
+	var selected_coin = $(this).data('coin');
 	var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 
 	var local_db_detail_bootbox = bootbox.dialog({
@@ -140,7 +141,32 @@ $('.dex_mng_local_db_coins_list tbody').on('click', '.dex_mng_local_db_coins_lis
 		}
 	});
 	local_db_detail_bootbox.init(function () {
-		
+		console.log(selected_coin);
+		var explorers_list = CoinsDB_GetCoinDetails(selected_coin).explorer;
+		var electrums_list = CoinsDB_GetCoinDetails(selected_coin).electrum;
+		//console.log(explorers_list);
+		console.log(electrums_list);
+
+		//List all explorers list
+		$('.local_db_detail_explorers tbody').empty();
+		var local_db_detail_explorers_tr = '';
+		$.each(explorers_list, function(exp_index, exp_value) {
+			local_db_detail_explorers_tr += `<tr><td>${exp_value}</td></tr>`;
+		});
+		$('.local_db_detail_explorers tbody').append(local_db_detail_explorers_tr);
+
+		//List all electrum servers list
+		$('.local_db_detail_electrums tbody').empty();
+		var local_db_detail_electrums_tr = '';
+		$.each(electrums_list, function(elec_index, elec_value) {
+			var ipaddr = _.keys(elec_value);
+			var return_data_ipaddr = ipaddr[0];
+			var return_data_port = elec_value[ipaddr[0]];
+			//console.log(return_data_ipaddr);
+			//console.log(return_data_port);
+			local_db_detail_electrums_tr += `<tr><td>${return_data_ipaddr}</td><td>${return_data_port}</td></tr>`;
+		});
+		$('.local_db_detail_electrums tbody').append(local_db_detail_electrums_tr);
 	});
 });
 
