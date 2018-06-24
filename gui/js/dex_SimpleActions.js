@@ -1427,9 +1427,8 @@ function mk_inv_sendrawtx(mk_inv_rawtx_data, mk_inv_rawtx_coin) {
 			}
 		} catch (e) {
 			console.log(e);
-
 			bootbox.alert(`Transaction Sent Successfully. Here's the Transaction ID:<br>
-				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(mk_inv_rawtx_coin).explorer[0] + mk_inv_sendrawtx_output_data + `'); return false;">` + mk_inv_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(mk_inv_rawtx_coin).explorer[0] + mk_inv_sendrawtx_output_data.replace(/(\r\n|\n|\r)/gm,"") + `'); return false;">` + mk_inv_sendrawtx_output_data.replace(/(\r\n|\n|\r)/gm,"") + `</a>`);
 		}
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		// If fail
@@ -3609,7 +3608,7 @@ function create_sendtx(coin, tx_data) {
 			if (CoinsDB_GetCoinDetails(coin).eth == true) {
 				var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 				bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
-				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + data.tx_id + `'); return false;">` + data.tx_id + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + data.tx_id.replace(/(\r\n|\n|\r)/gm,"") + `'); return false;">` + data.tx_id.replace(/(\r\n|\n|\r)/gm,"") + `</a>`);
 			} else if (data.complete == true) {
 				console.log(data.hex);
 				if (!data.hasOwnProperty('coin')) { data.coin = coin; }
@@ -4045,7 +4044,7 @@ function bot_sendrawtx(bot_sendrawtx_data) {
 			console.log(e);
 			var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 			bootbox.alert(`${default_lang.Exchange.exchange_sendrawtx_tx_sent_successfully_heres_txid}:<br>
-				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + bot_sendrawtx_output_data + `'); return false;">` + bot_sendrawtx_output_data + `</a>`);
+				<a href="#" onclick="shell.openExternal('`+ CoinsDB_GetCoinDetails(coin).explorer[0] + bot_sendrawtx_output_data.replace(/(\r\n|\n|\r)/gm,"") + `'); return false;">` + bot_sendrawtx_output_data.replace(/(\r\n|\n|\r)/gm,"") + `</a>`);
 		}
 	}).fail(function (jqXHR, textStatus, errorThrown) {
 		// If fail
