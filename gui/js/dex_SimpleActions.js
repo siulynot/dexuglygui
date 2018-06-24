@@ -208,6 +208,8 @@ $('.btn-bot_action').click(function (e) {
 		trade_data.trading_options = trading_options;
 		//trade_data.action = $(this).data('action');
 		//trade_data.action = $('.btn-bot_action').attr('data-action');
+		trade_data.fill_option = (($('#buy_sell_fill_option').prop('checked') == true) ? 1 : 0);
+		trade_data.gtc_option = (($('#buy_sell_gtc_option').prop('checked') == true) ? 1 : 0);
 		trade_data.action = $(this).attr('data-action');
 
 		console.log(trade_data);
@@ -344,6 +346,74 @@ $('input[name=trading_manual_buy_sell_options]').change(function () {
 		$('.coingoal_div').hide();
 	}
 })
+
+$('#buy_sell_fill_option').change(function() {
+	console.log('Fill: ' + $(this).prop('checked'));
+	var fill_option = $(this).prop('checked');
+	var gtc_option = $('#buy_sell_gtc_option').prop('checked');
+
+	if (fill_option == true && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Default');
+	}
+
+	if (fill_option == false && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill immediate or cancel order');
+	}
+
+	if (fill_option == true && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill or kill order');
+	}
+
+	if (fill_option == false && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Will stop as soon as any part of the order is done');
+	}
+
+});
+
+$('#buy_sell_gtc_option').change(function() {
+	console.log('GTC: ' + $(this).prop('checked'));
+
+	var fill_option = $('#buy_sell_fill_option').prop('checked');
+	var gtc_option = $(this).prop('checked');
+
+	if (fill_option == true && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Default');
+	}
+
+	if (fill_option == false && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill immediate or cancel order');
+	}
+
+	if (fill_option == true && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill or kill order');
+	}
+
+	if (fill_option == false && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Trade will stop as soon as any part of the order is done');
+	}
+});
+
+
+function Check_fill_gtc_state() {
+	var fill_option = $('#buy_sell_fill_option').prop('checked');
+	var gtc_option = $('#buy_sell_gtc_option').prop('checked');
+	
+	if (fill_option == true && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Default');
+	}
+
+	if (fill_option == false && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill immediate or cancel order');
+	}
+
+	if (fill_option == true && gtc_option == false) {
+		$('.fill_gtc_option_desc').html('Fill or kill order');
+	}
+
+	if (fill_option == false && gtc_option == true) {
+		$('.fill_gtc_option_desc').html('Trade will stop as soon as any part of the order is done');
+	}
+}
 
 $('.trading_pair_coin_price').keyup(function () {
 	pair_price = $('.trading_pair_coin_price').val();
@@ -2270,7 +2340,7 @@ function manual_buy_sell(mt_data) {
 			toastr.success(`${default_lang.Exchange.exchange_autorepat_buy_order_executed_at_margin_percent} ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 			toastr.success(`${default_lang.Exchange.exchange_autorepeat_auto_adjust_based_on_coinmarketcap_buy}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
-			var ajax_data = { "userpass": userpass, "method": "buy", "base": base_coin, "rel": rel_coin, "price": mt_data.price, "relvolume": mt_data.volume };
+			var ajax_data = { "userpass": userpass, "method": "buy", "base": base_coin, "rel": rel_coin, "price": mt_data.price, "relvolume": mt_data.volume, "fill": mt_data.fill_option, "gtc": mt_data.gtc_option };
 		}
 		if (mt_data.trader_only == true) {
 			ajax_data.destpubkey = mt_data.destpubkey;
@@ -2298,7 +2368,7 @@ function manual_buy_sell(mt_data) {
 			toastr.success(`${default_lang.Exchange.exchange_autorepat_sell_order_executed_at_margin_percent} ${mt_data.price}%`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 			toastr.success(`${default_lang.Exchange.exchange_autorepeat_auto_adjust_based_on_coinmarketcap_sell}`, default_lang.Exchange.exchange_toastr_trade_notification_title);
 		} else {
-			var ajax_data = { "userpass": userpass, "method": "sell", "base": base_coin, "rel": rel_coin, "price": mt_data.price, "basevolume": mt_data.volume };
+			var ajax_data = { "userpass": userpass, "method": "sell", "base": base_coin, "rel": rel_coin, "price": mt_data.price, "basevolume": mt_data.volume, "fill": mt_data.fill_option, "gtc": mt_data.gtc_option };
 		}
 		if (mt_data.trader_only == true) {
 			ajax_data.destpubkey = mt_data.destpubkey;
@@ -2362,12 +2432,12 @@ function manual_buy_sell(mt_data) {
 					</ul>`});
 				console.log(JSON.stringify(mt_output_data))
 
-				/*if (mt_output_data.withdraw.complete === true) {
+				//if (mt_output_data.withdraw.complete === true) {
 					//bot_sendrawtx(mt_output_data);
-					toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
-				} else {
-					toastr.error('No withdraw info found. Please try again with lower buy amount.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
-				}*/
+					//toastr.success('Executed Auto Split Funds. Please try in approx. 30 seconds again.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
+				//} else {
+					//toastr.error('No withdraw info found. Please try again with lower buy amount.', `${default_lang.Exchange.exchange_toastr_title_bot_info}`);
+				//}
 			} else {
 				if (mt_output_data.error == 'only one pending request at a time') {
 					toastr.error("Please wait " + JSON.stringify(mt_output_data.wait) + " seconds before trying to place your next order", default_lang.Exchange.exchange_tradingbot_toastr_trade_info_title);
@@ -3760,6 +3830,8 @@ function buy_sell_precheck(bot_data) {
 	console.log('BUYING or SELLING??: ' + buying_or_selling);
 	console.log('BASE: ' + base_coin);
 	console.log('REL: ' + rel_coin);
+	console.log('FILL: ' + bot_data.fill_option);
+	console.log('GTC: ' + bot_data.gtc_option);
 
 	if (base_coin == 'BTC' || rel_coin == 'BTC') {
 		console.log("BTC found in trading pair. Confirming BTC tx fee before proceeding.");

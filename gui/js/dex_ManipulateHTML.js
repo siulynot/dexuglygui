@@ -598,6 +598,8 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 	bot_screen_sellcoin_balance_Interval = setInterval(bot_screen_sellcoin_balance, 30000);
 	bot_screen_sellcoin_balance();
 
+	Check_fill_gtc_state();
+
 	//getZeroConfDepositHistory();
 
 	sessionStorage.setItem('mm_chartinterval', JSON.stringify({"periodicity":"h","interval":1}));
