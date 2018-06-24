@@ -23,6 +23,10 @@
 	color: #777;
 }
 
+.label {
+  padding: 0.4em .6em .3em;
+}
+
 .label-uppercase {
 	text-transform: uppercase;
 }

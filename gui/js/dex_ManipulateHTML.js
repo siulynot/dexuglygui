@@ -67,10 +67,10 @@ $(document).ready(function() {
 				$('#trading_pair_coin_price_max_min').html(`${default_lang.Exchange.exchange_lbl_one_max}`);
 			}
 			if (dexmode == 'dICO') {
-				$('.navbar-brandname').html(return_coin_details(selected_dICO_coin).name + ' dICO');
+				$('.navbar-brandname').html(CoinsDB_GetCoinDetails(selected_dICO_coin).fname + ' dICO');
 				selected_coin = {}
 				selected_coin.coin = selected_dICO_coin;
-				selected_coin.coin_name = return_coin_details(selected_dICO_coin).name;
+				selected_coin.coin_name = CoinsDB_GetCoinDetails(selected_dICO_coin).fname;
 				console.log(selected_coin);
 				sessionStorage.setItem('mm_selectedcoin', JSON.stringify(selected_coin));
 
@@ -582,7 +582,7 @@ $('.porfolio_coins_list tbody').on('click', '.btn-portfoliogo', function() {
 		$('.coinexchange[data-coin]').data('coin', coin);
 	});
 	$('.trading_pair_coin2').selectpicker('val',coin);
-	$('.coingoal_label_coin_name').html(return_coin_details(coin).name + ' ('+coin+')');
+	$('.coingoal_label_coin_name').html(CoinsDB_GetCoinDetails(coin).fname + ' ('+coin+')');
 
 	CheckPortfolioFn(false);
 	CheckOrderBookFn();

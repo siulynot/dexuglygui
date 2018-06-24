@@ -1,4 +1,4 @@
-var coin_select_options = '';
+/*var coin_select_options = '';
 
 coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/kmd.png' width='30px;'/> Komodo (KMD)" data-tokens="kmd komodo ">KMD</option>
@@ -263,7 +263,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/vrsc.png' width='30px'/> VerusCoin (VRSC)" data-tokens="VRSC">VRSC</option>
       <option data-content="<img src='img/cryptologo/wlc.png' width='30px'/> Wireless (WLC)" data-tokens="Wireless WLC">WLC</option>>
     </optgroup>`;
-
+*/
 
 /*
 <option data-content="<img src='img/cryptologo/ANC.png' width='30px' disabled/> Anoncoin (ANC)" data-tokens="anc anoncoin">ANC</option>
@@ -309,7 +309,7 @@ coin_select_options = `<optgroup label="Crypto Coins">
       <option data-content="<img src='img/cryptologo/zar.png' width='30px;'/> South African Rand (ZAR)" data-tokens="South African Rand ZAR">ZAR</option>
     </optgroup>
 */
-
+/*
 $('.trading_pair_coin').html(coin_select_options);
 $('.trading_pair_coin2').html(coin_select_options);
 
@@ -321,3 +321,4 @@ $('.buy_coin').html(coin_select_options);
 
 $('.sell_coin_p').html(coin_select_options);
 $('.buy_coin_p').html(coin_select_options);
+*/

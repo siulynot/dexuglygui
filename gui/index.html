@@ -212,6 +212,9 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
+        <div class="app-notifications" style="display: none; margin-top: 60px;">
+            <div class="alert alert-danger alert_coindb" role="alert" style="display: none;"><strong>Restart BarterDEX App: </strong> After adding or removing coins to local database BarterDEX need to be restarted.</div>
+        </div>
         <!-- Section: Navigation Menu END -->
         <div class="dextradeshistory" style="display: none; margin-top: 60px;">
 
@@ -305,8 +308,27 @@
         </div>
 
         <div class="screen-managecoins" style="display: none; margin-top: 60px;">
-            <div class="col-sm-6">
-                <div class="panel panel-default">
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title language" data-langstr="portfolio_manage_local_coins_database"></h3>
+                        <button class="btn btn-info btn-xs btn-fetchcoinsdbupdate portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Fetch CoinsDB Update
+                        </button>
+                    </div>
+                    <div class="panel-body">
+                        <!-- panel-body -->
+                        <div class="col-sm-12">
+                            <select class="selectpicker addcoin_coinsdb_select" data-live-search="true" data-hide-disabled="true" data-width="100%"></select>
+                        </div>
+                        <div class="col-sm-12" style="text-align: center;">
+                            <button class="btn btn-lg btn-warning btn-managecoins_add_to_localdb">Add Coin to local database</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
                     <div class="panel-heading">
                         <h3 class="panel-title language" data-langstr="portfolio_add_default_startup_coins"></h3>
                     </div>
@@ -326,11 +348,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="panel panel-default">
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title language" data-langstr="portfolio_default_localdb_coins"></h3>
+                        <button class="btn btn-default btn-xs btn-refreshlocalcoinsdb portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-info btn-xs btn-updatelocalcoinsdb portfolio" style="float: right; margin-right: 6px; margin-top: -20px">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Fetch Coin Updates
+                        </button>
+                        <button class="btn btn-danger btn-xs btn-resetlocalcoinsdb portfolio" style="float: right; margin-right: 6px; margin-top: -20px">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Reset Local Coin DB
+                        </button>
+                    </div>
+                    <div class="">
+                        <!-- panel-body -->
+                        <table class="table table-striped dex_mng_local_db_coins_list" style="margin-bottom: 0px;">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="padding: 2px;">
+                <div class="panel panel-default" style="margin-bottom: 5px;">
                     <div class="panel-heading">
                         <h3 class="panel-title language" data-langstr="portfolio_default_startup_coins"></h3>
-                        <button class="btn btn-xs btn-refreshmanagecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
+                        <button class="btn btn-default btn-xs btn-refreshmanagecoins portfolio" style="float: right; margin-right: -6px; margin-top: -20px">
                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                         </button>
                     </div>
@@ -1092,10 +1138,10 @@
     <script src="js/charts/jquery-ui.min.js"></script>
     
     <script src="js/dex_CoinsDB.js"></script>
-    <script src="js/select_options_coin.js"></script>
+    <!--<script src="js/select_options_coin.js"></script>-->
     <script src="js/select_options_login.js"></script>
     <script src="js/select_options_zeroconf_weeks.js"></script>
-    <script src="js/coin_names.js"></script>
+    <!--<script src="js/coin_names.js"></script>-->
     <script src="js/ipc-actions.js"></script>
     <script src="js/dex_Charts.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -1155,7 +1201,7 @@
     <!--<script src="js/dexactions.js"></script>-->
     <script src="js/dex_ManipulateHTML.js"></script>
     <script src="js/dex_FeaturesGUI.js"></script>
-    <script src="js/electrum_list.js"></script>
+    <!--<script src="js/electrum_list.js"></script>-->
     <script src="js/dex_SimpleActions.js"></script>
     <script src="js/dex_mmCalls.js"></script>
     <script src="js/dex_ComplexActions.js"></script>
