@@ -23,6 +23,10 @@
 	color: #777;
 }
 
+.label {
+  padding: 0.4em .6em .3em;
+}
+
 .label-uppercase {
 	text-transform: uppercase;
 }
@@ -429,6 +433,9 @@ table tbody tr:first-child td {
   cursor: pointer;
 }
 
+.buy_sell_fill_gtc_div .toggle-on, .buy_sell_fill_gtc_div .toggle-off { 
+  line-height: inherit;
+}
 
 .toggle-on, .toggle-off { 
   line-height: 30px;
