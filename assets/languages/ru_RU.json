@@ -87,6 +87,8 @@
   "Portfolio": {
     "portfolio_portfolio_chart": "Портфель: Графики",
     "portfolio_add_coins": "ДОБАВИТЬ МОНЕТЫ",
+    "portfolio_manage_local_coins_database": "Manage Local Coins Database",
+    "portfolio_default_localdb_coins": "Default Local Coins DB",
     "portfolio_add_default_startup_coins": "Default Startup Coins",
     "portfolio_default_startup_coins": "Default Startup Coins",
     "portfolio_manage_coins": "MANAGE COINS",

@@ -1,3 +1,4 @@
+/*
 var electrum_servers_list = {
   "ARG": [{"electrum2.cipig.net":10068},{"electrum1.cipig.net":10068}],
   "BCBC": [{"bsmn0.cleanblockchain.io":50001},{"bsmn1.cleanblockchain.org":50001}],
@@ -75,3 +76,6 @@ function get_random_electrum_server(coin) {
   return_data.port = select_random_server[ipaddr[0]];
   return return_data;
 }
+
+
+*/
