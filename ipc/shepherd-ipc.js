@@ -114,7 +114,7 @@ fs.pathExists(_BarterDEXSettingsFile, (err, exists) => {
 });
 
 ipcMain.on('shepherd-command', (event, arg) => {
-  console.log('Shepard arg: ' + JSON.stringify(arg.command))  // prints arg
+  //console.log('Shepard arg: ' + JSON.stringify(arg.command))  // prints arg
   switch (arg.command) {
     case 'ping':
       event.returnValue = 'pong'
@@ -235,13 +235,13 @@ ipcMain.on('shepherd-command', (event, arg) => {
         .catch(err => { console.error(err); event.returnValue = []; })
       break;
     case 'coins_db_read_explorers':
-      console.log(arg.coin);
+      //console.log(arg.coin);
       fs.readJson(`${CoinsDBExplorersDir}/${arg.coin}`)
         .then(coins_db_explorers_file => { event.returnValue = coins_db_explorers_file; })
         .catch(err => { console.error(err); event.returnValue = ""; })
       break;
     case 'coins_db_read_electrums':
-      console.log(arg.coin);
+      //console.log(arg.coin);
       fs.readJson(`${CoinsDBElectrumsDir}/${arg.coin}`)
         .then(coins_db_elecrum_file => { event.returnValue = coins_db_elecrum_file; })
         .catch(err => { console.error(err); event.returnValue = ""; })
