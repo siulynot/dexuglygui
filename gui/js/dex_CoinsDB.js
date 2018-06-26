@@ -59,7 +59,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 					if (lstore_coinsdb_json_array.length >= 255) {
 						$('.app-notifications').show();
 						$('.alert_coindb').show();
-						$('.alert_coindb').html(`There can only be 255 coins in Local Coimns DB. Please remove some coins from existing lisgt and then try adding a new coin to this list.`);
+						$('.alert_coindb').html(`There can only be 255 coins in Local Coins DB. Please remove some coins from existing list and then try adding a new coin to this list.`);
 						toastr.warning(`the local coins db length exceeded.`, `DEX Coins DB Notification`);
 					} else {
 						lstore_coinsdb_json_array.push(coins_json_data);
