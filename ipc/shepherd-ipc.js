@@ -54,9 +54,9 @@ switch (osPlatform) {
     CoinsDBDir = path.normalize(CoinsDBDir);
     CoinsDBIconsDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/icons`;
     CoinsDBIconsDir = path.normalize(CoinsDBIconsDir);
-    CoinsDBExplorersDir = `${process.env.HOME}/.BarterDEX/CoinsDB/explorers`;
+    CoinsDBExplorersDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/explorers`;
     CoinsDBExplorersDir = path.normalize(CoinsDBExplorersDir);
-    CoinsDBElectrumsDir = `${process.env.HOME}/.BarterDEX/CoinsDB/electrums`;
+    CoinsDBElectrumsDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/electrums`;
     CoinsDBElectrumsDir = path.normalize(CoinsDBElectrumsDir);
     BarterDEXIcon = path.join(__dirname, '/assets/icons/barterdex/barterdex.ico');
     break;
