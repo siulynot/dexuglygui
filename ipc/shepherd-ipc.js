@@ -227,7 +227,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
     case 'coins_db_read_coins_json':
       fs.readJson(`${BarterDEXDir}/coins.json`)
         .then(coins_json_file => { event.returnValue = coins_json_file; })
-        .catch(err => { console.error(err); event.returnValue = ""; })
+        .catch(err => { console.error(err); event.returnValue = []; })
       break;
     case 'coins_db_read_db':
       fs.readJson(`${CoinsDBDir}/coins`)
