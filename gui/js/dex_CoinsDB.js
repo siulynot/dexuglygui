@@ -103,7 +103,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
 				console.warn(`localStorage object mm_coinsdb_json_array not found. Creating with default values...`);
 				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
-				CoinsDB_ManageCoinsJson('reset');
+				CoinsDB_ManageCoinsDetails('reset');
 			} else {
 				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
 				return lstore_coinsdb_json_array;
