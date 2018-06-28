@@ -54,9 +54,9 @@ switch (osPlatform) {
     CoinsDBDir = path.normalize(CoinsDBDir);
     CoinsDBIconsDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/icons`;
     CoinsDBIconsDir = path.normalize(CoinsDBIconsDir);
-    CoinsDBExplorersDir = `${process.env.HOME}/.BarterDEX/CoinsDB/explorers`;
+    CoinsDBExplorersDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/explorers`;
     CoinsDBExplorersDir = path.normalize(CoinsDBExplorersDir);
-    CoinsDBElectrumsDir = `${process.env.HOME}/.BarterDEX/CoinsDB/electrums`;
+    CoinsDBElectrumsDir = `${process.env.APPDATA}/BarterDEX/CoinsDB/electrums`;
     CoinsDBElectrumsDir = path.normalize(CoinsDBElectrumsDir);
     BarterDEXIcon = path.join(__dirname, '/assets/icons/barterdex/barterdex.ico');
     break;
@@ -114,7 +114,7 @@ fs.pathExists(_BarterDEXSettingsFile, (err, exists) => {
 });
 
 ipcMain.on('shepherd-command', (event, arg) => {
-  console.log('Shepard arg: ' + JSON.stringify(arg.command))  // prints arg
+  //console.log('Shepard arg: ' + JSON.stringify(arg.command))  // prints arg
   switch (arg.command) {
     case 'ping':
       event.returnValue = 'pong'
@@ -227,7 +227,7 @@ ipcMain.on('shepherd-command', (event, arg) => {
     case 'coins_db_read_coins_json':
       fs.readJson(`${BarterDEXDir}/coins.json`)
         .then(coins_json_file => { event.returnValue = coins_json_file; })
-        .catch(err => { console.error(err); event.returnValue = ""; })
+        .catch(err => { console.error(err); event.returnValue = []; })
       break;
     case 'coins_db_read_db':
       fs.readJson(`${CoinsDBDir}/coins`)
@@ -235,13 +235,13 @@ ipcMain.on('shepherd-command', (event, arg) => {
         .catch(err => { console.error(err); event.returnValue = []; })
       break;
     case 'coins_db_read_explorers':
-      console.log(arg.coin);
+      //console.log(arg.coin);
       fs.readJson(`${CoinsDBExplorersDir}/${arg.coin}`)
         .then(coins_db_explorers_file => { event.returnValue = coins_db_explorers_file; })
         .catch(err => { console.error(err); event.returnValue = ""; })
       break;
     case 'coins_db_read_electrums':
-      console.log(arg.coin);
+      //console.log(arg.coin);
       fs.readJson(`${CoinsDBElectrumsDir}/${arg.coin}`)
         .then(coins_db_elecrum_file => { event.returnValue = coins_db_elecrum_file; })
         .catch(err => { console.error(err); event.returnValue = ""; })

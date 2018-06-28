@@ -4,6 +4,7 @@ function BarterDEX_Init_CoinsDB() {
 	console.log(barterDEX_app_info);
 
 	localStorage.setItem('mm_barterdex_app_info', JSON.stringify(barterDEX_app_info));
+	CoinsDB_UpdatedCoinsDbFile()
 	CoinsDB_ManageCoinsJson();
 
 
@@ -20,6 +21,8 @@ function BarterDEX_Init_CoinsDB() {
 	// Startup coins select options populated with all coins db select options //
 	$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options());
 	$('.addcoin_startup_select').html(CoinDB_coin_json_select_options());
+
+	CoinDB_login_select_options();
 }
 
 function CoinsDB_UpdatedCoinsDbFile() {
@@ -59,7 +62,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 					if (lstore_coinsdb_json_array.length >= 255) {
 						$('.app-notifications').show();
 						$('.alert_coindb').show();
-						$('.alert_coindb').html(`There can only be 255 coins in Local Coimns DB. Please remove some coins from existing lisgt and then try adding a new coin to this list.`);
+						$('.alert_coindb').html(`There can only be 255 coins in Local Coins DB. Please remove some coins from existing list and then try adding a new coin to this list.`);
 						toastr.warning(`the local coins db length exceeded.`, `DEX Coins DB Notification`);
 					} else {
 						lstore_coinsdb_json_array.push(coins_json_data);
@@ -100,6 +103,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
 				console.warn(`localStorage object mm_coinsdb_json_array not found. Creating with default values...`);
 				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
+				CoinsDB_ManageCoinsDetails('reset');
 			} else {
 				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
 				return lstore_coinsdb_json_array;
@@ -239,4 +243,23 @@ function CoinDB_manage_coin_select_options() {
 	//console.log(options_data);
 
 	return options_data
+}
+
+function CoinDB_login_select_options() {
+	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
+	var login_select_options = '';
+
+	login_select_options = `
+	<option data-content="<img src='${coinsdbdir}/icons/kmd.png' width='50px;'/> BarterDEX - Komodo Decentralized Exchange" data-tokens="BarterDEX ">BarterDEX</option>
+	`
+
+	// Removed option
+	//<option data-content="<img src='img/cryptologo/mnz.png' width='50px;'/> Monaize (MNZ) dICO - Decentralized ICO" data-tokens="dICO">dICO</option>
+
+
+	setTimeout(function(){
+		$('.login_mode_options').selectpicker('destroy');
+		$('.login_mode_options').html(login_select_options);
+		$('.login_mode_options').selectpicker('render');
+	}, 1 * 1000);
 }
