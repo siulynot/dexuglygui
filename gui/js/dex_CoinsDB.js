@@ -186,8 +186,7 @@ function CoinsDB_GetCoinDetails(coin_code) {
 			coin_details.electrum = coin_electrums;
 		}
 	});
-
-	console.log(JSON.stringify(coin_details));
+	
 	return coin_details;
 }
 
