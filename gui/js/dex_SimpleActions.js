@@ -3226,9 +3226,9 @@ function coinBalanceSendFn(coin) {
 		console.log(data.coin.balance);
 		console.log(data.coin.txfee);
 
-		/*if (CoinsDB_GetCoinDetails(data.coin.coin).eth == true) {
-			data.coin.txfee = 0;			
-		}*/
+		if (CoinsDB_GetCoinDetails(data.coin.coin).eth == true) {
+			get_eth_fee(tx_coin)
+		}
 
 		var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 		var coin_balance_send_bootbox = bootbox.dialog({
@@ -3470,6 +3470,32 @@ function coinBalanceSendFn(coin) {
 }
 
 
+function get_eth_fee(coin) {
+	console.log(coin);
+	var eth_addr = $('.porfolio_coins_list_td_amount[data-coin="' + coin + '"]').data('address');
+	var userpass = sessionStorage.getItem('mm_userpass');
+	var mypubkey = sessionStorage.getItem('mm_mypubkey');
+
+	var ajax_data = { "userpass": userpass, "method": "eth_withdraw", "coin": coin, "to": eth_addr, "amount": 1 }
+	var url = "http://127.0.0.1:7783/";
+	$.ajax({
+		async: true,
+		data: JSON.stringify(ajax_data),
+		dataType: 'json',
+		type: 'POST',
+		timeout: 5000, // sets timeout to 5 seconds
+		url: url
+	}).done(function (etherc20_fee_output_data) {
+		// If successful
+		console.log(etherc20_fee_output_data);
+		sessionStorage.setItem('mm_tmp_eth_gas_info', JSON.stringify(etherc20_fee_output_data));
+		$('.bot_send_txfee').html(etherc20_fee_output_data.eth_fee);
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+		// If fail
+		console.log(textStatus + ': ' + errorThrown);
+	});
+}
+
 function send_btn_get_eth_erc20_balance(etherc20_balance_data) {
 	console.log(etherc20_balance_data);
 
@@ -3576,9 +3602,10 @@ function create_sendtx(coin, tx_data) {
 	console.log(tx_data);
 
 	var userpass = sessionStorage.getItem('mm_userpass');
+	var tmp_eth_gas_info = sessionStorage.getItem('mm_tmp_eth_gas_info');
 
 	if (CoinsDB_GetCoinDetails(coin).eth == true) {
-		var ajax_data = { "userpass": userpass, "method": "eth_withdraw", "coin": coin, "to": tx_data.to_addr, "amount": tx_data.send_amount }
+		var ajax_data = { "userpass": userpass, "method": "eth_withdraw", "coin": coin, "to": tx_data.to_addr, "amount": tx_data.send_amount, "gas": tmp_eth_gas_info.gas, "gas_price": tmp_eth_gas_info.gas_price, broadcast:1 }
 	} else {
 		var ajax_data = { "userpass": userpass, "method": "withdraw", "coin": coin, "outputs": tx_data };
 	}
