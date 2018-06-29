@@ -168,6 +168,8 @@ function CoinsDB_GetCoinDetails(coin_code) {
 	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
 	//var coins_detail_list = [{"coin": "KMD", "Name": "Komodo","explorer":["https://www.kmd.host/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10001},{"electrum1.cipig.net":10001}]},{"coin": "BTC", "Name": "Bitcoin","explorer":["https://www.blocktrail.com/BTC/tx/"],"eth":false,"electrum":[{"electrum2.cipig.net":10000},{"electrum1.cipig.net":10000}]}]
 
+	var eth_default_explorer = ["https://etherscan.io/tx/"];
+
 	var coin_explorers = ShepherdIPC({ "command": "coins_db_read_explorers", "coin": coin_code });
 	var coin_electrums = ShepherdIPC({ "command": "coins_db_read_electrums", "coin": coin_code });
 	var local_coins_json = ShepherdIPC({ "command": "coins_db_read_coins_json" });
@@ -180,11 +182,12 @@ function CoinsDB_GetCoinDetails(coin_code) {
 		//console.log(value);
 		if (coin_code == value.coin) {
 			coin_details = value;
-			coin_details.explorer = coin_explorers;
+			coin_details.explorer = (value.eth == true) ? eth_default_explorer : coin_explorers;
 			coin_details.electrum = coin_electrums;
 		}
 	});
 
+	console.log(JSON.stringify(coin_details));
 	return coin_details;
 }
 
