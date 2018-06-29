@@ -19,7 +19,6 @@ function BarterDEX_Init_CoinsDB() {
 	$('.buy_coin_p').html(CoinDB_coin_json_select_options());
 
 	// Startup coins select options populated with all coins db select options //
-	$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options());
 	$('.addcoin_startup_select').html(CoinDB_coin_json_select_options());
 
 	CoinDB_login_select_options();
@@ -103,6 +102,7 @@ function CoinsDB_ManageCoinsJson(coins_json_action, coins_json_data) {
 			if (JSON.parse(localStorage.getItem('mm_coinsdb_json_array')) == null) {
 				console.warn(`localStorage object mm_coinsdb_json_array not found. Creating with default values...`);
 				localStorage.setItem('mm_coinsdb_json_array', JSON.stringify(default_coinsdb_json_array));
+				CoinsDB_Dl_Extra(default_coinsdb_json_array);
 				CoinsDB_ManageCoinsDetails('reset');
 			} else {
 				var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
@@ -210,40 +210,54 @@ function CoinDB_coin_json_select_options() {
 	return options_data
 }
 
+var coinsdb_read_local_coins_json_file = function() {
+	return new Promise(function(resolve, reject) {
+		var local_coins_db = ShepherdIPC({ "command": "coins_db_read_db" });
+		//console.log(local_coins_db)
+		resolve(local_coins_db);
+	})
+}
+
 function CoinDB_manage_coin_select_options() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
 	//console.log(coinsdbdir);
-
 	var coin_db_img_url = 'https://raw.githubusercontent.com/jl777/coins/master/icons/';
+	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}];
 
-	var coins_detail_list = [{"coin": "KMD", "fname": "Komodo","name":"komodo","eth":false},{"coin": "BTC", "fname": "Bitcoin","name":"bitcoin","eth":false},{"asset":"ETOMIC","coin":"ETOMIC","eth":false,"fname":"ETOMIC","rpcport":10271}]
-	var local_coins_db = ShepherdIPC({ "command": "coins_db_read_db" });
-	if (local_coins_db.length == 0) {
-		console.log('local coins db is empty!');
-		CoinsDB_UpdatedCoinsDbFile();
-		var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
-		CoinsDB_Dl_Extra(lstore_coinsdb_json_array);
-		setTimeout(function(){
+	coinsdb_read_local_coins_json_file()
+	.then(function(local_coins_db_result) { 
+		//console.log(local_coins_db_result);
+		if (local_coins_db_result.length == 0) {
+			console.log(local_coins_db_result.length);
+			console.log('local coins db is empty!');
+			CoinsDB_UpdatedCoinsDbFile();
+			var lstore_coinsdb_json_array = JSON.parse(localStorage.getItem('mm_coinsdb_json_array'));
+			CoinsDB_Dl_Extra(lstore_coinsdb_json_array);
+			CoinDB_manage_coin_select_options();
+		} else {
+			console.log(local_coins_db_result);
+			//coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
+			var local_coins_db_result = _.sortBy(local_coins_db_result.concat(coins_detail_list), 'name');
+			
+			var options_data = '';
+			$.each(local_coins_db_result, function(index, value){
+				//console.log(index);
+				//console.log(value);
+				//console.log(value.coin.toLowerCase());
+				options_data += `
+		<option data-content="<img src='${coin_db_img_url}${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
+			})
+			//console.log(options_data);
 			$('.addcoin_coinsdb_select').selectpicker('destroy');
-			$('.addcoin_coinsdb_select').html(CoinDB_manage_coin_select_options());
+			$('.addcoin_coinsdb_select').html(options_data);
 			$('.addcoin_coinsdb_select').selectpicker('render');
-		}, 5 * 1000);
-	}
-	coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
-	var local_coins_db = _.sortBy(local_coins_db.concat(coins_detail_list), 'name');
-	
-	var options_data = '';
-	$.each(local_coins_db, function(index, value){
-		//console.log(index);
-		//console.log(value);
-		//console.log(value.coin.toLowerCase());
-		options_data += `
-<option data-content="<img src='${coin_db_img_url}${value.coin.toLowerCase()}.png' width='30px;'/> ${value.fname} (${value.coin})" data-tokens="${value.coin.toLowerCase()} ${value.fname} ">${value.coin}</option>`;
+		}
 	})
-	//console.log(options_data);
-
-	return options_data
 }
+
+setTimeout(function(){
+	CoinDB_manage_coin_select_options();
+}, 5 * 1000);
 
 function CoinDB_login_select_options() {
 	var coinsdbdir = JSON.parse(localStorage.getItem('mm_barterdex_app_info')).CoinsDBDir;
