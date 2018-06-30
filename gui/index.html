@@ -1147,6 +1147,7 @@
     <script>
         var ipc = require('electron').ipcRenderer;
         var bip39 = require('bip39');
+        Promise = require('bluebird');
         if (typeof module === 'object') {
             window.module = module;
             module = undefined;
