@@ -246,6 +246,17 @@ ipcMain.on('shepherd-command', (event, arg) => {
         .then(coins_db_elecrum_file => { event.returnValue = coins_db_elecrum_file; })
         .catch(err => { console.error(err); event.returnValue = ""; })
       break;
+    case 'read_release_notes':
+      fs.readFile(path.join(__dirname, `../release_notes`), 'utf8')
+        .then(release_notes_file_output => {
+          //console.log(release_notes_file_output)
+          event.returnValue = release_notes_file_output;
+        })
+        .catch(err => {
+          console.error(err)
+          event.returnValue = "";
+        });
+      break;
     default:
       event.returnValue = 'Command not found';
   }
