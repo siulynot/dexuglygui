@@ -76,6 +76,23 @@ If your wallet is encrypted, the app will not work with it. This feature will be
 ### **Build the App**
 Refer to the original [electron-packager](https://github.com/electron-userland/electron-packager) repository for more detailed information.
 
+
+##### Quick Build Instructions
+Make sure you have already done `npm install` or `npm upgrade` before executing these commands:
+
+```shell
+cd BarterDEX
+
+# Linux
+npm run package:linux
+
+# Mac
+npm run package:mac
+
+# Windows
+npm run package:win
+```
+
 ##### Linux
 Change directory to BarterDEX and execute the following command to build the Linux app
 ```shell

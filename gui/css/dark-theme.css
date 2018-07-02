@@ -153,3 +153,7 @@ input[type="button" i], input[type="submit" i], input[type="reset" i], input[typ
 	background-color: #3f3f3f;
 	border-color: #000;
 }
+
+.modal-header {
+	border-bottom: 1px solid #444;
+}

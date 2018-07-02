@@ -4,7 +4,10 @@
   "description": "Full BarterDEX implimentation with powertools for Traders",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package:mac": "electron-packager . --platform=darwin --arch=x64 --icon=assets/icons/barterdex/barterdex.icns --out=build/ --ignore=assets/bin/win64 --ignore=assets/bin/linux64 --overwrite",
+    "package:win": "electron-packager . --platform=win32 --arch=x64 --icon=assets/icons/barterdex/barterdex.ico --out=build/ --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite",
+    "package:linux": "electron-packager . --platform=linux --arch=x64 --icon=assets/icons/barterdex/128x128.png --out=build/ --ignore=assets/bin/win64 --ignore=assets/bin/osx --overwrite"
   },
   "repository": "https://github.com/KomodoPlatform/BarterDEX.git",
   "keywords": [
