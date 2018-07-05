@@ -1,7 +1,7 @@
 
 function BarterDEX_Init_CoinsDB() {
 	var barterDEX_app_info = ShepherdIPC({ "command": "app_info" });
-	console.log(barterDEX_app_info);
+	//console.log(barterDEX_app_info);
 
 	localStorage.setItem('mm_barterdex_app_info', JSON.stringify(barterDEX_app_info));
 	CoinsDB_UpdatedCoinsDbFile()
@@ -26,7 +26,7 @@ function BarterDEX_Init_CoinsDB() {
 
 function CoinsDB_UpdatedCoinsDbFile() {
 	var update_coinsdb_file = ShepherdIPC({ "command": "coins_db_dl", "data":{"cmd":"update_coins_file"} });
-	console.log(update_coinsdb_file);
+	//console.log(update_coinsdb_file);
 }
 
 
@@ -237,7 +237,7 @@ function CoinDB_manage_coin_select_options() {
 			CoinsDB_Dl_Extra(lstore_coinsdb_json_array);
 			CoinDB_manage_coin_select_options();
 		} else {
-			console.log(local_coins_db_result);
+			//console.log(local_coins_db_result);
 			//coins_detail_list.pop(2); // Delete ETOMIC before concatinating to avoid duplication.
 			var local_coins_db_result = _.sortBy(local_coins_db_result.concat(coins_detail_list), 'name');
 			

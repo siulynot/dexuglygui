@@ -433,7 +433,7 @@ table tbody tr:first-child td {
   cursor: pointer;
 }
 
-.buy_sell_fill_gtc_div .toggle-on, .buy_sell_fill_gtc_div .toggle-off { 
+.notify_rel_body_checkbox .toggle-on, .notify_rel_body_checkbox .toggle-off, .buy_sell_fill_gtc_div .toggle-on, .buy_sell_fill_gtc_div .toggle-off { 
   line-height: inherit;
 }
 
