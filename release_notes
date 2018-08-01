@@ -1,0 +1,8 @@
+## Release notes v1.1.0-rc
+
+- Release notfication dialog box added
+This dialog box will show on every release update.
+You can have it disabled by selecting the "Don't show until next update" checkbox.
+
+- [Dev update] npm pacakge commands added
+npm commands added to package barterdex app with ease. Read ReadMe.md file for quick build instructions.

@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 	/* OS Changes - Here we change anything on the page that's OS specific 
 	This could grow enough to need its own function call, but this for now*/
-	console.log('Platform: ' + osPlatform);
+	//console.log('Platform: ' + osPlatform);
 	switch (osPlatform) {
 		case "darwin":
 
