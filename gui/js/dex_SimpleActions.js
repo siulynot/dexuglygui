@@ -803,8 +803,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 		//var rand_electrum_srv = get_random_electrum_server(data.coin);
 
 		if (CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == undefined || CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum == "") {
-			console.log('no electrum servers found for: ' + enable_disable_coin_data.coin);
-			toastr.warning('No Electrum Servers found for ' + enable_disable_coin_data.coin + '<br> Please use Native Mode for ' + enable_disable_coin_data.coin, 'Coin Status');
+			console.log(`no electrum servers found for: ${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin})`);
+			toastr.warning(`No Electrum Servers found for<br> ${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin})<br> Please use Native Mode for <br> ${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin})`, 'Coin Status');
 		}
 
 		$.each(CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).electrum, function (index, val) {
@@ -860,7 +860,8 @@ function enable_disable_coin(enable_disable_coin_data) {
 				if (!enable_electrum_coin_output_data.error === false) {
 					//console.log(data.error);
 					var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
-					toastr.info(enable_electrum_coin_output_data.error, default_lang.CoinControl.coincontrol_toastr_title_coin_status);
+					console.log(`${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin})<br>${enable_electrum_coin_output_data.error}`);
+					toastr.info(`${CoinsDB_GetCoinDetails(enable_disable_coin_data.coin).fname} (${enable_disable_coin_data.coin})<br>${enable_electrum_coin_output_data.error}`, default_lang.CoinControl.coincontrol_toastr_title_coin_status);
 					if (enable_electrum_coin_output_data.error == 'couldnt find coin locally installed') { //{error: "couldnt find coin locally installed", coin: "BTC"}
 						var default_lang = JSON.parse(sessionStorage.getItem('mm_default_lang'));
 						bootbox.alert({
