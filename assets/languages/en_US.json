@@ -139,7 +139,7 @@
     "inventory_td_address": "Address",
     "inventory_td_amount": "Amount",
     "inventory_td_confirmations": "Confirmations",
-    "inventory_td_interest": "Interest",
+    "inventory_td_interest": "Rewards",
     "inventory_td_scriptpubkey": "scriptPubKey",
     "inventory_td_txid": "TxID"
   },
@@ -383,7 +383,7 @@
     "zeroconf_deposit_security_deposit_sent": "InstantDEX security deposit sent",
     "zeroconf_claim_deposit_claim": "InstantDEX Deposit Claim",
     "zeroconf_claim_list_of_claimable": "List of Claimable Deposits",
-    "zeroconf_claim_td_interest": "Interest",
+    "zeroconf_claim_td_interest": "Rewards",
     "zeroconf_claim_td_wait_time": "Wait Time",
     "zeroconf_info_dialog_title": "What is \"Speed Mode\"?",
     "zeroconf_info_dialog_p_01": "Use of this feature requires a security deposit, equal to or greater than the amount you wish to actively trade. This deposit is placed in a special multisig address for safe keeping. The following conditions apply",
@@ -392,7 +392,7 @@
     "zeroconf_info_dialog_li_03": "The expiration date is permanently set and recorded within your blockchain transaction at the time of sending the deposit.",
     "zeroconf_info_dialog_li_04": "Choose your time period appropriately, as you can only reclaim your deposit after the expiration date.",
     "zeroconf_info_dialog_li_05": "Your KMD security deposit will continue to accrue the 5% APR throughout the time period, as usual.",
-    "zeroconf_info_dialog_li_06": "Upon conclusion, you will receive your deposit and interest, less a security fee of 0.1%.",
+    "zeroconf_info_dialog_li_06": "Upon conclusion, you will receive your deposit and reward, less a security fee of 0.1%.",
     "zeroconf_info_dialog_p_02": "IMPORTANT: If you attempt to cheat while using Speed Mode, both the amount of your offense and an additional penalty fee can be deducted from your deposit and forfeited to the affected parties. The remaining amount in your deposit will be claimable at the normal time of expiration."
   },
   "Settings": {
