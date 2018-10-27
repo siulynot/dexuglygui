@@ -1,0 +1,159 @@
+body, .dextradeshistory, .dexdebug {
+	background-color: #2a2a2a;
+	color: #e8e8e8;
+}
+
+.navbar-default {
+	background-color: #1f1f1f;
+	border-color: #131313;
+}
+
+.panel-default {
+	border-color: #181818;
+}
+
+.panel-default>.panel-heading {
+	color: #e8e8e8;
+	background-color: #484848;
+	border-color: #232323;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #2a2a2a;
+}
+
+.table {
+	background-color: #343434 !important;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	border-top: 1px solid #4a4a4a;
+}
+
+.table>thead>tr>th {
+	border-bottom: 2px solid #4a4a4a;
+}
+
+.orderbook_asks tr:hover td, .orderbook_asks tr:hover td {
+	background: #000;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	color: #676767;
+	background-color: #262626;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #3f3f3f;
+    border-color: #000;
+}
+
+.btn-default:hover {
+    color: #fff;
+    background-color: #545454;
+    border-color: #000;
+}
+
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+	color: #fff;
+    background-color: #000;
+    border-color: #333;
+}
+
+.btn-default.focus, .btn-default:focus {
+	color: #fff;
+	background-color: #0c0c0c;
+	border-color: #000000;
+}
+
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+	color: #fff;
+	background-color: #3f3f3f;
+	border-color: #000;
+}
+
+
+.panel {
+	background-color: #202020;
+}
+
+.with-nav-tabs.panel-default .nav-tabs > li.active > a, .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover, .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+	color: #e8e8e8;
+	background-color: #202020;
+	border-color: #202020;
+}
+
+.form-control {
+	color: #151515;
+	background-color: #ddd;
+}
+
+
+.input-group-addon, pre {
+	color: #c3c3c3;
+	background-color: #5e5e5e;
+	border: #ddd;
+}
+
+.modal-content {
+	background-color: #2a2a2a;
+}
+
+.close, .close:hover {
+	color: #e8e8e8;
+}
+
+.modal-footer {
+	border-top: 1px solid #4a4a4a;
+}
+
+.dropdown-menu {
+	background-color: #2a2a2a;
+}
+
+.dropdown-menu>li>a {
+	color: #e8e8e8;
+}
+
+
+.table>tbody>tr.warning>td, .table>tbody>tr.warning>th, .table>tbody>tr>td.warning, .table>tbody>tr>th.warning, .table>tfoot>tr.warning>td, .table>tfoot>tr.warning>th, .table>tfoot>tr>td.warning, .table>tfoot>tr>th.warning, .table>thead>tr.warning>td, .table>thead>tr.warning>th, .table>thead>tr>td.warning, .table>thead>tr>th.warning {
+	background-color: #796704;
+}
+
+.relvol_basevol_label, .relvol_basevol_amount, .relvol_basevol_coin, .bot_settings_label1, .bot_settings_label2, .bot_settings_label3 {
+	color: #e8e8e8;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+
+.trading_sellcoin_ticker_name, .trading_coin_ticker_name {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+
+.trading_sellcoin_balance, .trading_coin_balance {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.coin_balance_receive_coin_logo {
+	border: 10px solid #2a2a2a;
+	background-color: #2a2a2a;
+}
+
+
+.swapdetail_info {
+  font-size: 20px;
+  border: 0px;
+  background-color: #2a2a2a;
+}
+
+#debug-payload {
+	color: #fff;
+	background-color: #3f3f3f;
+	border-color: #000;
+}
+
+.modal-header {
+	border-bottom: 1px solid #444;
+}

@@ -1,0 +1,540 @@
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+.navmenu_top {
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+	box-shadow: 0px 0px 15px 0px rgba(163,163,163,1);
+}
+
+.navbar {
+  margin-bottom: 5px;
+}
+
+.label-grey {
+	border: 1px solid #ccc;
+	color: #777;
+}
+
+.label {
+  padding: 0.4em .6em .3em;
+}
+
+.label-uppercase {
+	text-transform: uppercase;
+}
+
+.dropdown-menu {
+	z-index: 2000;
+}
+
+/* Sign-in Form CSS */
+.form-signin {
+  max-width: 730px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  /*margin-bottom: 10px;*/
+  /*border-top-left-radius: 0;
+  border-top-right-radius: 0;*/
+}
+
+.btn-grey {
+  color: #000;
+  background-color: #c7c7c7;
+  border-color: #8e8e8e;
+}
+
+/*body {
+    -ms-overflow-style: scrollbar;
+    -webkit-app-region:drag;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+button,
+textarea {
+  -webkit-app-region: no-drag;
+}*/
+
+
+@media screen and (min-width:768px){
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: #eee;
+    }
+    .navbar>.container .navbar-brand-centered,
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -80px;
+    }
+}
+
+@media screen and (max-width:1530px){
+  body {
+    font-size: 120%;
+  }
+
+  .trading_sellcoin_ticker_name, .trading_coin_ticker_name {
+    font-size: 15px !important;
+    padding: 10px 0;
+  }
+
+  .trading_sellcoin_balance, .trading_coin_balance {
+    padding: 10px 0;
+  }
+
+  .coin_balance_disable, .coin_balance_receive, .coin_balance_send, .coin_balance_inventory, .coin_balance_enable_native, .coin_balance_enable_electrum, .coin_balance_zcredits {
+    font-size: 10px;
+  }
+}
+
+
+.modal-dialog {
+  margin-top: 50px;
+}
+
+.slider.slider-horizontal {
+  width: 100%;
+}
+
+.exchange_trade_status_body {
+  overflow: hidden;
+  min-height: 285px;
+}
+
+#exchange_coin_asks, #exchange_coin_bids {
+  overflow: hidden;
+  min-height: 521px;
+}
+
+#exchange_coin_asks_togl, #exchange_coin_bids_togl {
+  overflow: hidden;
+  min-height: 521px;
+}
+
+.zeroconf_settings_table_div {
+  overflow: hidden;
+  height: 385px;
+}
+
+.orderbook_asks, .orderbook_bids {
+  cursor: pointer;
+}
+
+.orderbook_asks tr:hover td, .orderbook_bids tr:hover td {
+  background: #000;
+  color: #fff;
+}
+
+.progress-nomargin {
+  margin-bottom: 0px !important;
+}
+
+.loader {
+  position: relative;
+  margin: 0px auto;
+  width: 100px;
+  height: 100px;
+  zoom: 1.7;
+}
+
+.circle {
+  animation: rotate 2s linear infinite;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+.path {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke: #FFB8A2;
+  stroke-linecap: round;
+}
+
+.path2 {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash2 1.5s ease-in-out infinite;
+  stroke: #FF9372;
+  stroke-linecap: round;
+}
+
+.path3 {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash3 1.5s ease-in-out infinite;
+  stroke: #FF7C53;
+  stroke-linecap: round;
+}
+
+.path4 {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash4 1.5s ease-in-out infinite;
+  stroke: #FE450D;
+  stroke-linecap: round;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash2 {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -50;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash3 {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -75;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes color {
+  100%, 0% {
+    stroke: #FF8D6A;
+  }
+  40% {
+    stroke: #FE450D;
+  }
+  66% {
+    stroke: #FF683A;
+  }
+  80%, 90% {
+    stroke: #FF7D56;
+  }
+}
+
+.balance-block {
+  display: none;
+}
+
+.fixed_headers {
+  display: inline-block;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.fixed_headers th,
+.fixed_headers td {
+  padding: 5px;
+  text-align: left;
+  flex-basis: 100%;
+  width: 100px;
+}
+.fixed_headers thead {
+  width: 100%;
+  display: block;
+  overflow-y: scroll;
+}
+.fixed_headers thead tr,
+.fixed_headers tbody tr {
+  display: flex;
+  flex-direction: row;
+}
+.fixed_headers tbody {
+  display: block;
+  overflow-y: scroll;
+  width: 100%;
+  height: 247px;
+}
+
+#exchange_coin_asks,
+.exchange_trade_status_body {
+  overflow: hidden;
+}
+
+table tbody tr:first-child td {
+  border: none;
+}
+
+#orderbook-asks-spinner,
+#exchange-swap-status-spinner,
+#trades-history-spinner,
+#portfolio-coins-spinner {
+  position: absolute;
+  z-index: 100;
+  top: 70px;
+  left: 0;
+}
+
+/* debug */
+.mainbody {
+  overflow: hidden;
+}
+.dexdebug {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  /*z-index: 1100;*/
+  padding: 20px;
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+}
+#debug-payload {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  height: 200px;
+}
+#debug-payload-response {
+  padding: 10px;
+  width: 100%;
+  border: solid 1px #ccc;
+  min-height: 200px;
+}
+
+/* trades history */
+.dextradeshistory {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  /*z-index: 1100;*/
+  padding: 20px;
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+}
+.trades-history-table,
+.trades-history-table td,
+.trades-history-table th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.trades-history-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.trades-history-table th,
+.trades-history-table td {
+  padding: 3px 15px;
+}
+
+.col-red {
+  color: #f96868;
+}
+.col-green {
+  color: #46be8a;
+}
+.fsize-xm {
+  font-size: 10px;
+  position: relative;
+  left: -5px;
+  top: 1px;
+}
+.btn-gray,
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active {
+  background-color: #8b8c8c;
+  border-color: #8b8c8c;
+  color: #fff;
+}
+
+.refresh-trades-history-icon {
+  background: #e4e4e4;
+  color: #000;
+  padding: 5px 10px;
+  position: absolute;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.notify_rel_body_checkbox .toggle-on, .notify_rel_body_checkbox .toggle-off, .buy_sell_fill_gtc_div .toggle-on, .buy_sell_fill_gtc_div .toggle-off { 
+  line-height: inherit;
+}
+
+.toggle-on, .toggle-off { 
+  line-height: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+#portfolio_chart_current {
+  font-size: 11px;
+}
+
+.amcharts-pie-slice {
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition-duration: 0.3s;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 30px 0 #000;
+}
+
+.amcharts-pie-slice:hover {
+  transform: scale(1.1);
+  filter: url(#shadow);
+}
+
+
+.relvol_basevol_label, .relvol_basevol_amount {
+  font-size: 20px;
+  font-weight: 200;
+  border: 0;
+  background-color: #fff;
+}
+
+
+.relvol_basevol_coin {
+  font-size: 25px;
+  background-color: #fff;
+  font-weight: 100;
+}
+
+.trading_sellcoin_ticker_name, .trading_coin_ticker_name {
+  font-size: 20px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 0px;
+}
+
+.trading_sellcoin_balance, .trading_coin_balance {
+    font-size: 175%;
+    font-weight: 100;
+    text-align: right;
+    background-color: #fff;
+    border-radius: 0px;
+  }
+
+
+
+.coin_balance_receive_coin_logo {
+  border: 10px solid #fff;
+  border-radius: 50px;
+  background: #fff;
+}
+
+.swapdetail_info {
+  font-size: 20px;
+  border: 0px;
+  background-color: #fff;
+}
+
+.bot_settings_label1 {
+  font-size: 30px;
+  font-weight: 200;
+  border: 0;
+  background-color: #fff;
+}
+
+.bot_settings_label2 {
+  font-size: 40px;
+  font-weight: 100;
+  border: 0;
+  background-color: #fff;
+}
+
+.bot_settings_label3 {
+  font-size: 25px;
+  background-color: #fff;
+  font-weight: 100;
+}
+
+
+/* Trading pair options to show info buttons next to the checkbox options closer */
+.pretty {
+  margin-right: 1px;
+}

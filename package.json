@@ -1,0 +1,41 @@
+{
+  "name": "BarterDEX",
+  "version": "1.1.2-rc",
+  "description": "Full BarterDEX implimentation with powertools for Traders",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package:mac": "electron-packager . --platform=darwin --arch=x64 --icon=assets/icons/barterdex/barterdex.icns --out=build/ --ignore=assets/bin/win64 --ignore=assets/bin/linux64 --overwrite",
+    "package:win": "electron-packager . --platform=win32 --arch=x64 --icon=assets/icons/barterdex/barterdex.ico --out=build/ --ignore=assets/bin/osx --ignore=assets/bin/linux64 --overwrite",
+    "package:linux": "electron-packager . --platform=linux --arch=x64 --icon=assets/icons/barterdex/128x128.png --out=build/ --ignore=assets/bin/win64 --ignore=assets/bin/osx --overwrite"
+  },
+  "repository": "https://github.com/KomodoPlatform/BarterDEX.git",
+  "keywords": [
+    "barterdex",
+    "jumblr",
+    "dex",
+    "atomicswaps",
+    "instantdex",
+    "easydex",
+    "bitcoin",
+    "nativedex",
+    "bitcoinmixer",
+    "bitcointumbler"
+  ],
+  "author": "Satinderjit Singh",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.10",
+    "electron-packager": "^12.1.2"
+  },
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "bluebird": "^3.5.2",
+    "fix-path": "^2.1.0",
+    "fs-extra": "^4.0.3",
+    "mkdirp": "^0.5.1",
+    "portscanner": "^2.2.0",
+    "ps-node": "^0.1.6",
+    "request": "^2.88.0"
+  }
+}
