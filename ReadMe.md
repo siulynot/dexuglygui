@@ -1,3 +1,8 @@
+# This repository is deprecated and no longer supported! Please wait for the MM2 release.
+
+
+
+
 # Official BarterDEX README
 
 The BarterDEX application created by Komodo Platform allows trading cryptocurrency coins without a counterparty risk.
